@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lara.entity">
+
+    <class name="Person" table="PERSON" lazy = "true" >
+        <id name="personId" column="PERSON_ID">
+        </id>
+        <property name = "firstName"/>
+        <property name = "lastName"/>
+        <property name= "age"/>
+     </class>
+     <class name="Employee" table="EMPLOYEE" >
+        <id name="personId" column="PERSON_ID">
+        </id>
+   		<property name = "firstName"/>
+        <property name = "lastName"/>
+        <property name= "age"/>
+        <property name= "salary"/>
+        <property name= "designation"/>
+     </class>
+    <class name="PermanentEmployee" table="P_EMPLOYEE" >
+        <id name="personId" column="PERSON_ID">
+         </id>
+   		<property name = "firstName"/>
+        <property name = "lastName"/>
+        <property name= "age"/>
+        <property name= "salary"/>
+        <property name= "designation"/>
+        <property name= "allowance"/>
+         <property name= "leaves"/>
+     </class>
+</hibernate-mapping>

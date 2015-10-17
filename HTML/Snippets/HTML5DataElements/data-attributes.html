@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML data-&ast; attributes
+    </title>
+    <script>
+        function aka(e) {
+            alert("aka " + e.dataset.aka);
+        }
+        function fire(e) {
+            type = e.dataset.missileType;
+            payload = e.dataset.missilePayload;
+            sound = e.dataset.missileSound;
+            alert("Firing the " + type + " with a " + payload + " payload. " + sound);
+        }
+    </script>
+</head>
+<body>
+
+<h1>
+    HTML <code>data-&ast;</code> attributes
+</h1>
+<p>
+    The Beatles recorded an album called
+        <a href="#" data-aka="The White Album" onclick="aka(this)">The Beatles</a>. 
+</p>
+
+<p>
+    Click here to fire the missile: 
+        <button data-missile-type="rocket"
+          data-missile-payload="photon torpedo"
+          data-missile-sound="Ka-Boom!"
+          onclick="fire(this)">
+            Fire!
+        </button>
+</p>
+
+</body>
+</html>

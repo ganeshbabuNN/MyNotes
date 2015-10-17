@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+	<head>
+		<title>Mouse Click Events</title>
+		<link href="eventcharts.css" rel="stylesheet" />
+		<script type="text/javascript">
+			window.onload = function () {
+				document.getElementById("clickh").onclick = keyHandler;
+				document.getElementById("contexth").oncontextmenu = keyHandler;
+				document.getElementById("dblclickh").ondblclick = keyHandler;
+				document.getElementById("mousedh").onmousedown = keyHandler;
+				document.getElementById("mouseuh").onmouseup = keyHandler;
+			}
+		
+			function keyHandler(evt) {
+				if (!evt) var evt = window.event;
+				var thisEvt = (evt) ? evt.type : event.type;
+				document.getElementById("eventDone").innerHTML = thisEvt;
+			}
+		</script>
+		<style>
+			h3 {
+				font-family: verdana, arial, sans;
+				font-weight: normal;
+			}
+		</style>		
+	</head>
+	<body>
+		<h1>Mouse Click Events</h1>
+		<h3>The most recent event caught was: <span id="eventDone">(none caught yet)</span></h3>
+		<table cellspacing="0" border="1" cellpadding="10">
+			<tr>
+				<th>Event
+				</th>
+				<th>Example
+				</th>
+			</tr>
+			<tr>
+				<td>onclick
+				</td>
+				<td><button type="button" id="clickh">Click me!</button>
+				</td>
+			</tr>
+			<tr>
+				<td>oncontextmenu
+				</td>
+				<td><button type="button" id="contexth">Click me!</button>
+				</td>
+			</tr>
+			<tr>
+				<td>ondblclick
+				</td>
+				<td><button type="button" id="dblclickh">Click me!</button>
+				</td>
+			</tr>
+			<tr>
+				<td>onmousedown
+				</td>
+				<td><button type="button" id="mousedh">Click me!</button>
+				</td>
+			</tr>
+			<tr>
+				<td>onmouseup
+				</td>
+				<td><button type="button" id="mouseuh">Click me!</button>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

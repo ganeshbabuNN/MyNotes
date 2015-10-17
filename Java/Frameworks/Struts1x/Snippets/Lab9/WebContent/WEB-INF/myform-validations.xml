@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0.1//EN" "validator_1_0_1.dtd" >
+<form-validation>
+<formset>
+	<form name ="changeEmailForm">
+	 <field property="currentEmail" depends="required,email">
+	  <arg0 key = "Email ID" resource="false"/>
+	  </field>
+	  
+	  <field property="newEmail" depends="required,email,validwhen">
+	  <arg0 key = "New Email" resource="false"/>
+	  <msg name = "validwhen" key="errors.newEmail.match"/>
+	  <var>
+	   <var-name>test</var-name>
+	   <var-value>(currentEmail != newEmail)</var-value>
+	  </var>
+	  </field>	  
+	  </form>	  
+     </formset>
+</form-validation>

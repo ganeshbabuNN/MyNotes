@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+    
+<application>
+	<locale-config>
+		<default-locale>en</default-locale>
+	</locale-config>
+	<message-bundle>com.ganesh.jsf.messages</message-bundle>
+	 <view-handler>org.ajax4jsf.application.AjaxViewHandler</view-handler>
+</application>
+<managed-bean>
+<managed-bean-name>loginBean</managed-bean-name>
+<managed-bean-class>com.ganesh.jsf.LoginBean</managed-bean-class>
+<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+
+<navigation-rule>
+	<from-view-id>/login.jsp</from-view-id>
+	<navigation-case>
+		<from-outcome>failure</from-outcome>
+		<to-view-id>/login.jsp</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>success</from-outcome>
+		<to-view-id>/home.jsp</to-view-id>	
+	</navigation-case>	
+	
+</navigation-rule>
+
+<navigation-rule>
+	<from-view-id>/home.jsp</from-view-id>
+	<navigation-case>
+		<from-outcome>success</from-outcome>
+		<to-view-id>/login.jsp</to-view-id>	
+	</navigation-case>	
+</navigation-rule>
+	
+</faces-config>

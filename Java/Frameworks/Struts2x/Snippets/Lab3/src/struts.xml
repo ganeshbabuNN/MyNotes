@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <package name="ganesh" namespace="/ganesh" extends="struts-default">
+    
+    <global-results>
+    <result name="dtest">/dtest.jsp</result>    
+    </global-results>
+    
+    <action name="Hello" class="com.ganesh.struts2.HelloAction">
+    	<result name="hello">/hello.jsp</result>
+    </action>
+    
+    <action name="Hai" class="com.ganesh.struts2.HaiAction">
+    	<result name="hai">/hai.jsp</result>
+    </action>
+    <action name="HelloHai" class="com.ganesh.struts2.HelloHaiAction">
+    	<result name="hellohai">/hellohai.jsp</result>
+    </action>
+    
+    <action name="Test">
+    	<result>/test.jsp</result>
+    </action>
+    
+    <action name="DTest1" class="com.ganesh.struts2.DTestAction" method="test1"/>
+    <action name="DTest2" class="com.ganesh.struts2.DTestAction" method="test2"/>
+    
+    </package>
+</struts>

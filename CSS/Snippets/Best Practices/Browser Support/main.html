@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <title>
+        Browser Support
+    </title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <script type="text/javascript" src="bw-browser.js"></script>
+    <script type="text/javascript">
+    <!--
+        if( browserInfo.OS == 'Windows' )
+            document.write('<link rel="stylesheet" type="text/css" href="windows.css" />');
+        if( browserInfo.browser == 'Internet Explorer' )
+            document.write('<link rel="stylesheet" type="text/css" href="ie.css" />');
+    // -->
+    </script>
+</head>
+
+<body>
+
+<div id="content">
+
+<script type="text/javascript">
+<!--
+    document.write(
+        '<p>You\'re using ' + browserInfo.browser +
+            ' version ' + browserInfo.version +
+            ' on ' + browserInfo.OS + '</p>'
+    );
+// -->
+</script>
+
+<h1>
+    Lorem ipsum dolor sit amet
+</h1>
+
+<p> 
+    <span class="fontTest">Lorem ipsum dolor sit amet</span>,
+    consectetur adipiscing elit. Donec vitae enim justo. Mauris eget augue id
+    lorem consequat laoreet. Cras ut ante a nunc rutrum iaculis. Donec eu neque
+    nunc. Pellentesque pharetra nibh scelerisque tellus tincidunt in volutpat
+    augue semper. Proin luctus sem ac arcu convallis vel ultrices felis
+    scelerisque. Duis vitae sem eros, non sollicitudin purus.
+</p>
+
+</div>
+
+</body>
+</html>
+

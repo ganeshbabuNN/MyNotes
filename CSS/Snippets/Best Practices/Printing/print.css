@@ -1,0 +1,29 @@
+
+
+body {
+    font-family: georgia, serif;
+    background-color: white;
+    margin: 0 .5in;
+    font-size: 12pt;
+}
+
+div#content {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    color: black;
+    background: transparent;
+}
+
+h1, h2, h3 {
+    margin-top: .5em;
+    font-family: Lucida Grande, Lucida Sans Unicode, sans-serif;
+    line-height: 1.7em;
+    color: #006;
+}
+
+p {
+    text-indent: 2em;
+    line-height: 1.7em;
+    margin: 0;
+}

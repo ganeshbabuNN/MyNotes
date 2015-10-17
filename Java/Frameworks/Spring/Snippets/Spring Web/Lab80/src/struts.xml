@@ -1,0 +1,41 @@
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />  
+    <constant name="struts.action.extension" value="jlc"/>
+    <constant name="struts.objectFactory" value="spring"/>
+    <constant name="struts.objectFactory.spring.autoWire" value="type"/>
+    <constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true"/>   
+   	  <package name="ganesh" namespace="/ganesh" extends="struts-default">
+      <result-types>
+      	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+      </result-types>
+      <action name="home">
+    	<result type="tiles">HomeDef</result>
+      </action>
+      <action name="addContact">
+      	<result type="tiles">AddContactDef</result>
+      </action>
+      <action name="searchContact">
+      	<result type="tiles">SearchContactDef</result>
+      </action>
+      <action name="addContactSubmit" class="com.ganesh.struts2.ContactAction" method="addContact">
+      	<result name="input" type="tiles">AddContactDef</result>
+      	<result name="success" type="tiles">AddStudentSuccessDef</result>
+      </action>  
+      
+      <action name="searchContactSubmit" class="com.ganesh.struts2.ContactAction" method="searchContact">
+      	<result name="input" type="tiles">SearchContactDef</result>
+      	<result type="tiles">SearchResultsDef</result>
+      </action> 
+      
+      <action name="editContactSubmit" class="com.ganesh.struts2.ContactAction" method="editContact">
+      	<result type="tiles">SearchResultsDef</result>
+      </action>
+      
+      <action name="updateContactSubmit" class="com.ganesh.struts2.ContactAction" method="updateContact">
+      	<result name="input" type="tiles">SearchResultsDef</result>
+      	<result type="tiles">UpdateContactSuccessDef</result>
+      </action>   
+          
+    </package>    
+</struts>    

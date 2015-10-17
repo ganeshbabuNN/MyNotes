@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+	<class name="Student" table="gStudent">
+		<id name="sid" column="sid" type="int">
+			<generator class="increment" />
+		</id>
+		<property name="sname" />
+		<property name="email" />
+		<property name="phone" type="long" />
+		<set name="courses" table="stu_cou">
+			<key column="sid" />
+			<many-to-many column="cid" class="Course" />
+		</set>
+	</class>
+</hibernate-mapping>

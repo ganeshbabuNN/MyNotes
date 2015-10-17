@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML5 Video
+    </title>
+    <script>
+        var video;
+        function init() {
+            video = document.getElementById('video1');
+        }
+        function play() { video.play(); }
+        function pause() { video.pause(); }
+        function rewind() { video.currentTime = 0; }
+        window.onload = init;
+    </script>
+</head>
+<body>
+
+<h1>
+    HTML5 Video
+</h1>
+
+<p> Here's a video: </p>
+<video id="video1" width="860" height="480" controls>
+    <source src="media/video.m4v" type="video/mp4" />
+    <source src="media/video.webm" type="video/webm" />
+    <source src="media/video.ogg" type="video/ogg" />
+    <p> Your browser does not support the HTML5 video feature. </p>
+</video>
+
+<form>
+    <input type="button" value="Play" onclick="play()" />
+    <input type="button" value="Pause" onclick="pause()" />
+    <input type="button" value="Rewind" onclick="rewind()" />
+</form>
+
+</body>
+</html>
+

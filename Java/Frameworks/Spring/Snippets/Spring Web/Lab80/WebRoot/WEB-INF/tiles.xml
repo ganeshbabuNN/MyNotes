@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+ "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+
+<tiles-definitions>
+		<definition name="BaseDef" template="/WEB-INF/pages/GBLayout.jsp">
+		<put-attribute name="HEADER" value="/WEB-INF/pages/header.jsp" />
+		<put-attribute name="LMENU" value="/WEB-INF/pages/lmenu.jsp" />
+		<put-attribute name="BODY" value="" />
+		<put-attribute name="FOOTER" value="/WEB-INF/pages/footer.jsp" />
+
+	</definition>
+	<definition name="HomeDef" extends="BaseDef">
+		<put-attribute name="BODY" value="/WEB-INF/pages/welcome.jsp" />
+	</definition>
+
+	<definition name="AddContactDef" extends="BaseDef">
+		<put-attribute name="BODY" value="/WEB-INF/pages/addContact.jsp" />
+	</definition>
+
+	<definition name="AddStudentSuccessDef" extends="BaseDef">
+		<put-attribute name="BODY" value="/WEB-INF/pages/addContactSuccess.jsp" />
+	</definition>
+
+	<definition name="SearchContactDef" extends="BaseDef">
+		<put-attribute name="BODY" value="/WEB-INF/pages/searchContact.jsp" />
+	</definition>
+
+	<definition name="SearchResultsDef" extends="BaseDef">
+		<put-attribute name="BODY" value="/WEB-INF/pages/searchResults.jsp" />
+	</definition>
+
+	<definition name="UpdateContactSuccessDef" extends="BaseDef">
+		<put-attribute name="BODY" value="/WEB-INF/pages/UpdateContactSuccess.jsp" />
+	</definition>
+</tiles-definitions> 

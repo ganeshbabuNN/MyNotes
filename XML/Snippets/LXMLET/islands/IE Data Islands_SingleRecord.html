@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>XML Data Islands</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- In order to work properly, the XML data has to be formatted correctly. There must be one top-level XML element
+that encapsulates all the data. Each "record" of information then follows as a series of elements within the
+top-level element. Each of these records contains the individual fields of information -->
+    <xml id="myDataIsland">
+        <items>
+            <item>
+                <name>Mocha</name>
+                <type>Coffee</type>
+                <photo>photos/candles.jpg</photo>
+            </item>
+            <item>
+                <name>Decaf</name>
+                <type>Coffee</type>
+                <photo>photos/teacup.jpg</photo>
+            </item>
+            <item>
+                <name>Raspberry Zinger</name>
+                <type>Tea</type>
+                <photo>photos/teapot_white.jpg</photo>
+            </item>
+            <item>
+                <name>Earl Grey</name>
+                <type>Tea</type>
+                <photo>photos/teapot_bone.jpg</photo>
+            </item>
+        </items>
+    </xml>
+    <h2>
+        Single-Record Binding with XML Data Islands
+    </h2>
+    <p>
+        This example demonstrates binding an XML data island to a set of HTML elements that can only
+        display one record at a time, and then using the built-in recordset navigation functions to move
+        among the records of data.
+    </p>
+    <div style="margin-bottom:5px">
+      <span style="font-style:oblique">Product Name: </span>
+    </div>
+    <div style="margin-bottom:5px">
+      <span style="font-style:oblique">Product Type: </span>
+    </div>
+    <div style="margin-bottom:5px">
+    </div>
+</body>
+</html>

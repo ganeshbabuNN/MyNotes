@@ -1,0 +1,58 @@
+
+
+body {
+    background-color: #eee;
+    margin: 5px;
+    font-family: verdana, sans-serif;
+}
+
+div#content {
+    width: 75%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+}
+
+h1, h2, h3 {
+    color: #960;
+    margin: 0;
+}
+
+p {
+    margin: 0 0 0.75em 0;
+    line-height: 1.5em;
+}
+
+ul#linkDemo {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#linkDemo a {
+    display: block;
+    float: left;
+    width: 175px;
+    height: 25px;
+    background: url(nav_rollover.jpg) no-repeat left bottom;
+    color: white;
+    font-weight: bold;
+    padding-left: 25px;
+    text-decoration: none;
+}
+
+#linkDemo a:hover {
+    background-position: left top;
+    color: #f8b449;
+}
+
+p.clear {
+    clear: both;
+    height: 0;  /* only necessary for IE */
+    margin: 0;
+    padding: 0;
+}
+
+
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<context:annotation-config/>
+<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+<property name="customEditors">
+<map>
+	<entry key="com.ganesh.spring3.StudentID">
+		<value>com.ganesh.spring3.StudentIDEditor</value>
+	</entry>
+	<entry key="com.ganesh.spring3.Fee">
+		<value>com.ganesh.spring3.FeeEditor</value>
+	</entry>
+	<entry key="java.util.List">
+		<value>com.ganesh.spring3.ListEditor</value>
+	</entry>
+</map>
+</property>
+</bean>
+
+<bean id="student" class="com.ganesh.spring3.Student">
+	<property name="sid" value="B99-101"/>
+	<property name="sname" value="Ganesh"/>
+	<property name="phone" value="9999"/>
+	<property name="fee" value="1000,5000,5000"/>
+	<property name="emails" value="aa@gb.com,bb@gb.com,cc@gb.com"/>
+	<property name="phones">
+		<list>
+			<value>1111</value>
+			<value>2222</value>
+			<value>3333</value>
+		</list>
+	</property>
+</bean>
+
+
+</beans>

@@ -1,0 +1,16 @@
+Sub AddOne()
+Workbooks.Add
+End Sub
+Sub AddNew()
+Set NewBook = Workbooks.Add
+With NewBook
+.SaveAs Filename:="d:\Allsales.xls"
+End With
+End Sub
+Sub CreateAndSave()
+Set newBook = WorkBooks.Add
+Do
+fName = Application.GetSaveAsFileName
+Loop Until fName <> False
+NewBook.SaveAs FileName:=fName
+End Sub

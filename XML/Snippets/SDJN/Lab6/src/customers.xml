@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE customers PUBLIC "//Ganesh Learning Center//DTD Customers 1.0" "cust.dtd">
+<customers>
+	<customer cid="C-101" status="Active">
+		<cname>Sri</cname>
+		<email>sri@l.com</email>
+		<phone>1111</phone>
+		<city>Blore</city>
+	</customer>
+</customers>
+ 

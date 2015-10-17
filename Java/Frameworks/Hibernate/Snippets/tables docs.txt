@@ -1,0 +1,79 @@
+drop database jlcdb1;
+
+create database jlcdb1;
+
+use jlcdb1;
+
+	int orderId;
+	int totalQty;
+	Double Totalcost;
+	Date orderDate;
+	String states;
+	Customer customer;	
+
+create table mystudents(
+sid int primary key auto_increment,
+sname varchar(10),
+city varchar(10),
+status varchar(10),
+totalfee varchar(10)
+);
+
+
+create table cstudents(
+sid int,
+feebal int,
+timings varchar(10),
+branch varchar(10)
+);
+
+
+
+create table rstudents(
+sid int,
+qualification varchar(20),
+percentage varchar(20),
+yoe int
+);
+
+
+create table wstudents(
+sid int,
+wcompany varchar(20),
+wemail varchar(20),
+wctc int
+);
+
+create table ostudents(
+sid int,
+company varchar(20),
+email varchar(20),
+ctc int
+);
+
+
+
+
+A)Tables Required(same as previous Lab) – No need to create tables
+mystudents
+cstudents
+ostudents
+rstudents
+wstudents
+
+B) Files required( Same as ALab10)
+CurrentStudent.java
+JPAUtil.java
+Lab12Client.java
+OldStudent.java
+RegularStudent.java
+Student.java
+WeekendStudent.java
+persistence.xml
+
+
+
+
+drop database jlcdb1;
+create database jlcdb1;
+use jlcdb1;

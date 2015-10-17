@@ -1,0 +1,86 @@
+#jlc_login {
+	background-color: #5C7AA4;
+	background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#6281AE),
+		to(#4F6B92) );
+	background: -webkit-linear-gradient(top, #6281AE, #4F6B92);
+	background: -moz-linear-gradient(top, #6281AE, #4F6B92);
+	background: -ms-linear-gradient(top, #6281AE, #4F6B92);
+	background: -o-linear-gradient(top, #6281AE, #4F6B92);
+	border: 1px solid #496183;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.7);
+	-webkit-box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.7);
+	font: 16px Cambria;
+	margin: 0 0 20px;
+	width: 250px;
+	height: 90px
+}
+
+#jlc_login form {
+	box-shadow: 1px 1px 0 #7b98c1 inset;
+	-moz-box-shadow: 1px 1px 0 #7b98c1 inset;
+	-webkit-box-shadow: 1px 1px 0 #7b98c1 inset;
+	padding: 15px 15px 10px !important;
+}
+
+#jlc_login label {
+	color: #FFF;
+	font-size: 16px !important;
+	margin: 0 !important;
+	display: block;
+	padding: 0 0 7px !important;
+	text-shadow: 1px 1px #49668F;
+	font-weight: normal;
+}
+
+#jlc_login input.email {
+	display: block;
+	margin: 0 4% 10px 0;
+	min-width: 130px;
+	padding: 6px 0;
+	text-indent: 5px;
+	width: 150px;
+	font-size: 16px;
+	float: left;
+}
+
+#jlc_login input {
+	border: 1px solid #314f79;
+}
+
+#jlc_login .button {
+	background-color: #424242;
+	border: 1px solid #000;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	clear: both;
+	color: #FFF;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Cambria;
+	font-size: 16px;
+	font-weight: bold;
+	height: 28px;
+	padding: 4px 8px;
+	text-align: center;
+	text-decoration: none;
+	box-shadow: 1px 1px 0 #6e6e6e inset;
+	-moz-box-shadow: 1px 1px 0 #6e6e6e inset;
+	-webkit-box-shadow: 1px 1px 0 #6e6e6e inset;
+}
+
+#jlc_login .button:hover {
+	box-shadow: 1px 1px 0 #626262 inset;
+	-moz-box-shadow: 1px 1px 0 #626262 inset;
+	-webkit-box-shadow: 1px 1px 0 #626262 inset;
+	background-color: #373737;
+}
+
+#jlc_login .clear {
+	float: left;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+
+<class name="Student" table="gstudents" discriminator-value="STU">
+<id name="sid" column="sid" type ="int" >
+<generator class="increment"/>
+</id>
+<discriminator column="stutype"/>
+<property name="sname"/>
+<property name="status"/>
+<property name="totalfee" type="double"/>
+
+<subclass name="CurrentStudent" discriminator-value="CSTU">
+<property name="feebal" type="double"/>
+<property name="timings"/>
+<property name="branch"/>
+
+<subclass name="WeekdayStudent" discriminator-value="RSTU">
+<property name="qualification"/>
+<property name="percentage"/>
+<property name="yoe" type="int"/>
+</subclass>
+
+<subclass name="WeekendStudent" discriminator-value="WSTU">
+<property name="wcompany"/>
+<property name="wcemail"/>
+<property name="wctc" type="double"/>
+</subclass>
+</subclass>
+
+<subclass name="OldStudent" discriminator-value="OSTU">
+<property name="ocompany"/>
+<property name="ocemail"/>
+<property name="octc" type="double"/>
+</subclass>
+</class>
+</hibernate-mapping>

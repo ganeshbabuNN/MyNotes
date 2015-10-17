@@ -1,0 +1,17 @@
+Sub FormatRange()
+Range("MyBook.xls!MyRange").Font.Italic = True
+End Sub
+
+Sub FormatSales()
+Range("[Report.xls]Sheet1!Sales").BorderAround Weight:=xlthin
+End Sub
+
+Sub ClearRange()
+Application.Goto Reference:="MyBook.xls!MyRange"
+Selection.ClearContents
+End Sub
+
+Sub ClearRange()
+Application.Goto Reference:="MyRange"
+Selection.ClearContents
+End Sub

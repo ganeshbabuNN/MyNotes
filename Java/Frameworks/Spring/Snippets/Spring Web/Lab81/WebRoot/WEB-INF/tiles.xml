@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "tiles-config_1_1.dtd" >
+
+<tiles-definitions>
+<definition name="BaseDef" page="/WEB-INF/pages/GBLayout.jsp">
+<put name="HEADER" value="/WEB-INF/pages/header.jsp"/>
+<put name="LMENU" value="/WEB-INF/pages/lmenu.jsp"/>
+<put name="BODY" value=""/>
+<put name="FOOTER" value="/WEB-INF/pages/footer.jsp"/>
+
+</definition>
+<definition name="HomeDef" extends="BaseDef">
+<put name="BODY" value="/WEB-INF/pages/welcome.jsp"/>
+</definition>
+
+<definition name="AddContactDef" extends="BaseDef">
+<put name="BODY" value="/WEB-INF/pages/addContact.jsp"/>
+</definition>
+
+<definition name="AddStudentSuccessDef" extends="BaseDef">
+<put name="BODY" value="/WEB-INF/pages/addContactSuccess.jsp"/>
+</definition>
+
+<definition name="SearchContactDef" extends="BaseDef">
+<put name="BODY" value="/WEB-INF/pages/searchContact.jsp"/>
+</definition>
+
+<definition name="SearchResultsDef" extends="BaseDef">
+<put name="BODY" value="/WEB-INF/pages/searchResults.jsp"/>
+</definition>
+
+<definition name="UpdateContactSuccessDef" extends="BaseDef">
+<put name="BODY" value="/WEB-INF/pages/UpdateContactSuccess.jsp"/>
+</definition>
+</tiles-definitions>

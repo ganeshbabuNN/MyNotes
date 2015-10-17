@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.action.extension" value="jlc" />
+    <package name="ganesh" namespace="/ganesh" extends="struts-default">
+    
+    <action name="HelloDisplay">
+    <result>/hello.jsp</result>
+    </action>
+    
+    <action name="HelloSubmit" class="com.ganesh.struts2.HelloSubmitAction">
+    <result name="input">/hello.jsp</result>
+    <result >/success.jsp</result>    
+    </action>    
+    </package>
+</struts>

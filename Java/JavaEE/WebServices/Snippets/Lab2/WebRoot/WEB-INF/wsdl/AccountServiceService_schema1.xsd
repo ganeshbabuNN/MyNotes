@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://account.jaxws.ganesh.com/" targetNamespace="http://account.jaxws.ganesh.com/" version="1.0">
+
+  <xs:element name="deposit" type="tns:deposit"/>
+
+  <xs:element name="depositResponse" type="tns:depositResponse"/>
+
+  <xs:element name="getBal" type="tns:getBal"/>
+
+  <xs:element name="getBalResponse" type="tns:getBalResponse"/>
+
+  <xs:element name="withdrawa" type="tns:withdrawa"/>
+
+  <xs:element name="withdrawaResponse" type="tns:withdrawaResponse"/>
+
+  <xs:complexType name="getBal">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getBalResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="withdrawa">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="withdrawaResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="deposit">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="depositResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

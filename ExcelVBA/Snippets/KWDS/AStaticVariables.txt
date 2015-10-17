@@ -1,0 +1,11 @@
+Sub StaticTest()
+StaticProcedure
+StaticProcedure
+End Sub
+Sub StaticProcedure()
+Static staticVar
+Dim regularVar
+staticVar = staticVar + 5
+regularVar = regularVar + 5
+MsgBox “staticVar = “ & staticVar & “ and regularVar = “ & regularVar
+End Sub

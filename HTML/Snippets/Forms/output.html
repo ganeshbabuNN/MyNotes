@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML output element
+    </title>
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <script>
+        function calc() {
+            ia = parseInt(document.getElementById('a').value);
+            ib = parseInt(document.getElementById('b').value);
+            document.getElementById('sum').value = ia + ib;
+            document.getElementById('product').value = ia * ib;
+            document.getElementById('diff').value = Math.max(ia, ib) - Math.min(ia, ib);
+            document.getElementById('quotient').value = Math.floor(ia / ib);
+            document.getElementById('remainder').value = ia % ib;
+        }
+    </script>
+</head>
+<body>
+
+<div id="outer">
+<div id="form">
+
+<h1>
+    HTML output element
+</h1>
+
+<form oninput="calc()">
+        <p> Integer arithmetic: </p>
+        <p> <input type="number" id="a" value="0" autofocus /> </p>
+        <p> <input type="number" id="b" value="0" /> </p>
+</form>
+
+</div> <!-- form -->
+
+<div id="results">
+
+<p>
+    Sum: <output id="sum" for="a b"></output> <br />
+    Difference: <output id="diff" for="a b"></output> <br />
+    Product: <output id="product" for="a b"></output> <br />
+    Quotient: <output id="quotient" for="a b"></output> <br />
+    Remainder: <output id="remainder" for="a b"></output> <br />
+</p>
+
+</div> <!-- results -->
+</div> <!-- outer -->
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+XML {display:none}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #DACFE5;
+	margin: 5px;
+	text-align: left;
+	color: #523819;
+}
+
+h2{
+	font-size: 140%;
+	color: #0D3427;
+}
+
+p{
+	font-size: 80%;
+	color: #523819;
+}
+
+table{
+	border-color: #0D3427;
+	border-width: thin;
+	border-collapse: collapse;
+	width: 75%;
+}
+
+th{
+	border-color: #0D3427;
+	font-size: 120%;
+	color: #0D3427;
+}
+
+td{
+	border-color: #0D3427;
+	font-size: 100%;
+	color: #523819;
+	padding: 5px;
+}
+
+img 
+{
+    margin: 10px 10px 10px 10px;
+}   

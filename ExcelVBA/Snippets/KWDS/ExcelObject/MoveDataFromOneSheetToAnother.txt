@@ -1,0 +1,31 @@
+Sub copyPasteData()
+Dim strSourceSheet As String
+Dim strDestinationSheet As String
+Dim lastRow As Long
+strSourceSheet = "Data entry"
+Sheets(strSourceSheet).Visible = True
+Sheets(strSourceSheet).Select
+Range("C2").Select
+Do While ActiveCell.Value <> ""
+strDestinationSheet = ActiveCell.Value
+ActiveCell.Offset(0, -2).Resize(1, ActiveCell.CurrentRegion.Columns.Count).Select
+Selection.Copy
+Sheets(strDestinationSheet).Visible = True
+Sheets(strDestinationSheet).Select
+lastRow = LastRowInOneColumn("A")
+Cells(lastRow + 1, 1).Select
+Selection.PasteSpecial xlPasteValues
+Application.CutCopyMode = False
+Sheets(strSourceSheet).Select
+ActiveCell.Offset(0, 2).Select
+ActiveCell.Offset(1, 0).Select
+Loop
+End Sub
+
+Public Function LastRowInOneColumn(col)
+Dim lastRow As Long
+With ActiveSheet
+lastRow = .Cells(.Rows.Count, col).End(xlUp).Row
+End With
+LastRowInOneColumn = lastRow
+End Function

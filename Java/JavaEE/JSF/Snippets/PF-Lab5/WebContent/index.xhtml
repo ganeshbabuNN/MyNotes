@@ -1,0 +1,33 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h:form id="form">
+<p:growl id="jlcMessages"/>
+<p:outputLabel value="RIGHT CLICK ON PAGE TO GET THE CONTEXT MENU"/>
+<p:contextMenu style="width:180px">
+<p:submenu label="USING AJAX">
+<p:menuitem value="Save" actionListener="#{buttonBean.save}" update="jlcMessages"/>
+<p:menuitem value="Update" actionListener="#{buttonBean.update}" update="jlcMessages"/>
+</p:submenu>
+
+<p:submenu label="WITHOUT AJAX">
+<p:menuitem value="Delete" actionListener="#{buttonBean.delete}" update="jlcMessages" ajax="false"/>
+</p:submenu>
+<p:separator/>
+
+<p:submenu label="JLC">
+<p:submenu label="JLCINDIA">
+<p:menuitem value="HOME" url="http://jlcindia.com"/>
+<p:menuitem value="CONTACT US" url="http://jlcindia.com/contactus.jsp"/>
+</p:submenu>
+<p:menuitem value="TECHUNT" url="http://www.techunt.com"/>
+</p:submenu>
+</p:contextMenu>
+</h:form>
+</h:body>	  
+</html>

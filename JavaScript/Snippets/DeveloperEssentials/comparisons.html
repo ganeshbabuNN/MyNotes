@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Comparisons</title>
+	<script type="text/javascript">
+	
+		function showResult() {
+			var val1 = document.getElementById("val1").value;
+			var val2 = document.getElementById("val2").value;
+			val1 = convertToInt(val1);
+			val2 = convertToInt(val2);
+			var resultBool, cond;
+			
+			switch(radioPicked("compare")) {
+				case (0):
+					resultBool = (val1 == val2);
+					cond = " == ";
+					break;
+				case (1):
+					resultBool = (val1 != val2);
+					cond = " != ";
+					break;
+				case (2):
+					resultBool = (val1 < val2);
+					cond = " < ";
+					break;				
+				case (3):
+					resultBool = (val1 <= val2);
+					cond = " <= ";
+					break;				
+				case (4):
+					resultBool = (val1 > val2);
+					cond = " > ";
+					break;				
+				case (5):
+					resultBool = (val1 >= val2);
+					cond = " >= ";
+					break;
+				default:
+			}
+			
+			var outMsg = "You checked<br /><tt>if (";
+			outMsg += showVal(val1) + cond + showVal(val2) + ")<\/tt><br /> and the result is <br /><tt>";
+
+			outMsg += (resultBool) ? "True": "False";
+			document.getElementById("result").innerHTML = "<\/tt>" + outMsg;
+		}
+		
+		function showVal(inVal) {
+			if (!isNaN(inVal)) {
+				return inVal;
+			}
+			if (inVal.indexOf('"') > -1 || inVal.indexOf("'") > -1) return inVal;
+			return '"' + inVal + '"';
+		}
+	
+		function radioPicked(radioName) {
+			var radioSet = "";
+
+			radioSet = document.forms[0][radioName];
+			for (i=0; i<radioSet.length; i++) {
+				if (radioSet[i].checked) {
+					return i;
+				}
+			}
+			return -1;
+		}
+		
+		function convertToInt(inNum) {
+			if (isNaN(inNum)) return inNum;
+			return parseInt(inNum);
+		}
+	</script>
+	<style type="text/css">
+		body, input {
+			background-color: white;
+			color: black;
+			font-family: verdana, arial;
+			font-size: 28px;
+		}
+				
+		#col1 {
+			padding: 100px 20px 0 40px;
+			width: 200px;
+			float: left;
+		}
+		#col2 {
+			float: left;
+			padding-right: 80px;
+		}
+		#radios {
+			padding-left: 100px
+		}
+		#col3 {
+			padding: 100px 20px 0 0;
+			float: right;
+		}
+		#result {
+			text-align: center;
+			padding-top: 50px;
+		}
+		button {
+			font-size: 28px;
+			background-color: red;
+		}
+		tt {
+			color: #666;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<div id="col1">
+			Value one:<br />
+			<input id="val1" type="text" size="10" />
+		</div>
+		<div id="col2">
+			<div id="radios">
+			Pick a<br />comparison:<br />
+			<input name="compare" id="eq" type="radio" /> ==<br />
+			<input name="compare" id="neq" type="radio" /> !=<br />
+			<input name="compare" id="lt" type="radio" /> &lt;<br />
+			<input name="compare" id="lte" type="radio" /> &lt;=<br />
+			<input name="compare" id="gt" type="radio" /> &gt;<br />
+			<input name="compare" id="gte" type="radio" /> &gt;=
+			<p><button type="button" id="evaluate" onclick="showResult();">&nbsp;Evaluate&nbsp;</button></p>
+			</div>
+			<div id="result">
+			</div>
+		</div>
+		<div id="col3">
+			Value two:<br />
+			<input id="val2" type="text" size="10" />
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+<form-beans>
+	<form-bean name ="regform" type="com.ganesh.struts1.RegisterForm"/>
+</form-beans>
+<action-mappings>
+	<action path ="/RegisterSubmit" 
+			name ="regform" 
+			type ="com.ganesh.struts1.RegisterAction" 
+			input ="/register.jsp"
+			scope ="session">
+		    <forward name = "regstatus" path="/regstatus.jsp"/>
+    </action>
+</action-mappings>
+<message-resources parameter = "com.ganesh.struts1.messages"/>  
+</struts-config>
+

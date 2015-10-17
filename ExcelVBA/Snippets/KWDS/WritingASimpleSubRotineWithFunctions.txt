@@ -1,0 +1,9 @@
+Function CallMe() As String
+Dim Salute As String
+Salute = "You can call me Al"
+CallMe = Salute
+MsgBox (CallMe)
+End Function
+Sub Exercise()
+CallMe
+End Sub

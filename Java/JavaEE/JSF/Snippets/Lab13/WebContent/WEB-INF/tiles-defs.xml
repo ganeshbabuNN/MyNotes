@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+
+<!--
+     This is a blank Tiles definition file with a commented example.
+-->
+
+<tiles-definitions>
+
+   <definition name="JLCBaseDef" path ="/JLCLayout.jsp">
+ <put name="HEADER" value="header.jsp"/>
+ <put name="MENU" value="menu.jsp"/>
+ <put name="BODY" value=""/>
+ <put name="FOOTER" value="footer.jsp"/> 
+ </definition>
+ 
+ <definition name="HomeDef" extends="JLCBaseDef">
+ <put name="BODY" value="welcome.jsp"/>
+ </definition>
+ 
+ <definition name="AddStudentHomeDef" extends="JLCBaseDef">
+ <put name="BODY" value="addStudent.jsp"/>
+ </definition>
+ 
+ <definition name="UpdateStudentHomeDef" extends="JLCBaseDef">
+ <put name="BODY" value="updateStudent.jsp"/>
+ </definition>
+ 
+ <definition name="DeleteStudentHomeDef" extends="JLCBaseDef">
+ <put name="BODY" value="deleteStudent.jsp"/>
+ </definition>
+ 
+ <definition name="SearchStudentHomeDef" extends="JLCBaseDef">
+ <put name="BODY" value="searchStudent.jsp"/>
+ </definition>
+
+</tiles-definitions>

@@ -1,0 +1,5 @@
+Sub ToggleGridlines()
+With ActiveWindow
+.DisplayGridlines = Not .DisplayGridlines
+End With
+End Sub

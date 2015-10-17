@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+<form-beans>
+	<form-bean name = "searchForm" type="com.ganesh.struts1.SearchForm"/>
+</form-beans>
+<action-mappings>
+	<action path ="/search" 
+		    name = "searchForm"
+		    type ="com.ganesh.struts1.SearchAction"
+		    input ="/index.jsp">
+		    <forward name = "success" path ="/index.jsp"/>
+    </action>
+</action-mappings>
+<message-resources parameter = "com.ganesh.struts1.messages"/>  
+</struts-config>
+

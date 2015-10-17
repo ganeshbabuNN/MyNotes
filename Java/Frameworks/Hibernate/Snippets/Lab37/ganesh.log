@@ -1,0 +1,1141 @@
+INFO - Hibernate 3.0rc1 
+INFO - hibernate.properties not found 
+INFO - using CGLIB reflection optimizer 
+INFO - using JDK 1.4 java.sql.Timestamp handling 
+INFO - configuring from resource: /hibernate.cfg.xml 
+INFO - Configuration resource: /hibernate.cfg.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath 
+DEBUG - hibernate.connection.driver_class=com.mysql.jdbc.Driver 
+DEBUG - hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - hibernate.connection.username=root 
+DEBUG - hibernate.connection.password=jaibaba 
+DEBUG - dialect=org.hibernate.dialect.MySQLDialect 
+DEBUG - show_sql=true 
+DEBUG - hbm2ddl.auto=update 
+DEBUG - hibernate.cache.user_query_cache=true 
+DEBUG - hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider 
+DEBUG - null<-org.dom4j.tree.DefaultAttribute@420e44 [Attribute: name resource value "com/ganesh/hibernate/Contact.hbm.xml"] 
+INFO - Mapping resource: com/ganesh/hibernate/Contact.hbm.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath 
+INFO - Mapping class: com.ganesh.hibernate.Contact -> contacts 
+DEBUG - Mapped property: contactId -> contactid 
+DEBUG - Mapped property: firstName -> firstname 
+DEBUG - Mapped property: lastName -> lastname 
+DEBUG - Mapped property: email -> email 
+DEBUG - Mapped property: phone -> phone 
+DEBUG - Mapped property: dob -> dob 
+DEBUG - Mapped property: status -> status 
+INFO - Configured SessionFactory: null 
+DEBUG - properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Preparing to build session factory with filters : {} 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+DEBUG - Using dialect defined converter 
+INFO - Maximum outer join fetch depth: 2 
+INFO - Default batch fetch size: 1 
+INFO - Generate SQL with comments: disabled 
+INFO - Order SQL updates by primary key: disabled 
+INFO - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory 
+INFO - Using ASTQueryTranslatorFactory 
+INFO - Query language substitutions: {} 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+DEBUG - returning connection to pool, pool size: 1 
+INFO - JDBC batch size: 15 
+INFO - JDBC batch updates for versioned data: disabled 
+INFO - Scrollable result sets: enabled 
+DEBUG - Wrap result sets: disabled 
+INFO - JDBC3 getGeneratedKeys(): enabled 
+INFO - Using default transaction strategy (direct JDBC transactions) 
+INFO - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended) 
+INFO - Automatic flush during beforeCompletion(): disabled 
+INFO - Automatic session close at end of transaction: disabled 
+INFO - Cache provider: org.hibernate.cache.EhCacheProvider 
+INFO - Second-level cache: enabled 
+INFO - Optimize cache for minimal puts: disabled 
+INFO - Structured second-level cache entries: enabled 
+INFO - Query cache: disabled 
+INFO - Echoing all SQL to stdout 
+INFO - Statistics: disabled 
+INFO - Deleted entity synthetic identifier rollback: disabled 
+INFO - Default entity-mode: pojo 
+INFO - building session factory 
+DEBUG - Session factory constructed with filter configurations : {} 
+DEBUG - instantiating session factory with properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Creating new CacheManager with default config 
+DEBUG - Configuring ehcache from classpath. 
+WARN - No configuration found. Configuring ehcache from ehcache-failsafe.xml found in the classpath: jar:file:/C:/Ganesh/STUDENT%20DVD%202013/Student%20DVD/Student%20DVD/Hibernate%203.1/Jars/ehcache-1.1.jar!/ehcache-failsafe.xml 
+DEBUG - Disk Store Path: C:\Users\GANESH~1\AppData\Local\Temp\ 
+DEBUG - Static SQL for entity: com.ganesh.hibernate.Contact 
+DEBUG -  Version select: select contactid from contacts where contactid =? 
+DEBUG -  Snapshot select: select contact_.contactid, contact_.firstname as firstname0_, contact_.lastname as lastname0_, contact_.email as email0_, contact_.phone as phone0_, contact_.dob as dob0_, contact_.status as status0_ from contacts contact_ where contact_.contactid=? 
+DEBUG -  Insert 0: insert into contacts (firstname, lastname, email, phone, dob, status, contactid) values (?, ?, ?, ?, ?, ?, ?) 
+DEBUG -  Update 0: update contacts set firstname=?, lastname=?, email=?, phone=?, dob=?, status=? where contactid=? 
+DEBUG -  Delete 0: delete from contacts where contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - initializing class SessionFactoryObjectFactory 
+DEBUG - registered: ea58346b4989019501498901969a0000 (unnamed) 
+INFO - Not binding factory to JNDI, no JNDI name configured 
+DEBUG - instantiated session factory 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+INFO - Running hbm2ddl schema update 
+INFO - fetching database metadata 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+INFO - updating schema 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - table found: jlcindiadb.contacts 
+INFO - columns: [phone, status, email, dob, lastname, firstname, contactid] 
+INFO - foreign keys: [] 
+INFO - indexes: [primary] 
+INFO - schema update complete 
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - Checking 0 named queries 
+DEBUG - opened session 
+DEBUG - begin 
+DEBUG - opening JDBC connection 
+DEBUG - total checked-out connections: 0 
+DEBUG - using pooled JDBC connection, pool size: 0 
+DEBUG - current autocommit status: false 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - parse() - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - --- HQL AST ---
+ \-[QUERY] CommonAST: 'query'
+    \-[SELECT_FROM] CommonAST: 'SELECT_FROM'
+       \-[FROM] CommonAST: 'from'
+          +-[DOT] CommonAST: '.'
+          |  +-[DOT] CommonAST: '.'
+          |  |  +-[DOT] CommonAST: '.'
+          |  |  |  +-[IDENT] CommonAST: 'com'
+          |  |  |  \-[IDENT] CommonAST: 'ganesh'
+          |  |  \-[IDENT] CommonAST: 'hibernate'
+          |  \-[IDENT] CommonAST: 'Contact'
+          \-[ALIAS] CommonAST: 'c'
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - query() << begin, level = 1 
+DEBUG - com.ganesh.hibernate.Contact (c) -> contact0_ 
+DEBUG - query() : finishing up...  
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - Derived SELECT clause created. 
+DEBUG - Using FROM fragment [contacts contact0_] 
+DEBUG - query() >> end, level = 1 
+DEBUG - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (contacts)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'contact0_.contactid as contactid' {FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_'
+    \-[FROM] FromClause: 'from' FromClause{from}
+       \-[FROM_FRAGMENT] FromElement: 'contacts contact0_' FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - SQL: select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#1] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#1] 
+DEBUG - returning 'ganesh' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#2] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#2] 
+DEBUG - returning 'bab' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 2 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#1] 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#1] 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#2] 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#2] 
+DEBUG - initializing non-lazy collections 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - compile() : The query is already compiled, skipping... 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - Dont need to execute flush 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 0 
+DEBUG - initializing non-lazy collections 
+DEBUG - commit 
+DEBUG - automatically flushing session 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - executing flush 
+DEBUG - post flush 
+DEBUG - before transaction completion 
+DEBUG - before transaction completion 
+DEBUG - committed JDBC Connection 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 
+DEBUG - closing session 
+DEBUG - closing JDBC connection (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0) 
+DEBUG - returning connection to pool, pool size: 1 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 
+INFO - Hibernate 3.0rc1 
+INFO - hibernate.properties not found 
+INFO - using CGLIB reflection optimizer 
+INFO - using JDK 1.4 java.sql.Timestamp handling 
+INFO - configuring from resource: /hibernate.cfg.xml 
+INFO - Configuration resource: /hibernate.cfg.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath 
+DEBUG - hibernate.connection.driver_class=com.mysql.jdbc.Driver 
+DEBUG - hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - hibernate.connection.username=root 
+DEBUG - hibernate.connection.password=jaibaba 
+DEBUG - dialect=org.hibernate.dialect.MySQLDialect 
+DEBUG - show_sql=true 
+DEBUG - hbm2ddl.auto=update 
+DEBUG - hibernate.cache.user_query_cache=true 
+DEBUG - hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider 
+DEBUG - null<-org.dom4j.tree.DefaultAttribute@b6a5fb [Attribute: name resource value "com/ganesh/hibernate/Contact.hbm.xml"] 
+INFO - Mapping resource: com/ganesh/hibernate/Contact.hbm.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath 
+INFO - Mapping class: com.ganesh.hibernate.Contact -> contacts 
+DEBUG - Mapped property: contactId -> contactid 
+DEBUG - Mapped property: firstName -> firstname 
+DEBUG - Mapped property: lastName -> lastname 
+DEBUG - Mapped property: email -> email 
+DEBUG - Mapped property: phone -> phone 
+DEBUG - Mapped property: dob -> dob 
+DEBUG - Mapped property: status -> status 
+INFO - Configured SessionFactory: null 
+DEBUG - properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Preparing to build session factory with filters : {} 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+DEBUG - Using dialect defined converter 
+INFO - Maximum outer join fetch depth: 2 
+INFO - Default batch fetch size: 1 
+INFO - Generate SQL with comments: disabled 
+INFO - Order SQL updates by primary key: disabled 
+INFO - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory 
+INFO - Using ASTQueryTranslatorFactory 
+INFO - Query language substitutions: {} 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+DEBUG - returning connection to pool, pool size: 1 
+INFO - JDBC batch size: 15 
+INFO - JDBC batch updates for versioned data: disabled 
+INFO - Scrollable result sets: enabled 
+DEBUG - Wrap result sets: disabled 
+INFO - JDBC3 getGeneratedKeys(): enabled 
+INFO - Using default transaction strategy (direct JDBC transactions) 
+INFO - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended) 
+INFO - Automatic flush during beforeCompletion(): disabled 
+INFO - Automatic session close at end of transaction: disabled 
+INFO - Cache provider: org.hibernate.cache.EhCacheProvider 
+INFO - Second-level cache: enabled 
+INFO - Optimize cache for minimal puts: disabled 
+INFO - Structured second-level cache entries: enabled 
+INFO - Query cache: disabled 
+INFO - Echoing all SQL to stdout 
+INFO - Statistics: disabled 
+INFO - Deleted entity synthetic identifier rollback: disabled 
+INFO - Default entity-mode: pojo 
+INFO - building session factory 
+DEBUG - Session factory constructed with filter configurations : {} 
+DEBUG - instantiating session factory with properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Creating new CacheManager with default config 
+DEBUG - Configuring ehcache from classpath. 
+WARN - No configuration found. Configuring ehcache from ehcache-failsafe.xml found in the classpath: jar:file:/C:/Ganesh/STUDENT%20DVD%202013/Student%20DVD/Student%20DVD/Hibernate%203.1/Jars/ehcache-1.1.jar!/ehcache-failsafe.xml 
+DEBUG - Disk Store Path: C:\Users\GANESH~1\AppData\Local\Temp\ 
+DEBUG - Static SQL for entity: com.ganesh.hibernate.Contact 
+DEBUG -  Version select: select contactid from contacts where contactid =? 
+DEBUG -  Snapshot select: select contact_.contactid, contact_.firstname as firstname0_, contact_.lastname as lastname0_, contact_.email as email0_, contact_.phone as phone0_, contact_.dob as dob0_, contact_.status as status0_ from contacts contact_ where contact_.contactid=? 
+DEBUG -  Insert 0: insert into contacts (firstname, lastname, email, phone, dob, status, contactid) values (?, ?, ?, ?, ?, ?, ?) 
+DEBUG -  Update 0: update contacts set firstname=?, lastname=?, email=?, phone=?, dob=?, status=? where contactid=? 
+DEBUG -  Delete 0: delete from contacts where contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - initializing class SessionFactoryObjectFactory 
+DEBUG - registered: ea58346b4989026b014989026c040000 (unnamed) 
+INFO - Not binding factory to JNDI, no JNDI name configured 
+DEBUG - instantiated session factory 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+INFO - Running hbm2ddl schema update 
+INFO - fetching database metadata 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+INFO - updating schema 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - table found: jlcindiadb.contacts 
+INFO - columns: [phone, status, email, dob, lastname, firstname, contactid] 
+INFO - foreign keys: [] 
+INFO - indexes: [primary] 
+INFO - schema update complete 
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - Checking 0 named queries 
+DEBUG - opened session 
+DEBUG - begin 
+DEBUG - opening JDBC connection 
+DEBUG - total checked-out connections: 0 
+DEBUG - using pooled JDBC connection, pool size: 0 
+DEBUG - current autocommit status: false 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - parse() - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - --- HQL AST ---
+ \-[QUERY] CommonAST: 'query'
+    \-[SELECT_FROM] CommonAST: 'SELECT_FROM'
+       \-[FROM] CommonAST: 'from'
+          +-[DOT] CommonAST: '.'
+          |  +-[DOT] CommonAST: '.'
+          |  |  +-[DOT] CommonAST: '.'
+          |  |  |  +-[IDENT] CommonAST: 'com'
+          |  |  |  \-[IDENT] CommonAST: 'ganesh'
+          |  |  \-[IDENT] CommonAST: 'hibernate'
+          |  \-[IDENT] CommonAST: 'Contact'
+          \-[ALIAS] CommonAST: 'c'
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - query() << begin, level = 1 
+DEBUG - com.ganesh.hibernate.Contact (c) -> contact0_ 
+DEBUG - query() : finishing up...  
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - Derived SELECT clause created. 
+DEBUG - Using FROM fragment [contacts contact0_] 
+DEBUG - query() >> end, level = 1 
+DEBUG - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (contacts)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'contact0_.contactid as contactid' {FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_'
+    \-[FROM] FromClause: 'from' FromClause{from}
+       \-[FROM_FRAGMENT] FromElement: 'contacts contact0_' FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - SQL: select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#1] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#1] 
+DEBUG - returning 'ganesh' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#2] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#2] 
+DEBUG - returning 'bab' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 2 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#1] 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#1] 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#2] 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#2] 
+DEBUG - initializing non-lazy collections 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - compile() : The query is already compiled, skipping... 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - Dont need to execute flush 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 0 
+DEBUG - initializing non-lazy collections 
+DEBUG - commit 
+DEBUG - automatically flushing session 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - executing flush 
+DEBUG - post flush 
+DEBUG - before transaction completion 
+DEBUG - before transaction completion 
+DEBUG - committed JDBC Connection 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 
+DEBUG - closing session 
+DEBUG - closing JDBC connection (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0) 
+DEBUG - returning connection to pool, pool size: 1 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 
+INFO - Hibernate 3.0rc1 
+INFO - hibernate.properties not found 
+INFO - using CGLIB reflection optimizer 
+INFO - using JDK 1.4 java.sql.Timestamp handling 
+INFO - configuring from resource: /hibernate.cfg.xml 
+INFO - Configuration resource: /hibernate.cfg.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath 
+DEBUG - hibernate.connection.driver_class=com.mysql.jdbc.Driver 
+DEBUG - hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - hibernate.connection.username=root 
+DEBUG - hibernate.connection.password=jaibaba 
+DEBUG - dialect=org.hibernate.dialect.MySQLDialect 
+DEBUG - show_sql=true 
+DEBUG - hbm2ddl.auto=update 
+DEBUG - hibernate.cache.user_query_cache=true 
+DEBUG - hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider 
+DEBUG - null<-org.dom4j.tree.DefaultAttribute@b6a5fb [Attribute: name resource value "com/ganesh/hibernate/Contact.hbm.xml"] 
+INFO - Mapping resource: com/ganesh/hibernate/Contact.hbm.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath 
+INFO - Mapping class: com.ganesh.hibernate.Contact -> contacts 
+DEBUG - Mapped property: contactId -> contactid 
+DEBUG - Mapped property: firstName -> firstname 
+DEBUG - Mapped property: lastName -> lastname 
+DEBUG - Mapped property: email -> email 
+DEBUG - Mapped property: phone -> phone 
+DEBUG - Mapped property: dob -> dob 
+DEBUG - Mapped property: status -> status 
+INFO - Configured SessionFactory: null 
+DEBUG - properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Preparing to build session factory with filters : {} 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+DEBUG - Using dialect defined converter 
+INFO - Maximum outer join fetch depth: 2 
+INFO - Default batch fetch size: 1 
+INFO - Generate SQL with comments: disabled 
+INFO - Order SQL updates by primary key: disabled 
+INFO - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory 
+INFO - Using ASTQueryTranslatorFactory 
+INFO - Query language substitutions: {} 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+DEBUG - returning connection to pool, pool size: 1 
+INFO - JDBC batch size: 15 
+INFO - JDBC batch updates for versioned data: disabled 
+INFO - Scrollable result sets: enabled 
+DEBUG - Wrap result sets: disabled 
+INFO - JDBC3 getGeneratedKeys(): enabled 
+INFO - Using default transaction strategy (direct JDBC transactions) 
+INFO - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended) 
+INFO - Automatic flush during beforeCompletion(): disabled 
+INFO - Automatic session close at end of transaction: disabled 
+INFO - Cache provider: org.hibernate.cache.EhCacheProvider 
+INFO - Second-level cache: enabled 
+INFO - Optimize cache for minimal puts: disabled 
+INFO - Structured second-level cache entries: enabled 
+INFO - Query cache: disabled 
+INFO - Echoing all SQL to stdout 
+INFO - Statistics: disabled 
+INFO - Deleted entity synthetic identifier rollback: disabled 
+INFO - Default entity-mode: pojo 
+INFO - building session factory 
+DEBUG - Session factory constructed with filter configurations : {} 
+DEBUG - instantiating session factory with properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Creating new CacheManager with default config 
+DEBUG - Configuring ehcache from classpath. 
+WARN - No configuration found. Configuring ehcache from ehcache-failsafe.xml found in the classpath: jar:file:/C:/Ganesh/STUDENT%20DVD%202013/Student%20DVD/Student%20DVD/Hibernate%203.1/Jars/ehcache-1.1.jar!/ehcache-failsafe.xml 
+DEBUG - Disk Store Path: C:\Users\GANESH~1\AppData\Local\Temp\ 
+DEBUG - instantiating cache region: com.ganesh.hibernate.Contact usage strategy: read-only 
+WARN - read-only cache configured for mutable class: com.ganesh.hibernate.Contact 
+WARN - Could not find configuration [com.ganesh.hibernate.Contact]; using defaults. 
+DEBUG - Deleting data file com.ganesh.hibernate.Contact.data 
+DEBUG - com.ganesh.hibernate.Contact Cache: Using SpoolingLinkedHashMap implementation 
+DEBUG - initialized MemoryStore for com.ganesh.hibernate.Contact 
+DEBUG - Initialised cache: com.ganesh.hibernate.Contact 
+DEBUG - started EHCache region: com.ganesh.hibernate.Contact 
+DEBUG - Static SQL for entity: com.ganesh.hibernate.Contact 
+DEBUG -  Version select: select contactid from contacts where contactid =? 
+DEBUG -  Snapshot select: select contact_.contactid, contact_.firstname as firstname0_, contact_.lastname as lastname0_, contact_.email as email0_, contact_.phone as phone0_, contact_.dob as dob0_, contact_.status as status0_ from contacts contact_ where contact_.contactid=? 
+DEBUG -  Insert 0: insert into contacts (firstname, lastname, email, phone, dob, status, contactid) values (?, ?, ?, ?, ?, ?, ?) 
+DEBUG -  Update 0: update contacts set firstname=?, lastname=?, email=?, phone=?, dob=?, status=? where contactid=? 
+DEBUG -  Delete 0: delete from contacts where contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - initializing class SessionFactoryObjectFactory 
+DEBUG - registered: ea58346b498910ee01498910efca0000 (unnamed) 
+INFO - Not binding factory to JNDI, no JNDI name configured 
+DEBUG - instantiated session factory 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+INFO - Running hbm2ddl schema update 
+INFO - fetching database metadata 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+INFO - updating schema 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - table found: jlcindiadb.contacts 
+INFO - columns: [phone, status, email, dob, lastname, firstname, contactid] 
+INFO - foreign keys: [] 
+INFO - indexes: [primary] 
+INFO - schema update complete 
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - Checking 0 named queries 
+DEBUG - opened session 
+DEBUG - begin 
+DEBUG - opening JDBC connection 
+DEBUG - total checked-out connections: 0 
+DEBUG - using pooled JDBC connection, pool size: 0 
+DEBUG - current autocommit status: false 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - parse() - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - --- HQL AST ---
+ \-[QUERY] CommonAST: 'query'
+    \-[SELECT_FROM] CommonAST: 'SELECT_FROM'
+       \-[FROM] CommonAST: 'from'
+          +-[DOT] CommonAST: '.'
+          |  +-[DOT] CommonAST: '.'
+          |  |  +-[DOT] CommonAST: '.'
+          |  |  |  +-[IDENT] CommonAST: 'com'
+          |  |  |  \-[IDENT] CommonAST: 'ganesh'
+          |  |  \-[IDENT] CommonAST: 'hibernate'
+          |  \-[IDENT] CommonAST: 'Contact'
+          \-[ALIAS] CommonAST: 'c'
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - query() << begin, level = 1 
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - com.ganesh.hibernate.Contact (c) -> contact0_ 
+DEBUG - query() : finishing up...  
+DEBUG - Derived SELECT clause created. 
+DEBUG - Using FROM fragment [contacts contact0_] 
+DEBUG - query() >> end, level = 1 
+DEBUG - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (contacts)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'contact0_.contactid as contactid' {FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_'
+    \-[FROM] FromClause: 'from' FromClause{from}
+       \-[FROM_FRAGMENT] FromElement: 'contacts contact0_' FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - SQL: select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#1] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#1] 
+DEBUG - returning 'ganesh' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#2] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#2] 
+DEBUG - returning 'bab' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 2 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#1] 
+DEBUG - adding entity to second-level cache: [com.ganesh.hibernate.Contact#1] 
+DEBUG - Caching: com.ganesh.hibernate.Contact#1 
+DEBUG - com.ganesh.hibernate.Contact#1 now: 1415343829141 
+DEBUG - com.ganesh.hibernate.Contact#1 Creation Time: 1415343829141 Next To Last Access Time: 0 
+DEBUG - com.ganesh.hibernate.Contact#1 mostRecentTime: 1415343829141 
+DEBUG - com.ganesh.hibernate.Contact#1 Age to Idle: 120000 Age Idled: 0 
+DEBUG - com.ganesh.hibernate.Contact: Is element with key com.ganesh.hibernate.Contact#1 expired?: false 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#1] 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#2] 
+DEBUG - adding entity to second-level cache: [com.ganesh.hibernate.Contact#2] 
+DEBUG - Caching: com.ganesh.hibernate.Contact#2 
+DEBUG - com.ganesh.hibernate.Contact#1 now: 1415343829142 
+DEBUG - com.ganesh.hibernate.Contact#1 Creation Time: 1415343829141 Next To Last Access Time: 0 
+DEBUG - com.ganesh.hibernate.Contact#1 mostRecentTime: 1415343829141 
+DEBUG - com.ganesh.hibernate.Contact#1 Age to Idle: 120000 Age Idled: 1 
+DEBUG - com.ganesh.hibernate.Contact: Is element with key com.ganesh.hibernate.Contact#1 expired?: false 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#2] 
+DEBUG - initializing non-lazy collections 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - compile() : The query is already compiled, skipping... 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - Dont need to execute flush 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 0 
+DEBUG - initializing non-lazy collections 
+DEBUG - commit 
+DEBUG - automatically flushing session 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - executing flush 
+DEBUG - post flush 
+DEBUG - before transaction completion 
+DEBUG - before transaction completion 
+DEBUG - committed JDBC Connection 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 
+DEBUG - closing session 
+DEBUG - closing JDBC connection (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0) 
+DEBUG - returning connection to pool, pool size: 1 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 
+INFO - Hibernate 3.0rc1 
+INFO - hibernate.properties not found 
+INFO - using CGLIB reflection optimizer 
+INFO - using JDK 1.4 java.sql.Timestamp handling 
+INFO - configuring from resource: /hibernate.cfg.xml 
+INFO - Configuration resource: /hibernate.cfg.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath 
+DEBUG - hibernate.connection.driver_class=com.mysql.jdbc.Driver 
+DEBUG - hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - hibernate.connection.username=root 
+DEBUG - hibernate.connection.password=jaibaba 
+DEBUG - dialect=org.hibernate.dialect.MySQLDialect 
+DEBUG - show_sql=true 
+DEBUG - hbm2ddl.auto=update 
+DEBUG - hibernate.cache.user_query_cache=true 
+DEBUG - hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider 
+DEBUG - null<-org.dom4j.tree.DefaultAttribute@15e4dbe [Attribute: name resource value "com/ganesh/hibernate/Contact.hbm.xml"] 
+INFO - Mapping resource: com/ganesh/hibernate/Contact.hbm.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath 
+INFO - Mapping class: com.ganesh.hibernate.Contact -> contacts 
+DEBUG - Mapped property: contactId -> contactid 
+DEBUG - Mapped property: firstName -> firstname 
+DEBUG - Mapped property: lastName -> lastname 
+DEBUG - Mapped property: email -> email 
+DEBUG - Mapped property: phone -> phone 
+DEBUG - Mapped property: dob -> dob 
+DEBUG - Mapped property: status -> status 
+INFO - Configured SessionFactory: null 
+DEBUG - properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Preparing to build session factory with filters : {} 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+DEBUG - Using dialect defined converter 
+INFO - Maximum outer join fetch depth: 2 
+INFO - Default batch fetch size: 1 
+INFO - Generate SQL with comments: disabled 
+INFO - Order SQL updates by primary key: disabled 
+INFO - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory 
+INFO - Using ASTQueryTranslatorFactory 
+INFO - Query language substitutions: {} 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+DEBUG - returning connection to pool, pool size: 1 
+INFO - JDBC batch size: 15 
+INFO - JDBC batch updates for versioned data: disabled 
+INFO - Scrollable result sets: enabled 
+DEBUG - Wrap result sets: disabled 
+INFO - JDBC3 getGeneratedKeys(): enabled 
+INFO - Using default transaction strategy (direct JDBC transactions) 
+INFO - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended) 
+INFO - Automatic flush during beforeCompletion(): disabled 
+INFO - Automatic session close at end of transaction: disabled 
+INFO - Cache provider: org.hibernate.cache.EhCacheProvider 
+INFO - Second-level cache: enabled 
+INFO - Optimize cache for minimal puts: disabled 
+INFO - Structured second-level cache entries: enabled 
+INFO - Query cache: disabled 
+INFO - Echoing all SQL to stdout 
+INFO - Statistics: disabled 
+INFO - Deleted entity synthetic identifier rollback: disabled 
+INFO - Default entity-mode: pojo 
+INFO - building session factory 
+DEBUG - Session factory constructed with filter configurations : {} 
+DEBUG - instantiating session factory with properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Creating new CacheManager with default config 
+DEBUG - Configuring ehcache from classpath. 
+DEBUG - Configuring ehcache from ehcache.xml found in the classpath: file:/C:/Ganesh/Training%20Notes/LabsWorks/AC-B13/Hibernate/Lab37/bin/ehcache.xml 
+DEBUG - Disk Store Path: C:\Users\GANESH~1\AppData\Local\Temp\ 
+INFO - Hibernate 3.0rc1 
+INFO - hibernate.properties not found 
+INFO - using CGLIB reflection optimizer 
+INFO - using JDK 1.4 java.sql.Timestamp handling 
+INFO - configuring from resource: /hibernate.cfg.xml 
+INFO - Configuration resource: /hibernate.cfg.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd in classpath 
+DEBUG - hibernate.connection.driver_class=com.mysql.jdbc.Driver 
+DEBUG - hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - hibernate.connection.username=root 
+DEBUG - hibernate.connection.password=jaibaba 
+DEBUG - dialect=org.hibernate.dialect.MySQLDialect 
+DEBUG - show_sql=true 
+DEBUG - hbm2ddl.auto=update 
+DEBUG - hibernate.cache.user_query_cache=true 
+DEBUG - hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider 
+DEBUG - null<-org.dom4j.tree.DefaultAttribute@15e4dbe [Attribute: name resource value "com/ganesh/hibernate/Contact.hbm.xml"] 
+INFO - Mapping resource: com/ganesh/hibernate/Contact.hbm.xml 
+DEBUG - trying to locate http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath under org/hibernate/ 
+DEBUG - found http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd in classpath 
+INFO - Mapping class: com.ganesh.hibernate.Contact -> contacts 
+DEBUG - Mapped property: contactId -> contactid 
+DEBUG - Mapped property: firstName -> firstname 
+DEBUG - Mapped property: lastName -> lastname 
+DEBUG - Mapped property: email -> email 
+DEBUG - Mapped property: phone -> phone 
+DEBUG - Mapped property: dob -> dob 
+DEBUG - Mapped property: status -> status 
+INFO - Configured SessionFactory: null 
+DEBUG - properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Preparing to build session factory with filters : {} 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+DEBUG - Using dialect defined converter 
+INFO - Maximum outer join fetch depth: 2 
+INFO - Default batch fetch size: 1 
+INFO - Generate SQL with comments: disabled 
+INFO - Order SQL updates by primary key: disabled 
+INFO - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory 
+INFO - Using ASTQueryTranslatorFactory 
+INFO - Query language substitutions: {} 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+DEBUG - returning connection to pool, pool size: 1 
+INFO - JDBC batch size: 15 
+INFO - JDBC batch updates for versioned data: disabled 
+INFO - Scrollable result sets: enabled 
+DEBUG - Wrap result sets: disabled 
+INFO - JDBC3 getGeneratedKeys(): enabled 
+INFO - Using default transaction strategy (direct JDBC transactions) 
+INFO - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended) 
+INFO - Automatic flush during beforeCompletion(): disabled 
+INFO - Automatic session close at end of transaction: disabled 
+INFO - Cache provider: org.hibernate.cache.EhCacheProvider 
+INFO - Second-level cache: enabled 
+INFO - Optimize cache for minimal puts: disabled 
+INFO - Structured second-level cache entries: enabled 
+INFO - Query cache: disabled 
+INFO - Echoing all SQL to stdout 
+INFO - Statistics: disabled 
+INFO - Deleted entity synthetic identifier rollback: disabled 
+INFO - Default entity-mode: pojo 
+INFO - building session factory 
+DEBUG - Session factory constructed with filter configurations : {} 
+DEBUG - instantiating session factory with properties: {hibernate.connection.password=jaibaba, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, sun.boot.library.path=C:\JDK7.0\jre\bin, java.vm.version=23.25-b01, hibernate.connection.username=root, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.script=, user.country=IN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 1, java.vm.specification.name=Java Virtual Machine Specification, user.dir=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37, java.runtime.version=1.7.0_25-b17, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hbm2ddl.auto=update, java.endorsed.dirs=C:\JDK7.0\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\Users\GANESH~1\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 7, sun.jnu.encoding=Cp1252, hibernate.cache.user_query_cache=true, java.library.path=C:\JDK7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/JDK7.0/bin/../jre/bin/client;C:/JDK7.0/bin/../jre/bin;C:/JDK7.0/bin/../jre/lib/i386;C:\app\Oracle11g\product\11.2.0\dbhome_1\bin;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\ORACLE111G;C:\ORACLE11G\BIN;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\MYSQL5.0\BIN;C:\MYSQL SERVER 5.0\BIN;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\SASHome\Secure;C:\Program Files\SASHome\x86\Secure;C:\JDK7.0\bin;C:\db-derby-10.9.1.0-bin\bin;C:\Borland\BCC55\Bin;C:\eclipse Kepler\eclipse;;., java.specification.name=Java Platform API Specification, java.class.version=51.0, sun.management.compiler=HotSpot Client Compiler, os.version=6.1, user.home=C:\Users\Ganesh Babau, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=Cp1252, java.specification.version=1.7, hibernate.connection.driver_class=com.mysql.jdbc.Driver, show_sql=true, java.class.path=C:\Ganesh\Training Notes\LabsWorks\AC-B13\Hibernate\Lab37\bin;C:\Ganesh\Training Notes\Hibernate\Hibernate Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\antlr-2.7.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\c3p0-0.9.0.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\cglib-full-2.0.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-collections-2.1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\commons-logging-1.0.4.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\dom4j-1.5.2.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\ehcache-1.1.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\hibernate3.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jdbc2_0-stdext.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\jta.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\log4j-1.2.9.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\mysql.jar;C:\Ganesh\STUDENT DVD 2013\Student DVD\Student DVD\Hibernate 3.1\Jars\tools.jar, user.name=Ganesh Babau, hibernate.show_sql=true, java.vm.specification.version=1.7, sun.java.command=com.ganesh.hibernate.Lab37, java.home=C:\JDK7.0\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.connection.url=jdbc:mysql://localhost:3308/jlcindiadb, user.language=en, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, hibernate.cglib.use_reflection_optimizer=true, java.vm.info=mixed mode, sharing, java.version=1.7.0_25, java.ext.dirs=C:\JDK7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, sun.boot.class.path=C:\JDK7.0\jre\lib\resources.jar;C:\JDK7.0\jre\lib\rt.jar;C:\JDK7.0\jre\lib\sunrsasign.jar;C:\JDK7.0\jre\lib\jsse.jar;C:\JDK7.0\jre\lib\jce.jar;C:\JDK7.0\jre\lib\charsets.jar;C:\JDK7.0\jre\lib\jfr.jar;C:\JDK7.0\jre\classes, java.vendor=Oracle Corporation, file.separator=\, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.MySQLDialect, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86} 
+DEBUG - Creating new CacheManager with default config 
+DEBUG - Configuring ehcache from classpath. 
+WARN - No configuration found. Configuring ehcache from ehcache-failsafe.xml found in the classpath: jar:file:/C:/Ganesh/STUDENT%20DVD%202013/Student%20DVD/Student%20DVD/Hibernate%203.1/Jars/ehcache-1.1.jar!/ehcache-failsafe.xml 
+DEBUG - Disk Store Path: C:\Users\GANESH~1\AppData\Local\Temp\ 
+DEBUG - instantiating cache region: com.ganesh.hibernate.Contact usage strategy: read-only 
+WARN - read-only cache configured for mutable class: com.ganesh.hibernate.Contact 
+WARN - Could not find configuration [com.ganesh.hibernate.Contact]; using defaults. 
+DEBUG - Deleting data file com.ganesh.hibernate.Contact.data 
+DEBUG - com.ganesh.hibernate.Contact Cache: Using SpoolingLinkedHashMap implementation 
+DEBUG - initialized MemoryStore for com.ganesh.hibernate.Contact 
+DEBUG - Initialised cache: com.ganesh.hibernate.Contact 
+DEBUG - started EHCache region: com.ganesh.hibernate.Contact 
+DEBUG - Static SQL for entity: com.ganesh.hibernate.Contact 
+DEBUG -  Version select: select contactid from contacts where contactid =? 
+DEBUG -  Snapshot select: select contact_.contactid, contact_.firstname as firstname0_, contact_.lastname as lastname0_, contact_.email as email0_, contact_.phone as phone0_, contact_.dob as dob0_, contact_.status as status0_ from contacts contact_ where contact_.contactid=? 
+DEBUG -  Insert 0: insert into contacts (firstname, lastname, email, phone, dob, status, contactid) values (?, ?, ?, ?, ?, ?, ?) 
+DEBUG -  Update 0: update contacts set firstname=?, lastname=?, email=?, phone=?, dob=?, status=? where contactid=? 
+DEBUG -  Delete 0: delete from contacts where contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - Static select for entity com.ganesh.hibernate.Contact: select contact0_.contactid as contactid0_, contact0_.firstname as firstname0_0_, contact0_.lastname as lastname0_0_, contact0_.email as email0_0_, contact0_.phone as phone0_0_, contact0_.dob as dob0_0_, contact0_.status as status0_0_ from contacts contact0_ where contact0_.contactid=? for update 
+DEBUG - initializing class SessionFactoryObjectFactory 
+DEBUG - registered: ea58346b498928ee01498928efd90000 (unnamed) 
+INFO - Not binding factory to JNDI, no JNDI name configured 
+DEBUG - instantiated session factory 
+INFO - Using dialect: org.hibernate.dialect.MySQLDialect 
+INFO - Using Hibernate built-in connection pool (not for production use!) 
+INFO - Hibernate connection pool size: 20 
+INFO - autocommit mode: false 
+INFO - using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - connection properties: {user=root, password=jaibaba} 
+INFO - Running hbm2ddl schema update 
+INFO - fetching database metadata 
+DEBUG - total checked-out connections: 0 
+DEBUG - opening new JDBC connection 
+DEBUG - created connection to: jdbc:mysql://localhost:3308/jlcindiadb, Isolation Level: 4 
+INFO - updating schema 
+INFO - processing extends queue 
+INFO - processing collection mappings 
+INFO - processing association property references 
+INFO - processing foreign key constraints 
+INFO - table found: jlcindiadb.contacts 
+INFO - columns: [phone, status, email, dob, lastname, firstname, contactid] 
+INFO - foreign keys: [] 
+INFO - indexes: [primary] 
+INFO - schema update complete 
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+INFO - Checking 0 named queries 
+DEBUG - opened session 
+DEBUG - begin 
+DEBUG - opening JDBC connection 
+DEBUG - total checked-out connections: 0 
+DEBUG - using pooled JDBC connection, pool size: 0 
+DEBUG - current autocommit status: false 
+INFO - cleaning up connection pool: jdbc:mysql://localhost:3308/jlcindiadb 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - parse() - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - --- HQL AST ---
+ \-[QUERY] CommonAST: 'query'
+    \-[SELECT_FROM] CommonAST: 'SELECT_FROM'
+       \-[FROM] CommonAST: 'from'
+          +-[DOT] CommonAST: '.'
+          |  +-[DOT] CommonAST: '.'
+          |  |  +-[DOT] CommonAST: '.'
+          |  |  |  +-[IDENT] CommonAST: 'com'
+          |  |  |  \-[IDENT] CommonAST: 'ganesh'
+          |  |  \-[IDENT] CommonAST: 'hibernate'
+          |  \-[IDENT] CommonAST: 'Contact'
+          \-[ALIAS] CommonAST: 'c'
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - query() << begin, level = 1 
+DEBUG - com.ganesh.hibernate.Contact (c) -> contact0_ 
+DEBUG - query() : finishing up...  
+DEBUG - Derived SELECT clause created. 
+DEBUG - Using FROM fragment [contacts contact0_] 
+DEBUG - query() >> end, level = 1 
+DEBUG - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (contacts)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'contact0_.contactid as contactid' {FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_'
+    \-[FROM] FromClause: 'from' FromClause{from}
+       \-[FROM_FRAGMENT] FromElement: 'contacts contact0_' FromElement{explicit,not a collection join,classAlias=c,role=null,tableName=contacts,tableAlias=contact0_,colums={,className=com.ganesh.hibernate.Contact}}
+ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - HQL: from com.ganesh.hibernate.Contact c 
+DEBUG - SQL: select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - throwQueryException() : no errors 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#1] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#1] 
+DEBUG - returning 'ganesh' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - Initializing object from ResultSet: [com.ganesh.hibernate.Contact#2] 
+DEBUG - Hydrating entity: [com.ganesh.hibernate.Contact#2] 
+DEBUG - returning 'bab' as column: firstname0_ 
+DEBUG - returning 'babu' as column: lastname0_ 
+DEBUG - returning 'ga@g.com' as column: email0_ 
+DEBUG - returning '2343243' as column: phone0_ 
+DEBUG - returning '13-06-2942' as column: dob0_ 
+DEBUG - returning 'Active' as column: status0_ 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 2 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#1] 
+DEBUG - adding entity to second-level cache: [com.ganesh.hibernate.Contact#1] 
+DEBUG - Caching: com.ganesh.hibernate.Contact#1 
+DEBUG - com.ganesh.hibernate.Contact#1 now: 1415345402043 
+DEBUG - com.ganesh.hibernate.Contact#1 Creation Time: 1415345402043 Next To Last Access Time: 0 
+DEBUG - com.ganesh.hibernate.Contact#1 mostRecentTime: 1415345402043 
+DEBUG - com.ganesh.hibernate.Contact#1 Age to Idle: 120000 Age Idled: 0 
+DEBUG - com.ganesh.hibernate.Contact: Is element with key com.ganesh.hibernate.Contact#1 expired?: false 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#1] 
+DEBUG - resolving associations for [com.ganesh.hibernate.Contact#2] 
+DEBUG - adding entity to second-level cache: [com.ganesh.hibernate.Contact#2] 
+DEBUG - Caching: com.ganesh.hibernate.Contact#2 
+DEBUG - com.ganesh.hibernate.Contact#1 now: 1415345402043 
+DEBUG - com.ganesh.hibernate.Contact#1 Creation Time: 1415345402043 Next To Last Access Time: 0 
+DEBUG - com.ganesh.hibernate.Contact#1 mostRecentTime: 1415345402043 
+DEBUG - com.ganesh.hibernate.Contact#1 Age to Idle: 120000 Age Idled: 0 
+DEBUG - com.ganesh.hibernate.Contact: Is element with key com.ganesh.hibernate.Contact#1 expired?: false 
+DEBUG - done materializing entity [com.ganesh.hibernate.Contact#2] 
+DEBUG - initializing non-lazy collections 
+DEBUG - find: from Contact c 
+DEBUG - named parameters: {} 
+DEBUG - compile() : The query is already compiled, skipping... 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - Dont need to execute flush 
+DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0) 
+DEBUG - select contact0_.contactid as contactid, contact0_.firstname as firstname0_, contact0_.lastname as lastname0_, contact0_.email as email0_, contact0_.phone as phone0_, contact0_.dob as dob0_, contact0_.status as status0_ from contacts contact0_ 
+DEBUG - preparing statement 
+DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0) 
+DEBUG - processing result set 
+DEBUG - result set row: 0 
+DEBUG - returning '1' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#1] 
+DEBUG - result set row: 1 
+DEBUG - returning '2' as column: contactid 
+DEBUG - result row: EntityKey[com.ganesh.hibernate.Contact#2] 
+DEBUG - done processing result set (2 rows) 
+DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1) 
+DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1) 
+DEBUG - closing statement 
+DEBUG - total objects hydrated: 0 
+DEBUG - initializing non-lazy collections 
+DEBUG - commit 
+DEBUG - automatically flushing session 
+DEBUG - flushing session 
+DEBUG - processing flush-time cascades 
+DEBUG - dirty checking collections 
+DEBUG - Flushing entities and processing referenced collections 
+DEBUG - Processing unreferenced collections 
+DEBUG - Scheduling collection removes/(re)creates/updates 
+DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects 
+DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections 
+DEBUG - listing entities: 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=2, status=Active, email=ga@g.com, dob=13-06-2942, firstName=bab} 
+DEBUG - com.ganesh.hibernate.Contact{lastName=babu, phone=2343243, contactId=1, status=Active, email=ga@g.com, dob=13-06-2942, firstName=ganesh} 
+DEBUG - executing flush 
+DEBUG - post flush 
+DEBUG - before transaction completion 
+DEBUG - before transaction completion 
+DEBUG - committed JDBC Connection 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 
+DEBUG - closing session 
+DEBUG - closing JDBC connection (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0) 
+DEBUG - returning connection to pool, pool size: 1 
+DEBUG - after transaction completion 
+DEBUG - after transaction completion 

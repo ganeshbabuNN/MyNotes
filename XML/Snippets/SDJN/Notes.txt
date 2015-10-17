@@ -1,0 +1,11 @@
+castor-1.3.jars
+commons-logging-1.0.4.jar
+JAXB-2.0-All-Jars
+JAXB2.0Resources
+JAXB-2.1-jars
+JAXB-Castor-All-Jars
+JiBX-Jars
+Stax-Jars
+XML-Jars
+xstream-1.3.1.jars
+xerces.jars

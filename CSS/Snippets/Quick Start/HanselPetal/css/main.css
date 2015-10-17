@@ -1,0 +1,120 @@
+
+/* -- global styles -- */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/bodybkgd.jpg);
+    background-repeat: repeat-x;
+    background-color: #312e1d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5em;
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, Times, serif;
+    margin: 0 0 0.25em 0;
+}
+
+h1 {
+    color: #8aa635;
+    font-size: 170%;
+}
+
+h2 {
+    color: #38add6;
+    font-size: 140%;
+}
+
+h3 {
+    color: #8aa635;
+    font-size: 115%;
+}
+
+a:link {
+    color: #38add6;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #8aa635;
+}
+
+a:hover {
+    color: #38add6;
+    text-decoration: none;
+}
+
+/* -- document sections -- */
+
+#wrapper {
+    width: 900px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+}
+
+#header img {
+    border: none;
+    width: 900px;
+    height: 81px;
+}
+
+#content {
+    float: right;
+    padding: 20px;
+    width: 660px;
+}
+
+#left {
+    float: left;
+    width: 173px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+#left img {
+    width: 173px;
+    height: 223px;
+}
+
+#footer {
+    clear: both;
+    padding-top: 22px;
+    background-image: url(../images/footer.png);
+    background-repeat: no-repeat;
+    height: 72px;
+    text-align: center;
+    font-size: 0.85em;
+    color: #999;
+}
+
+/* menu */
+
+#menuTop {
+    background-image: url(../images/navbkgd.jpg);
+    background-repeat: repeat-x;
+    padding-top: 18px;
+    height: 55px;
+    font-size: 9pt;
+}
+
+#menuTop p {
+    margin: 0;
+}
+
+#menuTop a:link, #menuTop a:visited {
+    font-family: Georgia, Times, serif;
+    color: white;
+    text-decoration: none;
+    padding-right: 30px;
+}
+
+#menuTop a:hover {
+    color: #8aa635;
+}
+

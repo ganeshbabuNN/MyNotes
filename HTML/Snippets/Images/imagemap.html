@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Image Map
+    </title>
+</head>
+<body>
+
+<h1>
+    HTML Image Map
+</h1>
+
+<img src="images/scissors-imagemap.png" width="240" height="240" 
+    alt="Picture of scissors" TITLE="Running with these is not recommended." 
+    usemap="#scissorsmap" />
+
+<map name="scissorsmap">
+<area shape="rect" coords="0, 0, 50, 50" alt="rect" title="rectangular area" href="rectangle.htm" />
+<area shape="circle" coords="150, 25, 25" alt="circle" title="circular area" href="circle.htm" />
+<area shape="poly"
+    coords="13, 93, 101, 114, 148, 106, 193, 88, 233, 111, 220, 129,
+        140, 134, 191, 163, 203, 187, 193, 202, 173, 208, 148, 181, 99,
+        137, 5, 130, 68, 120"
+    alt="poly" title="poly area for scissors" href="scissors.htm" />
+</map>
+
+</body>
+</html>

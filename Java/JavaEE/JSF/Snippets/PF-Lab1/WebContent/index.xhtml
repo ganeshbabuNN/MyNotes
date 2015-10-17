@@ -1,0 +1,19 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h:form>
+<p:growl id="jlcMessages"/>
+<p:splitButton value="Save" actionListener="#{buttonBean.save}" update="jlcMessages" icon="ui-icon-disk">
+<p:menuitem value="Update" actionListener="#{buttonBean.save}" update="jlcMessages" icon="ui-icon-arrowfresh-1-w"/>
+<p:menuitem value="Delete" actionListener="#{buttonBean.delete}" ajax="false" icon="ui-icon-close"/>
+<p:separator/>
+<p:menuitem value="Homepage" url="http://www.jlcindia.com" icon="ui-icon-extlink"/>
+</p:splitButton>
+</h:form>
+</h:body>	  
+</html>

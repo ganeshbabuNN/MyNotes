@@ -1,0 +1,5 @@
+Sub formatdemo()
+MsgBox Format(1234567.89, "#,###.#")
+MsgBox Format(1234567.89, "Currency")
+MsgBox Format(Now(), "hh:mm:ss AM/PM")
+End Sub

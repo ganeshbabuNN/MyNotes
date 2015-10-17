@@ -1,0 +1,6 @@
+Sub CloseWorkbooks()
+Dim wb As Workbook
+For Each wb In Application.Workbooks
+If wb.Name <> ThisWorkbook.Name Then wb.Close
+Next
+End Sub

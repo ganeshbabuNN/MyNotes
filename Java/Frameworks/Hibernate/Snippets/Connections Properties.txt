@@ -1,0 +1,36 @@
+for mysql
+	<!-- Database connection settings -->
+	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost/jlcdb1</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">XXXX</property>
+	<!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+
+for oracle
+  <session-factory>
+   	<!-- Database connection settings -->
+	<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+        <property name="connection.username">system</property>
+        <property name="connection.password">XXXX</property>
+ 	<property name="dialect">org.hibernate.dialect.OracleDialect</property>
+	<!-- Enable Hibernate's current session context -->
+        <property name="current_session_context_class">org.hibernate.context.ManagedSessionContext</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+	<!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
+        
+        <mapping resource="com/jlcindia/hibernate/Customer.hbm.xml"/>
+        		            
+    </session-factory>
+
+
+for derby

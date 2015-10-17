@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Business Card DOM Example 2</title>
+    <script language="javascript" type="text/javascript">
+    function populateFields() {
+        var xmldata = document.getElementById("xmldata1");
+        var bizCard = xmldata.getElementsByTagName("BusinessCard")[0];
+        
+        var name = bizCard.getElementsByTagName("Name")[0].firstChild.data;
+        var phone1Str = bizCard.getElementsByTagName("phone")[0].getAttribute("type") + ": ";
+        var phone1 = bizCard.getElementsByTagName("phone")[0].firstChild.data;
+        var phone2Str = bizCard.getElementsByTagName("phone")[1].getAttribute("type") + ": ";
+        var phone2 = bizCard.getElementsByTagName("phone")[1].firstChild.data;
+        var phone3Str = bizCard.getElementsByTagName("phone")[2].getAttribute("type") + ": ";
+        var phone3 = bizCard.getElementsByTagName("phone")[2].firstChild.data;
+        var email = bizCard.getElementsByTagName("email")[0].firstChild.data;
+        
+        document.getElementById("Name").innerHTML = name;
+        document.getElementById("phone1").innerHTML = phone1Str + phone1;
+        document.getElementById("phone2").innerHTML = phone2Str + phone2;
+        document.getElementById("phone3").innerHTML = phone3Str + phone3;
+        document.getElementById("email").innerHTML = "email: " + email;
+    }
+    
+    function hideEmail() {
+        document.getElementById("email").style.display = 'none';
+    }
+    
+    function showEmail() {
+        document.getElementById("email").style.display = '';
+    }
+    </script>
+    <link rel="stylesheet" href="businesscard.css" />
+</head>
+<body onload="populateFields()">
+<xml id="xmldata1" style="display:none">
+	<BusinessCard>
+		<Name>Joe Marini</Name>
+		<phone type="mobile">(415) 555-4567</phone>
+		<phone type="work">(800) 555-9876</phone>
+		<phone type="fax">(510) 555-1234</phone>
+		<email>joe@joe.com</email>
+	</BusinessCard>
+</xml>
+<div class="BusinessCard">
+<div class="Name" id="Name"></div>
+<div class="phone" id="phone1"></div>
+<div class="phone" id="phone2"></div>
+<div class="phone" id="phone3"></div>
+<div class="email" id="email" style="display:none"></div>
+</div>
+<a href="javascript:hideEmail()">Hide Email</a>
+<a href="javascript:showEmail()">Show Email</a>
+</body>
+</html>

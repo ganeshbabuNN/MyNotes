@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+	<class name="Installment" table="installments">
+		<id name="instid" column="instid" type="int">
+			<generator class="increment" />
+		</id>
+		<property name="amt" type="double" />
+		<property name="ccno" type="int" />
+		<property name="sid" type="string" />
+		<property name="paymode" type="string" />
+	</class>
+</hibernate-mapping>

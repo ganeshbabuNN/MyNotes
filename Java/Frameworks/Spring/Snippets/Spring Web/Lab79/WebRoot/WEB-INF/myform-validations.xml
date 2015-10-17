@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0.1//EN" "validator_1_0_1.dtd" >
+<form-validation>
+	<formset>
+		<form name="addContactForm">
+			<field property="fname" depends="required">
+				<arg0 key="First Name" resource="false" />
+			</field>
+			<field property="lname" depends="required">
+				<arg0 key="Last Name" resource="false" />
+			</field>
+			<field property="email" depends="required">
+				<arg0 key="Email" resource="false" />
+			</field>
+			<field property="phone" depends="required">
+				<arg0 key="Phone" resource="false" />
+			</field>
+	 	</form>
+	 	<form name="searchContactForm">
+	 		<field property="email" depends="required">
+	 		<arg0 key="Email" resource="false"/>
+	 		</field>
+	 	</form>
+	 	<form name="updateContactForm">
+	 		<field property="fname" depends="required">
+	 		<arg0 key="First Name" resource="false"/>
+	 		</field>
+	 		<field property="lname" depends="required">
+	 		<arg0 key="Last Name" resource="false"/>
+	 		</field>
+	 		<field property="email" depends="required">
+	 		<arg0 key="Email" resource="false"/>
+	 		</field>
+	 		<field property="phone" depends="required">
+	 		<arg0 key="Phone" resource="false"/>
+	 		</field>
+	 	</form>
+	</formset>
+</form-validation>

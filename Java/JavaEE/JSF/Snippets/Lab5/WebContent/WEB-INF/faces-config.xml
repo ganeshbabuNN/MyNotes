@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+<managed-bean>
+	<managed-bean-name>courseBean</managed-bean-name>
+	<managed-bean-class>com.ganesh.jsf12.CourseBean</managed-bean-class>
+	<managed-bean-scope>session</managed-bean-scope>
+	<managed-property>
+		<property-name>cid</property-name>
+		<value>101</value>
+	</managed-property>
+	<managed-property>
+		<property-name>cname</property-name>
+		<value>JSF2.0</value>
+	</managed-property>
+	<managed-property>
+		<property-name>duration</property-name>
+		<value>3</value>
+	</managed-property>
+	<managed-property>
+		<property-name>cost</property-name>
+		<value>300.50</value>
+	</managed-property>	
+</managed-bean>
+
+<managed-bean>
+	<managed-bean-name>mbdemoBean</managed-bean-name>
+	<managed-bean-class>com.ganesh.jsf12.Mbdemobean</managed-bean-class>
+	<managed-bean-scope>session</managed-bean-scope>
+	<managed-property>
+		<property-name>phone</property-name>
+		<value>99999</value>
+	</managed-property>
+	<managed-property>
+		<property-name>dob</property-name>
+		<value>10-10-10</value>
+	</managed-property>
+	<managed-property>
+		<property-name>fee</property-name>
+		<value>#{courseBean.cost}</value>
+	</managed-property>
+	<managed-property>
+		<property-name>courses</property-name>
+		<list-entries>
+		<value>Java</value>
+		<value>JDBC</value>
+		<value>JSP</value>
+		<value>EJB</value>
+		</list-entries>
+	</managed-property>
+	<managed-property>
+		<property-name>refs</property-name>
+		<map-entries>
+			<map-entry>
+				<key>aaa</key>
+				<value>111</value>
+			</map-entry>
+			<map-entry>
+				<key>bbb</key>
+				<value>222</value>
+			</map-entry>
+			<map-entry>
+				<key>ccc</key>
+				<value>333</value>
+			</map-entry>
+		</map-entries>		
+	</managed-property>
+	<managed-property>
+		<property-name>mycourse</property-name>
+		<value>#{courseBean}</value>
+	</managed-property>
+</managed-bean>
+
+<navigation-rule>
+	<from-view-id>/mbdemo.jsp</from-view-id>
+	<navigation-case>
+		<from-outcome>show</from-outcome>
+		<to-view-id>/show.jsp</to-view-id>
+	</navigation-case>
+</navigation-rule>
+
+</faces-config>

@@ -1,0 +1,7 @@
+Asix2-Jars 1.2
+axis2-1.5.3-bin
+JSON JAR
+json-lib-2.2.2-jdk15
+commons-logging-1.1.1
+commons-beanutils-1.7
+mysqldb-ds

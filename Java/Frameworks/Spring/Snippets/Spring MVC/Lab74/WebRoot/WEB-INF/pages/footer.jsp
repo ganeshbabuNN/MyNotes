@@ -1,0 +1,1 @@
+<h3>All Rights Reserved. Ganesh Learning Center. 2014</h3>

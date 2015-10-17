@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Quotes
+    </title>
+    <style>
+        :lang(en) > q { quotes: '“' '”' '‘' '’'; }
+        :lang(en-GB) > q { quotes: '‘' '’' '“' '”'; }
+        :lang(fr) > q { quotes: '«' '»' '“' '”'; }
+        :lang(de) > q { quotes: '„' '“' '‚' '‘'; }
+    </style>
+</head>
+<body>
+
+<h1>
+    HTML Quotes
+</h1>
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
+    porta nunc. <q>Aliquam quis nulla turpis.</q> Nam tincidunt nunc hendrerit
+    ligula aliquet vel feugiat diam pharetra.
+</p>
+
+<blockquote>
+    Aliquam posuere nulla quis enim sodales congue. Vivamus tortor mauris,
+    feugiat semper vehicula non, blandit sed mi. Proin sed urna eu nunc
+    convallis aliquam.
+</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+<class name="OrderItem" table="orderitems">
+<id name="otid" column="otid" type ="int">
+	<generator class="increment"/>
+</id>
+<property name="qty" type="int"/>
+<property name="cost" type="double"/>
+<many-to-one name="order" class="Order" column="orderld"/>
+<many-to-one name="book" class="Book" column="bid"/>
+</class>
+</hibernate-mapping>

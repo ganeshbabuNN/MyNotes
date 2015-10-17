@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://jaxws.ganesh.com/" targetNamespace="http://jaxws.ganesh.com/" version="1.0">
+
+  <xs:element name="getMessage" type="tns:getMessage"/>
+
+  <xs:element name="getMessageResponse" type="tns:getMessageResponse"/>
+
+  <xs:complexType name="getMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMessageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

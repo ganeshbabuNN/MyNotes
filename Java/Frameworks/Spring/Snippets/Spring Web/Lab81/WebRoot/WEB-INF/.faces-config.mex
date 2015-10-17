@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JSFFlowViewLayout version="1.0">
+  <Drawing gridVisible="true" snapOn="true" />
+  <JSFFlowResource path="/addContactDef.jsp" location="30,30" dimension="173,36" />
+  <JSFFlowResource path="/addContactSuccessDef.jsp" location="330,30" dimension="223,36" />
+  <JSFFlowResource path="/searchContactDef.jsp" location="30,130" dimension="189,36" />
+  <JSFFlowResource path="/searchResultsDef.jsp" location="330,130" dimension="184,36" />
+  <JSFFlowResource path="/updateContactSuccessDef.jsp" location="30,230" dimension="244,36" />
+  <JSFFlowResource path="/home.jsp" location="330,230" dimension="110,36" />
+  <JSFFlowResource path="/WEB-INF/pages/welcome.jsp" location="30,330" dimension="243,36" />
+  <JSFFlowNavigationCase id="/addContactDef.jsp,/addContactSuccessDef.jsp,&lt;empty&gt;,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="203,48" />
+      <AbsolutePoint location="330,48" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/searchContactDef.jsp,/searchResultsDef.jsp,success,&lt;empty&gt;" routingType="1">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="219,148" />
+      <AbsolutePoint location="330,148" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/searchContactDef.jsp,/searchContactDef.jsp,failed,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="124,130" />
+      <AbsolutePoint location="124,103" />
+      <AbsolutePoint location="241,103" />
+      <AbsolutePoint location="241,133" />
+      <AbsolutePoint location="219,133" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/searchResultsDef.jsp,/updateContactSuccessDef.jsp,&lt;empty&gt;,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="330,133" />
+      <AbsolutePoint location="256,133" />
+      <AbsolutePoint location="256,230" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/home.jsp,/WEB-INF/pages/welcome.jsp,&lt;empty&gt;,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="385,266" />
+      <AbsolutePoint location="385,348" />
+      <AbsolutePoint location="273,348" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+</JSFFlowViewLayout>
+

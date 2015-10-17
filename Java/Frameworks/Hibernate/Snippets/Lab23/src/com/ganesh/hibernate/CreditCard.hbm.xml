@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+<class name="CreditCard" table="ccards">
+<id name="ccid" column="ccid" type ="int">
+	<generator class="increment"/>
+</id>
+<property name="ccno" type="int"/>
+<property name="ctype"/>
+<property name="code" type="int"/>
+<property name="expDate" type="date"/>
+<one-to-one name="customer" class="Customer"/>
+</class>
+</hibernate-mapping>

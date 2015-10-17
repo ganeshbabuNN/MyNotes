@@ -1,0 +1,6 @@
+JSF 1.2-Jars
+JSF-2.1.-Jars
+javax.faces-2.1.24
+PF-3.4.2
+RichFaces-3.3-Jars
+Tiles jars - Struts 1.x jars

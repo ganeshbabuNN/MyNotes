@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+	<navigation-rule>
+		<from-view-id>/addContactDef.jsp</from-view-id>
+		<navigation-case>
+			<to-view-id>/addContactSuccessDef.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/searchContactDef.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/searchResultsDef.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>failed</from-outcome>
+			<to-view-id>/searchContactDef.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/searchResultsDef.jsp</from-view-id>
+		<navigation-case>
+			<to-view-id>/updateContactSuccessDef.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/home.jsp</from-view-id>
+		<navigation-case>
+			<to-view-id>/WEB-INF/pages/welcome.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<application>
+		<message-bundle>com.ganesh.jsf.messages</message-bundle>
+		<variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+	</application>
+
+</faces-config>

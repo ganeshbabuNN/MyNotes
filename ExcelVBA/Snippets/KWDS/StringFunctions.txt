@@ -1,0 +1,12 @@
+Sub casedemo()
+x1 = UCase("Richard")
+x2 = LCase("Richard")
+x3 = Mid("12Richard", 1, 2)
+x4 = Left("12Richard", 2)
+x5 = Right("12Richard", 2)
+MsgBox (x1)
+MsgBox (x2)
+MsgBox (x3)
+MsgBox (x4)
+MsgBox (x5)
+End Sub

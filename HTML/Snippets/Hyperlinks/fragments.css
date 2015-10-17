@@ -1,0 +1,37 @@
+
+
+p, h1, h2, h3, h4, h5, h7 {
+    margin: 0;
+    font-family: sans-serif;
+    line-height: 1.2;
+}
+a {
+    text-decoration: none;
+    color: #009;
+ }
+ a:hover {
+    text-decoration: underline;
+ }
+.countries {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.cities {
+    width: 80%;
+    margin: 0 auto;
+}
+.countries h1 {
+    font-size: 170%;
+    padding-top: 10px;
+}
+.cities h1 {
+    margin: 1ex 0 0 0;
+    font-size: 150%;
+    padding-top: 10px;
+}
+.toplink {
+    font-size: 70%;
+    font-weight: normal;
+    padding-left: 1em;
+ }

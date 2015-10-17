@@ -1,0 +1,76 @@
+
+/* reset margins */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, ol, ul, li,
+blockquote, pre, form, label, legend, table, caption, tbody, tfoot, thead,
+tr, th, td, article, aside, canvas, details, embed, figure, figcaption,
+footer, header, hgroup, menu, nav, output, section, summary, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* setup body */
+body{
+    background-color: #9ab;
+}
+
+body, p, input {
+    line-height: 1.2;
+    font-family: Tahoma, sans-serif;
+    font-size: 16pt;
+}
+
+/* reasonable starting margins */
+h1, h2, h3, h4, h5, h6, ol, ul, li { margin: .5ex 12pt; }
+p { margin: 1ex 12pt; }
+li { margin-left: 2em; }
+
+/* setup headings */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+    font-family: Tahoma, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+h1 { font-size: 120%; }
+h2 { font-size: 110%; }
+h3 { font-size: 100%; }
+h4 { font-size: 100%; }
+h5 { font-size: 100%; }
+h6 { font-size: 100%; }
+
+/* setup pre */
+pre { font-family: consolas, monospace; }
+
+/* style the forms */
+
+#outer {
+    width: 800px;
+    margin: 5px auto;
+}
+
+#form, #results {
+    width: 396px;
+    float: left;
+    padding: 0;
+    margin: 0 2px;
+    background-color: #def;
+}
+
+#results p {
+    font-family: monospace;
+    margin: .5ex 1ex;
+}
+
+#results p.error {
+    color: #c66;
+}
+
+textarea {
+    width: 300px;
+    height: 150px;
+    font-size: 16pt;
+}

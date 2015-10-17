@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+ "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+ <tiles-definitions>
+ 	<definition name="JLCBaseDef" template="/JLCLayout.jsp">
+ 		<put-attribute name="HEADER" value="/header.jsp"/>
+ 		<put-attribute name="LMENU" value="/lmenu.jsp"/>
+ 		<put-attribute name="BODY" value=""/>
+ 		<put-attribute name="RMENU" value="/rmenu.jsp"/>
+ 		<put-attribute name="FOOTER" value="/footer.jsp"/> 	
+ 	</definition>
+ 	<definition name="JLCHomeDef" extends="JLCBaseDef">
+ 		<put-attribute name="BODY" value="/welcome.jsp"/>
+ 	</definition>
+ 	<definition name="AddStuHomeDef" extends="JLCBaseDef">
+ 		<put-attribute name="BODY" value="/addstudent.jsp"/>
+ 	</definition>
+ 	<definition name="UpdateStuHomeDef" extends="JLCBaseDef">
+ 		<put-attribute name="BODY" value="/updatestudent.jsp"/>
+ 	</definition>
+ 	<definition name="SearchStuHomeDef" extends="JLCBaseDef">
+ 		<put-attribute name="BODY" value="/searchstudent.jsp"/>
+ 	</definition>
+ 
+</tiles-definitions> 

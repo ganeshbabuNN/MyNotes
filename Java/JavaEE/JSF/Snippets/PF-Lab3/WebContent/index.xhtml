@@ -1,0 +1,79 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h:form>
+<p:dataTable id="dataTable" var="stud" value="#{studentBean.students}" paginator="true" rows="5">
+<p:column exportable="false">
+
+<f:facet name="header">
+<h:outputText value="Student ID"/>
+</f:facet>
+<h:outputText value="#{stud.sid}"/>
+</p:column>
+
+<p:column>
+<f:facet name="header">
+<h:outputText value="Name"/>
+</f:facet>
+<h:outputText value="#{stud.name}"/>
+</p:column>
+
+<p:column>
+<f:facet name="header">
+<h:outputText value="Email"/>
+</f:facet>
+<h:outputText value="#{stud.email}"/>
+</p:column>
+
+<p:column>
+<f:facet name="header">
+<h:outputText value="Phone"/>
+</f:facet>
+<h:outputText value="#{stud.phone}"/>
+</p:column>
+</p:dataTable>
+
+<p:panelGrid columns="2">
+<p:panel header="Export All Data">
+<h:commandLink>
+<p:graphicImage value="images/excel.png"/>
+<p:dataExporter target="dataTable" type="xls" fileName="studs"/>
+</h:commandLink>
+
+<h:commandLink>
+<p:graphicImage value="images/csv.png"/>
+<p:dataExporter target="dataTable" type="csv" fileName="studs"/>
+</h:commandLink>
+
+<h:commandLink>
+<p:graphicImage value="images/xml.png"/>
+<p:dataExporter target="dataTable" type="xml" fileName="studs"/>
+</h:commandLink>
+</p:panel>
+
+<p:panel header="Export Page Data">
+<h:commandLink>
+<p:graphicImage value="images/excel.png"/>
+<p:dataExporter target="dataTable" type="xls" fileName="studs" pageOnly="true"/>
+</h:commandLink>
+
+<h:commandLink>
+<p:graphicImage value="images/csv.png"/>
+<p:dataExporter target="dataTable" type="csv" fileName="studs" pageOnly="true"/>
+</h:commandLink>
+
+<h:commandLink>
+<p:graphicImage value="images/xml.png"/>
+<p:dataExporter target="dataTable" type="xml" fileName="studs" pageOnly="true"/>
+</h:commandLink>
+</p:panel>
+
+</p:panelGrid>
+</h:form>
+</h:body>	  
+</html>

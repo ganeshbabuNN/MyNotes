@@ -1,0 +1,50 @@
+
+
+body {
+    background-color: #eee;
+    margin: 5px;
+    font-family: verdana, sans-serif;
+}
+
+div#content {
+    width: 75%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+}
+
+h1, h2, h3 {
+    color: #960;
+    margin: 0;
+}
+
+p {
+    margin: 0 0 0.75em 0;
+    line-height: 1.5em;
+}
+
+/* fonts */
+
+dd {
+    margin-bottom: 12pt;
+}
+
+dt {
+    font-size: 125%;
+}
+
+.times { font-family: Times, Times New Roman, serif }
+.helvetica { font-family: Helvetica, Arial, sans-serif }
+.courier { font-family: Courier, Courier New, monospace }
+.georgia { font-family: Georgia, serif }
+.verdana { font-family: Verdana, sans-serif }
+.trebuchet { font-family: Trebuchet MS, sans-serif }
+.impact { font-family: Impact, sans-serif }
+.lucidaSans { font-family: Lucida Sans Unicode, Lucida Grande, sans-serif }
+.lucidaConsole { font-family: Lucida Console, monospace }
+.serif { font-family: serif }
+.sansSerif { font-family: sans-serif }
+.monospace { font-family: monospace }
+.cursive { font-family: cursive }
+

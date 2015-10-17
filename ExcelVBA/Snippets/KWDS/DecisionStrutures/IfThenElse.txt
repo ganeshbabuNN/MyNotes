@@ -1,0 +1,7 @@
+Sub Test_If()
+If Application.ActiveCell = 5 Then
+MsgBox "Cell is 5"
+Else
+MsgBox "Cell is not 5"
+End If
+End Sub

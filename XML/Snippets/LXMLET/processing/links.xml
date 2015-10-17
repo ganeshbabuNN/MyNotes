@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<links>
+	<category desc="XAML Related">
+		<link url="http://longhorn.msdn.microsoft.com" desc="Longhorn SDK Home" title="The source for Longhorn-related development information"/>
+		<link url="http://longhornblogs.com" desc="Longhorn Blogs"/>
+		<link url="http://xamlblogs.com" desc="XAML Blogs"/>
+		<link url="http://www.xamlon.com" desc="Xamlon.com"/>
+		<link url="http://www.mobiform.com" desc="Mobiform"/>
+		<link url="http://www.zaml.com" desc="Zaml.com"/>
+		<link url="http://www.xaml.net" desc="XAML.net"/>
+		<link url="http://www.myxaml.com" desc="MyXAML"/>
+	</category>
+	<category desc="Development Resources">
+		<link url="http://msdn.microsoft.com" desc="Microsoft Developer Network"/>
+		<link url="http://sourceforge.net" desc="SourceForge"/>
+		<link url="http://www.w3schools.com" desc="w3schools"/>
+		<link url="http://www.w3.org" desc="The World Wide Web Consortium (W3C)"/>
+		<link url="http://www.xml.com" desc="xml.com"/>
+		<link url="http://www.csszengarden.com/" desc="CSS Zen Garden"/>
+		<link url="http://devedge.netscape.com/library/xref/2003/css-support/css1/mastergrid.html" 
+				desc="CSS1 Browser Support Matrix"/>
+		<link url="http://devedge.netscape.com" desc="Netscape DevEdge"/>
+	</category>
+	<category desc="Community">
+		<link url="http://channel9.msdn.com" desc="Channel9"/>
+		<link url="http://www.asp.net" desc="ASP.NET"/>
+		<link url="http://www.gotdotnet.com" desc="Got .NET?"/>
+		<link url="http://www.webstandards.org" desc="webstandards.org"/>
+		<link url="http://www.alistapart.com" desc="A List Apart"/>
+		<link url="http://www.communitymx.com" desc="Community MX"/>
+		<link url="http://www.sitepoint.com" desc="SitePoint Developer's Resource"/>
+		<link url="http://www.dwfaq.com" desc="The Dreamweaver FAQ"/>
+		<link url="http://www.codeproject.com" desc="The Code Project"/>
+		<link url="http://www.codeguru.com" desc="CodeGuru"/>
+		<link url="http://www.actionscript.com" desc="ActionScript (Flash)"/>
+	</category>
+	<category desc="Highlighted Vendors">
+		<link url="http://www.microsoft.com" desc="Microsoft"/>
+		<link url="http://www.ibm.com/developerworks" desc="IBM's Developerworks"/>
+		<link url="http://www.macromedia.com/devnet" desc="Macromedia DevNet"/>
+		<link url="http://www.vgdotnet.com" desc="VG.net"/>
+		<link url="http://www.massimocorner.com/" desc="Massimo's Corner (DW Extensions)"/>
+		<link url="http://www.yaromat.com/" desc="Yaromat (DW Extensions)"/>
+	</category>
+</links>

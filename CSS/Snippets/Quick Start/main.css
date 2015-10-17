@@ -1,0 +1,14 @@
+
+
+body {
+    background-color: white;
+    margin: 5px;
+    font-family: helvetica, arial, sans-serif;
+}
+
+div#content {
+    width: 75%;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+}

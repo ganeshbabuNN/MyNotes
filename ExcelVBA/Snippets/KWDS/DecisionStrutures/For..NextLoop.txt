@@ -1,0 +1,38 @@
+Sub fordemo()
+For i = 1 To 5
+MsgBox (i)
+Next i
+End Sub
+Sub test_exit()
+For x = 1 To 100
+If x = 50 Then
+Exit For
+End If
+Next x
+MsgBox x
+End Sub
+
+Function u_sum(arr() As Single)
+For i = 1 To UBound(arr)
+u_sum = u_sum + arr(i)
+Next i
+End Function
+
+Sub computeSum()
+Dim arr(3) As Single
+arr(1) = 5
+arr(2) = 4
+arr(3) = 10
+MsgBox u_sum(arr)
+End Sub
+
+Sub LoopTest()
+Dim counter
+For counter = 1 To 10
+'Display the message
+Application.StatusBar = "Counter value: " & counter
+' Wait for 1 second
+Application.Wait Now + TimeValue("00:00:01")
+Next counter
+Application.StatusBar = False
+End Sub

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sd:schema xmlns:sd="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="http://www.jlcindia.com/authors"
+	    xmlns:author="http://www.jlcindia.com/authors" 
+	    elementFormDefault="qualified">
+<sd:element name="author">
+	<sd:complexType>
+		<sd:sequence>
+			<sd:element name="authorName" type="sd:string" minOccurs="1" maxOccurs="1"/>
+			<sd:element name="email" type="sd:string" minOccurs="1" maxOccurs="unbounded"/>
+			<sd:element name="qualification" type="sd:string" minOccurs="1" maxOccurs="1"/>
+		</sd:sequence>
+	</sd:complexType>
+</sd:element>
+</sd:schema>

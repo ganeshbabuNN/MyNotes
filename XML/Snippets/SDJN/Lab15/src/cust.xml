@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customers>
+    <customer cid="109">
+        <account accno="111">
+            <atype>SA</atype>
+            <balance>9999.99</balance>
+        </account>
+        <custName>ga</custName>
+        <email>g@l.com</email>
+        <phone>4545</phone>
+    </customer>
+</customers>

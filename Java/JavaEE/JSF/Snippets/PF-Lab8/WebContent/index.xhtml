@@ -1,0 +1,18 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h1>KEEP YOUR SYSTEM IDLE FOR SOME TIME</h1>
+<h:form>
+	<p:idleMonitor timeout="1000" onidle="idleDialog.show()" onactive="idleDialog.hide()"/>	
+	<p:dialog header="What is Happening?" resizable="false"
+	widgetVar="idleDialog" modal="true" width="400">
+	<h:outputText value="Dude, are you there"/>
+	</p:dialog>	
+</h:form>
+</h:body>	  
+</html>

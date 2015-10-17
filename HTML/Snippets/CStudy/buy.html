@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        Buy the Game
+    </title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="rps.css" />
+    <script>
+        function calc() {
+            q = parseInt(document.getElementById('quantity').value);
+            p = parseInt(document.getElementById('price').innerText) || 49;
+            document.getElementById('total').value = q * p;
+        }
+        window.onload = calc;
+    </script>
+</head>
+<body>
+
+<nav id="top-menu">
+    <ul>
+        <li> <a href="rps.html">Home</a> </li>
+        <li> <a href="rock.html">Rock</a> </li>
+        <li> <a href="paper.html">Paper</a> </li>
+        <li> <a href="scissors.html">Scissors</a> </li>
+        <li> <a href="contact.html">Contact</a> </li>
+        <li> <a href="buy.html">Buy</a> </li>
+    </ul>
+</nav>
+
+<div id="maindiv">
+<header>
+    <hgroup>
+        <h1> Buy the Game </h1>
+        <h2> Makes a great gift! </h2> 
+    </hgroup>
+</header>
+
+<article id="contact">
+    <h1> Where to buy </h1>
+    <p>
+        That's silly. It's a game you play with your hands. You don't need to buy anything. 
+    </p>
+</article>
+
+<aside class="about">
+    <header>
+        <h1> Highlights of RPS Corp </h1>
+        <p> Quality is everything! </p>
+    </header>
+    <p> A rich history </p>
+    <section>
+        <hgroup>
+            <h1> Size </h1>
+            <h2> Very Big </h2>
+        </hgroup>
+        <p> We're huge! </p>
+    </section>
+    <section>
+        <hgroup>
+            <h1> Age </h1>
+            <h2> Older than dirt! </h2>
+        </hgroup>
+        <p> So ancient even we can't remember! </p>
+    </section>
+    <section>
+        <hgroup>
+            <h1> Culture </h1>
+            <h2> Rich </h2>
+        </hgroup>
+        <p> All our employees do yoga. </p>
+    </section>
+</aside>
+
+<section class="buy">
+    <h1> Order Here! </h1>
+    <form action="thankyou.html" method="get">
+        <p> Engraving: <input type="text" name="engraving" autofocus /> </p>
+        
+        <p> How many? <input id="quantity" type="number" min="1" max="10" value="1" name="quantity" 
+            onchange="calc()"/> </p>
+
+        <p> 
+            Price: $<span id="price">49</span> &nbsp;
+            Total: <b style="color: #900"> $<output id="total" for="quantity">0</output> </b>
+        </p>
+        <p> To place your order press this big red button: </p>
+        <p style="text-align: center"> <input type="image" src="images/brb.png" name="brb" /> </p>
+    </form>
+</section>
+
+<div class="clear"></div>
+</div>
+
+<footer>
+    <p>
+        Copyright &copy; 2012 Rock Paper Scissors Corporation of North America Inc., Ltd., Phd.
+    </p>
+</footer>
+
+</body>
+</html>

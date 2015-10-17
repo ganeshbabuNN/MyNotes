@@ -1,0 +1,8 @@
+Sub ClearRange()
+Worksheets("Sheet1").[A1:B5].ClearContents
+End Sub
+
+Sub SetValue()
+[MyRange].Value = 30
+End Sub
+Referring

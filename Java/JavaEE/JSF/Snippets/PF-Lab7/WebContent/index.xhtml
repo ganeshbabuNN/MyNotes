@@ -1,0 +1,20 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h1>BAR CHAR EXAMPLE</h1>
+<h:form>
+	<p:barChart id="basic" value="#{chartBean.categoryModel}" legendPosition="ne"
+	title="Basic Bar Chart" min="0" max="200" style="height:300px"/>
+	
+	<p:barChart id="horizontal" value="#{chartBean.categoryModel}" legendPosition="se"
+	style="height:300px" title="Horizontal Bar Chart" orientation="horizontal" min="0" max="200" />
+	
+	
+</h:form>
+</h:body>	  
+</html>

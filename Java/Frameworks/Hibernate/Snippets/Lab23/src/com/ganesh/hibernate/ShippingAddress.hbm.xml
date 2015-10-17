@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+<class name="ShippingAddress" table="addresses">
+<id name="addid" column="addid" type ="int">
+	<generator class="increment"/>
+</id>
+<property name="street"/>
+<property name="city"/>
+<property name="state"/>
+<one-to-one name="order" class="Order"/>
+</class>
+</hibernate-mapping>

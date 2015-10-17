@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+	<head>
+		<title>Keyboard Events</title>
+		<link href="eventcharts.css" rel="stylesheet" />
+		<script type="text/javascript">
+			window.onload = function () {
+				document.getElementById("onkd").onkeydown = keyHandler;
+				document.getElementById("onkp").onkeypress = keyHandler;
+				document.getElementById("onku").onkeyup = keyHandler;
+			}
+		
+			function evtAlert(inMsg) {
+				document.getElementById("eventDone").innerHTML = inMsg;
+			}
+			
+			function keyHandler(evt) {
+				if (!evt) var evt = window.event;
+				var thisKey = (evt) ? evt.which : event.keyCode;
+				var thisEvt = (evt) ? evt.type : event.type;
+
+				evtAlert(thisEvt + " sent through a " + thisKey + " (which is the " + String.fromCharCode(thisKey) + " key).");
+			}
+		</script>
+		<style>
+			h3 {
+				font-family: verdana, arial, sans;
+				font-weight: normal;
+			}
+		</style>		
+	</head>
+	<body>
+		<h1>Keyboard Events</h1>
+		<h3>The most recent event caught was:<br /> <span id="eventDone">(none caught yet)</span></h3>
+		<table cellspacing="0" border="1" cellpadding="10">
+			<tr>
+				<th>Event
+				</th>
+				<th>Example
+				</th>
+			</tr>
+			<tr>
+				<td>onkeydown
+				</td>
+				<td><input type="text" id="onkd" />
+				</td>
+			</tr>
+			<tr>
+				<td>onkeypress
+				</td>
+				<td><input type="text" id="onkp" />
+				</td>
+			</tr>
+			<tr>
+				<td>onkeyup
+				</td>
+				<td><input type="text" id="onku" />
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+    
+	<persistence-unit name="GB_PU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.ganesh.spring.jpa.Customer</class>
+  		<properties>
+			<property name = "hibernate.connection.driver_class" value = "com.mysql.jdbc.Driver"/>
+			<property name = "hibernate.connection.url" value = "jdbc:mysql://localhost:3308/ganeshdb"/>
+			<property name = "hibernate.connection.username" value = "root"/>
+			<property name = "hibernate.connection.password" value = "jaibaba"/>
+	  	</properties>
+	</persistence-unit>
+  
+</persistence>

@@ -1,0 +1,34 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h:panelGrid columns="3" cellpadding="5">
+<h:outputText value="Enter ID"/>
+<h:inputText id="sid" title="Enter You ID"/>
+<p:tooltip for="sid" showEvent="focus" hideEvent="blur"/>
+
+<h:outputText value="Enter Name"/>
+<h:inputText id="name"/>
+<p:tooltip for="name" value="Please Enter Your Name" showEffect="fade" hideEffect="fade"/>
+
+<h:outputText value="Enter Email"/>
+<h:inputText id="email"/>
+<p:tooltip for="email" value="Please Enter Your Email" showEffect="slide" hideEffect="slide"/>
+
+<h:outputText value="Enter Phone"/>
+<h:inputText id="phone"/>
+<p:tooltip for="phone" value="Please Enter Your Phone" showEffect="clip" hideEffect="explode"/>
+
+<h:outputText value="Image"/>
+<h:button id="image" value="Show Date"/>
+<p:tooltip for="image">
+<p:graphicImage value="images/jlclogo.png"></p:graphicImage>
+</p:tooltip>
+
+</h:panelGrid>
+</h:body>	  
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file was auto-generated from WSDL --><!-- by the Apache Axis2 version: 1.5.3  Built on : Nov 12, 2010 (02:24:07 CET) --><serviceGroup>
+    <service name="HelloService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.ganesh.axis2.hello.HelloServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.ganesh.axis2.hello.HelloServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="getMessage" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://hello.axis2.ganesh.com">
+            <actionMapping>http://hello.axis2.ganesh.com/getMessage</actionMapping>
+            <outputActionMapping>http://hello.axis2.ganesh.com/HelloService/getMessageResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

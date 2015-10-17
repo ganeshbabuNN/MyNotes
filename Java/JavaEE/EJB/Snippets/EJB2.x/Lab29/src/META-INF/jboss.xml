@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss PUBLIC "-//JBoss//DTD JBOSS 4.0//EN" "jboss_4_0.dtd" >
+<jboss>
+	<enterprise-beans>
+		<session>
+			<ejb-name>UserEJB</ejb-name>
+			<jndi-name>UserEJBHomeJNDI</jndi-name>
+		</session>
+		<session>
+			<ejb-name>AccountEJB</ejb-name>
+			<jndi-name>AccounEJBtHomeJNDI</jndi-name>
+		</session>
+	</enterprise-beans>
+</jboss>

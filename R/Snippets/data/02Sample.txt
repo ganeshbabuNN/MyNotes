@@ -1,0 +1,6 @@
+## Classroom 1 data				
+student.name	student.gender	student.weights	student.physics.marks	student.chemistry.marks
+Raj	Male	60.5	70	60
+Rahul	Male	72.5	75	70
+Priya	Female	45.2	80	85
+Poonam	Female	47.5	85	70

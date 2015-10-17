@@ -1,0 +1,16 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h1>CAPTCHA EXAMPLE</h1>
+<h:form>
+	<p:messages showDetail="false"/>
+	<p:captcha label="Captcha" validatorMessage="Provided value not matching"/>
+	<p:commandButton value="Check" ajax="false" actionListener="#{captchaBean.submit}"/>	
+</h:form>
+</h:body>	  
+</html>

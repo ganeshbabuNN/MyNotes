@@ -1,0 +1,24 @@
+<list>
+	<customer>
+		<cid>109</cid>
+		<cname>ganesh</cname>
+		<email>ganesh@l.com</email>
+		<phone>9811</phone>
+		<account>
+			<accno>111</accno>
+			<atype>SA</atype>
+			<bal>9999.99</bal>
+		</account>
+	</customer>
+	<customer>
+		<cid>110</cid>
+		<cname>Babu</cname>
+		<email>Babu@l.com</email>
+		<phone>644</phone>
+		<account>
+			<accno>111</accno>
+			<atype>SA</atype>
+			<bal>9999.99</bal>
+		</account>
+	</customer>
+</list>

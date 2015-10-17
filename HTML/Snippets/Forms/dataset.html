@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Forms
+    </title>
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <script type="text/javascript" src="forms.js"></script>
+</head>
+<body>
+
+<div id="outer">
+<div id="form">
+<h1>
+    HTML Forms
+</h1>
+
+<form id="f1" onsubmit="return display()" method="post">
+    <p> Text 1: <input type="text" name="text1" autofocus /> </p>
+    <p> Text 2: <input type="text" name="text2" /> </p>
+    <p> Text 3: <input type="text" name="text3" /> </p>
+    <p> Text 4: <input type="text" name="text4" /> </p>
+    <p> <input type="submit" name="submit1" value="Big Red Button" onclick="return display()" /> </p>
+</form>
+
+<datalist id="cats">
+    <option value="cheshire"></option>
+    <option value="hat">The Cat in the Hat</option>
+    <option value="bigglesworth"></option>
+    <option value="fritz"></option>
+    <option value="spot"></option>
+    <option value="cat"></option>
+    <option value="tom"></option>
+    <option value="heathcliff"></option>
+    <option value="garfield"></option>
+</datalist>
+
+</div> <!-- form -->
+
+<div id="results">
+    <p> Results go here. </p>
+</div> <!-- results -->
+</div> <!-- outer -->
+
+</body>
+</html>

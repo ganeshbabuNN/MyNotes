@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML5 Audio
+    </title>
+    <script>
+        var audio;
+        function init() {
+            audio = document.getElementById('audio1');
+        }
+        function play() { audio.play(); }
+        function pause() { audio.pause(); }
+        function rewind() { audio.currentTime = 0; }
+        window.onload = init;
+    </script>
+</head>
+<body>
+
+<h1>
+    HTML5 Audio
+</h1>
+
+<p> Here's a song: </p>
+<audio id="audio1" controls>
+    <source src="media/song.m4a" type="audio/x-aac" />
+    <source src="media/song.mp3" type="audio/mpeg" />
+    <source src="media/song.ogg" type="audio/ogg" />
+    <p> Your browser does not support the HTML5 audio feature. </p>
+</audio>
+
+<form>
+    <input type="button" value="Play" onclick="play()" />
+    <input type="button" value="Pause" onclick="pause()" />
+    <input type="button" value="Rewind" onclick="rewind()" />
+</form>
+
+</body>
+</html>

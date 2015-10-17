@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sd:jlc xmlns:sd="http://www.glcindia.com/jlc">
+<sd:student sid="101" bid="B-12">
+	<sd:sname>ganesh</sd:sname>
+	<sd:email>sir@l.com</sd:email>
+</sd:student>
+</sd:jlc>

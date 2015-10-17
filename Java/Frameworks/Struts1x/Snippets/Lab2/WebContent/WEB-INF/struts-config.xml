@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+<form-beans>
+	<form-bean name = "loginform" type="com.ganesh.struts1.LoginForm"/>
+</form-beans>
+<action-mappings>
+	<action path ="/LoginSubmit" 
+		    name = "loginform"
+		    type ="com.ganesh.struts1.LoginAction"
+		    input ="/login.jsp">
+		    <forward name = "home" path ="/home.jsp"/>
+		    <forward name = "login" path ="/login.jsp"/>
+    </action>
+</action-mappings>
+
+<message-resources parameter = "com.ganesh.struts1.messages"/>  
+</struts-config>
+

@@ -1,0 +1,97 @@
+Sub Basic_Example_3()
+Dim MyPath As String, FilesInPath As String
+Dim MyFiles() As String
+Dim SourceCcount As Long, Fnum As Long
+Dim mybook As Workbook, BaseWks As Worksheet
+Dim sourceRange As Range, destrange As Range
+Dim Cnum As Long, CalcMode As Long
+
+'Fill in the path\folder where the files are
+MyPath = "C:\ganesh\excelvba\trial"
+
+'Add a slash at the end if the user forget it
+If Right(MyPath, 1) <> "\" Then
+MyPath = MyPath & "\"
+End If
+'If there are no Excel files in the folder exit the sub
+FilesInPath = Dir(MyPath & "*.xl*")
+If FilesInPath = "" Then
+MsgBox "No files found"
+Exit Sub
+End If
+
+'Fill the array(myFiles)with the list of Excel files in the folder
+Fnum = 0
+Do While FilesInPath <> ""
+Fnum = Fnum + 1
+ReDim Preserve MyFiles(1 To Fnum)
+MyFiles(Fnum) = FilesInPath
+FilesInPath = Dir()
+Loop
+'Change ScreenUpdating, Calculation and EnableEvents
+With Application
+CalcMode = .Calculation
+.Calculation = xlCalculationManual
+.ScreenUpdating = False
+.EnableEvents = False
+End With
+'Add a new workbook with one sheet
+Set BaseWks = Workbooks.Add(xlWBATWorksheet).Worksheets(1)
+Cnum = 1
+'Loop through all files in the array(myFiles)
+If Fnum > 0 Then
+For Fnum = LBound(MyFiles) To UBound(MyFiles)
+Set mybook = Nothing
+On Error Resume Next
+Set mybook = Workbooks.Open(MyPath & MyFiles(Fnum))
+On Error GoTo 0
+If Not mybook Is Nothing Then
+On Error Resume Next
+Set sourceRange = mybook.Worksheets(1).Range("A1:A10")
+If Err.Number > 0 Then
+Err.Clear
+Set sourceRange = Nothing
+Else
+'if SourceRange use all rows then skip this file
+If sourceRange.Rows.Count >= BaseWks.Rows.Count Then
+Set sourceRange = Nothing
+End If
+End If
+On Error GoTo 0
+If Not sourceRange Is Nothing Then
+SourceCcount = sourceRange.Columns.Count
+If Cnum + SourceCcount >= BaseWks.Columns.Count Then
+MsgBox "Sorry there are not enough columns in the sheet"
+BaseWks.Columns.AutoFit
+mybook.Close savechanges:=False
+GoTo ExitTheSub
+Else
+'Copy the file name in the first row
+With sourceRange
+BaseWks.Cells(1, Cnum). _
+Resize(, .Columns.Count).Value = MyFiles(Fnum)
+End With
+'Set the destrange
+Set destrange = BaseWks.Cells(2, Cnum)
+'we copy the values from the sourceRange to the destrange
+With sourceRange
+Set destrange = destrange. _
+Resize(.Rows.Count, .Columns.Count)
+End With
+destrange.Value = sourceRange.Value
+Cnum = Cnum + SourceCcount
+End If
+End If
+mybook.Close savechanges:=False
+End If
+Next Fnum
+BaseWks.Columns.AutoFit
+End If
+ExitTheSub:
+'Restore ScreenUpdating, Calculation and EnableEvents
+With Application
+.ScreenUpdating = True
+.EnableEvents = True
+.Calculation = CalcMode
+End With
+End Sub

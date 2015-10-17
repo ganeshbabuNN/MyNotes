@@ -1,0 +1,15 @@
+Sub test_do()
+x = 0
+Do Until x = 100
+x = x + 1
+Loop
+MsgBox x
+End Sub
+Public Sub shaderowuntil()
+Dim i As Integer
+i = 2
+Do Until IsEmpty(Cells(i, 1))
+Cells(i, 1).EntireRow.Interior.ColorIndex = 4
+i = i + 2
+Loop
+End Sub

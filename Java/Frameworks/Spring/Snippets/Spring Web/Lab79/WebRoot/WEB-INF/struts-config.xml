@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+<data-sources/>
+<form-beans>
+	<form-bean name="addContactForm" type="org.apache.struts.validator.DynaValidatorForm">										   
+		<form-property name="fname" type="java.lang.String"/>
+		<form-property name="lname" type="java.lang.String"/>
+		<form-property name="email" type="java.lang.String"/>
+		<form-property name="phone" type="java.lang.String"/>	
+	</form-bean>
+	<form-bean name="searchContactForm" type="org.apache.struts.validator.DynaValidatorForm">
+		<form-property name="email" type="java.lang.String"/>	
+	</form-bean>
+	<form-bean name="tempForm" type="org.apache.struts.validator.DynaValidatorForm"/>
+	
+	<form-bean name="updateContactForm" type="org.apache.struts.validator.DynaValidatorForm">
+		<form-property name="cid" type="java.lang.String"/>
+		<form-property name="fname" type="java.lang.String"/>
+		<form-property name="lname" type="java.lang.String"/>
+		<form-property name="email" type="java.lang.String"/>
+		<form-property name="phone" type="java.lang.String"/>	
+	</form-bean>
+</form-beans>
+<action-mappings>
+	<action path ="/addContactSubmit" 
+		    type ="org.springframework.web.struts.DelegatingActionProxy"		    	   
+		    input ="/addContactDef.jsp"
+		    parameter="addContact"
+		    name="addContactForm"
+		    validate="true">
+		   <forward name ="success" path="/addContactSuccessDef.jsp"/>
+    </action>
+    <action path ="/searchContactSubmit" 
+		    type ="org.springframework.web.struts.DelegatingActionProxy"
+		    input ="/searchContactDef.jsp"
+		    parameter="searchContact"
+		    name="searchContactForm"
+		    validate="true">
+		   <forward name ="success" path="/searchResultsDef.jsp"/>
+		   <forward name ="failed" path="/searchContactDef.jsp"/>
+    </action>
+    <action path ="/editContactSubmit" 
+		    type ="org.springframework.web.struts.DelegatingActionProxy"
+		    input ="/searchResultsDef.jsp"
+		    parameter="editContact"
+		    name="tempForm"
+		    validate="true">
+		   <forward name ="success" path="/searchResultsDef.jsp"/>
+    </action>
+    <action path ="/updateContactSubmit" 
+		    type ="org.springframework.web.struts.DelegatingActionProxy"
+		    input ="/searchResultsDef.jsp"
+		    parameter="updateContact"
+		    name="updateContactForm"
+		    validate="true">
+		   <forward name ="success" path="/updateContactSuccessDef.jsp"/>
+    </action>    
+</action-mappings>
+
+<message-resources parameter="com.ganesh.struts.action.messages"/>  
+
+<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+	<set-property property="pathnames" 
+				  value="/WEB-INF/validator-rules.xml,/WEB-INF/myform-validations.xml"/>
+</plug-in>
+<plug-in className="org.apache.struts.tiles.TilesPlugin">
+	<set-property property="definitions-config" value="/WEB-INF/tiles.xml"/>
+</plug-in>
+<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+	<set-property property="contextConfigLocation" value="/WEB-INF/ganesh-servlet.xml"/>
+</plug-in>
+</struts-config>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.action.extension" value="jlc" />
+    <package name="ganesh" namespace="/ganesh" extends="struts-default">
+    
+       
+    <action name="TextDisplay">
+    <result>/test.jsp</result>   
+    </action>
+
+    <action name="TestSubmit" class="com.ganesh.struts2.TestAction">
+    <result name="success">/home.jsp</result>
+    <result name="failed">/test.jsp</result>
+    <result name="input">/test.jsp</result>    
+    </action>
+    </package>
+</struts>

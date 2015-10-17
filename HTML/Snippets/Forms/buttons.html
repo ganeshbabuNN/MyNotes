@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Forms - Buttons
+    </title>
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <script type="text/javascript" src="forms.js"></script>
+</head>
+<body>
+
+<div id="outer">
+<div id="form">
+<h1>
+    HTML Forms - Buttons
+</h1>
+
+<form id="f1" action="http://t.bw.org/cgi-test.php" onsubmit="return submitDisplay();" method="post">
+    <p> Text: <input type="text" name="text1" required autofocus /> </p>
+    <p> Password: <input type="password" name="password1" required /> </p>
+    <p> <input type="submit" name="submit1" value="Big Red Button" onclick="return submitDisplay()" /> </p>
+</form>
+
+</div> <!-- form -->
+
+<div id="results">
+    <p> Results go here. </p>
+</div> <!-- results -->
+</div> <!-- outer -->
+
+</body>
+</html>

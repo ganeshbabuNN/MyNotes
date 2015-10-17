@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jlcindia xmlns="http://www.jlcindia.com/jlc"
+	      xmlns:book="http://www.jlcindia.com/books"
+	      xmlns:cust="http://www.jlcindia.com/customers"
+	      xmlns:author="http://www.jlcindia.com/authors"
+ 	 	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.jlcindia.com/books books.xsd
+          					  http://www.jlcindia.com/authors authors.xsd
+          					  http://www.jlcindia.com/customers customers.xsd">
+<book:book>
+	<book:bid>B-01</book:bid>
+	<book:bname>Master Java</book:bname>
+	<book:cost>999.999</book:cost>
+</book:book>
+<author:author>
+	<author:authorName>Ganesh</author:authorName>
+	<author:email>ganesh@jl.com</author:email>
+	<author:qualification>M.C.A</author:qualification>
+</author:author>
+<cust:customer>
+	<cust:cid>C-101</cust:cid>
+	<cust:cname>Ganesh</cust:cname>
+	<cust:email>ga@j.com</cust:email>
+	<cust:email>ddd@l.com</cust:email>
+	<cust:phone>1111</cust:phone>	
+</cust:customer>
+</jlcindia>
+ 

@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>XML Data Islands</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- In order to work properly, the XML data has to be formatted correctly. There must be one top-level XML element
+that encapsulates all the data. Each "record" of information then follows as a series of elements within the
+top-level element. Each of these records contains the individual fields of information -->
+    <xml id="myDataIsland">
+        <items>
+            <item>
+                <name>Mocha</name>
+                <type>Coffee</type>
+                <photo>photos/candles.jpg</photo>
+            </item>
+            <item>
+                <name>Decaf</name>
+                <type>Coffee</type>
+                <photo>photos/teacup.jpg</photo>
+            </item>
+            <item>
+                <name>Raspberry Zinger</name>
+                <type>Tea</type>
+                <photo>photos/teapot_white.jpg</photo>
+            </item>
+            <item>
+                <name>Earl Grey</name>
+                <type>Tea</type>
+                <photo>photos/teapot_bone.jpg</photo>
+            </item>
+        </items>
+    </xml><h2>
+        Binding XML Data Islands to Elements</h2>
+    <p>
+        This IE-specific example demonstrates how to bind an XML data island to an HTML
+        element like a Table. The <code>dataSrc</code> attribute binds a particular HTML
+        element to the data island - in this case, a <code>&lt;table&gt;</code>. The <code>dataFld</code>
+        attribute can be used within the HTML table element to display a particular field
+        within the XML data. Also in this example we demonstrate how to limit the amount
+        of data displayed by using the <code>datapagesize</code> attribute and moving through the pages
+        using scripting.&nbsp;</p>
+    <table datasrc='#myDataIsland' id="productTable" border="1">
+        <thead>
+            <tr>
+                <th>
+                    Photo</th>
+                <th>
+                    Description</th>
+                <th>
+                    Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <img datafld='photo' />
+                </td>
+                <td>
+                    <span datafld='name'></span>
+                </td>
+                <td>
+                    <span datafld='type'></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

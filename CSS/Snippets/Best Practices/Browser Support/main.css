@@ -1,0 +1,29 @@
+
+body {
+    background-color: #eee;
+    margin: 5px;
+    font-family: verdana, sans-serif;
+}
+
+div#content {
+    width: 75%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+}
+
+h1, h2, h3 {
+    color: #960;
+    margin: 0;
+}
+
+p {
+    margin: 0 0 0.75em 0;
+    line-height: 1.5em;
+}
+
+.fontTest {
+    color: red;
+    font-family: Comic Sans MS, cursive;
+}

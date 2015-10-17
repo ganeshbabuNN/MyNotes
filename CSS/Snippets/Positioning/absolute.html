@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+  <link rel="stylesheet" type="text/css" href="external.css" />
+  <title>CSS Absolute Positioning</title>
+
+    <style>
+
+    div#outer {
+        position: relative;
+        width: 750px;
+        height: 500px;
+        margin: 15px auto;
+        background-color: #369;
+        border: solid 1px black;
+    }
+
+    div#first {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #ccf;
+        float: left;
+        width: 220px;
+        padding: 15px;
+    }
+
+    div#second {
+        position: absolute;
+        top: 0;
+        left: 250px;
+        background-color: #fcc;
+        width: 220px;
+        padding: 15px;
+    }
+
+    div#third {
+        position: absolute;
+        top: 0;
+        left: 500px;
+        background-color: #cff;
+        width: 220px;
+        padding: 15px;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="outer">
+    <div id="first">
+        <h1>Lorem Ipsum</h1>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
+        enim justo. Mauris eget augue id lorem consequat laoreet. Cras ut ante a
+        nunc rutrum iaculis.
+        </p>
+    </div>
+    
+    <div id="second">
+        <h1>Dolor Sit Amet</h1>
+        <p>
+        Donec eu neque nunc. Pellentesque pharetra nibh scelerisque tellus
+        tincidunt in volutpat augue semper. Proin luctus sem ac arcu convallis
+        vel ultrices felis scelerisque. Duis vitae sem eros, non sollicitudin
+        purus.
+        </p>
+    </div>
+    
+    <div id="third">
+        <h1>Consectetur Adipiscing</h1>
+        <p>
+        Pellentesque pharetra nibh scelerisque tellus tincidunt in volutpat
+        augue semper. Proin luctus sem ac arcu convallis vel ultrices felis
+        scelerisque. Duis vitae sem eros, non sollicitudin purus.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

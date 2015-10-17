@@ -1,0 +1,15 @@
+Sub CreateLinks(rgLinks As Range)
+Dim ws As Worksheet
+For Each ws In ThisWorkbook.Worksheets
+If ws.Name <> rgLinks.Parent.Name Then
+rgLinks.Hyperlinks.Add rgLinks, ThisWorkbook.Name, _
+"'" & ws.Name & "'!A1", ws.Name, ws.Name
+Set rgLinks = rgLinks.Offset(1, 0)
+End If
+Next
+Set ws = Nothing
+End Sub
+Sub CreateMenuLinks()
+CreateLinks ThisWorkbook.Worksheets("sheet1"). _
+Range("d10:d20").Offset(1, 0)
+End sub

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <constant name ="struts.action.extension" value="action"/>
+    <package name="ganesh" namespace="/ganesh" extends="struts-default">    
+    
+    <global-exception-mappings>
+    	<exception-mapping exception="com.ganesh.struts2.StudentNotFoundException" result="input"></exception-mapping>    
+    </global-exception-mappings>
+    
+    <action name="HomeDisplay">
+    	<result>/home.jsp</result>
+    </action>
+    
+    <action name="AddStudentDisplay">
+    	<result>/addStudent.jsp</result>
+    </action>
+    
+    <action name="AddStudentSubmit" class="com.ganesh.struts2.AddStudentSubmitAction">
+    	<result name="input">/addStudent.jsp</result>
+    	<result>/addStudentSuccess.jsp</result>
+    </action>
+    
+    <action name="SidSearchDisplay">
+    	<result>/sidSearch.jsp</result>
+    </action>
+    
+    <action name="SidSearchSubmit" class="com.ganesh.struts2.SidSearchSubmitAction">
+    	<result name="input">/sidSearch.jsp</result>
+    	<result>/sidResults.jsp</result>
+    </action>
+    
+    <action name="BidSearchDisplay">
+    	<result >/bidSearch.jsp</result>
+    </action>
+    
+    <action name="BidSearchSubmit" class="com.ganesh.struts2.BidSearchSubmitAction">
+    	<result name="input">/bidSearch.jsp</result>
+    	<result>/bidResults.jsp</result>
+    </action>    
+    </package>
+</struts>

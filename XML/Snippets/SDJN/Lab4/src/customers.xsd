@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sd:schema xmlns:sd="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="http://www.jlcindia.com/customers"
+	    xmlns:customer="http://www.jlcindia.com/customers" 
+	    elementFormDefault="qualified">
+<sd:element name="customer">
+	<sd:complexType>
+		<sd:sequence>
+			<sd:element name="cid" type="sd:int" minOccurs="1" maxOccurs="1"/>
+			<sd:element name="cname" type="sd:string" minOccurs="1" maxOccurs="1"/>
+			<sd:element name="email" type="sd:string" minOccurs="1" maxOccurs="unbounded"/>
+			<sd:element name="phone" type="sd:long" minOccurs="1" maxOccurs="1"/>
+		</sd:sequence>
+	</sd:complexType>
+</sd:element>
+</sd:schema>

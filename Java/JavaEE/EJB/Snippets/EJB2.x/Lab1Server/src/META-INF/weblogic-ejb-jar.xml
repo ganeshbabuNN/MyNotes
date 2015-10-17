@@ -1,0 +1,10 @@
+<!DOCTYPE weblogic-ejb-jar PUBLIC
+  '-//BEA Systems, Inc.//DTD WebLogic 8.1.0 EJB//EN'
+  'http://www.bea.com/servers/wls810/dtd/weblogic810-ejb-jar.dtd'>
+
+<weblogic-ejb-jar>
+  <weblogic-enterprise-bean>
+    <ejb-name>HelloEJB</ejb-name>
+      <jndi-name>JLCHelloHomeJNDI</jndi-name>
+  </weblogic-enterprise-bean>
+</weblogic-ejb-jar>

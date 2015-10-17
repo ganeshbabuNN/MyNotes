@@ -1,0 +1,14 @@
+Public Sub shaderowwhile()
+Range("a10").EntireRow.Select
+While ActiveCell.Value <> ""
+Selection.Interior.ColorIndex = 2
+ActiveCell.Offset(2, 0).EntireRow.Select
+Wend
+End Sub
+Sub test_do()
+x = 0
+While x < 50
+x = x + 1
+Wend
+MsgBox x
+End Sub

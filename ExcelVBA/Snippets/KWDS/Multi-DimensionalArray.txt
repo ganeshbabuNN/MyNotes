@@ -1,0 +1,15 @@
+	 Year 2003 Year 2004 
+CD Sale  1,000     1,500 
+DVD Sale 1,200      2,000
+
+
+Sub multDimArray( ) 
+Dim Arr(2,2)
+arr(1,1) = 1000 
+arr(1,2) = 1200 
+arr(2,1) = 1500 
+arr(2,2) = 2000 
+Msgbox "Sale of CD in 2003 is " & arr(1,1) & vbCrLf & "Sale of CD in 2004 is " _ 
+& arr(2,1) & vbCrLf & "Sale of DVD in 2003 is " & arr(1,2) & vbCrLf _ 
+& "Sale of DVD in 2004 is" & arr(2,2) 
+End Sub

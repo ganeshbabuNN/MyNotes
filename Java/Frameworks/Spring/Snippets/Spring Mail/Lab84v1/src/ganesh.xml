@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+  http://www.springframework.org/schema/context 
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  
+  <context:annotation-config/>
+  
+  <bean id="Authenticator" class="com.ganesh.spring.mail.PassworAuthenticator">
+  	<constructor-arg value="XXXX@gmail.com"/>
+  	<constructor-arg value="XXXX"/>
+  </bean>
+  
+  <bean id="mailSession" class="javax.mail.Session" factory-method="getInstance">
+  	<constructor-arg>
+  		<props>
+ 			<prop key="mail.smtp.auth">true</prop>
+ 			<prop key="mail.smtp.socketFactory.port">465</prop>
+  	 		<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+  	 		<prop key="mail.smtp.port">465</prop>
+  	 		<prop key="mail.smtp.host">stmp.gmail.com</prop>
+  	 		<prop key="mail.smtp.starttls.enable">true</prop>
+  		</props>
+  	</constructor-arg>
+  	<constructor-arg>
+  		<ref local="Authenticator"/>
+  	</constructor-arg>
+  </bean>
+  
+  <bean id="message" class="org.springframework.mail.SimpleMailMessage">
+  	<property name="from" value="ganeshbabu346@gmail.com"></property>
+  </bean>
+  
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+  <property name="host" value="smtp.gmail.com"/>
+  <property name="session" ref="mailSession"/>
+  </bean>
+  
+  <bean id="ss" class="com.ganesh.spring.mail.StudentService"/>
+</beans>

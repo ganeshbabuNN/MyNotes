@@ -1,0 +1,6 @@
+Function ReturnLastWord(The_Text As String)
+Dim stGotIt As String
+stGotIt = StrReverse(The_Text)
+stGotIt = Left(stGotIt, InStr(1, stGotIt, " ", vbTextCompare))
+ReturnLastWord = StrReverse(Trim(stGotIt))
+End Function

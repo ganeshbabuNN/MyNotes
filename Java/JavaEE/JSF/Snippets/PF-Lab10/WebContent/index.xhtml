@@ -1,0 +1,57 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h1>COLLECTOR EXAMPLE</h1>
+	<h:form id="form">
+		<p:growl id="msgs"/>
+		<p:panel header="Create a new Book">
+		<h:panelGrid columns="2" id="grid">
+		<h:outputLabel value="Title: *" for="txt_title"></h:outputLabel>
+		<h:inputText id="txt_title" value="#{createBookBean.book.title}" required="true"/>
+		
+		<h:outputLabel value="Author: *" for="txt_author"></h:outputLabel>
+		<p:inputText id="txt_author" required="true" value="#{createBookBean.book.author}"/>
+		
+		<p:commandButton value="Reset" type="reset"/>
+		<p:commandButton id="btn_add" value="Add" update="books msgs @parent" action="#{createBookBean.reinit}">
+		<p:collector value="#{createBookBean.book}" addTo="#{createBookBean.books}"/>
+		</p:commandButton>
+		</h:panelGrid> 
+		</p:panel>
+		
+		<p:outputPanel id="books">
+		<p:dataTable id="booksTable" value="#{createBookBean.books}" var="book">
+		
+		<p:column>
+			<f:facet name="header">
+			<h:outputText value="Title"/>
+			</f:facet>
+			<h:outputText value="#{book.title}"/>
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">
+			<h:outputText value="Author"/>
+			</f:facet>
+			<h:outputText value="#{book.author}"/>
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">
+			<h:outputText value="Operation"/>
+			</f:facet>
+		<p:commandLink value="Remove" update=":form:books" process=":form:books">
+		<p:collector value="#{book}" removeFrom="#{createBookBean.books}"/>
+		</p:commandLink>
+		</p:column>	
+			
+		</p:dataTable>
+		</p:outputPanel>		
+	</h:form>
+</h:body>	  
+</html>

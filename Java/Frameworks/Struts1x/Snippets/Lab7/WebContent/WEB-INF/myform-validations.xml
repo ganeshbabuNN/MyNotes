@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0.1//EN" "validator_1_0_1.dtd" >
+<form-validation>
+<formset>
+	<form name ="regForm">
+	 <field property="sname" depends="required,minlength,maxlength,mask">
+	  <arg0 key = "Student Name" resource="false"/>
+	  <arg1 key = "${var:minlength}" resource="false"/>
+	  <arg2 key = "${var:maxlength}" resource="false"/>
+	  <msg name ="mask" 
+	  	   key="reg.sname.mask"/>
+	  <var>
+	  	<var-name>minlength</var-name>
+	  	<var-value>7</var-value>
+	  </var>
+	   <var>
+	  	<var-name>maxlength</var-name>
+	  	<var-value>12</var-value>
+	  </var>
+	  <var>
+	  	<var-name>mask</var-name>
+	  	<var-value>^[a-zA-Z]*$</var-value>
+	  </var>
+	  </field>
+	 <field property="email" depends="required,email">
+	  <arg0 key = "E-Mail ID" resource="false"/>
+	 </field>
+	 <field property="dob" depends="required,date">
+	  <arg0 key ="DOB" resource="false"/>
+	   <var>
+	  	<var-name>datePattern</var-name>
+	  	<var-value>dd/MM/yyyy</var-value>
+	   </var>	   	  
+	  </field>
+	  
+	  <field property="dor" depends="required,date">
+	  <arg0 key = "DOR" resource="false"/>
+	  <var>
+	  	<var-name>datePatternStrict</var-name>
+	  	<var-value>dd/MM/yyyy</var-value>
+	  </var>	   	  
+	  </field>	  
+	  </form>	
+     </formset>
+</form-validation>

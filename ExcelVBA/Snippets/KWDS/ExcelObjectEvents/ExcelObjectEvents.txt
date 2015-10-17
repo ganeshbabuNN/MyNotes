@@ -1,0 +1,21 @@
+Private Sub Worksheet_BeforeRightClick(ByVal Target As Excel.Range, _
+Cancel As Boolean)
+Cancel = True
+MsgBox "Shortcut menus are disabled in this worksheet!"
+End Sub
+Private Sub Worksheet_SelectionChange(ByVal Target As Excel.Range)
+If Not Application.Intersect(Target, Range("A1:A100")) Is Nothing Then
+Cells(ActiveCell.Row, 2).Select
+MsgBox "You can't select cells in A1:A100!"
+End If
+End Sub
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+Dim rngForbidden As Range
+'Define forbidden range
+Set rngForbidden = Union(Range("B10:F20"), Range("H10:L20"))
+'If selection does not overlap forbidden areas, do nothing
+If Intersect(Target, rngForbidden) Is Nothing Then Exit Sub
+'Select A1 and issue warning
+Range("A1").Select
+MsgBox "You can?t select cells in " & rngForbidden.Address, vbCritical
+End Sub

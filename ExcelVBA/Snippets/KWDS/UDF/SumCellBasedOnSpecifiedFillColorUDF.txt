@@ -1,0 +1,14 @@
+Sums cells based on a specified fill color.
+Function SumColor(rColor As Range, rSumRange As Range)
+'Sums cells based on a specified fill color.
+Dim Rcell As Range
+Dim iCol As Integer
+Dim vResult
+iCol = rColor.Interior.ColorIndex
+For Each Rcell In rSumRange
+If Rcell.Interior.ColorIndex = iCol Then
+vResult = WorksheetFunction.Sum(Rcell) + vResult
+End If
+Next Rcell
+SumColor = vResult
+End Function

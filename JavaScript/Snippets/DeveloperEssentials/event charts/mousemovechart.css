@@ -1,0 +1,33 @@
+body {
+	background-color: #FFF;
+}
+
+#lEye, #rEye {
+	position: absolute;
+	top: 130px;
+}
+
+#lDot, #rDot {
+	position: absolute;
+	top: 145px;
+}
+
+#lEye {
+	left: 180px;
+}
+
+#rEye {
+	left: 220px;
+}
+
+#lDot {
+	left: 190px;
+}
+
+#rDot {
+	left: 230px;
+}
+
+td {
+	font-family: Monaco, monospace;
+}

@@ -1,0 +1,26 @@
+package com.ganesh.jpa;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public class Lab17B {
+	public static void main(String[] args) {
+		EntityTransaction tx = null;
+	try{
+		EntityManagerFactory factory =Persistence.createEntityManagerFactory("JLCINDIA-PU");
+		EntityManager manager = factory.createEntityManager();
+		tx= manager.getTransaction();
+		tx.begin();
+		
+		CurrentStudent cs = new CurrentStudent("vas", "blore", "Active", 17000, 5000, "7:00-9:00", "Mathikere");
+		cs.setSid(1);
+		manager.merge(cs);
+		tx.commit();
+	}catch(Exception e){
+		e.printStackTrace();
+		tx.rollback();
+	}
+	}
+}

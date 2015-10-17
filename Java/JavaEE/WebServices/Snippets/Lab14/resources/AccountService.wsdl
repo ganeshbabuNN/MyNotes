@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AccountService" targetNamespace="http://account.axis2.ganesh.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://account.axis2.ganesh.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://account.axis2.ganesh.com">
+			<xsd:element name="Account">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="accno" type="xsd:int"/>
+						<xsd:element name="amount" type="xsd:double"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="UserMessage">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="msg" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UserMessageResponse">
+    <wsdl:part name="parameters" element="tns:UserMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccountMessage">
+    <wsdl:part name="parameters" element="tns:Account">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AccountService">
+    <wsdl:operation name="getBal">
+      <wsdl:input message="tns:AccountMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AccountMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deposit">
+      <wsdl:input message="tns:AccountMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:UserMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="withdraw">
+      <wsdl:input message="tns:AccountMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:UserMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccountServiceSOAP" type="tns:AccountService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getBal">
+      <soap:operation soapAction="http://account.axis2.ganesh.com/getBal"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deposit">
+      <soap:operation soapAction="http://account.axis2.ganesh.com/deposit"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="withdraw">
+      <soap:operation soapAction="http://account.axis2.ganesh.com/withdraw"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccountService">
+    <wsdl:port name="AccountServiceSOAP" binding="tns:AccountServiceSOAP">
+      <soap:address location="http://localhost:3001/Lab14/services/AccountService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

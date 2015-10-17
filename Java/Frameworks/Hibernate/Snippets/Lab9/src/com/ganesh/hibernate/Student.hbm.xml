@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+
+<class name="Student" table="mystudents1">
+<id name="sid" column="sid" type ="int">
+<generator class="increment"/>
+</id>
+<property name="sname"/>
+<property name="city"/>
+<property name="status"/>
+<property name="totalfee" type="double"/>
+</class>
+
+<class name="CurrentStudent" table="cstudents1">
+<id name="sid" column="sid" type ="int">
+<generator class="increment"/>
+</id>
+<property name="sname"/>
+<property name="city"/>
+<property name="status"/>
+<property name="totalfee" type="double"/>
+<property name="feebal" type="double"/>
+<property name="timings"/>
+<property name="branch"/>
+</class>
+
+<class name="OldStudent" table="ostudents1">
+<id name="sid" column="sid" type ="int">
+<generator class="increment"/>
+</id>
+<property name="sname"/>
+<property name="city"/>
+<property name="status"/>
+<property name="totalfee" type="double"/>
+<property name="ocompany"/>
+<property name="ocemail"/>
+<property name="octc" type="double"/>
+</class>
+
+<class name="WeekdayStudent" table="wdstudents1">
+<id name="sid" column="sid" type ="int">
+<generator class="increment"/>
+</id>
+<property name="sname"/>
+<property name="city"/>
+<property name="status"/>
+<property name="totalfee" type="double"/>
+<property name="feebal" type="double"/>
+<property name="timings"/>
+<property name="branch"/>
+<property name="qualification"/>
+<property name="percentage"/>
+<property name="yoe" type="int"/>
+</class>
+
+<class name="WeekendStudent" table="westudents1">
+<id name="sid" column="sid" type ="int">
+<generator class="increment"/>
+</id>
+<property name="sname"/>
+<property name="city"/>
+<property name="status"/>
+<property name="totalfee" type="double"/>
+<property name="feebal" type="double"/>
+<property name="timings"/>
+<property name="branch"/>
+<property name="wcompany"/>
+<property name="wcemail"/>
+<property name="wctc" type="double"/>
+</class>
+
+</hibernate-mapping>
+
+

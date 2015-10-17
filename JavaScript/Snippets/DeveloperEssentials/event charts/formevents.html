@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+	<head>
+		<title>Form and Field Events</title>
+		<link href="eventcharts.css" rel="stylesheet" />
+		<script type="text/javascript">
+			function evtAlert(inMsg) {
+				document.getElementById("eventDone").innerHTML = inMsg;
+			}
+		</script>
+		<style>
+			h3 {
+				font-family: verdana, arial, sans;
+				font-weight: normal;
+			}
+			#eventDone {
+				font-family: monaco, monospaced; 
+			}
+		</style>		
+	</head>
+	<body>
+		<h1>Form and Field Events</h1>
+		<h3>The most recent event caught was: <span id="eventDone">(none caught yet)</span></h3>
+		<form action="#" onreset="evtAlert('onreset');return false;" onsubmit="evtAlert('onsubmit');return false;">
+		<table cellspacing="0" border="1" cellpadding="10">
+			<tr>
+				<th>Event
+				</th>
+				<th>Example
+				</th>
+			</tr>
+			<tr>
+				<td>onblur
+				</td>
+				<td><input type="text" onblur="evtAlert('onblur')" />
+				</td>
+			</tr>
+			<tr>
+				<td>onchange
+				</td>
+				<td><input type="text" onchange="evtAlert('onchange')" />
+				</td>
+				</td>
+			</tr>
+			<tr>
+				<td>onclick
+				</td>
+				<td><button type="button" onclick="evtAlert('onclick')">Click me!</button>
+				</td>
+			</tr>
+			<tr>
+				<td>onfocus
+				</td>
+				<td><input type="text" onfocus="evtAlert('onfocus')" />
+				</td>
+			</tr>
+			<tr>
+				<td>onreset
+				</td>
+				<td><input type="reset" />
+				</td>
+			</tr>
+			<tr>
+				<td>onselect
+				</td>
+				<td><input type="text" onselect="evtAlert('onselect')" />
+				</td>
+			</tr>
+			<tr>
+				<td>onsubmit
+				</td>
+				<td><input type="submit" value="Submit" />
+				</td>
+			</tr>
+		</table>
+		</form>
+	</body>
+</html>

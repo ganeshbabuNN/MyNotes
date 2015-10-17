@@ -1,0 +1,2 @@
+Spring Framework 3.0.5 jars
+spring-security-2.0.5 .jars

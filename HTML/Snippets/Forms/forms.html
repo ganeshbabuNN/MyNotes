@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Forms
+    </title>
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <script type="text/javascript" src="forms.js"></script>
+</head>
+<body>
+
+<div id="outer">
+<div id="form">
+<h1>
+    HTML Forms
+</h1>
+
+<form id="f1" onsubmit="return display()" method="post">
+    <p> Text: <input type="text" name="text1" autofocus /> </p>
+    <p> Password: <input type="password" name="password1" /> </p>
+    <p> Checkboxes: </p>
+    <p> Red: <input type="checkbox" name="red" /> &nbsp;
+        Blue: <input type="checkbox" name="blue" checked /> &nbsp;
+        Green: <input type="checkbox" name="green" /> 
+    </p>
+    <p> Radio buttons: </p>
+    <p> Tall: <input type="radio" name="size" value="tall" /> &nbsp;
+        Grande: <input type="radio" name="size" value="grande" /> &nbsp;
+        Venti: <input type="radio" name="size" value="venti" checked /> 
+    </p>
+    <p> <input type="submit" name="submit1" value="Big Red Button" onclick="return display()" /> </p>
+</form>
+
+</div> <!-- form -->
+
+<div id="results">
+    <p> Results go here. </p>
+</div> <!-- results -->
+</div> <!-- outer -->
+
+</body>
+</html>

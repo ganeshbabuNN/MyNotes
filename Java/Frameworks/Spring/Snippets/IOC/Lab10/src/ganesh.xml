@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 	
+ 	<bean id="ao1" class="com.ganesh.spring3.A">
+ 	<property name="a" value="10"/>
+ 	<property name="msg" value="Hai Ganesh"/>
+	</bean>
+	
+	<bean id="ao2" class="com.ganesh.spring3.A">
+ 	<property name="a" value="10"/>
+ 	<property name="msg" value="Hai Ganesh"/>
+	</bean>
+	
+	<bean id="bo" class="com.ganesh.spring3.B">
+ 	<constructor-arg value="20"/>
+ 	<constructor-arg value="Hai Banu"/>
+	</bean>
+
+	<bean id="bobj" class="com.ganesh.spring3.B">
+		<constructor-arg value="30" />
+		<constructor-arg value="Hai Banu" />
+	</bean>
+	
+ 	<bean id="hello" class="com.ganesh.spring3.Hello" autowire="constructor"/>
+	
+</beans>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Progress Element
+    </title>
+    <script>
+        var progressBar;
+        var textValue;
+        var pValue = 0;
+
+        function init() {
+            progressBar = document.getElementById('p1')
+            textValue = document.getElementById('s1')
+            setInterval(updateProgress, 50);
+        }
+
+        function updateProgress() {
+            pValue += 1;
+            if(pValue > 100) pValue = 1;
+            progressBar.value = pValue;
+            textValue.textContent = pValue;
+        }
+
+        window.onload = init;
+    </script>
+    <style>
+        progress#p1 { width: 400px; }
+    </style>
+</head>
+<body>
+
+<h1>
+    HTML Progress Element
+</h1>
+
+<h2>Task Progress</h2>
+<p>
+    Progress: <progress id="p1" value="0" max="100"><span id="s1">0</span>%</progress>
+</p>
+ 
+</body>
+</html>

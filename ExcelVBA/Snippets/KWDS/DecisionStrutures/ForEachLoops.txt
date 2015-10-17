@@ -1,0 +1,14 @@
+Sub xxz()
+Dim Cell as Range
+Dim R as Range
+Set R=Range("A1:F20")
+For Each Cell in R
+Cell.Value=25
+Next
+End Sub
+Sub ShowName()
+Dim oWSheet As Worksheet
+For Each oWSheet In Worksheets
+MsgBox oWSheet.Name
+Next oWSheet
+End Sub

@@ -1,0 +1,3 @@
+Sub EnterFormula()
+Worksheets("Sheet1").Range("D6").Formula = "=SUM(D2:D5)"
+End Sub

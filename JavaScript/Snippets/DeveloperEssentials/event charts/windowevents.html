@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+	<head>
+		<title>Window Events</title>
+		<link href="eventcharts.css" rel="stylesheet" />
+		<script type="text/javascript">
+			window.onload = function () {
+				document.abort = keyHandler;
+				document.onblur = keyHandler;
+				document.onerror = keyHandler;
+				document.onfocus = keyHandler;
+				document.onload = keyHandler;
+				document.onmove = keyHandler;
+				document.onresize = keyHandler;
+				document.onscroll = keyHandler;
+				document.onunload = keyHandler;
+			}
+		
+			function keyHandler(evt) {
+				if (!evt) var evt = window.event;
+				var thisEvt = (evt) ? evt.type : event.type;
+				document.getElementById("eventDone").innerHTML = thisEvt;
+			}
+		</script>
+		<style>
+			h3 {
+				font-family: verdana, arial, sans;
+				font-weight: normal;
+			}
+		</style>		
+	</head>
+	<body>
+		<h1>Window Events</h1>
+		<h3>The most recent event caught was: <span id="eventDone">(none caught yet)</span></h3>
+		<table cellspacing="0" border="1" cellpadding="10">
+			<tr>
+				<th>Event
+				</th>
+				<th>Example
+				</th>
+			</tr>
+			<tr>
+				<td>onabort
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onblur
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onerror
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onfocus
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onload
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onmove
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onresize
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onscroll
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>onunload
+				</td>
+				<td>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

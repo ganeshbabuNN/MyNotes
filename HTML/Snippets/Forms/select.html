@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Forms - select lists
+    </title>
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <script type="text/javascript" src="forms.js"></script>
+</head>
+<body>
+
+<div id="outer">
+<div id="form">
+<h1>
+    HTML Forms - select lists
+</h1>
+
+<form id="f1" onsubmit="return display()" method="post">
+    <p> Selection Lists: <br />
+        <select name="select1">
+            <option value="" disabled selected>-- Select a Cat --</option>
+            <option value="cheshire">Cheshire Cat</option>
+            <option value="hat">The Cat in the Hat</option>
+            <option value="bigglesworth">Mr Bigglesworth</option>
+            <option value="fritz">Fritz the Cat</option>
+            <option value="spot">Spot</option>
+            <option value="cat">The Cat</option>
+            <option value="tom">Tom</option>
+            <option value="heathcliff">Heathcliff</option>
+            <option value="garfield">Garfield</option>
+        </select>
+    </p>
+    <p> <input type="submit" name="submit1" value="Big Red Button" onclick="return display()" /> </p>
+</form>
+
+</div> <!-- form -->
+
+<div id="results">
+    <p> Results go here. </p>
+</div> <!-- results -->
+</div> <!-- outer -->
+
+</body>
+</html>

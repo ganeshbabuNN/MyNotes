@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id: mysql-ds.xml 41016 2006-02-07 14:23:00Z acoliver $ -->
+<!--  Datasource config for MySQL using 3.0.9 available from:
+http://www.mysql.com/downloads/api-jdbc-stable.html
+-->
+<datasources>
+<local-tx-datasource>
+<jndi-name>MySQLDataSourceJNDI</jndi-name>
+<connection-url>jdbc:mysql://localhost:3308/jlcindiadb</connection-url>
+<driver-class>com.mysql.jdbc.Driver</driver-class>
+<use-java-context>false</use-java-context>
+<user-name>root</user-name>
+<password>jaibaba</password>
+<min-pool-size>10</min-pool-size>
+<max-pool-size>200</max-pool-size>
+<idle-timeout-minutes>1</idle-timeout-minutes>
+</local-tx-datasource>
+</datasources>
+
+
+

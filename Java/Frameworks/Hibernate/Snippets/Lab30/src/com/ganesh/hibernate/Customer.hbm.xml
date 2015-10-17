@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ganesh.hibernate">
+<class name="Customer" table="customers">
+<id name="cid" column="cid" type ="int">
+	<generator class="increment"/>
+</id>
+<property name="cname"/>
+<property name="email"/>
+<property name="city" />
+<property name="cardBal" type="double"/>
+<property name="cardType"/>
+<property name="cardNo" type="int"/>
+<property name="status"/>
+</class>
+<sql-query name="ALLCustomers">
+<return alias="cts" class="Customer"/>
+	SELECT cts.cid AS {cts.cid},
+		cts.cname AS {cts.cname},
+		cts.email AS {cts.email},
+		cts.city AS {cts.city},
+		cts.cardBal AS {cts.cardBal},
+		cts.cardType AS {cts.cardType},
+		cts.cardNo AS {cts.cardNo},
+		cts.status AS {cts.status}
+		FROM customers cts
+</sql-query>
+<sql-query name="ActiveCustomers">
+<return alias="cts" class="Customer"/>
+	SELECT cts.cid AS {cts.cid},
+		cts.cname AS {cts.cname},
+		cts.email AS {cts.email},
+		cts.status AS {cts.status}
+		FROM customers cts
+		WHERE cts.status=:st
+</sql-query>
+<sql-query name="EmailsOfAllCustomers">
+<return-scalar column="email" type="string"/>
+	SELECT cts.email AS email
+		FROM customers cts
+	</sql-query>
+	
+<sql-query name="EmailsAndStatusOfAllCustomers">
+<return-scalar column="email" type="string"/>
+<return-scalar column="status" type="string"/>
+	SELECT cts.email AS email,
+		cts.status AS status
+		FROM customers cts
+	</sql-query>
+</hibernate-mapping>

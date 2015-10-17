@@ -1,0 +1,10 @@
+Sub Underline()
+ActiveCell.Offset(1, 3).Font.Underline = xlDouble
+End Sub
+
+Sub CycleThrough()
+Dim counter As Integer
+For counter = 1 To 20
+Worksheets("Sheet1").Cells(counter, 3).Value = counter * 5
+Next counter
+End Sub

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans>
+		<form-bean name="feeForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="sid" type="java.lang.String" />
+			<form-property name="amt" type="java.lang.String" />
+			<form-property name="ccno" type="java.lang.String" />
+		</form-bean>
+	</form-beans>
+	<action-mappings>
+		<action path="/onlineFeeSubmit" name="feeForm"
+			type="com.ganesh.struts.FeeOnlineAction" scope="request" input="/feeonline.jsp">
+			<forward name="success" path="/feeonlinestatus.jsp"></forward>
+		</action>
+	</action-mappings>
+	<message-resources parameter="com.ganesh.struts.ApplicationResources" />
+</struts-config>
+

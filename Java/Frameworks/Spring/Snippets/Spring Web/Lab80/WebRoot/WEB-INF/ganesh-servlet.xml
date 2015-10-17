@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<context:annotation-config/>
+	
+	<bean id="contactAction" class="com.ganesh.struts2.ContactAction"/>	
+	
+	<bean id="cs" class="com.ganesh.spring.service.ContactServiceImpl"/>
+	<bean id="cdao" class="com.ganesh.spring.dao.HibernateContactDAO"/>
+	
+	<bean id="htemp" class="org.springframework.orm.hibernate3.HibernateTemplate" autowire="constructor"/>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+					<prop key="hibernate.show_sql">false</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+				</props>	
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/ganesh/spring/hibernate/Contact.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3308/ganeshdb"/>
+		<property name="username" value="root"/>
+		<property name="password" value="jaibaba"/>
+	</bean>
+	
+</beans>

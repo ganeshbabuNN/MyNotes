@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar id="ejb-jar_ID" version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+	<display-name>Lab7</display-name>
+	<enterprise-beans>
+	<session>
+		<ejb-name>BooksEJB</ejb-name>
+		<home>com.ganesh.bookstore.ejb2.BooksHome</home>
+		<remote>com.ganesh.bookstore.ejb2.BooksRemote</remote>
+		<ejb-class>com.ganesh.bookstore.ejb2.BooksBean</ejb-class>
+		<session-type>Stateless</session-type>
+		<transaction-type>Container</transaction-type>
+	</session>	
+	</enterprise-beans>
+   <assembly-descriptor>
+   </assembly-descriptor>
+</ejb-jar>

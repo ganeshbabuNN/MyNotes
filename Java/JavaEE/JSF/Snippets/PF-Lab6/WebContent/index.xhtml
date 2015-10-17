@@ -1,0 +1,73 @@
+<html xmlns="http://wwww.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head></h:head>
+<h:body>
+<h:form>
+	<p:megaMenu>
+		<p:submenu label="Student" icon="ui-icon-check">
+		<p:column>
+		<p:submenu label="Freshers">
+		<p:menuitem value="Add" outcome="/add.xhtml"/>
+		<p:menuitem value="Update" url="#"/>
+		</p:submenu>
+		<p:submenu label="Experience">
+		<p:menuitem value="Add" url="#"/>
+		<p:menuitem value="Update" url="#"/>
+		</p:submenu>		
+		</p:column>
+		
+		<p:column>
+		<p:submenu label="Old Student">
+		<p:menuitem value="Add" uri="#"/>
+		<p:menuitem value="Update" url="#"/>
+		</p:submenu>
+		<p:submenu label="Visitors">
+		<p:menuitem value="Add" uri="#"/>
+		<p:menuitem value="Update" url="#"/>
+		</p:submenu>
+		</p:column>
+		
+		<p:column>
+		<strong>IMAGE</strong>
+		<p:graphicImage value="images/jlclogo.png" width="200"/>
+		</p:column>
+		</p:submenu>
+		
+		<p:submenu label="Employee" icon="ui-icon-document">
+		<p:column>
+		<p:submenu label="Permanent">
+		<p:menuitem value="Add" uri="#"/>
+		<p:menuitem value="Update" url="#"/>
+		</p:submenu>
+		<p:submenu label="Temporary">
+		<p:menuitem value="Add" uri="#"/>
+		<p:menuitem value="Update" url="#"/>
+		</p:submenu>
+		</p:column>
+		</p:submenu>
+		
+		<p:submenu label="Branch" icon="ui-icon-pencil">
+		<p:column>
+		<p:submenu label="HEAD OFFICE">
+		<p:menuitem value="Mathikere" uri="#"/>
+		</p:submenu>
+		<p:submenu label="BRANCH OFFICE">
+		<p:menuitem value="HSR Layout" uri="#"/>
+		<p:menuitem value="AMEERPET" url="#"/>
+		</p:submenu>
+		<p:submenu label="Work">
+		<p:menuitem value="Add" uri="#"/>
+		<p:menuitem value="Update" url="#"/>
+		</p:submenu>		
+		</p:column>		
+		</p:submenu>
+		
+		<p:menuitem value="JLCINDIA" url="http://www.jlcindia.com" icon="ui-icon-close"/>
+	</p:megaMenu>
+</h:form>
+</h:body>	  
+</html>

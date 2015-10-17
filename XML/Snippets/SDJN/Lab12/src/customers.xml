@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+    <customer cid="C-101" status="Active">
+        <cname>Vedha</cname>
+        <email>vedd.baba@gmail.com</email>
+        <phone>3243</phone>
+        <city>Blore</city>
+    </customer>
+</customers>

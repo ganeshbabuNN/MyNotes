@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss PUBLIC "-//JBoss//DTD JBOSS 4.0//EN" "jboss_4_0.dtd" >
+<jboss>
+	<enterprise-beans>
+		<message-driven>
+		<ejb-name>MailEJB</ejb-name>
+		<destination-jndi-name>topic/JLCTopic</destination-jndi-name>
+		</message-driven>				
+		
+		<message-driven>
+		<ejb-name>RequestEJB</ejb-name>
+		<destination-jndi-name>topic/JLCTopic</destination-jndi-name>
+		</message-driven>	
+	</enterprise-beans>
+</jboss>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar id="ejb-jar_ID" version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+	<display-name>Lab9</display-name>
+	<enterprise-beans>
+		<message-driven>
+		<ejb-name>OrderEJB</ejb-name>
+		<ejb-class>com.ganesh.bookstore.mdb.OrderBean</ejb-class>
+		<transaction-type>Container</transaction-type>
+		<message-destination-type>javax.jms.Queue</message-destination-type>	
+		</message-driven>	
+	</enterprise-beans>
+	<assembly-descriptor></assembly-descriptor>
+</ejb-jar>

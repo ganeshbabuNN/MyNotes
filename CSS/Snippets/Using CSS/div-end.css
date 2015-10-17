@@ -1,0 +1,37 @@
+/*
+    main.css by Bill Weinman - http://bw.org/contact/
+    Copyright (c) 2010 The BearHeart Group, LLC
+*/
+
+
+body {
+    background-color: #eee;
+    margin: 5px;
+    font-family: verdana, sans-serif;
+}
+
+div#content {
+    width: 75%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+}
+
+h1, h2, h3 {
+    color: #960;
+    margin: 0;
+}
+
+p {
+    margin: 0 0 0.75em 0;
+    line-height: 1.5em;
+}
+
+#sidebar {
+    float: right;
+    background-color: #ffc;
+    width: 25%;
+    border: 1px solid red;
+    padding: 10px;
+}

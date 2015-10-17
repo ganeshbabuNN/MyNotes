@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file was auto-generated from WSDL --><!-- by the Apache Axis2 version: 1.5.3  Built on : Nov 12, 2010 (02:24:07 CET) --><serviceGroup>
+    <service name="AccountService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.ganesh.axis2.account.AccountServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.ganesh.axis2.account.AccountServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="withdraw" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://account.axis2.ganesh.com">
+            <actionMapping>http://account.axis2.ganesh.com/withdraw</actionMapping>
+            <outputActionMapping>http://account.axis2.ganesh.com/AccountService/withdrawResponse</outputActionMapping>
+        </operation>
+        <operation name="deposit" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://account.axis2.ganesh.com">
+            <actionMapping>http://account.axis2.ganesh.com/deposit</actionMapping>
+            <outputActionMapping>http://account.axis2.ganesh.com/AccountService/depositResponse</outputActionMapping>
+        </operation>
+        <operation name="getBal" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://account.axis2.ganesh.com">
+            <actionMapping>http://account.axis2.ganesh.com/getBal</actionMapping>
+            <outputActionMapping>http://account.axis2.ganesh.com/AccountService/getBalResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

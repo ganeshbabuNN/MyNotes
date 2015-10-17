@@ -1,0 +1,11 @@
+
+jdbc:mysql://<hostname>[<:3306>]/<dbname>
+
+
+
+
+in JPA
+
+EntityManagerFactory     --- Session Factory
+EntityManager          ----  Session
+EntityTransaction      ----- Transaction

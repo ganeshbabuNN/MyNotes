@@ -1,0 +1,11 @@
+Sub OpenUp()
+Workbooks.Open("C:\MyFolder\MyBook.xls")
+End Sub
+
+Sub DemoGetOpenFile()
+Do
+fName = Application.GetOpenFilename
+Loop Until fName <> False
+MsgBox "Opening " & fName
+Set myBook = Workbooks.Open(Filename:=fName)
+End Sub

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        HTML Forms - text elements
+    </title>
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <script type="text/javascript" src="forms.js"></script>
+</head>
+<body>
+
+<div id="outer">
+<div id="form">
+<h1>
+    HTML Forms - text elements
+</h1>
+
+<form id="f1" onsubmit="return display()" method="post">
+    <p> Checkboxes: 
+        <input type="checkbox" name="check1" checked autofocus />
+        <input type="checkbox" name="check2" />
+        <input type="checkbox" name="check3" checked />
+    </p>
+
+    <p> Radio buttons: 
+        <input type="radio" name="radio1" value="one" />
+        <input type="radio" name="radio1" value="two" checked />
+        <input type="radio" name="radio1" value="three" />
+    </p>
+
+    <p> <input type="submit" name="submit1" value="Big Red Button" onclick="return display()" /> </p>
+</form>
+
+</div> <!-- form -->
+
+<div id="results">
+    <p> Results go here. </p>
+</div> <!-- results -->
+</div> <!-- outer -->
+
+</body>
+</html>

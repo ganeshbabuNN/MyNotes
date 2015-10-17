@@ -1,0 +1,276 @@
+body {
+    background-color: #a60;
+}
+
+p {
+    line-height: 1.4;
+    color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: tahoma, sans-serif;
+    color: #531;
+    margin: .25ex 12pt;
+}
+
+h2 {
+    font-size: 130%;
+    color: #840;
+}
+
+a {
+    text-decoration: none;
+    color: #f80;
+}
+
+a:hover {
+   text-decoration: underline;
+}
+
+.clear {
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+
+img.img-right {
+    display: block;
+    float: right;
+    border: solid 2px #555;
+    padding: 2px;
+    margin: 3px 6pt 3px 5px;
+}
+
+/* figure */
+
+figure {
+    border: solid 2px #555;
+    padding: 2px;
+    margin: 3px 5px 3px 12pt;
+    background-color: #eed;
+}
+
+figure.left {
+    float: left;
+}
+
+figure.right {
+    float: right;
+}
+
+figure img {
+    display: block;
+}
+
+figcaption {
+    font-family: tahoma, sans-serif;
+    font-size: 75%;
+    text-align: center;
+    padding: 3pt 0;
+}
+
+/* nav */
+
+nav#top-menu {
+    width: 100%;
+    height: 33px;
+    background-color: #531;
+    margin: 0;
+    padding: 0;
+}
+
+#top-menu ul {
+    display: block;
+    list-style-type: none;
+    width: 600px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#top-menu ul li {
+    margin: 0;
+    padding: 0;
+}
+#top-menu ul li a {
+    display: block;
+    float: left;
+    max-height: 25px;
+    width: 100px;
+    margin: 0;
+    padding: 5px 0;
+    font-family: tahoma, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    background-color: #531;
+    text-decoration: none;
+    color: #da1;
+    border-bottom: #531 solid 2px;
+}
+#top-menu ul li a:hover { border-bottom: #da1 solid 2px; }
+
+/* header */
+
+header h1 { margin-top: 0; }
+
+header p {
+    font-family: tahoma, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 85%;
+    margin: .25ex 12pt;
+    color: #531;
+}
+
+/* maindiv */
+
+#maindiv {
+    width: 900px;
+    margin: 0 auto;
+    background-color: #eec;
+}
+
+/* article */
+
+section.buy, article {
+    width: 625px;
+    margin-right: 10px;
+    float: left;
+}
+
+article h1 {
+    font-size: 110%;
+    margin-top: 12pt;
+    margin-bottom: 0;
+    padding-top: 3pt;
+    border-top: 4px solid #a60;
+}
+
+article p {
+    font-family: tahoma, sans-serif;
+}
+
+article mark {
+    background-color: #fd0;
+}
+
+/* aside */
+
+aside.about {
+    float: right;
+    width: 248px;
+    background-color: #da1;
+    margin: 3pt 6pt 3pt 6pt;
+    padding: 6pt 0;
+}
+
+aside h1 { font-size: 110%; }
+aside h2 { font-size: 95%; }
+aside p {
+    margin: 0 12pt;
+    font-family: tahoma, sans-serif;
+    font-style: italic;
+    font-size: 85%;
+}
+
+aside section h1 {
+    padding-top: 3pt;
+    border-top: 4px solid #fd0;
+}
+
+aside header p {
+    font-size: 85%;
+}
+
+aside section {
+    padding: 5px 0;
+}
+
+/* footer */
+
+footer {
+    background: #333;
+}
+
+footer p {
+    color: #ccc;
+    font-size: 70%;
+    font-family: tahoma, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+}
+
+/* details */
+
+details summary {
+    font-family: tahoma, sans-serif;
+    font-size: 110%;
+    color: #531;
+    margin: 1ex 12pt;
+}
+
+/* media */
+div#media {
+    margin: 1em 0 0 1em;
+}
+
+/* forms */
+section.buy p {
+    font-family: tahoma, sans-serif;
+}
+
+input, textarea {
+    font-family: tahoma, sans-serif;
+    font-size: 1em;
+}
+
+/* RPS game */
+
+section#rpsGame {
+    margin: 1em;
+}
+
+#dnd div {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #da1;
+}
+
+#dnd footer {
+    background-color: #da1;
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px 0;
+}
+
+p.message, p.error {
+    width: 766px;
+    margin: .5ex 0;
+    font: normal 1em Tahoma, sans-serif;
+    padding: 3px;
+}
+
+p.message {
+    background-color: #da1;
+    color: black;
+}
+
+/* transitions */
+
+#dnd div {
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  -moz-transition: -moz-transform 0.2s ease-out;
+  -o-transition: -o-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+}
+
+#dnd div.moving {
+  opacity: 0.25;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8);
+}
+

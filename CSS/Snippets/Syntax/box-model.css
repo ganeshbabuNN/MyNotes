@@ -1,0 +1,72 @@
+
+/* == base styles == */
+
+body {
+    background-color: #eee;
+    margin: 5px;
+    font-family: verdana, sans-serif;
+}
+
+div#content {
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+}
+
+h1, h2, h3 {
+    color: #960;
+    margin: 0;
+}
+
+p {
+    margin: 0 0 0.75em 0;
+    line-height: 1.5em;
+}
+
+/* == utility styles == */
+
+p.clear {
+    clear: both;
+    height: 0;  /* only necessary for IE */
+    margin: 0;
+    padding: 0;
+}
+
+/* == content styles == */
+
+div#leftSpace, div#rightSpace {
+    float: left;
+    background-color: #69c;
+    width: 200px;
+    height: 200px;
+}
+
+div#leftSpace p, div#rightSpace p {
+    text-align: center;
+    margin-top: 85px;
+    color: #ccf;
+}
+
+div#boxImage {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+/* == box model demonstration */
+
+div#boxText {
+    float: left;
+    background-color: #9cf;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+div#boxText p {
+    font-size: 10px;
+    color: #633;
+}
+

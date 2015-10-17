@@ -1,0 +1,8 @@
+Sub FormatRange()
+Worksheets(“Sheet1”).Range(“B2:B5”).Style = “Currency”
+Worksheets(“Sheet1”).Range(“B2:B5”).WrapText = True
+Worksheets(“Sheet1”).Range(“B2:B5”).Font.Size = 16
+Worksheets(“Sheet1”).Range(“B2:B5”).Font.Bold = True
+Worksheets(“Sheet1”).Range(“B2:B5”).Font.Color = RGB(255, 0, 0) „ Red
+Worksheets(“Sheet1”).Range(“B2:B5”).Font.Name = “Times New Roman”
+End Sub

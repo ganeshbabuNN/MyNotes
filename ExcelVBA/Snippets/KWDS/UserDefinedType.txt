@@ -1,0 +1,14 @@
+Type StudentData
+sName as String
+sAge as Integer
+sBorn as Date
+End Type
+
+Sub xxx()
+Dim Student1 as StudentData
+Student1.sName="Teresa Green"
+Student1.sAge=99
+Student1.sBorn=#31/12/1896#
+Msgbox Student1.sName & ", Age " & Student1.sAge & _
+", Born " & Student1.sBorn & "."
+End Sub
