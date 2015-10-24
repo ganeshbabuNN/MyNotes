@@ -1,0 +1,7 @@
+Arduino is an open-source computer hardware and software company, project and user community that designs and manufactures microcontroller-based kits for 
+building digital devices and interactive objects that can sense and control 
+the physical world.
+
+https://www.arduino.cc/
+
+

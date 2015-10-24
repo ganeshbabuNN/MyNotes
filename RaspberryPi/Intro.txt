@@ -1,0 +1,5 @@
+--The Raspberry Pi is a series of credit card–sized single-board computers
+
+--the Raspberry Pi Foundation launched the Compute Module, which packages a BCM2835 with 512 MB RAM and an eMMC flash chip into a module for use as a part of embedded systems
+
+--
