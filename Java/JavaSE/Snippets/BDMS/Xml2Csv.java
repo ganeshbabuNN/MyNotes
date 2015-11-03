@@ -26,7 +26,7 @@ class Xml2Csv {
         Transformer transformer = TransformerFactory.newInstance()
                 .newTransformer(stylesource);
         Source source = new DOMSource(document);
-        Result outputTarget = new StreamResult(new File("/home/bhuvan/Desktop/x.csv"));
+        Result outputTarget = new StreamResult(new File("/home/ganesh/Desktop/x.csv"));
         transformer.transform(source, outputTarget);
     }
 }
