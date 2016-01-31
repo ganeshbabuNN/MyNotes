@@ -1,25 +1,29 @@
 Foundation Tools
 ----------------
 1)SAS Certified Base Programmer for SAS 9
+Designed for programmers, analysts, data managers, or anyone writing SAS programs to access and manage data to perform queries and analyses
 
-SAS Programming 1: Essentials + SAS Programming 2: Data Manipulation Techniques 
+	SAS Programming 1: Essentials + SAS Programming 2: Data Manipulation Techniques 
 	
 2)SAS Certified Advanced Programmer for SAS 9
-
-SAS Programming 3: Advanced Techniques and Efficiencies + SAS Macro Language 1: Essentials + SAS SQL1: Essentials
+The next level for SAS Base Programmer for SAS 9 certified professionals and the foundation for many job roles
+	SAS Programming 3: Advanced Techniques and Efficiencies + SAS Macro Language 1: Essentials + SAS SQL1: Essentials
 
 3)SAS Certified Clinical Trials Programmer Using SAS 9
+Appropriate for programmers who use SAS software to analyze clinical trials data to produce reports for submission to regulatory authorities
 
-SAS Programming 1: Essentials +SAS Programming 2: Data Manipulation Techniques +SAS Macro Language 1: Essentials + 
-SAS Report Writing 1: Essentials +Statistics 1: Introduction to ANOVA, Regression, and Logistic Regression
+	SAS Programming 1: Essentials +SAS Programming 2: Data Manipulation Techniques +SAS Macro Language 1: Essentials + 
+	SAS Report Writing 1: Essentials +Statistics 1: Introduction to ANOVA, Regression, and Logistic Regression
 
 Advanced Analytics
 ------------------
 1)SAS Certified Predictive Modeler Using SAS Enterprise Miner 13
-Applied Analytics Using SAS Enterprise Miner
+Designed for SAS Enterprise Miner users who perform predictive analytics
+	Applied Analytics Using SAS Enterprise Miner
 
 2)SAS Certified Statistical Business Analyst Using SAS 9: Regression and Modeling
-Statistics 1: Introduction to ANOVA, Regression, and Logistic Regression + Predictive Modeling Using Logistic Regression
+Appropriate for professionals who solve business problems by performing statistical analyses and predictive modeling using SAS/STAT software
+	Statistics 1: Introduction to ANOVA, Regression, and Logistic Regression + Predictive Modeling Using Logistic 	Regression
 
 Business Intelligence and Analytics
 -----------------------------------
@@ -27,7 +31,7 @@ Business Intelligence and Analytics
 Designed for SAS users who are responsible for building, implementing, and customizing SAS interface applications
 	Creating Business Intelligence for Your Organization: Fast Track
 	or
-	Creating BI Dashboards Using SAS +Creating Information Maps Using SAS + Creating Stored Processes Using SAS 1: 	Essentials
+	Creating BI Dashboards Using SAS +Creating Information Maps Using SAS + Creating Stored Processes Using SAS 1: 		Essentials
 
 2)SAS Certified Visual Business Analyst: Exploration and Design Using SAS Visual Analytics Credential
 Designed for analysts who are using SAS Visual Analytics to explore data and create reports that provide concise, interactive, and relevant data summaries
