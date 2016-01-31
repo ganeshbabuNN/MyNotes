@@ -1,0 +1,41 @@
+This course is for data quality stewards who perform data management tasks, such as data quality improvements, data enrichment and entity resolution.
+
+
+Introduction and Course Flow
+
+    introduction
+    course flow 
+
+DataFlux Data Management Studio: Getting Started
+
+    introduction
+    Quality Knowledge Base (QKB) and reference sources
+    data connections 
+
+Working Through the PLAN Phase of the DataFlux Methodology
+
+    creating data collections
+    designing data explorations
+    creating data profiles
+    designing data standardization schemes 
+
+Working Through the ACT Phase of the DataFlux Methodology
+
+    introduction to data jobs
+    data quality jobs
+    data enrichment jobs (self-study)
+    entity resolution jobs 
+
+Working Through the MONITOR Phase of the DataFlux Methodology
+
+    defining business rules
+    data profiling with business rules and alerts
+    data jobs with business rules
+    data jobs with monitoring tasks 
+
+Additional Topics
+
+    multi-input/multi-output data jobs
+    using data job references within a data job
+    introduction to the DataFlux Data Management Server
+    case study (self-study) 

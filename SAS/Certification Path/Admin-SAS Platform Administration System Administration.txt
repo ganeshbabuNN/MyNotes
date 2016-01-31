@@ -1,0 +1,28 @@
+This course provides students with the essential knowledge to perform the job functions of a SAS platform administrator.
+
+Reviewing the Platform for SAS Business Analytics
+
+    exploring the platform for SAS Business Analytics overview
+    exploring the Platform Administrator role
+    securing the SAS configuration
+    establishing a formal, regularly scheduled backup 
+
+Understanding SAS Metadata and the Metadata Server
+
+    exploring the SAS Metadata Server
+    exploring SAS Metadata
+    implementing a SAS Metadata Server Cluster
+    backing up SAS metadata 
+
+Managing SAS Servers and Spawners
+
+    Operating SAS Servers and Spawners
+    reviewing SAS Environment Manager
+    exploring SAS servers
+    administering server logging 
+
+Exploring SAS Middle Tier
+
+    exploring SAS Environment Manager
+    exploring SAS middle-tier architecture
+    exploring SAS middle-tier configuration 

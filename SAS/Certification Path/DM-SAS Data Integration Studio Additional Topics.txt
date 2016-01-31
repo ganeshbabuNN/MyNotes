@@ -1,0 +1,68 @@
+This course expands on the knowledge learned in SAS Data Integration Studio: Essentials and provides additional information on setting up change management, working with the Loop transformations, working with slowly changing dimensions, using the loader transformations, working with databases, and defining custom transformations. Also covered are impact analysis, conditional execution, metadata promotion, version control, and establishing checkpoints. And lastly, this course covers deploying jobs for scheduling and integrating with DataFlux.
+
+Overview of SAS Data Integration Studio
+
+    exploring the platform for SAS Business Analytics
+    introduction to SAS Data Integration Studio
+    introduction to the course data and course tasks
+    reviewing propagation and mapping 
+
+Working with Change Management
+
+    introducing change management
+    establishing a change management environment 
+
+Working with the Loop Transformations
+
+    introduction to the Loop transformations
+    iterating a job
+    iterating a single transformation 
+
+Working with Slowly Changing Dimensions
+
+    defining slowly changing dimensions
+    using the SCD Type 2 Loader and Lookup transformations
+    using the SCD Type 1 Loader transformation
+    introducing the Change Data Capture transformations (self-study) 
+
+Creating Custom Transformations
+
+    SAS Data Integration Studio transformations
+    using the new transformation wizard 
+
+Working with the Table Loader Transformations
+
+    reviewing the basics of the Table Loader transformations
+    exploring the load styles of the Table Loader transformation
+    managing indexes and constraints during loading
+    bulk loading DBMS tables 
+
+Working with Databases
+
+    introduction to In-Database processing
+    using In-Database processing
+    exploring ELT processing
+    using Oracle functions 
+
+Additional Topics for SAS Data Integration Studio Users
+
+    overview
+    analyzing metadata using impact analysis
+    comparing tables
+    conditional execution
+    exploring metadata promotion
+    exploring version control
+    establishing checkpoints 
+
+Deploying Jobs
+
+    introduction
+    deploying jobs for scheduling
+    deploying jobs in batch
+    deploying jobs as stored processes 
+
+Implementing Data Quality Techniques (Self-Study)
+
+    SAS and data quality
+    using the DataFlux transformations 
+

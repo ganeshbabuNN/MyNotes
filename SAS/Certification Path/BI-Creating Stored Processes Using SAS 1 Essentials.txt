@@ -1,0 +1,30 @@
+This course provides information on how to create, design, manage, and run stored processes from SAS Enterprise Guide projects.
+
+
+Working with SAS Stored Processes
+
+    investigating SAS stored processes
+    exploring SAS stored processes and the SAS platform applications
+    discussing the course environment and scenario 
+
+Creating a Stored Process in SAS Enterprise Guide
+
+    analyzing data using SAS Enterprise Guide
+    reporting on data in SAS Enterprise Guide
+    constructing a stored process 
+
+Prompting from a Stored Process
+
+    adding prompts to a stored process
+    using cascading prompts
+    working with prompt groups 
+
+Delivering Stored Process Content
+
+    using stored processes in desktop applications
+    using stored processes in Web applications 
+
+Creating a Stored Process from SAS Program Code
+
+    identifying the stored process program elements
+    converting a SAS program into a stored process 

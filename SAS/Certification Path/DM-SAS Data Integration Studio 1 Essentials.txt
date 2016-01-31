@@ -1,0 +1,52 @@
+This course introduces SAS Data Integration Studio and includes topics for registering sources and targets; creating and working with jobs; and working with transformation
+
+
+Introduction
+
+    exploring the platform for SAS Business Analytics
+    introduction to the data management applications
+    introduction to the classroom environment and the course tasks 
+
+Working with Change Management
+
+    introduction to change management
+    establishing a change management environment (self-study) 
+
+Creating Metadata for Source Data
+
+    setting up the environment
+    registering source data metadata 
+
+Creating Metadata for Target Data
+
+    registering target data metadata
+    importing metadata 
+
+Creating Metadata for Jobs
+
+    introduction to jobs and the job editor
+    using the Join transformation 
+
+Orion Star Case Study
+
+    defining and loading the customer dimension table
+    defining and loading the organization dimension table
+    defining and loading the time dimension table 
+
+Additional Features for Jobs
+
+    importing SAS code
+    propagation and mapping
+    chaining jobs
+    performance statistics
+    metadata reports 
+
+Working with Transformations
+
+    introduction
+    using the Extract and Summary Statistics transformations
+    exploring SQL transformations
+    establishing status handling
+    using the Data Validation transformation
+    using the Transpose, Sort, Append, Rank, and List Data transformations
+    basic standardizations 

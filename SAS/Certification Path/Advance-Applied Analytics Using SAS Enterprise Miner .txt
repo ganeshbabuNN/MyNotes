@@ -1,0 +1,66 @@
+This course is appropriate for SAS Enterprise Miner from release 5.3 up to 14.1. The course covers the skills that are required to assemble analysis flow diagrams using the rich tool set of SAS Enterprise Miner for both pattern discovery (segmentation, association, and sequence analyses) and predictive modeling (decision tree, regression, and neural network models).
+
+Introduction
+
+    introduction to SAS Enterprise Miner 
+
+Accessing and Assaying Prepared Data
+
+    creating a SAS Enterprise Miner project, library, and diagram
+    defining a data source
+    exploring a data source 
+
+Introduction to Predictive Modeling: Predictive Modeling Fundamentals and Decision Trees
+
+    introduction
+    cultivating decision trees
+    optimizing the complexity of decision trees
+    understanding additional diagnostic tools (self-study)
+    autonomous tree growth options (self-study) 
+
+Introduction to Predictive Modeling: Regressions
+
+    selecting regression inputs
+    optimizing regression complexity
+    interpreting regression models
+    transforming inputs
+    categorical inputs
+    polynomial regressions (self-study) 
+
+Introduction to Predictive Modeling: Neural Networks and Other Modeling Tools
+
+    input selection
+    stopped training
+    other modeling tools (self-study) 
+
+Model Assessment
+
+    model fit statistics
+    statistical graphics
+    adjusting for separate sampling
+    profit matrices 
+
+Model Implementation
+
+    internally scored data sets
+    score code modules 
+
+Introduction to Pattern Discovery
+
+    cluster analysis
+    market basket analysis (self-study) 
+
+Special Topics
+
+    ensemble models
+    variable selection
+    categorical input consolidation
+    surrogate models
+    SAS Rapid Predictive Modeler 
+
+Case Studies
+
+    banking segmentation case study
+    website usage associations case study
+    credit risk case study
+    enrollment management case study 

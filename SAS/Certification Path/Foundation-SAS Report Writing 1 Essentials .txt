@@ -1,0 +1,58 @@
+This course teaches you how to create detail and summary tabular reports using Base SAS procedures. You also learn how to enhance your reports using the Output Delivery System (ODS).
+
+Introduction to Reporting and ODS
+
+    course logistics
+    introduction to reporting
+    introduction to ODS
+    ODS with the SAS interfaces
+    creating reports with the PRINT procedure 
+
+Getting Started with the TABULATE Procedure
+
+    introduction to the TABULATE procedure
+    creating the structure of the table
+    adding overall summarizations
+    adding additional statistics 
+
+Doing More with the TABULATE Procedure
+
+    enhancing with labels and formats
+    enhancing with options
+    adding trafficlighting
+    adding additional style attributes 
+
+Getting Started with the REPORT Procedure
+
+    introduction to the REPORT procedure
+    creating a detail report
+    creating a summary report with the GROUP usage
+    creating a summary report with the ACROSS usage
+    computing an additional column 
+
+Doing More with the REPORT Procedure
+
+    adding summary lines
+    customizing break lines
+    adding trafficlighting and style attributes
+    using the CALL DEFINE statement 
+
+Using ODS Destinations
+
+    introduction to ODS destinations
+    PRINTER and RTF destinations
+    CSV and HTML destinations
+    Excel and other destinations
+    SAS destinations 
+
+Doing More with ODS
+
+    using ODS options and statements
+    using ODS ESCAPECHAR
+    controlling bookmarks and the table of contents
+    using ODS layout 
+
+Introduction to SG Procedures
+
+    introduction to ODS graphics
+    using the SG procedures 

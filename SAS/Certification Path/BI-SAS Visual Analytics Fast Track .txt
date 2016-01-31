@@ -1,0 +1,44 @@
+This course teaches how to explore data and build reports using SAS Visual Analytics. You will learn how to build queries in SAS Visual Data Builder and you will also learn the basics of SAS Visual Analytics Administrator.
+
+
+
+Getting Started with SAS Visual Analytics
+
+    exploring SAS Visual Analytics concepts
+    using the SAS Visual Analytics home page
+    discussing the course environment and scenario 
+
+Administering the Environment and Managing Data
+
+    exploring SAS Visual Data Builder
+    exploring SAS Visual Analytics Adminstrator 
+
+Using SAS Visual Analytics Explorer
+
+    examining Visual Analytics Explorer
+    selecting data and defining data item properties
+    creating visualizations
+    enhancing visualizations with analytics
+    interacting with visualizations and explorations 
+
+Designing Reports with SAS Visual Analytics
+
+    examining the SAS Visual Analytics Designer interface
+    creating a simple report
+    creating data items and working with graphs
+    working with filters and report sections
+    establishing interactions, links, and alerts
+    working with gauges and display rules
+    working with tables
+    working with other objects 
+
+Viewing SAS Visual Analytics Reports
+
+    viewing reports on the Web
+    viewing reports on a mobile device
+    viewing reports with SAS Office Analytics 
+
+Case Study: Creating Analyses and Reports with SAS Visual Analytics
+
+    demonstration: managing LASR tables
+    exercises 

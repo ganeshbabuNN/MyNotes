@@ -1,0 +1,28 @@
+This course covers predictive modeling using SAS/STAT software with emphasis on the LOGISTIC procedure. This course also discusses selecting variables and interactions, recoding categorical variables based on the smooth weight of evidence, assessing models, treating missing values and using efficiency techniques for massive data sets.
+
+Predictive Modeling
+
+    business applications
+    analytical challenges 
+
+Fitting the Model
+
+    parameter estimation
+    adjustments for oversampling 
+
+Preparing the Input Variables
+
+    missing values
+    categorical inputs
+    variable clustering
+    variable screening
+    subset selection 
+
+Classifier Performance
+
+    ROC curves and Lift charts
+    optimal cutoffs
+    K-S statistic
+    c statistic
+    profit
+    evaluating a series of models 

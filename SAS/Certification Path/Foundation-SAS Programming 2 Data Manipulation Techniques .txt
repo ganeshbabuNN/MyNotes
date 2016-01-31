@@ -1,0 +1,46 @@
+This course is for those who need to learn data manipulation techniques using SAS DATA and procedure steps to access, transform, and summarize SAS data sets. The course builds on the concepts that are presented in the SAS Programming 1: Essentials course and is not recommended for beginning SAS software users.
+
+Introduction
+    course logistics
+    creating course data files 
+
+Controlling Input and Output
+    writing observations explicitly
+    writing to multiple SAS data sets
+    selecting variables and observations 
+
+Summarizing Data
+    creating an accumulating total variable
+    accumulating totals for a group of data 
+
+Reading Raw Data Files
+    reading raw data files with formatted input
+    controlling when a record loads 
+
+Data Transformations
+    manipulating character values
+    manipulating numeric values
+    converting variable type 
+
+Debugging Techniques
+    using the PUTLOG statement 
+
+Processing Data Iteratively
+    DO loop processing
+    conditional DO loop processing
+    SAS array processing
+    using SAS arrays 
+
+Restructuring a Data Set
+    rotating with the DATA step 
+
+Combining SAS Data Sets
+    using data manipulation techniques with match-merging 
+
+Creating and Maintaining Permanent Formats
+    creating permanent formats 
+
+Other SAS Languages
+    an overview of other languages
+    using the SQL procedure
+    the SAS macro language 

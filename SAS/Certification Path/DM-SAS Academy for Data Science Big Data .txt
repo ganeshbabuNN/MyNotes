@@ -1,0 +1,14 @@
+This six-week, big data professional bootcamp represents Level 1 of the SAS Academy for Data Science. It teaches students critical SAS programming skills; introductory statistics; data management and manipulation; data quality techniques, visual data exploration, and working with SAS, Hadoop, and Hive.
+
+Students will meet Monday-Friday from 9-5. The course work, hands-on practice and projects will help prepare you for the two exams needed to become a SAS Certified Big Data Professional. Exams are included
+
+    Big Data Challenges and Analysis-Driven Data
+    SAS Fundamentals: Programming, SQL, and Macro Language
+    Exploring Data with SAS Visual Analytics
+    Statistics 1: Introduction to ANOVA, Regression, and Logistic Regression
+    Preparing Data for Analysis and Reporting
+    Introduction to SAS and Hadoop: Essentials
+    DS2 Programming Essentials with Hadoop
+    Big Data Analysis with Hive and Pig
+    Getting Started with SAS In-Memory Statistics
+    Working with SAS Data Loader 2.3 for Hadoop 
