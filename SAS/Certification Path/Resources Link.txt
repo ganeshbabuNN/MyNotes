@@ -1,2 +1,5 @@
 SAS LINK
 http://support.sas.com/certify/index.html
+
+SAS KB Center-DOcumentation Center
+http://support.sas.com/documentation/index.html
