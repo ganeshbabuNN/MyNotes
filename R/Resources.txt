@@ -1,0 +1,13 @@
+Datasets 
+=======
+
+From R
+------
+https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html
+
+From Yanchang Zhao
+==================
+DataMining -http://www.rdatamining.com/
+Time series data : - http://www.r-bloggers.com/datasets-to-practice-your-data-mining/
+
+http://www.rdatamining.com/resources/data
