@@ -1,5 +1,5 @@
 #set the workspace locations
-setwd("C:\R_workspace")
+setwd("C:\\R_workspace")
 #current options are displayed
 options()
 #options are formatted to print with three digits after the decimal places
