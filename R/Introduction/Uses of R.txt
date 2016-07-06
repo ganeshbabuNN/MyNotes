@@ -1,0 +1,23 @@
+-R is a language and environment for statiscal computing and graphics , similar to the S language orginally developed at Bell Labs.
+-there are many popular statistical  and graphical packages available
+	-Microsoft Excel
+	-SAS
+	-IBM SPSS
+	-Stat
+	-Minitab
+
+Features of R
+=============
+-R is completely Free, but many other products costs more..
+-R is just type of data anlaysis can be done and offering all manners of data-analyatic techniques and comprehensive statiscal platform.
+-R contains advanced Statistical routiens not yet available in other packages, face new method is available on a weekly basis. 
+-R has a state of the art graphics capabilities.if you want to visualize complex data, R is a powerful features set available.
+-R can easily import data from a wide a variety of sources, including text files, database-management systems, statistical packages and specialized data stores. It can write data out of these systems as well. R can also access data directly from web pages, social media sites and a wide range of online data servies.
+-R Functionality can be integrated into applications written in other languages  including C++, Java, Python, PHP, Phentaho, SAs and SPSS. this allows you to continue working in a language that you may be familar with , while adding R's capabilites to your applications.
+-R runs on a wide array of platform including windows, unix and Mac OX
+-There are variety of graphical user interaces (GUI) are available, offering the power of R through menus and dialoges
+
+
+R Graphics Capabilities
+=======================
+Refer realworld_example.jpg... ND

@@ -1,0 +1,34 @@
+-R is Free available from the CRAN (Comprehensive R Archive network) at thttps://cran.r-project.org/
+
+Install R in Mac OS
+====================
+1)Follow to this web https://cran.r-project.org/
+2)Click on Download R for Mac OS
+3)Pick the latest once Under the Files section
+5)I chosen"R-3.3.1.pkg" at time of the download and my laptop Mac OSX EI captain and double click on it
+6)Click on continue
+7)Read the completely the GNU license aggrement and click continue
+8)Read the Software license aggreement and click continue and Click Agree (if you agree)
+9)Click on Install
+10)Some of the OS prompts your login password , Enter and click install software
+11)Once installation completed , Click "Close"
+
+Errors at R startup in Mac
+==========================
+1)Click on the R icon in the application folder, check if any error persists
+2)If any errors on the locale
+Use the any of the statements in R concole to avoid those errors
+
+system("defaults write org.R-project.R force.LANG en_US.UTF-8")
+
+or
+
+defaults write org.R-project.R force.LANG en_US.UTF-8
+
+or
+
+Sys.setenv(LANG="en_US.UTF-8")
+3) close the R and re-open again. Hope this error is disappered.
+
+
+
