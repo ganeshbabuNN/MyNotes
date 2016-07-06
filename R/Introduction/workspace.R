@@ -3,9 +3,9 @@ getwd()
 
 #Changes the current workign directory to mydirectory
 setwd("C:/R_workspace")
-Note: The forward slashes in the path name of the setwd() commands. R treats the backslash(\) as an esacpe character.
-if this a backslash put double back slash.
-Use dir.create() function for creating directory.
+
+#create the directory if does not exists-OPTIONAL
+dir.create() 
 
 #list the objects in the current workspace
 ls()

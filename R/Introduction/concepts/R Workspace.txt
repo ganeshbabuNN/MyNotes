@@ -1,6 +1,8 @@
 -This the R working environment
 -it includes any user-defined objects ( vectors,matrices,functions,data frames and lists).
 -At every end of R sessions , it can save a image so when it you start the fresh it loads the previous onces.
+-for any path reference Using \n in a pathname on windows - R sees the backslash characters as an escape character
+setwd("c:\ganesh") generates and error. Use setwd("c:/ganesh") or setwd("c:\\ganesh") instead
 
-Refer workspace.R for options
+Refer workspace.R for script
 
