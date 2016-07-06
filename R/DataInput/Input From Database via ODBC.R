@@ -7,7 +7,7 @@ install.packages("RODBC")
 #Check even the bit machines configurations as well
 
 library(RODBC)
-con <- odbcConnect(dsn="ROracle",uid="hr",pwd ="Ga55word",believeNRows=FALSE)
+con <- odbcConnect(dsn="ROracle",uid="hr",pwd ="hr",believeNRows=FALSE)
 sqlQuery(con, "select count(*) from employees")
 d <- sqlQuery(con, "select * from employees")
 close(con)

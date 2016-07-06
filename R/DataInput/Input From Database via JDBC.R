@@ -7,7 +7,7 @@ install.packages("RJDBC")
 
 library(RJDBC)
 drv <- JDBC("oracle.jdbc.OracleDriver",classPath="ojdbc6.jar", " ")
-con <- dbConnect(drv, "jdbc:oracle:thin:@localhost:1521:orcl", "hr", "Ga55word")
+con <- dbConnect(drv, "jdbc:oracle:thin:@localhost:1521:orcl", "hr", "hr")
 #dbWriteTable(con, "TEST_TABLE", test_table)
 dbGetQuery(con, "select count(*) from employees")
 d <- dbReadTable(con, "employees")
