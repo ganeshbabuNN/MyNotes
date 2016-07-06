@@ -11,6 +11,8 @@ Installing a package
 
 usage
 	install.packages("packagename")
+-Note always use quotation marks when they are needed , if not it generates an errors	
+	
 
 Updating a package
 =================
