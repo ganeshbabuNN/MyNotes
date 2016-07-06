@@ -1,0 +1,42 @@
+Input and output
+================
+
+-By default, launching R starts an interactive sessions with input from the keyboard and output to the screen.
+-But you can also process commands from a script file ( a file containing R statements) and direct output to a variety of desitinations.
+
+
+Input
+----
+-The source functions submits a script to the current session.
+-This file name does not include a path,it assume the current working directory
+
+source("filename")
+
+*filename like "hello.R"contains set of R statements contained in file with .R extions and this is not mandatory.
+
+source("hello.R")
+
+Text Output
+-----------
+-The sink function redirects output to the file filename.
+-by default,if the file already exists, its contents are overwritten.
+-include append=TRUE to append text, split=TRUE will send output to both the screen and the output file.
+
+Usage
+	sink(scriptfile,append=TRUE,split=TRUE)
+
+Graphics
+--------
+-Sink functions redirects text output , it has no effect on grahic output.
+-to redirect graphic output, use one of the functions listed
+
+Function		     output
+bmp("filname.bmp")	     BMP file
+jpeg("filename.jpg")	     JPEG file
+pdf("filename.jpg")	     PDF file
+png("filename.jpg")	     PNG file
+postscript("filename.jpg")   Postscript file
+svg("filename.svg")	     SVG file
+win.metafile("filename.wmf") windowsmetafile
+
+

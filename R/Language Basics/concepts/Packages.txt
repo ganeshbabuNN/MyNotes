@@ -1,0 +1,43 @@
+Packages
+========
+-It is collections of R functions, data and compiled code
+-The directory where packages are stored on your computer are called the library
+-The function .libPaths() shows the library is located in your computer and function library() list of packages available in your computer.
+-The command search() functions tells you which packages are loaded and ready to use.
+
+Installing a package
+====================
+-To install a package for the first time, use the install.packages() command. without options brings up the CRAN mirror.
+
+usage
+	install.packages("packagename")
+
+Updating a package
+=================
+-to update the existing package use update.package();
+
+usgage
+	update.packages("packagename")
+
+loading a package
+=================
+-to load the package for this session
+
+usage
+	library("packagename")
+
+removing the packages
+====================
+- removing the packages
+usage
+	remove.packages(pkgs, lib)
+
+
+learning about a package
+=======================
+-When you load a package , a new set of functions and datasets becomes available.
+-Using help() with any of these functions or datasets name provides further details
+
+usage
+	help(package="packagename")
+
