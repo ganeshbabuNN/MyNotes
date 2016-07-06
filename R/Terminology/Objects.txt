@@ -1,0 +1,25 @@
+- R is a case-sensitive , interpreted language.
+- We can run commands at a time at command prompt or run a set of commands from a source file.
+- Most of the functinality is provided through built-in and user-created functions and Creations and the creations and manipulation of objects.
+
+Objects
+=======
+-It is basically anything that can be assigned a value. 
+-R is just about everything like data, functions, graphs, analytic ,results and more.
+-Every object has a class attribute telling R how to handle it.
+-All objects are kept in memory during an interactive session.
+-Basic functions are available by default.
+
+> r <- rnorm(5)
+[1]  0.81528452  1.30019407 -0.24559799 -1.53660717 -0.04692311
+
+or we can use another way, this will make funny
+rnorm(5) -> x
+
+Here this statement creates a vector object named x containing five random deviates from standard nomral distributions
+
+
+Note:
+-R allows the = sign to be used for object assignment.But in reality many other program will find many programs written that way coz it is not a standard syntax.
+
+

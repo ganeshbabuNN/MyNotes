@@ -1,0 +1,10 @@
+-In R, Statements consists of funcitons and assignments.
+- In R uses the symbol <- for assignment, rather then the typical = sign.
+-Here the statement do not end with any delimiter like other languages.
+
+
+
+> x <- "ganesh"
+> x <- "ganesh" ; # Not Valid
+
+	

@@ -1,0 +1,2 @@
+-R provides the extensive help facilities and learning in navigating them will help you signfictnly in your programming efforts.
+-Some of the help information is shown in the R window  or some or in the internet or in vignette

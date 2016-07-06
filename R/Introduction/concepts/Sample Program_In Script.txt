@@ -1,0 +1,33 @@
+sample dataset
+==============
+
+Age and weight of 10 infants
+
+Age	Weight
+01	4.4
+03	5.3
+05	7.2
+02	5.2
+11	8.5
+09	7.3
+03	6.0
+09	10.4
+12	10.2
+03	6.1
+
+
+
+In R Console
+-------------
+
+
+1)Open the R concole
+2)Click on File --> new script
+3)Type all the script into the window
+4)Once you close , it prompts for save window, Save it in your desire path
+5)Open again the R console, Click on File --> Source Open Script --> point the location of script file
+6)select all the code and right click on the console and run line by line.
+7)Now the output has been executed.
+
+Sample :Refer Lab1.R
+
