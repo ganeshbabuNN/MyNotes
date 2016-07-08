@@ -5,3 +5,5 @@
 5-print out the Arthritis datasets ( entering the name of an object will ist it).
 6-Run the example that comes with the Arthritis dataset. (the graph basically shows that arthritis patients receiving treatement improved much more that patients receiving a placebo.
 7-Quit.
+
+Refer Your_First_Program.R for example

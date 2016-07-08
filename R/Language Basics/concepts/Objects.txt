@@ -22,4 +22,18 @@ Here this statement creates a vector object named x containing five random devia
 Note:
 -R allows the = sign to be used for object assignment.But in reality many other program will find many programs written that way coz it is not a standard syntax.
 
+Object Types
+============
+-In R , There are wide variety of objects for holding data  
+
+1)Scalar
+2)vectors
+3)matrices
+4)arrays
+5)data frames
+6)lists
+
+This will more indetailed explained in the data structures sessions
+
+
 

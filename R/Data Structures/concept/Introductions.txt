@@ -1,0 +1,42 @@
+What is Data Structures
+===============
+-In Computer science , data structures is a way of organizing data in computer so it can be used efficiently
+-In general it is based of a computer to fetch and store data at any place in its memory pointer.
+
+
+Student datasets
+================
+
+studentID	AdminDate	studentName	age	class	Performance
+1		10/15/2015	ganesh		12	Class1	status
+2		11/16/2015	star		13	Class2	Weak
+3		12/13/2015	hari		15	Class3	Good
+4		14/12/2015	gana		17	Class4	Excellent
+
+Datasets
+========
+-A data sets is usually a rectangular arrays of data with rows representing obserations and columns representing variables.
+-Different traditions have different names for the rows and columsn in datasets
+	-Statistics refers has observations and variables
+	-Data analysts call them records and fields
+	-data-mining and macine-learning roles refers them as examples and attributes.
+-We can distinguish between the structures of the datasets and the conents or data types 
+	-StudentID is a row or case identifier
+	-admdate is a data variable
+	-age is continous variable
+	-class is a nominal values
+	-performance is an ordinal variable.
+	
+
+
+DataTypes or Mode
+================
+-R can hanlde include numeric,character,logical(TRUE/FALSE), complex(imaginary numbers and raw(Bytes).
+-In the above student dataset
+	-StudentID,age,admindate is a numeric variable
+	-class,perforamance,student name is a character variable
+Similarly we need to tell to R that
+	-student ID is a case identifier,admindate contains date,class& performance are nominal and ordinal variables
+-R refers to case identifiers as row names and categorical variables (nominal,ordinal) as factors.
+
+	

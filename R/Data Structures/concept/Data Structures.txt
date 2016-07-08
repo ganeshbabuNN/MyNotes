@@ -1,0 +1,121 @@
+Data structures
+===============
+-In R , There are wide variety of objects for holding data  
+
+1)Scalar
+2)vectors
+3)matrices
+4)arrays
+5)data frames
+6)lists
+-They differs in terms of type of data they can hold, how they're created their structural complexity and notation used to identify and access individual elements.
+
+Note:
+----
+-An object is anything that can be assigned to a variable.
+-It may includes constants data structures, functions and even graphs.
+-An object has a mode(which describes how the object is stored and a class(which tells generic functions like pring how to handle it)
+-Data frames is a struture in R that holds data and similar to a datasets . the columns are variables and rows are obersvations.
+-Data frames are main structures you use to store datasets.
+-Factors are nominal or ordinal variables. they're stored and treated specially in R.
+-Terminology used in statistics and computer in general may be familiar
+
+1.Scalar
+--------
+-Scalar are one-element vector
+-they are used to hold constants basically
+
+ex
+	f <- 3
+	f <- "ganesh"
+	f <- TRUE
+
+Refer Object_vector_scalar.R for example.
+
+2.Vector
+--------
+-Vector are one-dimensional array that can hold numeric data, character data or logical data
+-the combine function c() to used to form the vector.
+- Data in a vector must be only one type or mode not mix modes in the same vector
+ex
+	a <- c(2,3,1,3)  - numeric vector
+	b <- c("con", "dd", "eee") - character vector
+	c <- c(TRUE,FALSE,TRUE)- logical vector
+- vector can be refer to a elements of a vector using a numeric vector of positions within brackerts.
+ex
+	a[c(2,4)] -- refere to the 2nd and 4th element of vector
+- the colon vector used in the last statement generates a sequences of number.
+ex
+	a <- c(2:6) equivalent a <- c(2,3,4,5,6)
+
+Refer Object_vector.R for example.
+
+3.Matrices
+----------
+-A matric is a two-dimensional array in which each element has the same mode (numeric,character or logical).
+-its create using matrix() function.
+-These are two-dimensional and like vectors can contain only one data type. when there are more than one dimension, use array and where there are mutliple modes of data, you use data framews
+
+Usage
+
+	mymatrix <- matrix(vector,nrow=number_of_rows,ncol=number_of_columns,byrow=logical_value,dimnames=list		    (char_vector_rownames,char_vector_colnames))
+
+*vector contains the element of the matrix
+*nrow and ncol specify the row and column stored in character vectors
+*byrow is a optional, it indicates whether the matrix should be in row(byrow=TRUE) or by column(byrow=FALSE), default is column
+
+-Accessing the elements by using subscripts and brackets.
+	-x[i,] refer ithe row of the matrix x,x[,j] refer to the jth column
+	-x[i,j] refer ij element respective
+-the subscript i and j can be numeric vectors
+
+
+Refer Object_matrices.R for example.
+
+4.Arrays
+-------
+-An Array is an natural extension of array.
+-Arrays are to matrices but can have more than two dimensions
+-they are created by array functions
+-like matrices, they must be single mode.
+
+usage
+	myarray <- array(vector,dimension,dinames)
+
+*vector contains the element of the matrix
+*dimensions are numeric vector giving the maximal index for each dimensions
+*dimnames is an optional list of dimensions labels
+
+5.Data frames
+-------------
+-A data frame is more general than a matrix in that different column can contain diff mode of data(numeric,char and so on)
+-its similar to a datasets in SAS,SPSS and SATA.
+-It is the most common data structures deal with R in daily life.
+
+usage
+	mydata <- data.frame(col1,col2,col3....)
+*col1,col2,col3 are the column vector of any type
+*name for each column can be done via name functions
+
+-Each column must have only one mode, but you can put columns of different modes together to form a data frame.
+-They are several to identify the elements of a dataframe can be used by subscript notations or specifiying the column name.
+-The $ notations can be used to access the particular variable from a given data frame.
+
+attach,detach and with
+---------------------
+attach()
+-this attach function adds the data frame to the R search path.
+-when name is encountered, data frames in the search path are checked for the variable in order.
+
+detach()
+-this functions removes the data frame from the search path.
+-it does nothing to the data frame itself.
+-this statement is optional.
+
+with()
+
+
+
+
+
+
