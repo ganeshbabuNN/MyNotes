@@ -1,0 +1,62 @@
+Batch Processing
+================
+
+-Basically you shall be running R interactively , entering commands at the command prompt and seeing the results of each statements as its processed.
+-Sometimes, you may want to run an R program in a repeated, standard and possiblity unattended fashion like generating same report once a month. Here you can run it in batch model
+
+
+In Linux /Mac OSX systems
+-------------------------
+
+usage
+	R CMD BATCH options infile outfile
+
+*infile - is the name of the file containing R code to be executed and its given extension is .R
+*outfile - is the name of the file receiving the output and its given extension is .Rout
+*options- is the lists options that control executed.
+
+Refer Batch_Mode_Linux.R and Batch_Mode_Mac.R for example
+
+In Windows
+----------
+
+usgae
+	"C:\Program Files\R\R-3.3.1\bin\R.exe" CMD BATCH --vanilla --slave "C:\R_Workspace\Hello.R"
+
+*the first argument is R path assuming you have R environment path or binary path where R has been installed.
+*--Vanilla is the options
+*the script to be used for generating the output.
+
+Refer Batch_Mode_Windows.R for example
+
+Setting the R as envionrment variable @Path
+-------------------------------------------
+Presently I have Windows 7 operating system
+1)Navigate to Mycomputer
+2)Right click on the mycomputer icon
+3)Click the properties
+4)Click on the Advanced system properties on the left
+5)Click on the environment variable button
+6)Under the user variable , create or edit the existing variable name "path"
+7)Now append the binary R path C:\Program Files\R\R-3.3.1\bin\R.exe with prefix as delimiter (;) if any other variable name is exists
+8)Click ok
+9)Now open command prompt
+10) Type R , it should prompt the R console like look
+
+
+Command Brushups in the Windows
+-------------------------------
+dir - list of conent of directory
+cd.. - change to the parent directory. note their is no space before the two dots
+cd\ - changet to the root directory
+
+
+Command Brushups in the linux/mac
+---------------------------------
+ls - list of contne of directory
+ls -la list the content  of a directory but more information about fles
+cd .. change to parent directory. Note that there is space before the two dots
+cd dirname change directory to child diretory dirname
+cd / - change directory to child directory
+cd - change directory to the user home directory
+

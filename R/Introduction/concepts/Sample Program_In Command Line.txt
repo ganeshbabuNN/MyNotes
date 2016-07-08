@@ -1,4 +1,4 @@
-sample dataset
+Sample dataset
 ==============
 
 Age and weight of 10 infants

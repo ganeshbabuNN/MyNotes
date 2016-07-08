@@ -42,4 +42,5 @@ learning about a package
 
 usage
 	help(package="packagename")
+	help(function/datasets)
 
