@@ -86,6 +86,8 @@ usage
 *dimensions are numeric vector giving the maximal index for each dimensions
 *dimnames is an optional list of dimensions labels
 
+Refer Object_array.R for example.
+
 5.Data frames
 -------------
 -A data frame is more general than a matrix in that different column can contain diff mode of data(numeric,char and so on)
@@ -101,18 +103,85 @@ usage
 -They are several to identify the elements of a dataframe can be used by subscript notations or specifiying the column name.
 -The $ notations can be used to access the particular variable from a given data frame.
 
+Refer Object_dataframes.R for example
+
 attach,detach and with
 ---------------------
 attach()
 -this attach function adds the data frame to the R search path.
 -when name is encountered, data frames in the search path are checked for the variable in order.
+usage 
+	attach(dataframe)
+	....... statment1....
+	....... statment2....
+	detach(dataframe)
 
 detach()
 -this functions removes the data frame from the search path.
 -it does nothing to the data frame itself.
--this statement is optional.
+-this statement is optional and this is good programming practice and should be included routinely.
+
+--With this approach are evident when more than one object can have the same name.
 
 with()
+- The attach() and detach() functions are best used when you're analyazing a single data frame and you're unlikely
+to have multiple objects with the same name.best apporach is using with() functions.
+
+usage
+	with(dataframe,{
+		statement1
+		statement2
+		statement3
+	})
+-{} brackets are evaluated with references to the dataframe.
+-if there are only one statement ,the {} are optional
+-the limitation of the with() function is that assignment exist only within the function brackets.
+-if you need to create objects that will exists outside of the with() constructs use the special assignment operator <<- instead of the stand one <-.it saves the object to the global environment outside of the with() call.
+- R recommeds using with() instead of attach() buts it is a matter of preference.
+
+Refer Object_dataframes_attach_detach_with_function.R for example
+
+Case Identifier
+---------------
+-In R case identifier can be specified with a rowname options in the data-frame functions.
+-This studentid as the variable to use in labelling cases on various printouts and graphs produced by R.
+usage
+	studentdata <- data.frame(studentid,admindate,studentname,age,
+				classe,Performance,row.names=studentid)
+
+Refer Object_dataframes_Case_identifier.R for example
+
+Factor
+======
+-Variables are described in nominal,ordinal or continous 
+	-nominal variable are categorical without an implied order like classtype("class1","class2")
+	-Ordinal variable imply order but not amount like performance("Status","Weak","Good","Excellent")
+	-Continous variable can take on any value within some range and both order and amount are implied like age			(12,13,15,17)
+-Categorial (nominal) and ordered categorical(ordinal) variable in R are called factors. 
+-Factors in R and they determine how data is analyzed and presented visually.
+-The function factor() stores categorical values as vector of integers in the range[1..k] where k is the unique number in the nominal variable and an internal vector of character strings(the orginal values) mapped to these integers.
+-Those assignment are alphabetical
+-For vector representing ordinal variables , you add the parameter ordered=TRUE to the factor() function.
+-By default factor levels for character vector are created in alphabetical order.
+-character vector can be overfide the default by specifying the level options.
+-Numeric variables can be coded as factors using levels and labels options.
+
+
+list
+====
+-A list is an ordered collection of object(components).
+-A list may contain vectors,matrices,data frames and even other lists.
+-List can be created by list() functions
+
+usage
+	mylist <- list(object1,object2....)
+
+-Even object can be named.
+usage
+	mylist <- list(name1=object,name2=object....)
+
+
+
 
 
 
