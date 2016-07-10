@@ -11,6 +11,6 @@ theurl <- https://en.wikipedia.org/wiki/Brazil_national_football_team
 
 file<-read_html(theurl)
 tables<-html_nodes(file, "table")
-table1 <- table1 <- html_table(tables[5], fill = TRUE)
+table1 <- html_table(tables[5], fill = TRUE)
 
 
