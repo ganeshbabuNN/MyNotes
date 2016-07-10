@@ -1,0 +1,47 @@
+
+variables
+--------
+
+always start with _ or ..
+
+
+row--> variables
+column --> observation
+
+two type of variables
+---------------------
+number and character variable
+--character always follows with the $
+
+data step used to manipulate and process your data, it always start with the keyword called data
+procedure steps used to create your report.it always start with the keyword called proc.
+
+Compilation--> 
+execution --> __errors _n.
+Input_buffer,PDV,Descriptiontion
+
+
+internally Sas loads in two steps. compilation and Executions
+once you pass the code in the editor window, SAS translate this machine language to sas language, during this translation. there are three items created in PDV,input buffer and descriptive information
+
+Input buffer-input buffer is create for completing, while reading the data there is a chance to move to the next line before completing the first line or current line to avoid this, there is an input buffer created in between.
+PDV- it a logical area in the memory , where sas try to build one data at a time. During this data building, there are two automatic variable created in PDV, _ERROR_( it indicates error in the data set, if any error the value is 1 else 0), _N_(the no of times sas moved to data steps.
+Descriptor info - is something like once, you can see it into the log windows obeseration, variables in details.
+
+That is sas is called self explainatory.
+
+set 
+===
+it is used to copy the data from another dataset.
+
+
+Var
+===
+-it is valid only for the procedures
+-removing the variables of the data set and ordering purposes
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<classroom>   
+   <student>
+      <name>ganesh</name>
+	  <math>100</math>    
+      <science>80</science>     
+	  <socialstudies>99</socialstudies>
+   </student>
+   <student>
+      <name>bullu</name>
+	  <math>75</math>    
+      <science>32</science>     
+	  <socialstudies>80</socialstudies>          
+   </student>
+   <student>
+      <name>suraj</name>
+	  <math>65</math>    
+      <science>75</science>     
+	  <socialstudies>70</socialstudies>        
+   </student>
+    <student>
+      <name>Mary</name>
+	  <math>90</math>    
+      <science>95</science>     
+	  <socialstudies>92</socialstudies>       
+   </student>
+</classroom>

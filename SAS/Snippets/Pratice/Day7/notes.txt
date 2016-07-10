@@ -1,0 +1,6 @@
+proc transponse changes mutliple values in rows ( for a column) into columns, and can also change multiple columns values into mutliple rows values for a single column.
+
+.ID statement names th ecolumn in the input file whose row value provide the column names in the output file. there should only be one variable in an ID statement. Also, the column used for the ID statement cannot have any duplicate values.
+.VAR statement specifies which variables values are to be transposed; can be character and or number ic vriables. if var is ommitted, tranponse transposes all nueric vars.
+.Tranpose include some default variable in the output dtaset such as _NAME_, you can overide them with statement options or drop them in a dataset drop options.
+.Prefix options provides a prefix to the transposed column names instead of OCL1,COl2...etc

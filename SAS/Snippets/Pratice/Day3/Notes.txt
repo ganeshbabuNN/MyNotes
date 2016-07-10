@@ -1,0 +1,18 @@
+Merging
+=======
+merging combines observation from two or more data data sets into single obseravation in a new sas dataset. the new data set contains all variables from all the orginal dat a sets  unless you specify otherwise.
+
+one-to-one mergin and match merging.
+in one-to-one merging, you do not use a by statement. observation are combined based on their position in the input data sets.
+in match merging, you can use a by statement to combine overvation from the input dat sets based on common values of the variable by which you merge the data.
+
+One-to_one merging
+when you use the merge statement without a BY statement, SAS combines the first observation in all data sets you name in MERGE statement.
+into the first observation in the new data set , the second oversrvatio nin all datasets into the second observation in the new data set and so on. in a one-to one merg, the number of observation in the new data set is equal to the number of oversvation in the largest data set you name in the MERGE statement...
+
+
+Trailing
+========
+
+single trailing
+@ is a single trailing singn which is used to hold the line until a another input statement or continuing statemntis encountered. t it is most useful in condition inputting of data into dataset eg.
