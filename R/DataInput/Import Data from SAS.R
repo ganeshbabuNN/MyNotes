@@ -9,19 +9,20 @@ install.packages("Hmisc")
 
 #load the library
 library(Hmisc)
+setwd("C:/R_Workspace")
 
 ##Only if the sas has been installed.
 #Windows
-datadir <- "C:/mydata"
-sasexe <- "C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"
-mydata <- sas.get(libraryName=datadir,member="clients",sasprog=sasexe)
+datadir <- "C:/R_Workspace"
+sasexe <- "C:\\Program Files\\SASHome\\SASFoundation\\9.3\\sas.exe"
+mydata <- sas.get(libraryName=datadir,member="hospital",sasprog=sasexe)
 
 
 #SAS Program to save SAS dataset as a comma-delimited text file from within SAS using proc export.
-libname datadir "C:/mydata"
+libname datadir "C:\R_Workspace";
 proc export data=datadir.hospital
-	outfile="hospital.csv"
-	dbms=csv
+	outfile='C:\R_Workspace\hospital.csv'
+	dbms=csv;
 run;
 
 #R program to read the resulting file into R using method.
