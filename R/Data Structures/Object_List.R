@@ -17,8 +17,8 @@ mylist <- list(a,b,c,d)
 # with labels
 mylist <- list(title=a,num=b,c,d)
 
-#printing the first components with component number
+#Accessing the first components with component number
 mylist[[4]]
 
-#printing the first components with component name
+#Accessing the first components with component name
 mylist[["num"]]

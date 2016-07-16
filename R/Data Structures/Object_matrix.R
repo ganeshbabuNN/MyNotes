@@ -22,14 +22,14 @@ y[,1]
 y[1,2]
 
 #using colon operator generating by sequence,columns indefinate but fixed rows
- x <- matrix(1:20,nrow=2)
+x <- matrix(1:20,nrow=2)
  
  #using colon operator generating by sequence,fixed rows and columns
- x <- matrix(1:20,nrow=2,ncol=2)
+x <- matrix(1:20,nrow=2,ncol=2)
  
- #accessing 1 rows with those specific elements
- x <- matrix(1:20,nrow=2,ncol=5)
- x[1,c(1,4)]
+ #accessing 1 rows with those specific elements of those rows and columns
+x <- matrix(1:20,nrow=2,ncol=5)
+x[1,c(1,4)]
  
 
 

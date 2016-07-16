@@ -10,20 +10,26 @@ Performance <- c("status","Weak","Good","Excellent")
 studentdata <- data.frame(studentid,admindate,studentname,age,classe,Performance) 
 
 
-#normal way of plotting
+#normal way of plotting .Observer the dataframe name is mandatory by default.
 summary(studentdata$classe)
 plot(studentdata$classe,studentdata$Performance)
 plot(studentdata$classe,studentdata$age)
 
-#optimize the above code remove the data frame name and the below has some limitations when more than 
-#one object can have the same name.
+#optimize the above code by removing the data frame name the all statements 
+#and the below has some limitations which works only for one object
+attach(studentdata)#attach function adds the data frame to the R search path.
+	summary(classe)  #by default all the statement it looks for the dataframe in the R search path.
+detach(studentdata) # detach funtion removes the data frame from the search path.
+
+ #limitations one object can have the same name.
 attach(studentdata)
 	summary(classe)
 	plot(classe,Performance)
 	plot(classe,age)
 detach(studentdata)
 
-#The best recommeded use the with() functions, {} brackets are evaluated has reference 
+#The above attach and detach is best for analysing for single data frame.
+#To avoid the limitations for multiple objects with same name,The best recommeded use the with() functions, {} brackets are evaluated has reference 
 with(studentdata,{
 	print(summary(classe))
 	plot(classe,Performance)
@@ -41,10 +47,10 @@ with(studentdata,{
 	a
 })
 
-# a cannot be accessed outside.
+# a object cannot be accessed outside.
 Error: object 'a' not found
 
-#Create the special assignment operator <<- instead of standard one
+#Create the special assignment operator <<- instead of standard one and now the object inside can be accessed outside
 with(studentdata,{
 	a <<- summary(classe)
 	a

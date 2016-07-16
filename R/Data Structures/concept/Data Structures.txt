@@ -1,5 +1,18 @@
-Data structures
-===============
+Data structures in general
+==========================
+-A data structure is a specialised format for organising and storing data.
+-General data struture types includes the array,file ,record ,table ,tree and so on...
+	-A array is a method for storing information on multiple devices, in general it is a number of items arranged in 
+	 specificed way ex a list , a three dimensional table
+	-A file , in data processing it is related to collection of records example records of each customer in a file, each
+	 record would consist of fields of individual data items, such as customer name,address...so on.providing the '
+	 customer information in the same fields in each record
+	-In computer programming, A table is a data structure use to organise the information. In data processing a table 		 (also called an array) is a organised grouping of fields.
+-Any data strucuture is designed to organise data to suit a specific purpose so that it can be accessed and worked with in apporiate ways.
+-In Computer programming ,A data structures may be selected or designed to store data for the purpose on it with various algorithm
+
+Data structures in R
+====================
 -In R , There are wide variety of objects for holding data  
 
 1)Scalar
@@ -36,6 +49,8 @@ Refer Object_vector_scalar.R for example.
 --------
 -Vector are one-dimensional array that can hold numeric data, character data or logical data
 -the combine function c() to used to form the vector.
+usage
+	object <- c(data with only one mode)
 - Data in a vector must be only one type or mode not mix modes in the same vector
 ex
 	a <- c(2,3,1,3)  - numeric vector
@@ -67,7 +82,22 @@ Usage
 -Accessing the elements by using subscripts and brackets.
 	-x[i,] refer ithe row of the matrix x,x[,j] refer to the jth column
 	-x[i,j] refer ij element respective
--the subscript i and j can be numeric vectors
+	-the subscript i and j can be numeric vectors
+*Accessing elements of matrix with vector with 2 rows
+usage
+	object <- matrix(1:10, nrows=2)
+*Accessing elements of matrix object of specfic rows
+usage
+	object[n,] #n is the observation
+*Accessing elements of matrix  object by varaible positional notations/Column number
+usage
+	object[,n] #n is the variable.
+*Accessing elements of matrix object by rows and columns numbers
+usgage
+	ojbect[r,c] # r for rows and c for columns number
+#Access elements for those specific rows and some specific column name
+usage
+	ojbect[n,c(r,c)] 
 
 
 Refer Object_matrices.R for example.
@@ -86,6 +116,8 @@ usage
 *dimensions are numeric vector giving the maximal index for each dimensions
 *dimnames is an optional list of dimensions labels
 
+-Accessing the elements of the array are a natural extension of matrices and it is similar like matrices.
+
 Refer Object_array.R for example.
 
 5.Data frames
@@ -99,9 +131,22 @@ usage
 *col1,col2,col3 are the column vector of any type
 *name for each column can be done via name functions
 
--Each column must have only one mode, but you can put columns of different modes together to form a data frame.
+-Each column must have only one mode(data Type), but you can put columns of different modes together to form a data frame.
 -They are several to identify the elements of a dataframe can be used by subscript notations or specifiying the column name.
--The $ notations can be used to access the particular variable from a given data frame.
+*Accessing by positional numbers of the dataframe.
+usage
+	Dataframe[1:4] #From the first position till 4th position the variables are displayed.
+*Accessing by specifying only with those specific variables names
+usage
+	dataframe[c("variablename1","Variablename2")].
+*The $ notations can be used to access the particular variable from a given data frame.
+usage
+	dataframe$variablename
+*For cross tableulate the variables by some summary of variable name.
+usage
+	table(dataframe$variablename1,dataframe$varibalename2)
+	
+		
 
 Refer Object_dataframes.R for example
 
@@ -153,34 +198,53 @@ Refer Object_dataframes_Case_identifier.R for example
 
 Factor
 ======
--Variables are described in nominal,ordinal or continous 
-	-nominal variable are categorical without an implied order like classtype("class1","class2")
+-Variables are described in nominal,ordinal or continous variables.
+	-nominal variable are categorical without an implied order like classtype("class1","class2") data
 	-Ordinal variable imply order but not amount like performance("Status","Weak","Good","Excellent")
 	-Continous variable can take on any value within some range and both order and amount are implied like age			(12,13,15,17)
 -Categorial (nominal) and ordered categorical(ordinal) variable in R are called factors. 
 -Factors in R and they determine how data is analyzed and presented visually.
 -The function factor() stores categorical values as vector of integers in the range[1..k] where k is the unique number in the nominal variable and an internal vector of character strings(the orginal values) mapped to these integers.
 -Those assignment are alphabetical
--For vector representing ordinal variables , you add the parameter ordered=TRUE to the factor() function.
+-For vector representing ordinal variables , you add the parameter ordered=TRUE to the factor() function and where these assigned the variable by order like 1,2,3,4...
 -By default factor levels for character vector are created in alphabetical order.
 -character vector can be overfide the default by specifying the level options.
--Numeric variables can be coded as factors using levels and labels options.
+
+usages
+	object <- factor ( variablename,order=TRUE,levels= c(values1,values2...etc));
+
+-Numeric variables can be coded as factors using levels and labels options.if levels are coded with the orginal data , then would convert the variable to an unordered factor.Note the order of the labels must match the order of the levels. Note. if categorical variables wasn't intially coded would be set to missings.
+
+usage 
+	object <- factor ( variablename,levels= c(1,2),labels=c(value1,value2));
+
+
+Refer Object_Factors.R for example
 
 
 list
 ====
 -A list is an ordered collection of object(components).
--A list may contain vectors,matrices,data frames and even other lists.
+-A list allow you to gather a variety of objects under one name.
+-A list may contain four components like vectors(numeric,character),matrices,data frames and even other lists.We can combine any number of objects and save them as list.
 -List can be created by list() functions
-
-usage
+Usage
 	mylist <- list(object1,object2....)
 
 -Even object can be named.
-usage
+Usage
 	mylist <- list(name1=object,name2=object....)
+-You can access the list by a component number or name within the double brackerst.
+usage
+	mylist[[1]] #by component number
+	mylist[["variablename") #by component name.
+	mylist$variablename # this also work
+-List are important R structures for two reasons.
+1)they allow you to organise and recall disparate information in a simple way.
+2)the results of many R functions return lists.
 
 
+Refer Object_List.R for example
 
 
 

@@ -9,7 +9,6 @@ Performance <- c("status","Weak","Good","Excellent")
 #create the data frame object
 studentdata <- data.frame(studentid,admindate,studentname,age,classtype,Performance) 
 
-
 #Accesing the variable using subscript notations by positional notations of data frame
 studentdata[2:4]
 
