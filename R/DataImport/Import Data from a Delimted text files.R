@@ -26,5 +26,6 @@ str(g)
 #Let us suppress this behaviour for all character variables including the optio stringAsFactors=FALSE and colClasses options to specify a class
 grades <- read.table("students.csv",header=TRUE,row.names="studentid",sep=",",colClasses=c("character","character","character","numeric","numeric","numeric"),stringsAsFactor=FALSE)
 
-
+#read directly using read.csv functions
+g <- read.csv("students.csv")
 

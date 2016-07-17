@@ -1,0 +1,33 @@
+Annotating Datasets
+==================
+-Data analyst typically annotate datasets to make the results easier to interput.
+-Annotating generally includes adding descriptive labes to variable names and value labels to the codes used for categorical variables.
+-There are two ways annotating datasets
+1)Variable Labels
+2)Value Labels
+
+Variable Labels
+---------------
+-R's ability to handle variable labels is limited.
+-One approach is to use the variable label as the variable name and then refer tothe variable by its position index.
+usage
+	names(dataframe)[2] <- "...................labels of your choice"
+
+refer Variable Labels.R for example	
+
+Value Labels
+------------
+-the factor funciton can be used to create value labels for categorical variable.
+usage
+
+	  dataframe$variablename <- factor(dataframe$variablename, levels = c(1,2), labels= c(variable name1,variable name2)
+-Levels indicates the actual values of the variable and labels refers t to a character vector containing the desired labels.
+
+refer Value Labels.R for example
+
+
+
+
+
+
+

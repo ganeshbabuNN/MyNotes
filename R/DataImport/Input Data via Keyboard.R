@@ -6,8 +6,9 @@
 #age=numeric(0) creates a variable of specific mode but without actual data. Note that the result is assigned back to the object itself
 mydata <- data.frame(age=numeric(0),gender=character(0),weight=numeric(0))
 
-#to invoke a text editor
+#to invoke a text editor using edition function or fix objects
 mydata <- edit(mydata)
+mydata <- fix(mydata) # a shortcut for edit functions
 
 #directly embding the data into program
 mydatatext <- 

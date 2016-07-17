@@ -13,6 +13,7 @@ library(RODBC)
 con <- odbcConnect(dsn="ROracle", uid="hr", pwd ="hr", believeNRows=FALSE)
 
 #Query statement
+sqlFetch(con,'employeedetails') # may not work all the time
 sqlQuery(con, "select count(*) from employees")
 d <- sqlQuery(con, "select * from employees")
 

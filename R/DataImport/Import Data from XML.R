@@ -27,6 +27,10 @@ dfxml[c("math","science")]
 dfxml[1:3]
 dfxml[1,3]
 
+#Reading the HTML table 
+require(XML)
+bowl <- readHTMLTable("http://www.jaredlander.com/2012/02/another-kind-of-super-bowl-pool/",header=FALSE,stringAsFactors=FALSE,which=1)
+
 
 
 

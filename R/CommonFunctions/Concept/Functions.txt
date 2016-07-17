@@ -1,0 +1,72 @@
+length
+------
+length of the object
+
+usage
+	length(object)
+	length()
+
+Dim
+---
+dimensions of an object
+usage
+	dim(object)
+
+str
+--
+structure of an object using
+usage
+	str(object)
+
+class
+-----
+class of an object
+usage
+	class(Object)
+
+mode
+----
+how an object is stored using object functions
+
+usage
+	mode(Object)
+
+name
+----
+name of an object
+usage
+	name(object)
+
+
+combine
+-------
+combine object into a vector
+
+usage
+	c(object,object)
+
+Head
+----
+head functions list first part of the an object
+usage
+	head(object)
+
+tail
+----
+Trial functions last part of the object
+usage
+	tail(object)
+
+rbind
+-----
+rbind() function combines vector, matrix or data frame by rows
+
+usage
+	rbind(object1,object2)
+
+cbind
+-----
+combine both the column into on variables
+
+usage
+	cbind(object1,object2)
