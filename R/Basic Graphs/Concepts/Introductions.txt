@@ -1,0 +1,6 @@
+-Basically we are hear to creating graphs and saving them in a variety of formats and majority concepts is modifying the default graphs produced by R.
+-Overall modification means like graphs axes,fonts,symbols,lines and colours and adding titles,subtitles,labels,plotted text,legends and reference lines. And also specify the size of the graph and margins
+-This will apply to all graphs except to ggplot2.
+
+
+

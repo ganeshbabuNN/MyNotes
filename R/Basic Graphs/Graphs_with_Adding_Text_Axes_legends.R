@@ -7,10 +7,11 @@ drugA <- c(16,20,27,40,60)
 drugB <- c(15,18,25,31,40)
 
 #Axis values range setup
-plot(dose,drugA,type="b",col="red",lty=2,pch=2,lwd=2,main="Clinical Trial for Drug A",sub="this is hypothetical data",xlab="Dosage",ylab="Drug Response",xlim=c(0,60),ylim=c(0,70)) 
+plot(dose,drugA,type="b",col="red",lty=2,pch=2,lwd=2,main="Clinical Trial for Drug A",sub="this is hypothetical data",
+xlab="Dosage",ylab="Drug Response",xlim=c(0,60),ylim=c(0,70))  #xlim and ylim options are the co-ordination ranges
 
 #TITLES
-#----------------
+#------
 #use title() function to add information to a title and axis labels to a plot along with graphical parameters
 plot(dose,drugA,type="b",xlim=c(0,60),ylim=c(0,70))
 par(ann=FALSE) #ann=FALSE options remove default titles and labels in the plot
@@ -90,3 +91,37 @@ library(Hmisc) #sepial library for ticks
 minor.tick(nx=3,ny=3,tick.ratio=0.5)
 legend("topleft",inset=.05,title="Drug Type",c("A","B"),lty=c(1,2),pch=c(15,17),col=c("red","blue"))
 par(opar)
+
+#TEXT ANNOTATIONS
+#----------------
+#text can be added to graph using the text() and mtext() functions
+#text() places text within the graph, whereas mtext() places text in one of the four margins
+attach(mtcars)
+plot(wt,mpg,main="Mileage vs car weight",xlab="Weight",ylab="Mileage",pch=18,col="blue",cex=0.2)
+#pos options position relative to location 1=below,2=left,3=above and 4=right.
+#side 
+text(wt,mpg,row.names(mtcars),cex=0.5,pos=4,col="red")
+detach(mtcars)
+
+#display font families
+par(lwd=1,cex=1,font.lab=1)
+par(cex=1.5)
+plot(1:7,1:7,type="n")
+text(3,3,"Example of default text")
+text(4,4,family="mono","Example of mono-spaced text")
+text(5,5,family="serif","Example of serif text")
+par(opar)
+
+#MATH ANNOTATIONS
+#----------------
+#adding the mathematical symobols and formulae to a graph using text-Like
+demo(plotmath) # demo samples and examples
+
+par(mar = c(4, 4, 2, 0.1))
+plot(rnorm(100), rnorm(100),
+  xlab = expression(hat(mu)[0]), ylab = expression(alpha^beta),
+  main = expression(paste("Plot of ", alpha^beta, " versus ", hat(mu)[0])))
+
+
+
+

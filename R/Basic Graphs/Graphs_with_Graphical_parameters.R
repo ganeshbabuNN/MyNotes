@@ -13,6 +13,14 @@ plot(dose,drugA)
 
 #check help(plot) for other options
 
+#LABELS 
+plot(dose,drugA,type="b",lty=2,main="Main title") # main options modify/add the main title labels
+plot(dose,drugA,type="b",lty=2,xlab="Dose Escalation")#xlab options modify/add the x axises labels
+plot(dose,drugA,type="b",lty=2,ylab="Drug A category")#ylab options modify/add the y axises labels
+plot(dose,drugA,type="b",lty=2,sub="subtitle") #sub options modify/adds the subtitle
+#combining all the options in one statement
+plot(dose,drugA,type="b",lty=2,main="Main title",xlab="Dose Escalation",ylab="Drug A category",sub="subtitle") 
+
 ##GRAPHICAL PARAMETERS
 #---------------------
 #par() functions for customizing the graph parameter (fonts,colors,axes and labels)
@@ -28,14 +36,6 @@ par(lty=2)
 par(pch=17)
 plot(dose,drugA,type="b")
 par(opar)
-
-#LABELS 
-plot(dose,drugA,type="b",lty=2,main="Main title") # main options modify/add the main title labels
-plot(dose,drugA,type="b",lty=2,xlab="Dose Escalation")#xlab options modify/add the x axises labels
-plot(dose,drugA,type="b",lty=2,ylab="Drug A category")#ylab options modify/add the y axises labels
-plot(dose,drugA,type="b",lty=2,sub="subtitle") #sub options modify/adds the subtitle
-#combining all the options in one statement
-plot(dose,drugA,type="b",lty=2,main="Main title",xlab="Dose Escalation",ylab="Drug A category",sub="subtitle") 
 
 #SYMBOLS and LINES using 
 #-----------------------
