@@ -33,9 +33,10 @@ usage
 
 name
 ----
-name of an object
+name of an object basically variable names of those object
+
 usage
-	name(object)
+	names(object)
 
 
 combine
