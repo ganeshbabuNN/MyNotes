@@ -38,7 +38,7 @@ plot(dose,drugA,type="b",lty=2,sub="subtitle") #sub options modify/adds the subt
 plot(dose,drugA,type="b",lty=2,main="Main title",xlab="Dose Escalation",ylab="Drug A category",sub="subtitle") 
 
 #SYMBOLS and LINES using 
-#-------------------
+#-----------------------
 #specifying the graphical parameters for plotting symbols and lines used in graph
 
 opar <- par(no.readonly=TRUE) 
@@ -133,7 +133,7 @@ par(mai=c(1,.5,1,.2)) # mai options numeric vector indicating in inches c(bottom
 plot(dose,drugA,type="b",col="red")
 par(opar)
 
-#Example combing to control graph appearance
+#Example combing all control graph appearance
 dose <- c(20,30,40,45,60)
 drugA <- c(16,20,27,40,60)
 drugB <- c(15,18,25,31,40)

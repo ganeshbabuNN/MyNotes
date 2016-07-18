@@ -30,7 +30,7 @@ plot(wt,mpg)
 abline(lm(mpg~wt))
 title("Regression of MPG on Weight")
 detach(mtcars)
-dev.off() #turn of the graph window.
+dev.off() #turn of the active window.
 
 
 
