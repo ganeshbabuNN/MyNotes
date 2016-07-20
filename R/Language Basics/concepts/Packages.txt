@@ -1,7 +1,7 @@
 Packages
 ========
 -It is collections of R functions, data and compiled code
--The directory where packages are stored on your computer are called the library
+-The directory where packages are stored on your computer are called the library.
 -The function .libPaths() shows the library is located in your computer and function library() list of packages available in your computer.
 -The command search() functions tells you which packages are loaded and ready to use.
 

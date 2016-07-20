@@ -81,7 +81,7 @@ plot(dose,drugA,type="b", lty=2,pch=127,lwd=4,col=mycolors)
 
 #specifically the text SIZE
 opar <- par(no.readonly=TRUE) 
-par(cex=1)#cex plotted text size
+par(cex=1)#cex plotted text size/symbol size
 par(cex.axis=1)#cex.axis option axis text relative
 par(cex.lab=1)#cex.lab option axis labels relative
 par(cex.main=1)#cex.lab option main title relative
@@ -89,7 +89,7 @@ par(cex.sub=1)#cex.sub option sub title relative
 plot(dose,drugA,type="b",main="Main title",sub="Subtitle",xlab="X axis",ylab="Y axis")
 par(opar)
 #above can be written in the one statement
-plot(dose,drugA,type="b",cex=4,sub="sub title",cex.axis=2,cex.lab=2,cex.main=2,cex.sub=2)
+plot(dose,drugA,type="b",main="main title",sub="sub title",cex=4,cex.axis=2,cex.lab=2,cex.main=2,cex.sub=2)
 
 #Specifying the FONT family , size and style
 opar <- par(no.readonly=TRUE) 
@@ -102,11 +102,21 @@ par(font.sub=1)#font.sub options for font for subtitles
 par(family="mono")#family font family for standard values serif,sans and mono
 plot(dose,drugA,type="b",main="Main title",sub="Subtitle",xlab="X axis",ylab="Y axis")
 par(opar)
+#above can be written in the one statement
+plot(dose,drugA,type="b",main="Main title",sub="sub title",font=4,font.axis=2,font.lab=2,font.main=2,font.sub=2,family="mono")
+
+#In general to lookup the fonts names in the envrionment based on the platform use the name() functions
+names(pdfFonts()) # for PDF fonts
+names(windowsFonts()) #for Windows fonts
 
 #mapped by WINDOWS fonts assigning the map values
 names(windowsFonts())#check the fonts list and for mac its quartzFonts()
 opar <- par(no.readonly=TRUE) 
-windowsFonts(A=windowsFont("Arial Black"),B=windowsFont("Comic Sans MS"),C=windowsFont("leelawdb")) #map the windows fonts by letters
+windowsFonts(
+A=windowsFont("Arial Black"),
+B=windowsFont("Comic Sans MS"),
+C=windowsFont("leelawdb")
+) #map the windows fonts by letters
 par(family="B")
 plot(dose,drugA,type="b",main="Main title",sub="Subtitle",xlab="X axis",ylab="Y axis")
 par(opar)
@@ -120,18 +130,19 @@ abline(lm(mpg~wt))
 title("Regression of MPG on Weight")
 detach(mtcars)
 dev.off()
-#the above statment can be written in one statements
-plot(dose,drugA,type="b",main="Main title",sub="Sub title",xlab="X Axis",ylab="Y Axis",font.axis=2,font.lab=1,font.main=4,font.sub=2,cex=2,ps=14,family="serif")
 
 #GRAPHS and MARGIN Dimensions
 #-----------------------------
 #basically controls the plot dimensions and margin sizes
 # check the website for more informations http://research.stowers-institute.org/efg/R/Graphics/Basics/mar-oma/ options overview
 opar <- par(no.readonly=TRUE)
-par(pin=c(1,1))#pin options supplies plot dimensions with width and height
+par(pin=c(4,3))#pin options supplies plot dimensions with width and height
 par(mai=c(1,.5,1,.2)) # mai options numeric vector indicating in inches c(bottom,left,top,right)
+par(mar=c(0,.5,0,.2)) # mai options numeric vector indicating in lines c(bottom,left,top,right)
 plot(dose,drugA,type="b",col="red")
 par(opar)
+#this can be written in one statement
+plot(dose,drugA,type="b",main="Main title",sub="sub title",pin=c(4,3),mai=c(1,.5,1,.2),mar=c(1,0,1,0))
 
 #Example combing all control graph appearance
 dose <- c(20,30,40,45,60)

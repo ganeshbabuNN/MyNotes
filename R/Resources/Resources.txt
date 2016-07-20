@@ -23,3 +23,7 @@ https://vincentarelbundock.github.io/Rdatasets/datasets.html
 import and export manual
 ------------------------
 https://cran.r-project.org/doc/manuals/r-release/R-data.pdf
+
+Eff research notes--**
+------------------
+http://research.stowers-institute.org/efg/
