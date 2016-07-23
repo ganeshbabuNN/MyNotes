@@ -54,10 +54,11 @@ col=1,col="White",col="#FFFF",col=rgb(1,1,1) and col=hsv(0,0,1)
 -the gb() functions creates colors based on red-green-blue values
 -the hsv() creates colors based on hue-saturations values
 -the color() functiosn all available color names.
--Refer http://research.stowers-institute.org/efg/R/Color/Chart/ where Earl F Glynn has created excellent online tutors
+-Refer http://research.stowers-institute.org/efg/R/Color/Chart/ where Earl F Glynn created tutor on colors
 -R also has a number of functions that can be used to create vectors of contingous colors.
 -It includes rainbow(),heat.color(),terrain.colors(),topo.color() and cm.colors().
 -The RColorBrewer package is particularly popular for creating attractive color pallettes.
+-Refer http://colorbrewer2.org/  for more information on the RColorBrewer
 -R provides numerous methods for generating color vectors.
 
 example
@@ -91,6 +92,7 @@ Graph and margin dimensions
 -Pin options supplies plot dimensions with width and height
 -Mai options numeric vector indicating in inches c(bottom,left,top,right)
 -Mar options numeric vector indicating in lines c(bottom,left,top,right)
+-Refer http://research.stowers-institute.org/efg/R/Graphics/Basics/mar-oma/ for tutor on Margins
 
 Example
 	plot(dose,drugA,type="b",main="Main title",sub="sub title",pin=c(4,3),mai=c(1,.5,1,.2),mar=c(1,0,1,0))

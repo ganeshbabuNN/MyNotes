@@ -144,7 +144,7 @@ par(opar)
 #this can be written in one statement
 plot(dose,drugA,type="b",main="Main title",sub="sub title",pin=c(4,3),mai=c(1,.5,1,.2),mar=c(1,0,1,0))
 
-#Example combing all control graph appearance
+#Example combing all features graph appearance
 dose <- c(20,30,40,45,60)
 drugA <- c(16,20,27,40,60)
 drugB <- c(15,18,25,31,40)
