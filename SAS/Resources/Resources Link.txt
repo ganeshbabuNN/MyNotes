@@ -1,5 +1,5 @@
-SAS LINK
+SAS Certfication LINK
 http://support.sas.com/certify/index.html
 
-SAS KB Center-DOcumentation Center
+SAS Offical Product documentation Center
 http://support.sas.com/documentation/index.html

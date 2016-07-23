@@ -27,3 +27,46 @@ https://cran.r-project.org/doc/manuals/r-release/R-data.pdf
 Eff research notes--**
 ------------------
 http://research.stowers-institute.org/efg/
+
+
+Learning Sites
+==============
+
+Quick-R -- GOOD
+--------
+http://www.statmethods.net/
+
+R Offical homepage
+------------------
+https://cran.r-project.org/   --> Click on manuals
+
+R Offical packages Available
+----------------------------
+https://cran.r-project.org/web/packages/
+
+
+R-IDE
+=====
+
+R Offical homepage
+------------------
+https://cran.r-project.org/ 
+
+R Studio
+--------
+https://www.rstudio.com/
+
+MRAN- Microsoft R Application Network
+-------------------------------------
+https://mran.microsoft.com/
+
+Rattle
+--------
+http://rattle.togaware.com/
+
+
+
+
+
+
+

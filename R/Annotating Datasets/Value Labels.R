@@ -11,7 +11,7 @@ Performance <- c("status","Weak","Good","Excellent")
 studentdata <- data.frame(id,admindate,name,gender,age,classtype,Performance) 
 
 #creating the levels for value using factor functions
-studentdata$age<- factor(studentdata$age,levels=c(1,2),labels = c("male","female"))
+gender<- factor(studentdata$gender,levels=c(1,2),labels = c("male","female"))
 
 #check the levels of the using str functions
 str(studentdata)
