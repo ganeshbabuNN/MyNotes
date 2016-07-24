@@ -54,7 +54,7 @@ https://cran.r-project.org/
 
 R Studio
 --------
-https://www.rstudio.com/
+https://www.rstudio.com/ 
 
 MRAN- Microsoft R Application Network
 -------------------------------------
@@ -63,6 +63,8 @@ https://mran.microsoft.com/
 Rattle
 --------
 http://rattle.togaware.com/
+
+--------
 
 
 

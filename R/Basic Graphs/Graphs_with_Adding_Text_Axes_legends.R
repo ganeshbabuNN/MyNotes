@@ -9,12 +9,14 @@ drugB <- c(15,18,25,31,40)
 #Axis values range setup
 plot(dose,drugA,type="b",col="red",lty=2,pch=2,lwd=2,main="Clinical Trial for Drug A",sub="this is hypothetical data",
 xlab="Dosage",ylab="Drug Response",xlim=c(0,60),ylim=c(0,70))  #xlim and ylim options are the co-ordination ranges
+par(ann=FALSE) #ann=FALSE options remove default titles and labels in the plot
 
 #TITLES
 #------
 #use title() function to add information to a title and axis labels to a plot along with graphical parameters
+
 plot(dose,drugA,type="b",xlim=c(0,60),ylim=c(0,70))
-par(ann=FALSE) #ann=FALSE options remove default titles and labels in the plot
+par(ann=FALSE)
 title(main="main title",col.main="red",sub="Sub Title",col.sub="blue")#main and sub options specifyies the titles
 title(xlab="x-axis label",ylab="y-axis label",col.lab="green",cex.lab=0.75) #xlab and ylab are the axis labels
 
@@ -22,7 +24,7 @@ title(xlab="x-axis label",ylab="y-axis label",col.lab="green",cex.lab=0.75) #xla
 #----------------
 #Axis() functions is typically used for custom axis
 opar <- par(no.readonly=TRUE)
-plot(dose,drugA,type="b",lty=2,pch=2,lwd=2,ann=FALSE,xlim=c(0,60),ylim=c(0,70))
+plot(dose,drugA,type="b",lty=2,pch=2,lwd=2,axes=FALSE,xlim=c(0,60),ylim=c(0,70))
 lines(dose,drugB,type="b",lty=2,pch=2,lwd=2,col="red")#line functions() adds an new line
 #axis(side=4)#side options is integer indicating the side of the graph on which to draw the axix 1(bottom),2(left),3(top),4(right)
 #axis(side=4,at=drugB)#at options where numeric vector indicating where tick marks should be drawn
