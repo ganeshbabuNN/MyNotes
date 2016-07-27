@@ -18,133 +18,13 @@ after opening first graph window, choose history > recording and then previous a
 *Or using dev.new(),dev.next(),dev.prev(),dev.set() and dev.off() to have multiple graph window open at one time on any platform.
 seeing help(dev.cur)
 
-Graphical Parameters
-====================
--There are many features of graph(Fonts,Colors,axes and labels) through options called graphical parameters using par() functions
-format
-	par(optionname=value,optionname=value,...)
--Specifying the par() functions without parameters produces a list of current graphical settings.
--Adding no.readonly=TRUE options produces a list of current graphical setting that can be modified.
-
-opar <- par(no.readonly=TRUE) 
-par(lty=2,pch=17) 
-plot(dose,drugA,type="b")
-par(opar)
-
-*The first statement makes a copy of the current settings.
-*The second statements changes the default line type to dashed (lty=2) and the default symbol for plotting plottings point to a solid traingle(pch=17).
-*They can may many separate par() statements for the above code.
-
-opar <- par(no.readonly=TRUE) 
-par(lty=2)
-par(pch=17)
-plot(dose,drugA,type="b")
-par(opar)
-
--The other best way to specify the graphical parameters by providing the optionname=value paris directly to the high level plotting cuntions.
+We shall learn about the Graphical parameters
+-Graphical Parameters
+-Text,Axes and legends
 
 
-plot(dose,drugA,type="b",lty=3,pch=10,lwd=3,cex=1) 
-
-Symbols and lines
-----------------
--As seen in the above example, we can use the graphical parameters in the plot functions.
--pch options specifies to used when plotting points.
--lty options to specify the type of line desired
-
-Refer Symbols&Lines.png file for symbols and lines
-
-ex
-	plot(dose,drugA,type="b",lty=3,pch=10,lwd=3,cex=1) 
-
-Colors
-------
--There are several color-related parameters
--Controlling color can be controlled using the col options.
--This colors can be applied to the axis text,axis labels, titles,subtitles,background and foreground color
--To specify colors in R by index, name,hexademical,RGB or HSV
-
-for example
-col=1,col="White",col="#FFFF",col=rgb(1,1,1) and col=hsv(0,0,1)
-
--the gb() functions creates colors based on red-green-blue values
--the hsv() creates colors based on hue-saturations values
--the color() functiosn all available color names.
--Refer http://research.stowers-institute.org/efg/R/Color/Chart/ where Earl F Glynn created tutor on colors
--R also has a number of functions that can be used to create vectors of contingous colors.
--It includes rainbow(),heat.color(),terrain.colors(),topo.color() and cm.colors().
--The RColorBrewer package is particularly popular for creating attractive color pallettes.
--Refer http://colorbrewer2.org/  for more information on the RColorBrewer
--R provides numerous methods for generating color vectors.
-
-example
-
-	plot(dose,drugA,type="b", lty=2,pch=127,col="red",main="Main title",sub="Subtitle",
-	col.axis="black",col.lab="deeppink4",col.main="darkviolet",col.sub="deepskyblue",fg="yellow",bg="green") 
-
-
-Text Characters
----------------
--As you know Graphic parameters are used to specify text size, font and style.
--Text size can be applied to the axis text,axis labels, titles,subtitles using the cex options.
-example
-	plot(dose,drugA,type="b",cex=4,sub="sub title",cex.axis=2,cex.lab=2,cex.main=2,cex.sub=2,ps=4,cex=1,family="mono")
-
--Even the font type and style can be controlled using the size and also be applied to axis text,axis labels, titles,subtitles.
-Example
-
-	plot(dose,drugA,type="b",sub="sub title",font=4,font.axis=2,font.lab=2,font.main=2,font.sub=2,family="mono")
-
--On windows platform ,Font family can be mapped using a mapping functions() and then call using par(family="A").e
-windowsFonts(
-A=windowsFont("Arial Black"),
-B=windowsFont("Comic Sans MS"),
-C=windowsFont("leelawdb")
-) 
-
-Graph and margin dimensions
----------------------------
--Here controlling the plot dimensions and margin sizes using the pin, mai..etc options
--Pin options supplies plot dimensions with width and height
--Mai options numeric vector indicating in inches c(bottom,left,top,right)
--Mar options numeric vector indicating in lines c(bottom,left,top,right)
--Refer http://research.stowers-institute.org/efg/R/Graphics/Basics/mar-oma/ for tutor on Margins
-
-Example
-	plot(dose,drugA,type="b",main="Main title",sub="sub title",pin=c(4,3),mai=c(1,.5,1,.2),mar=c(1,0,1,0)),
+		
 	
-Text,Axes and legends
-=====================
--Other High level plotting functions allows to includes axis and text options as well as graphical parameter like adding 
-title(main),subtitle(sub),axis labels(xlab,ylab) and axis ranges(xlim,ylim).
--And some of the other plotting functions includes default titles and labels and these can be removed by adding options
-ann=FALSE in the plot() statement or in separte par() functions
-
-Title
------
--Use the title() functions to add and axis labels to a plot.
-format	
-	title(main="main title",sub="subtitle",xlab="x-axis label",ylab="y-axis label")
--Graphical parameter like text size,font,rotations and color can also be specified in title().
-
-Axes
-----
--R uses Default axes, you can create custom axes with the axis() functions
-format	
-	axis(side,at=,labels=,pos=,lty=,col=,las=,tck=,...)
--By default, when creating a custom axis , you should suppress the axis that automatically generated by the high level plotting functions.
--the options ann=FALSE suppress all axes, including all axis frame lines unless you add the options frame.plot=TRUE.
--the options xaxt="n" and yaxt="n" suppress the x-axis and y-axis respectively.(leaveing frame lines without ticks)
--By default plot functions creates major tick marks but not the minor tick marks. for that Hmisc packages need to be installed
-format
-		library(Hmisc)
-		minor.tick(nx=n,ny=n, tick.ratio=n)
- *nx and ny specify the intervals into which divide the area between major tick marks on the x and y-axis.
- *tick.ratio is the size of the minor tick mark relative to the major tick mark.
- 
- 
-
-
 
 
 
