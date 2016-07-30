@@ -7,6 +7,9 @@ help("sd") or ?sd
 #searches the help system for the instance of the string "sd"
 help.search("sd") or ??sd
 
+#learning about a package
+help(package="Hmisc")
+
 #example of the function sd ( quotation are optional)
 example("sd")
 

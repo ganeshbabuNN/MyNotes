@@ -16,7 +16,7 @@ y <- matrix(cells,nrow=2,ncol=2,byrow=FALSE,dimnames=list(rnames,cnames))
 y[,2]
 
 #accessing the matrix by column
-y[,1]
+y[1]
 
 #accessing the matrix specific element of the matrix
 y[1,2]

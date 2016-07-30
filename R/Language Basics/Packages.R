@@ -4,6 +4,11 @@ install.packages("Hmisc")
 #if the packages has any other dependencies supplies a options
 install.packages("Hmisc",dependencies=TRUE)
 
+#installing multiple packages and checking the avaiabablity in the workspace
+wants <- c("car", "Hmisc")
+has   <- wants %in% rownames(installed.packages())
+if(any(!has)) install.packages(wants[!has])
+
 #update the packages if any update from author
 update.packages("Hmisc")
 
