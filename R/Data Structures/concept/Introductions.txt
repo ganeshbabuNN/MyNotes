@@ -1,5 +1,5 @@
 What is Data Structures
-===============
+=======================
 -In Computer science , data structures is a way of organizing data in computer so it can be used efficiently
 -In general it is based of a computer to fetch and store data at any place in its memory pointer.
 
@@ -13,8 +13,8 @@ studentID	AdminDate	studentName	age	class	Performance
 3		12/13/2015	hari		15	Class3	Good
 4		14/12/2015	gana		17	Class4	Excellent
 
-Datasets
-========
+Understanding Datasets
+=====================
 -A data sets is usually a rectangular arrays of data with rows representing obserations and columns representing variables.
 -Different traditions have different names for the rows and columsn in datasets
 	-Statistics refers has observations and variables
@@ -38,5 +38,19 @@ DataTypes or Mode
 Similarly we need to tell to R that
 	-student ID is a case identifier,admindate contains date,class& performance are nominal and ordinal variables
 -R refers to case identifiers as row names and categorical variables (nominal,ordinal) as factors.
+
+Data structures in general
+==========================
+-A data structure is a specialised format for organising and storing data.
+-General data struture types includes the array,file ,record ,table ,tree and so on...
+	-A array is a method for storing information on multiple devices, in general it is a number of items arranged in 
+	 specificed way ex a list , a three dimensional table
+	-A file , in data processing it is related to collection of records example records of each customer in a file, each
+	 record would consist of fields of individual data items, such as customer name,address...so on.providing the '
+	 customer information in the same fields in each record
+	-In computer programming, A table is a data structure use to organise the information. In data processing a table 		 (also called an array) is a organised grouping of fields.
+-Any data strucuture is designed to organise data to suit a specific purpose so that it can be accessed and worked with in apporiate ways.
+-In Computer programming ,A data structures may be selected or designed to store data for the purpose on it with various algorithm
+
 
 	

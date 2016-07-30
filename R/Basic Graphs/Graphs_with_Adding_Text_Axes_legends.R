@@ -47,7 +47,7 @@ mtext("Drug B",side=4,line=2,cex.lab=1,col="blue",las=1)
 title(main="Main title",xlab="x-axis label",ylab="y-axis label",col.lab="green",cex.lab=0.75) # adding title
 par(opar)
 
-#combining all axis and title
+#combining all concepts axis and title
 opar <- par(no.readonly=TRUE)
 x <- c(1:10)
 y <- x

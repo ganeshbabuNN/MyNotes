@@ -21,6 +21,7 @@ seeing help(dev.cur)
 We shall learn about the Graphical parameters
 -Graphical Parameters
 -Text,Axes and legends
+-Combining Graphs
 
 
 		

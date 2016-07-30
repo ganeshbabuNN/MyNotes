@@ -64,13 +64,14 @@ detach(mtcars)
 
 #FIGURE ARRANGEMENT WITH FINE CONTROL
 #------------------------------------
+#the following add two box plots are added to a scatter plot to create single enchaned graph.
 #using fig parameter in par() functions
 opar <- par(no.readonly=TRUE)
 par(fig= c(0,0.8,0,0.8))
 plot(mtcars$wt,mtcars$mpg,xlab="Miles Per Gallen",ylab=" Car Weight")
-par(fig=c(0,0.8,0.55,1),new=TRUE)
+par(fig=c(0,0.8,0.55,1),new=TRUE)    # add a box plot above
 boxplot(mtcars$wt,horizontal=TRUE,axes=FALSE)
-par(fig=c(0.65,1,0,0.8),new=TRUE)
+par(fig=c(0.65,1,0,0.8),new=TRUE)  # add a box plot to the right.
 boxplot(mtcars$mpg,axes=FALSE)
 mtext("Enchanced Scatterplot",side=3,outer=TRUE,line=3)
 par(opar)

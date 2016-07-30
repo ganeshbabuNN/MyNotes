@@ -1,0 +1,40 @@
+-R makes it easy to combin several graphs into one overall graph , using either the par() or layout().
+
+
+Using par() fuction 
+-------------------
+-Using par() function, we can include graphical parameter 
+	mfrow=c(nrows,ncols) to create a matrix  for nrows X ncols that are filled in row.
+	mfcols=c(nrows,ncols) to create a matrix for nrows X ncols that are filled in columns.
+-For high level functions hist() includes a default title ( use main=" " to suppress it or ann=FALSE to suppress all titles and labels.
+
+Layout()
+--------
+-The layout() function has the form layout(mat, where mat is a matrix object specifying the locations of the multiple plots to combine.
+-Optionlly include widths = and heights= options in the layout() function to control size of the each figure more precisely. These options have the following form.
+	*widths=A vector of values for the widths of columns
+	*heights=A vector of values for the height of rows.
+-relative widths are specified with numeric values. absolute widths(in centimeters) are specified with the lcm() function.
+-It gives the easy control over both the numbers and placement of graphs in the final image and relative size of these graphs.
+
+Adding a Plot on figure
+-----------------------
+-R gives the features where we can arrange or superimpose several figures to create a single meaningful plot.Doing so requires fine control over the placement of the figures.
+-We can accomplish this with the fig=graphical parameters.
+
+Refering to the example Graphs_Combing_Graphs.R
+Concept behind his.
+-To understand how this graph is created, think of a full graph area is going from (0,0) in the lower-left corner to (1,1) in the upper-right corner. This help you to visualize this. the format of the fig=parameter is a numerical vector of the form c(x1,x2,y1,y2).
+-the first fig=sets up the scatter plot going from 0 to 0.8 on the x-axis and 0 to 0.8 on the x-axis and 0 to 0.8 on the y-axis.
+	par(fig=c(0,0.8,0.55,1),new=TRUE)
+	boxplot(mtcars$wt,horizontal=TRUE,axes=FALSE)
+	par(fig=c(0.65,1,0,0.8),new=TRUE)  # add a box plot to the right.
+	boxplot(mtcars$mpg,axes=FALSE)
+-The plot goes from 0 to 0.0=8 on the x-axis and 0.55 to 1 on the y-axis. the box plot on the right goes from 0.65 to 1 on the x-axis and 0.to 0.8 on the y-axis.fig=starts a new plot, so when you add a figure to an existing graph, include the new TRUE option
+-Using fig=graphical parameters to combine several plots into any arrangement within a single graph. 
+	
+
+
+
+
+

@@ -1,15 +1,3 @@
-Data structures in general
-==========================
--A data structure is a specialised format for organising and storing data.
--General data struture types includes the array,file ,record ,table ,tree and so on...
-	-A array is a method for storing information on multiple devices, in general it is a number of items arranged in 
-	 specificed way ex a list , a three dimensional table
-	-A file , in data processing it is related to collection of records example records of each customer in a file, each
-	 record would consist of fields of individual data items, such as customer name,address...so on.providing the '
-	 customer information in the same fields in each record
-	-In computer programming, A table is a data structure use to organise the information. In data processing a table 		 (also called an array) is a organised grouping of fields.
--Any data strucuture is designed to organise data to suit a specific purpose so that it can be accessed and worked with in apporiate ways.
--In Computer programming ,A data structures may be selected or designed to store data for the purpose on it with various algorithm
 
 Data structures in R
 ====================
