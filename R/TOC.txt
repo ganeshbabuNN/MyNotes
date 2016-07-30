@@ -8,14 +8,13 @@
 		-In command line
 		-In Graphics
 		-In Scripts
+	-Executing a Program
 	-Basic structure of a program-ND
 	-Getting Help in R(Introduction/)
 	-Workspace in R(Introduction/)
 	-Input and Ouput
-	-Packages(Language Basics/)
-	-Batach Processing
-	-Reusing Results(Introduction/)
-	-Executing a Program
+	-What are Packages?
+	-Reusing Results
 2-Programming Terms---Anything Specific
 	-Application & Solutions
 	-Syntax and Syntax Errors
@@ -51,9 +50,11 @@
 	-Objects(Language Basics/)
 	-Data structures
 	-Annotating Datasets
-4-Abstract Concepts
+	-Packages
+4-Advanced Concepts
 	-Data Input
 	-Useful Functions
+	-Batch Processing
 5-Graphs
 	-Basics Graphs
 		-Graphical Parameters
