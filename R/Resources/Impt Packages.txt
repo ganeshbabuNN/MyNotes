@@ -1,0 +1,27 @@
+Packages must know
+==================
+#Sql package
+install.packages("sqldf") 
+#forecast makes it incredibly easy to fit time series models like ARIMA, ARMA, AR, Exponential Smoothing,
+install.packages("forecast")
+#basic control operations for manipulating data 
+install.packages("plyr")
+#provides some much needed string operators in R. 
+#Many of the functions use data structures that aren't commonly used when doing basic analysis
+install.packages("stringr")
+#The database driver package of your choice
+install.packages("RPostgreSQL")
+install.packages("RMySQL")
+install.packages("RMongo")
+install.packages("RODBC")
+install.packages("RSQLite")
+# lot of functions handling date- time
+install.packages("lubridate")
+# great looking plots
+install.packages("ggplot2")
+# library for statistical quality control
+install.packages("qcc")
+#converting data from wide to long format
+install.packages("reshape2")
+# Best machine learning package
+install.packages("randomForest")
