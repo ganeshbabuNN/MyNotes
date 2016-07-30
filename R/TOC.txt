@@ -1,10 +1,20 @@
 1-Getting Started
-	-Introduction & History -ND
-	-Architecture
-	-Configuration & installations using code editors
-	-Sample program 1,2,3,4
-	-Basic structure of a program
-	-Programming Style
+	-Introduction to R(Introduction/)
+	-Uses of R(Introduction/)
+	-Architecture-ND
+	-Installations and configing R(Installations/)
+	-Sample program(Introduction/)
+		-Your First program
+		-In command line
+		-In Graphics
+		-In Scripts
+	-Basic structure of a program-ND
+	-Getting Help in R(Introduction/)
+	-Workspace in R(Introduction/)
+	-Input and Ouput
+	-Packages(Language Basics/)
+	-Batach Processing
+	-Reusing Results(Introduction/)
 	-Executing a Program
 2-Programming Terms---Anything Specific
 	-Application & Solutions
@@ -37,192 +47,36 @@
 	-Keywords /reservered words
 	-String/text/characters
 	-IDE or code editors
-3-Programming Concepts
-	-Statements
-		-Syntax
-		-Different types of statements
-			-Branching Statement
-			-Looping Statements
-	-Character Set
-		-Letters
-		-Digits
-		-Special Characters
-		-White Spaces
-	-Language Tokens
-		-Keywords
-		-Identifiers
-		-Constants
-		-Strings
-		-Special Symbols
-		-Operators
-	-Keywords & Identifiers
-		-Keywords Types
-		-Identifiers Types
-	-Constants
-		-Constants Types 
-			-Numeric contants - Integer and real constants
-			-Character Constants- Single character and String
-		-Symbolic constants
-	-Variables
-		-Scope of the variables like local/global
-		-Variables Types
-		-Variable Memory representations
-	-Data Types
-		-fundamental Data types
-			-integer-signed & unsigned Type
-			-character
-			-Floating point type
-			-void
-		-Derived types
-			-Arrays
-			-Functions
-			-Pointer...etc
-		-User-defined Types
-			-Strutures
-			-Unions
-			-Enumerations....etc
-		-Converting one Type to other may Data type or other types
-		-Data structures*
-	-Revisit of variables		
-		-Declaraing a variable
-		-Declaring a storage class
-		-Assigning/Initializing values to variables
-		-Declaring Variable as constants
-		-Declaring a variable as volatile
-		-Overflow and underflow of data
-		-Dynamic Initializing of variables
-		-Reference variables
-	-Operators & Expression
-		-Operator Types Arithmetic ,Relational ,Logical,assignment,
-		  increment and decrement,conditional ,Bitwise,Special operators(Comma 			                  perator,pointer,Period(.) ,member selection  (-->)
-		-Expression Types 
-			-Types of Expression like Arithmetic,relational...etc
-			-Assignment Expressions like Chained,Embeded,compound
-		-Evaluation of Expressions
-		-Type Conversion in Expression -Implicit and explicit
-		-Operator Overloading,Precedance and Associativity
-		-Memory management operators
-		-Type Casting Operator
-	-Managing input and output operations
-		-Reading a Character
-		-Writing a character
-		-Formatting input
-			-Inputing a integer and real number
-			-Inputing a character strings
-			-Reading Blank Spaces, mixed data type
-		-Formatting output
-			-oupting a integer and real number
-			-Printing a single and string
-			-Printing blank spaces, mixed data types
-		-Manipulators
-	-Control statements 
-	   	-Control structures
-			-Sequence structure (Straight line)
-			-Selection Structure (Branching)
-			-Loop structure structure (Iteration or repetitions)
-		-Decision or Branking Statments
-			-IF, if else, if else if, statement
-			-Switch statement
-			-Conditional statement
-			-goto statement				
-		-looping statements
-			-while statement
-			-do statement
-			-for statement
-			-Nesting the loops like for statement
-			-exiting a loop with break statement
-			-Jumping within and exiting from the loops with goto
-			  statements
-		-Structured programming principles like Avoiding goto,break 		  	   and continue
-			-Bypassing and continuing  loops
-			-Avoiding goto
-			-concise test expressions
-	-Arrays-Handling the data of same type
-		-Integer and character array
-		-Type of arrays like single,two,multi dimensional 
-		-Declaring and initializing the array
-		-Dynamic Arrays
-	-Strings
-		-Creating,Managing String objects
-		-Relational Operations
-		-String characteristics
-		-Accessing ,comparing ,combining and Swapping strings
-	-Handling the data of different types
-		-Structures-different data types in diff location
-		-unions - same as struct but in same locations
-		-bit field- handling data in bit wise
-4-Abstract programming concepts
-	-Programming Paradigms
-		-Procedural programming
-		-Functional programming
-		-Oops
-		-Imperative programming
-	-Object-Oriented programming(Oops) and design patterns
-		a-Objects/Classes
-		c-Data abstraction and encapsulations
-		d-Inheritance
-		e-Polymorphism
-		f-Dynamic Binding
-		g-Message Passing
-	-Functions
-		-User defined function /Needs
-		-Elements of UDF
-		-Defining/Declarations/Category a Functions
-		-Returning value and their types
-		-Function calls and declarations
-		-Arguments but not Return values
-		-Arguments with return values
-		-No Arguments but returns a value
-		-Returning a multiple values
-		-nesting a functions
-		-Recursions
-		-Passing Arrays to functions
-		-Passign string to functions
-		-The Scope, visibility and lifetime of variables
-		-multifile program
-		-Function prototyping
-		-Call/return by reference
-		-inline functions
-		-Default & Constant arguments		
-		-Function overloading
-		-Built-in functions
-	-Flowcharting
-	-Object modeling with UML structures
-	-Working with files 
-	-Pointer
-	-Error handling
-	-Memory managment techniques
-		a-Managing Dynamic data like DMA
-		b-Allocating,Releasing,Altering Memory Techniques like 		  		  MALLOC,CALLOC,REALOC,FREE
+3-Language Basics
+	-Objects(Language Basics/)
 	-Data structures
-		a-linked lists
-		b-Stacks
-		c-Queues
-		d-Trees
-		e.......etc
-	-Handling the Error, Exception handling
-	-Template
-	-packages/library
-	-Objects/Classes
-		-Limitations of C Structures
-		-Class strucutres like header, data, functions
-		-Defing member functions
-		-Making an Outside functions inline
-		-Nesting of member functions
-		-private member functions
-		-Arrays within a class
-		-Memory Allocation of objects
-		-static data member and member functions
-		-Arrays of objects
-		-Objects as function arguments
-		-Friendly functions
-		-returning objects
-		-const member functions
-		-pointer to members
-		-local classes
-	-Constructors & De-constructors
-
-
-
-
-*Structured data type(like Arrays,struct...) can be used to represent data values that have a structure of some sort. Structure data types provides organized scheme that  shows the relationships among and individual elements and facilitate efficient data manipulations, In programming 		 eparlance, such data type are known as data structures)
+	-Annotating Datasets
+4-Abstract Concepts
+	-Data Input
+	-Useful Functions
+5-Graphs
+	-Basics Graphs
+		-Graphical Parameters
+		-Text,Axes and legends
+		-Combining Graphs
+6-Data management
+	-Creating Variables
+	-Recoding Variables
+	-Renaming Variables
+	-Missing Values
+	-Date Values
+	-Type Conversion
+	-Sorting Data
+	-Merging Datasets
+	-Subsetting datasets
+		-Selecting varables
+		-Dropping variables
+		-selecting observations
+		-subset functions
+	-Random Samples
+	-SQL statement in R
+	
+	
+	
+	
+	

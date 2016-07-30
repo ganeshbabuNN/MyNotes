@@ -25,3 +25,7 @@ install.packages("qcc")
 install.packages("reshape2")
 # Best machine learning package
 install.packages("randomForest")
+
+
+#From google visualizations
+install.packages("googleVis")
