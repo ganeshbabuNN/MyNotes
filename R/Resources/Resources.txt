@@ -44,6 +44,9 @@ R Offical packages Available
 ----------------------------
 https://cran.r-project.org/web/packages/
 
+good for Functions
+------------------
+http://www.endmemo.com/program/R/index.php
 
 R-IDE
 =====
