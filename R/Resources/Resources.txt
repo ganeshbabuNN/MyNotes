@@ -69,12 +69,15 @@ http://rattle.togaware.com/
 
 
 Others
-------
+======
 
+Statistics platform
+-------------------
 http://www.iasri.res.in/sscnars/
 
-
-
+Graph Gallery
+-------------
+http://rgraphgallery.blogspot.in/
 
 
 
