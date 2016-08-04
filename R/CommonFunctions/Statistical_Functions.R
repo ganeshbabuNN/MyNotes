@@ -17,7 +17,6 @@ mad(c(3,4,5,2))
 #each group comprising a quarter of the data
 y <- quantile(x,c(.,.84))
 
-
 #range
 range(c(3,4,5,2))
 

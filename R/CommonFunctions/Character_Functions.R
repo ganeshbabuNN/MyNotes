@@ -30,3 +30,8 @@ toupper("abc")
 #lower function
 tolower("ABC")
 
+#cats functions concates the object in .. and ouputs to the screen  or to a file
+name <- "ganesh"
+cat("Hello",name,"\b.\n","Isn\'t R", "\t","GREAT?\n")
+
+
