@@ -39,9 +39,28 @@ tanh(2)
 acosh(2.32)
 asinh(2.32)
 atanh(3.6)
+
 #logarithm of x
 log(10)
 log10(10)
+
 #exponential function
 exp(2.33)
 
+#Returns the length of the object x
+length(c(2,5,2,3))
+
+#Generates the sequence
+seq(1,10,2)
+
+#repeats xn times
+rep(1:3,2)
+ 
+#divides the continuous variable x into a factor with n levels.
+cut(C(1,2,3),3,ordered = TRUE)
+aaa <- c(1,2,3,4,5,2,3,4,5,6,7)
+cut(aaa, 3)
+cut(aaa, 3, dig.lab = 4, ordered = TRUE)
+
+#creats pretty break points. Divides a continous variable x into n intervals by selecting n+1
+pretty(1:15,2)

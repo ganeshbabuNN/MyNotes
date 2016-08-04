@@ -48,6 +48,10 @@ good for Functions
 ------------------
 http://www.endmemo.com/program/R/index.php
 
+Kelly Black
+-----------
+http://www.cyclismo.org/tutorial/R/index.html
+
 R-IDE
 =====
 

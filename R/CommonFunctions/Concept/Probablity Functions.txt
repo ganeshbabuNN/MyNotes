@@ -1,0 +1,49 @@
+Probablity Functions
+====================
+-This functiosn are often used to generate simulated data with known characteristics and to calculate probablity values within user-written statistical functions.
+-In R Probability functions take the form
+
+[dpqr]distribution_abbreviation()
+where the first letter refers to the aspect of the distributions returned.
+d=density
+p=distributions functions
+q=quantile function
+r =random generations (random deviates)
+
+#Probablity distributions 
+==========================
+
+Distributions		Abbreviation
+Beta				beta
+Binominal			binom
+Cauchy				cauchy
+Chi-squared			chisq
+(nocentral)
+Exponential			exp
+logistic			logis
+Multinominal		multinom
+Negative binomial	nbinom
+Normal				norm
+Poisson				pois
+F 					f
+Gamma				gamma
+Geometric			gamma
+Hypergeometric		hyper
+Lognormal			lnorm
+Wilcoxon signed		signrank
+rank		
+T 					t
+Uniform				unif
+Weibull				weibull
+Wilcoxon rank		wilcox
+sum
+
+
+
+
+
+
+
+
+
+
