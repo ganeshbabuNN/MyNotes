@@ -13,8 +13,8 @@ male,Class1,Good
 female,Class2,Excellent
 
 #setting the workspace where those csv file are been stored
-setwd(file.path("C:","Users","Ganesh Babau","Documents","GitHub","ProgrammingLanguages","R","CommonFunctions"))
-
+setwd(file.path("C:","Users","Ganesh Babau","Documents","GitHub","ProgrammingLanguages","R","Data Management"))
+dir()
 #reading the csv files 
 a <- read.csv("data1.csv",header=T,sep=",")
 b <- read.csv("data2.csv",header=T,sep=",")
