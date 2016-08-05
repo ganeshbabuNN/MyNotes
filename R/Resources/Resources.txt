@@ -44,13 +44,18 @@ R Offical packages Available
 ----------------------------
 https://cran.r-project.org/web/packages/
 
-good for Functions
+good for Functions & Learning Sites
 ------------------
 http://www.endmemo.com/program/R/index.php
 
 Kelly Black
 -----------
 http://www.cyclismo.org/tutorial/R/index.html
+
+Useful R commands
+
+https://www.calvin.edu/~scofield/courses/m143/materials/RcmdsFromClass.pdf
+
 
 R-IDE
 =====
@@ -78,11 +83,6 @@ Others
 Statistics platform
 -------------------
 http://www.iasri.res.in/sscnars/
-
-Graph Gallery
--------------
-http://rgraphgallery.blogspot.in/
-
 
 
 
