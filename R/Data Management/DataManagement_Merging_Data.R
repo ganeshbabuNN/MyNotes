@@ -16,9 +16,9 @@ q5 <- c(5,5,2,NA,1)
 leadership <- data.frame(manager,date,country,gender,age,q1,q2,q3,q4,q5,stringsAsFactors = FALSE)#
 
 #leadership dataset 2
-manager <- c(1,2,3,4,5)
-name <- c("ganesh","ved","gaja","kal","ashu")
-position <- c("CEO","director","Manager","CIO","AssManager")
+manager <- c(1,2,3,4,5,6)
+name <- c("ganesh","ved","gaja","kal","ashu","vig")
+position <- c("CEO","director","Manager","CIO","AssManager","Manager")
 leadershipdet <- data.frame(manager,name,position)
 
 #Adding Column to a data frame
@@ -55,5 +55,6 @@ a<- cbind(x,y)
 #-----------------------------
 #using rbind fuctions, both the datasets have same variable, typically add the observations
 a<- rbind(x,y)
+
 
 

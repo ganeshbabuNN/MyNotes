@@ -56,6 +56,9 @@ Useful R commands
 
 https://www.calvin.edu/~scofield/courses/m143/materials/RcmdsFromClass.pdf
 
+information on data analyatics in general
+https://www.analyticsvidhya.com/
+https://discuss.analyticsvidhya.com/
 
 R-IDE
 =====

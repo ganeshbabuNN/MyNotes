@@ -33,7 +33,7 @@ Object Types
 5)data frames
 6)lists
 
-This will more indetailed explained in the data structures sessions
+This will more indetailed explained in the data structures\ sessions
 
 
 

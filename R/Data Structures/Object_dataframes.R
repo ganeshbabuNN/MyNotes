@@ -24,6 +24,9 @@ studentdata$age
 #cross-tabulate the class with performace
 table(studentdata$classtype,studentdata$Performance)
 
+#Still you can avoid using the dataframe name for each statement by using attach() and detach () functions
+#refer Object_dataframes_attach_detach_with_function.R script
+
 
 
 
