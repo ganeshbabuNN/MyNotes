@@ -4,6 +4,7 @@ Packages
 -The directory where packages are stored on your computer are called the library.
 -The function .libPaths() shows the library is located in your computer and function library() list of packages available in your computer.
 -The command search() functions tells you which packages are loaded and ready to use.
+-CRAN stands close to 7000 packages
 
 Installing a package
 ====================
