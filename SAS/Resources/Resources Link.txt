@@ -3,3 +3,8 @@ http://support.sas.com/certify/index.html
 
 SAS Offical Product documentation Center
 http://support.sas.com/documentation/index.html
+
+SAS Training Learning Path
+http://support.sas.com/training/index.html
+
+
