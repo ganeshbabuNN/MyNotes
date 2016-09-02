@@ -1,0 +1,26 @@
+- Operators are same as with other programming languages
+1)Arithmetic operators
+2)Logical operators
+
+1)Arithmetic operator
+------------------
++	Additions
+- 	subtraction
+*	Multiplication
+/	Division
+^/**	Exponentiation
+x%%y	Modulus(x mod y) : for example, 5%%2 is 1
+x%/%y	integer division: for example 5% / %2 is 2
+
+2)Logical operator
+------------------
+<	less than
+<=	less than or equal to
+>	Greater than
+>=	Greater than or equal to
+==	Exactly equal to
+!=	Not equal to
+!x	Not x
+x|y	x or y
+x&y	x and y
+isTrue(x) tests whether x is TRUE
