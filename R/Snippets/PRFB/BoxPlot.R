@@ -1,6 +1,0 @@
-library(datasets)
-data(iris)
-boxplot(iris$Sepal.Length)
-boxplot(iris$Sepal.Length, horizontal = TRUE)
-boxplot.stats(iris$Sepal.Length)
-boxplot(iris[1:4])

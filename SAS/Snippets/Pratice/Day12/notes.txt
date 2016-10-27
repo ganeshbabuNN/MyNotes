@@ -1,7 +1,0 @@
-eval 
-sys eval
-
-data abc;
-set models;
-put _all_;
-run;

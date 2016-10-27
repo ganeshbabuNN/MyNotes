@@ -1,6 +1,0 @@
-delimiters
------------
-DLM -- to read any special characters
-
-DSD -- for CSV 
-

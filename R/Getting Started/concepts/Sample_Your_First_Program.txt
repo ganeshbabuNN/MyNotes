@@ -1,9 +1,0 @@
-1-Open the general help and look at the "introduction to R" sections
-2-install the vcd package ( a package for visualization categorial data)
-3-List the functions and datasets availabe in the package
-4-Load the package and read the description of the dataset Arthritis
-5-print out the Arthritis datasets ( entering the name of an object will ist it).
-6-Run the example that comes with the Arthritis dataset. (the graph basically shows that arthritis patients receiving treatement improved much more that patients receiving a placebo.
-7-Quit.
-
-Refer Your_First_Program.R for example

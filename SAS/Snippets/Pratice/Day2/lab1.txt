@@ -1,5 +1,0 @@
-ram 32 f
-sit 23 m
-abs 32 f
-xsl 20 f
-fol 20 l

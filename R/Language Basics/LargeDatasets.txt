@@ -1,6 +1,0 @@
-- R can handle large data problems
-- they work with massive amounts of data gathered from web research,climatology or genetics
-- R holds objects in memory, generally lmits by amount of Ram available.
-
-For example
-I have 2 GB of RAm, generally i can hanlde datasets of 10 million elements ( 100 variables by 100000 observations.

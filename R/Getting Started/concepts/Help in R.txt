@@ -1,3 +1,0 @@
--R provides the extensive help facilities and learning in navigating them will help you signfictnly in your programming efforts.
--Some of the help information is shown in the R window  or some or in the internet
--The Vignettes returned by the vignette() functions are partical indtroductory articles provided in PDF format. Not all packages have vignettes.

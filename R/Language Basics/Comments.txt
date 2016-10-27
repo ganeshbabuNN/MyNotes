@@ -1,7 +1,0 @@
--In R, Comments uses a symobol #
--Any text appearing after the # is ignored by the R intercepter
-
-# The below statement is a simple assignment statment where the object holds a character value.
-> x <- "ganesh" ;
-
-	
