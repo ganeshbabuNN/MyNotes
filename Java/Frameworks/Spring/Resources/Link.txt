@@ -1,0 +1,7 @@
+Spring Framework jars link without maven
+——————————————————————————————
+http://repo.spring.io/release/org/springframework/spring/
+
+Spring Framework jars link with maven
+———————————————————————————————————
+http://maven.springframework.org/release/org/springframework/spring/
