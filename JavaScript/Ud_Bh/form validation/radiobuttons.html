@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Form Validation Radio Buttons</title>
+	<script>
+		function validate(){
+			var valid = false;
+			var x = document.myform.paymentmethod;
+
+			for(var i=0;i<x.length;i++){
+				if(x[i].checked){
+					valid = true;
+					break;
+				}
+			}
+
+			if(valid){
+				alert("Validation Successful");
+			}
+			else{
+				alert("Please Select a mode of payment");
+				return false;
+			}
+
+			
+
+		}
+		
+
+
+
+	</script>
+</head>
+
+<body>
+	<h3>Select a Mode Of Payment:</h3>
+	<form name="myform" action="dropdown.php" onsubmit="return validate()">
+		<input type="radio" name="paymentmethod" value="cod">Cash On Delivery
+		<input type="radio" name="paymentmethod" value="creditcard">Credit Card
+		<input type="radio" name="paymentmethod" value="debitcard">Debit Card
+
+		
+		<input type="submit" value="submit"/>
+
+	</form>
+
+	
+</body>
+
+</html>

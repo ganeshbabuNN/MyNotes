@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>Date Field validation using regex</title>
+	<script>
+		function validate(){
+			var exp = /^(\d{1,2}\-\d{1,2}\-\d{4})+$/;
+			var date = document.myform.date.value;
+			var result = exp.test(date);
+
+			if(result){
+				alert("validation successful");
+			}else{
+				alert("Enter the date in dd-mm-yyyy format");
+				document.myform.date.focus();
+				return false;
+			}
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<h3>User Registration</h3>
+	<form name="myform" action="dropdown.php" onsubmit="return validate()">
+		Date:<input type="text" name="date"/>
+		<input type="submit" value="submit"/>
+
+	</form>
+
+	
+</body>
+
+</html>

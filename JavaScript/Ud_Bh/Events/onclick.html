@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>onclick</title>
+	<script>
+		function calculate(a){
+			var x = parseInt(document.calcform.num1.value);
+			var y = parseInt(document.calcform.num2.value);
+			var z = document.calcform.result;
+			
+
+			if(a.value=="Add"){
+				z.value = x+y;
+
+			}else if(a.value=="Sub"){
+				z.value = x-y;
+				
+			}else if(a.value=="Mul"){
+				z.value = x*y;
+				
+			}else if(a.value=="Div"){
+				z.value = x/y;
+				
+			}else{
+				z.value = x%y;
+
+			}
+		}
+	
+	</script>
+</head>
+
+<body>
+	<form name="calcform">
+		Number1: <input type="text" name="num1"/><br/>
+		Number2: <input type="text" name="num2"/><br/>
+		Result: <input type="text" name="result"/><br/>
+		<input type="button" name="Add" value="Add" onclick="calculate(this)"/>
+		<input type="button" name="Sub" value="Sub" onclick="calculate(this)"/>
+		<input type="button" name="Mul" value="Mul" onclick="calculate(this)"/>
+		<input type="button" name="Div" value="Div" onclick="calculate(this)"/>
+		<input type="button" name="Mod" value="Mod" onclick="calculate(this)"/>
+	</form>
+	
+</body>
+
+</html>

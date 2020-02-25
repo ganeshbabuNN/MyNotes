@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Form Validation Text Fields Numeric Values</title>
+	<script>
+		function validate(){
+			var x = document.myform.num.value;
+
+			if(isNaN(x) || x<1 || x>10){
+				alert("Please enter a valid number between 1-10");
+				document.myform.num.focus();
+				return false;
+			}else{
+				alert("Validation Successful")
+				return true;
+			}
+
+
+		}
+		
+	</script>
+</head>
+
+<body>
+	<h3>Enter a number from 1-10:</h3>
+	<form name="myform" action="numbers.php" onsubmit="return validate()">
+		Number: <input type="text" name="num"/>
+		
+		<input type="submit" value="submit"/>
+
+	</form>
+
+	
+</body>
+
+</html>

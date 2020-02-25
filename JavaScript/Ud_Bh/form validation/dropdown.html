@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>Form Validation Drop Downs</title>
+	<script>
+		function validate(){
+			var color = document.myform.color.value;
+			if(color==""){
+				alert("Please select a color");
+				document.myform.color.focus();
+				return false;
+			}else{
+				alert("Validation is successful");
+				return true;
+			}
+
+
+		}
+		
+	</script>
+</head>
+
+<body>
+	<h3>Select a color:</h3>
+	<form name="myform" action="dropdown.php" onsubmit="return validate()">
+		<select name="color">
+			<option value="">Select a color</option>
+			<option value="blue">Blue</option>
+			<option value="red">Red</option>
+			<option value="gree">Green</option>
+		</select>
+		
+		<input type="submit" value="submit"/>
+
+	</form>
+
+	
+</body>
+
+</html>

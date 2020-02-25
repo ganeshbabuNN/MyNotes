@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>DOM:Create and Remove Nodes</title>
+	<script>
+		function handleRemove(){
+			var parent = document.getElementById("div1");
+			var child = document.getElementById("p1");
+			parent.removeChild(child);
+
+		}
+			function handleCreate(){
+			var parent = document.getElementById("div1");
+
+			var child = document.createElement("p");
+			var text = document.createTextNode("I am new in here.");
+			child.appendChild(text);
+
+			var p2 = document.getElementById("p2");
+			//parent.insertBefore(child,p2);
+			//parent.appendChild(child);
+			//parent.replaceChild(child,p2);
+			//p2.removeAttribute("align");
+			var p1 = document.getElementById("p1");
+			p1.setAttribute("align","center");
+
+
+		}
+
+	</script>
+</head>
+
+<body>
+	
+	<div id="div1">
+		<p id="p1">All the power is with in you</p>
+		<p id="p2" align="right">You can do anything and everything</p>
+	</div>
+	<input type="button" value="remove" onclick="handleRemove()">
+	<input type="button" value="create" onclick="handleCreate()">
+	
+</body>
+
+</html>

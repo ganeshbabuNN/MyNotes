@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>Local and Global Variables</title>
+	<script>
+	var y = 30;
+
+	function fun1(){
+		var x = 20;//local variable
+		document.write("Inside fun1 X:"+x+"<br/>");
+		document.write("Inside fun1 Y:"+y+"<br/>");
+	}
+
+
+	function fun2(){
+		var a = 20;//local variable
+		document.write("Inside fun2 a:"+a+"<br/>");
+		document.write("Inside fun2 Y:"+y+"<br/>");
+	}
+
+	fun1();
+	fun2();
+	document.write("Outside fun1 and fun2 Y:"+y);
+	
+	
+	</script>
+</head>
+
+
+</html>

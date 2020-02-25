@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Form Validation Check Boxes</title>
+	<script>
+		function validate(){
+			var valid = false;
+
+			if(document.getElementById("javascript").checked){
+				valid = true;
+			}
+			else if(document.getElementById("jquery").checked){
+				valid = true;
+			}
+			else if(document.getElementById("angularjs").checked){
+				valid = true;
+			}
+			else if(document.getElementById("nodejs").checked){
+				valid = true;
+			}
+			
+			if(valid){
+					alert("Validation Successful");
+			}
+			else{
+				alert("Please select atleast one technology");
+				return false;
+			}
+
+		}
+		
+
+
+
+	</script>
+</head>
+
+<body>
+	<h3>Select a Technology:</h3>
+	<form name="myform" action="dropdown.php" onsubmit="return validate()">
+		<input type="checkbox" id="javascript" value="JavaScript">JavaScript 
+		<input type="checkbox" id="jquery" value="JQuery">JQuery 
+		<input type="checkbox" id="angularjs" value="AngularJS">AngularJS 
+		<input type="checkbox" id="nodejs" value="NodeJS">NodeJS 
+		
+		<input type="submit" value="submit"/>
+
+	</form>
+
+	
+</body>
+
+</html>

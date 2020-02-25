@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>Custom Object Creation Using Function</title>
+	<script>
+	
+	function blogpost(title,text){
+		this.title = title;
+		this.text = text;
+		this.addCategory = addCategory;
+		this.displayBlogPost = displayBlogPost;
+
+	}
+
+	function addCategory(category){
+		this.category = category;
+	}
+
+	function displayBlogPost(){
+		document.write(this.title+"<br/>");
+		document.write(this.text+"<br/>");
+		document.write(this.category+"<br/>");
+
+	}
+
+	var bp1 = new blogpost("JQuery","Makes JS easier to use");
+	bp1.addCategory("UI Technology");
+	bp1.displayBlogPost();
+	
+
+	var bp2 = new blogpost("AngularJS","To Build Single Page Apps!!");
+	bp2.addCategory("Advanced UI Technology");
+	bp2.displayBlogPost();
+	</script>
+</head>
+
+<body>
+
+	
+</body>
+
+</html>

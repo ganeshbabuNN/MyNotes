@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Text field validation using regex</title>
+	<script>
+		function validate(){
+			var exp = /^[A-Za-z0-9\s]{3,10}$/;
+			var address = document.myform.address.value;
+			var result = exp.test(address);
+
+			if(result){
+				alert("validation successful");
+			}else{
+				document.getElementById("err").innerHTML= "Please enter alpha numeric values only";
+				document.myform.address.focus();
+				return false;
+			}
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<h3>User Registration</h3>
+	<form name="myform" action="dropdown.php" onsubmit="return validate()">
+		Address:<textarea name="address"></textarea>	
+		<b id="err"></b><br/>
+		<input type="submit" value="submit"/>
+
+	</form>
+
+	
+</body>
+
+</html>
