@@ -1,0 +1,42 @@
+Understanding the File Input/output Using VBA
+=============================================
+The below statements are generally used in VBA
+Open
+Print
+Write
+Line Input
+Close
+
+Open
+====
+
+sytnax
+*----*
+Open pathname For mode [Access access] [lock] As [#]filenumber [Len=reclength]
+
+where 
+ pathname-Required. String expression that specifies a file name — may include directory or folder, and drive
+ mode- Required. Append, Binary, Input, Output, or Random
+ access-Optional,Read, Write, or Read Write
+ lock-Optional, Shared, Lock Read, Lock Write, and Lock Read Write.
+ filenumber-Required,A valid file number in the range 1 to 511,Use the FreeFile function to obtain the next available file  	number
+ reclength-Optional, Number less than or equal to 32,767 (bytes). For files opened for random access.
+
+Example
+*----*
+Open "C:\output.txt" For Output/input As #1 'open the file with the new number
+	'Statement to write into the file or read from the file
+Close #1  'close the file with the same nubmer
+
+Process invovled
+----------------
+-You must open a file before any I/O operation can be performed on it. Open allocates a buffer for I/O to the file and determines the mode of access to use with the buffer.
+-If the file specified by pathname doesn't exist, it is created when a file is opened for Append, Binary, Output, or Random modes.
+-If the file is already opened by another process and the specified type of access is not allowed, the Open operation fails and an error occurs
+
+Concepts of the documents
+-------------------------
+TBD
+
+
+

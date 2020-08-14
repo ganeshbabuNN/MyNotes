@@ -1,0 +1,126 @@
+Functions
+=========
+-Functions always return a single value.
+-In order to return a value from a function we must assign the function's name to a return value.
+-A function is identical to a subroutine but also has the ability to return a value.
+-You can exit a function at any time using the 'Exit Function' statement.
+
+Public Sub Function_One() As Double 
+'do something
+   Function_One = 3.2 
+   Exit Function 
+'exit the function before doing this
+End Function 
+
+-Never write functions that already exist as built-in functions. You will never be able to match the speed of a built-in function
+-When you create a function that you only want to use in a VBA procedure and not as a worksheet function you should declare it as Private
+Calling it from another procedure
+1) Not using the Call Keyword
+2) Using the Call Keyword
+3) Using Application.Run
+
+-Because functions return values they cannot be called directly from the (Tools > Macro > Macros) dialog box.
+-If you want to be able to call a function you will have to wrap it inside a subroutine.
+-You must declare the datatypes not only for all the parameters bu also for the return type.
+-To list all the built-in VBA functions that are available use Application.VBA.
+-Each function that is declared at the same level of scope must have a unique name
+-If you do not define the return value of a Boolean function, it will return False.
+
+Not using the Call Keyword
+==========================
+To use the value that is returned from a function just assign a value to the function name.
+
+Dim iSum As Integer 
+   iSum = AddTwoNumbers(20, 30) 
+
+
+Public Function AddTwoNumbers(ByVal iNumber1 As Integer, _ 
+                              ByVal iNumber2 As Integer) As Integer 
+   AddTwoNumbers = iNumber1 + iNumber2 
+End Function 
+
+-You should always explicitly declare the datatype that is returned by your functions. Otherwise these will be interpreted as being Variants
+
+Using the Call Keyword
+======================
+-If a function is called without specifying a return value and without parentheses surrounding its paramters then the return value is discarded
+	Call AddTwoNumbers(20, 30) 
+-To return a collection from a function you must use the set keyword "set fn = col"
+
+Ignoring the returned value
+===========================
+-There will be occasions when we want to call a function but we are not interested in the result.
+-In this case we can call the function in an identical way to calling a normal procedure
+   Dim iSum As Integer 
+   Call AddTwoNumbers(20, 30) 
+-You cannot use an Excel worksheet function in codce if VBA provides an equivalent function.
+
+Exit Function
+============
+-Using Application.Run
+-For more information refer to the dedicated Application.Run page.
+
+Important
+----------
+-Always avoid keywords in your function and procedure names
+-You should try and avoid calling a function without assigning the return value to a variable.
+-You should always declare the datatypes of each parameter and also of the return type.
+-Any parameters passed to a function must be enclosed in parentheses
+
+
+Structure of the functions
+==========================
+
+Scope of functions
+==================
+
+
+
+
+Creating a function for the below table
+=======================================
+
+Consignment No	Year	DesignationCode	BatchNo
+2018L2032			
+2018L2030			
+2018L2034			
+2017L3035			
+2018L2036			
+2019L2032			
+2018L2038			
+2018L2039			
+2014L2032			
+2018L2041			
+2018L2042			
+2018L2043			
+
+Function yearExtract(var1 As Variant)
+    yearExtract = Left(var1, 4)
+End Function
+
+Function DesignationExtract(var1 As Variant)
+    DesignationExtract = Mid(var1, 5, 3)
+End Function
+
+Function batchNo(var1 As Variant)
+    batchNo = Right(var1, 2)
+End Function
+
+Using Functions and subroutines for autopopulate
+================================================
+Sub test()
+    Dim i, j As Integer
+    Worksheets("Sheet1").Activate
+    range("A2").Activate
+    
+    Do While ActiveCell <> ""
+'        ActiveCell.Cells(i, 2).Value = yearExtract(ActiveCell)
+'        ActiveCell.Cells(i, 3).Value = DesignationExtract(ActiveCell)
+'        ActiveCell.Cells(i, 4).Value = batchNo(ActiveCell)
+        ActiveCell.Offset(0, 1).Value = yearExtract(ActiveCell)
+        ActiveCell.Offset(0, 2).Value = DesignationExtract(ActiveCell)
+        ActiveCell.Offset(0, 3).Value = batchNo(ActiveCell)
+        ActiveCell.Offset(1, 0).Select
+    Loop
+End Sub
+

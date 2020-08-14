@@ -1,0 +1,47 @@
+
+'getting the username and environment name
+Sub GetUsernames()
+
+OfficeUserName = Application.UserName ' Excel username
+WinUser = Environ("USERNAME") ' Windows username
+
+MsgBox "Application Username: " & OfficeUserName & Chr$(10) _
+     & "Windows Username: " & WinUser
+
+End Sub
+
+--------------
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+On Error Resume Next
+Worksheets("Audit_Log").Visible = xlSheetVeryHidden
+End Sub
+
+Private Sub Workbook_Open()
+
+Dim sh As Worksheet
+Set sh = ThisWorkbook.Worksheets("Audit_Log")
+Dim lastRow As Integer
+sh.Range("A1") = "Date"
+sh.Range("B1") = "Time"
+sh.Range("C1") = "Day"
+sh.Range("D1") = " UserName"
+lastRow = sh.Cells(Rows.Count, 1).End(xlUp).Row + 1
+sh.Cells(lastRow, 1) = Date
+sh.Cells(lastRow, 2) = Time
+sh.Cells(lastRow, 3) = Format(Date, "dddd")
+sh.Cells(lastRow, 4) = Application.UserName
+ActiveWorkbook.Save
+Call secure
+End Sub
+
+Sub secure()
+On Error Resume Next
+
+If Application.UserName = "GBAG (Ganesh Babu G)" Or Application.UserName = "VART (Varsha R Thota)" Then
+     Worksheets("Audit_Log").Visible = True ' First sheet to be made visible
+End If
+
+End Sub
+
+
+

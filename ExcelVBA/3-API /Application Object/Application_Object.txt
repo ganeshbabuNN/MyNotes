@@ -1,0 +1,10 @@
+Intro
+=====
+-It returns the entire ms excel application
+
+
+Screen updating
+===============
+-to turn off the screen flicking during any process of worksheet operations use this command
+
+Application.screenupdating=false

@@ -1,0 +1,205 @@
+Conditional constructs or statements
+====================================
+-Conditional Statements in Excel VBA are very useful in programming, this will give you to perform comparisons to decide or loop through certain number of iterations based on a criteria.
+
+Different type of the conditional constructs
+--------------------------------------------
+1)If statement
+2)if-else statment
+3)if-else-if statment
+4)select case statement
+5)IIf() or simple 
+6)Goto Statement
+
+If Statement
+------------
+It is a simple Condition to check an expression, if the condition is True it will execute the Statement.
+
+Sytnax
+if(conditions) then
+..statement 1
+end if
+
+if-else statment
+----------------
+It will check the Condition, if the condition is True it will execute the Statements1, if False execute the Statements2.
+
+synt:
+If(condition) then
+..Statement 1
+... Exit sub 
+...
+Statement n
+Else statement 1
+..
+Statement n..
+End if
+
+
+if-elseif-else-statement
+-------------------------
+Syntax
+If(condition) then
+..Statement 1
+...
+Statement n
+Elseif(condition) thenstatement 1
+...
+Statement n
+Else statement 1
+...
+Statement n
+End if
+
+Nested 
+*----*
+Combining all above syntax
+If condition Then [statements] [Else elsestatements]
+or
+If condition Then
+    [statements]
+[ElseIf condition-n Then
+    [elseifstatements]
+....
+[Else
+    [elsestatements]]
+End If
+
+
+Select case
+-----------
+-If you have a more number of conditions to check, the If condition will go through each one of them. 
+The alternative of jumping to the statement that applies to the state of a condition is Select Case
+-Executes one of several groups of statements, depending on the value of an expression.
+
+Syntax-
+Select Case testexpression
+[Case expressionlist-n
+[statements-n]]
+...
+[Case Else
+[elsestatements]]
+End Select
+
+Ex:
+'this demo is for the numeric expression with range
+Sub switchdemo1()
+    Dim value As Integer
+    value = InputBox("Enter the value for display")
+    Select Case value
+        'here value is taken through the between range
+        Case 1 To 10
+            MsgBox "This value you have enter is less then 10"
+        'here the value is be specific
+        Case Else
+            MsgBox "I am not a robot"
+    End Select
+End Sub
+
+'this demo is for the numeric expression with equal to
+Sub switchdemo2()
+    Dim value As Integer
+    value = InputBox("Enter the value for display")
+    Select Case value
+        'here value is taken through the between range
+         Case 11
+            MsgBox "this value you have entered is 11"
+        Case Else
+            MsgBox "I am not a robot"
+    End Select
+End Sub
+
+'this demo is for the numeric expression is greater using IS.
+Sub switchdemo3()
+    Dim value As Integer
+    value = InputBox("Enter the value for display")
+    Select Case value
+        'here value is taken through the between range
+         Case Is > 11
+            MsgBox "this value you entered is greater then 11"
+        Case Else
+            MsgBox "I am not a robot"
+    End Select
+End Sub
+
+'this demo is for the numeric expression containing either the value.
+Sub switchdemo4()
+    Dim value As Integer
+    value = InputBox("Enter the value for display")
+    Select Case value
+         Case 12, 13
+            MsgBox "this value you have enetered may be 12 or 13"
+        Case Else
+            MsgBox "I am not a robot"
+    End Select
+End Sub
+
+'this demo is for the string expression
+Sub switchdemod()
+    Dim value As String
+    value = InputBox("Enter the value for display")
+    Select Case value
+        'here value is taken through the between range
+        Case "ganesh"
+            MsgBox "Hello! ganesh"
+        Case Else
+            MsgBox "I am not a robot"
+    End Select
+End Sub
+
+IIf statment
+------------
+-You can use the Immediate IF function if you want.
+-This function will always evaluate both the true and false parts even though it only returns one. IIF(expression, truepart, falsepart).
+-VBA does offer an alternative to the If-Then-Else construct IIF(expr,truepart,falsepart), although very few people use it.
+-An experienced programmer would never use Immediate IF.
+-It is a simple Condition to check an expression, if the condition is True it will execute the Statement.
+
+IIf("Conditions", "True","False")
+
+Goto Statement
+--------------
+-This statements simply transfer program executios to a new instructions, which must be preceded by a label.
+-VBA procedures can contain any number of labels, but a GoTO statement can't branch outside a procedures.
+-If your code makes use of the GoTo statement the resulting flow is often referred to as "spaghetti code"
+
+syntax:
+goto <label name>
+ statement 1,
+ statement 2,
+<Label Name>:
+	statement1...,
+
+Example:
+'simple message box
+Sub gotodemo()
+MsgBox "Hello A"
+GoTo jump:
+MsgBox "Hello B"
+jump:
+MsgBox "Hello C"
+End Sub
+
+'using if loop
+Sub goToExample()
+    UserName = InputBox("Enter the Name")
+    If UserName <> "ganesh" Then GoTo Namelabel
+        MsgBox ("Welcome " & UserName)
+    Exit Sub
+Namelabel:
+    MsgBox ("sorry, Only ganesh can run this macro")
+End Sub
+
+'using in a control constructs 
+Sub gotodemo()
+ a = 15
+line1:
+     Do
+        If (a = 15) Then
+        a = a + 1
+        GoTo line1:
+        End If
+      Debug.Print "value of a : " & a
+      a = a + 1
+     Loop While (a > 20)
+End Sub

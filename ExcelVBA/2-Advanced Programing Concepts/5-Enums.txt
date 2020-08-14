@@ -1,0 +1,126 @@
+Intro
+=====
+-Enumerations are data structures useful for grouping a elements which can be (or need to be) be associated with numeric values. 
+-An Enumeration (sometimes referred to as an enum or enumerated type) is a group of elements associated with numeric values
+-Their behavior is somewhat similar to constants, whereas they must be declared in the declaration area of a module and their value cannot change. 
+
+-An effective way to explain enumerations is through the list of months. Each month of the year has a name, but in many date formats, months are commonly referred to by their number. 
+January is considered the first month, and can subsequently be referred to as 1. February is 2, March is 3, and so on
+
+Syntax:
+Enum Name
+    [statement1],
+    [statement2],
+    [statement3],
+    [statement4],
+end name
+
+-Calling an enum value is fairly straightforward, using a period (known as the dot operator) between the enum group name and enum element. 
+  Name.Constant_name
+
+Scope of the enum 
+-----------------
+-if no scope can be specified in the declaration. If no scope is specified, a default scope of Private is assigned.
+-This enumeration will only be accessible within the module where it is declared. To use an enumeration outside of its post module, it must be declared as public
+
+
+Example:
+'Creating a enum for the months, if you don't provide the number, its starts by itself as a sequencing.
+Enum month_test
+    jan = 1
+    feb = 2
+    mar = 3
+    apr = 4
+    jun = 5
+End Enum
+
+'using Procedure
+Sub retriveEnumSimple()
+  Dim MonthName As Integer
+  monthNumber = InputBox("Enter the month number ")  
+  If month_test.jan = monthNumber Then
+    MsgBox "This is the Month of January"
+  ElseIf month_test.feb = monthNumber Then
+    MsgBox "This is the Month of Febuary"
+  ElseIf month_test.apr = monthNumber Then
+    MsgBox "This is the Month of April"
+  ElseIf month_test.mar = monthNumber Then
+    MsgBox "This is the Month of March"
+  Else
+    MsgBox "This is not stored in Month List"
+  End If
+End Sub
+
+'Select Case
+Sub retriveEnumSelect()
+  Dim MonthName As Integer
+  monthnumber = 1 'InputBox("Enter the month number ")  
+  monthnumber = CByte(monthnumber)
+Select Case monthnumber
+    Case month_test.jan = monthnumber
+      MsgBox "This is the Month of January"
+    Case month_test.feb = monthnumber
+      MsgBox "This is the Month of Febuary"
+    Case month_test.apr = monthnumber
+      MsgBox "This is the Month of April"
+    Case month_test.mar = monthnumber
+      MsgBox "This is the Month of March"
+    Case Else
+      MsgBox "This is not stored in Month List"
+End Select
+End Sub
+
+'For Loops
+'One important caveat is that the minimum and maximum number assignments must be specified within the enumeration declaration
+'This can be done with the element [_First] and [_Last]. While VBA will treat these elements as part of the enumeration (they will be included as part of the sequential order if the enumeration is not manually assigned numbers), they can be used as reference points within For loops. 
+'Additionally, the brackets and underscore tell the VBA editor not to include the elements in the intellisense list.
+Enum month_test
+    [_First] = 1
+    jan = 1
+    feb = 2
+    mar = 3
+    apr = 4
+    jun = 5
+    [_Last] = 12
+End Enum
+
+'for loop
+Sub retriveEnumFor()
+  Dim MonthName, i As Integer
+  Dim monthExists As Boolean  
+  monthNumber = InputBox("Enter the month number ")  
+  monthExists = flag
+  monthNumber = CByte(monthNumber)  
+  For i = month_test.[_First] To month_test.[_Last]
+        If i = monthNumber Then
+             monthExists = True
+             Exit For
+        End If
+  Next i  
+  If monthExists Then
+     If month_test.jan = monthNumber Then
+        MsgBox "This is the Month of January"
+     ElseIf month_test.feb = monthNumber Then
+        MsgBox "This is the Month of Febuary"
+     ElseIf month_test.apr = monthNumber Then
+         MsgBox "This is the Month of April"
+     ElseIf month_test.mar = monthNumber Then
+        MsgBox "This is the Month of March"
+    Else
+        MsgBox "This is not stored in Month List"
+    End If
+  End If  
+End Sub
+
+Notes:
+-It’s generally a good idea to utilize a unique naming convention for enumeration data types. 
+In the examples above, each word within the enumeration identifier is capitalized and separated by an underscore
+-It is possible to explicitly assign a number to only the first element in an enumeration. Each subsequent element will increase in sequential order. 
+While this may be seen as a shortcut, it’s a good idea to assign numbers to each element in short lists for the sake of readability. This technique may be useful for very long lists.
+-Enumerations can be assigned negative long values.
+-Reference points (e.g. [_First] and [_Last]) can have any name, provided it includes the square brackets and underscore.
+
+Resources
+------------------
+https://excelvirtuoso.net/2017/02/25/enumerations/
+

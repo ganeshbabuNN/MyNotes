@@ -1,0 +1,97 @@
+Intro
+=====
+
+Life_Cycle of a form
+=====================
+-The user form has a life cycle from the start to the close using the form events
+1)Initialize
+2)activate
+3)de-activate 
+4)terminate
+
+ex
+Private Sub UserForm_Activate()
+    MsgBox "Activate"
+End Sub
+
+Private Sub UserForm_Click()
+MsgBox "you have clicked me"
+End Sub
+
+Private Sub UserForm_Initialize()
+    MsgBox "Initialize"
+End Sub
+Private Sub UserForm_Terminate()
+    MsgBox "Terminate"
+End Sub
+
+Private Sub UserForm_Deactivate()
+    MsgBox "De-Activate"
+End Sub
+
+
+Opening and closing the userform
+================================
+- There are two way of opening 
+	Userform1.show
+
+-If you want to close theform, use the below keyword
+	unload me
+
+
+User forms objects are
+======================
+1)Label
+2)Text Box
+3)Combo Box
+4)List Box
+5)Check Box
+6)Option box
+7)Toggle Box
+8)Frame
+9)Command Button
+10)Tab Strip
+11)Multi Page
+12)Scroll Page
+13)Spin Button
+14)Image
+15)RefEdit(Reference Edit Box)
+
+
+Combo Box
+---------
+-This is same as the activex object but used in the user forms
+-Here the There is nothing called linkedFillRange here, it is called has RowSource
+-If you want to intialize the value during the form startup, you can use the intiaialize form
+
+--To load the items on the startup of the workbook
+ex
+Private Sub UserForm_Initialize()
+Me.ComboBox1.AddItem "A"
+Me.ComboBox1.AddItem "I"
+End Sub
+
+--for setting the value popu in the combobox
+Set the range has the name range --> and enter those range in Rowcause of the property
+
+--Converting the text to number
+Just add +0 or use a type conversion data type.
+
+--Setting  the tab order of objects during the user form entry
+Use the property called tabindex of each object in order like 1,2,3,...etc
+
+--Setting the default value 
+-Just enter the values in the form of any any objects like text box, combo ,list..etc and save the form 
+-This should be in the design mode.
+
+--Loading the values in a combo box using a names range 
+-OFFSET(Sheet1!$A$1,1,0,COUNTA(Sheet1!$A:$A)-1,COUNTA(Sheet1!$1:$1))
+-for displaying the column and width , using the columncount and column width property of combo box.
+
+
+
+
+
+
+
+

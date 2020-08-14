@@ -1,0 +1,640 @@
+﻿Intro
+=====
+-A Data Type refers to how the data is stored in memory and how much space it takes up.
+-The data type of a variable (or object) tells the compiler the size of the object (ie the number of bytes to use).
+-You should always try and use the data type that uses the smallest number of bytes to get the job done.
+-It is always best to use the data type that uses the smallest amount of space (i.e. bytes) yet can still handle all the data assigned to it.
+-The data type of a variable determines how the value is represented in memory.
+-The smaller the bytes the faster it executes.
+-You should use the data type conversion functions instead of using the Val() function when you want to convert from one data type to another.
+-All variables must have an associated data type which determines what data can be stored in it.
+
+-This can be classified in two types
+1)In Built Data type
+2)User define data type
+
+Different type of data types- In built 
+======================================
+Data Type: We can devide the data types in to 2 parts for our understanding purpose.
+1)Numeric Type
+2)Non-Numeric Type
+
+1)Numeric Type
+--------------
+
+Data Type Name	 Type	      Data Range and Remarks
+Byte	        Numeric	      Whole number between 0 and 255.
+Integer	        Numeric	      Whole number between -32,768 and 32,767.
+Long	        Numeric	      Whole number between � 2,147,483,648 and 2,147,483,647.
+Currency	Numeric	      Fixed decimal number between -922,337,203,685,477.5808 and 922,337,203�685,477.5807.
+Single	        Numeric	      Floating decimal number between -3.402823E38 and 3.402823E38.
+Double	        Numeric	      Floating decimal number between -1.79769313486232D308 and     
+
+2)non-Numeric Type
+--------------
+Data Type Name	Type	            Data Range and Remarks
+String	        Text	            Text.
+Date	        Date	            Date and time.
+Boolean	        Boolean	            True or False.
+Object	        Object	            Microsoft Object.
+Variant	        Default type        It will accept any kind of data 
+Any type	    if the variable 
+                is not declared 
+                with any data type. 
+                
+                
+Byte
+*---*
+-The byte data type can contain any positive number between 0 and 255.
+-This can be used to contain binary data.
+-This data type uses 1 byte
+-The default value is 0.
+-Only positive numbers can be stored in this data type.
+-Assigning a negative number to a byte variable will generate a run-time error.
+-Assigning a number greater than 255 will generate a run-time error.
+
+Ex:
+Sub vbyte()
+    Dim varnum As Byte
+    varnum = 21 'comment this later and execute the below statement
+    'varnum = 256
+    MsgBox (varnum)
+End Sub
+
+-When converting a Boolean variable to a numeric VBA data type, TRUE becomes -1 and FALSE becomes 0.
+-When converting a numeric VBA data type into a Boolean, 0 becomes FALSE and all other values (regardless of whether they're negative or positive) become TRUE
+
+Integer
+*-----*
+-The integer data type can contain any number between -32,768 and 32,767.
+-This data type uses 2 bytes.
+-One byte is used to represent the sign (either positive or negative).
+-The default value is 0.
+
+Ex
+Sub vint()
+    Dim varnum As Integer
+    varnum = 32766  'comment this later and execute the below statement
+    'varnum = 32767
+    MsgBox (varnum)
+End Sub
+
+Long
+*---*
+-This is short for long integers.
+-The Long data type can contain any number between -2,147,483,648 and 2,147,486,647
+-This data type uses 4 bytes
+-One byte is used to represent the sign (either positive or negative)
+-The default value is 0.
+
+Ex:
+Sub vlong()
+    Dim varnum As Long
+    varnum = 2147483647 'comment this later and execute the below statement
+    'varnum = 2147483648
+     MsgBox (varnum)
+End Sub
+
+Currency
+*-------*
+-This is a value data type.
+-Use the Currency data type to store numbers in the range from -922,337,203,477.5808 (-9.22 E14) to 922,337,203,685,477.5807 (+9.22 E14)
+-You should use this data type when you do not want any rounding errors.
+-Currency is exact, Single and Double are rounded.
+-This data type is useful for calculations in which accuracy is particularly important.
+-These are stored as 64 bit (8 byte) numbers in an integer format, scaled by 10,000 to give a fixed point number.
+-This data type uses 8 bytes
+-The default value is 0.
+-This data type allows you to save numbers in specific number formats
+
+Sub vCur()
+    Dim varnum As Currency
+    varnum = 922337203685477# 'comment this later and execute the below statement
+    'varnum = 922337203685477#
+     MsgBox (varnum)
+End Sub
+
+-This data type has an accuracy of 15 digits to the left of the decimal point.
+-This data type has an accuracy of 4 digits to the right.
+
+Floating Point Numbers
+*--------------------*
+Examples are: Single, Double and Date
+-You can use floating point to save the value of number.
+-This method is called floating point because the the decimal point floats.
+-This method represents a number in an approximate way to a certain number of significant digits.
+-This is then scaled using an exponent.
+
+Fixed Point Numbers
+*-----------------*
+Examples are: Currency, Decimal
+-You can use fixed point to save the value of a number.
+-This method has a fixed decimal point position and therefore always has a fixed number of digits before and after the decimal point
+
+Single
+-*-----*
+-This is short for single precision floating point
+-The single data type can contain any numbers in the following ranges:
+-This can support 7 significant figures with 6 decimal places.
+-You should always use the Double data type instead because this data type introduces rounding errors
+
+-Negative numbers: -3.402823 E38 to -1.401298 E-45
+-Positive numbers: 1.401298 E-45 to 3.402823 E38
+-This data type uses 4 bytes
+-The default value is 0.
+
+Ex:
+Public Sub RunSingle()
+Dim mySingle As Single
+   mySingle = 1
+   Do
+      On Error GoTo ErrorHandler
+      mySingle = mySingle * 2
+      Debug.Print mySingle
+   Loop
+ErrorHandler:
+   Stop
+End Sub
+
+Double
+*-----*
+-This is short for double precision floating point
+-The double data type can contain any number in the following ranges:
+-This can support 15 significant figures with 14 decimal places.
+-If you need greater precision (with less or no rounding errors) then you should use the Decimal
+
+-This data type contains a double precision floating point number
+-Negative numbers: -1.79769313486232 E308 to -4.94065645841247 E-324
+-Positive numbers: +1.79769313486232 E308 to 4.94065645841247 E-324
+-This data type uses 8 bytes
+-The default value is 0.
+
+Ex:
+Public Sub RunDouble() 
+Dim myDouble As Double 
+   myDouble = 1 
+   Do 
+      On Error GoTo ErrorHandler 
+      myDouble = myDouble * 2 
+      Debug.Print myDouble 
+   Loop 
+ErrorHandler: 
+   Stop 
+End Sub 
+
+String
+*----*
+-There are two types of string variables in VBA fixed length and variable length
+
+Fixed Length(NA for Excel VBA)
+**--------**
+-The fixed length string data type can contain between 1 and 65,400 characters.
+-The maximum length is 65,535 characters
+-This data type uses ? (length of the string)
+-The default value is the number of spaces equal to the length of the string.
+-A fixed length string is defined as follow:
+
+   Dim sFirstName As String * 20 
+   sFirstName = "Monday" 
+   Call Msgbox("""" & sFirstName & """") 
+
+-The above code displays the following message "Russell ".
+-This shows that the content is padded with spaces in order to reach the fixed length.
+-These are declared with a specified number of characters.
+-When you declare a variable to be of datatype string you can specify the maximum length of that string
+-Working with fixed length strings is slightly more efficient than working with variable length strings.
+-Fixed length strings are often passed into Windows APIs. 
+
+Variable Length
+**-----------**
+-The variable length string data type can contain between 0 and 2 billion characters.
+-This data type uses ? (10 + length of the string)
+-The default value is the empty string "".
+-This data type automatically increases and decreases in size depending on the number of characters.
+
+A variable length string is defined as follows:
+Example:
+Dim sFirstName As String 
+
+-This type of string variable can hold string of any length.
+-This type is used most of the time
+-A variable length string is assigned a zero-length string (""), empty string or nullstring by default.
+-This is not to be confused with the empty value of an unassigned Variant.
+-A zero-length string is neither empty (as it has an assigned value) not NULL
+
+Date
+*--*
+-A Date data type can hold any date from 1 Jan 0100 0:00:00 to 31 Dec 9999 23:59:59.
+-This data type can contain any number in the range ? To ?
+-This data type uses 8 bytes
+-The default value is (?) 00:00:00
+-This data type can be used to store dates and times
+-Using the Date data type is the best way to work with dates (and times) in VBA.
+
+Excel
+**--**
+-It is important to remember that the range of a date in VBA is greater than the range accepted by Excel.
+-Dates in Excel only start at 1 Jan 1900.
+-The integer portion represents the number of days since December 30, 1899. Any dates before this one are stored as negative numbers; all dates after are stored as positive values. If you convert a date value representing December 30, 1899, to a double, you'll find that this date is represented by zero.
+-The decimal portion of a date represents the amount of time that has passed since midnight. For example, if the decimal portion of a date value is .75, three-quarters of the day has passed, and the time is now 6 P.M.
+-Because the integer portion of a date represents number of days, you can add and subtract days from one date to get another date
+
+Dates are Decimals
+**--------------**
+-Variables that are declared as a Date datatype are actually stored as Decimal.
+-This is very similar to the date serial numbers that are used in Excel.
+-Dates range from 1 January 100 to 31 December 1999
+-Times range from 0:00:00 to 23:59:59
+
+Date Literals
+**----------**
+-Date literals can be enclosed within number signs (#) when using the "Date" datatype.
+-Although when assigning a date to a Date variable this can also be done in a string format (eg Noon = #12:00:00# or #1/12/2002#. StartTime = Now()
+-When assigning a date to a date variable you can also use a valid date string format.
+
+-For example the following are all valid
+
+Example:
+Dim dtMyDate As Date 
+dtMyDate = #1/2/07# 
+dtMyDate = #7/7/06# 
+dtMyDate = #12:50:00 AM# 
+dtMyDate = "January 15, 2008" 
+dtMyDate = "2/7/06 12:55:00 PM"
+
+You can also use double quotation marks but this is not very common and takes slightly longer to run
+dtMyDate = ""7/7/06"" 
+
+Boolean	       
+*-----*
+-Use a Boolean variable to hold the value True or False.
+-In general Boolean algebra, TRUE and FALSE are usually denoted by 1 and 0 respectively. 
+-However, in Visual Basic for Applications, conversions between Booleans and numeric VBA data types work slightly different:
+-When converting a Boolean variable to a numeric VBA data type, TRUE becomes –1 and FALSE becomes 0.
+-When converting a numeric VBA data type into a Boolean, 0 becomes FALSE and all other values (regardless of whether they're negative or positive) become TRUE.
+-Boolean variables require 2 bytes of memory.
+
+Object
+*----*
+-You can use the Object VBA data type for purposes of storing addresses that refer to objects. In general, Object variables are a convenient way to refer to objects
+-Variables of the Object type take up 4 bytes of memory.
+-Just as the Variant data type can store any type of variable, the Object data type can store any kind of object.
+-The Nothing keyword can be used to disassociate an object variable from an actual object.
+-The Set statement assigns an object reference to an object variable
+
+If (objMyObject) Is Nothing Then 
+   Set objMyObject = Nothing 
+End If 
+
+-You can find out if an object variable has been set by using the "Is Nothing" keywords.
+-Using the generic Object data type is much less efficient than using the specific object declaration. This method is referred to as late binding and should be avoided
+-All VBA Objects fall into one one of two classes. Singular objects or objects within a collection.
+-Single objects are referenced by name.
+a)Objects in a collection are referenced by an index
+b)To avoid long duplicate references when qualifying objects use the Set statement to create an object variable. Using object variables can also help your code execute more quickly.
+
+Object Binding
+*------------*
+-Object variables are declared in much the same way as other variables.
+-There are three ways to declare object variables:
+
+Dim myObject As Library.ClassName       'early bound, no instance is assigned / Nothing  
+Dim myObject As New Library.ClassName   'early bound, instance is assigned.  
+'The object is not actually created until the object variable is used
+Dim myObject As Object    'late bound, no instance is assigned / Nothing 
+
+-To assign a reference to a real instance of a class you must use the Set statement.
+-There are two types of binding/Bounding
+1)Early Binding or static binding
+2)Late Binding or dynamic Binding
+
+1)Early Binding or static binding :
+-The short answer is that early (or static) binding refers to compile time binding 
+-Late binding uses CreateObject to create and instance of the application object, which you can then control. For example, to create a new instance of Excel using late binding:
+  Dim oXL As Object
+  Set oXL = CreateObject("Excel.Application")
+
+-On the other hand, to manipulate an existing instance of Excel (if Excel is already open) you would use GetObject (regardless whether you're using early or late binding):
+  Dim oXL As Object
+  Set oXL = GetObject(, "Excel.Application") 
+ 
+2)Late Binding or dynamic Binding :
+-late (or dynamic) binding refers to runtime binding (for example when you use reflection).
+-To use early binding, you first need to set a reference in your project to the application you want to manipulate. 
+-In the VB Editor of any Office application, or in VB itself, you do this by selecting Tools + References, and selecting the application you want from the list (e.g. “Microsoft Excel 8.0 Object Library”).
+-To create a new instance of Excel using early binding:
+  Dim oXL As Excel.Application
+  Set oXL = New Excel.Application
+  
+-In either case, incidentally, you can first try to get an existing instance of Excel, and if that returns an error, you can create a new instance in your error handler.
+
+Nothing Keyword
+**------------**
+-This keyword/value can only be used with variables declared as Object or Variant
+-An object variable that has not been initialised has a value of Nothing.
+-You must use the Is Operator to test for equality.
+-You cannot use an equal sign (=) when working with object variables, only simple data types.
+-An object data type can never equal 0 or "" (zero length string)
+
+Initialising an Object:
+Dim myObject As Object 
+If (myObject Is Nothing) Then 
+   Call MsgBox("nothing value") 
+End If 
+
+Assigning Nothing:
+-Use the Set statement to assign the value Nothing to an object variable
+-You can use this to destroy a reference to an object.
+
+   Set myObject = Nothing 
+
+-To free an object variable so that it no longer points to anything, assign the "Nothing" keyword. (eg Set rgeRange = Nothing).
+-It is good programming practice to free object variables when they are no longer needed, since this can save resources.
+-An object variable is automatically set to "Nothing" when all its references are destroyed.
+
+The Nothing keyword has several uses:
+1) to release an object variable
+2) to be returned from a function that has failed
+3) to initialise an object variable
+
+Set to Nothing:
+-VBA handles reference counting automatically
+-When the last reference to an object is released the object is automatically removed from memory
+-When a reference variable goes out of scope it is automatically set to Nothing
+-There is no point including Set variable = Nothing just before the variable goes out of scope
+
+Not Nothing
+-These are all equivalent
+   If (Not (myobject Is Nothing) = True) Then 
+   If Not (myobject Is Nothing) Then 
+   If Not myobject Is Nothing Then  
+
+IS Keyword
+**-------**
+Compares two object reference variables.
+
+Remarks
+* It does not compare Objects or their values.
+* This only checks to determine if two references refer to the same object.
+* This determines if both object references point to the same object.
+* The IsNot is not available in VBA (only VB.Net)
+
+If (oMyObject Is Nothing) Then 
+   Set oObject = Nothing 
+End If
+Do While Not object Is Nothing 
+Loop
+
+Variant
+*-----*
+-The Variant data type is capable of holding any type of data except fixed-length strings and user defined types.
+-The Variant data type can be used for all data types except fixed length strings and user defined types.
+-This data type automatically works out which data type is the most appropriate based on the value you assign
+
+Dim myVariable As Variant 
+
+-You can use the Variant data type in place of any other data type to work with data in a more flexible way.
+-The Variant data type can also contain the special values "Empty", "Null" and "Error",
+
+Special Benefits:
+-If you do not explicitly declare the data type of your variables then the Variant data type is assigned.
+-The variant has a special sub type called Decimal that can be used to hold very large numbers.
+-The variant has a special sub type called string variant that can be used to hold variable length strings.
+-This keyword/value can only be used in conjunction with the Variant data type.
+-The Empty data type is the default value when you declare a variable as a Variant.
+
+Resources
+---------
+https://bettersolutions.com/vba/data-types/variant-data-type.htm
+https://www.guru99.com/vba-data-types-variables-constant.html
+https://bettersolutions.com/vba/data-types/user-defined-types.htm
+https://www.guru99.com/vba-data-types-variables-constant.html
+https://bettersolutions.com/vba/data-types/data-types.htm
+
+Using Option explicit
+=====================
+-this is force the variable to be declared.
+
+
+
+Data Type conversation functions
+================================
+-For converting the text to number (if an only the number is a text), just add zero (like + 0) or use the below conversation functions
+-These functions are compiled inline, meaning the conversion code is part of the code that evaluates the expression. 
+-Sometimes there is no call to a procedure to accomplish the conversion, which improves performance. Each function coerces an expression to a specific data type.
+
+Syntax:
+CBool(expression)  
+CByte(expression)  
+CChar(expression)  
+CDate(expression)  
+CDbl(expression)  
+CDec(expression)  
+CInt(expression)  
+CLng(expression)  
+CObj(expression)  
+CSByte(expression)  
+CShort(expression)  
+CSng(expression)  
+CStr(expression)  
+CUInt(expression)  
+CULng(expression)  
+CUShort(expression) 
+
+
+Resources:
+https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/functions/type-conversion-functions
+
+User-Defined Datatypes(UDT) Using Type
+======================================
+
+Introduction
+------------
+-A user defined type (or data structure) lets you create a single data type that can represent more than one built-in data type.
+-Often abbreviated to UDTs.
+-The default value is the default value of the individual elements
+-You create a user defined type using the Type statement.
+-A type is a collection of variables (or fields)
+-This combines multiple data types into a single data type
+
+Syntax:-
+-The VBA Typed can be defined within VBA Modules, at the beginning, similarly like global variables. The syntax of a VBA Type looks like
+
+Syntax:
+[scope] Type TypeName
+  VariableName [as VariableType]
+  '...
+End Type
+
+Example:
+-Creatubg all the type of in different modules or if in same module let those types delcarations be in order
+Type Employee
+    employee_id As Integer
+    firstName As String
+    lastName As String
+    email As String
+    phoneNumber As String
+    hireDate As Date
+    jobID As string
+    salary As String
+    astDate As Date    
+End Type
+
+How to use the above type in macro/functions.
+Sub employeeSalary()   
+   Dim emp As Employee
+   Dim empArray() As Variant   
+   emp.employee_id = 12
+   emp.firstName = "ganesh"
+   emp.lastName = "babu"
+   emp.email = "ganesh@gmail.com"
+   emp.phoneNumber = 4343434 
+   emp.salary = 43343    
+   Debug.Print emp.employee_id, emp.firstName, emp.lastName, emp.email, emp.phoneNumber,  emp.salary    
+End Sub
+
+Scope of the type
+-----------------
+-Scoping of the type is important in order to show the visiblity of the type across the project or restricited to module level.
+-Scope of type are public ,private 
+-By default type is public or you can explicitly specify, this type is visible acoss the project level.
+-For private, it shall be restricted to that module level.
+
+Syntax:
+[public\private] Type TypeName
+  VariableName [as VariableType]
+  '...
+End Type
+
+Example:
+public/private Type Employee
+            employee_id As Integer
+            firstName As String
+            lastName As String
+            email As String
+            phoneNumber As String
+            hireDate As Date
+            jobID As string
+            salary As String
+            astDate As Date    
+    End Type
+
+Do and Don't of UDT
+-------------------
+-Have object such as other VBA Types or VBA Classes as variables
+-Contain arrays both static (predefined size) and dynamic (dynamically sized/resized)
+-Be declared within VBA Modules. Types can also be declared within Forms and Classes, however, have to be declared Private (scoped only to Form or Class)
+
+VBA Type cannot be
+-----------------
+-Contain procedures or functions
+-Be declared as Public in Classes and Forms
+
+Using Enum in UDT
+-----------------
+-Using enum is very simple as it need to be developed has type enum
+
+Example:
+Enum JobStatus
+    Active
+    InActive
+End Enum
+
+Enum jobID
+    AD_PRES
+    AD_VP
+    IT_PROG
+End Enum
+
+Public Type Employee 
+    jobID As jobID 
+    status As JobStatus
+End Type
+
+using the enum:-
+Sub employeeSalary()   
+   Dim emp As Employee
+   Dim empArray() As Variant
+   '---
+   emp.jobID = AD_VP
+   '---
+   emp.status = Active   
+   Debug.Print emp.jobID, emp.status   
+End Sub
+
+
+Using Objects and array in UDT
+-----------------------------
+-Using Objects is very simple as it need to be developed has type enum
+
+Example:
+Type Employee
+    '---
+    Dict as object
+    ws as object  
+    EmpRowSize(10) as integer
+    EmpDynamicArray() as variant
+End Type
+
+Using enum in calls:
+
+Sub employeeSalary()   
+   Dim emp As Employee
+   Dim empArray() As Variant
+   '---
+   set emp.dict = CreateObject("Scripting.Dictionary")
+   emp.EmpRowSize(0)=23
+   Redim emp.emprowsize(20) as integer 'resizing
+   Debug.Print emp.jobID, emp.status   
+End Sub
+
+The order of the Types
+----------------------
+-Order of the Type should be same type should be called before using the type
+
+1)Public Type Employee
+    employee_id As Integer
+    firstName As String
+    lastName As String
+    email As String
+    phoneNumber As String
+    hireDate As Date
+    jobID As jobID
+    salary As String
+    astDate As Date
+    status As JobStatus
+End Type
+
+Using the type :-
+2)Sub employeeSalary()
+   
+   Dim emp As Employee
+   Dim empArray() As Variant
+   
+   emp.employee_id = 12
+   emp.firstName = "ganesh"
+   emp.lastName = "babu"
+   emp.email = "ganesh@gmail.com"
+   emp.phoneNumber = 4343434
+   emp.jobID = AD_VP
+   emp.salary = 43343
+   emp.status = Active
+   
+   Debug.Print emp.employee_id, emp.firstName, emp.lastName, emp.email, emp.phoneNumber, emp.jobID, emp.salary, emp.status
+   
+End Sub
+
+3)Enum JobStatus
+    Active
+    InActive
+End Enum
+
+4)Enum jobID
+AD_PRES
+AD_VP
+IT_PROG
+End Enum
+
+-The above will not execute has jobstatus and job ID enum are called after delcarations. well the right order is 
+1,3,4,2
+

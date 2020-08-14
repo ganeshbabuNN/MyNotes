@@ -1,0 +1,283 @@
+Looping statements or constructs
+===============================
+-If, in your VBA program, you need to perform the same task (i.e. repeat the same piece of code) multiple times, this can be done using one of the VBA Loops.
+Different types of loops
+-You can use loops to execute statements certain number of time or until it satisfies some condtion.
+
+Looping types
+----------
+1)For Loop
+2)For each loop
+3)Do loop statement
+4)While wend loop
+
+
+for loop 
+--------
+-The For ... Next loop uses a variable, which cycles through a series of values within a specified range. The VBA code inside the loop is then executed for each value\
+-For loop is useful to execute statements certain number of time.
+
+syntax :-
+For counter = start To end [Step step]
+[statements]
+[Exit For]
+[statements]
+Next [counter]
+
+Ex -
+'utilize the 
+'simple for loop statement
+Sub fordemo()
+    For counter = 1 To 10
+        Cells(counter, 1) = counter
+    Next counter
+End Sub
+
+'simple for loop statement with increment/decrement step
+Sub fordemo()
+     For counter = 10 To 1 Step -2
+        Cells(counter, 1) = counter
+    Next counter
+End Sub
+
+'loop statement with row and column
+Sub fordemo()
+   For counter = 1 To 10
+        For innercnt = 1 To 3
+            Cells(innercnt, counter) = counter
+         Next innercnt
+   Next counter
+End Sub
+
+'lopping using the Range objects
+Sub fordemo()
+   For counter = 1 To 10
+        For innercnt = 1 To 3
+            Range("A" & counter, Range("D" & counter)) = counter
+         Next innercnt
+   Next counter
+End Sub
+
+'combining the for loop with the if statement
+Sub fordemo()
+ For x = 1 To 10
+    Cells(x, 1) = x * 14
+    If Cells(x, 1) > 50 Then
+        Cells(x, 2) = True
+         Cells(x, 2).Font.Bold = True
+    Else
+        Cells(x, 2) = False
+         Cells(x, 2).Font.Bold = False
+    End If
+ Next x
+End Sub
+
+'iterating the output for row and column with dynamic row & column
+Sub fordemo()
+lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+lastcolumn = Cells(1, Columns.Count).End(xlToLeft).Column
+Range("C1").Value = "Announcment"
+ For x = 2 To lastrow
+     If Cells(x, 2) > 50 Then
+         Cells(x, 3) = "Pass"
+     Else
+         Cells(x, 3) = "Fail"
+     End If
+    For y = 2 To lastcolumn
+        Cells(x, lastcolumn + 1) = x
+    Next y
+ Next x
+End Sub
+
+For each loop
+=============
+-The For Each loop is similar to the For ... Next loop but, instead of running through a set of values for a variable, the For Each loop runs through every object within a set of objects,collections 
+-If you want to loop through a collection, you can use for each condition
+-Repeats a group of statements for each element in an array or a collection.
+-For example, the following code shows the For Each loop used to list every Worksheet in the current Excel Workbook
+Syntax:-
+For Each element In group
+[statements]
+[Exit For]
+[statements]
+Next [element]
+
+Ex:-
+'iterating the Worksheet collections
+Sub ForEachDemo2()
+Dim wb As Workbook
+Dim ws As Worksheet
+Set wb = ThisWorkbook
+For Each wks In wb.Worksheets
+    wks.Name = wks.Name & "Test"
+    Debug.Print wks.Name
+Next
+End Sub
+
+'Using Array to retrive the element
+Sub ForEachDemo1()
+Dim city(3) As String
+Dim i As Variant
+city(0) = "Bangalore"
+city(1) = "Bangalore"
+city(2) = "Pune"
+city(3) = "mumbai"
+'reterive each element in the city.
+For Each i In city
+    Debug.Print i
+Next
+End Sub
+
+'Iterating the Name range
+Sub foreachdemo()
+For Each c In Range("marksTable")
+     ActiveCell.Offset(0, 1) = c
+     ActiveCell.Offset(1, 0).Select
+Next c
+End Sub
+
+Do Loop
+=======
+-Do loop is a technique used to repeat an action based on a criteria.
+-Repeat the block of statement until the condition is true or until the condition is true.
+-You can Exit any Procedure using Exit Sub
+-You can Exit the For loop in between based on a condition using Exit For
+
+Syntax:-
+Pre-check
+---------
+Do [{While | Until} condition]
+[statements]
+[Exit Do]
+[statements]
+loop
+
+Post-check
+----------
+Do
+[statements]
+[Exit Do]
+[statements]
+Loop [{While | Until} condition]
+
+condition Optional= Numeric expression or string expression that is True or False. If condition is Null, condition is treated as False. 
+statements =One or more statements that are repeated while, or until, condition is True. 
+
+Ex:-
+
+'Simple do loop- exit
+----------------------
+Sub doloopDemo1()
+Worksheets("Sheet2").Activate
+Dim i As Integer
+i = 0
+Do
+    If i = 10 Then Exit Do
+    i = i + 1
+    Cells(i, 1) = i
+Loop
+End Sub
+
+'do-loop-until
+--------------
+Sub doloopDemo2()
+Worksheets("Sheet2").Activate
+Dim i As Integer
+i = 0
+Do
+    i = i + 1
+    Cells(i, 1) = i
+Loop Until i > 10 'if true it exits the loop
+End Sub
+
+
+'do-until-loop
+--------------
+-The Do Until loop is very similar to the Do While loop. The loop repeatedly executes a section of code until a specified condition evaluates to True
+
+ex
+Sub doloopDemo3()
+Worksheets("Sheet2").Activate
+Dim i As Integer
+i = 0
+Do Until i > 10 'if true it exits the loop
+    i = i + 1
+    Cells(i, 1) = i
+Loop
+End Sub
+
+'do-while-loop
+--------------
+-The Do While loop repeatedly executes a section of code while a specified condition continues to evaluate to True.
+
+Sub doloopDemo4()
+Worksheets("Sheet2").Activate
+Dim i As Integer
+i = 0
+Do While i < 10 'if false it exits the loop
+    i = i + 1
+    Cells(i, 1) = i
+Loop
+End Sub
+
+'do-loop-While
+--------------
+-The Do While loop repeatedly executes a section of code while a specified condition continues to evaluate to True.
+
+Sub doloopDemo5()
+Worksheets("Sheet2").Activate
+Dim i As Integer
+i = 0
+Do
+    i = i + 1
+    Cells(i, 1) = i
+Loop While i < 10 if false it exits the loop
+End Sub
+
+While 
+=====
+-Repeat the block of statement until the condition is true or until the condition is true.
+
+While [condition]
+    [statements]
+    [statements]
+Wend
+
+Ex-
+Sub whiledemo()
+i = 1
+While i <= 10
+    ActiveCell.Value = i
+    i = i + 1
+    ActiveCell.Offset(1, 0).Select
+Wend
+End Sub
+
+
+Exit Statements
+===============
+Exit statment help to exit the do..loop, for next loop ,function, sub and property code.
+
+Syntax :
+Exit Do
+Exit For 
+
+Example;
+--do loop
+Sub doloop()
+x = 0
+Do While x < 10
+     If x = 9 Then Exit Do
+     x = x + 1
+     Cells(x, 1) = x
+Loop
+End sub
+
+--for each loop
+Sub forEachloop()
+endrow = Cells(Rows.Count, 1).End(xlUp).Row
+For Each cell In Range("A1:A" & endrow)
+    If cell.Offset(0, 0) = 6 Then Exit For
+    cell(1, 2) = "TRUE"
+Next cell
+End Sub

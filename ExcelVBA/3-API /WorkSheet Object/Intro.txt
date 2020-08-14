@@ -1,0 +1,185 @@
+Worksheets
+=========
+
+-Worksheets object is a collection of sheets in excel workbook or a active workbook.
+-Its a member of the sheets collections also. The sheets collection contains all the sheets in the workbook(both chart and worksheets)
+-All the operations related to the sheet can be used by this object.
+-Worksheets can be referenced by its positions or  sheet index,sheet name.
+-To disable the display alerts, you the application object for disabling it
+
+Property
+========
+
+Activating the worksheets by name
+---------------------------------
+
+Worksheets("Sheet1").Activate
+
+Activating the worksheets by Position
+------------------------------------
+    Worksheets(2).Activate
+
+Adding the New sheet
+--------------------
+   Worksheets.Add
+
+Adding the New sheet at the end
+-------------------------------
+Application.DisplayAlerts = False
+Worksheets.Add After:=Worksheets(Sheets.Count)
+
+Adding the New sheet after the specific sheet
+----------------------------------------------
+-use a position or the index
+
+Application.DisplayAlerts = False
+Worksheets.Add After:=Worksheets("Sheet1")
+
+Renaming the worksheet
+----------------------
+Worksheets("Sheet1").Name = "Form"
+
+Deleting the worksheet
+----------------------
+Application.DisplayAlerts = False ' disabling before
+Worksheets("Sheet6").Delete
+Application.DisplayAlerts = True 'enable it after
+
+Print review of that range
+-------------------------
+worksheet("Sheet1").PrintPreview
+
+
+Send the printout to the default printer
+----------------------------------------
+worksheet("Sheet1").PrintOut Copies:=1
+or
+
+worksheet("Sheet1").PrintOut , , 2
+
+
+Events
+======
+
+SelectionChange
+---------------
+-this will trigger the macro if that cell (i,e selection of the cell) changes
+
+ex:
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    If Target.Address(0, 0) = "A1" Then
+        MsgBox "you got the cell A1"
+    Else
+        MsgBox "your not in cell A1"
+    End If
+End Sub
+
+Activate
+--------
+- This event will trigger a macro, which a sheet to be clicked on.
+
+ex
+Private Sub Worksheet_Activate()
+    MsgBox "hello welcome to sheet2"
+End Sub
+
+
+De-Activate
+----------
+- When the action moves aways from that sheet, that will will do some actions
+
+ex:
+Private Sub Worksheet_Deactivate()
+    Sheets("Sheet3").Visible = False
+End Sub
+
+BeforeDelete
+----------
+- Before the Deleting the worksheet, this macro
+
+ex:
+
+Private Sub Worksheet_BeforeDelete()
+    MsgBox "Bye bye delete the worksheet"
+End Sub
+
+BeforeDoubleClick
+------------------
+- Double clicking that cell ,this macro has been called.
+
+ex
+Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)
+    If Target.Address(0, 0) = "A2" Then
+     MsgBox "You double click A2"
+     Cancel = False 'disable the edit options
+     End If
+End Sub
+
+BeforeRightClick
+------------------
+- Double clicking that cell ,this macro has been called.
+
+ex
+Private Sub Worksheet_BeforeRightClick(ByVal Target As Range, Cancel As Boolean)
+  If Target.Address(0, 0) = "A2" Then
+     MsgBox "You double click A2"
+     Cancel = True 'disable the right click menu options
+     End If
+End Sub
+
+Calculate
+-----------
+-Create a random number in one of the column and navigate to the formulae and click on calculate now button.
+-This event will trigger automatically if any calculation has been trigger on the macro
+
+Private Sub Worksheet_Calculate()
+Columns("A:F").AutoFit
+End Sub
+
+Disable Events
+--------------
+-There is no event procedure for this, but instance is available in the application.
+-once this event is disabled, on that sheet all the events will be not work.
+
+Private Sub DisableEvents()
+Application.EnableEvents = False
+End Sub
+
+Change Events
+-------------
+-This event will trigger the macro if an cell value has been change or any range. that target can be modified if required
+
+ex 
+'for cell value
+Private Sub Worksheet_Change(ByVal Target As Range)
+    If Target.Column = 1 Then
+        If Target = "d" Then
+           Application.EnableEvents = False
+           Target.Offset(0, 1) = 50
+           Application.EnableEvents = True
+        End If
+    End If
+End Sub
+
+
+'for a range using the intersect method
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Application.EnableEvents = True
+   If Not Intersect(Target, Range("B1:B5")) Is Nothing Then
+        MsgBox "you have done some changes in B1 to B5 "
+   End If
+End Sub
+
+Following the hyperlink
+-----------------------
+-this event will trigger any hyperlink has been clicked
+
+ex
+Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
+    MsgBox Target.Name
+End Sub
+
+Table update
+------------
+-This will trigger if any sources are updated to the table updated
+TBD

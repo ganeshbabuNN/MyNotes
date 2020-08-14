@@ -1,0 +1,314 @@
+Arguments
+=========
+-The code inside a subroutine or function often needs information passed to it.
+-You can define this information by adding parameters to the declaration allowing you to pass in arguments.
+-When a variable is passed to a subroutine or function it is called an argument.
+-The value used in place of the parameter when we make the procedure call is called an argument.
+
+Empty Parentheses
+-----------------
+-When you have empty parentheses at the end of a subroutine or function it indicates that no variables can be passed in.
+
+Public Sub ProcedureName() 
+End Sub 
+
+ByVal or ByRef
+===============
+
+ByRef - Default
+---------------
+-Passing variables by reference is the default and this means that you pass a pointer to the variable and therefore the variable's value can be changed inside the procedure or function.
+-Passing an argument by reference is the default.
+
+Sub Proc_Name(Name As String) 
+End Sub 
+
+Sub Proc_Name(ByRef Name As String) 
+End Sub 
+
+-If you pass a variable defined as a user defined datatype to a procedure, it must be passed by reference.
+-Attempting to pass it by value will cause an error.
+
+ByVal
+------
+-Passing arguments by value passes a copy of the variable and changing the value will only affect the local copy.
+-This should be used when you do not want the procedure to modify the actual variable but just to use the value.
+
+Sub Proc_Name(ByVal Name As String) 
+End Sub 
+
+
+ByVal or ByRef (Objects)
+========================
+In VBA all objects are passed by reference although there is a difference.
+1)ByRef - the address of the object is passed.
+2)ByVal - a copy of the address to the object is passed.
+
+-In this example we are going to create a new collection object and then pass this collection object into two subroutines.
+-The first subroutine will have the collection passed ByVal and the second one will be passed ByRef.
+
+Line 19 - Despite the object being passed by value this new item is added to the original collection, we can see this because line 11 displays the number 4.
+Line 22 - If any changes are made to the object's reference (ie a new assignment) then this change is contained within the subroutine, we can see this because line 11 displays the number 4 and not the number 0.
+
+
+For collections
+---------------
+Public Sub Difference() 
+    Dim MyCol As Collection 
+
+    Set MyCol = New Collection 
+    Call MyCol.Add(item:="1", key:="one") 
+    Call MyCol.Add(item:="2", key:="two") 
+    Call MyCol.Add(item:="3", key:="three") 
+    Debug.Print MyCol.Count   '3  
+    
+    Call ByValue(MyCol) 
+    Debug.Print MyCol.Count   '4  
+    
+    Call ByReference(MyCol) 
+    Debug.Print MyCol.Count   '0  
+End Sub 
+
+Public Sub ByValue(ByVal MyCol2 As Collection) 
+    'this copy still points to the original
+    Call MyCol2.Add(item:="4", key:="four") 
+    
+    'this changes just the local copy
+    Set MyCol2 = New Collection 
+End Sub 
+
+Public Sub ByReference(ByRef MyCol2 As Collection) 
+    'this is the original
+    Call MyCol2.Add(item:="5", key:="five") 
+    
+    'this changes the original
+    Set MyCol2 = New Collection 
+End Sub 
+
+Class-module Example
+--------------------
+Line 27 - The object has been passed by reference so this new item is added to the original collection.
+Line 30 - The object has been passed by reference so the new object's reference will be passed back, we can see this because line 14 displays the number 0.
+
+Add in Class Module : myClass
+Public Sub ClassDifference()
+Dim oClass As MyClass
+    Set oClass = New MyClass
+    
+    oClass.Initialise
+    Call oClass.Add("1", "one")
+    Call oClass.Add("2", "two")
+    Call oClass.Add("3", "three")
+    Debug.Print oClass.WholeCollection.count   '3
+    
+    Call ByValue(oClass)
+    Debug.Print oClass.WholeCollection.count   '4
+    
+    Call ByReference(oClass)
+    Debug.Print oClass.WholeCollection.count   '0
+End Sub
+
+Public Sub ByValue(ByVal oClass2 As MyClass)
+    Call oClass2.Add("4", "four")
+    Set oClass2 = New MyClass
+    oClass2.Initialise
+End Sub
+
+Public Sub ByReference(ByRef oClass2 As MyClass)
+    Call oClass2.Add("5", "five")
+    Set oClass2 = New MyClass
+    oClass2.Initialise
+End Sub
+
+In subroutines
+Public Sub ClassDifference() 
+Dim oClass As MyClass 
+    Set oClass = New MyClass 
+    
+    oClass.Initialise 
+    Call oClass.Add("1", "one") 
+    Call oClass.Add("2", "two") 
+    Call oClass.Add("3", "three") 
+    Debug.Print oClass.WholeCollection.Count   '3  
+    
+    Call ByValue(oClass) 
+    Debug.Print oClass.WholeCollection.Count   '4  
+    
+    Call ByReference(oClass) 
+    Debug.Print oClass.WholeCollection.Count   '0  
+End Sub 
+
+Public Sub ByValue(ByVal oClass2 As MyClass) 
+    Call oClass2.Add("4", "four") 
+    Set oClass2 = New MyClass 
+    oClass2.Initialise 
+End Sub 
+
+Public Sub ByReference(ByRef oClass2 As MyClass) 
+    Call oClass2.Add("5", "five") 
+    Set oClass2 = New MyClass 
+    oClass2.Initialise 
+End Sub
+
+
+Declaring their Data Type
+-------------------------
+-Procedures that use arguments should always define the data type of these arguments and not leave them blank.
+-Not declaring the data type will resort in all arguments have the Variant data type.
+
+Sub Proc_Name(Name) 
+End Sub 
+
+Sub Proc_Name(Name As String) 
+End Sub 
+
+-It is important that the data that is passed as the argument matches the data type defined for that argument.
+-You will get a type mismatch error if any of the arguments do not match their corresponding data type.
+
+Call Proc_Name("Russell") 
+
+Dim sName As String 
+Call Proc_Name(sName) 
+
+Passing Objects
+---------------
+In VBA all objects are passed by reference. Please refer to Objects > ByVal or ByRef.
+ByRef - the address to the object is passed
+ByVal - a copy of the address to the object is passed
+
+Returning Multiple Variables
+----------------------------
+-A function can only return a single value however you can use a ByRef variable as a way of passing another piece of information back to the calling routine.
+-You can even use a ByRef argument to return a value from a subroutine.
+
+Important:
+-There is one downside to using ByVal in some situations it can consume a lot of memory (and time) to make a copy (or duplicate) of an argument rather than just passing in a reference.
+-This is only applicable to large objects
+
+Optional Arguments
+==================
+-Arguments to a procedure or function can be specified as optional. 
+-You can specify as many optional arguments as you like although they must come at the end of the paramter list.
+-A procedure (or function) can have any number of optional arguments, but they must all come at the end of the parameter list.
+-If we omit an optional argument in the middle of a list, we must include an empty space when calling that procedure.
+
+Default Values
+-------------
+-When a parameter has been declared with the Optional keyword you can call the procedure (or function) with or without an argument for this parameter.
+-There are two methods you can use when you want to use optional arguments
+-The arguments to a procedure can be specified as being optional by using the Optional keyword.
+-The actual parameter is not optional but specifying the value is.
+-When you declare a parameter as being optional you must always define its default value.
+-Any optional arguments will contain their default values if they are not explicitly passed in.
+-If you have an optional integer argument there is no way of telling if zero has been explicitly passed or whether it is just the default value
+-If you have an optional "Variant" argument you can use the IsMissing function to test if a value has been passed in or not.
+
+Public Sub Procedure_One() 
+   Call Procedure_Two("Wingdings", 20) 
+   Call Procedure_Two 
+End Sub 
+Public Sub Procedure_Two(Optional ByVal sFontName As String = "Arial", _ 
+                         Optional ByVal vFontSize As Variant) 
+
+   If IsMissing(sFontName) = True Then 
+        Call MsgBox("sFontName was not provided, so default value has been used") 
+   End If 
+
+   If IsMissing(vFontSize) = True Then 
+        Call MsgBox("vFontSize was not provided") 
+   End If 
+End Sub 
+
+
+Public Sub Procedure_One() 
+   Call Procedure_Two("Wingdings", 20) 
+End Sub 
+
+Public Sub Procedure_One(Optional ByVal sFontName As String = "Arial", _ 
+                         Optional ByVal sngFontSize As Single) 
+   Call Procedure_Two(sFontName, sngFontSize) 
+End Sub 
+
+
+Important
+---------
+-Remember that IsMissing will only work with the Variant datatype.
+-It does not make sense to say that a parameter is optional. It is the value (or argument) that is optional, not the parameter.
+-A procedure (or function) can have any number of optional arguments.
+
+IsMissing Function
+==================
+-The IsMissing() function is used to test whether an argument is present or not.
+-This function can only be used with oarameters that are declared as variant.
+-These variant datatypes can then be converted to other datatypes using the datatype conversion functions.
+-This function can be used to test for optional parameters.
+-When using the IsMissing function the variable must always be declared as variant.
+-This function does not work on simple data types (like Integer, String, Date) but does work on Variant.
+
+Public Sub Procedure_One() 
+   Call Procedure_Two("Times New Roman", 20) 
+End Sub 
+
+Public Sub Procedure_Two(Optional ByVal sFontName As String = "Arial", _ 
+                         Optional ByVal vFontSize As Variant) 
+
+   If Not IsMissing(vFontSize) = True Then 
+   End If 
+End Sub
+
+Named Arguments
+===============
+-This is the assignment of the parameter to the correct value. This is prefered since you don't need to include spaces for missing arguments and can place the arguments in any order
+-Used named arguments for methods that have lots of optional arguments and also when you only need to use a few.
+-There are some advantages to specifying paramaters by name
+-We can enter the arguments in any order and no not need to include extra unnecessary commas between the arguments we are not passing in.
+-We need to use := instead of just =.
+-Also the code is better documented and easier to understand.
+-Improves the readability and clarity of your code.
+-If you have a lot of optional arguments the procedure call can get very messing
+-Note the special syntac for named arguments, and the the colon before the equal sign.
+-Using named arguments remove the need for spaces for missing arguments.
+-You can also place the arguments in any order
+-Some procedures especially some of the built-in methods can often contain a large number of paremeters where in fact all -these parameters are declared as optional.
+
+Positional Arguments
+--------------------
+-The normal way to call a procedure and pass arguments is to pass in the arguments you want and leave the rest blank
+-It is the position of the argument that tells it what parameter it is.
+-This method will mean you have empty arguments to those you do not want
+
+For example
+
+ActiveWorkbook.SaveAs "C:\Temp.xls", , , , , True, , , True 
+or
+
+Call ActiveWorkbook.SaveAs("C:\Temp.xls", , , , , True, , , True) 
+-This is not very user friendly and also wastes lots of space.
+-An alternative is to use Named Arguments.
+
+Using Named Arguments
+---------------------
+-This method allows you to avoid parameters you are not interested in.
+-You must declare the name of the argument followed by a colon and an equal sign.
+
+ActiveWorkbook.SaveAs FileName:="C:\Temp.xls", _ 
+                                     CreateBackup:=True, _ 
+                                      AddToMru:=True 
+
+
+
+Important
+---------
+Using Named Arguments is strongly recommended.
+
+
+ParamArray
+=========
+Discussed in Array
+
+Passing Arrays In
+==================
+Discussed in Array
+
+
+http://www.functionx.com/vbaexcel/functions/Lesson3.htm

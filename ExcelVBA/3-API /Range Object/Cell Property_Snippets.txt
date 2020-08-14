@@ -1,0 +1,55 @@
+
+
+
+
+
+
+Writing a value in a cell
+=========================
+Sub table()
+
+ Dim introwcounter As Integer
+ Dim intcolcounter As Integer
+ Dim introws, intcols As Integer
+ Range("A1").Activate
+ 
+ introws = ActiveCell.Row
+ intcols = ActiveCell.Column
+ 
+ Debug.Print introws
+ For introwcounter = 1 To 7
+    For intcolcounter = 1 To 4
+        Cells(introws + introwcounter, intcols + intcolcounter).Value = introwcounter * intcolcounter
+    Next intcolcounter
+ Next introwcounter
+End Sub
+
+
+Selection Property for cutting and copy 
+========================================
+
+Sub cutcopymode()
+    Worksheets("Sheet1").Activate
+    Range("A2:c6").Select
+    Selection.Copy
+    Worksheets("Sheet2").Activate
+    ActiveSheet.Paste
+    Application.cutcopymode = False
+End Sub
+
+
+Find the Cell value and the address
+===================================
+Sub CellFindValue()
+Dim varToFind, cellAddress As Variant
+varToFind = InputBox("Enter the value to be found in the activesheet")
+On Error GoTo handler:
+'getting the value location
+ActiveWorkbook.ActiveSheet.Cells.Find(varToFind, LookAt:=xlWhole).Activate
+'getting the address of the cell
+cellAddress = ActiveWorkbook.ActiveSheet.Cells.Find(varToFind, LookAt:=xlWhole).Address
+MsgBox cellAddress
+Exit Sub
+handler:
+MsgBox "No value found"
+End Sub

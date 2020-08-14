@@ -1,0 +1,220 @@
+-The lexical elements of a language are the words, punctuation, and grammar rules of the language
+1)Syntax
+2)Sematics
+3)Compiler
+4)Tokens
+ -keywords
+ -identifiers
+ -constants
+ -string constants
+ -operators
+ -punctuators
+5)lexical dissection
+
+http://faculty.salina.k-state.edu/tim/CMST302/study_guide/topic2/lexical.html
+
+Example
+=======
+Sub LEExample()
+    Dim a As Integer
+     a = 6
+    MsgBox a
+End Sub
+
+In this example, the compiler groups the characters into these tokens.
+
+identifiers:
+LEExample a 
+
+operators:
+( ) =
+
+punctuators
+--NA---
+
+keywords
+Sub ,Dim, as , integer, sub
+
+constants
+ 6
+
+Sytnax
+========
+Automatic Formatting
+Indentation and White Space
+One Instruction Per Line
+Line Continuation Character
+Auto Syntax Check
+-----------------
+-As you type your code it is automatically checked for syntax errors.
+-If any syntax errors are found then you are alerted with a pop up message box.
+-For example any misspelled keywords or missing separators will be identified
+
+Navigate to Tools--> options --> check auto Syntax Check.
+
+What happen when When this option is switched On?
+What happen when When this option is switched off?
+
+https://bettersolutions.com/vba/syntax/syntax.htm
+
+Sematics
+========
+Logics
+
+
+Tokens
+======
+The characters in a program which are grouped by the compiler. The compiler basically collects the characters of the program into tokens or syntactic units
+
+keywords
+--------
+-Keywords are special words that are reserved.
+-These keywords are used by the compiler to determine the structure of your code.
+-These are displayed in Blue by default in the Code window.
+-These cannot be used for variables or procedure or function names.
+
+Samples Keywords
+#If	 
+#Else	 
+#Else If	 
+#End If	 
+#Const	 
+And	 
+As	 
+Base	Description ??
+Boolean	 
+ByRef	 
+ByVal	 
+Call	 
+Case	 
+CBool	 
+CByte	 
+CCur	 
+CDate	 
+CInt	 
+CLng	 
+Compare	Option Compare Binary
+Const	 
+CSng	 
+CStr	 
+Database	Option Compare Database
+Declare	 
+DefBool	 
+DefByte	 
+DefDate	 
+DefDec	 
+DefDouble	 
+DefInt	 
+DefLng	 
+DefLngLng	Added in VBA 7.0
+DefLngPtr	Added in VBA 7.0
+DefObj	 
+DefSng	 
+DefStr	 
+Dim	 
+Do	 
+Double	 
+Each	 
+Else	 
+ElseIf	 
+End	 
+Enum	not available in 97
+Error	 
+Event	 
+Exit	 
+Explicit	Option Explicit
+For	 
+Friend	 
+Function	 
+Get	 
+GoTo	 
+If	 
+IIf	 
+Implements	 
+Let	 
+Lbound	 
+Lib	 
+Long	 
+LongLong	 
+Loop	 
+Me	 
+Mid	 
+New	 
+Next	 
+Nothing	 
+Null	 
+Object	 
+On	 
+Option	 
+Optional	 
+Or	 
+Preserve	 
+Private	 
+Property	 
+Public	 
+ReDim	 
+Resume	 
+Return	 
+RSet	 
+Select	 
+Set	 
+Single	 
+Static	 
+Stop	 
+Sub	 
+Text	Option Compare Text
+Then	 
+To	 
+Type	 
+TypeOf	 
+Until	 
+Wend	 
+While	 
+With
+
+identifiers
+-----------
+Here there is no concept of identifier in VBA Langague
+
+constants
+---------
+-constants are explained in future chapter.
+
+Operators
+---------
+- Operator are explained in future chapter.
+
+punctuators
+-----------
+-there is no such puncator in this language.
+for string it is " "
+for a character it is ''
+
+lexical dissection
+==================
+The process of collecting the characters of a program into syntactic units or tokens.
+
+Comments
+========
+-A comment block is considered a syntactic unit, but it is not a token of VBA language because the compiler ignores comments.
+-Comments are used to document the program logic and the user information with which other programmers can seamlessly work on the same code in future.
+-It includes information such as developed by, modified by, and can also include incorporated logic. Comments are ignored by the interpreter while execution.
+
+Comments in VBA are denoted by two methods.
+1)Any statement that starts with a Single Quote (') is treated as comment. 
+Following is an example
+ 'this script call other functions
+ i = star_func(12)
+
+2)Any statement that starts with the keyword "REM". Following is an example
+
+ REM this script call other functions
+ i = star_func(12)
+
+-The Comment Block and UnComment Block buttons on the Edit toolbar can be very useful for commenting out several lines of code in one step
+
+Resources
+---------
+https://www.tutorialspoint.com/vba/vba_macro_comments.htm
+https://bettersolutions.com/vba/syntax/comments.htm
+

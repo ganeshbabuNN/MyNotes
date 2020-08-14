@@ -1,0 +1,36 @@
+Before closing
+==============
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+    If Worksheets("Sheet1").Range("C4").Value = "" Then
+     MsgBox ("Please kindly the enter the cash value before closing the book ")
+    Cancel = True
+    End If
+End Sub
+
+Before saving
+=============
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
+    answer = MsgBox("Do you really want to save the workbook? ", vbYesNo)
+    If answer = vbNo Then Cancel = True
+    
+End Sub
+
+Assinging the Shortcut Key
+==========================
+-You know how to apply during the record macro
+- for more on keys refer from  https://msdn.microsoft.com/en-us/library/aa195807(office.11).aspx
+
+Private Sub Workbook_Activate()
+    Application.OnKey "{F4}", "hello"
+End Sub
+
+Private Sub Workbook_Deactivate()
+    Application.OnKey "{F4}"
+End Sub
+
+
+Auto open
+=========
+Private Sub auto_open()
+    MsgBox "Welcome to the cash system "
+End Sub

@@ -1,0 +1,532 @@
+Intro
+=====
+-The use of the activex Controls are used in the application instance i,e excel level where the form controls are independent of the application.
+
+-All The activex Controls use the similar events with the controls like 
+1)Command button,
+2)Combo Box,
+3)Check box,
+4)List Box,
+5)Text Box,
+6)Scroll Bar,
+7)Spin Button,
+8)Radio Button,
+9)Label,
+10)Image,
+11)Toggle Button.
+
+-Common events used
+BeforeDragOver
+BeforeDropOrPaste
+Click
+DblClick
+Error
+GotFocus
+KeyDown
+KeyPress
+KeyUp
+LostFocus
+MouseDown,
+MouseUp,
+MouseMove
+
+-Use of the Design Mode and play with the activeX objects and its properties
+
+Events
+======
+
+Click Event
+-----------
+-Click on the activex control only once
+
+ex
+Private Sub CommandButton1_Click()    
+    myhourly = Range("C4")
+    myweekly = myhourly * 32
+    myannually = myweekly * 52    
+    Range("C5") = myweekly
+    Range("C6") = myannually    
+End Sub
+
+
+
+Double-Click Event
+-----------
+-Click on the activex control double time, then the macro triggers
+
+ex
+Private Sub CommandButton1_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+    myhourly = Range("C4")
+    myweekly = myhourly * 32
+    myannually = myweekly * 52
+    Range("C5") = myweekly
+    Range("C6") = myannually
+End Sub
+
+Keydown Event
+-------------
+-Refer the MS website on the keyconstant
+https://msdn.microsoft.com/en-us/library/aa243025(v=vs.60).aspx
+-this trigger whenever the key take the control using they key constant
+-While doing this action, point the cursor on the button and press escape key
+
+ex
+Private Sub CommandButton1_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+If KeyCode = 27 Then 'escape button
+MsgBox "You have hit the escape key "
+   myhourly = Range("C4")
+    myweekly = myhourly * 32
+    myannually = myweekly * 52
+    Range("C5") = myweekly
+    Range("C6") = myannually
+End If
+End Sub
+
+For Ctl+Shft+Ctrl event
+-----------------------
+-Refer the MSDN page
+https://msdn.microsoft.com/en-us/library/aa243025(v=vs.60).aspx
+
+KeyASCII event
+-------------
+-Refer the this website for codes
+http://www.theasciicode.com.ar/
+or 
+https://msdn.microsoft.com/en-us/library/4z4t9ed1(v=vs.80).aspx
+
+
+ex: TBD
+Private Sub CommandButton1_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+If KeyAscii = 32 Then  'escape button
+MsgBox "YOu have hite a keyascii "
+   myhourly = Range("C4")
+    myweekly = myhourly * 32
+    myannually = myweekly * 52
+    Range("C5") = myweekly
+    Range("C6") = myannually
+End If
+End Sub
+
+Mouse move event 
+----------------
+-WHen you hover the mouse on the object, the macro triggers
+
+ex
+Private Sub CommandButton1_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+ myhourly = Range("C4")
+    myweekly = myhourly * 32
+    myannually = myweekly * 52
+    Range("C5") = myweekly
+    Range("C6") = myannually
+End Sub
+
+
+Mouse up
+--------
+-When you release the move click(Physical) event, this macro get triggered
+
+
+ex
+Private Sub CommandButton1_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+If Button = xlPrimaryButton And Shift = 1 Then
+MsgBox " Hey! Howdy"
+End If
+End Sub
+
+
+Mouse DOwn
+----------
+-As soon as you click the mouse regardless you release or not, this macro get triggered
+-Refer the details
+https://msdn.microsoft.com/en-us/library/office/aa220903(v=office.11).aspx
+
+ex
+Private Sub CommandButton1_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+If Button = xlSecondaryButton And Shift = 1 Then
+MsgBox " Hey! Howdy"
+End If
+End Sub
+
+
+Application Status notify
+-------------------------
+- if you want to disable the application status bar, use label to control the status bar notification.
+
+ex
+Private Sub CommandButton1_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+ myhourly = Range("C4")
+    myweekly = myhourly * 32
+    myannually = myweekly * 52
+    Range("C5") = myweekly
+    Range("C6") = myannually
+End Sub
+
+Private Sub CommandButton1_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Application.StatusBar = "Double click on the Button " & Application.UserName & "!!!"
+End Sub
+
+Private Sub Label1_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Application.StatusBar = False
+End Sub
+
+Got_Focus Event
+----------------
+-WHen you select an object by clicking or pressing enter or rightclicking, this macro is triggered
+
+ex.
+Private Sub CommandButton1_GotFocus()
+MsgBox "Hello "
+End Sub
+
+Lost_Focus Event
+---------------
+-WHen you de-select or come out of that object by clicking or pressing enter or rightclicking, this macro is triggered
+
+ex.
+Private Sub CommandButton1_LostFocus()
+MsgBox " Hello "
+End Sub
+
+=========================================================================================
+
+Activex Object
+==============
+
+-Use the keyword "Me" to get the activex Controls name and use accordingly.
+Note: normal way of using the sheet will not work accessing the controls
+
+Dim wb As Workbook
+Set wb = ThisWorkbook
+Dim sh As Worksheet
+Set sh = wb.Worksheets("Sheet1")
+
+-Lear to Grouping Alignment and Aesthetics for Controls and for alginmen
+
+Command Button
+--------------
+-
+Check Box
+---------
+-
+
+--check box with value
+ex
+Private Sub CommandButton1_Click()
+If Sheet1.CheckBox1 = True Then
+ MsgBox "Good you like bets"
+Else
+ MsgBox "Your not a good Human Being"
+End If
+End Sub
+
+--Check box with linked cells
+- Use the me to point out the and point the check box object to as a linked cell to "A1" to boolean value and test
+goto--> Properties
+Select the Linked Cell properties --> Enter the cell reference as boolean value
+
+ex
+Private Sub CheckBox1_Click()
+If Me.CheckBox1 = True Then
+    MsgBox "Welcome to animal kingdom"
+Else
+    MsgBox "Welcome to Human kingdom"
+End If
+End Sub
+
+
+--Check box without a button
+
+Private Sub CheckBox1_Click()
+If Sheet1.CheckBox1 = True Then
+ MsgBox "Good you like bets"
+Else
+ MsgBox "Your not a good Human Being"
+End If
+End Sub
+
+
+Option buttons
+--------------
+--Use the keyword "Me" indicate the current workseet instances and to get those activex Controls name and use accordingly.
+-Lear to Grouping Alignment and Aesthetics for Controls and for alginment
+goto--> format -> aligh --> choose the appropriate directions.
+
+
+--Quiz control
+'place three radio button and command button
+Private Sub CommandButton1_Click()
+ If Me.OptionButton1 = "True" Then
+    MsgBox "Hi option1"
+ ElseIf Me.OptionButton2 = "True" Then
+    MsgBox "hi option2"
+ ElseIf Me.OptionButton3 = "True" Then
+      MsgBox "Hi option3"
+ Else
+      MsgBox "Select the option button"
+ End If
+End Sub
+
+--Options buttons with command buttons
+Private Sub CommandButton1_Click()
+  If Me.obFrenchFries = True And Me.obPepsi Then
+    MsgBox "This is tasy "
+  ElseIf Me.obBurger = True And Me.obPepsi Then
+    MsgBox "This is hungry and super food"
+  ElseIf Me.obDonuts = True And Me.obCoffee Then
+    MsgBox "this is yummY"
+  Else
+      MsgBox "Nothing I feel , Bye "
+  End If
+ End Sub
+
+--options buttons with command button visibilty
+Refer the Snippets-Options_Buttons_Cmd_Buttons_Visibilty.xlsm
+
+Spin Button
+===========
+-It contain a Arrow up and down event
+-it applies to all events
+
+--Spin Button with Range
+-Default type of the cell using the range is Number.
+
+ex
+Private Sub spbutton_SpinUp()
+Range("A1") = Range("A1") + 1
+End Sub
+
+Private Sub spbutton_SpinDown()
+Range("A1") = Range("A1") - 1
+End Sub
+
+-- Sping button with text box
+- The default value of the text box is a string not a number :-)
+
+Private Sub spbutton_SpinUp()
+On Error Resume Next
+If Me.tbTextBox = "" Then Exit Sub
+Me.tbTextBox = Me.tbTextBox + 1
+End Sub
+
+Private Sub spbutton_SpinDown()
+On Error Resume Next
+If Me.tbTextBox = "" Then Exit Sub
+Me.tbTextBox = Me.tbTextBox + 1
+End Sub
+-Allowing the zero has default
+
+ex
+'2st experiment
+Private Sub spbutton_SpinUp()
+On Error Resume Next
+If Me.tbTextBox = "" Then Exit Sub
+Me.tbTextBox = Me.tbTextBox + 1
+
+End Sub
+
+Private Sub spbutton_SpinDown()
+On Error Resume Next
+If Me.tbTextBox = "" Then Me.tbTextBox = 0
+Me.tbTextBox = Me.tbTextBox + 1
+End Sub
+
+-- Sping button with dates
+'4st experiment for dates
+Private Sub spbutton_SpinUp()
+On Error Resume Next
+mydate = CDate(Me.tbTextBox) + 5
+Me.tbTextBox = mydate
+End Sub
+
+Private Sub spbutton_SpinDown()
+On Error Resume Next
+mydate = CDate(Me.tbTextBox) + 5
+Me.tbTextBox = mydate
+End Sub
+
+--Spin button with date
+Private Sub spbutton_SpinUp()
+On Error Resume Next
+mydate = CDate(Me.tbTextBox) + 5
+Me.tbTextBox = Format(mydate, "dd-mmm-yyyy")
+End Sub
+
+Private Sub spbutton_SpinDown()
+On Error Resume Next
+mydate = CDate(Me.tbTextBox) + 5
+Me.tbTextBox = Format(mydate, "dd-mmm-yyyy")
+End Sub
+
+Label
+=====
+-It is something you can put a caption of the some object and even you can put a image.
+
+Private Sub spbutton_SpinUp()
+On Error Resume Next
+mydate = CDate(Me.tbTextBox) + 5
+Me.tbTextBox = Format(mydate, "dd-mmm-yyyy")
+Me.lbLabel = "the discussion is on " & Me.tbTextBox
+End Sub
+
+Private Sub spbutton_SpinDown()
+On Error Resume Next
+mydate = CDate(Me.tbTextBox) + 5
+Me.tbTextBox = Format(mydate, "dd-mmm-yyyy")
+Me.lbLabel = "the discussion is on " & Me.tbTextBox
+End Sub
+
+Combo Box
+=========
+-In this combo box , you can edit the value and save. but it does not change the actual value
+-It can be given has a range or the name range. 
+
+--Listing the values in the combo box
+To do so ---> go to Propeties --> ListFillRange --> names or Range
+
+--Creating a dynamic range
+Using the name range in names manager use the offset functions
+=OFFSET(Sheet1!$B$1,1,0,COUNTA(Sheet1!$B:$B)-1,1) or vba
+or
+
+ex1
+Private Sub CommandButton1_Click()
+last_Row = Cells(Rows.Count, 2).End(xlUp).Row
+Me.cbNames.ListFillRange = "B2: B" & last_Row
+End Sub
+
+ex2
+Private Sub CommandButton1_Click()
+ Dim i As Range
+    With Sheets("Sheet1")
+        Set i = .Range("B2:B" & .Range("B" & .Rows.Count).End(xlUp).Row)
+    End With
+    Me.cbNames.ListFillRange = i.Address
+End Sub
+
+--Creating a dynamic range with multiple columns
+-Before modifying the range, in the properties, change the column count to 2
+Using the name range in names manager use the offset functions
+=OFFSET(Sheet1!$B$1,1,0,COUNTA(Sheet1!$B:$B)-1,2)
+
+--Using add item dyanmically and with specific item
+ex
+Private Sub CommandButton1_Click()
+last_row = ThisWorkbook.Sheets("Sheet1").Cells(Rows.Count, 2).End(xlUp).Row
+Me.cbCombo1.Clear
+selectValue = Range("K7")
+For i = 2 To last_row
+    If Cells(i, 3) = selectValue Then
+    Me.cbCombo1.AddItem Cells(i, 2)
+    End If
+Next i
+End Sub
+
+--Using add item dyanmically and with multiple column
+-Using the list has the multiple items
+-Ensure all the column count property to be intialize
+
+ex:
+Private Sub CommandButton2_Click()
+last_row = ThisWorkbook.Sheets("Sheet1").Cells(Rows.Count, 2).End(xlUp).Row
+Me.cbCombo2.Clear
+selectValue = Range("K7")
+For i = 2 To last_row
+    If Cells(i, 3) = selectValue Then
+    Me.cbCombo2.AddItem Cells(i, 2)
+    ' for adding the two more column
+    Me.cbCombo2.List(Me.cbCombo2.ListCount - 1, 1) = Cells(i, 4)
+    End If
+Next i
+End Sub
+
+List Box
+--------
+-In this List box , you cannot edit the value and save.
+-List is nothing but the collection of arrays, so in the list box, the columns starts with 0...
+-Maximum column only be 10 to be fit in a single list box
+-It can be given has a range or the name range. 
+
+--Listing the values in the List box
+To do so ---> go to Propeties --> ListFillRange --> names or Range
+
+--Creating a dynamic range
+Using the name range in names manager use the offset functions
+=OFFSET(Sheet1!$B$1,1,0,COUNTA(Sheet1!$B:$B)-1,1) or vba
+or
+
+ex1
+Private Sub CommandButton1_Click()
+last_Row = Cells(Rows.Count, 2).End(xlUp).Row
+Me.cbNames.ListFillRange = "B2: B" & last_Row
+End Sub
+
+
+--using the event and dynamic operations
+Private Sub lbNames_Click()
+Range("B7") = Me.lbNames.Value & " is Awesome"
+End Sub
+
+--using the event Referining a column with cell dynamically
+- using the listindex to point on the current item in the list
+Private Sub lbNames_Click()
+Range("B15") = Me.lbNames.Value & " is job " & Me.lbNames.List(Me.lbNames.ListIndex, 1)
+End Sub
+
+--List box using add items and more..
+Private Sub CommandButton2_Click()
+last_row = ThisWorkbook.Sheets("Sheet1").Cells(Rows.Count, 1).End(xlUp).Row
+Me.lbname3.Clear
+selectValue = Me.ComboBox1.Text
+For i = 2 To last_row
+    If Cells(i, 2) = selectValue Then
+    Me.lbname3.AddItem Cells(i, 1)
+    Me.lbname3.List(Me.lbname3.ListCount - 1, 1) = Cells(i, 2)
+    Me.lbname3.List(Me.lbname3.ListCount - 1, 2) = Cells(i, 3)
+    Me.lbname3.List(Me.lbname3.ListCount - 1, 3) = Cells(i, 4)
+    End If
+Next i
+End Sub
+
+
+--List box using invisible columns
+-Using the list has the multiple items
+-In this make sue of the column width property and point those column pt to zero
+
+ex if you have 3 columns, 2nd column to be hidden
+45pt,0pt,42pt
+
+Scroll bar
+----------
+-Its like a scroll bar where you see on other websites or forms
+-There are some properties like delay,min,max,small change,large change....etc
+
+ex
+Use the link cell property assume "A1".
+Set the min and max property of some value
+
+
+Picture box
+-----------
+-To place your favorite pictures on it
+-Explore the properties of the images
+
+ex
+'for following the hyperlick of a webpage
+Private Sub Image1_Click()
+ThisWorkbook.FollowHyperlink ("http://www.facebook.com")
+End Sub
+
+
+Toggle Button
+-------------
+-Its pretty similar like a checkbox
+-if feels like a depressed button 
+
+ex
+Private Sub ToggleButton1_Click()
+If Me.ToggleButton1 = True Then
+Me.Image1.Visible = False
+Else
+Me.Image1.Visible = True
+End If
+End Sub

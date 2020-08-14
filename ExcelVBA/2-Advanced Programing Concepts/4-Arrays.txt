@@ -1,0 +1,946 @@
+Array Introduction
+Reason of using an array
+Different Types of Arrays
+Array Function
+Matrices and Vectors
+Creating an Array
+One-Dimensional Array
+Upper - Lower Bounds
+Erase Statement
+Multidimensional Array
+Fixed Array in Multidimensional array
+Dyanmic Array using Multidimensional array
+Passing Arrays In (Sub or Function)
+Passing Arrays Out
+ParamArray
+
+Array Introduction
+=================
+-An array is a group of elements of the same type that have a common name
+-An array is a collection of elements that use the same name but are distinguished by an index value.
+-Arrays contain a sequence of variables.
+-An array variable is a collection of variables that use the same name, but are distinguished by an index value
+-The individual items within an array are called elements
+-The numerical value used to access individual elements is called the index
+
+Dim a(5) As String or 
+Dim a(0 to 5) As String - it has upper limit and lower limit
+0  1  2  3  4  5  --- index
+12 32 21 13 53 11 --- elements in an array
+
+Reason of using an array
+========================
+-There are several reasons for using an array over a Collection or a Scripting Dictionary:
+-It is a lot easier to sort an array
+-The entire contents of the array can be viewed in the Watch window.
+-If you are just saving objects you probably don't care about the order.
+-Since a Collection or Scripting Dictionary object resize automatically you don't have to keep track or ever resize.
+
+Different Types of Arrays
+=========================
+-There are several different types of arrays:
+1)Fixed Size - These remain the same size.
+2)Dynamic Size The size of these can change at run-time by using the ReDim statement.
+3)Rectangular Arrays - These are really 2 dimensional. The number of rows is identical to the number of columns.
+4)Jagged Arrays - These are not really 2 dimensional and represent a 1 dimensional array of 1 dimensional arrays. Each element in the main array can hold an array of varying length.
+
+Array Function
+==============
+-The Array function can be used to create an array from an explicit list of constants.
+-If you want to use the Array function to declare a fixed array then you must declare the array as a Variant.
+-When the Array function is used, the variables have the variant datatype.
+
+Ex:
+Sub test()
+ Dim names() As Variant
+ names = Array("GBAG", "RAUS", "NIUP", "NKUB")
+ 
+ For i = LBound(names) To UBound(names)
+    Debug.Print names(i)
+ Next i
+ 
+End Sub
+
+Matrices and Vectors
+====================
+-These are fixed size arrays which can be used to represent rectangular blocks of values or numbers.
+-Arrays with one dimension are called Vectors.
+-Arrays with two dimensions are called Matrices.
+
+ex
+'vectors or one dimensional arrray
+Sub oneDimArrayEx()
+ Dim a(3) As Variant
+ a(0) = 1
+ a(1) = "Ganesh"
+ a(2) = True
+ a(3) = #10/12/2018#
+ 
+ Debug.Print a(0)
+ Debug.Print a(1)
+ Debug.Print a(2)
+End Sub
+
+'matrices or two dimensional arrray
+Sub TwoDimArrayEx()
+ Dim a(3, 2) As Variant
+ a(0, 0) = 1
+ a(1, 0) = "Ganesh"
+ a(2, 0) = True
+ '2n column
+ a(0, 1) = 2
+ a(1, 1) = "babu"
+ a(2, 1) = False
+ '3nd column
+ a(0, 2) = 3
+ a(1, 2) = "sard"
+ a(2, 2) = True
+ Debug.Print a(0, 0)
+ Debug.Print a(0, 1)
+ Debug.Print a(0, 2)
+End Sub
+
+Note:
+-The upper and lower bounds of an array cannot exceed the range of a long datatype (2,147,483,648).
+-A variant array is simply an array of elements associated to a variable whose datatype is Variant.
+-You can actually define arrays with up to 60 dimensions, although most people only need 2 or 3.
+-You should always include parentheses when referring to an array. You don't have to include the parentheses when you refer to an array variable, except when you declare it, resize it or refer to an individual element but it helps make your code more readable.
+-Always specify both the lower and upper bound of an array "Dim myArray(1 To 10) As String".
+If you don't include a lower bound when declaring the size, it is determined by the Option Base setting in the module.
+
+https://bettersolutions.com/vba/arrays/index.htm
+
+Creating an Array
+=================
+For creating one/two dimensional array , the following steps are required
+-Declare the one/two dimen­sional Array
+-Resize the array 
+-Store values in array
+-Retrieve values from array
+
+One-Dimensional Array
+=====================
+
+Declaring the array
+*==================*
+they are two types of array
+1)fixed size array or static array
+2)Dynamic Array
+
+1)fixed size array or static array(One Dimensional Array)
+---------------------------------------------------------
+-Fixed arrays have a fixed size which cannot be changed at run-time.These are also known as Static Arrays.
+-An array is declared by including parentheses after the array name or identifier.
+-An integer is placed within the parentheses, defining the number of elements in the array.
+
+Declaring a fixed array
+*---------------------*
+-You can declare a fixed array using the Dim statement.
+-It is good practice to always declare your arrays with an explicit data type
+-This line creates an array with three elements.
+-All VBA arrays (by default) start at zero
+
+syntax:
+-simple way of declaring a 
+ dim <array_name>(size) as <type_of_array>
+
+for example:
+  Dim a(3) As String 
+  Dim countryList (3) as string
+  Dim salary(3) as integer
+'so it will start from 0,1,2,3... total 4 elements can be stored,if you start from 1 index you can use "Option base 1" statement.
+
+Default Value
+*-----------*
+-After declaring an array it will contain default values.
+-Numeric arrays will contain the number 0
+-String arrays will contain the empty sting "".
+-Variant arrays will contain the Empty keyword.
+-Object arrays will contain the Nothing keyword.
+
+Option base 1 statement
+-----------------------
+Ref https://bettersolutions.com/vba/arrays/option-base-1.htm
+
+-All arrays will start at zero unless they are explicitly defined to start at another number.
+-All arrays start at 0. by default
+-You can also use the "Option Base 1" declaration at the top of the module to change the default to 1 instead of 0.
+
+Example :	
+  Option Base 1
+  Dim a(3) As String 
+
+-so it will start from 1,2,3 ... total 4 elements can be stored.
+-This only affects the lower bound of variables declared in the module where it is defined.
+-The default lower bound can also be changed to any other number by using the "To" keyword in the declaration.
+   dim a(0 to 3 ) as string
+-Always define boundaries of an array. Never use the options base settings.
+
+Note:
+-This can only be changed on a per module basis
+-If you have more than one module containing array manipulations you need to add this statement to the top of every code module
+
+https://bettersolutions.com/vba/arrays/option-base-1.htm
+
+store into a Fixedarray using one dimension
+*------------------------------------------*
+-Once the array has been declared , it can be populated using below ways
+
+-Populating or storing the array in a simple way
+Example. Top 10 Employees
+Sub StoreTop10Employee()
+    Dim employees(1 To 10) As Variant    
+    employees(1) = Range("B2").Value
+    employees(2) = Range("B3").Value
+    employees(3) = Range("B4").Value
+    employees(4) = Range("B5").Value
+    employees(5) = Range("B6").Value    
+End Sub
+
+-Populating or storing the array by loop
+Sub StoreTop10Employee()
+    Dim employees(1 To 10) As Variant
+    Dim counter As Integer
+       
+    'storing into top 10 employees dynamically
+    For counter = 1 To 10
+        employees(counter) = Range("B2").Offset(counter, 0)
+    Next counter
+End Sub
+
+Reading/Populating from the array
+*--------------------------------*
+-Once the data in a array in available , then its ready to use.
+
+-Populating or storing the array my index
+Sub PopulateTop10Employee()
+    Dim employees(1 To 10) As Variant
+    
+    Sheet1.Activate
+    'store the value
+    employees(1) = Range("B2").Value
+    employees(2) = Range("B3").Value
+    employees(3) = Range("B4").Value
+    employees(4) = Range("B5").Value
+    employees(5) = Range("B6").Value
+       
+    'populating from array
+    Worksheets.Add
+    Range("B1").Value = employees(1)
+    Range("B2").Value = employees(2)
+    Range("B3").Value = employees(3)
+    Range("B4").Value = employees(4)
+    Range("B5").Value = employees(5)
+End Sub
+
+-Populating from an array
+Sub PopulateTop10Employee()
+    Dim employees(1 To 10) As Variant
+    Dim counter As Integer
+    Sheet1.Activate
+    'storing into top 10 employees dynamically
+    For counter = 1 To 10
+        employees(counter) = Range("B2").Offset(counter, 0)
+    Next counter
+    
+    Worksheets.Add
+    'Reading from the array from reverse
+    For counter = 10 To 1 Step -1
+         Range("A1").Offset(counter, 0) = employees(counter)
+    Next counter
+
+    'Reading from the array from reverse using offset functions
+    For counter = 10 To 1 Step -1
+         ActiveCell.Value = employees(counter)
+         ActiveCell.Offset(1, 0).Select
+    Next counter    
+End Sub
+
+Upper - Lower Bounds
+====================
+-The lowest and highest index numbers are known as bounds.
+-Arrays have both upper and lower bounds, and the elements of the array are contiguous within those bounds.
+-Array sizes should be identified using the LBound and UBound functions.
+-There are two functions that can be used to quickly obtain the upper and lower limits of an array:
+-LBOUND - Returns the smallest subscript in a given dimension of an array (Long).
+-UBOUND - Returns the largest subscript in a given dimension of an array (Long).
+-You can use these functions to determine the size of an existing array
+-The LBound is very useful when working with dynamic arrays*
+-Be aware that you must have initialised the dynamic array* before calling the UBound or LBound functions
+
+If the default lower bound is 0 then UBound is one less that the actual number of elements in the array,
+Sub test()
+Dim employees(0 To 6) As Variant
+Debug.Print LBound(employees, 1)
+Debug.Print UBound(employees, 1)
+End Sub
+
+If the lower bound is 1 then the number of elements is the value returned from UBound
+Sub test()
+Dim employees(1 To 6) As Variant
+Debug.Print LBound(employees, 1)
+Debug.Print UBound(employees, 1)
+End Sub
+
+To be absolutely sure you can determine the size of an array it is best to always use the following formula
+Sub test()
+Dim iArraySize As Integer
+Dim employees(1 To 6) As Variant
+iArraySize = UBound(employees, 1) - LBound(employees, 1) + 1
+Debug.Print iArraySize
+End Sub
+
+https://bettersolutions.com/vba/arrays/upper-lower-bounds.htm
+
+Reading the lower bound and upper bound size dynamically from Fixedarray
+**---------------------------------------------------------------------**
+-to get size dynamically of the array without changing the value of loop.
+-LBound Function get the initial index of the array 
+
+syntax:
+Lbound(<Array_Name>,1)
+
+-Ubound function get the last index of the array
+
+syntax:
+UBound(<Array_name>,1)
+
+Example:
+'populate 1 to 10 in column 1 
+Sub PopulateTop10EmployeeDynamic()
+    Dim employees(1 To 10) As Variant
+    Dim counter As Integer
+    Sheet1.Activate
+    'storing
+    For counter = LBound(employees) To UBound(employees)
+        employees(counter) = Range("B2").Offset(counter, 0)
+    Next counter
+    
+    Worksheets.Add
+    'Reading from the array from reverse
+    For counter = UBound(employees) To LBound(employees) Step -1
+         ActiveCell.Value = employees(counter)
+         ActiveCell.Offset(1, 0).Select
+    Next counter
+End Sub
+
+2)Dynamic Arrays(One Dimensional Array)
+---------------------------------------
+-Dynamic arrays can be resized at run-time using the "ReDim" statement.
+-These are also known as Variable Arrays or Variable-Length Arrays.
+-This type of array is very useful when you don't know the exact size of the array at design time.
+-Before you can use a dynamic array you must define an initial number of elements.
+-A dynamic array does not have a pre-defined number of elements
+-Resizing arrays at run-time can be very inefficient. If adding a lot of data dynamically do not resize the array after every new element but after every 10 or so
+
+Intialising/Declaring a Dynamic array
+*------------------------------------*
+-You can declare a dynamic array by using an empty set of parentheses.
+-Dynamic arrays are always declared with empty parentheses.
+-The parentheses must always be attached to the variable, never the data type.
+-When you need to define the size of the array you can use the ReDim statement
+
+For Example:
+ Dim myArray() as variant
+ redim myarray(1 to 4) 
+
+ReDim Statement
+*-------------*
+-ReDim creates a new array.This statement can only be used with dynamic arrays (not fixed arrays).
+-You can define the exact number of elements in a dynamic array by using the ReDim statement.
+-Each ReDim statement can change the number of elements as well as the lower and upper bounds.
+-Each time you execute the ReDim statement, all the values currently stored in the array are lost.
+-Before trying to resize you should check that the array is not static.
+-You can resize an array by modifying its upper bound.
+-You cannot resize the lower bound of an array.
+-The larger and more complex the array, the longer it takes to resize it.
+-There is no limit to the number of times you can ReDim a dynamic array.
+-It is possible to declare a dynamic array and specify the initial number of elements at the same time using the ReDim statement.
+-Instead of the two lines above you could use "ReDim aCellValues(3) As String"
+-This shorthand is not encouraged and is not best practice
+
+Dim sCellValues(10) As String
+ReDim aCellValues(50)
+ReDim aCellValues(50) As String
+ReDim aCellValues(1 To 50)
+ReDim aCellValues(1 To 50) As String
+
+Ex:
+Sub arrayProblem()
+ Dim a() As Integer
+ ReDim a(1)
+ a(0) = 1
+ a(1) = 2
+ Debug.Print a(1)
+ ReDim a(3)
+ a(0) = 1
+ a(1) = 2
+ a(2) = 3
+ a(3) = 3
+ Debug.Print a(3)
+End Sub
+
+https://bettersolutions.com/vba/arrays/dynamic-size.htm
+
+Array with Variant Data Types
+*----------------------------*
+
+Creating a array with variant data type
+Dim arValues() As Variant 
+ReDim arValues(3) 
+arValues(0) = 50 
+arValues(1) = "text" 
+arValues(2) = false 
+arValues(3) = -4.6 
+
+Can't test if the array is empty !!!
+ arValues = Empty   'this doesn't work !!! 
+
+Variant - ARRAY Function
+*-----------------------*
+-If you want to populate an array quickly using a series of comma-delimited values then you must declare your array as a Variant.
+-When using the ARRAY function the array always starts at zero. Any Option Base statement will be ignored.
+
+Dim myArray As Variant 
+myArray = Array(1, 2, 3, 4) 
+myArray = Array("one", "two", "three", "four") 
+myArray = Array("50, "text", false, -4.6) 
+
+ex
+Sub arrayFunctionEx()
+    Dim a() As Variant
+    a = Array(1, 2, 3, 34, 4)
+    a = Array("one", "two", "three")
+    For i = LBound(a) To UBound(a)
+        Debug.Print a(i)
+    Next i
+End Sub
+
+ReDim Preserve
+*------------*
+-ReDim will re-initialize the array and destroy any data in it unless you use the Preserve keyword.
+-Preserve copies the elements from the old array to the new array.
+-It is possible to resize an array without losing the existing values by using the Preserve keyword.
+-When you use Preserve you can only change the size of the upper bound (not the lower bound).
+
+Ex:
+Sub redimPreserveExample()
+    Dim a() As Integer
+    ReDim a(2)
+    a(0) = 1
+    a(1) = 2
+    a(2) = 3
+    ReDim Preserve a(3) 'reintializing the array without remove the data
+    a(3) = 4
+    Debug.Print a(0)
+    Debug.Print a(1)
+    Debug.Print a(2)
+    Debug.Print a(3)
+End Sub
+
+Erase Statement
+===============
+-The Erase Statement can be used to reinitialise arrays.
+-This statement can be used on both Fixed Size and Dynamic Size arrays.
+-Erase frees the memory for dynamic size arrays.
+-Erase recovers no memory for fixed size arrays.
+-When you first dimension a fixed-length string, it contains null characters.
+-Erase behaves differently for fixed or dynamic arrays.
+
+Sytnax:
+erase <Array name>
+
+Numeric Arrays
+-------------
+Keeps the items and resets them all to zero.
+
+Public FixedSize(5, 5) As Integer
+
+Public Sub FixedSize_1()
+   FixedSize(1, 1) = 10
+   Erase FixedSize
+End Sub
+
+Removes all the element: Only Whenthe Redim options are used.
+
+Public FixedSize() As Integer
+
+Public Sub FixedSize_1()
+   ReDim FixedSize(5, 5)
+   FixedSize(1, 1) = 10
+   Erase FixedSize
+End Sub
+
+String Arrays
+-------------
+-Values set to zero-length string in a variable array.
+-Values set to 0 in a fixed array.
+-Keeps the items and resets them all to empty string "".
+
+Variant Arrays
+--------------
+-Keep all the items and resets them all to Empty.
+
+Object Arrays
+-------------
+-Keep all the items and resets them all to Nothing.
+
+Important:
+-Fixed arrays keep their dimensions after erasing.
+-Dynamic arrays lose their dimensions after erasing.
+-The Erase statement cannot be used at class or module level. It can only be used inside a subroutine or function.
+-The Erase statement is equivalent to assigning the Nothing keyword to each array variable
+
+Multidimensional Array
+======================
+-You can declare arrays with as many dimensions as you need, even in excess of 20, although you will probably not have more than 3 or 4 maximum.
+-Multi Dimensional arrays can have up to 60 dimensions.
+-It is very unusual to use more than 2 or 3 dimensions.
+-When using 2-dimensional arrays always have columns and the rows, (ie (1,1) (1,2) (1,3) etc).
+-In a multi-dimensional array can you have vArrayName(1, 2, 1 ) When is it 2 dimensional ???
+
+Fixed Array in Multidimensional array
+======================================
+
+Declaring a Fixed Array
+-----------------------
+-if you want to declare more than one 1 dimension
+
+Syntax:
+ ArrayName(OneDimension,TwoDimentions)
+
+Example
+Employees(1 to 4,1 to 4) 'like 4 rows and 4 columns
+-This is a two dimensional array whose first index ranges from 1 to 10 and whose second index ranges from 1 to 100.
+	aCellValues(2,3) = "some text" 
+
+store/Reading/populating into a Fixedarray
+------------------------------------------
+
+'In normal way
+Sub TwoDimensionalArray()
+    Dim Employees(1 To 4, 1 To 3) As Variant
+    'storing into array
+    Sheet1.Activate
+    Employees(1, 1) = Range("A2").Value
+    Employees(1, 2) = Range("B2").Value
+    Employees(1, 3) = Range("C2").Value
+    Employees(2, 1) = Range("A3").Value
+    Employees(2, 2) = Range("B3").Value
+    Employees(2, 3) = Range("C3").Value
+    
+    
+    Worksheets.Add
+     Range("A2").Value = Employees(1, 1)
+     Range("B2").Value = Employees(1, 2)
+     Range("C2").Value = Employees(1, 3)
+     Range("A3").Value = Employees(2, 1)
+     Range("B3").Value = Employees(2, 2)
+     Range("C3").Value = Employees(2, 3)
+
+erase Employees
+End Sub
+
+'using loop
+Sub TwoDimensionalArray()
+    Dim Employees(1 To 4, 1 To 3) As Variant
+    Dim oneDimension As Integer
+    Dim twoDimension As Integer
+  
+    'storing into array using loop
+    For oneDimension = LBound(Employees, 1) To UBound(Employees, 1)
+        For twoDimension = LBound(Employees, 2) To UBound(Employees, 2)
+            Employees(oneDimension, twoDimension) = Range("A1").Offset(oneDimension, twoDimension)
+        Next twoDimension
+    Next oneDimension
+    
+    Worksheets.Add
+    'populating to a new sheet
+    For oneDimension = LBound(Employees, 1) To UBound(Employees, 1)
+        For twoDimension = LBound(Employees, 2) To UBound(Employees, 2)
+            Range("A1").Offset(oneDimension, twoDimension) = Employees(oneDimension, twoDimension)
+        Next twoDimension
+    Next oneDimension
+    
+   Erase Employees
+End Sub
+
+Dyanmic Array using Multidimensional array
+==========================================
+-Same explanations as above for one dimensional
+
+Declaring a fixed array
+---------------------
+-Same explanations as above for one dimensional
+
+Example:
+Dim Employees() As Variant
+ReDim Employees(0 To oneDimension, 0 To twoDimension)
+
+'Using the Redim options
+-------------------------
+-Same explanations as above for one dimensional
+
+Sub DynamicTwoDimensionalArray()
+    Dim Employees() As Variant
+    Dim oneDimension As Integer
+    Dim twoDimension As Integer
+    
+    Sheet1.Activate
+    oneDimension = Range("A2", Range("A2").End(xlDown)).Cells.Count - 1
+    twoDimension = Range("A1", Range("A1").End(xlToRight)).Cells.Count - 1
+    ReDim Employees(0 To oneDimension, 0 To twoDimension)
+    
+       'storing into array using loop
+    For oneDimension = LBound(Employees, 1) To UBound(Employees, 1)
+        For twoDimension = LBound(Employees, 2) To UBound(Employees, 2)
+            Employees(oneDimension, twoDimension) = Range("A1").Offset(oneDimension, twoDimension)
+        Next twoDimension
+    Next oneDimension
+    
+    Worksheets.Add
+    'populating to a new sheet
+    For oneDimension = LBound(Employees, 1) To UBound(Employees, 1)
+        For twoDimension = LBound(Employees, 2) To UBound(Employees, 2)
+            ActiveCell.Offset(oneDimension, twoDimension) = Employees(oneDimension, twoDimension)
+        Next twoDimension
+    Next oneDimension
+    
+   Erase Employees
+End Sub
+
+Writing a Range into a Dynamic Array
+*---------------------------------*
+-Transferring cell values to an array and then back again after some manipulation is extremely common.
+-It can be more efficient to load the values in a range into an array, process the data and then write it back rather than access each cell individually
+-When an array is populated straight from a range the array will start at 1 and not 0.
+
+storing/reading/populating into a array: 
+
+Example :For one dimension
+Sub RangesUsingArray()
+    Dim EmployeeID_Name() As Variant
+    Dim table As String
+    table = Range("A1").CurrentRegion.Address  'getting range address
+    EmployeeID_Name() = Range(table).Value
+    Worksheets.Add
+    Range(table).Value = EmployeeID_Name()
+    'Range("C3").Value = EmployeeID_Name(1, 2) 'using the dimension of it
+    Erase EmployeeID_Name
+End Sub
+
+Example: Multidiemnional array
+Sub DynamicTwoDimensionalArray()
+    Dim Employees() As Variant
+    
+     Sheet1.Activate
+    'quickly storing the array
+    'Employees = Range("A1", Range("A1").End(xlDown).End(xlToRight).End(xlUp))
+     Employees = Range("A1").CurrentRegion.Resize(, 11)
+     'populate from array
+     Worksheets.Add
+     Range(ActiveCell, ActiveCell.Offset(UBound(Employees, 1) - 1, UBound(Employees, 2) - 1)).Value = Employees()
+     Erase Employees
+End Sub
+Note:
+-Excel reads from ranges a lot faster than it writes to ranges
+
+Performing calculations in a array
+-------------------------------*
+-This is a very usefull way of to the data operations instead of putting into a calculcated value into the range of cell of the column, you can perform all the operations in the array and later populate into a cell.
+
+Example:
+Sub CalculatingDynamicTwoDimensionalArray()
+    Dim Employees() As Variant
+    Dim answer() As Variant
+    Dim Dimension1, counter As Integer
+    
+    Sheet1.Activate
+    'storing using the dynamic array
+    Employees = Range("H2", Range("H2").End(xlDown))
+    
+    Dimension1 = UBound(Employees, 1)
+    
+    ReDim answer(Dimension1, 1 To 2)
+    
+    For counter = 1 To Dimension1
+        answer(counter, 1) = Int(Employees(counter, 1) / 12)
+        answer(counter, 2) = Int(answer(counter, 1) / 5)
+    Next counter
+    
+     'populate from the array
+    Range("L2", Range("L2").Offset(Dimension1, 1)).ClearContents
+    Range("L1", Range("L1").Offset(Dimension1, 1)).Value = answer
+    
+    Erase Employees
+    Erase answer
+End Sub
+
+
+ReDim Preserve - Multi-Dimensional
+Resize the Array Dynamically
+*--------------------------*
+-Assume the array keep resize don't know how big it may be
+-Preserve keyword will the the previous element of the array and preserve only the last dimension of the array.
+
+Example:we store the specific array but lossing the previous element of the array
+Sub ResizeArray()
+    Dim employees() As Variant
+    Dim loopCounter, empCounter As Integer
+    Sheet1.Activate
+    For Each r In Range("A2", Range("A1").End(xlDown))
+    'Debug.Print r.Address
+        Sheet1.Activate
+        If LCase(r.Offset(0, 6).Value) = "ad_vp" Then
+              empCounter = empCounter + 1
+              ReDim employees(1 To empCounter, 1 To 7)
+              For loopCounter = LBound(employees, 1) To UBound(employees, 2)
+                 employees(empCounter, loopCounter) = r.Offset(0, loopCounter - 1).Value
+              Next loopCounter
+        End If
+    Next r
+    Erase employees
+End Sub
+
+Example: To migtate the preserve the above example
+
+Sub PreserveResizeArray()
+    Dim employees() As Variant
+    Dim loopCounter, empCounter As Integer
+    Sheet1.Activate
+    For Each r In Range("A2", Range("A1").End(xlDown))
+    'Debug.Print r.Address
+        Sheet1.Activate
+        If LCase(r.Offset(0, 6).Value) = "ad_vp" Then
+              empCounter = empCounter + 1
+              ReDim Preserve employees(1 To 7, 1 To empCounter)
+              For loopCounter = LBound(employees, 2) To UBound(employees, 1)
+                 employees(loopCounter, empCounter) = r.Offset(0, loopCounter - 1).Value
+              Next loopCounter
+               End If
+    Next r
+    sheets.add
+    Range(ActiveCell, ActiveCell.Offset(UBound(employees, 1) - 1, UBound(employees, 2) - 1)).Value = employees
+    Erase employees
+End Sub
+
+Passing Arrays In (Sub or Function)
+===================================
+-It is possible to pass an array into a subroutine or function
+-Arrays are always passed in by reference (ByRef)
+-This means that any changes to the array will be passed back to the calling routine
+
+Public Sub DynamicArray1()
+Dim icount As Integer
+Dim myDynamicArray() As Long
+
+   ReDim myDynamicArray(1 To 10)
+   For icount = LBound(myDynamicArray) To UBound(myDynamicArray)
+      myDynamicArray(icount) = icount
+   Next icount
+   'calls the other procedures passing the mydynamicArray passing myInternalArray()
+   'and returns back the myInternalArray out
+   Call DynamicArray2(myDynamicArray)
+   'overides the myInternalArray value to the mydynamicArray
+   For icount = LBound(myDynamicArray) To UBound(myDynamicArray)
+      Debug.Print myDynamicArray(icount)
+   Next icount
+End Sub
+
+Public Sub DynamicArray2(ByRef myInternalArray() As Long)
+Dim icount As Integer
+   For icount = LBound(myInternalArray) To UBound(myInternalArray)
+      myInternalArray(icount) = myInternalArray(icount) * 2
+   Next icount
+End Sub
+
+-It doesn't matter whether you are passing in a static or dynamic array the declaration is the same.
+-For some odd reason when passing in static arrays the numerical data types do not have to match ??
+
+Public Sub AnyDataType1()
+Dim myIntegerArray() As Integer
+Dim myLongArray() As Long
+Dim myDoubleArray() As Double
+Dim myStringArray() As String
+
+   Call AnyDataType2(myIntegerArray)
+   Call AnyDataType2(myLongArray)
+   Call AnyDataType2(myDoubleArray)
+   Call AnyDataType2(myStringArray)
+End Sub
+
+Public Sub AnyDataType2(ByRef myInternalArray As Variant)
+   If (VBA.IsArray(myInternalArray) = True) Then
+   End If
+End Sub
+
+-You can pass arrays to subroutines and functions
+-You can pass fixed and dynamic arrays
+-When arrays are declared explicitly they must be passed in explicitly
+
+Dim myarray() As String  'dynamic array  
+Dim myarray(1 to 3) As String   'fixed array  
+Call MyMethod(myarray) 
+
+-You cannot pass a Variant datatype to a subroutine that is expecting an explicitly typed array.
+-You cannot pass an array as an Optional parameter to a subroutine
+-If you need this type of functionality declare the parameter as Variant and use the IsArray function to test the argument.
+
+Declaring as Variant
+--------------------
+-It is possible to pass an array of any datatype into a subroutine or function.
+-This can be achieved by declaring the parameter as Variant. [ Not an array of Variants, ie Variant() ]
+-Creating a subroutine that accepts Variant parameter will allow you to pass in arrays of any datatype.
+-You can however place a whole array into a variant, resulting in a single variant variable containing the whole array.
+-The benefit of declaring an array as a variant means it can be easily passed into procedures and returned from functions.
+-When you are declaring your arrays as Variants, you can erase the array by just assigning it to Empty.
+-In order to test if a variant (array) variable has been initialised, ie whether it is equal to "Nothing" use "If vArray IS Nothing Then"
+-Remember to always initialise your variant array to Empty. It is also possible to create an array and populate it with arrays, (an array of arrays). This array type must be variant.
+
+Important
+---------
+-Declaring your parameter as Variant() does not allow you to pass an array of any datatype.
+-You cannot pass an array as an optional parameter. However this can be done if you declare the parameter as Variant.
+
+https://bettersolutions.com/vba/arrays/passing-arrays.htm
+
+Passing Arrays Out
+==================
+-It is possible to pass arrays out of subroutines and functions.
+-An array can be returned from a function (or property).
+-The receiving array must have the same datatype as the arrays being returned from the function (or property)
+-If a function returns an array (i.e. a Variant) include the word Array in the name of the function
+-If the data types do not match then a compile error will be thrown.
+-If the function returns an explicitly typed array then the variable must also be a matching explicitly typed array.
+
+Returning an Explicit Array
+---------------------------
+-This function returns an array of Long integers.
+-The function declaration returns an arrays of type Long.
+-The variable "myvalues" is also declared as an array of type Long.
+
+
+Public Function GetNumbers_ReturnLong() As Long()
+   Dim mynumbers() As Long
+   ReDim mynumbers(1 To 2)
+   mynumbers(1) = 10
+   mynumbers(2) = 20
+   GetNumbers_ReturnLong = mynumbers
+End Function
+
+Public Sub AsDataType()
+   Dim myvalues() As Long
+   myvalues = GetNumbers_ReturnLong()
+End Sub
+
+Returning a Variant Array
+-------------------------
+-This function returns an array which can be of any type
+
+Public Function GetNumbers_ReturnVariant() As Variant
+   Dim mynumbers() As Long
+   ReDim mynumbers(1 To 2)
+   mynumbers(1) = 10
+   mynumbers(2) = 20
+   GetNumbers_ReturnVariant = mynumbers
+End Function
+
+Public Sub aAsVariant()
+   Dim myvalues As Variant 'don't use myvalues() for returning variant array
+   myvalues = GetNumbers_ReturnVariant()
+End Sub
+
+Returning as a Variant
+-----------------------
+-It is possible to return an array of any dimension and any datatype.
+-This can be achieved by declaring the return value as just a Variant.
+
+Public Sub AsVariant 
+   Dim myvalues As Variant 
+   myvalues = GetNumbers_ReturnLong() 
+End Sub
+
+Public Function GetNumbers_ReturnLong() As Long()
+   Dim mynumbers() As Long
+   ReDim mynumbers(1 To 2)
+   mynumbers(1) = 10
+   mynumbers(2) = 20
+   GetNumbers_ReturnLong = mynumbers
+End Function
+
+https://bettersolutions.com/vba/arrays/returning-arrays.htm
+
+ParamArray
+==========
+-This keyword
+-The parameter array must be defined with a Variant datatype
+-The parameter array is always zero based and is not effected by the Option Base statement.
+-The ParamArray keyword allows you to accept a dynamic number of arguments.
+-ParamArrays is an abbreviation for parameter array.
+-This must be the last argument in the list and it cannot be used in the same argument list as an Optional argument (?)
+-This gives you enormous flexibility because it allows you to pass any data type including objects.
+-This can only be used as the last argument in a procedure or function
+-This keyword allows you to provide an arbitrary number of arguments that get submitted as an array.
+-This keyword cannot be used with ByRef, ByVal or Optional
+
+'Public Sub MyProc(ParamArray vSomething()) - since Variant is the default
+'OR
+Public Sub MyProc(ParamArray vSomething() As Variant)
+Dim ivalue As Integer
+Dim stest As String
+   stest = vSomething(0)(1)
+End Sub
+
+Sub test()
+Dim dep() As Variant
+dep = Array("sales", "Service", "finance")
+Call MyProc(dep)
+End Sub
+
+-ParamArray Optional. Used only as the last argument in arglist to indicate that the final argument is an Optional array of Variant elements.
+-The ParamArray keyword allows you to provide an arbitrary number of arguments.
+-ParamArray can't be used with ByVal, ByRef, or Optional.
+
+1 or 2 Dimensional Array ?
+------------------------
+Lets consider the following subroutine that accepts an array as its argument.
+
+Public Sub MyProc(ParamArray vSomething() As Variant)
+Dim ivalue As Integer
+Dim stest As String
+   stest = vSomething(1)
+End Sub
+
+-one dimension
+Sub test()
+Dim dep() As Variant
+Call MyProc("sales", "Service", "finance")
+End Sub
+
+In this situation the array is passed in as a 1 dimensional array
+vMyArray(0) = "One"
+vMyArray(1) = "Two"
+vMyArray(2) = "Three"
+
+-Two dimension
+Sub test()
+Dim vArrayOne As Variant 
+vArrayOne(0) = "One" 
+vArrayOne(1) = "Two" 
+vArrayOne(2) = "Three" 
+Call DoSomething(vArrayOne)
+End Sub
+
+-In this situation the array is passed in as a 2 dimensional array
+vMyArray(0)(0) = "One"
+vMyArray(0)(1) = "Two"
+vMyArray(0)(2) = "Three"
+
+https://bettersolutions.com/vba/arrays/paramarray.htm
+
+Resources
+=========
+https://bettersolutions.com/vba/arrays/arrays.htm
+https://bettersolutions.com/vba/arrays/option-base-1.htm
+https://powerspreadsheets.com/excel-vba-array/
+https://excelmacromastery.com/excel-vba-array/

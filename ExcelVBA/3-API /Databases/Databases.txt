@@ -1,0 +1,131 @@
+Introduction to databases
+=========================
+
+
+Ask?
+===
+-What 
+-Why
+-Example
+-Database concepts
+
+
+What is Databases
+=================
+-A database is structured collection of data.
+
+
+Struture and Unstructured data
+==============================
+
+
+How the data strutures look?
+============================
+-Fields, Records & Tables
+-Relationship
+-Rules(Constraints)
+
+Example of database
+-A database keeps VBA Class details likes 
+Student information,
+Feedback information,
+Fees information,
+Class type informations.
+
+Database Concepts
+=================
+-Entity
+-Relationship
+-Primary Key
+-Foreign Key
+-Index
+-Query
+-View
+-Table Definiations
+-Normalization
+-Integrity
+-Transaction
+-ACID Rules
+
+Entity & Relationship
+---------------------
+-Entity : An idependent thing like student info, class type,feedback info
+-Relationship : How two or more entities are related like students fee information, student class information
+
+Primary & Foreign Key
+---------------------
+-Primary Key : Uniquely identifies a record in a table
+-Foriegn Key : A field in a table matches the primary key column of another table.
+
+index
+-----
+-Index helps you search fast
+-Makes you tables like yellow pages
+-Index on student names
+-Index on email address
+-Index on Number of fees per student
+
+Query & View
+------------
+-Query : Ask a question to your database
+	a) How many students are joined on 24-Nov-2016
+	b) What are the different types of classes we have.
+-View : A ready to access to query
+
+Tables Definition
+-----------------
+-Instruct how the table are defined
+1)Fields & Their data types
+2)Primary keys
+3)Foreign Keys
+4)Constraints
+5)Indices
+
+Normalization
+-------------
+-Process of removing redundancy in your database, so that database can be consistently and correctly modified
+
+Integrity
+---------
+-Data entered in to a database must be accurate , valid and consitent.
+1)Entity integrity: not allowing multiple rows to have the same identity within a table.
+2)Domain integrity: restricting data to predefined data types eg dates
+3)Referential integrity: requiring the existence of a related rows in another table eg comment can be posted only by a valid student
+
+Transation
+----------
+A change made to a database tables
+-Adding a student name
+-Updating a fees details
+
+ACID
+----
+ACID : Atomicity ,Consistency , Isolation and Durability
+-Atomicity states that database modification must follow an "all or nothing" rule.
+-Consistency states that only valid data will be written to the database
+-Isolation requires that multiple transactions occuring at the same time not impact each other's executions
+-Durablity ensures that any transaction committed to the database will not be lost.
+
+
+Useful References
+=================
+http://code.google.com/edu/tools101/mysql.html
+http://www.databasejournal.com/sqletc/article.php/1469521/Introduction-to-Relational-Databases.htm
+http://databases.about.com/od/specificproducts/a/acid.htm
+http://www.w3schools.com/sql/sql_select.asp
+http://databases.about.com/od/administration/u/database_basics.htm
+http://www.ucl.ac.uk/archaeology/cisp/database/manual/node1.html
+http://en.wikipedia.org/wiki/Entity-relationship_model
+http://en.wikipedia.org/wiki/Index_%28database%29
+http://databases.about.com/cs/administration/g/primarykey.htm 
+http://databases.about.com/library/glossary/bldef-foreignkey.htm 
+http://databases.about.com/cs/specificproducts/g/foreignkey.htm
+http://en.wikipedia.org/wiki/Database_integrity 
+
+
+
+
+
+
+
+

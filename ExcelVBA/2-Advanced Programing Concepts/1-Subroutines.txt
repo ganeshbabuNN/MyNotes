@@ -1,0 +1,203 @@
+Subroutines
+===========
+-A subroutine is a series of statements that performs a specific task.
+-Subroutines are also known as Procedures or Macros.
+-A subroutine can be any length but it is good programming practice to keep them under 30 lines.
+-You can exit a subroutine at any time using the 'Exit Sub' statement.
+
+Public Sub Procedure_One() 
+'do something
+   Exit Sub 
+'exit the procedure before doing this
+End Sub 
+
+Inserting
+=========
+-There are a couple of ways to call a procedure from within another procedure, although using the Call keyword and enclosing your arguments in parentheses is the preferred method.
+-You can create your new subroutines by using the (Insert > Procedure) dialog box.
+-If you type it in directly the appropriate ending (either End Sub or End Function) will be inserted automatically
+
+Name - The name of the procedure you want to create.
+Type - The type of procedure, either subroutine, function or property.
+Scope - The scope of the procedure, either public or private. Public can be accessed from other modules. Private can only be accessed from this module.
+
+All Local variabls as Statics 
+
+Scope
+-----
+-By default all subroutines and functions are public which means they can be called by code in ANY other code modules.
+-For clarity it is often good to prefix your subroutines and function with the word "Public"
+
+Public Sub Procedure() 
+End Sub 
+
+Sub Procedure() 
+End Sub 
+
+-Private procedures can only be called from within the SAME module.
+ Private Sub Procedure() 
+
+ End Sub 
+-Any subroutine that has a Private scrope will not appear in the (Tools > Macro > Macros) dialog box
+
+Call Keyword
+============
+-Any parameters must be enclosed in parenthese when using the Call keyword.
+-The Call statement can be used to call a procedure, function or dynamic link library procedure.
+
+Public Sub Procedure_Name 
+   Call DisplayTwoNumbers(20, 30) 
+End Sub 
+
+-When calling a procedure you can omit the Call keyword.
+-If you do you must also omit the parenthese around your arguments.
+-Doing this makes you code harder to read because you can not quickly identify the procedure and function calls.
+
+Public Sub Procedure_Name 
+   DisplayTwoNumbers 20, 30 
+End Sub 
+
+-Using the Call keyword though is encouraged as it makes it very clear that another procedure is being called.
+
+Public Sub DisplayTwoNumbers(ByVal iNumber1 As Integer, _ 
+                             ByVal iNumber2 As Integer) 
+Dim itotal As Integer 
+   itotal = iNumber1 + iNumber2 
+   Call Msgbox(itotal) 
+End Function 
+
+-Public procedures can be called from anywhere
+-Private procedures can only be called from within the current module
+
+Sub Procedure1() 
+   Call MsgBox("You have entered procedure 1") 
+   Call Procedure2() 
+   Call MsgBox("You have returned to procedure 1") 
+End Sub 
+
+Sub Procedure2() 
+   Call MsgBox("You have entered procedure 2") 
+End Sub 
+
+-When you call a public procedure that lies in another module there is a potential for ambiguity as there may be a procedure with the same name in another module
+-You should always fully qualify your procedure names with the name of the module.
+
+ Call ModuleName.ProcedureName() 
+
+-If necessary specify the project name as well
+
+ Call ProjectName.ModuleName.ProcedureName()
+
+Use Descriptive Names
+=====================
+-This name should try and describe what the process that is performed by the procedure
+-Use meaningful names (ideally two words) and avoid using any keywords. Never use the names Run, Load Show etc.
+-Be careful using short names as certain names do not allow you to run them from the (Tools > Macro > Macros list) (eg t1, t2 etc).
+-Even though procedure and function names are not case sensitive
+-You can use a capital letter at the start of ever word to help presentation.
+Here are some examples:
+
+Sub CollectNumbers 
+Sub SortFiles 
+Try to avoid using names that are meaningless like "PrintIt" or "Modify".
+
+Exit Sub
+=======
+-This can be used when you want to exit from a procedure before the procedure terminates naturally.
+
+If you have more than one macro with the same name the one in the active template, documents or workbook takes precedence, then it's the global Add-Ins in alphabetical order, then the global template personal.xls or normal.dot and then the Built-Ins.
+When we call a public procedure that lies in another module there is a potential problem with ambiguity, for there may be more than public procedure with the same name in another module.
+You will have to precede the variable, constant, procedure or function with the module name if there is a conflict.
+To precisely identify a procedure or function in a project or file, prefix the procedure name with the module name.
+VBA will execute the first one it finds.
+Always qualify your procedures with the name of the module
+
+ModuleName.ProcedureName
+======================== 
+-If you have more than one macro with the same name the one in the active template, documents or workbook takes precedence, then it's the global Add-Ins in alphabetical order, then the global template personal.xls or normal.dot and then the Built-Ins.
+-When we call a public procedure that lies in another module there is a potential problem with ambiguity, for there may be more than public procedure with the same name in another module.
+-You will have to precede the variable, constant, procedure or function with the module name if there is a conflict.
+-To precisely identify a procedure or function in a project or file, prefix the procedure name with the module name.
+-VBA will execute the first one it finds.
+-Always qualify your procedures with the name of the module
+ ModuleName.ProcedureName 
+-When necessary you can even specify the project name as well
+ ProjectName.ModuleName.ProcedureName 
+-where the ProjectName has to be the code name of the project, not the filename. The default code name is always VBProject.
+
+Important:
+-Any parameters must be enclosed in parentheses when you use the Call keyword.
+-To prevent your procedure macros from showing in the macro list prefix them with the word "Private" or you can add a dummy optional argument.
+-It is possible (but not by default) to have public procedures with the same name in different modules. If so you must always fully qualify your procedure names with the module name.
+
+Call Stack
+==========
+-A call stack is a list of the active procedures and functions showing the order in which they have been called.
+-This information is important because it is used to track where every active procedure should return when it finishes executing.
+-The primary purpose of a call stack is to store the return addresses.
+-An active procedure or function is one that has been called but has not yet exited
+-There is usually only one call stack associated with a running program.
+
+Call Stack Dialog
+-----------------
+-The Call stack dialog box displays a list of all active procedure calls.
+-This helps you trace the program as it executes nested and recursive procedures and functions.
+-You can display the Call Stack dialog box at any point when you in debug mode.
+-This is a modal dialog box and cannot be displayed while you step through your code.
+SS
+https://bettersolutions.com/vba/debugging/call-stack.htm
+
+Recursive Procedures and Functions
+----------------------------------
+Recursion is the ability for a procedure or function to call itself
+
+Different way of runing a macro
+===============================
+There are different way of the running of macro
+1-Go to the visual basic editor and place the cursor on the code & press F5 or run button
+2-Go to the Workbook and navigate to view--> View Macro --> select the macro --> click on run button
+3-Create a Shape and assign a macro to it
+4-Create a Activex Control on the workbook and assign a macro 
+5-Add the macro to the quick access bar.Navigate to file--> options--> customize the ribbon--> macro--> add to the right pane 
+
+
+
+
+
+
+
+Record the macro
+================
+
+Calling the another subroutines
+===============================
+- it is recommended topic to modular the code, whenever it is needed
+- just to use another subroutine name in any part of statement.
+
+Sheet1
+100	usa	1
+202	england	2
+304	germany	3
+406	italay	4
+
+Dim cntrName, cntrcode As Variant
+Sub test()
+    Worksheets("Sheet1").Activate
+    cntrName = ActiveCell.Offset(0, 1).Value
+    cntrcode = ActiveCell.Offset(0, 2).Value
+    Discntry
+    Discntrcode
+End Sub
+
+Sub Discntry()
+    MsgBox cntrName
+End Sub
+
+Sub Discntrcode()
+    MsgBox cntrcode
+End Sub
+
+
+Exiting the subroutinesin any statement
+========================================
+- Use the "Exit sub" statement anyware to exit from the subroutines

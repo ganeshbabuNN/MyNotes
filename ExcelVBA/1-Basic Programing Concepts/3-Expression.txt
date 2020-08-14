@@ -1,0 +1,41 @@
+Intro
+=====
+-An expression in a programming language is a combination of one or more explicit values, constants, variables, operators, procedures and functions that the programming language 
+interprets (according to its particular rules of precedence and of association) and computes to produce ("to return", in a stateful environment) another value. 
+-This process, as for mathematical expressions, is called evaluation.
+-Expressions are essential building blocks of any Java program, usually created to produce a new value, 
+although sometimes an expression simply assigns a value to a variable. Expressions are built using values, variables, operators and procedures calls
+
+Types of Expressions
+=====================
+While an expression frequently produces a result, it doesn't always. 
+
+There are three types of expressions basically
+
+1)Those that produce a value, i.e. the result of (1 + 1)
+2)Those that assign a variable, for example (v = 10)
+3)Those that have no result but might have a "side effect" because an expression can include a wide range of elements such as 
+method invocations or increment operators that modify the state (i.e. memory) of a program. 
+
+Example:
+These expressions produce a value:
+3/2
+5% 3
+pi + (10 * 2)
+
+sub expressionExample()
+  msgbox (10+2)*(4+3)
+end sub
+
+Expressions with No Result
+==========================
+-While some expressions produce no result, they can have a side effect which occurs when an expression changes the value of any of its operands.
+-For example, certain operators are considered to always produce a side effect, such as the assignment, increment and decrement operators. Consider this:
+
+int product = a * b;
+
+The only variable changed in this expression is product; a and b are not changed. This is called a side effect.
+
+Resources
+https://en.wikipedia.org/wiki/Expression_(computer_science)
+https://www.thoughtco.com/expression-2034097

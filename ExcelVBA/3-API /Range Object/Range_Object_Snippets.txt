@@ -1,0 +1,89 @@
+Last Column of that dataset
+---------------------------
+thisworkbook.Worksheets("Sheet1").Cells.CurrentRegion.Columns.Count
+thisworkbook.Worksheets("Sheet1").Range("A1",Range("A1").End(xlToRight)).columns.count
+lastcol = Cells(1, Columns.Count).End(xlToLeft).Column
+
+Last Row of that dataset
+---------------------------
+thisworkbook.Worksheets("Sheet1").Cells.CurrentRegion.rows.Count
+thisworkbook.Worksheets("Sheet1").Range("A1",Range("A2").End(xlDown)).rows.count
+lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+
+Next Column of that dataset
+------------------------
+-same as above just increment to 1
+thisworkbook.Worksheets("Sheet1").Range("A1",Range("A1").End(xlToRight)).columns.count +1
+lastcol = Cells(1, Columns.Count).End(xlToLeft).Column+1
+
+Next Row of that dataset
+------------------------
+-same as above just increment to 1
+lastrow = Cells(Rows.Count, 1).End(xlUp).Row +1
+
+Counting the data of sheet
+--------------------------
+thisworkbook.Worksheets("Sheet1").cells.CurrentRegion.count
+thisworkbook.Worksheets("Sheet1").Range("A1",Range("A1").End(xlDown)).currentregion.count
+
+Clearing the selected cell
+--------------------------
+Sub demo1()
+    shtTestData.Select    
+    Range("A2").Select
+    Range(Selection, Selection.End(xlToRight)).Select 'select from left to right
+    Range(Selection, Selection.End(xlDown)).Select 'select from top to down
+    Selection.ClearContents  'clear the content
+End Sub
+
+Referring the cell using Range Object
+-------------------------------------
+Sub offsettest()
+Dim name, email, country As String
+Worksheets("Sheet1").Activate
+name = Range("C2").Value
+email = Range("C3").Value
+country = Range("C4").Value
+Worksheets("Sheet3").Activate
+Range("A2").Activate
+Do
+    If ActiveCell.Value = "" Then Exit Do
+    ActiveCell.Offset(1, 0).Activate
+Loop
+ActiveCell.Value = name
+ActiveCell.Offset(0, 1) = email
+ActiveCell.Offset(0, 2) = country
+End Sub
+
+Concating the string using Range Object
+======================================-
+Sub RangeConcate()
+Dim intBoxes As Integer
+Dim str1, str2 As String
+Dim intDiscont As Integer
+str1 = "the discount for quantities of "
+str2 = " Box is "
+Worksheets("Sheet1").Activate
+On Error GoTo myhandler:
+intBoxes = range("C5").Value
+Select Case intBoxes
+Case Is > 100
+    intDiscont = 30
+Case Is > 50
+    intDiscont = 20
+Case Is > 25
+    intDiscont = 10
+Case Else
+    intDiscont = 0
+End Select
+If intDiscont > 0 Then
+    MsgBox str1 & intBoxes & str2 & " " & intDiscont & "%."
+  Else
+    MsgBox "There is no discont for this boxes"
+End If
+Exit Sub
+myhandler:
+    MsgBox "Enter the number only in the grey box "
+End Sub
+
+

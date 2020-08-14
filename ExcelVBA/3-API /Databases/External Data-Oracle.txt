@@ -1,0 +1,46 @@
+PL/SQL (Procedural Language SQL) is Oracle Corporation's procedural language extension to SQL
+Place a semi-colon (;) at the end of the last clause
+
+
+
+Connection String - Oracle
+sConnectionStr  = "Driver = {Oracle ODBC Driver} & ";" 
+                 "Provider = " & ProviderName & ";" 
+                 "Server = " & ServerName & ";" 
+                 "Database = " & DatabaseName & ";" 
+                 "UID = " & UserId & ";" 
+                 "PWD = " & Password &  ";" 
+Driver - 
+Provider - 
+Server - 
+Database - DSN alternative
+UID - 
+PWD -
+
+
+
+Public dbADOConnect as ADODB.connection 
+Public dbADOCommand as ADODB.command 
+Public dbADORecordset as ADODB.recordset 
+
+Dim sConnectionStr As String 
+Dim sSQLQuery As String 
+
+sConnectionStr = "PROVIDER = SQLOLEDB"; 
+                              DATASOURCE = srv; 
+                              INITIAL CATALOG = pubs 
+
+set dbADOConnection = New ADODB.Connection 
+dbADOConnection.Open sConnectionStr, sUserId, sPassWord, adConnectUnspecified 
+
+sSQLQuery = "SELECT Name, Age FROM people" 
+
+set dbADOCommand = New ADODB.Command 
+set dbADOCommand.ActiveConnection = dbADOConnection 
+
+dbADOCommand.CommandText = sSQLQuery 
+dbADORecordset = dbADOCommand.Execute 
+
+Set dbADORecordset = Nothing 
+Set dbADOCommand = Nothing 
+Set dbADOConnect = Nothing 

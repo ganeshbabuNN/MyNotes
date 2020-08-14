@@ -1,0 +1,151 @@
+Excel Object Model
+==================
+Excel Contain various object among there are four important objects model 
+-Application Object 
+-Workbook object
+-Worksheet Object
+
+Object Fundamental
+==================
+-In programming object everything is a object , where in every object it has a action and its properties
+-VBA is a object-oriented programming language. This basic concept of object-oriented programming is that a software application(Excel in this case) consist of various individual objects, each of which has its own set of featrues and uses.
+-An Excel Application contains, workbooks, worksheets,cells,charts,pivot tables,shapes and the list goes on.Each object has its own features, which are called properties and its own set of features called methods.
+-You can encouter these objects every day, such as your computer, your car...etc.Each of those objects has identifying qualities such has a hieght,wieght and color. They each have their own distinct uses, such as your computer for working with excel, your car to transport you over long distances...etc
+
+For example 
+-“A Pen” is an object. A Pen is available in different colors (Color – property) Can be used to write (Write – method) When writing ink flows (flow – event)
+
+-By the above example object consists of property,method and event.
+
+Ex:
+Sub ObjVar()
+Dim wks As Worksheet
+Set wks = ThisWorkbook.Worksheets("Sheet1")
+wks.Tab.Color = vbRed
+Set wks = ThisWorkbook.Worksheets("Sheet2")
+wks.Tab.Color = vbBlue
+Set wks = ThisWorkbook.Worksheets("Sheet3")
+wks.Tab.Color = vbYellow
+End Sub
+
+
+Another Live Example in Excel
+=============================
+-Using the Range Object
+-Using the cell Object
+-Using the Worksheet Object
+-Using the workbook object
+
+Understanding Objects
+=====================
+-In Real World, you can describe everything you see as an object.
+
+Ex:-
+When you look at your house, it is an object. Your house has rooms; those rooms are also separate objects.Those rooms may have closets.Those closets are likewsie objects.As you think about your house, the rooms,and the closets, you may see a hiearchical relationshiip between them. Excel Works in a same way
+
+-In excel, you deal with workbooks,worksheets and ranges on daily basis. You likely think of each of these "Objects"as all part of excel, not really separating them in your mind.
+-Excel thinks about these internally as all part of hiearchical model called the Excel Object Model.
+-IN excel , the application object is the all -encompassing object similar toyour hourse. Inside the application object, excel has a workbook. Inside a workbook is a worksheet.Inside that is a range.theses are all objects that live in a hierarchical structure.
+-In excel work, Objects are logical units that have 
+ 1)Properties
+ 2)Methods 
+ 3)Events
+-To point to a specific object in VBA, you can traverse the object model.
+
+Ex:-
+Application.ThisWorkbook.Sheets("Sheet1").Range("A1").Select
+
+-In the most of the cases object model hiearchy is understood, so you no need to type every level.Entering this code also gets you to the cell A1 coz excel infers that you mean the active workbook and the active sheet.
+
+Ex:-
+Range("A1").select
+
+-Indeed , if you have already a cursor in  acell A1, you can write the simply statement below.
+Ex:-
+Activecell.select.
+
+Understanding Collections
+=========================
+-Many of the excel objects belongs to collections.
+
+Ex:-
+You hourse sits within a neighbouthood , for example, which is a collections of houses called a neighborhood.Each neighborhood sits in a collection of neighborhoods called a city.Excels consider collections to be object themselve
+
+-In Excel, Each workbook object, you have collection of worksheets. The worksheets collection is an object that you can call upon through VBA.Each worksheet in your workbook lives in the worksheets collection.
+
+'Refering the Worksheet by its position
+Worksheet(1).select
+
+'Refering the Worksheet by its Name as quoted text
+Worksheet("Sheet1").select
+
+'Refering the Worksheet by its Name
+Worksheet("Sheet1").select
+
+'Refering to a workbook not active of its sheet name
+Workbooks("MyData.xlsx").Worksheet("Sheet1").select
+
+Understanding Properties
+========================
+-Properties are essentially the characterstistics of an object. 
+
+Ex:
+Your house has a color, a square footage , an age and so on.Some properties can be changed - Like the color of your house. Other properties can't be changed- like the year house was constructed.
+
+-LIkewise an object in excel like the worksheet object has a sheet name property tha can change and a rows.count property that cannot.
+
+Worksheets("Sheet1").Name = "Ganesh"
+-Some of the property are read-only, which means that you can't assign a value to them directly- for instance the text property of a cell will give the appearance of the cell not overrighting the value.
+-Some properties have arguments that further specify the property value.
+
+MsgBox Range("A1").Address(Rowabsolute:=True, ColumnAbsolute:=True)
+
+Specifying the property for the active objects
+----------------------------------------------
+-VBA knows about active workbooks,worksheets and cells and makes object referencing easy by providing properties of the applicaiton object.
+Some of the properties of the application object are
+
+Activecell:
+-Reference the activecell and access all the range object properties
+Activecell.ClearContents.
+
+Activesheet:
+-Referening the active sheet of that sheet
+activesheet.name
+
+ActiveWorkbook:
+-Referencing active workbook
+ActiveWorkbook.FullName
+
+Selection:
+-Referencing the object selected. it could be a range object, shape,chartboject and so on.
+ActiveWorkbook.FullName
+
+ThisWorkbook:
+-Referencing the object selected. it could be a range object, shape,chartboject and so on.
+ActiveWorkbook.FullName
+
+Application Object
+==================
+properties-Version, Caption, Default file path, Workbook collections
+Method - Calculate ,Checkspelling , quit
+Events-  Sheetcalculate ,newworkbook, WorkbookBeforeClose
+
+Workbook Object
+===============
+Properties - Name, sheets,Saved
+Methods - Close,Printout,save
+Events-BeforeClose,NewSheet,BeforeSave
+
+
+Worksheet Object
+================
+Properties- Name,usedrange,visible
+Methods- Activate,Copy,Delete
+Events-Activate,Deactive ,Change
+
+
+References
+==========
+Below book has lot of reference on the various object model
+Wrox.Excel.2007.VBA.Programmers.Reference.Mar.2007

@@ -1,0 +1,136 @@
+Access
+
+
+To determine the ODBC connection and query strings, set query options manually, and use the QueryString property to return the connection string. The following table includes some commonly used SQL keywords.
+Keyword Description 
+DSN The name of the ODBC data source 
+UID The user logon ID 
+PWD The user-specified password 
+DBQ The database file name 
+FIL The file type
+
+
+
+Connection String - Access
+sConnectionStr = "Provider = Microsoft.Jet.OLEDB.4.0;" & _ 
+                 "Data Source = C:\Temp.mdb" 
+                 "UID = " & "" & ";" 
+                 "PWD =" & "" &  ";" 
+                 "Persist Security Info = False" 
+Provider - 
+Data Source - DSN alternative
+UID - 
+PWD - 
+Persist Security Info -
+
+
+sConnectionStr = "Driver = {Microsoft Access Driver (*.mdb)}" & ";" & _ 
+                 "DBQ = C:\Temp.mdb" & ";" & _ 
+                 "SystemDB = "" & ";" & _ 
+                 "Exclusive = "" & ";" & _ 
+                 "UID = " & "" & ";" 
+                 "PWD =" & "" &  ";" 
+                 "ExtendedAnsiSQL" & ";" & _ 
+                 "LocaleIndentifier = 2057" 
+Driver - 
+DBQ - 
+SystemDB - 
+Exclusive = 
+UID - 
+PWD - 
+ExtendedAnsiSQL - 
+LocaleIdentifier -
+
+
+Access 2007 provides two-way snychronisation between Access and SharePoint lists so you can work with lists offline and then synchronise the changes when you reconnect.
+
+Integration with WSS makes Access 2007 a great colloboration tool while enablying data to be stored on enterprise servers to better manageability
+Access 2007 allows you to export and import data to and from SharePoint lists
+In this scenario changes made in Access 2007 are not reflected in SharePoint and vica versa
+
+
+Exporting Tables To SharePoint
+-----------------------------
+
+select the table
+select (External Data tab, Export)(SharePoint List)
+
+A "Move to SharePoint Site Issues" table appears in the Access navigation pane that details aspects of the data that could not be applied to the sharepoint list
+
+
+By saving the export query you can now repeat the above steps without using the wizard
+Your saved exports can be found under the External Data tab in the Export group
+Similarly you can save your export as a Microsoft Outlook task which you can then configure to remind you to run the export query.
+
+
+Importing Lists to Access
+-------------------------
+
+External Data tab
+Import > SharePoint list
+
+The following options are available on a dialog box
+Not Linked !!
+Linked !!
+
+When you import data from a SharePoint list, the imported data are based on a view and only those columns and rows in the view are imported
+You can select the required view from the Items to Import drop-down list
+
+The Import displays values instead of IDs for lookup values stored in another list and allows you to maintain the lookup relationship that this list may have with other sharepoint lists.
+
+Changes to the sharepoint list are NOT copied back to the Access table nor are changes to the Access database reflected back in the sharepoint list.
+A linked object is not created as part of this process.
+
+Linking Lists
+-------------
+
+If you do not want to maintain two copies of that data but do need to refer to the data within Access then Access 2007 provides methods of accessing external data that are physically located outside an Access database
+The easiest way to externally reference a SharePoint lists is to use linked tables
+A linked table stores only a connection to the sharepoint list
+You should use linking rather than importing if the data are maintained by either a user or a separate application on the sharepoint web site.
+
+Check that the "Link to the data source by creating a linked table" option is selected and click Next
+
+The Get External Data - sharepoint list dialog box closes
+Access now has two linked tables
+The sharepoint list contains columns "Created by" and "Modified by"
+These lookup columns point to the User Information List ???
+
+A context sensitive menu is displayed that provides a quick way to manage the sharepoint list from within Access.
+
+By moving to another row, Access automatically synchronises changes to the sharepoint list.
+F5 - to refresh
+
+Moving Tables To SharePoint
+---------------------------
+
+You can move a database to a sharepoint site
+Data is moved to sharepoint lists and the database file is moved to a document library.
+
+Many Access applications grow from the need to manage and aggregate data
+These data-centric applications often prove useful to more than one person in an organisation and thus the need to share them increases.
+However Access 2007 is not truly meant for concurrent use
+As an Access database grows and becomes more complex, it is necessary to consider upsizing them to a data repository that can support more users while increasing availablity, reliability and manageability
+With Access 2007 you can now upsize your database to Windows SharePoint Services which is known as "Publishing your database"
+
+When you move data from an Access database to a sharepoint site this process creates a sharepoint list for each Access table
+Data from Access tables move into these sharepoint lists and each data row becomes a list item in a sharepoint list
+Tables in the Access database are replaced with linked tables that point to the newly created sharepoint list(s)
+Optionally the Access database now becomes a user interface to the data by retaining views, reports and relationships between tables
+Access views also appear as sharepoint list views
+
+Because the data is now in sharepoint you can use sharepoint functionality
+For example you can restore deleted list items from the Recycle Bin and apply workflow rules to data items
+Changes to the list are versioned by defaukt
+If you choose to save the database in the document library, users who wish to use the database can navigate to the document library in their browser, where the database can be opened in Access
+
+Access 2007 users can either add and modify data by using either sharepoint or the linked tables within an Access database
+
+External Data tab
+-----------------
+
+SharePoint lists > Move to sharepoint
+
+Other changes, file can be treated as a document - check in / check out changes
+
+If you make changes to the Access database, such as creating a new biew or report then the database file can be saved to the document library on the server by publishing changes

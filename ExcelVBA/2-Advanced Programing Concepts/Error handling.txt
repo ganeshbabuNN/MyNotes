@@ -1,0 +1,211 @@
+
+
+Types of Errors
+===============
+1)Design Time Errors
+2)Compile Time Errors
+3)Run-time Errors
+4)Logical Errors
+
+
+
+On Error Statements
+===================
+1)On Error Resume Next
+2)On Error Resume Label 
+3)On Error Resume [0]
+4)On Error Goto LineLabel 
+5)On Error Goto 0
+
+On Error Resume Next
+--------------------
+-Be careful when using the "On Error Resume Next". This will sometimes ignore errors that shouldn't be ignored.
+-Specifies that if a run-time error occurs in the line immediately following this statement, then execution continues to the next line.
+-This causes execution to continue with the statement immediately following the statement that caused the run-time error or -with the statement immediately following the most recent call out of the procedure containing the On Error Resume Next statement
+
+Sub DoSomething 
+   On Error Resume Next 
+   Charts("Chart 1").Activate 
+   If Err.Number <> 0 Then 
+      Call MsgBox("Chart does not exist") 
+   End If 
+End Sub
+
+On Error Resume LineLabel
+-------------------------
+Jumps forward ( or back) to any designated line label in the code so you can resume where you want
+
+On Error Resume
+---------------
+-Execution moves back to the line that caused the error to "try again".
+-This does clear the Err object / resets the object
+
+On Error GoTo LineLabel
+-----------------------
+-The Line is a line label that execution jumps to if a run-time error occurs.
+-The Line must be in the same procedure as the On Error statement.
+-This does not clear the Err object
+
+On Error GoTo 0
+---------------
+-Disables any enabled error handler in the current procedure
+-This is used to turn VBA error handling on again. Otherwise any further errors will be ignored.
+-An enabled error handler is one that has been turned on by using an On Error statement
+-There is no need to include the following line of code at the end of a procedure (or function) as error handling in a 
+procedure (or function) is automatically disabled when the procedure (or function) exits.
+   On Error GoTo 0 
+End Sub
+
+On Error GoTo -1
+----------------
+Sub DoSomething() 
+   On Error GoTo LineLabel1 
+   Err.Raise 9999, "My Error" 
+   Exit Sub 
+
+LineLabel1: 
+   On Error GoTo -1 
+   On Error GoTo LineLabel2 
+   Err.Raise 1000, "My Error" 
+   Exit Sub 
+
+LineLabel2: 
+End Sub
+
+GoTo Statements
+===============
+-One of the easiest ways to change the flow of a program is to use a GoTo statement.
+-This statement transfers the program execution to a new line of code which is identified by a line label.
+-The only time you should really use this method though is for error handling.
+-Programs that use GoTo statements jump around and are extremely difficult to debug.
+-GoTo can cause your code to loop back and forth in ways that are difficult to follow.
+-If your code makes use of the GoTo statement the resulting flow is often referred to as "spaghetti code"
+-Most experienced programmers will never use the GoTo statement.
+-Explained in Statements sessions
+
+Break On All Errors
+===================
+-When your code contains good error handling and you want to identify which line is actually causing the error you can change temporarily switch on "Break on All Errors"
+-If you find that error handling procedures do not work on other peoples PC's then it may be because they have their "Break On All Errors" option checked in (Tools > Options). To avoid this use an Addin.
+-For error handling procedures to work the "Break on All Errors" setting must be turned off.
+
+Break on All Errors
+-------------------
+-When this option is selected VBA will ignore any error handling code.
+-This will cause your code to stop on every error.
+-Stops on every error, even errors following a Resume Next statement.
+
+Break in Class Module
+---------------------
+-If an error occurs in a class module the debugger will stop on the offending line.
+-This does not work though when you raise errors using the Err.Raise command.
+-The Err.Raise command causes an error and makes the debugger stop on this line.
+
+Break on Unhandled Errors
+-------------------------
+-This is the default option
+-If an error occurs and the error has not been handled then the debugger will stop on the offending line.
+-If an error occurs in a class module the debugger will stop on the line calling the class rather than the offending line in the class.
+
+Changing at RunTime (Access only)
+----------------------------------
+The error trapping option can be viewed and modified using the Application.GetOption and Application.SetOption methods
+
+Application.SetOption("Error Trapping", 2) 
+Debug.Print Application.GetOption("Error Trapping")
+
+Log File
+========
+-Depending on the amount of functionality you may want to create a simple log file.
+-One way of implementing this is to use a generic error handlying routine in conjunction with a text file.
+-At the top of every subroutine and function add the following two lines of code:
+   Const sProcName As String = "MySubroutine" 
+   On Error GoTo ErrorHandler 
+-At the bottom of every subroutine and function add the following lines of code:
+	  Exit Sub / Exit Function 
+       Error Handler: 
+	   Call Error_Handle(sProcName, Err.Number, Err.Description) 
+	End Sub / End Function 
+
+Generic Error Handlying Subroutine
+----------------------------------
+Add the following subroutine to your project:
+
+Public Sub Error_Handle(ByVal sRoutineName As String, _ 
+                         ByVal sErrorNo As String, _ 
+                         ByVal sErrorDescription As String) 
+Dim sMessage As String 
+   sMessage = sErrorNo & " - " & sErrorDescription 
+   Call MsgBox(sMessage, vbCritical, sRoutineName & " - Error") 
+   Call LogFile_WriteError(sRoutineName, sMessage) 
+End Sub 
+
+
+Using the Scripting Runtime Library
+-----------------------------------
+Add the following reference to your project Microsoft Scripting Runtime.
+SS
+This reference is required if you want to use the File System Object library.
+ Add the following two global variables to your project.
+
+Public g_objFSO As Scripting.FileSystemObject 
+Public g_scrText As Scripting.TextStream 
+
+
+Writing to the Log File
+-----------------------
+Add the following function to your project:
+
+Public Function LogFile_WriteError(ByVal sRoutineName As String, _ 
+                             ByVal sMessage As String) 
+Dim sText As String 
+   On Error GoTo ErrorHandler 
+   If (g_objFSO Is Nothing) Then 
+      Set g_objFSO = New FileSystemObject 
+   End If 
+   If (g_scrText Is Nothing) Then 
+      If (g_objFSO.FileExists("C:\temp\mylog.txt") = False) Then 
+         Set g_scrText = g_objFSO.OpenTextFile("C:\temp\mylog.txt", IOMode.ForWriting, True) 
+      Else 
+         Set g_scrText = g_objFSO.OpenTextFile("C:\temp\mylog.txt", IOMode.ForAppending) 
+      End If 
+   End If 
+   sText = sText & "" & vbCrLf 
+   sText = sText & Format(Date, "dd MMM yyyy") & "-" & Time() & vbCrLf 
+   sText = sText & " " & sRoutineName & vbCrLf 
+   sText = sText & " " & sMessage & vbCrLf 
+   g_scrText.WriteLine sText 
+   g_scrText.Close 
+   Set g_scrText = Nothing 
+   Exit Function 
+ErrorHandler: 
+   Set g_scrText = Nothing 
+   Call MsgBox("Unable to write to log file", vbCritical, "LogFile_WriteError") 
+End Function
+
+Err Object
+==========
+-You can use the Err object to obtain information about the error.
+-The Err object contains information about any run-time errors.
+-When a run time error occurs, the properties of the Err object are filled with information that uniquely identifies the error and contains information that can be used to handle the error.
+-Error handling relies on the value in the Number property of the Err object to determine the cause of the error
+
+Clear Method:
+-------------
+The Err object properties are reset to a zero and zero-length strings after an Exit, Resume Next or Goto 0 statement.
+The clear method can be used explicitly to reset the properties.
+	Note The VarType for vberror is 10
+
+Scope
+-----
+The Err object has global scope.
+It is possible to pass in an ErrObject into a subroutine but the object will be reset to Empty if an On Error statement is executed.
+
+	   Exit Sub 
+	ErrorHandler: 
+	   Call Error_Handle(msModuleName, sSubroutineName, Err) 
+	End Sub 
+SS - snippet copy from Error_Handle
+
+Important:
+When an Error occurs, Visual Basic sets a global error object "Err" which contains information about the error that has occurred

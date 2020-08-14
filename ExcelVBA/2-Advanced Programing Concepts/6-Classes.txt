@@ -1,0 +1,699 @@
+What is a classes
+Object Orientated
+Desigining and Creating a classes
+Class Events
+Me Keyword
+Class Fields
+ Class Properties
+ Class Variables
+ Class Methods
+ Orphaned Objects
+The scope of the Classes Modules
+Sharing a Class modules to other project 
+Creating a Excel add-in(.xalm)
+
+What is a classes
+=================
+-Its like blueprint of the object
+-Class modules are a special type of module that allow you to create your own customised objects
+-You can define the methods and properties for them and even write event handlers.
+-These are similar to form modules, except they have no visible user interface.
+-A class module can contain declarations, properties, methods and events
+
+Properties, Methods and Events
+------------------------------
+-An object is anything that you want it to be and is defined entirely by its properties, methods, and events.
+1)Properties - These are the "Adjectives" which describe an object. Also known as property procedures.
+2)Methods - These are the "Verbs" of objects. These are subroutines and functions.
+3)Events - These are how an object tells the rest of the world that something happened.
+Once you've defined the Class, you never have to worry about the individual properties and methods you can just use them
+
+Example:
+Sub EmployeeClassTesting()    
+    Dim emp As Employee    
+    Set emp = New Employee   
+ 
+    'initialzing the variable
+    emp.employeeId = 131
+    emp.firstName = "Ganesh"
+    emp.lastName = "Babu"
+
+    Debug.Print emp.employeeId, emp.firstName, emp.lastName
+    
+    Set emp = Nothing
+    
+End Sub
+
+Reasons for not using a Class Module
+------------------------------------
+1) No intellisense - if passed or declared as Objects or Variants (commonly done/lazy)
+2) Harder/impossible to make changes at run-time. You always have to reset the project
+3) Must be slower - prove this with an example
+4) Must use more resources - prove this with an example
+5) The Watch window only displays 256 items in a collection. Classes are always used in conjunction with collections
+6) The Watch window displays duplicates, properties and private variables - SS
+7) If properties and private variables have the same name then infinite loops can occur, resulting in "Out of Stack" run-time errors.
+
+Reasons for using a Class Module
+--------------------------------
+There are a few occasions when a class module is necessary:
+1) Responding to events (application or chart)
+2) Creating a single event for multiple controls. Using a Controls Collection
+3) Encapsulating your VBA procedures and functions (or even Windows API calls) so they are easier to use
+
+Important:
+-Class Modules let you create your own objects and allow you to define the corresponding properties and methods.
+-Remember that userforms are a type of class module although they behave differently to the ones you can create.
+-The class module name is the name of the class you are creating
+
+Object Orientated
+=================
+This is a style of programming that represents concepts as objects, actions as methods and attributes as properties.
+-VBA does not support implementation inheritance.
+-VBA does support polymorphism.
+-VBA does support encapsulation
+
+Inheritance
+-----------
+-Ability for a derived class to inherit the methods of a base class.
+-VBA does not support implementation inheritance.
+-Interface Inheritance - This is provided by the Implements keyword and lets you implement an interface differently in multiple classes.
+-Implementation Inheritance - Not supported in VBA. This is the ability to inherit method implementation from a base class in a derived class.
+-VBA does not implement derived classes, it exposes the methods that need to be implemented.
+-VBA does not implement interfaces, it exposes the methods that need to be implemented
+
+Polymorphism
+------------
+-Ability for a base class to implement from a derived class.
+-Ability for an object to decide its implementation at runtime.
+-If there are two classes that implement the same method you can invoke the method without knowing which class the object has been derived from
+
+Encapsulation
+-------------
+-Ability to keep fields, methods and properties private in a class to prevent them being accessed from outside the class.
+-Also known as Data Abstraction.
+-Using Private keyword to hide variables,methods and properties inside a class
+
+Declaring the class
+-------------------
+One way
+   Dim <Variable_name> as <Class_Module_Name>
+   set <variable_name> = new <class_Module_name>
+
+'Other using the new keyword
+   Dim <Variable_name> as new <Class_Module_Name>
+
+Instancting the class
+---------------------
+One way
+   set <variable_name> = new <class_Module_name>
+
+'Other using the new keyword
+   Dim <Variable_name> as new <Class_Module_Name>
+
+Terminations of the classes
+---------------------------
+Syntax:
+	set <variable_name>= nothing
+
+
+Desigining and Creating a classes
+=================================
+-Its upto the user needs to think how to design you code based on the functionality.
+-Like example, if you feel the designing the sheet of the data for that functionlity to do some operations uses classes...etc
+-Navigate to Insert->Class Modules --> Name the class
+
+
+Class Events
+============
+-Standard code modules have no way of handling events.
+-Code to handle events must be put inside a class module.
+-Look in the object browser to see all events for a particular class
+
+-There are two main events 
+a)Initialize Event
+-This event shall be create during the instantiations of the class.
+-Basically if your setting th initials value , you can use the initialize event.
+b)Terminate Event- This event shall be create during the Terminations of the class
+
+Class_Initialize
+-----------------
+-Occurs when an instance of the associated class is created.
+-Lets you control what happens when an instance is created
+-Occurs when the instance is first created
+-Lets you initialize property values
+-Lets you create references to other objects
+-This cannot take any parameters.
+-The statements part consists of zero or more code statements to be run when the class is initialized
+
+Add a Module:
+Sub test()
+  Dim emp As New EventTest
+  'initialsing the value
+  emp.employeeId = 131
+  Debug.Print emp.employeeId  
+  Set emp = Nothing
+End Sub
+
+Add a EvenTest Class modules:
+Public employeeId As Long
+Private Sub Class_Initialize()
+  Debug.Print "class has been intialised"
+End Sub
+
+-This event is fired when an instance of the class is created
+Dim emp As New EventTest
+
+
+Class_Terminate
+---------------
+-Occurs when an instance of the associated class is terminated.
+-Occurs when the last reference to the object is released
+-This might happen when a variable goes out of scope
+-This might happen when the object is explicitly set to Nothing
+-Lets you perform clean up tasks
+
+Private Sub Class_Terminate()
+  Debug.Print "class has been terminated"
+End Sub
+
+-This event is fired when a class object is destroyed
+Set objMyClass = Nothing 
+
+Me Keyword
+==========
+-When a class can have more than one instance the Me keyword provides a way to refer to the specific instance of the class -where the code is executing.
+-The "Me" keyword behaves like an implicitly declared variable.
+-It is very common to refer to class properties or methods from inside the class.
+-The keywprd "Me" refers to the current instance of the class.
+-This is optional but helps to being clarity to the code.
+-The Me keyword is automatically available to every procedure in a class module. If you have mutiple instances of a class -then the "Me" keyword provides a way to refer to the specific instance of the class.
+-This keyword is particularly useful for passing information about the currently executing instance of a class to a procedure in another module
+
+ex:
+me.FirstName
+
+Class Fields
+============
+-Class fields contains 
+1)Properties
+2)Methods
+3)Events
+
+Class Properties
+================
+
+Property
+--------
+-These are the quantifiable characteristics of an object.
+-These are methods that allow you to read or write particular values associated with an object.
+-A large number of the properties are readonly.
+-Properties will often return other objects.
+-You can find out whether an exception will be generated by looking in the object model documentation.
+-Every object has properties.
+-Every object has a default property.
+-Property values can be Numerical, String or Boolean and they may be specific or apply to several objects.
+-They can be obtained or set by assignment statements.
+-Some properties cannot be set (ie read-only as opposed to read-write). Many properties have built in constants that should be used for their values.
+-You can easily use the NOT operator to toggle properties on or off. (eg ActiveWindow.DisplayAlerts = NOT ActiveWindow.DisplayAlerts)
+
+Class Variables
+======================
+-Public variables declare the properties for the object.
+-When your properties are defined Public they are automatically available as properties of the class.
+-Any variables declared inside a class (even those declared as public) are not available outside of the class.
+-This is particularly relevant to Worksheet and Userform class modules.
+
+Example-
+
+Employee Class Modules:
+Public employeeId As Long
+Public firstName As String
+Public lastName As String
+Public email As String
+Public phoneNumber As Variant
+Public hireDate As Date
+Public jobID As String
+
+In a modules:
+
+Sub EmployeeClassTesting()    
+    Dim emp As Employee    
+    Set emp = New Employee   
+ 
+    'initialzing the variable
+    emp.employeeId = 131
+    emp.firstName = "Ganesh"
+    emp.lastName = "Babu"
+
+    Debug.Print emp.employeeId, emp.firstName, emp.lastName
+    
+    Set emp = Nothing
+    
+End Sub
+
+*employeeId -This variable is declared as Public and therefore automatically becomes a property of this class.
+*FirstName-This variable is declared as Public and therefore automatically becomes a property of this class.
+
+Disadvantages of Public Variables
+---------------------------------
+-Class has no way of knowing if an outside process has changed the value
+-There is no way of performing any data validation
+-There is no way of creating read-only or write-only properties
+
+Alternative to Public Variables
+--------------------------------
+The alternative is to use property procedures instead.
+
+Property Get - used to retrieve a property of a class. Get the value of scalar of object property.
+Lets you return a property value or property reference
+Take action before retrieving
+Return a calculated value
+
+Property Let - used to assign the value to a property of a class. Set the value of scalar property.
+Lets you define a new property value
+Take action after setting
+Perform data validation
+
+Property Set - used to assign an object to a property of a class. Set a reference for object property.
+Lets you define a new property reference
+
+When your properties (or variables) are defined Private they can only be declared and modified from within the Property Get and Property Let procedures.
+
+Public employeeId As Long
+Public firstName As String
+Public lastName As String
+
+Exit Property
+-------------
+This can be used to cause an immediate exit from the property
+You can use any number in a property statement.
+
+Property - Collection
+----------------------
+Private mcolProperty_Name As Collection 
+
+Property Get Property_Name() As Collection 
+    Set Property_Name = mcolProperty_Name 
+End Property 
+
+Property Set Property_Name(rData As Collection) 
+    Set mcolProperty_Name = rData 
+End Property 
+
+
+Property - Object
+-----------------
+Private mobjProperty_Name As Object 
+
+Property Get Property_Name() As Object 
+    Set Property_Name = mobjProperty_Name 
+End Property 
+
+Property Set Property_Name(rData As Object) 
+    Set mobjProperty_Name = rData 
+End Property 
+
+
+Property - Date
+---------------
+Private mdtProperty_Name As Date 
+
+Property Get Property_Name() As Date 
+    Property_Name = mdtProperty_Name 
+End Property 
+
+Property Let Property_Name(rData As Date) 
+    mdtProperty_Name = rData 
+End Property 
+
+
+Property - Variant
+------------------
+Private mvarProperty_Name As Variant 
+
+Property Get Property_Name() As Variant 
+    If IsObject(mvarProperty_Name) Then 
+        Set Property_Name = mvarProperty_Name 
+    Else 
+        Property_Name = mvarProperty_Name 
+    End If 
+End Property 
+
+Property Let Property_Name(rData As Variant) 
+    mvarProperty_Name = rData 
+End Property 
+
+Property Set Property_Name(rData As Variant) 
+    Set mvarProperty_Name = rData 
+End Property 
+
+
+Property - String
+-----------------
+Private mstrPropertyName As String 
+
+Property Get PropertyName() As String 
+    PropertyName = mstrPropertyName 
+End Property 
+
+Property Let PropertyName(rData As String) 
+    mstrPropertyName = rData 
+End Property 
+
+
+Important
+If you are using an Object datatype then you must use Set instead of Let
+
+Limitations of class fields
+---------------------------
+
+
+Types of Property Statement/Procedures
+---------------------------------------
+-When your properties (or variables) are defined Private(or Dim statement)they can only be declared and modified from within the Property Get and Property Let procedures
+
+a)Property Let
+--------------
+-used to retrieve a property of a class. Get the value of scalar of object property.
+-Lets you return a property value or property reference
+-Take action before retrieving
+-Return a calculated value
+-used to change the (or assign) the value of a class property.
+-This statement lets you define a procedure that assigns a value to a property.
+-If you want to have full control when a property is initialised you can define the property using a Property Let procedure
+
+Example:
+Sub EmployeeClassTesting()
+    Dim emp As Employee
+    Set emp = New Employee
+    'initialzing the variable
+
+    emp.EmployeeID = 131
+    emp.FirstName = "Ganesh"
+    emp.LastName = "Babu"
+
+    'testing the value
+    Debug.Print emp.EmployeeID, emp.FirstName, emp.LastName
+    Set emp = Nothing
+End Sub
+
+In Employee Class module:
+Private pemployeeId As Long
+Private pfirstName As String
+Private plastName As String 
+
+Public Property Let EmployeeID(value As Long)
+    pemployeeId = value
+End Property
+
+Public Property Let FirstName(value As String)
+    pfirstName = value
+End Property
+
+Public Property Let LastName(value As String)
+    plastName = value
+End Property 
+
+Passing Parameters
+*----------------*
+It is possible to pass parameters although not best practice.
+
+Write Only Properties
+*-------------------*
+
+
+b)Property Get
+--------------
+- used to assign the value to a property of a class. Set the value of scalar property.
+-Lets you define a new property value
+-Take action after setting
+-Perform data validation
+-used to retrieve a property of a class.
+
+Example: In Employee Class module
+Public Property Get EmployeeID() As Long
+    EmployeeID = pemployeeId
+End Property
+
+Public Property Get FirstName() As String
+    FirstName = pfirstName
+End Property
+
+Public Property Get LastName() As String
+    LastName = plastName
+End Property
+
+Read Only Properties
+*------------------*
+Like Using enum.
+
+Using enumerations in properites
+--------------------------------
+
+Creating the Enum class 
+*---------------------*
+-its always a best pratice to declares those group of constants with the class associated with it.
+-When you try to read the enumerated values, its stores in reads starts from 0 to n.
+-Example of the below JobID enum, you get AD_PRESS as 0, AD_VP as 1 , IT_PROG as 2, FI_MGR as 3
+-if you want a string to be return from this enum class, then use the read-only properites
+
+Example: In class Modules
+Public Enum JobID
+ AD_PRES
+ AD_VP
+ IT_PROG
+ FI_MGR
+End Enum
+
+
+Using Enum in properties
+*----------------------*
+-Type should be name of the enum for both Let and get property
+
+Example:
+Private pPosition As String
+
+PPublic Property Let Position(value As JobID)
+    pPosition = value
+End Property
+
+Public Property Get Position() As JobID
+    Position = pPosition
+End Property
+
+Example: In Modules
+
+Sub EmployeeClassTesting()
+    Dim emp As Employee
+    Set emp = New Employee
+    'initialzing the variable
+     
+    emp.Position = AD_PRES
+    Debug.Print emp.JobIDText
+    Set emp = Nothing
+End Sub
+
+Read-only Properties
+--------------------
+-This property only has a Property Get (no Property Let) which means that it is read-only.
+-The below example, lets return the string of the JobID enum using the get properties as string
+
+Example: In Class Module
+Public Property Get JobIDText() As String
+    Select Case Position
+        Case JobID.AD_PRES
+            JobIDText = "AD_PRESS"
+        Case JobID.AD_VP
+            JobIDText = "AD_VP"
+        Case JobID.IT_PROG
+            JobIDText = "IT_PROG"
+        Case JobID.FI_MGR
+            JobIDText = "FI_MGR"
+        Case Else
+            JobIDText = "Invalid Job ID"
+    End Select
+End Property
+
+Default value of the properties
+------------------------------
+-This can be achieved by using the initialize event.
+-There are two ways to access the default value of the properties
+-One way is accessing the private variables of that class
+-Second way is accessing the property statement.
+
+
+Example: IN employee class module
+Private Sub Class_Initialize()
+    'default value of the class
+    'using the private variable
+    pemployeeId = 132
+    'or using the property
+    FirstName = "Ganesh"
+End Sub
+
+'Testing in module
+Sub EmployeeClassTesting()
+    Dim emp As Employee
+    Set emp = New Employee
+        
+    Debug.Print emp.EmployeeID, emp.FirstName
+    Set emp = Nothing
+End Sub
+
+c)Property Set 
+--------------
+-used to assign an object to a property of a class. Set a reference for object property.
+-Lets you define a new property referencethis property will allow pass an object to the property values
+-When your properties (or variables) are defined Private they can only be declared and modified from within the Property Get and Property Let procedures.
+
+Example: In Employee Class module
+
+Class Methods
+=============
+-These are the actions that can be performed by (or on) the object.
+-These are often actions that cause something to happen on an object.
+-It may or may not have a return value and is more likely to have parameters than a property.
+-The simplest method would have no parameters and no return type.
+-It is very common to have read-only properties but not write-only.
+-You can create functions that can be treated like a read-only property
+-When a write-only property is required a method is often used instead.
+-Methods can have parameters and a return type.
+-Methods can also have optional arguments.
+-A method can be thought of as an action for an object.
+-A method is an action that is associated with the object.
+-These are actions that can be performed.
+-These can only be applied to an object if that object supports it.
+-Methods may require extra information to be supplied as arguments
+
+Subroutines and Functions
+-------------------------
+Function and Sub procedures are used in class modules to create the methods of the object
+
+Example: IN employee class module
+Private pemployeeId As Long
+Private pfirstName As String
+Private plastName As String
+Private Sub Class_Initialize()
+     Sheet1.Activate
+End Sub
+
+Public Property Let EmployeeID(value As Long)
+    pemployeeId = value
+End Property
+Public Property Get EmployeeID() As Long
+    EmployeeID = pemployeeId
+End Property
+Public Property Let FirstName(value As String)
+    pfirstName = value
+End Property
+Public Property Get FirstName() As String
+    FirstName = pfirstName
+End Property
+Public Property Let LastName(value As String)
+    plastName = value
+End Property
+Public Property Get LastName() As String
+    LastName = plastName
+End Property
+
+'Testing in module
+Public Sub AddToList()
+    Range("A1").End(xlDown).Offset(1, 0).Select
+    ActiveCell.value = Range("A1").End(xlDown).Offset(-1, 0) + 1
+    ActiveCell.Offset(0, 1) = FirstName
+    ActiveCell.Offset(0, 2) = LastName
+End Sub
+
+'using complextmethod for generating the word applications and call from the module
+Public Sub CreateToWord()
+    Dim wordApp As Object    
+    Set wordApp = CreateObject("Word.Application")
+
+    With wordApp
+        .Documents.Add
+        .Selection.TypeText "Reports for " & Me.EmployeeID & vbNewLine
+        .Selection.TypeText "Report to" & Me.FirstName & " " & Me.LastName & vbNewLine
+        .Visible = True
+    End With
+End Sub
+
+'in standard module
+Sub EmployeeClassTesting()
+    Dim emp As Employee
+    Set emp = New Employee
+    
+    emp.FirstName = "Ganesh"
+    emp.LastName = "Babu"
+    
+    'emp.AddToList
+    emp.CreateToWord
+    
+    Set emp = Nothing
+End Sub
+
+Orphaned Objects
+================
+-This leaves objects in memory and eventually you will run out of memory.
+-You should add a class method to your class that explicitly destroys all object references.
+-You should then always call this method before destroying a reference to an instance of the class
+
+object1.Clean 
+set object1 = Nothing
+
+The scope of the Classes Modules
+================================
+-You cannot instanate the class unless it has been delcared has private or public.
+-To do so , on the project properties select instancing as private or public.
+
+Sharing a Class modules to other project 
+=========================================
+-Basically making your current project class modules avaiable to all other class modules.
+
+Steps
+----
+1)in the current project class modules, create a new class called test class
+
+	public sub showMessage()
+		msgbox "This is a class"
+	End Sub
+2)Now let us test the above macro is working in a new workbook . Create a module and write a class
+	sub UseClassFromAnotherProject()
+		
+	End sub
+    
+Referencing other VBA project
+----------------------------- 
+3)In order create instance of other class modules from other project, you can add the reference of the project going to 
+tools--> references --> look for the project name and check it and click ok((Make sure that projects should be opened.). if any error appears, rename the project module which your referencing and later add the reference
+		The instancing property of a class modules:
+4)Check the property of the reference class under "Instancating = 2-PublicNotCreatable".Creating New instance of a class.
+		Set e = new Employee
+5)You cannot create a new instance of a refereing class due to the instance property, instead of create a functions to return a class instance.
+6)Go to the reference project and create a new module called "class Functions" here you have to write a one funciton of each module to return the instance of the class
+	Public Function CreateNewEmployeeInstance() As Class1
+	    Set CreateNewEmployeeInstance = New Class1
+	End Function
+7)go to the test module and now create the instance of the reference class
+	Sub testanotherprojec()
+	    Dim emp As Class1
+	    Set emp = CreateNewEmployeeInstance
+	End Sub
+
+Note: the reference workbook to be opened during the calculations but the better solutions is to create add-ins.
+
+Creating a Excel add-in(.xalm)
+==============================
+-In order to keep the Reference project instance working, you need to keep the excel open of the reference project.This is the limitations to avoid this you can create a excel plug in.
+
+Steps to be carried out
+1)Copy those class modules and class functions(this is to return the instance of the Class modules) simply drag and drop to the new workbook(important)
+2)Later save the new workbook has Excel add-in(*.xalm)(which inturns save the class code and module code in the add-in only)
+3)Now when you need browse to the Add-in to your new workbook., navigate to developer tab --> add-in --> Select the add-in which you have saved
+4)add the references of the project of the add-in and rest of the code asual.
+
+
+Resources
+=========
+https://bettersolutions.com/vba/class-modules/class-modules.htm
+https://excelmacromastery.com/vba-class-modules/

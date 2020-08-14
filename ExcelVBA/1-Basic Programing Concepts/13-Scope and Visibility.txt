@@ -1,0 +1,25 @@
+Scope & Visibility
+==================
+-Scope refers to the availablity of a variable, constant , procedures and functions.
+-There are three scoping levels
+1)procedure/function-level
+2)Private module-level
+3)public module-level
+
+-Scoping can be determined while declaring them
+
+1)procedure/function-level
+-----------------
+-A variable or constant defined inside a procedure is not visible /available to other procedures
+-it can be used within the procedures where it has been declared
+
+2)Private module-level
+----------------------
+-These are defined at the declarations section of the module and are availble to entire single module
+-These can be private and public
+-private variable, constant , procedures and functions are available only within they have been declared
+
+3)public module-level
+---------------------
+-They can be defined in any module at the declarations sections and will be available to all modules in the current project
+-public variables,constants,procedures, functions are available to all modules within the current project.

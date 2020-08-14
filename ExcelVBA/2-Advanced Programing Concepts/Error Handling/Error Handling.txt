@@ -1,0 +1,106 @@
+
+
+
+Three ways of using the on Error Statement in VBA
+==================================================
+1)On Error GoTo Label
+2)On Error Resume Next
+3)On Error Goto 0
+
+On Error GoTo Label
+-------------------
+After executing this statement, VBA resumes execution at the specified line. You must include a colon after the label so that VBA recognizes it as a label.
+
+syntax:
+sub test()
+   statement 1;		
+   statement 2;
+   statement 3;
+   on error goto label1:
+   statement 4;
+   statement 5;
+   exit sub
+label1:
+  statment 5
+end sub
+
+
+Ex
+- IF any error occurred inside the block, it deligates to the hanlder block. This handler block should be after "Exit Sub".
+
+Sub checkerror()
+ Dim number As Integer
+ Dim result As Integer
+ 'enter the character and check
+ On Error GoTo Handler:
+ number = InputBox("Enter the number ")
+ result = number + 1
+ MsgBox result
+  Exit Sub
+Handler:
+ MsgBox "This is not a number"
+' ' for multiple handler can be provided.
+'Handler1:
+' MsgBox "This is not a number1"
+End Sub
+
+
+2)On Error Resume Next
+----------------------
+After executing this statement, VBA simply ignores all errors and resumes execution with the next statement.
+
+syntax:
+sub test()
+   statement 1;		
+   statement 2;
+   statement 3;
+ On Error Resume Next
+   statement 4;
+   statement 5;
+   exit sub 
+end sub
+
+ex
+- IF any error occurred inside the block, it ignores the error , continued with the expression, for numeric calculations it defaults to zero
+
+Sub checkerror()
+ Dim number As Integer
+ Dim result As Integer
+ 'enter the character and check
+ On Error Resume Next
+ number = InputBox("Enter the number ")
+ result = number + 1
+ MsgBox result
+ Exit Sub
+End Sub
+
+3)On Error Goto 0
+------------------
+After executing this statement, VBA  resumes its normal error-checking behavior.Use this statement after using one of the
+other On Error statements or when you want to remove error handling in your procedure
+
+syntax:
+sub test()
+   statement 1;		
+   statement 2;
+   statement 3;
+ On Error Goto 0
+   statement 4;
+   statement 5;
+   exit sub 
+end sub
+
+ex
+-By default if any error occurred inside the block, its takes the blank line.
+
+Sub checkerror()
+ Dim number As Integer
+ Dim result As Integer
+ 'enter the character and check
+ On Error GoTo 0
+ number = InputBox("Enter the number ")
+ result = number + 1
+ MsgBox result
+ Exit Sub
+End Sub
+

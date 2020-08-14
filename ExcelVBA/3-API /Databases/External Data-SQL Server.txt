@@ -1,0 +1,22 @@
+Connection String - SQL Server
+sConnectionStr  = "Driver = {SQL Server}" & ";" 
+                 "Provider = " & "SQLOLEDB" & ";" 
+                 "Server = " & ServerName & ";" 
+                 "Database = " & DatabaseName & ";" 
+                 "User ID = " & UserId & ";" 
+                 "Password = " & Password &  ";" 
+                 "Trusted Connection = " &  &  ";" 
+                 "Integrated Security = SSPI" 
+Driver - 
+Provider - 
+Server - 
+Database - DSN alternative
+User ID - 
+Password - 
+Trusted Connection - 
+Integrated Security - You can use SSPI as an alternative to providing a user id and password.
+
+
+
+
+

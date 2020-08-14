@@ -1,0 +1,60 @@
+ADO is Microsofts universal data-access technology. This means that it can be used to obtain data from almost any source.
+
+There are three versions of ADO in common use: 2.1, 2.5 and 2.6. Version 2.5 comes as standard with Windows 2000 or higher.
+When using ADO you must have a reference to (Microsoft ActiveX Data Objects 2.5 Library) or the corresponding version in your Tools > References for that current Project
+ADO doesn't actually access the data source directly but through a OLE DB.
+Most OLE DB providers are specific to a single type of data source
+Dynaset - a query based recordeset
+
+You have the option to The default cachesize is 1 for ADO, which makes a trip for every row.
+
+Objects
+-------
+Out of the seven objects four of them (Connection, Command, Recordset and Parameter) can be created and manipulated independently of the others.
+These objects can then be associated with others at run-time via the properties ActiveConnection and ActiveCommand.
+Connection - 
+Command - Allows you to issue commands to the database
+RecordSet - An array of rows
+Record - 
+Stream - Not commonly used in Excel or Word applications
+
+Field - 
+-----
+Property - 
+Parameter - Only needed when calling a stored procedure / function with parameters
+Error - Allows you to retrieve information when an error occurs, SQLState, NativeError,Description
+
+ADO will create objects even if you do not create them explicitly. For example a Recordset object always requires a connection object.
+When a recordset is opened by passing a connection string, (and not a connection object), ADO creates an invisible connection object for you.
+You should always explicitly create your connection object and re-use it where possible to avoid creating multiple connections to the same data source each time code is executed
+
+Collections
+Fields - 
+Properties - 
+Parameters -
+Errors - Allows you to retrieve information when an error occurs
+
+[Column] = Null
+
+Extension Library
+----------------
+References
+Microsoft ADO Ext. 2.5 for DDL and Security
+Microsoft ADO Ext. 2.6 for DDL and Security
+SS - include from References dialog
+
+http://msdn.microsoft.com/en-us/library/aa139961(office.10).aspx
+http://support.microsoft.com/kb/870962
+
+
+
+Dim objCat as ADOX.Catalog 
+Dim objTable As ADOX.Table 
+Dim objIndex As ADOX.Index 
+
+
+Set objCat = CreateObject("ADOX.Catalog") 
+
+
+Connection
+----------

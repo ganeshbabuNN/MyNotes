@@ -1,0 +1,38 @@
+'iterating the name range using bracket and printing the cell
+Sub demo()
+    Dim val As Variant
+    Range("A1").Select
+    For Each val In [ganesh]
+        ActiveCell.Offset(0, 0).Value = val.Value
+        ActiveCell.Offset(1, 0).Select
+    Next
+End Sub
+
+'iterating the name range using Range Object
+Sub dem()
+    Dim val As Variant
+    Range("A1").Select
+    For Each val In Range("ganesh")
+     ActiveCell.Offset(0, 0).Value = val.Value
+     ActiveCell.Offset(1, 0).Select
+    Next
+End Sub
+
+'iterating the name range using cells object
+Sub dem()
+    Dim val As Variant
+    Range("A1").Select
+    For Each val In Range("ganesh")
+        ActiveCell.Cells(1, 1).Value = val.Value
+        ActiveCell.Cells(2, 1).Select
+    Next
+End Sub
+
+'iterating the name range using Range Object printing in debug cell
+Sub demd()
+    Dim val As Variant
+    Range("A1").Select
+    For Each val In Range("ganesh")
+        Debug.Print val.Value
+    Next
+End Sub

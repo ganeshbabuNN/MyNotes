@@ -1,0 +1,243 @@
+Range Object
+==============
+- Range object represents a range within a worksheet
+- Range object contains cell, row, column and a selection of cells 
+- The range property,cells property,offset property,union method returns the range object
+
+Uses of range object
+===================
+-Range object can be refer to 
+1) A single cell
+2)A row or a column of cells
+3)A selection of cells, regardless of whether they're continous or not.
+4)A 3-D range
+
+Syntax for Range Object
+---------------------------
+Expression.range("Cell_Range")
+
+
+-Range object should be implement has a full qualified object references,
+Basically when we referecing a particular object, you tell the excel what object is by referening all of its parents, in other words , go to their object hiearchy. access their object member used by dot(.) operator
+-Full qualified range object is Application--> Workbooks--> worksheets--> range
+ex :
+Workbooks(“Book1.xlsm”).Worksheets(“Sheet1”).Range
+'by index number
+Workbooks(1).Worksheets(1).Range
+
+
+Property of the Range Object
+===============================
+-The Range Object uses three properties for manipulating the worksheets
+1)Range property of a worksheet or range class object
+2)Cells property of a worksheet 
+3)Offset property of a range object
+
+1)Range Property
+----------------
+-Range property returns range object
+-It applies only for Worksheet object or a Range class object. Both cell1 and cell2 refers the placeholders.the below are the rules.
+syntax
+	Object.Range(Cell1)
+	Object.Range(Cell1,Cell2)
+-
+
+
+Specific Value
+*------------*
+Range("A1").value= 30
+or
+-its default property is value
+Range("A1") = 30
+
+Value in a Specifice Range
+*------------------------*
+
+
+Value in intersectionof two ranges
+*--------------------------------*
+-Using Space 
+
+
+Non-Conntiguous range
+*-------------------*
+-Using comma servers has a union operator
+
+
+Range Property on a Range Object
+*------------------------------*
+
+
+Good programming pratice
+========================
+-Have a pratice of delcaring the workbook or worksheet as their object respectively
+
+Dim wbk as workbooks
+dim wst as worksheets
+Set wbk = workbooks("Suggestion.xlsm").activate
+set wst = worksheets("Sheet1").active
+
+
+
+Cell Property
+-------------
+-In the range object you gonna put the Name of the range, where as the cell object put the row and column straight forward.
+-this work directly on the position of the row and column
+
+Syntax:
+Object.cells(rowindex,columnindex)
+object.cells(rowIndex)
+object.cells
+
+
+
+Use the numbers as row and column
+---------------------------------
+Cells(1, 5) = 20
+
+Use even the letter instead of numbers
+--------------------------------------
+Cells(1, "i") = 20
+
+
+Location positionally using a range
+-----------------------------------
+'using the positionally in a range
+Cells(5) = 20
+'using the range object location with its positions by cell
+Range("A1:C4").Cells(4) = 89
+
+Affecting all the cells of that worksheet
+-----------------------------------------
+Cells.Font.Name = "Arial"
+Cells.Select
+Cells.Delete
+Cells.Value
+
+Using the Range object with cell object
+-----------------------------------------
+Range(Cells(3, "c"), Cells(6, "e")) = 22
+
+
+
+
+Some of the userful Properties
+==============================
+
+Offset Property
+---------------
+-Returns a Range object that represents a range that’s offset from the specified range.
+
+syntax
+expression.Offset(RowOffset, ColumnOffset)
+
+ex:
+'selection property-Returns the specified window, for a Windows object.
+Selection.Offset(4, 3) = Selection
+'activecell  property -Returns a Range object that represents the active cell in the active window
+activecell.Offset(4, 3) = Selection
+'using the range object
+Range("A2").Offset(0, 3) = 122
+    
+
+Value property
+---------------
+-This will return or assign the numeric value of that cell or a range
+-this is the default property of the Range object
+$89.23 
+
+MsgBox Range("A2").Value
+
+Text Property
+-------------
+-This will return or assign the text of that cell or a range
+
+with the above example shows the value of that cell where text will show including all non-numeric value as well
+MsgBox Range("A2").Text
+
+
+Row and Column Property
+----------------------
+-This will return the row and column number of that cell
+
+ MsgBox Range("E6").Row
+ MsgBox Range("E7").Column
+
+
+Select Property
+---------------
+-This will select those cell (Like a cursor highlighted) of that range
+
+Range("B2:E5").Select
+'For name range also
+Range("invisible_man").Select
+
+Count Property
+---------------
+-This will give the count of cells of that range, including blank and non-blank
+
+MsgBox Range("B2:E5").Count
+'For name range also
+MsgBox Range("invisible_man").Count
+
+
+Address Property
+----------------
+-Returning the address of the cell based on the absolute or relative references
+
+'column are abosulte , rows are relative
+MsgBox Range("B1:E5").Address(0, 1)
+'column are abosulte , rows are abosulte
+MsgBox Range("B1:E5").Address(1, 1)
+'column are abosulte , rows are abosulte
+MsgBox Range("B1:E5").Address(0, 0)
+
+Note: 
+Absolute reference : - cell reference i,e row or column will not change when copied. That means you can keep the row or column constant
+$A$2 - the column and the row do not change when copied
+A$2 - the row does not change when copied
+$A2 - the column does not change when copied
+Relative reference :- Cell reference i,e row or column will change when copied
+A1 - both row and column will change when copied .. next action will be A2,A3,A4,A5...etc
+
+
+Formulae Property
+------------------
+- Returns the formule which applies to that cell.
+
+Range("C7").Formula = "=SUM(A1:C5)"
+'assign the absoulte value of that cell
+Range("C7") = Range("C7").Value
+
+
+Numerformat property
+--------------------
+-Returns the number formatting of that cell like decimal, currency, data format...etc
+
+Range("A1:C5").NumberFormat = "0.00"
+
+Font,Itatic and underline property
+----------------------------------
+-Return the font formatting of those cells.
+
+Range("A1:C5").Font.Bold = True
+Range("A1:C5").Font.Italic = True
+Range("A1:C5").Font.Underline = True
+
+Methods
+=======
+
+Clearing that cell or range
+----------------------------
+worksheet("Sheet1").Range("a2:b" & lastrow).ClearContents
+
+
+
+References
+===========
+
+Cell_Range Rules
+----------------
+work on this.
+https://powerspreadsheets.com/excel-vba-range-object/
+https://www.thespreadsheetguru.com/blog/2014/6/20/the-vba-guide-to-listobject-excel-tables  -- excel tables

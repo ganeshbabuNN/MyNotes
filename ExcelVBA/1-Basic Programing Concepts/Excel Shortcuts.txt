@@ -1,0 +1,162 @@
+CTRL combination shortcut keys
+==============================
+
+Key		Description
+---		-----------
+CTRL+SHIFT+(	Unhides any hidden rows within the selection.
+CTRL+SHIFT+)	Unhides any hidden columns within the selection.
+CTRL+SHIFT+&	Applies the outline border to the selected cells.
+CTRL+SHIFT_	Removes the outline border from the selected cells.
+CTRL+SHIFT+~	Applies the General number format.
+CTRL+SHIFT+$	Applies the Currency format with two decimal places (negative numbers in parentheses).
+CTRL+SHIFT+%	Applies the Percentage format with no decimal places.
+CTRL+SHIFT+^	Applies the Exponential number format with two decimal places.
+CTRL+SHIFT+#	Applies the Date format with the day, month, and year.
+CTRL+SHIFT+@	Applies the Time format with the hour and minute, and AM or PM.
+CTRL+SHIFT+!	Applies the Number format with two decimal places, thousands separator, and minus sign (-) for negative values.
+CTRL+SHIFT+*	Selects the current region around the active cell (the data area enclosed by blank rows and blank columns).
+CTRL+SHIFT+:	Enters the current time.
+CTRL+SHIFT+"	Copies the value from the cell above the active cell into the cell or the Formula Bar.
+CTRL+SHIFT+Plus(+)	Displays the Insert dialog box to insert blank cells.
+CTRL+Minus (-)	Displays the Delete dialog box to delete the selected cells.
+CTRL+;		Enters the current date.
+CTRL+`		Alternates between displaying cell values and displaying formulas in the worksheet.
+CTRL+'		Copies a formula from the cell above the active cell into the cell or the Formula Bar.
+CTRL+1		Displays the Format Cells dialog box.
+CTRL+2		Applies or removes bold formatting.
+CTRL+3		Applies or removes italic formatting.
+CTRL+4		Applies or removes underlining.
+CTRL+5		Applies or removes strikethrough.
+CTRL+6		Alternates between hiding objects, displaying objects, and displaying placeholders for objects.
+CTRL+8		Displays or hides the outline symbols.
+CTRL+9		Hides the selected rows.
+CTRL+0		Hides the selected columns.
+CTRL+A		Selects the entire worksheet.
+CTRL+B		Applies or removes bold formatting.
+CTRL+C		Copies the selected cells.
+CTRL+D		Uses the Fill Down command.
+CTRL+F		Displays the Find and Replace dialog box, with the Find tab selected.
+CTRL+SHIFT+F 	Opens the Format Cells dialog box with the Font tab selected.
+CTRL+G or F5	Displays the Go To dialog box.
+CTRL+H		Displays the Find and Replace dialog box, with the Replace tab selected.
+CTRL+I		Applies or removes italic formatting.
+CTRL+K		Displays the Insert Hyperlink.
+CTRL+N		Creates a new, blank workbook.
+CTRL+O		Displays the Open dialog box to open or find a file.
+CTRL+SHIFT+O	Selects all cells that contain comments.
+CTRL+P		Displays the Print dialog box.
+CTRL+R		Uses the Fill Right command to copy the contents and format of the leftmost cell of a selected range into 			the cells to the right.
+CTRL+S		Saves the active file with its current file name, location, and file format.
+CTRL+T		Displays the Create Table dialog box.
+CTRL+U		Applies or removes underlining.
+CTRL+SHIFT+U 	Switches between expanding and collapsing of the formula bar.
+CTRL+V		Inserts the contents of the Clipboard
+CTRL+ALT+V	Displays the Paste Special dialog box
+CTRL+W		Closes the selected workbook window.
+CTRL+X		Cuts the selected cells.
+CTRL+Y		Repeats the last command or action, if possible.
+CTRL+Z		Uses the Undo command to reverse the last command or to delete the last entry that you typed.
+CTRL+SHIFT+Z 	Uses the Undo or Redo command to reverse or restore the last automatic correction when AutoCorrect Smart 			Tags are displayed.
+
+
+
+Function keys
+=============
+Key		Description
+---		------------
+F1		Displays the Microsoft Office Excel Help task pane.
+CTRL+F1		Displays or hides the Ribbon, a component of the Microsoft Office Fluent user interface.
+ALT+F1		Creates a chart of the data in the current range.
+ALT+SHIFT+F1	Inserts a new worksheet.
+F2		Edits the active cell and positions the insertion point at the end of the cell contents. It also moves the 			insertion point into the Formula Bar when editing in a cell is turned off.
+SHIFT+F2	Adds or edits a cell comment.
+CTRL+F2		Displays the Print Preview window.
+F3		Displays the Paste Name dialog box.
+SHIFT+F3	Displays the Insert Function dialog box.
+F4		Repeats the last command or action, if possible.
+CTRL+F4		Closes the selected workbook window.
+F5		Displays the Go To dialog box.
+CTRL+F5		Restores the window size of the selected workbook window.
+F6		Switches between the worksheet, Ribbon, task pane, and Zoom controls. In a worksheet that has been split 			(View menu, Manage This Window, Freeze Panes, Split Window command), F6 includes the split panes when 				switching between panes and the Ribbon area.
+SHIFT+F6	Switches between the worksheet, Zoom controls, task pane, and Ribbon.
+CTRL+F6		Switches to the next workbook window when more than one workbook window is open.
+F7		Displays the Spelling dialog box to check spelling in the active worksheet or selected range.
+CTRL+F7		Performs the Move command on the workbook window when it is not maximized. Use the arrow keys to move the 			window, and when finished press ENTER, or ESC to cancel.
+F8		Turns extend mode on or off. In extend mode, Extended Selection appears in the status line, and the arrow 			keys extend the selection.
+SHIFT+F8	Enables you to add a nonadjacent cell or range to a selection of cells by using the arrow keys.
+CTRL+F8 	Performs the Size command (on the Control menu for the workbook window) when a workbook is not maximized.
+ALT+F8		Displays the Macro dialog box to create, run, edit, or delete a macro.
+F9		Calculates all worksheets in all open workbooks.
+SHIFT+F9	Calculates the active worksheet.
+CTRL+ALT+F9	Calculates all worksheets in all open workbooks, regardless of whether they have changed since the last 			calculation.
+CTRL+ALT+SHIFT+F9 Rechecks dependent formulas, and then calculates all cells in all open workbooks, including cells 				not marked as needing to be calculated.
+CTRL+F9		Minimizes a workbook window to an icon.
+F10		Turns key tips on or off.
+SHIFT+F10	Displays the shortcut menu for a selected item.
+ALT+SHIFT+F10	Displays the menu or message for a smart tag. If more than one smart tag is present, it switches to the next 		smart tag and displays its menu or message.
+CTRL+F10	Maximizes or restores the selected workbook window.
+F11		Creates a chart of the data in the current range.
+SHIFT+F11	Inserts a new worksheet.
+ALT+F11		Opens the Microsoft Visual Basic Editor, in which you can create a macro by using Visual Basic for 				Applications (VBA).
+F12		Displays the Save As dialog box.
+
+Other useful shortcut keys
+==========================
+Key		Description
+---		-----------
+ARROW KEYS	Move one cell up, down, left, or right in a worksheet.
+		CTRL+ARROW KEY moves to the edge of the current data region (data region: A range of cells that contains 			data and that is bounded by empty cells or datasheet borders.) in a worksheet.
+		SHIFT+ARROW KEY extends the selection of cells by one cell.
+		CTRL+SHIFT+ARROW KEY extends the selection of cells to the last nonblank cell in the same column or row as 			the active cell, or if the next cell is blank, extends the selection to the next nonblank cell.
+		LEFT ARROW or RIGHT ARROW selects the tab to the left or right when the Ribbon is selected. When a submenu 			is open or selected, these arrow keys switch between the main menu and the submenu. When a Ribbon tab is 			selected, these keys navigate the tab buttons.
+		DOWN ARROW or UP ARROW selects the next or previous command when a menu or submenu is open. When a Ribbon 			tab is selected, these keys navigate up or down the tab group.
+		In a dialog box, arrow keys move between options in an open drop-down list, or between options in a group of 		options.
+		DOWN ARROW or ALT+DOWN ARROW opens a selected drop-down list.
+BACKSPACE	Deletes one character to the left in the Formula Bar.
+		Also clears the content of the active cell.
+		In cell editing mode, it deletes the character to the left of the insertion point.
+DELETE		Removes the cell contents (data and formulas) from selected cells without affecting cell formats or 		comments.
+		In cell editing mode, it deletes the character to the right of the insertion point.
+END		Moves to the cell in the lower-right corner of the window when SCROLL LOCK is turned on.
+		Also selects the last command on the menu when a menu or submenu is visible.
+		CTRL+END moves to the last cell on a worksheet, in the lowest used row of the rightmost used column. If the 			cursor is in the formula bar, CTRL+END moves the cursor to the end of the text.
+		CTRL+SHIFT+END extends the selection of cells to the last used cell on the worksheet (lower-right corner). 			If the cursor is in the formula bar, CTRL+SHIFT+END selects all text in the formula bar from the cursor 			position to the end—this does not affect the height of the formula bar.
+ENTER		Completes a cell entry from the cell or the Formula Bar, and selects the cell below (by default).
+		In a data form, it moves to the first field in the next record.
+		Opens a selected menu (press F10 to activate the menu bar) or performs the action for a selected command.
+		In a dialog box, it performs the action for the default command button in the dialog box (the button with 			the bold outline, often the OK button).
+		ALT+ENTER starts a new line in the same cell.
+		CTRL+ENTER fills the selected cell range with the current entry.
+		SHIFT+ENTER completes a cell entry and selects the cell above.
+ESC		Cancels an entry in the cell or Formula Bar.
+		Closes an open menu or submenu, dialog box, or message window.
+		It also closes full screen mode when this mode has been applied, and returns to normal screen mode to 				display the Ribbon and status bar again.
+HOME		Moves to the beginning of a row in a worksheet.
+		Moves to the cell in the upper-left corner of the window when SCROLL LOCK is turned on.
+		Selects the first command on the menu when a menu or submenu is visible.
+		CTRL+HOME moves to the beginning of a worksheet.
+		CTRL+SHIFT+HOME extends the selection of cells to the beginning of the worksheet.
+PAGE DOWN	Moves one screen down in a worksheet.
+		ALT+PAGE DOWN moves one screen to the right in a worksheet.
+		CTRL+PAGE DOWN moves to the next sheet in a workbook.
+		CTRL+SHIFT+PAGE DOWN selects the current and next sheet in a workbook.
+PAGE UP		Moves one screen up in a worksheet.
+		ALT+PAGE UP moves one screen to the left in a worksheet.
+		CTRL+PAGE UP moves to the previous sheet in a workbook.
+		CTRL+SHIFT+PAGE UP selects the current and previous sheet in a workbook.
+SPACEBAR	In a dialog box, performs the action for the selected button, or selects or clears a check box.
+		CTRL+SPACEBAR selects an entire column in a worksheet.
+		SHIFT+SPACEBAR selects an entire row in a worksheet.
+		CTRL+SHIFT+SPACEBAR selects the entire worksheet.
+		If the worksheet contains data, CTRL+SHIFT+SPACEBAR selects the current region. Pressing CTRL+SHIFT+SPACEBAR 		a second time selects the current region and its summary rows. Pressing CTRL+SHIFT+SPACEBAR a third time 			selects the entire worksheet.
+		When an object is selected, CTRL+SHIFT+SPACEBAR selects all objects on a worksheet.
+		ALT+SPACEBAR displays the Control menu for the Microsoft Office Excel window.
+TAB		Moves one cell to the right in a worksheet.
+		Moves between unlocked cells in a protected worksheet.
+		Moves to the next option or option group in a dialog box.
+		SHIFT+TAB moves to the previous cell in a worksheet or the previous option in a dialog box.
+		CTRL+TAB switches to the next tab in dialog box.
+		CTRL+SHIFT+TAB switches to the previous tab in a dialog box.
+
+
+

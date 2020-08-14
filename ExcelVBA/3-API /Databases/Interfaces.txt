@@ -1,0 +1,93 @@
+Strengths and weaknesses of the various database interfaces
+------------------------------------------------------------
+
+Interface			ADO.NET	ADO	DAO	RDO	OLE DB	ODBC	MFC ODBC
+Object Model	 		++	+	+	+	-	+
+Non-relational data sources	 	+	-	-	+	-	-
+Low-level control	 	 	-	-	+	+	 
+Performance	 	 	-	 	++	+	 
+Code-to-functionality ratio	 	+	+	 	-	-	 
+
+A big difference (or advantage) of ADO over DAO and RDO is that it does not keep collections of recordsets, queries or connections therefore requires less resources.
+
+ADO - ActiveX Data Objects
+--------------------------
+ADO is much simpler to use than OLE DB and can be classified as a high-level database interface. Also, ADO can be used with more programming languages than OLE DB. ADO provides an Automation interface. This enables ADO to be used from scripting languages, such as VBScript and JavaScript
+
+ACE - Access Connectivity Engine
+----------------------------------
+This replaces DAO for Office 2007+
+
+DAO - Data Access Objects
+-------------------------
+-DAO talks directly to Access/Jet databases. DAO can also communicate with other databases through the Jet engine.
+-The DAO object model is better suited to object-oriented development than a straight API.
+-Integrating a set of disparate API functions into an object-oriented application typically means that the developer must -write her own set of classes to encapsulate the API functions.
+-Rather than provide merely a bunch of functions, DAO provides a set of objects for connecting to a database and performing operations on the data.
+-These DAO objects are easy to integrate into the source code of an object-orienapplication
+ 
+RDO - Remote Data Objects
+-------------------------
+RDO was originally developed as an abstraction of the ODBC API for Visual Basic programmers.
+Therefore, RDO is closely tied to ODBC and Visual Basic
+
+OLE DB - Object Linking and Embedding DataBase
+----------------------------------------------
+-OLE DB could be classified as a low-level database API.
+-OLE DB incorporates the functionality of ODBC for relational databases and expands on it by providing access to nonrelational data sources.
+-OLE DB is great for C++ programmers since it requires manipulation of interface pointers
+
+ODBC - Open DataBase Connectivity
+----------------------------------
+ODBC provides a single API for client applications to work with different databases.
+Applications that use the ODBC API can communicate with any relational database for which there is an ODBC driver.
+Compared to other database interfaces, the ODBC API could be classified as a low-level database interface.
+The ODBC API enables client applications to configure and control the database at a relatively low level.
+ADO is the preferred method as it has a lighter model and can also access non relational data sources
+
+Cursors
+-------
+-Client cursors bring rows down to the client machine to be manipulated.
+-Server cursors manipulate the rows directly on the datasource.
+-When server side cursors are employed, the client will make multiple trips to the data source to work with rows from the -resultset because they are by definition managed by the datasource.
+-Alternatively, when client side cursors are employed, the entire resultset is sent to the client using one SQL statement with the rows being managed by client side cursor code.
+-Server side cursors are more efficient when an application is likely to address a small percentage of rows in the resultset. -Fewer round trips to the data source will be required. You should note, however that applications should be designed to ask -for only rows required by the client.
+-To generate a firehose cursor, you must use a server side, forward only, read only cursor with a cache size of 1
+
+CacheSize
+---------
+-The number of trips is affected by the CacheSize property of the recordset object, which indicates how many rows the data provider will keep in its cache with each call to the data source. 
+-You have the option to The default cachesize is 1 for ADO, which makes a trip for every row.
+-Leaving the cachesize at 1 an dusing Server side cursors can in one case actually increase performance by bypassing cursors altogether ??
+-There is a trade off when having a large cache size since the rows returned wastes memory on the client
+-There is a problem with ADO in as much as you receive an E-FAIL error if you retrieve a numerical column that contains Null Values
+
+
+The adParamReturnValue only needs to be declared as a parameter in ADO if a function returns a value
+You can use the CreateParameter without any parameters and then assign the various properties (Name, Type, Direction, Size and Value) later although this is not recommended
+
+What is Data Modelling ?
+------------------------
+-Data modelling organises and documents the data that will be stored in the database.
+-It provides a graphical representation of the structure of the database and how data will be represented in the database.
+-Understanding how data will be represented in the database will help you to avoid storing redundant or insufficient data.
+-Data modelling can be done either on paper or by specialised software
+
+Entity Relationship Diagram
+---------------------------
+-An ERD (Entity Relationship Diagram) model represents data in terms of entities and relationships.
+Entity - This is a table in a database, or a group of related things.
+Relationship - This is an association between entities.
+
+-There are four different types of relationships:
+An ERD model graphically depicts the relationships by using shapes, numbers, letters and lines.
+Rectangles represent entities.
+Diamonds combined with letters above the lines that connect the rectangles represents the relationship
+
+One to One Relationship
+One to Many Relationship
+Many to One Relationship
+	Many employees belong to one department
+Many to Many Relationship
+	Each student is a member of many classes.
+	Each class contains many students.

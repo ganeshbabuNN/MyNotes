@@ -1,0 +1,17 @@
+-it is a functions for development the custom pop up message box and wait for the user to respond.
+-it is a basic for the beginner to show how the outlook looks in order the understanding the programming basics
+
+sytnax
+MsgBox(prompt[, buttons] [, title] [, helpfile, context])
+
+
+Sub msgboxdemo()
+line1:
+answer = MsgBox("Do you like Excel", vbYesNo)
+If answer = vbYes Then
+    MsgBox "This is a kool "
+ElseIf answer = vbNo Then
+    MsgBox "This is really kool,Easy to learn"
+    GoTo line1   ' funny way to make it accept
+End If
+End Sub

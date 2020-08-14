@@ -1,0 +1,114 @@
+Excel 
+-----
+Add record to Access database using ADO and SQL
+
+Connection String - Excel Workbook
+sConnectionStr = "Driver = {Microsoft Excel Driver (.xls)}" & ";" & _ 
+                 "DriverID = 790" & ";" & _ 
+                 "DBQ = "C:\DatabasePath\DBSpreadsheet.xls" & ";" & _ 
+                 "DefaultDir = "C:\DatabasePath" 
+Driver - 
+DriverID - 
+DBQ - 
+DefaultDir -
+
+Sub DB_Insert_via_ADOSQL() 
+Dim cnt As New ADODB.Connection 
+Dim rst As New ADODB.Recordset 
+Dim dbPath As String 
+Dim tblName As String 
+Dim rngColHeads As Range 
+Dim rngTblRcds As Range 
+Dim colHead As String 
+Dim rcdDetail As String 
+Dim ch As Integer 
+Dim cl As Integer 
+Dim notNull As Booleann 
+
+    'Set the string to the path of your database as defined on the worksheet
+    dbPath = ActiveSheet.Range("B1").Value 
+    tblName = ActiveSheet.Range("B2").Value 
+    Set rngColHeads = ActiveSheet.Range("tblHeadings") 
+    Set rngTblRcds = ActiveSheet.Range("tblRecords") 
+
+    'Concatenate a string with the names of the column headings
+    colHead = " (" 
+    For ch = 1 To rngColHeads.Count 
+        colHead = colHead & rngColHeads.Columns(ch).Value 
+        Select Case ch 
+            Case Is = rngColHeads.Count 
+                colHead = colHead & ")" 
+            Case Else 
+                colHead = colHead & "," 
+        End Select 
+    Next ch 
+
+    'Open connection to the database
+    cnt.Open "Provider=Microsoft.Jet.OLEDB.4.0;" & _ 
+            "Data Source=" & dbPath & ";" 
+
+    'Begin transaction processing
+    On Error GoTo EndUpdate 
+    cnt.BeginTrans 
+
+    'Insert records into database from worksheet table
+    For cl = 1 To rngTblRcds.Rows.Count 
+
+        'Assume record is completely Null, and open record string for concatenation
+        notNull = False 
+        rcdDetail = "('"  
+
+        'Evaluate field in the record
+        For ch = 1 To rngColHeads.Count 
+            Select Case rngTblRcds.Rows(cl).Columns(ch).Value 
+                    'if empty, append value of null to string
+                Case Is = Empty 
+                    Select Case ch 
+                        Case Is = rngColHeads.Count 
+                            rcdDetail = Left(rcdDetail, Len(rcdDetail) - 1) & "NULL)" 
+                        Case Else 
+                            rcdDetail = Left(rcdDetail, Len(rcdDetail) - 1) & "NULL,'"  
+                    End Select 
+
+                    'if not empty, set notNull to true, and append value to string
+                Case Else 
+                    notNull = True 
+                    Select Case ch 
+                        Case Is = rngColHeads.Count 
+                            rcdDetail = rcdDetail & rngTblRcds.Rows(cl).Columns(ch).Value & "')"  
+                        Case Else 
+                            rcdDetail = rcdDetail & rngTblRcds.Rows(cl).Columns(ch).Value & "','"  
+                    End Select 
+            End Select 
+        Next ch 
+
+        'If record consists of only Null values, do not insert it to table, otherwise
+        'insert the record
+        Select Case notNull 
+            Case Is = True 
+                rst.Open "INSERT INTO " & tblName & colHead & " VALUES " & rcdDetail, cnt 
+            Case Is = False 
+                'do not insert record
+        End Select 
+    Next cl 
+
+EndUpdate: 
+    'Check if error was encounted
+    If Err.Number <> 0 Then 
+        'Error encountered.  Rollback transaction and inform user
+        On Error Resume Next 
+        cnt.RollbackTrans 
+        MsgBox "There was an error.  Update was not succesful!", vbCritical, "Error!" 
+    Else 
+        On Error Resume Next 
+        cnt.CommitTrans 
+    End If 
+
+    'Close the ADO objects
+    cnt.Close 
+    Set rst = Nothing 
+    Set cnt = Nothing 
+    On Error GoTo 0 
+End Sub 
+
+https://bettersolutions.com/vba/databases/excel-workbook.htm

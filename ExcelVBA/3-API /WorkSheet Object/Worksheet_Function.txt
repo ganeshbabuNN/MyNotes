@@ -1,0 +1,82 @@
+intro
+=====
+-If we required the excel funtion to use in the VBA. its available in the worksheet function.
+
+
+List of functions not suppport by worksheet functions
+https://support.microsoft.com/en-us/help/213660/not-all-excel-worksheet-functions-are-supported-as-methods-of-the-appl
+
+RandomBetween
+=============
+
+Sub arraystore()
+Dim days As Variant
+Dim randdays As Variant
+days = Array("Monday", "Tuesday", "Wednesday", "Thursday")
+s = Application.WorksheetFunction.RandBetween(0, 5)
+randdays = "You random messages are " & days(s) & ". "
+MsgBox randdays
+End Sub
+"
+
+Text
+====
+-Similar to the text function in excel
+-Some for the major used formats are 
+
+Sub arraystore()
+ Dim wbk As Workbook
+ Dim ws As Worksheet
+ 
+ Set wbk = ThisWorkbook
+ Set ws = Worksheets("Sheet1")
+ ws.Activate
+ Range("A2").Activate
+ 
+ While ActiveCell.Value <> ""
+    ActiveCell.Offset(0, 1).Value = Application.WorksheetFunction.text(ActiveCell.Value, "#####")
+    ActiveCell.Offset(1, 0).Select
+ Wend
+End Sub
+
+vlookup
+=======
+sheet1
+Site	country
+100	usa
+202	england
+304	germany
+406	italay
+508	scotland
+610	poland
+712	india
+814	british
+916	isreal
+1018	arbia
+
+sheet2
+site	country
+304	germany
+406	italay
+508	scotland
+
+
+
+Sub vlookuptest()
+Dim i As Long
+Dim lr As Long
+lr = Sheets("sheet2").Range("a" & Rows.Count).End(xlUp).Row
+    For i = 1 To lr
+        Sheets("sheet2").Range("b" & i) = Application.VLookup((Sheets("sheet2").Range("a" & i)), Sheets("sheet1").Range("A1:B11"), 2, False)
+    Next i
+End Sub
+
+Ref: http://www.exceltrick.com/formulas_macros/vlookup-in-vba/
+
+Min Max
+=======
+Getting the minimum and maximum of the date.
+Format(Application.WorksheetFunction.Min(ws.Range(tempPlanStColName & tempRowStart & ":" & tempPlanStColName & totalrow)), "dd-mmm-yyyy")
+Format(Application.WorksheetFunction.Max(ws.Range(tempPlanStColName & tempRowStart & ":" & tempPlanStColName & totalrow)), "dd-mmm-yyyy")
+
+

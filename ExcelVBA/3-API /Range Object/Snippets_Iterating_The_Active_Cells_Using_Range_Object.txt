@@ -1,0 +1,71 @@
+'Activecell iterating line by line - using while-wend
+Sub testForwhileWend()
+    Range("A2").Select
+    While ActiveCell.Value <> ""
+        ActiveCell.Offset(0, 1).Value = 1
+        ActiveCell.Offset(1, 0).Select
+    Wend
+End Sub
+
+'Activecell iterating line by line - using do-while-loop
+Sub rang()
+    range("A2").Select    
+    Do While ActiveCell.Value <> ""  'IsEmpty(ActiveCell.Value)
+        ActiveCell.Offset(0, 1).Value = "Hello"
+        ActiveCell.Offset(1, 0).Select  
+    Loop
+End Sub
+
+'Activecell iterating line by line - using do-while-loop using isEmpty method
+Sub rang()
+    range("A2").Select    
+    Do until IsEmpty(ActiveCell.Value)
+        ActiveCell.Offset(0, 1).Value = "Hello"
+        ActiveCell.Offset(1, 0).Select  
+    Loop
+End Sub
+
+
+'Activecell iterating line by line - using do-until-loop
+Sub testForDoUntil()
+    Range("A2").Select
+    Do Until ActiveCell.Value = ""
+        ActiveCell.Offset(0, 1).Value = 1
+        ActiveCell.Offset(1, 0).Select
+    Loop
+End Sub
+
+'Activecell iterating line by line -using do-loop-until
+Sub testForDoloopuntil()
+    Range("A2").Select
+    Do
+        ActiveCell.Offset(0, 1).Value = 1
+        ActiveCell.Offset(1, 0).Select
+    Loop Until ActiveCell.Value = ""
+End Sub
+
+
+'Activecell iterating line by line - using do-loop-while
+Sub testForDoUntilWhile()
+    Range("A2").Select
+    Do
+        ActiveCell.Offset(0, 1).Value = 1
+        ActiveCell.Offset(1, 0).Select
+    Loop While ActiveCell.Value <> ""
+End Sub
+
+'Activecell iterating line by line - using For loop
+Sub testForLoop()
+    Dim i As Integer
+    Dim numRows As Integer
+    
+    numRows = Range("A2", Range("A2").End(xlDown)).Rows.Count
+    
+    Range("A2").Select
+    For i = 1 To numRows
+        ActiveCell.Offset(0, 1).Value = 1
+        ActiveCell.Offset(1, 0).Select
+    Next
+    
+End Sub
+

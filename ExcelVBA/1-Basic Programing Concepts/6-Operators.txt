@@ -1,0 +1,85 @@
+-The programming language typically support set of operators.
+-VBA typically support set of operators performing some operations.
+
+Like ..
+a+b  + is a addition operator, a and b operand.
+
+Different types of operators
+============================
+1)Arthmetic Operator
+2)Comparison Operator
+3)Logical Operator
+
+1)Arthmetic Operator
+-------------------
+Operator		Example
+--------		------- 
+^(Exponential)		Msgbox 2^2
+*(Multiplication)	Msgbox 2*2
+/(Division)		Msgbox 12/4
+Mod(Modulus)		Msgbox 12 mod 4
++ or & (String concat)	MsgBox “Ganesh"&“babu" or “Nirmal"+“Kumar" produces a new string 				"Excel VBA 2010"
+
+2)Comparion Operator
+--------------------
+Operator		Example
+--------		--------
+<(Less than)		Msgbox 2<3
+<(Less than or eq)	Msgbox 3<=4
+>(greater than)		Msgbox 2>3
+>=(greater than or eq)	Msgbox 3>=4
+=(Equal)		Msgbox 3=3
+<>(Not equal to)	Msgbox 9<>10
+
+3)Logical Operator
+-----------------
+Operator			Example
+--------			--------
+And(Logical conjunction)	If a >= 80 And b < 101 Then  grade = "A"
+Or(Logical disjunction)		If a >= 80 Or b < 101 Then  grade = "A"
+Not(Logical negation)		MsgBox Not (3 > 4)
+
+Comparing the objects
+=====================-
+Using the is Operator
+
+Checking whether the value is Text or Number
+===========================================
+
+Using isText function
+=====================
+
+Operator Precedence
+===================
+Precedence
+
+-If several operators exist in a single expression and parentheses have not been used then the expression is evaluated in a strict order. This order is known as "operator precedence"
+-When operators have the same precedence they are evaluated from left-to-right.
+-Parentheses can be used to overwrite the order and to evaluate certain parts of the expression. Operations inside parentheses are always performed before those outside.
+-When a series of operators appear in the same expression there is a strict order in which they will be evaluated.
+-The rules of precedence tell the compiler which operators to evaluate first.
+-Parentheses can obviously be used to change the order of precedence.
+-Operators are evaluated in the following order: Mathematical, Concatenation, Relational, Logical.
+
+Order	Operator		Symbol
+1		Exponentiation	^
+2		Negation		-
+3		Multiplication	*
+3		Division		/
+4		Division with Integer result	\
+5		Modulo			Mod
+6		Addition		+
+6		Subtraction		-
+7		String Concatenation	&
+8		Equal or Assignment	=
+8		Not Equal To	<>
+8		Less Than	<
+8		Greater Than	>
+8		Less Than or Equal To	<=
+8		Greater Than or Equal To	>=
+9		Not				NOT
+10		And				AND
+11		Or				OR
+12		Exclusive OR	XOR
+13		Equivalence		EQV
+14		Implication		IMP

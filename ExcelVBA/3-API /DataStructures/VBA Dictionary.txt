@@ -1,0 +1,553 @@
+
+
+Quick Guide
+===========
+1)Early binding reference : 
+	“Microsoft Scripting Runtime” (Add using Tools->References from the VB menu)
+2)Declare (early binding) : 
+	Dim dict As Scripting.Dictionary
+3)Create(early binding)	  :
+	Set dict = New Scripting.Dictionary
+4)Declare (late binding)  :
+	Dim dict As Object
+5)Create(late binding)	  :
+	Set dict = CreateObject("Scripting.Dictionary")
+6)Add item (key must not already exist)	:
+	dict.Add Key, Value e.g. dict.Add "Apples", 50
+7)Change value at key. Automatically adds if the key does not exist : 
+	dict(Key) = Value e.g. dict("Oranges") = 60
+8)Get a value from the dictionary using the key :  
+	Value = dict(Key)  e.g. appleCount = dict("Apples")
+9)Check if key exists : 
+	dict.Exists(Key) e.g. If dict.Exists("Apples") Then 
+10)Remove item		:
+	dict.Remove Key e.g. dict.Remove "Apples"
+10)Remove all items	:
+	dict.RemoveAll
+11)Go through all items (for each loop)	: 
+	Dim key As Variant 
+	For Each key In dict.Keys      
+	 Debug.Print key, dict(key)
+	Next key
+11)Go through all items (for loop - early binding only)	
+	Dim i As Long 
+	For i = 0 To dict.Count - 1 
+	   Debug.Print dict.Keys(i),      
+	    dict.Items(i)
+	Next i
+12)Get the number of items :
+	dict.Count
+13)Make key case sensitive (the dictionary must be empty): 
+	dict.CompareMode = vbBinaryCompare
+14)Make key non case sensitive (the dictionary must be empty): 
+	dict.CompareMode = vbTextCompare
+
+Dictionary:
+===========
+-In VBA we use Arrays and Collections to store groups of values. For example, we could use them to store a list of customer names, student marks or a  list of values from a range of cell.
+-A Dictionary is similar to a Collection. Using both types, we can name an item when we add it. Imagine we are storing the count of different fruit types.
+-At the top of the heap, the Dictionary object is a data structure that contains what could be described as an index. -Dictionary objects store pairs of data. Very similar to an array. 
+One half of the pair is an item of any data type.The second half is a key that consists of a unique string that identifies the item.
+-Each item is associated with a unique key. This key is then used to retrieve an individual item. Keys are usually Integers or Strings
+-In a way, this structure is similar to a VBA collection, with a few more bells and whistles.
+-The primary purpose of a Dictionary object is to create a collection of related files, which you can then search or otherwise manipulate.
+
+Declaring and creating the instance of dicitionary Class
+--------------------------------------------------------
+Dim objFSODictionary As New Scripting.Dictionary 
+
+Alternatively(Early Binding)
+Dim objFSODictionary As Scripting.Dictionary 'declaring the dictionary class
+Set objFSODictionary = New Scripting.Dictionary 'creating the instance of dictionary class
+
+-To create a Dictionary using Late binding we use the following code. We don’t need to add a reference.
+In technical terms Early binding means we decide exactly what we are using up front. With Late binding this decision is made when the application is running. In simple terms the difference is
+1)Early binding requires a reference. Late binding doesn’t.
+2)Early binding allows access to *Intellisense. Late binding doesn’t.
+3)Early binding may require you to manually add the Reference to the “Microsoft Scripting Runtime” for some users.
+
+Alternatively(Late Binding)
+Dim objFSODictionary As Object 'declaring the dictionary class
+Set objFSODictionary = CreateObject("Scripting.Dictionary") 'creating the instance of dictionary class
+
+Instead of a Collection
+=======================
+-The Dictionary object is a data structure that can contain sets of pairs, where each pair consists of an item, which can be any data type, and a key, which is a unique string value that identified the item.
+-The Dictionary object is similar to a VBA Collection object however the Dictionary object offers certain advantages:
+
+-The main advantage of the Dictionary over a Collection is the fact that it is easier to search the Dictionary for a given item.
+-Despite this advantage the Dictionary object does not entirely replace the Collection object.
+-The Collection object is useful in many situations where the Dictionary is not.
+
+For example 
+We could use both a Collection and a Dictionary like this
+
+Sub CompareDictinory()
+    Dim dict As Scripting.Dictionary
+    Dim col As Collection
+        
+    Set dict = New Scripting.Dictionary
+    Set col = New Collection
+    
+    'adding both collection and dictionary items
+    dict.add "Apple", 5
+    col.add 5, "Apple"
+    
+    'get the value form the both
+    Total = dict("Apple")
+    Total = col("Apple")
+    
+    'issue in collection to use explicit function to check the item exists
+    Debug.Print Exists(col, "Apple1")
+    'in dictionary its easy to check the item exists
+    Debug.Print dict.Exists("Apple")
+    
+    'changing the existing value in Dictionary
+     dict(5) = "Orange"
+     Debug.Print dict(5)
+     'changing the existing Key in dictionary
+     dict("Orange") = 10
+     Debug.Print dict("Orange")
+     'cannot the existing value in collections
+     'col("Apple") = 43
+     'col(5) = "Orange"
+End Sub
+
+Function Exists(coll As Collection, key As String) As Boolean
+    On Error GoTo EH
+    coll.item key
+    Exists = True
+EH:
+End Function
+
+The Collection however, has two major faults
+-We cannot check if the key already exists.
+-We cannot change the value of an existing item.
+
+Adding a Item 
+=============
+-We can add items to the dictionary using the Add function. Items can also be added by assigning a value which we will look at in the next section.
+-In dictionary key is mandatory where as in collection it is optional.
+-The Key can be any data type. The Item can be any data type, an object, array, collection or even a dictionary. So you could have a Dictionary of Dictionaries, Array and Collections. But most of the time it will be a value(date, number or text).
+-If we add a Key that already exists in the Dictionary then we will get the error
+ 
+Ex:
+Sub TestDictionary()
+    Dim dict As Scripting.Dictionary 'declaring
+    Dim employee As employee
+    Dim name As Variant
+    name = Array(32, 32, 13)
+    Set dict = New Scripting.Dictionary 'creating the instance
+    dict.add "employeesInfo", Worksheets("employeesInfo")
+    dict.add ThisWorkbook.name, ThisWorkbook 'object
+    dict.add 1, Range("A2")
+    dict.add Range("C1").value, 32
+    'dict.add name, 1 'cannot add array
+    dict.add "ga", 2
+    Set employee = New employee
+    dict.add "emp", employee 'adding a class ref
+    Set dict = Nothing
+End Sub
+
+Assigning the value
+===================
+-We can change the value of a key using the following code
+	dict("Orange") = 75
+-Assigning a value to Key this way has an extra feature. If the Key does not exist it automatically adds the Key and Item to the dictionary. This would be useful where you had a list of sorted items and only wanted the last entry for each one.
+-Editing the existing key from dictionary
+	dict.key("emp") = "emp1"
+
+Couting the item in dictionary 
+==============================
+-returns the number of items in the Dictionary.
+
+Sub TestDictionary()
+    Dim dict As Scripting.Dictionary 'declaring
+    Dim employee As employee
+    Dim name As Variant
+    name = Array(32, 32, 13)
+    Set dict = New Scripting.Dictionary 'creating the instance
+    dict.add "employeesInfo", Worksheets("employeesInfo")
+    dict.add ThisWorkbook.name, ThisWorkbook 'object
+    dict.add 1, Range("A2")
+    dict.add Range("C1").value, 32
+    'dict.add name, 1 'cannot add array
+    dict.add "ga", 2
+    Set employee = New employee
+    dict.add "emp", employee 'adding a class reference
+        
+    MsgBox "Count of the item in dictionary are  " & dict.count  'count
+End Sub
+
+
+Key Property
+============
+-This property enable you to return the key for a particular item in the dictionary.
+-An item in a Collection object also has a key, which you can use to retrieve the item, however there is no way to retrieve the key itself.
+	objFSODictionary.Add 
+-You don't have to add a Range object, you can add Range.Value to Store a 1 dimensional array. 
+-The dictionary item is created with a default single element
+-somehow elements were getting automatically added when using Cells(,) = objFSOUnique(item)
+	objFSODictionary.Remove(key) 
+
+
+Referring the non-existing Key
+-------------------------------
+-Referring to the item when the key does not exists
+
+Debug.Print dict("emp1")
+
+-count of the dictionary will add the non-existing key as well, but do not store the value.
+
+CompareMode Property
+====================
+-Settings this property specifies the text-comparison mode for the Dictionary object so that you can search for keys either with a case sensitive or case insensitive search.
+-By default this is set to BinaryCompare which means that the Exists method will be true only if it finds a binary match, ie which is case sensitive.
+-There is no way of performing an case insensitive search with a collection.
+
+Ex:
+Sub TestDictionary()
+    Dim dict As Scripting.Dictionary 'declaring
+    Dim employee As employee
+    Dim name As Variant
+    
+    Set dict = New Scripting.Dictionary
+    dict.CompareMode = TextCompare
+    dict.add key:="Apple", item:=32
+    dict.add "Orange", 23
+    
+    If dict.Exists("orange") Then
+        MsgBox "Key exists"
+    Else
+        MsgBox "Key not exists"
+    End If
+End Sub
+
+item Property & Items Method
+============================
+-"Items" method are used to get the item using the Key, if index of the the item using the "item" property.
+-if you want to get item by key use "Item" property from dictionary class
+
+Referring item by key
+---------------------
+Debug.Print dict.item("Apple") 'using key
+Debug.Print dict("Apple") 'omitting the item , its optional
+Debug.Print dict.item(11).firstName 'for access the ref of a object
+
+Omitting the item property
+--------------------------
+Debug.Print dict("Apple") 'using key
+Debug.Print dict("Apple") 'omitting the item , its optional
+Debug.Print dict(11).firstName 'for access the ref of a object
+
+Referring the items by index or key
+-----------------------------------
+-You can refer the index of the item in collection where in dictionary it is not possible.
+-if you want to get items by index number use "Items" method from dictionary class. this
+
+   Debug.Print dict.Items(2) 'using the index of the item ,0 based index
+   Debug.Print dict.Items(3).firstName 'using the index of the item,0 based index
+
+Ex:
+Sub TestDictionary()
+    Dim dict As Scripting.Dictionary 'declaring
+    Dim emp As employee
+    Dim name As Variant
+    Set dict = New Scripting.Dictionary
+    dict.CompareMode = TextCompare
+    dict.add key:="Apple", item:=32
+    dict.add "Orange", 23
+    dict.add "Mango", "fruits"
+    Set emp = New employee
+    emp.empID = 11
+    emp.firstName = "ganesh"
+    dict.add emp.empID, emp
+    Set emp = Nothing
+    Debug.Print dict.item("Apple") 'using key
+    Debug.Print dict("Apple") 'omitting the item , its optional
+    Debug.Print dict.item(11).firstName 'for access the ref of a object
+    Debug.Print dict.Items(2) 'using the index of the item ,0 based index
+    Debug.Print dict.Items(3).firstName 'using the index of the item,0 based index
+End Sub
+
+Remove Method
+=============
+-removes a given key from the Dictionary.
+-YOu cannot use the item as a key for removing item in dictionary 
+-we have to used the key to remove the item from the dictionary whereas in collections we can use the item to remove from the collections.
+
+-dict.remove "emp" 'only by key
+-dict.remove 1 'not by item
+
+RemoveAll Method
+================
+-This method removes all items in the Dictionary object
+-A collection object on the other hand has no method for quickly removing all the items at once.
+-This can be achieved by setting the Collection to Nothing
+-Removing all the item in the dictionary.
+
+dict.removeAll
+
+
+Exists Method- checking the key if exists
+=========================================
+-You can use this method to determine whether a particular key and its corresponding item exist in a Dictionary object
+-The Exists method makes it simpler and more efficient to search a Dictionary object than to search a Collection object.
+-Don't need to force/generate an error.
+	If objFSODictionary.Exists(key) = False Then 
+
+	End If 
+-In this case, count of the dictionary will not be added the non-existing key as well.
+ If dict.Exists("emp1") Then
+        MsgBox dict("emp1")
+    Else
+        MsgBox "Key does not exists"
+    End If
+
+Creating a public dictionary
+============================
+Public empDictionary As Scripting.Dictionary
+Sub testpublicDict()
+    Dim emp As employee
+    Dim r As Range
+    Set empDictionary = New Scripting.Dictionary
+    For Each r In Range("A1", Range("A1").End(xlDown))
+        Set emp = New employee
+        emp.empID = r.Offset(1, 0).value
+        emp.firstName = r.Offset(1, 1).value
+        emp.lastName = r.Offset(1, 3).value
+        emp.salary = r.Offset(1, 7).value
+     If emp.empID > 0 Then
+        empDictionary.add emp.empID, emp
+        Set emp = Nothing
+     End If
+     Next r
+End Sub
+
+Refering item from the public dictionary
+----------------------------------------
+MsgBox empDictionary.item(106).firstName
+MsgBox empDictionary(100).firstName 'via key
+
+Looping the over item in a dictionary.
+--------------------------------------
+Dim k As Variant
+For Each k In empDictionary.Keys
+    Debug.Print k, empDictionary(k).firstName
+Next k
+
+Looping the dictionary over array
+---------------------------------
+- this is for the early binding only.
+Dim k As long
+For k = 0 To empDictionary.count - 1
+    Debug.Print empDictionary.Keys(k), empDictionary.Items(k).firstName
+ Next k
+
+'another approach
+   For k = LBound(empDictionary.Items()) To UBound(empDictionary.Items())
+        Debug.Print empDictionary.Keys(k), empDictionary.Items(k).firstName
+    Next k
+
+Sorting the Dictionary
+======================
+-Sometimes you may wish to sort the Dictionary either by key or by value.
+-The Dictionary doesn’t have a sort function so you have to create your own. I have written two sort functions – one for sorting by key and one for sorting by value.
+
+'Sort by keys
+--------------
+To sort the dictionary by the key you can use the SortDictionaryByKey function below
+
+Option Explicit
+Public Function SortDictionaryByKey(dict As Object _
+                  , Optional sortorder As XlSortOrder = xlAscending) As Object
+    
+    Dim arrList As Object
+    Set arrList = CreateObject("System.Collections.ArrayList")
+    
+    ' Put keys in an ArrayList
+    Dim key As Variant, coll As New Collection
+    For Each key In dict
+        arrList.add key
+    Next key
+    
+    ' Sort the keys
+    arrList.Sort
+    
+    ' For descending order, reverse
+    If sortorder = xlDescending Then
+        arrList.Reverse
+    End If
+    
+    ' Create new dictionary
+    Dim dictNew As Object
+    Set dictNew = CreateObject("Scripting.Dictionary")
+    
+    ' Read through the sorted keys and add to new dictionary
+    For Each key In arrList
+        dictNew.add key, dict(key)
+    Next key
+    
+    ' Clean up
+    Set arrList = Nothing
+    Set dict = Nothing
+    
+    ' Return the new dictionary
+    Set SortDictionaryByKey = dictNew
+        
+End Function
+Sub TestSortByKey()
+
+    Dim dict As Object
+    Set dict = CreateObject("Scripting.Dictionary")
+    
+    dict.add "Plum", 99
+    dict.add "Apple", 987
+    dict.add "Pear", 234
+    dict.add "Banana", 560
+    dict.add "Orange", 34
+    
+    PrintDictionary "Original", dict
+    
+    ' Sort Ascending
+    Set dict = SortDictionaryByKey(dict)
+    PrintDictionary "Key Ascending", dict
+    
+    ' Sort Descending
+    Set dict = SortDictionaryByKey(dict, xlDescending)
+    PrintDictionary "Key Descending", dict
+    
+End Sub
+
+Public Sub PrintDictionary(ByVal sText As String, dict As Object)
+    
+    Debug.Print vbCrLf & sText & vbCrLf & String(Len(sText), "=")
+    
+    Dim key As Variant
+    For Each key In dict.Keys
+        Debug.Print key, dict(key)
+    Next
+End Sub
+
+Sorting by values
+-----------------
+To sort the dictionary by the values you can use the SortDictionaryByValue function below.
+
+Public Function SortDictionaryByValue(dict As Object _
+                    , Optional sortorder As XlSortOrder = xlAscending) As Object
+    
+    On Error GoTo eh
+    
+    Dim arrayList As Object
+    Set arrayList = CreateObject("System.Collections.ArrayList")
+    
+    Dim dictTemp As Object
+    Set dictTemp = CreateObject("Scripting.Dictionary")
+   
+    ' Put values in ArrayList and sort
+    ' Store values in tempDict with their keys as a collection
+    Dim key As Variant, value As Variant, coll As Collection
+    For Each key In dict
+    
+        value = dict(key)
+        
+        ' if the value doesn't exist in dict then add
+        If dictTemp.Exists(value) = False Then
+            ' create collection to hold keys
+            ' - needed for duplicate values
+            Set coll = New Collection
+            dictTemp.add value, coll
+            
+            ' Add the value
+            arrayList.add value
+            
+        End If
+        
+        ' Add the current key to the collection
+        dictTemp(value).add key
+    
+    Next key
+    
+    ' Sort the value
+    arrayList.Sort
+    
+    ' Reverse if descending
+    If sortorder = xlDescending Then
+        arrayList.Reverse
+    End If
+    
+    dict.RemoveAll
+    
+    ' Read through the ArrayList and add the values and corresponding
+    ' keys from the dictTemp
+    Dim item As Variant
+    For Each value In arrayList
+        Set coll = dictTemp(value)
+        For Each item In coll
+            dict.add item, value
+        Next item
+    Next value
+    
+    Set arrayList = Nothing
+    
+    ' Return the new dictionary
+    Set SortDictionaryByValue = dict
+        
+Done:
+    Exit Function
+eh:
+    If Err.Number = 450 Then
+        Err.Raise vbObjectError + 100, "SortDictionaryByValue" _
+                , "Cannot sort the dictionary if the value is an object"
+    End If
+End Function
+'The code below shows you how to use SortDictionaryByValue
+
+Sub TestSortByValue()
+
+    Dim dict As Object
+    Set dict = CreateObject("Scripting.Dictionary")
+    
+    dict.add "Plum", 99
+    dict.add "Apple", 987
+    dict.add "Pear", 234
+    dict.add "Banana", 560
+    dict.add "Orange", 34
+    
+    PrintDictionary "Original", dict
+    
+    ' Sort Ascending
+    Set dict = SortDictionaryByValue(dict)
+    PrintDictionary "Value Ascending", dict
+    
+    ' Sort Descending
+    Set dict = SortDictionaryByValue(dict, xlDescending)
+    PrintDictionary "Value Descending", dict
+    
+End Sub
+
+Public Sub PrintDictionary(ByVal sText As String, dict As Object)
+    
+    Debug.Print vbCrLf & sText & vbCrLf & String(Len(sText), "=")
+    
+    Dim key As Variant
+    For Each key In dict.Keys
+        Debug.Print key, dict(key)
+    Next key
+    
+End Sub
+
+When To Use The Dictionary
+==========================
+So when should you use the VBA Dictionary? When you have a task where
+-You have a list of unique items e.g. countries, invoice numbers, customer name and addresses, project ids, product names etc.
+-You need to retrieve the value of a unique item
+-If you need more than one item you can use a class module. For example, if you were storing customer records such as ID, name, address, email, then you could use a class module object for each customer and store this in the Dictionary
+-A Dictionary doesn’t have a name. You reference it using a variable which is like a name.
+
+Comparing the Dictionary vs collection
+======================================
+
+
+http://www.snb-vba.eu/VBA_Dictionary_en.html
+https://excelmacromastery.com/vba-dictionary/

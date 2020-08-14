@@ -1,0 +1,36 @@
+Intro
+=====
+-In the range object you gonna put the Name of the range, where as the cell object put the row and column straight forward.
+-this work directly on the position of the row and column
+
+Syntax:
+
+cell(Row,Column)
+
+Use the numbers as row and column
+---------------------------------
+Cells(1, 5) = 20
+
+Use even the letter instead of numbers
+--------------------------------------
+Cells(1, "i") = 20
+
+
+Location positionally using a range
+-----------------------------------
+'using the positionally in a range
+Cells(5) = 20
+'using the range object location with its positions by cell
+Range("A1:C4").Cells(4) = 89
+
+Affecting all the cells of that worksheet
+-----------------------------------------
+Cells.Font.Name = "Arial"
+Cells.Select
+Cells.Delete
+Cells.Value
+
+Using the Range object with cell object
+-----------------------------------------
+Range(Cells(3, "c"), Cells(6, "e")) = 22
+

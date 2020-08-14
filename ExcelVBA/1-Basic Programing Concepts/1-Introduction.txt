@@ -1,0 +1,82 @@
+Programming Lanugage
+====================
+-A System of statement you use to manipulate the statements
+-whats required ? accept input , store data , manipulate data and produce data
+
+Object-oriented programming
+===========================
+-Properties , events and methods
+
+Car
+-Properties :- make, model,color ,year, price
+-Events :- on_start,on_parked,on_Brake
+-Methods :- Start,drive and park
+
+Introduction To Visual Basic Editor
+==================================
+Walkthrough through the menu bars 
+-File 
+-Edit
+-View
+-Insert
+-Format
+-Debug
+-Run
+-Tools
+-Add-ons
+-Window
+
+Debugging
+Shortcut Keys
+Macro Settings
+Compiling
+Different States
+Debug Toolbar
+Breakpoints
+Step Through Code
+Immediate Window
+Locals Window
+Watch Window
+End Statement
+Call Stack
+Bookmarks
+Conditional Compilation
+
+https://bettersolutions.com/vba/macros/troubleshooting.htm
+https://bettersolutions.com/vba/debugging/debugging.htm
+
+
+Your first program
+==================
+There are main two main body of starting the program
+1)procedure
+2)functions
+3)Classes ....
+
+Procedure
+---------
+Sub procedureExample()
+    MsgBox "Hello, how are you"
+End Sub
+
+Functions
+---------
+Function functionExample() As String
+    functionExample = "how are you"
+End Function
+
+VBA Naming Rules
+================
+Use the following rules when you name procedures, constants,variables and arguments in a visual basic modules
+-you must use a letter as the first character
+-you can't use space, period(.),exclamation mark(!), or the character @,&,$,# in the name.
+-Name can't exceed  255 characters in length.
+-Name cannot contain a VBA reserved keyword such as Dim,Sub..etc
+
+Record and Play the macro
+=========================
+There are three ways you can recuse the macros
+1)Installing your macros
+2)Adding the Macros in Quick Access Toolbar(QAT)
+3)Adding Macros in ribbon bar
+4)Distributing the macros

@@ -1,0 +1,282 @@
+intro
+=====
+
+-Workbooks objects are the collection of the all the workbooks 
+-All the operations related to the workbook can be used here.
+
+
+Workbook Methods
+================
+
+Adding a new workbook
+---------------------
+Workbooks.Add
+
+Activating the workbook
+-----------------------
+Workbooks("suggest.xlsx").Activate
+
+Saving the workbook
+-------------------
+Workbooks("suggest.xlsx").save
+
+Saving the workbook with different file name
+-------------------------------------------
+Workbooks("Suggest.xlsx").SaveAs filename:="Suggestbackup.xlsx" 
+
+Opening the workbook
+--------------------
+Sub sheettest()
+Dim mypath As String
+Dim sfile As String
+Dim wb As Workbook
+mypath = "C:\Users\Ganesh Babau\Documents\GitHub\mytraining\ProgrammingLanguages\ExcelVBA\WorkObject Object\"
+sfile = mypath & "Suggest.xlsx"
+Set wb = Workbooks.Open(sfile)
+End Sub
+
+Workbook Events
+===============
+
+Opening event
+-------------
+-The moment when workbook opens,this macro will be trigreed for that workbook
+ex
+
+'This macro trigger When a user opened the workbook which logs 
+Private Sub Workbook_Open()
+Dim sh As Worksheet
+Set sh = ThisWorkbook.Worksheets("Sheet2")
+Dim lastRow As Integer
+lastRow = sh.Cells(Rows.Count, 1).End(xlUp).Row + 1
+sh.Cells(lastRow, 1) = Date
+sh.Cells(lastRow, 2) = Format(Date, "dddd")
+sh.Cells(lastRow, 3) = Time
+sh.Cells(lastRow, 4) = Application.UserName
+End Sub
+
+Activate
+--------
+-When you open more than one workbook , activate even will trigger that workbook event.
+
+ex
+Private Sub Workbook_Activate()
+MsgBox "welcome back to the workbook"
+Application.EnableEvents = True
+End Sub
+
+Before Save
+-----------
+-This event will be trigger the macro before save the workbook.
+
+ex
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
+answer = MsgBox("Do you really want to save ? ", vbYesNo)
+If answer = vbNo Then
+    Cancel = True 'don't save
+Else
+    Cancel = False
+End If
+Application.EnableEvents = True
+End Sub
+
+After Save
+----------
+-This event will be trigger the macro After save the workbook.
+-for demo use the above code , to get the use of this event
+-You need to save the file to get the true.
+ex
+
+Private Sub Workbook_AfterSave(ByVal Success As Boolean)
+Application.EnableEvents = True
+ If Success = True Then
+    myvar = "successfull"
+ Else
+    myvar = "un-sucessfull"
+ End If
+ MsgBox "The save was " & myvar
+ 
+End Sub
+
+Before Close
+------------
+-this event will trigger the macro before closing the workbook
+
+ex
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+ If Worksheets("Sheet1").Range("B1") = "hi" Then
+ 
+ Else
+     answer = MsgBox("Do you really want to save, as the cell doesn't say hi in b1", vbYesNo)
+      If answer = vbNo Then
+          Cancel = True
+      End If
+ End If
+End Sub
+
+
+Before Print
+------------
+- this event will trigger the macro before sending for a print
+
+ex
+Private Sub Workbook_BeforePrint(Cancel As Boolean)
+ Cancel = True
+ MsgBox "This workbook do not allow the print "
+End Sub
+
+Deactivate
+----------
+- opposite to the activate 
+
+ex
+Private Sub Workbook_Deactivate()
+ MsgBox "We miss you "
+End Sub
+
+Newchart
+--------
+-when a new chart has been created in any sheet, this macro will be triggred.
+
+ex
+Private Sub Workbook_NewChart(ByVal Ch As Chart)
+ Ch.ChartTitle.Text = "My custom chart"
+End Sub
+
+NewSheet
+--------
+- whenever a new sheet has been created , this event shall be triggered
+
+ex
+Private Sub Workbook_NewSheet(ByVal Sh As Object)
+    MsgBox "welcome to the new sheet"
+    Sh.Range("A:A").Font.Bold = True
+    Sh.Cells.Font.Bold = True
+End Sub
+
+Sheet activate
+--------------
+-this event will trigger if you move the cursor to any sheet in that workbook.
+
+ex
+Private Sub Workbook_SheetActivate(ByVal Sh As Object)
+MsgBox "Hi " & Sh.Name
+If Sh.Name = "Sheet6" Then
+    MsgBox "This is the admin sheet, Handle in care"
+End If
+End Sub
+
+Sheetbefore delete
+-------------------
+-This event will trigger if any sheet before to delete
+
+ex
+Private Sub Workbook_SheetBeforeDelete(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean)
+ Stop
+End Sub
+
+SheetbeforedoubleClick
+----------------------
+-this event will trigger if that cell have done the double click
+
+ex
+Private Sub Workbook_SheetBeforeDoubleClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean)
+If Target.Address(0, 0) = "A2" Then
+    MsgBox "this is cell a2"
+    Cancel = True
+End If
+End Sub
+
+SheetbeforeRightClick
+----------------------
+-this event will trigger if you have right click on that cell of that workbook
+
+ex
+Private Sub Workbook_SheetBeforeRightClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean)
+If Target.Address(0, 0) = "A2" Then
+    MsgBox "this is cell a2 right click"
+    Cancel = True
+End If
+End Sub
+
+
+SheetCalculate
+--------------
+-this event will trigger if there is any calculation event occured in any sheet of that workbook
+
+ex
+Private Sub Workbook_SheetCalculate(ByVal Sh As Object)
+MsgBox "Your are calculating"
+End Sub
+
+
+SheetChange
+--------------
+-this event will trigger if any change in the cell value
+
+ex
+Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
+   MsgBox "your changing"
+End Sub
+
+Sheetdeactivate
+----------------
+-this event will get triggred if any sheet leaves to other sheet. like moving cursor from sheet1 to sheet2, basically it deactivating and activating the other sheet
+
+ex
+Private Sub Workbook_SheetDeactivate(ByVal Sh As Object)
+Application.EnableEvents = True
+    If Sh.Range("a2") = "Hello " Then
+        MsgBox "don't leave message has Hello"
+        Sh.Activate
+    End If
+End Sub
+
+
+SheetFollowHyperlink
+-------------------
+-unlike the sheet event , this apply to the global sheet of that workbook, any hyperlink trigger this macro
+
+ex
+Private Sub Workbook_SheetFollowHyperlink(ByVal Sh As Object, ByVal Target As Hyperlink)
+ MsgBox "dont'use the hyperlink"
+End Sub
+
+
+SheetSelectionChange
+---------------------
+- this basically if you click one selected cell to other cell, this event trigger this macro of that workbook. 
+- ANd this will applied globally
+
+ex
+Private Sub Workbook_SheetSelectionChange(ByVal Sh As Object, ByVal Target As Range)
+  MsgBox "Hello , Why are you changing the cell"
+End Sub
+
+WindowActivate
+--------------
+-basically this will work on the window level, when move to one window to other window i,e worbook
+
+ex
+Private Sub Workbook_WindowActivate(ByVal Wn As Window)
+MsgBox "miss you "
+End Sub
+
+
+WindowDeactivate
+----------------
+- reverse of the activate
+
+ex
+Private Sub Workbook_WindowDeactivate(ByVal Wn As Window)
+MsgBox "miss you "
+End Sub
+
+WindowResize
+------------
+- basically if you attempt to minimize or the resize the window size..
+
+ex
+Private Sub Workbook_WindowResize(ByVal Wn As Window)
+MsgBox "hi... don't do "
+End Sub

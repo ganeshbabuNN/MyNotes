@@ -1,0 +1,541 @@
+﻿Intro
+=====
+-For storing a value temporvarily , we need a variables
+-A variable lets you store a value while your code is being executed.
+-A variable is just a named storage location in memory. At the top of all your modules you should have "Option Explicit" to force explicit declaration.
+-Variables that are not defined explicitly have the "Variant" datatype assigned to them by default.
+-Variables can accommodate a wide variety of datatypes from simple boolean values to extremely large 20 digit numbers.
+
+Scope - The scope of a variable defines which procedures can use that variable.
+Lifetime - The lifetime of a variable defines how long that variable retains the values assigned to it.
+
+Variable in sub-procedure
+=========================
+- A features of programming language is the ability to store something in a variable so that the contents of the variable can be used or can be changed later in the procedures.
+-How variables are declared
+-the procedures and the projects that can use the variable
+-the lifetime of the variables
+
+Ref : https://support.microsoft.com/en-us/help/843144/how-to-use-variables-in-excel-sub-procedures-in-visual-basic-for-appli
+https://bettersolutions.com/vba/variables/variables.htm
+
+Declaring the variables types
+=============================
+Syntax:
+<keyword> <variable_name1> as <Data-type>'Single Variable
+<keyword> <variable_name1,variable_name2> as <Data-type> 'Multiple Variable
+
+Note: Data Type are explained in details in upcoming chapters
+
+Keyword may be dim,private,public.
+
+You can declare variable by using the keyword Dim.
+Dim boolean__ As Boolean 
+Dim byte_____ As Byte 
+Dim currency_ As Currency 
+Dim date_____ As Date 
+Dim double___ As Double 
+Dim integer__ As Integer 
+Dim long_____ As Long 
+Dim short____ As Single 
+Dim string___ As String 
+Dim variant__ As Variant
+
+Variant Data Type
+------------------
+-Using the Variant data type is generally a waste of memory because the Variant data type consumes more memory than the other data types.
+-Every time a Variant data type is used VBA has to repeatedly check and reserve memory dynamically which all takes time.
+-The following two lines of code are equivalent.
+
+Dim sFirstName 
+Dim sFirstName As Variant 
+
+-Using a Variant data type may be useful sometimes but generally this should be avoided.
+-Because you know that FirstName will always contain a string you should declare this variable as:
+
+Dim sFirstName As String 
+
+Variable_Names
+--------------
+1)The first character must always be alphabetic.
+2)You cannot use spaces or periods.
+3)Variable names can use alphabetical characters, number and some punctuation characters but not ( * . , # $ % & !). 
+4)The use of the underscore character is also encouraged.
+5)The name must start with a letter and can have a maximum of 254 characters.
+6)A variable must begin with a letter or an underscore
+7)Variable names can be constructed from letters and numbers and the underscore character
+8)Variable names cannot be the same as VBA keywords
+
+Not Case Sensitive
+------------------
+-Variable names are not case sensitive and by default the interpreter adjusts the names of all variables with the same letters so that their case matches 
+the case in the variable declaration (i.e. when using Dim).
+-If the variable was not declared using Dim then the case matches that of the most recently typed variable
+  
+Intellisense
+-----------
+Once a variable has been declared it can be seen in the intellisense drop-down list.
+Press (Ctrl + J) and start typing
+Alternatively you can start typing and press (Ctrl + Space) to auto complete
+
+Important:
+-It is always a good idea to type VBA keywords in lower case and then wait for them to automatically change.
+-It is generally good programming practice to put all your declarations at the very top of a subroutine as it improves readability and makes housekeeping a lot easier.
+-You can actually put your variable declarations anywhere in the code although it is good practice to put them at the start of a subroutine.
+-Static variables cannot be initialised since that defeats their purpose
+
+https://bettersolutions.com/vba/variables/variables.htm 
+
+Initialising
+============
+-All local variables are automatically initialised to a Default Value when they are declared.
+-Explicitly initialising all your local variables makes your code more readable.
+
+Declare and Initialise
+----------------------
+-Unlike a lot of other programming languages you cannot declare and initialise on the sae line.
+-You must declare your variable on one line and then initialise the value on a new lin
+
+Dim lMyNumber As Long 
+lMyNumber = 500 
+
+VariableType  default value
+Integer		0
+Short		0
+Long		0
+Double 		0
+Currency	0
+Boolean 	false
+Date	        00:00:00 12:00:00 AM 
+Variant	 	Empty
+Object		Nothing(This is a keyword)
+String          ""
+
+Variable Length Strings:
+These are initialised to a zero-length (or empty) string.
+	Dim sFirstName As String 
+	'automatic initialisation will assign the value to the empty string ""
+
+Fixed Length Strings:
+These are initialised with the character represented by the ASCII code 0, or Chr(0).
+
+'testing the fixed length but this is not applicable to VBA and only available in VB.NET
+Sub fixedLenght()
+ Dim s As String
+ dim f as sting * 5 'fixed lenght
+  
+ s = "FFF"
+ f = "FFFFFFF" 'not allowed since this allow 5 characters
+End Sub
+
+Important:
+Static variables cannot be initialised.
+
+https://bettersolutions.com/vba/variables/initialising.htm
+
+Assigning a value
+=================
+Assigning the value is done using the assignment operators
+
+Example
+sub assingExample()
+  dim i as integer
+  dim j as bolean
+  dim k as string
+  dim e as date
+
+  i = 4
+  j = false
+  k = "ganesh"
+  e =#04/12/18#
+
+end sub
+
+Naming Convention
+=================
+-VBA programs can quickly become quite complicated so we can use all the help we can in trying to make them as readable as possible.
+-Often as time passes and we move on to other projects the original ideas behind the program fade and we reply on readable code to refresh our memories.
+-An easy way to make programs more readable is to use a consistent naming convention throughout.
+-This should not only apply to variables but also to constants, procedures and all other items.
+-It should remind you of its purpose (always use a descriptive name).
+-Variables must begin with a letter or an underscore
+
+Hungarian Notation
+-------------------
+Variables are prefixed with an abbreviation that indicates its data type.
+For example prefixing a variable with "s" indicates that it is a string
+	Dim sMyString As String 
+	
+Camal Notation
+---------------
+Initial lowercase for variable names
+  Dim variableName As Object
+  
+Pascal Notation
+---------------
+Initial uppercase for variable names
+	Dim VariableName As Object 
+	
+Lifetime and Scope
+==================
+-The difference between lifetime and scope is quite simple.
+-Lifetime - Refers to how long or when the variable is valid (i.e. how long will it retain its value for).
+-Dcope - Refers to where the variable can be accessed.
+-The difference between lifetime and scope is quite simple.
+-lifetime is how long the variable retains its value for.
+-The scope refers to where the variable can be use
+
+Variable Lifetime
+-----------------
+-The lifetime of the local variable "imylocal" extends from the moment ProcedureOne is entered to the moment ProcedureOne has finished.
+-However the local variable "imylocal" still exists when ProcedureTwo is called, it is just out of scope.
+
+Public Sub ProcedureOne() 
+Dim imylocal As Integer 
+   imylocal = 5 
+   Call ProcedureTwo() 
+   imylocal = 10 
+End Sub 
+
+Public Sub ProcedureTwo() 
+'do something
+End Sub
+
+http://www.excel-easy.com/vba/examples/life-of-variables.html
+https://bettersolutions.com/vba/variables/lifetime-scope.htm
+
+Variable Scope
+==============
+-Every variable has a scope associated with it.
+-This scope refers to the area of code where the variables will be recognised.
+-Variables (and constants) have a defined scope within the program.
+
+The scope for a variable can either be:
+1)Procedure Level - Also known as a local variable.
+2)Module Level - A private module level variable is visible to only the module it is declared in.
+3)Global Level - A public module level variable is visible to all modules in the project.
+
+Procedure Level
+---------------
+-A local or procedure level variable is declared inside an individual procedure or function and is not visible outside that subroutine
+-Local variables can only be used in the procedure in which they are declared in.
+-When the procedure or function ends the variable is automatically removed and the memory is released.
+-You can use the Dim, Static or Private statement within a subroutine or function.
+-The most common way to declare a local variable is to use the Dim statement between the Sub and End Sub statements.
+-One of the great advantages of local variables is that we can use the same name in different subroutines without any conflicts
+
+Public Sub Procedure_Name() 
+	Dim slocalvariable As String 
+End Sub 
+
+Module Level (Private)
+---------------------
+-A module level variable is declared in the declarations section of a code module (standard, class or userform).
+-Module level variables can have two flavours either Public or Private.
+-A private module level variable is visible to only the module it is declared in.
+-If you declare a module level variable with the Dim statement this is equivalent to using the Private statement.
+-Is this the same for constants ??
+-This often causes a lot of confusion and should definitely be avoided.
+
+Private sModuleLevel As String 
+Dim sModuleLevel As String 
+
+Public Sub Procedure_Name() 
+End Sub
+
+Global Level (Public)
+---------------------
+-A public module level variable is visible to all modules in the project.
+-These are also know as project level or global variables
+-You must insert these statements at the very top of your modules, before any procedures or functions.
+-Project scope variables must also be declared in a standard code module and not is a userform or class module.
+-Declaring a variable as Public inside a userform does not make it public. It is still private and only visible to that userform code module only.
+-Declaring as Global is exactly the same as Public and is only included for backwards compatibility
+
+Global sProjectLevel As String 
+Public sProjectLevel As String 
+
+Public Sub Procedure_Name() 
+End Sub
+
+Important:
+-Local variables (in different subroutines and functions) can use the same name without any conflict.
+-Module level public variables (or global) should be prefixed with a "g".
+-Module level private variables should be prefixed with a "m".
+
+http://www.excel-easy.com/vba/examples/variable-scope.html
+
+Other way of Declaring the variable
+===================================
+
+Declaration Suffixes
+*------------------*
+-Also known as Type Declaration Suffixes.
+-This is not used so much know but does work and it saves space.
+-It is also possible to tell VBA the type of a variable by appending a special character to the end of the variable name.
+
+Dim iNumber% 'integer  
+Dim lAverage& 'long  
+Dim sngTotal! 'single  
+Dim dbTotal# 'double  
+Dim cProfit@ 'currency  
+Dim sFirstName$ 'string  
+Dim llDiscount^ ' longlong on 64 bit
+
+Data type Abbreviation Declaration Characters
+**-----------------------------------------**
+-VBA does allow you to append a character to a variable's name as a quick way of indicating its data type.
+-This method of declaring variables should not be used and is only available for backwards compatibility purposes.
+-The following line will declare a variable with a Double data type
+	Dim dbDouble# 
+	
+This line however should be declared using the "As" keyword.
+	Dim dbDouble As Double 
+	
+https://bettersolutions.com/vba/variables/abbreviations.htm
+
+Data type Abbreviations / Suffixes
+**------------------------------**
+-If you use the abbreviations then you do not have to declare the type. If you use count% then you do not have to type "as integer". 
+-These are still supported in Visual Basic 2005
+-These abbreviations can be useful for assigning literals to variants
+
+MyVariant = 10# 
+
+DefType
+**----**
+-If the variable type is not specified, then the variable becomes a Variant by default. However, this behavior can be modified using DefType statements. 
+-A DefType statement can be used to set the default data type for those Variables/Functions(return type)/Function-Parameters whose names start with the specific characters. 
+-However it does not affect those variables that are explicitly declared using a Dim…As statement.
+-Using this statement will affect arguments passed to procedures and the return type for Function and Property Get procedures.
+-This can be used at module level to set the default data type for variables or arguments passed to procedures or functions.
+-These can be used to define the default data type for a particular module
+
+Syntax :   
+DefType letter  OR   DefType letter1,letter2…… OR  DefType letter1 – letter2
+
+The syntax for the string statement is:
+	[DefStr letterrange [, letterrange] [,]] 
+where letterrange can be letter1 [-letter2] (ie Defstr A - Q).
+
+Data Types Available
+There are 12 possible statements for boolean, byte, integer, long, currency, single, double, decimal, date, string, object, variant.
+
+DefBool	Defines the variable prefix that should default to a Boolean data type
+DefByte	 
+DefInt	 
+DefLng	 
+DefCur	 
+DefSng	 
+DefDbl	 
+DefDec	 
+DefDate	 
+DefStr	 
+DefObj	 
+DefVar	 
+
+Option Explicit
+DefInt S
+
+Sub Deftype_Example()
+    Dim sName
+    Dim sAge As Long
+    Debug.Print TypeName(sName)     ' Prints String
+    Debug.Print TypeName(sAge)      ' Prints Long
+End Sub
+
+Important:
+-DefType statements do not affect user-defined types.
+-This is not good prograaming practice and using these statements should be avoided.
+-A DefType statement only affects variables in that particular module
+
+Resources:
+https://bettersolutions.com/vba/variables/deftype.htm
+https://usefulgyaan.wordpress.com/2013/06/06/deftype-statements-in-vba/
+https://msdn.microsoft.com/en-us/library/aa263421(v=vs.60).aspx
+
+Assigning Object Variable
+=========================
+-An object variable is a pointer to an address of the memory location that stores the object.
+-An object variable is a variable that represents an entire object.
+-A non-object variable is a pointer to the memory location directly.
+-Also make your code easier to read.
+-Since object variables are pointers it is possible for more than one object variable to refer to the same object.
+-If you are using object variables then it is important to keep track of what they are referencing. It is not a good idea to have more than one object variable pointing to the same object.
+-You can have more than one variable referring to the same object (set one object variable equal to another)
+
+Assigning an Object Variable
+----------------------------
+-The Set statement is used to assign an object reference to an object variable.
+-Object variables should also be declared and assigned a type as with normal variables.
+
+Dim objWorkbook As Workbook 
+Set objWorkbook = ThisWorkbook 
+If you don't know the type, you can use the generic Object as a type.
+
+Dim objWorkbook As Object 
+Set objWorkbook = ThisWorkbook 
+Call MsgBox(objWorkbook.Name) 
+
+-It is more efficient to use the specific object type if you can.
+-It is more efficient to create an object variable if you are going to refer to an object more than once.
+
+-What you should try to refrain from doing is declaring an Object datatype using the "New" keyword.
+-Including the New keyword in the Dim statement creates what is called an auto-instancing variable.
+-This does not create the object when the variable declaration is processed but instead automatically when the variable is first encountered in code.
+-This also means that you are unable to test whether the variable Is Nothing.
+
+Dim objSomething As New MyObject 
+	versus
+Dim objSomething As MyObject 
+Set objSomething = New MyObject 
+
+-When it comes to assigning a value to a variable the syntax is slightly different for objects and non objects.
+-You must use the Set keyword when assigning a value to an object variable.
+
+Set objDocument = ActiveDocument 
+Set objWorkbook = ActiveWorkbook 
+Set objPresentation = ActivePresentation 
+
+-You must use the "SET" statement when you want an object variable to refer to an object.
+-You can assign object varaiables to the generic "Object" type although this type should only be used when the type of the object is unknown.
+-You must use the Set keyword when assigning a value to an object.
+
+The process of an object being assigned to a variable is called binding and there are two types (early and late).
+1)Early Binding
+2)Late Binding
+
+Early Binding
+--------------
+-The variable is declared as a specific datatype.
+-The object which a property or method belongs to is resolved at compile time.
+
+Dim wdApp as Word.Application 
+Set wdApp = CreateObject("Word.Application")
+
+-This is much faster than late binding and is the preferred method.
+-The other advantage of early binding is that the Editor can display method and property Intellisense
+
+https://bettersolutions.com/vba/variables/early-binding.htm
+
+Late Binding
+------------
+-The variable is declared as a generic Object datatype
+-The object which a property or method belongs to can only be resolved at run-time and not at compile time therefore running slower than early binding.
+
+Dim wdObject As Object 
+Set wdApp = CreateObject("Word.Application") 
+
+-Using late binding is not very efficient and makes programs run a lot slower
+-For this reason you should try and avoid the
+
+https://msofficefun.wordpress.com/2011/02/26/early-binding-vs-late-binding-in-office-vba/
+https://bettersolutions.com/vba/variables/late-binding.htm
+
+Comparing(Is Operator)
+=======================
+-When comparing objects use "IS" and not "=" or "<>".
+-To compare two objects you should use the "IS" operator
+-This can be used for comparing objects
+-This operator is supposed to determine whether two variables refer to the same object but unfortunately it does nor always work.
+
+Sub test()
+ Dim object1 As Object
+ Dim object2 As Object 
+ Set object1 = New Excel.Application 
+If object1 Is Nothing Then 'object is not empty
+    MsgBox "Hi"
+ End If  
+If object2 Is Nothing Then  'object is empty
+    MsgBox "Object is empty"
+ End If 
+End Sub
+
+https://bettersolutions.com/vba/variables/comparing.htm
+
+Static Variable
+===============
+-Variables do have a lifetime.
+-Indicates that the local variable is preserved between calls.
+-A static variable can be thought of as a local variable with memory.
+-A static variable is a local variable whose lifetime is the lifetime of the entire module and not the procedure where it is declared.
+-In fact static variables retain their values as long as the code module is active. There does not have to be any code running all the time.
+-Therefore a static variable has the scope of a local variable but the lifetime of a module level variable.
+-Makes a variable persistent even after the procedure has completed.
+-The next execution of the routine can access the previous value.
+-It is the lifetime of a variable that determines its existence, the scope determines its visibility.
+-A static variable is defined within a procedure and although it has procedure-level scope it actually has module-level lifetime
+-This means that you can only use the variable inside the procedure in which it is declared but it value is maintained between calls to the procedure
+-You can also declare a procedure as Static in which case all the variables declared inside the procedure are treated as static.
+
+Private Module Level Variables
+------------------------------
+-You can obtain the same effect using a private module level variable instead of a static variable.
+-It is considered better programming practice to use static variables as this uses a more restictive scope.
+-This helps to prevent accidental changes being made to the variable in other portions of the code
+
+Example 1:
+Public Sub Procedure_One()
+   Debug.Print Function_Two()
+   Debug.Print Function_Two()
+   Debug.Print Function_Two()
+   Debug.Print Function_Two()
+   Debug.Print Function_Two()
+End Sub
+
+Public Function Function_Two() As Integer
+Static iValue As Integer
+
+   iValue = iValue + 1
+   Function_Two = iValue
+End Function
+
+Example 2:
+Sub Session_Count()
+Static i As Integer
+    i = i + 1
+    MsgBox i
+End Sub
+
+-It is possible that a variable can go in and out of scope and yet remain valid during that time (ie keep its value).
+-Once the lifetime of the variable expires the value is lost.
+-It is the lifetime that determines the existence of a variable and it's the scope that determines its visibility.
+-Indicate that the variable is initialised the first time and is then preserved between function / procedure calls.
+-A static variable is a local variable whose life time is the lifetime of the entire module, not just the procedure
+
+Make Static Procedures and Functions
+------------------------------------
+To make all local variables in a procedure or function static, place the static keyword at the beginning of the procedure or function heading (eg Static Sub or Static Function).
+
+Example:
+Public Sub Procedure_One()
+   Debug.Print Function_Two()
+   Debug.Print Function_Two() 
+End Sub
+
+Public Static Function Function_Two() As Integer
+   Dim iValue As Integer
+   iValue = iValue + 1
+   Function_Two = iValue
+End Function
+
+https://bettersolutions.com/vba/variables/static-variables.htm
+
+Important
+-Static variables are not used very often but they can be very useful when used in the correct way.
+
+Address of Variables
+====================
+-Most of the time you will not need to obtain any low level information about your variables.
+-However there are a few Windows API functions that require the memory address of a variable.
+-When you want to use one of these API functions the following list of VB functions will prove useful
+
+VarPtr - returns the address of a variable
+VarPtrArray - returns the address of an array
+VarPtrStringArray - returns the address of an array string
+StrPtr - returns the address of the UNICODE string buffer
+ObjPtr - returns the pointer to the interface referenced by an object variable
+
+https://bettersolutions.com/vba/variables/address-of-variables.htm
+
+

@@ -1,0 +1,67 @@
+Intro
+=====
+-A constant is a meaningful name that takes the place of a value that does not change.
+-You should always use constants in place of hard coded values or strings.
+-Constants must be declared at the very top and cannot be declared below any properties, subroutines or functions.
+-Unlike variables, constants cannot be inadvertently changed at run-time.
+-You cannot use any variables, user defined function or any built-in functions in your declarations.
+-You should always declare your constants with specific data types (never with a Variant data type).
+-All public constants and variables should be in capitals except for the data type prefix
+
+There are two type of constants
+-In built constants
+-Custom constants
+
+Custtom Constant
+================
+Rules
+-The rules remain same has the variable
+sytnax :
+In VBA, we need to assign a value to the declared Constants. An error is thrown, if we try to change the value of the constant.
+    Const <<constant_name>> As <<constant_type>> = <<constant_value>>
+
+ex:
+Sub constdemo()
+    Const myname = "My name is ganesh" 'constant declarations
+    myname = "no"
+    MsgBox myname
+End Sub
+
+Constants Scope
+===============
+-The default scope for constants is Private.
+Constants have scope and this scope is identical to that defined for variables.
+This constant can only be used in the module that it is declared.
+
+Public Const g_sVERSION As String = "4.0.3" 
+
+Expression
+==========
+A constant can be defined using other, already declared constants.
+
+Types of Constants
+==================
+The VBA Language has several types of constants.
+1)Literal constants A specific value such as a number, date or text string that cannot change.
+2)ymbolic constants - A literal constant that is represented by a name.
+3)Enumerations - A grouping of symbolic constants into categories.
+4)Built-in constants - These are typically in the form of enumerations.
+
+If you do not declare the data type of the constant then the most appropriate data type for the expression is used
+In class modules constants can only be Private and their visibility cannot be changed to Public.
+
+
+In-Bult Constants
+=================
+1)Miscellaneous Constants like vbNewLine,vbTab,vbBack
+
+
+
+
+
+
+Resources
+---------
+https://bettersolutions.com/vba/syntax/constants.htm
+https://msdn.microsoft.com/en-us/vba/language-reference-vba/articles/declaring-constants
+http://www.excelfunctions.net/VBA-Variables-And-Constants.html

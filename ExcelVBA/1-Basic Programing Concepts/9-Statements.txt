@@ -1,0 +1,194 @@
+Intro
+=====
+In computer programming, a statement is a syntactic unit of an imperative programming language that expresses some action to be carried out.
+A program written in such a language is formed by a sequence of one or more statements. A statement may have internal components (e.g., expressions).
+
+Ex:
+dim i as integer
+I = a + 5
+
+Two types of statements
+-----------------------
+1)In built statements
+    a)Simple statement
+    b)compound statement
+    c)Others statements
+2)custom statements
+
+Types of statements
+===================
+1)Simple Statements
+2)Compound statements
+
+Note: Sometime the above also called as control flow statements.
+
+1)Simple statements
+-------------------
+a)Assignment statement -->    i = vb + 5
+b)goto statement --> goto label
+c)call statements --> call indigo()
+
+
+b)goto Statements
+*--------------*
+--explain in the conditional constructs
+The GoTo statement transfers control unconditionally to a specified line in a procedure
+-If your code makes use of the GoTo statement the resulting flow is often referred to as "spaghetti code"
+
+Syntax 
+Goto label:
+statement or control statements or expression...etc
+label:
+statement or control statements or expression...etc
+
+2)Different type of Compound statements
+---------------------------------------
+There are two types of statement used in excelVBA
+a-Conditional statement
+b-Looping statement
+c-With Statement 
+
+a-Conditional statement
+*---------------------*
+Discuss in separate chapater
+
+b-Looping statement
+*-----------------*
+Discuss in separate chapater
+
+c)With Statements
+*----------------*
+-Normally we use to access the various properties of an object by each statement by statement using the object.
+-You can speed your program using repeated object only once, on the first line then you can use Dot(.) for getting those properties.
+
+syntax
+
+	with Object
+	    .property
+	    .property
+	    .property
+	end with
+
+or
+With object
+[statements]
+End With
+
+Part Description 
+object Required. Name of an object or a user-defined type. 
+statements Optional. One or more statements to be executed on object. 
+
+Ex:
+--for all cells in the worksheet
+Sub WithDemo()
+With Sheet1
+    .Cells.Font.Bold = True
+    .Cells.Font.Color = vbBlue
+    .Cells.Font.Name = "Arial"
+    .Cells.Font.size = 11
+    .Cells.Font.Italic = True
+End With
+End Sub
+
+--For the cells which contain data
+Sub WithDemo()
+With Sheet1
+    .UsedRange.Font.Bold = False
+    .UsedRange.Font.Color = vbRed
+End With
+End Sub
+
+--working with a range
+Sub withdemo()
+  Worksheets("Sheet1").Select
+  With Range("A1:I9")
+        .Font.Bold = True
+        .Interior.Color = RGB(255, 255, 0)
+  End With
+End Sub
+
+--working with a array
+name	marks1	marks2
+aa	23	43
+bb	35	54
+cc	93	23
+dd	83	22
+ee	98	13
+
+Sub fordemo()
+    
+Dim names(5) As Variant
+Dim i, j As Integer
+Dim wks1 As Worksheet
+Dim wks2 As Worksheet
+Dim endrows, endcols As Integer
+Dim student() As Variant
+    
+With Sheets("Sheet1")
+    endrows = .UsedRange.Rows.count
+    endcols = .UsedRange.Columns.count    
+    ReDim Preserve student(1 To endrows, 1 To endcols)
+For i = 1 To endrows - 1
+    names(i) = ActiveCell.Cells(i, 1).Value
+    Debug.Print names(i)
+Next i
+
+For i = 1 To UBound(student, 1)
+     For j = 1 To UBound(student, 2)
+        student(i, j) = ActiveCell.Cells(i, j).Value
+        Debug.Print student(i, j)
+     Next j
+Next i
+End With
+End Sub
+
+c)Others statements
+====================
+
+Exit Statements
+---------------
+Exit statment help to exit the do..loop, for next loop ,function, sub and property code
+syntax :
+Exit Do
+Exit For
+Exit Function
+Exit Property
+Exit Sub
+
+Example;
+--do loop
+Sub doloop()
+x = 0
+Do While x < 10
+     If x = 9 Then Exit Do
+     x = x + 1
+     Cells(x, 1) = x
+Loop
+End sub
+
+--for each loop
+Sub forEachloop()
+endrow = Cells(Rows.Count, 1).End(xlUp).Row
+For Each cell In Range("A1:A" & endrow)
+    If cell.Offset(0, 0) = 6 Then Exit For
+    cell(1, 2) = "TRUE"
+Next cell
+End Sub
+
+Option Strict Statement
+-----------------------
+-Restricts implicit data type conversions to only widening conversions, disallows late binding, and disallows implicit typing that results in an Object type.
+
+Sytnax:
+Option Strict { On | Off }  
+-on -> optional , enables option strict checking
+-off -> optional disables option strict checking
+
+Option Explicit Statement
+-------------------------
+Forces explicit declaration of all variables in a file, or allows implicit declarations of variables.
+
+sytnax:
+Option Explicit { On | Off }  
+-on -> optional it enables checking, if on or off is not specified, the default is on.
+-off -> disables checking.

@@ -1,0 +1,26 @@
+'Autofit columns
+Sub AutoFit_Columns()
+
+'PURPOSE: How To AutoFit Worksheet Columns (Multiple Scenarios)
+'SOURCE: www.TheSpreadsheetGuru.com
+
+Dim sht As Worksheet
+
+'AutoFit One Column
+    ThisWorkbook.Worksheets("Sheet1").Columns("O:O").EntireColumn.AutoFit
+    
+'AutoFit Multiple Columns
+    ThisWorkbook.Worksheets("Sheet1").Range("I:I,L:L").EntireColumn.AutoFit 'Columns I & L
+    ThisWorkbook.Worksheets("Sheet1").Range("I:L").EntireColumn.AutoFit 'Columns I to L
+    
+'Sizing the the column
+    ThisWorkbook.Worksheets("Sheet1").Range("I:L").EntireColumn.ColumnWidth=13
+'AutoFit All Columns on Worksheet
+    ThisWorkbook.Worksheets("Sheet1").Cells.EntireColumn.AutoFit
+
+'AutoFit Every Worksheet Column in a Workbook
+    For Each sht In ThisWorkbook.Worksheets
+        sht.Cells.EntireColumn.AutoFit
+    Next sht
+
+End Sub

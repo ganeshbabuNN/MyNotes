@@ -1,0 +1,628 @@
+What are collections
+Types of collections
+Declaring a collections
+items in a collections
+Adding item to a collections
+Removing item in collections
+Find an item in a collections
+looping over Collections item adding item Dynamically
+Using class modules with collections
+Extending the scope of the public collections
+Typed Collections
+
+What are collections
+-====================
+-VBA includes a collection object that you can use to create and manipulate your own custom collections.
+-A collection is a special type of object that represents a group of objects.
+-A Collection object is an ordered set of items that can be referred to as a unit.
+-You can think of a collection as an array and refer to items using their index numbers or, items can be referred to by using their actual name.
+-A collection is an object that contains a group of related objects.
+-A collection class is a VBA class that defines a Private Collection object and implements methods to add, remove, retrieve and count objects in the collections. 
+ 
+Why use a Collection ?
+---------------------
+-The Collection object provides a convenient way to refer to a related group of items as a single object. 
+-The concept of a collection makes it easy to work with all related objects at once.
+-The items, or members, in a collection need only be related by the fact that they exist in the collection.
+Members of a collection don't have to share the same data type
+
+What can a Collection contain ?
+-------------------------------
+-Basically anything. Variables, fields, object references and even other collection objects.
+-When you create an object for an application you may find that the relationship between two objects is one-to-many.
+
+These are objects themselves that contain other objects that are closely related.
+-A collection is a group of objects of the same class.
+-If you supply a key to a collection member then each key must be unique
+-You will get a run time error if you attempt to add a new member with a key that already exists.
+-To refer to a member of a collection, you can refer to it by its position in the collection as an index or by its name, as a text string.
+-Collections can be either 0-based or 1-based.
+-The majority of them are 1-based although not all of them.
+-Using a for-each loop to iterate through a collection or array is faster than an indexed loop
+-The name of a collection object is typically the plural of the type of object it contains.
+For example Workbooks is a collection of Workbook objects.
+-Collections typically have a standard set of properties and methods (Item, Count).
+-There are several ways you can iterate through a collection (for, foreach)
+-Collections in the office object model are generally always 1-based, meaning that they start with an index of 1 and not 0.
+-The Item method can generally always accept either a numeric value or the name of a specific object.
+-You should then iterate through this list or array and delete them.
+
+-Iterating through a collection of COM objects
+-The correct way is to get the count and use a for loop and index
+-Be aware that the index accessors are not consistent
+-Most objects are 1-based but some are 0-based
+
+Types of collections
+====================
+1)Built-in Collection Class
+2)Custom Collection Class
+
+Built-in Collection Class
+--------------------------
+-The problem with the built-in collection class is that you have no control over what gets added to that collection if your -collection property is public in your class
+-The solution is to create a class that "wraps up" your collection and then provide methods and properties to emulate the Add, Remove and Item methods.
+-However you will loose the default Item method as well as the ability to perform a for-each loop
+-Instead of the for-each loop you must use Count and For-Next instead.
+
+Custom Collection Class
+-----------------------
+To control what type of objects are placed into a collection, you must create a collection class.
+Using a class gives you the ability to create custom replacements for the standard Add, Remove and Item methods
+
+Collection - Outside the Class
+------------------------------
+If you want to maintain a list of all the instances of a particular class then you can do this by using a Collection
+More information about using collections in Standard Modules refer to Objects > Collections
+This gives you immediate access to the Add, Remove, Item and Count methods
+
+Collection - Inside a Class
+---------------------------
+-It is possible to include the collection inside the actual class itself.
+-The advantage of adding the collection to the class means that you get much more control and you can prevent direct access to the collection from outside.
+-The disadvantage of adding the collection is that you cannot use the built-in Add, Count, Item and Remove methods and must write your own.
+-If you want to prevent direct access to the collection and create a certain amount of abstraction then you could add the Collection to the class itself.
+
+Private colEmployees As New Collection 
+
+Public Function Add(objEmployee As CEmployee) 
+   Call colEmployees.Add(Item:=objEmployee, Key:=objEmployee.Name) 
+End Function 
+
+Public Sub Remove(vItem As Variant) 
+   colEmployees.Remove vItem 
+End Sub 
+
+Public Property Get Item(vItem As Variant) As CEmployee 
+   Set Item = colEmployees(vItem) 
+End Property 
+
+Public Property Get Count() As Long 
+   Count = colEmployees.Count 
+End Property
+
+Declaring a collections
+========================
+-A collection object variable must be created as a "new" collection unless you are going to assign it to an existing collection.
+-There are two ways you can do this in VBA
+1) Placing a "New" keyword in the Set statement
+2) Placing a "New" keyword in the declaration statement
+-This is often referred to as auto instancing.
+	Dim MyCollection As New Collection 
+
+-This method does no actually create the object.
+-This method is actually more like a compiler directive rather than a declaration resulting in slower code.
+-The following code is actually executed "behind the scenes" whenever the MyCollection variable is used
+	If MyCollection Is Nothing Then 
+	   Set MyCollection = New Collection 
+	End If 
+
+-It will do this everytime you use the MyCollection variable and in a large application this accumulates to a lot of unnecessary lines of code.
+-Worse than that this method does not allow you to test if the collection is ever Empty which can be a useful debugging and diagnostic tool.
+-The following IF statement will never be true
+	If MyCollection Is Nothing Then 
+		'do something
+	End If 
+
+-The reason for this is because the actual code that is run is the following:
+-Typically collections are declared as module or global variables.
+-A collection can be created the same way other objects are created
+-You must use a Set fnName = colCollection
+-When you are returning a collection object from a function
+
+Sub testCollection()
+  Dim col As Collection
+  Dim myobject As Object
+  Set col = New Collection     
+End Sub
+ 
+Items in a collections
+======================
+Collection.Count
+-----------------
+-Returns the number of item in the collection.
+-Most of the collections in the Office model are 1-based which means they start at index position 1 rather than 0.
+
+Example.
+Sub TestingCollections()
+    Dim c As Collection
+    Dim e As Employee
+    
+    Set e = New Employee
+    Set c = New Collection
+    
+    e.empID = 101
+    e.firstName = "Ganesh"    
+    c.add e    
+    Debug.Print c.count
+    
+End Sub
+
+How to determine if an item already exists
+------------------------------------------
+-You have to loop through all the items to find the one you are looking for ??
+-Specific items can be returned using the Item method.
+-If you want to refer to a member of a collection, you can refer to it by its position in the collection, as an index number starting at 1 or by its name as quoted text.
+-You will obtain a "subscript out of range" error when you try to access an element in a collection that does not exist. Collections in some respects are similar to arrays
+Ex
+Sub TestingCollections()
+    Dim c As Collection
+    Dim e As Employee
+    
+    Set e = New Employee
+    Set c = New Collection
+    
+    e.empID = 101
+    e.firstName = "Ganesh"
+    c.add e, CStr(e.empID)
+    
+    If c.item("101").empID Then
+        MsgBox "Hi " & c.item("101").empID & " item contains the name " & c.item("101").firstName
+    End If
+     
+End Sub
+
+Looping the Existing Objects
+----------------------------
+-To loop through all the objects in a collection you can use the "For Each .. Next" construct.
+-The entire collection can be iterated using the For Each...Next statemen
+
+Sub TestingCollections()
+    Dim c As Collection
+    Dim e As Employee
+    Dim e1 As Employee
+    
+    Set e = New Employee
+    Set e1 = New Employee
+    Set c = New Collection
+    
+    e.empID = 101
+    e.firstName = "Ganesh"
+    c.add e
+    
+    e1.empID = 102
+    e1.firstName = "Ganesh1"
+    c.add e1
+    
+    Dim obj As Object
+    
+    For Each obj In c
+        Debug.Print obj.empID, obj.firstName
+    Next obj   
+End Sub
+
+Ex2:
+Sub testCollection()
+  Dim col As Collection
+  Dim myobject As Object
+  Set col = New Collection
+  
+  col.Add Worksheets("employeesInfo")
+  col.Add Worksheets("jobidInfo"), "jobid" 
+  
+  'looping the collection
+  For Each myobject In Worksheets
+       Debug.Print myobject.Name
+  Next myobject
+   
+End Sub
+    
+Adding item to a collections
+============================
+
+Collection.Add (item [,key] [,before] [,after])
+-----------------------------------------------
+-Adds a member to a Collection object.
+-Whether the before or after argument is a string expression or numeric expression, it must refer to an existing member of the collection, or an error occurs.
+-An error also occurs if a specified key duplicates the key for an existing member of the collection.
+
+Item:
+-The expression of any type to add to the collection
+-Required. An object expression that evaluates to an object in the Applies To list.
+
+Key:
+-A unique string that can be used to access an item in the collection instead of using the positional index
+-Required. An expression of any type that specifies the member to add to the collection.
+
+Before:
+-The relative position identifying the member before the new item has been added.
+-This value must be between 1 and the total number of items in the collection
+Optional. An expression that specifies a relative position in the collection. The member to be added is placed in the collection before the member identified by the before argument. If a numeric expression, before must be a number from 1 to the value of the collection's Count property. If a string expression, before must correspond to the key specified when the member being referred to was added to the collection. You can specify a before position or an after position, but not both.
+
+After:
+-The relative position identifying the member after the new item has been added
+Optional. An expression that specifies a relative position in the collection. The member to be added is placed in the -collection after the member identified by the after argument. If numeric, after must be a number from 1 to the value of the -collection's Count property. If a string, after must correspond to the key specified when the member referred to was added to the collection. You can specify a before position or an after position, but not both.
+
+-You can add objects to a collection at a specific point by specifying either the before or after parameters of the add method
+
+-How not to add Items
+For lrowno = 1 to 10 
+   On Error Resume Next 
+      colCollection.Add Cells(lrowno,1).value, Cells(lrowno,2).Value 
+   On Error GoTo 0 
+Next lrowno 
+-What happens you just add an item to a collection with no key specified (key is optional)
+
+Example:
+'collection can add any type like class, objects and this is a drawback.
+Sub testCollection()
+  Dim col As Collection
+  Dim myobject As Object
+  Set col = New Collection
+  
+  col.Add Worksheets("employeesInfo")
+  col.Add Worksheets("jobidInfo"), "jobid" 
+    
+End Sub
+
+Removing item in collections
+============================
+Collection.Remove (index)
+Removes a member from a Collection object may by item or key.
+
+Object
+Required. An object expression that evaluates to an object in the Applies To list.
+
+Index
+The position of the member to remove
+Required. An expression that specifies the position of a member of the collection. If a numeric expression, index must be a number from 1 to the value of the collection's Count property. If a string expression, index must correspond to the key argument specified when the member referred to was added to the collection.
+
+If the value provided as index doesn't match an existing member of the collection, an error occurs.
+Once a collection is created, members can be removed using the Remove method.
+
+Example:
+Sub TestingCollections()
+    Dim c As Collection
+    Dim e As Employee
+    
+    Set e = New Employee
+    Set c = New Collection
+    
+    e.empID = 101
+    e.firstName = "Ganesh"
+    c.add e, CStr(e.empID)
+    
+    Debug.Print c.count
+    c.remove "101"
+    Debug.Print c.count
+End Sub
+
+Finding an item in a collections
+=============================
+Collection.Item (index)
+References an item and returns a pointer to it
+Returns a specific member of a Collection object either by position or by key.
+Takes a parameter to specify a particular item in the collection can be a number or the name of the object.
+
+Object
+Required. An object expression that evaluates to an object in the Applies To list.
+
+Index
+Required. An expression that specifies the position of a member of the collection. If a numeric expression, index must be a number from 1 to the value of the collection's Count property. If a string expression, index must correspond to the key argument specified when the member referred to was added to the collection.
+
+If the value provided as index doesn't match any existing member of the collection, an error occurs.
+The Item method is the default method for a collection.
+The following lines of code are equivalent:
+
+objCollection(1) 
+objCollection.Item(1) 
+
+Ex:
+Sub testCollection()
+  Dim col As Collection
+  Dim myobject As Object
+  Set col = New Collection
+  
+  col.Add Worksheets("employeesInfo")
+  col.Add Worksheets("jobidInfo"), "jobid"
+  
+  'Referencing item in a collections
+  Debug.Print col.Item(1).Name 'by index
+  Debug.Print col(1).Name  'without using item property
+  Debug.Print col("jobid").Name  'using directly key
+    
+End Sub
+
+Using class modules Fields with collections(looping adding items dynamically)
+===========================================
+-adding the class modules fields values into the custom collections
+'add a class
+Option Explicit
+
+Public empID As Long
+Public firstName As String
+Public lastName As String
+Public salary As Long
+
+'add a module
+Sub testingCollection()
+  Dim emps As Collection
+  Dim e As Employee
+  Dim r As Range  
+  Set emps = New Collection  
+  For Each r In Range("A2", Range("A2").End(xlDown))  
+        Set e = New Employee        
+        e.empID = r.value
+        e.firstName = r.Offset(0, 1).value
+        e.lastName = r.Offset(0, 2).value
+        e.salary = r.Offset(0, 7).value        
+        emps.Add e, CStr(e.empID)        
+        Set e = Nothing
+  Next r  
+End Sub
+
+Extending the scope of the public collections
+============================================
+- if you want the collection value available throughtout the sessions.
+
+'adding a module
+Public emps As New Collection 'add a public variable
+
+Sub testingCollection()
+  Dim e As Employee
+  Dim r As Range    
+  For Each r In Range("A2", Range("A2").End(xlDown))  
+        Set e = New Employee        
+        e.empID = r.value
+        e.firstName = r.Offset(0, 1).value
+        e.lastName = r.Offset(0, 2).value
+        e.salary = r.Offset(0, 7).value        
+        emps.Add e, CStr(e.empID)        
+        Set f = Nothing
+  Next r  
+End Sub'
+
+'testin the public collections emps
+Sub testingTheCollection()
+    Dim e As Employee
+    MsgBox emps(100).empID
+    For Each e In emps
+        Debug.Print e.empID
+    Next e
+End Sub
+
+Typed Collections
+=================
+
+the problem with untyped collections
+------------------------------------
+-The drawback with the collection are untyped, that means there are no restrictions of what type adding to your collections.
+
+Sub CreatingCustomCollections()
+    Dim c As Collection
+    Dim e As Employee
+    
+    Set e = New Employee
+    Set c = New Collection
+    
+    c.Add Worksheets("employeesInfo")
+    c.Add ThisWorkbook
+    'c.Add Charts("Chart1")
+    c.Add f
+    
+    Dim obj As Object
+    
+    For Each obj In c
+        Debug.Print obj.Name
+    Next obj
+End Sub
+
+* cannot add the f object because it does not have the name properties
+
+creating a class modules
+------------------------
+-In order to use the strong typed collections we need to use the class modules.
+-Add a new class called "employees"
+Option Explicit
+Private pEmployee As Collection
+Private Sub Class_Initialize()
+ Set pEmployee = New Collection
+End Sub
+
+Create a Typed Add method
+-------------------------
+-in order to add a strongly typed employee class for the property , add the methods into your custom collections
+
+Sub CreatingCustomCollections()
+    Dim e As Employee
+    Dim c As Employees
+    
+    Set e = New Employee
+    Set c = New Employees
+    
+    e.empID = "122"
+    e.firstName = "ganesh"
+    e.lastName = "babu "
+    e.salary = 1332
+    
+    c.add e, e.empID
+End Sub
+
+'try to add the untyped item into the collection as it allows only the collections.
+
+Sub CreatingCustomCollections()
+    Dim e As Employee
+    Dim c As Employees
+    
+    Set e = New Employee
+    Set c = New Employees
+    
+    e.empID = "122"
+    e.firstName = "ganesh"
+    e.lastName = "babu "
+    e.salary = 1332
+    
+    c.add e, e.empID
+    'adding the untyped item
+    c.add Worksheets("employeesInfo"), ThisWorkbook.Name
+End Sub
+
+
+Adding other class methods and properties
+------------------------------------------
+'count property 
+in class Module:
+Public Property Get count() As Long
+    count = pEmployee.count
+End Property
+
+In Modules:
+Sub CreatingCustomCollections()
+    Dim e As Employee
+    Dim c As Employees
+    
+    Set e = New Employee
+    Set c = New Employees
+    
+    e.empID = "122"
+    e.firstName = "ganesh"
+    e.lastName = "babu "
+    e.salary = 1332
+    
+    Dim row As Integer
+    
+    row = Range("A2", Range("A2").End(xlDown)).Cells.count
+    
+    For i = 2 To row
+        e.empID = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 1).value
+        e.firstName = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 2).value
+        e.lastName = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 3).value
+        e.salary = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 8).value
+        c.add e, e.empID
+    Next i
+       
+    'adding the untyped item
+    'c.add Worksheets("employeesInfo"), ThisWorkbook.Name
+    Debug.Print c.count
+End Sub
+
+remove property 
+*-------------*
+in Class :
+Public Sub remove(indexOrName As Variant)
+    pEmployee.remove indexOrName
+End Sub
+
+in module:
+Sub CreatingCustomCollections()
+    Dim e As Employee
+    Dim c As Employees
+    
+    Set e = New Employee
+    Set c = New Employees
+    
+    e.empID = "122"
+    e.firstName = "ganesh"
+    e.lastName = "babu "
+    e.salary = 1332
+    
+    c.add e, e.empID
+    Debug.Print c.count
+    c.remove "122" ' remove property
+    Debug.Print c.count
+End Sub
+    
+item  property
+*-------------*
+'if we use the generic collections and see the below to use item collections
+Sub CreatingCustomCollections()
+    Dim e As Employee
+    Dim c As Collection 'Employees
+    
+    Set e = New Employee
+    Set c = New Collection 'Employees
+    
+    e.empID = "122"
+    e.firstName = "ganesh"
+    e.lastName = "babu "
+    e.salary = 1332
+    
+    c.add e, e.empID
+    Debug.Print c.item(1).empID
+End Sub
+
+'Refering the property to the specific item
+'but if we use the custom collections.
+in the class :
+Public Property Get item(indexOrName As Variant) As Employee
+     Set item = pEmployee(indexOrName)
+End Property
+
+In the Module:
+Sub CreatingCustomCollections()
+    Dim e As Employee
+    Dim c As Employees
+    
+    Set e = New Employee
+    Set c = New Employees
+    
+    e.empID = "122"
+    e.firstName = "ganesh"
+    e.lastName = "babu "
+    e.salary = 1332
+    
+    c.add e, e.empID
+    Debug.Print c.item(1).empID
+End Sub
+
+'Drawback is only adding the employee class into the custom collection as a strongly typed.
+
+Adding/reading/Iterating a custom collection class
+--------------------------------------------------
+Sub CreatingCustomCollections()
+    Dim e As Employee
+    Dim c As Employees
+    
+    Set c = New Employees
+     
+    Dim row As Integer
+    
+    row = Range("A2", Range("A2").End(xlDown)).Cells.count
+    
+    For i = 2 To row
+       Set e = New Employee
+        e.empID = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 1).value
+        e.firstName = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 2).value
+        e.lastName = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 3).value
+        e.salary = ThisWorkbook.Worksheets("employeesInfo").Cells(i, 8).value
+        c.add e, e.empID
+        Set e = Nothing
+    Next i
+       
+    'adding the untyped item
+    'c.add Worksheets("employeesInfo"), ThisWorkbook.Name
+    Debug.Print c.count
+    itemcount = c.count
+    For i = 1 To itemcount
+        Debug.Print c.item(i).empID, c.item(i).firstName, c.item(i).lastName, c.item(i).salary
+    Next i
+End Sub
+
+References
+-https://excelmacromastery.com/excel-vba-collections/
+-http://dailydoseofexcel.com/archives/2010/07/04/custom-collection-class/
+-https://www.youtube.com/watch?v=8fBUUSrmsP4&index=41&list=PLNIs-AWhQzckr8Dgmgb3akx_gFMnpxTN5
+-https://excelmacromastery.com/excel-vba-collections/#A_Quick_Guide_to_Collections
+http://www.java2s.com/Code/VBA-Excel-Access-Word/Data-Type/LoopingThroughtheElementsofaCustomCollection.htm
+
+
+https://analystcave.com/excel-vba-dictionary-arrays-and-other-data-structures/

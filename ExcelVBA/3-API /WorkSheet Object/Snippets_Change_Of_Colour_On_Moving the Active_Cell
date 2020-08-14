@@ -1,0 +1,27 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+Static rr        
+Static cc
+
+'    If cc <> "" Then
+        With Columns(cc).Interior
+            .ColorIndex = xlNone
+        End With
+'        With Rows(rr).Interior
+'            .ColorIndex = xlNone
+'        End With
+'    End If
+
+    r = Selection.Row
+    c = Selection.Column
+    rr = r
+    cc = c
+
+    With Columns(c).Interior
+        .ColorIndex = 20
+        .Pattern = xlSolid
+    End With
+    
+    With Rows(r)
+        ActiveCell.Offset(0, -2).Interior.ColorIndex = 30
+    End With
+End Sub
