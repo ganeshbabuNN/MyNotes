@@ -1,0 +1,44 @@
+Differnt way to write hello world program
+File Extensions	
+
+Differnt way to write hello world program
+=========================================
+Due to the stucture of SAS, there are three main ways to create "Hello World!" examples:
+
+1)Within a data step to put a message into the SAS log (_null_ denotes that no output dataset should be created):
+
+data _null_;
+	put "hello world";
+run;
+ 
+2)Within a data step to store "Hello World!" within a variable (ganesh denotes that an output dataset called ganesh should be created that 
+a)contains only one record and 
+b)contains only one variable: var2 , which has a value of Hello World! ):
+
+data ganesh;
+	bar="Hello world" ; 
+	put bar;
+run;
+ 
+3)Via the SAS Macro language (in 'open code' outside of any data steps). 
+& identifies a call to a macro variable and 
+.identifies the end of the variable (if a white space character is not wanted)
+
+%let var1=Hello;
+%put &var1.O world;
+
+4)Hybrid: Using a macro variable within a data step:
+%let var1=Hello;
+
+data _null_;
+	put "&var1 world!";
+run;
+
+
+File Extensions
+===================
+The SAS programs, data files and the results of the programs are saved with various extensions 
+*.sas − It represents the SAS code file which can be edited using the SAS Editor or any text editor.
+*.log − It represents the SAS Log File it contains information such as errors, warnings, and data set details for a submitted SAS program.
+*.mht / *.html− It represents the SAS Results file.
+*.sas7bdat −It represents SAS Data File which contains a SAS data set including variable names, labels, and the results of calculations.

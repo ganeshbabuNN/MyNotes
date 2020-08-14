@@ -1,0 +1,91 @@
+Introduction
+SAS program stuture
+	data step
+	PROC step
+	output step
+resources
+
+
+Introduction
+============
+The SAS Programming involves first creating/reading the data sets into the memory and then doing the analysis on this data. 
+We need to understand the flow in which a program is written to achieve this
+
+SAS Program Structure
+=====================
+The Data Step
+The PROC Step
+The OUTPUT Step
+
+The Data Step
+-------------
+-To create a dataset that becomes the source of data analysis
+-This step involves loading the required data set into SAS memory and identifying the variables (also called columns) of the data set
+-there are many data statements for data manipulations.
+
+Syntax:
+
+DATA data_set_name;		#Name the data set.
+Set <dataset_Name>;		#name of the dataset to extract the data from that dataset.
+INPUT var1,var2,var3; 		#Define the variables in this data set.
+NEW_VAR;			#Create new variables.
+LABEL;			      	#Assign labels to variables.
+DATALINES;		      	#Enter the data.
+RUN;
+
+Example:
+data employeee;
+input id name $ sal dep $;
+bonus= sal + 1500;
+label id='Employee ID' dep='Department';
+datalines;
+1 ganesh 35000 CDSS
+2 giri 43004 CDSS
+3 manju 43222 CDSS
+;
+run;	
+
+SAS dataset statment.
+https://documentation.sas.com/?docsetId=lestmtsref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
+
+old versoin
+https://v8doc.sas.com/sashtml/lgref/z1225397.htm
+
+The PROC Step
+-------------
+-The PROC step consists of a group of SAS statements that call and execute a procedure, usually with a SAS data set as input.
+-there are lot of inbuild procedures used for various manimuplations
+
+Syntax
+PROC procedure_name options; #The name of the proc.
+RUN;
+
+Example
+proc means data=work.employeee;
+*adding a var statment to select the specific variable;
+var bonus;
+run;
+
+ex:https://documentation.sas.com/?docsetId=proc&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
+
+The Output step
+---------------
+-This steps shows/stores the result of analysis done in the PROC step
+
+syntax:
+
+PROC PRINT DATAS = data_set;
+OPTIONS;
+RUN;
+
+Example
+proc means data=work.employeee;
+var bonus
+run;
+
+proc print data=employeee;
+*adding a statment;
+where bonus > 40000;
+run;
+
+https://documentation.sas.com/?docsetId=proc&docsetTarget=n17dcq1elcvpvkn1pkecj41cva6j.htm&docsetVersion=9.4&locale=en#p1hdwnsto2gmcon1w8kuhhsnlyd2

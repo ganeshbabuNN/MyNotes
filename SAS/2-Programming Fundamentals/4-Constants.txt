@@ -1,0 +1,57 @@
+Intro
+Using Quotation Marks with Character Constants
+Comparing Character Constants and Character Variables
+
+intro
+====
+-A SAS constant is a number or a character string that indicates a fixed value. 
+-Constants can be used as expressions in many SAS statements, including variable assignment and IF-THEN statements
+-Constants are also called literals.
+
+The following are types of SAS constants:
+
+character
+numeric
+date, time, and datetime
+bit testing
+
+Using Quotation Marks with Character Constants
+============================================
+
+In the following SAS statement, Tom is a character constant:
+
+name='Giri';
+
+If a character constant includes a single quotation mark, enclose it in double quotation marks
+
+name="Giri's";
+
+SAS treats the two consecutive quotation marks as one quotation mark
+name='Giri''s';
+
+The same principle holds true for double quotation mark
+name="Giri""s";
+
+example:
+data _null_;
+	name='Giri';
+	name="Giri's";
+	name='Giri''s';
+	name="Giri""s";
+	put name;
+run;
+
+Comparing Character Constants and Character Variables
+=====================================================
+-It is important to remember that character constants are enclosed in quotation marks,
+-but names of character variables are not
+-This distinction applies wherever you can use a character constant, such as in titles, footnotes, labels, and other descriptive strings; in option values; 
+
+title 'This''is a title';
+data ganesh; 
+	name="Giri""s";
+	put name;
+run;
+proc print data=ganesh;
+run;
+footnote 'This''s a footnote';

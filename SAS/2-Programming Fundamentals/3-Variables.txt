@@ -1,0 +1,173 @@
+Variables
+Types of variables
+	How to store the value into a variables
+	How the conditional expression are evaulated
+Rules of the names.
+Missing Values
+
+Intro
+=====
+In general variables in SAS represent the column names of the data tables it is analysing
+
+Types of variables
+==================
+There are two types of variables
+1) Numeric
+2)Character
+
+
+How to store the value into a variables
+---------------------------------------
+-There are two ways generally either the number or a string(text)
+-We use the assignment operator for storing (==)
+
+-for numbers
+data _null_;
+	var =1; 
+run;
+
+-for text (strings = is always closed with single quotes), Double quotes is optional.
+
+data _null_;
+	var ='ganesh babu'; 
+run;
+
+
+How the conditional expression are evaulated
+--------------------------------------------
+-it is based on the statment
+like IF statement.
+
+SAS Numeric Variable
+--------------------
+-The numeric variable stores numeric values i.e., numbers. 
+-This variable is used to perform arithmetic calculations like addition, subtraction, multiplication, division, and all other types of calculations. Besides, this, numeric variable is also used to store date and time
+-Missing values for a numeric variable are displayed by period (.).
+
+Syntax:
+INPUT var1 var2;   
+
+Example
+INPUT id, salary, incentive;  
+
+
+SAS Character Variables
+----------------------
+-The character variable is used to store text. 
+-This variable is also known as a string variable. 
+-These variables are defined by putting a dollar sign ($) at the end of the variable name.
+-They can contain special characters (such as &, %, (), $), letters, and even numbers.
+-Missing values for a text variable are displayed by blank ("").
+
+Syntax
+INPUT var1 $ var2 $ var3 $;  
+
+Example
+INPUT name $ companyname $ address $;  
+
+
+Create a New Variable in New Data Set
+====================================
+there are two ways
+1)Create a new variable in a new data set
+2)Add variable into the existing data set
+
+Create a New Variable in New Data Set
+-------------------------------------
+
+data staff;
+input id age salary;
+datalines;
+1 40 3700
+2 32 4343
+3 23 3232
+;
+run;
+
+
+2)Add variable into the existing data set
+-----------------------------------------
+data staff;
+input id age salary;
+bonus = salary+3200;
+datalines;
+1 40 3700
+2 32 4343
+3 23 3232
+;
+run;
+
+SAS Names Rules
+===============
+-It can be maximum 32 characters long
+-It can not include blanks.
+-It must start with the letters A through Z (not case sensitive) or an underscore (_)
+-Should not contain any special characters
+-Can include numbers but not as the first character.
+-Variable names are case insensitive.
+-When you create a macro variable, do not use names that begin with SYS
+
+# Valid Variable Names
+REVENUE_YEAR
+MaxVal
+_Length
+
+# Invalid variable Names
+Miles Per Liter 	#contains Space.
+RainfFall%      # contains apecial character other than underscore.
+90_high		# Starts with a number.
+
+The similar applicalbe to all to SAS names represents one of the following SAS language elements
+data set,format,informat,procedure,option,statement label,libref or fileref,catalog entry,array,macro or macro variable,component object
+
+https://v8doc.sas.com/sashtml/lgref/z1031056.htm
+https://documentation.sas.com/?docsetId=lrcon&docsetTarget=p18cdcs4v5wd2dn1q0x296d3qek6.htm&docsetVersion=9.4&locale=en  - new version
+
+Missing Values
+==============
+Missing value that indicates that no data value is stored for the variable in the current observation. 
+numeric
+character
+special numeric
+
+By default, SAS prints a missing numeric value as a single period (.) and a missing character value as a blank space
+
+Representing a missing value
+----------------------------
+Missing Values
+
+Representation in Data
+
+Numeric-. (a single decimal point)
+Character -' ' (a blank enclosed in quotation marks)
+Special- .letter (a decimal point followed by a letter, for example, .B)
+Special- ._(a decimal point followed by an underscore)
+
+Ex:
+data test;
+  x=.;
+  y=5; 
+  z='ganesh';  
+  e='';
+  f=.b;
+  g=._;
+  put x= y= z= e= f= g=;
+run;
+
+order by of missing value
+-------------------------
+Numeric Variables
+._ 		- underscore
+.		- period
+.A-.Z 	-special missing values A (smallest) through Z (largest)
+-n 		-negative numbers
+0		-zero
+largest - +n -positive numbers
+
+Character Variables
+-Missing values of character variables are smaller than any printable character value.
+-Therefore, when you sort a data set by a character variable, observations with missing (blank) values of the BY variable 
+always appear before observations in which values of the BY variable contain only printable characters
+
+
+https://documentation.sas.com/?docsetId=lrcon&docsetTarget=p0scp8gshsuwx9n1etoje5bnizi7.htm&docsetVersion=9.4&locale=en
