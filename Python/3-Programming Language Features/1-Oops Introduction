@@ -1,0 +1,204 @@
+Content
+1.Introduction
+2.The 4 OOP principles
+3.classes and objects
+4.Create First Class
+5.Use Parameterized constructor
+6.Define a instance method
+7.Create Getter(mutator) and setters (accessor) methods
+8.Define instance method
+9.Define static field
+10.count the number of objects
+11.Create a inner class
+
+
+
+1.Introduction
+==============
+2.The 4 OOP principles
+======================
+1)encapsulation
+2)inheritance
+3)Polymorphsm
+4)abstractions
+
+3.classes and objects
+====================
+
+
+4.Create First Class
+====================
+class product:
+    def __init__(self): #self points to the current(memory locations) object of the class
+        self.name="iphone"
+        self.description="super"
+        self.price=700
+        
+
+p1= product()
+
+print p1.description
+print p1.name
+print p1.price
+
+
+p2= product()
+
+print p2.description
+print p2.name
+print p2.price
+
+
+5.Use Parameterized constructor
+==============================
+
+class Course:
+    def __init__(self,name,ratings):
+        self.name=name
+        self.ratings=ratings
+        
+c1=Course("Core java",[1,2,3,2,42])
+print c1.name
+print c1.ratings
+        
+c1=Course("Spring",[5,2,4,3,2])
+print c1.name
+print c1.ratings
+
+c1=Course("Hibernate",[6,4,2,1])
+print c1.name
+print c1.ratings
+
+
+6.Define a instance method
+==========================
+
+class Course:
+    def __init__(self,name,ratings):
+        self.name=name
+        self.ratings=ratings
+    
+    def average1(self):
+        numberOfRating=len(self.ratings)
+        average= sum(self.ratings)/numberOfRating
+        print("average of the ratings for ",self.name,"is",average)
+        
+c1=Course("Core java",[1,2,3,2])
+print c1.name
+print c1.ratings
+c1.average1()
+
+c2=Course("Hibernate",[6,4,2,1])
+print c2.name
+print c2.ratings
+c2.average1()
+
+7.Create Getter(mutator) and setters (accessor) methods
+======================================================
+
+
+class programmer:
+    def setName(self,name):
+        self.name=name
+    
+    def getName(self):
+        return self.name
+    
+    def setDesigntation(self,desi):
+        self.desi=desi
+    
+    def getDesignation(self):
+        return self.desi
+    
+
+p1=programmer()
+p1.setName("ganesh")
+p1.setDesigntation("software enginner")
+print p1.getName()
+print p1.getDesignation()
+
+
+8.Define instance method
+========================
+class product:
+    def __init__(self,name,description):
+        self.name=name
+        self.description=description
+        
+    def productDisplay(self):
+        print self.name
+        print self.description
+        
+p1=product("iphone", "awesome")
+p1.productDisplay()
+
+p2=product("samsung", "istore")
+p2.productDisplay()
+
+9.Define static field
+=====================
+-Access the static field without using the object name.
+
+class employee:
+    department='Sales'
+    
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    
+    def display(self):
+        print self.name
+        print self.age
+        print self.department
+        
+e1 = employee("ganesh", "32")
+print e1.name
+print e1.age
+print e1.department
+print employee.department #access the static field without using object
+
+10.count the number of objects
+==============================
+-mark that method as a @staticmethod
+
+class Objectcounter:
+    numberOfObjects = 0
+    
+    def __init__(self):
+        Objectcounter.numberOfObjects+=1
+    
+    @staticmethod
+    def display():
+        print Objectcounter.numberOfObjects
+
+
+o1=Objectcounter()
+o2=Objectcounter()
+o3=Objectcounter()
+
+Objectcounter.display()
+
+
+11.Create a inner class
+=======================
+class Employee:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+        
+    
+    class Department:
+        def __init__(self,designation,deptName):
+            self.designation=designation
+            self.deptName=deptName
+            
+        def display(self):
+            print self.designation
+            print self.deptName
+            
+
+e1=Employee("ganesh","32")
+d1=e1.Department("software enginner", "sales")
+print e1.age
+print e1.name
+d1.display()

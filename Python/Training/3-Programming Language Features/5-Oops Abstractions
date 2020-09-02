@@ -1,0 +1,146 @@
+Abstractions
+=============
+1.Abstract classes and interfaces
+2.Create an abstract class
+3.Create an interface
+
+
+1.Abstract classes and interfaces
+=================================
+-its like a contract to chid class
+-if any one of the method in the abstract then that class is abstract class.
+-here a interface in python is abstract where all the method is a abstract class.
+-if you want to make the class called abstract specific keyword called ABC 
+-Abstract class cannot be instantiate 
+
+2.Create an abstract class
+=========================
+-import the ABC from ABC modules
+-if any one of the method is an abstract and it is abstract class, the child class should have those method to be implemented.
+-you cannot instantiate the abstract class
+
+from abc import abstractmethod,ABC
+
+class BMW(ABC):
+    def __init__(self,make,model,year):
+        self.model=model
+        self.make=make
+        self.year=year
+    
+    def start(self):
+        return "starting the the car"
+    
+    def stop(self):
+        return "Stop the the car"
+    
+    @abstractmethod
+    def drive(self):
+        pass
+
+class ThreeSeries(BMW):
+    def __init__(self,curseControledEnabled,make,model,year):
+        super().__init__(make,model,year)
+        self.curseControledEnabled=curseControledEnabled
+    
+    def start(self): 
+        return "Button start "
+    
+    def display(self):
+        print(self.curiseControlEnabled)
+        
+    def drive(self):
+        print("ThreeSeries driving")
+    
+
+class FiveSeries(BMW):
+    def __init__(self,parkingAssist, make, model, year):
+        super().__init__(make, model, year)
+        self.parkingAssist=parkingAssist
+    
+    def drive(self):
+        print("FiveSeries driving")
+
+
+t1  = ThreeSeries(True,"BMW","328i","2018")
+print(t1.curseControledEnabled)
+print(t1.make)
+print(t1.model)
+print(t1.year)
+print(t1.start())
+
+t5= FiveSeries(False,"BMW","420i","2011")
+print(t5.make)
+print(t5.model)
+print(t5.year)
+print(t5.parkingAssist)
+
+3.Create an interface
+=====================
+-for interface all the methods should be an abstract method
+-And all the parent class should have those parent methods implemented in the child class
+-you cannot instanite the interface
+
+For example
+from abc import abstractmethod,ABC
+class BMW(ABC):
+    def __init__(self,make,model,year):
+        self.model=model
+        self.make=make
+        self.year=year
+    
+    @abstractmethod
+    def start(self):
+        pass
+    
+    @abstractmethod
+    def stop(self):
+        pass
+    
+    @abstractmethod
+    def drive(self):
+        pass
+
+class ThreeSeries(BMW):
+    def __init__(self,curseControledEnabled,make,model,year):
+        super().__init__(make,model,year)
+        self.curseControledEnabled=curseControledEnabled
+    
+    def start(self): 
+        return "Button start "
+    
+    def stop(self): 
+        return "Button stop "
+        
+    def drive(self):
+        print("ThreeSeries driving")
+    
+
+class FiveSeries(BMW):
+    def __init__(self,parkingAssist, make, model, year):
+        super().__init__(make, model, year)
+        self.parkingAssist=parkingAssist
+    
+    def start(self): 
+        return "FiveSeries Button start "
+    
+    def stop(self): 
+        return "FiveSeries Button stop "
+        
+    def drive(self):
+        print("FiveSeries driving")
+
+
+t1  = ThreeSeries(True,"BMW","328i","2018")
+print(t1.curseControledEnabled)
+print(t1.make)
+print(t1.model)
+print(t1.year)
+print(t1.start())
+
+t5= FiveSeries(False,"BMW","420i","2011")
+print(t5.make)
+print(t5.model)
+print(t5.year)
+print(t5.parkingAssist)
+ 
+

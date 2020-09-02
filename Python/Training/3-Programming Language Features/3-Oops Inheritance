@@ -1,0 +1,170 @@
+Inheritance
+===========
+1.introduction
+2.Inheritance in action
+3.Inheriting functionality
+4.Overriding
+5.Using Super()
+6.Inheritance
+
+
+1.introduction
+==============
+Inheritance is the most important aspect of object-oriented programming which simulates the real world concept of inheritance. It specifies that the child object acquires all the properties and behaviors of the parent object.
+
+By using inheritance, we can create a class which uses all the properties and behavior of another class. The new class is known as a derived class or child class, and the one whose properties are acquired is known as a base class or parent class.
+
+2.Inheritance in action
+=======================
+
+-inherting the feilds or variables
+ 
+BMW (make,model,year) --> three Series(curseccontrolenabled) --> fiveseries(parking assist)
+
+class BMW():
+    def __init__(self,make,model,year):
+        self.model=model
+        self.make=make
+        self.year=year
+
+
+class ThreeSeries(BMW):
+    def __init__(self,curseControledEnabled,make,model,year):
+        BMW.__init__(self, make, model, year)
+        self.curseControledEnabled=curseControledEnabled
+    
+
+class FiveSeries(BMW):
+    def __init__(self,parkingAssist, make, model, year):
+        BMW.__init__(self, make, model, year)
+        self.parkingAssist=parkingAssist
+
+
+threeseries  = ThreeSeries(True,"BMW","328i","2018")
+print threeseries.curseControledEnabled
+print threeseries.make
+print threeseries.model
+print threeseries.year
+
+fiveseries = FiveSeries(True,"BMW","Z4","2020")
+print fiveseries.parkingAssist
+print fiveseries.make
+print fiveseries.model
+print fiveseries.year
+
+
+
+3.Inheriting functionality
+==========================
+-inheriting the methods
+- you get "none" during the out put of the overrided method. return those value using return keyword
+
+class BMW():
+    def __init__(self,make,model,year):
+        self.model=model
+        self.make=make
+        self.year=year
+    
+    def start(self):
+        pass
+    
+    def stop(self):
+        pass
+
+class ThreeSeries(BMW):
+    def __init__(self,curseControledEnabled,make,model,year):
+        BMW.__init__(self, make, model, year)
+        self.curseControledEnabled=curseControledEnabled
+    
+    def start(self):
+        return "hello " 
+    
+
+class FiveSeries(BMW):
+    def __init__(self,parkingAssist, make, model, year):
+        BMW.__init__(self, make, model, year)
+        self.parkingAssist=parkingAssist
+
+
+t1  = ThreeSeries(True,"BMW","328i","2018")
+print t1.curseControledEnabled
+print t1.make
+print t1.model
+print t1.year
+print t1.start() 
+
+4.Overriding
+============
+
+class BMW():
+    def __init__(self,make,model,year):
+        self.model=model
+        self.make=make
+        self.year=year
+    
+    def start(self):
+        pass
+    
+    def stop(self):
+        pass
+
+class ThreeSeries(BMW):
+    def __init__(self,curseControledEnabled,make,model,year):
+        BMW.__init__(self, make, model, year)
+        self.curseControledEnabled=curseControledEnabled
+    
+    def start(self):
+        return "hello "
+
+    def display(self):
+        return "Super world"
+    
+
+class FiveSeries(BMW):
+    def __init__(self,parkingAssist, make, model, year):
+        BMW.__init__(self, make, model, year)
+        self.parkingAssist=parkingAssist
+
+
+t1  = ThreeSeries(True,"BMW","328i","2018")
+print t1.curseControledEnabled
+print t1.make
+print t1.model
+print t1.year
+print t1.start()
+print t1.display()
+
+5.Using Super()
+===============
+-for using the super keyword each intrepter varies
+-super() (without arguments) was introduced in Python 3 (along with __class__):  
+    super() -> same as super(__class__, self)
+-so that would be the Python 2 equivalent for new-style classes:
+    super(CurrentClass, self)
+-for old-style classes you can always use:
+    class Classname(OldStyleParent):
+    def __init__(self, *args, **kwargs):
+        OldStyleParent.__init__(self, *args, **kwargs)
+
+class car(object):
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+class electricCar(car):
+    def __init__(self, make, model, year):
+        super(electricCar,self).__init__(make, model, year) # for python 2 syntax
+        super().__init__(make, model, year) # for python 3 syntax
+        
+    def display(self): 
+        print self.make + " " +self.model
+        
+
+
+tesla = electricCar('tesla', 'model s', 2016)
+print tesla.display()
+6.Inheritance
+=============

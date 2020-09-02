@@ -1,0 +1,402 @@
+Data Types
+To know the type of variable used in Python
+Convert one data type to another
+Collections in python
+Type Casting
+
+
+1)DataTypes
+===========
+-Every value in Python has a datatype. 
+-Since everything is an object in Python programming, data types are actually classes and variables are instance (object) of these classes.
+
+In Python, the data types are Organised in five types:
+1)None Type - An object that does not contain any value
+2)Numeric Type - int,float, complex
+3)Sequences  - can hold of other data types like str, bytes, bytearray,list,tuple, range
+4)sets - Does not allow duplicates
+5)Mappings - used map and reduce
+
+To know the type of variable used in Python
+-------------------------------------------
+a=100
+-Use the type(a)
+
+Numeric Types
+-------------
+Integer type:
+Integers can be of any length, it is only limited by the memory available.
+Ex:
+a=13
+b=10
+c=02
+print(a,b,c)
+
+
+floating:
+-A floating-point number is accurate up to 15 decimal places.
+Ex:
+a=13.23
+b=10.12
+c=02.22
+print(a,b,c)
+
+Complex Type:
+-Complex numbers are written in the form, x + yj, 
+where x is the real part and y is the imaginary part. Here are some examples.
+
+ex:
+print(3+5j)
+
+Binary type
+-----------
+-A number with the prefix 0b is considered binary
+Ex:
+print(0b101011000)
+
+Hexadecimal Type
+----------------
+-A number with the prefix 0o is considered Hex
+Ex:
+print(0o530)
+
+Octal  Type
+-----------
+-A number with the prefix 0x is considered Octal
+Ex:
+print(0x158)
+
+Boolean Type
+------------
+-boolean has two types of values True or False
+Ex:
+z=True
+print(z)
+print(7<5) //conditional expression
+
+Type converstion
+----------------
+-The process of converting the value of one data type (integer, string, float, etc.) to another data type is called type conversion.
+-there are two types
+1)Implicit Type Conversion
+2)Explicit Type Conversion
+
+1)Implicit Type Conversion
+*------------------------*
+-In Implicit type conversion, Python automatically converts one data type to another data type. This process doesn't need any user involvement.
+
+ex:
+num_int=32
+num_float=32.11
+
+num_new=num_int+num_float
+print("datatype of num_int",type(num_int))
+print("datatype of num_float",type(num_float))
+
+print("value of num_new:",num_new)
+print("datatype of num_new",type(num_new))
+
+-we can see the num_new has a float data type because Python always converts smaller data types to larger data types to avoid the loss of data.
+
+-let's try adding a string and an integer, and see how Python deals with it
+num_int=32
+num_string="Ganesh"
+num_new1= num_int+num_string
+
+print("datatype of num_int",type(num_int))
+print("datatype of num_float",type(num_string))
+
+print("datatype of String",num_new1)
+
+-As we can see from the output, we got TypeError. Python is not able to use Implicit Conversion in such conditions.
+However, Python has a solution for these types of situations which is known as Explicit Conversion.
+
+2)Explicit Type Conversion
+*------------------------*
+-In Explicit Type Conversion, users convert the data type of an object to required data type. We use the predefined functions like int(), float(), str(), etc to perform explicit type conversion
+-This type of conversion is also called typecasting because the user casts (changes) the data type of the objects.
+
+Syntax :
+  <required_datatype>(expression)
+
+Ex:
+z=344
+print(bin(z) ,"for binary")
+print(hex(z),"for Hexadecimal")
+print(oct(z),"for Octal Type")
+print(ord('p'),"for decimal Type")
+
+print(float("22.5"),"to string to  float Type") 
+print(int("22"),"to string to int Type") 
+print(int(22.5),"to float to int Type") 
+print(float(22),"to float to int Type") 
+
+Key Points to Remember
+----------------------
+1)Type Conversion is the conversion of object from one data type to another data type.
+2)Implicit Type Conversion is automatically performed by the Python interpreter.
+3)Python avoids the loss of data in Implicit Type Conversion.
+4)Explicit Type Conversion is also called Type Casting, the data types of objects are converted using predefined functions by the user.
+5)In Type Casting, loss of data may occur as we enforce the object to a specific data type
+
+To know the type of variable used in Python
+===========================================
+to know the type of variable used
+Syntax:
+	Type variable-name or value
+
+ex:
+print(Type(23.2))     -> <type 'float'>
+print(Type(23))       -> <type 'Int'>
+print(type("Ganesh")) -><type 'str'>
+
+
+Sequences Type
+*============*
+- In Python, Sequences are the general term for ordered sets
+-Sequences are a generic term for an ordered set which means that the order in which we input the items will be the same when we access them
+
+Python supports six different types of sequences.
+------------------------------------------------
+strings, lists, tuples, byte sequences, byte arrays, and range objects
+
+
+Collections in python
+---------------------
+-To store more then one values or sequence of the value may be from db source or Rest API calls.
+-There are different types of datasets of Datastructures like list,sets and dictionary
+
+List -stores any values or objects in any order and stored it dynamically
+Set-  Does not allow duplicate
+dictionary - stores in key and value pair
+
+
+String
+*----*
+-Strings are a group of characters written inside a single or double-quotes
+-Python does not have a character type so a single character inside quotes is also considered as a string
+
+Creating a String
+-----------------
+a="Ganesh"
+print(a)
+type(a)
+
+length of a string
+print(len(a)) 
+
+
+Slicing a String
+----------------
+-Use [] is a slice operator and it use access the individual characters
+c="""ganesh babu"""
+print(c[0:5])   #start from oth index and end at 5 index
+print(c[0:])    #start from oth index and end of the index
+print(c[:4])    #start from initial index and 4th index
+print(c[-4:-3]) #-3 represent the last index
+
+Steps the spaces
+----------------
+-its the third argument of the slice value, 
+print(c[0:9:2]) #start from 0 and skips every 2 nd char and end at 9 index
+
+print(c[8::-1])
+print(c[::-1])
+
+
+Strips the spaces
+-----------------
+-generally used to trimt he leading and lagging spaces in the given string.
+
+c=""" ganesh babu """;
+print(c.strip())  #striping the lead and lagging
+print(c.lstrip()) #striping left
+print(c.rstrip()) #striping left
+
+more string methods
+-------------------
+-find functions
+print(c.find("ba")) #return the count of the index where search starts
+print(c.find("ba"),0,len(c)) #used 0 outside the find functions
+print(c.find("ab",9,len(c))) #start with 9 with max leng where the search looked into
+
+-count function get the occurrence of a string.
+print(c.count("h"))
+
+-replace
+print(c.replace("ga","hh"))
+
+-case changes
+print(c.upper())
+print(c.lower())
+print(c.title())
+
+List
+====
+-List is an ordered sequence of items
+-All the items in a list do not need to be of the same type.
+-Lists are mutable, meaning, the value of elements of a list can be altered.
+
+Declaring
+x =[]
+
+Items separated by commas are enclosed within brackets [ ]
+x=[1,2,4,'ganesh']
+type(x)
+print(a)
+
+using slice operator to access the elements
+--------------------------------
+We can use the slicing operator [ ] to extract an item or a range of items.The index starts from 0 in Python.
+print(type(a))
+print(a)
+print(type(a))
+print(a[2])
+print(a[0:2])
+print(a[2:])
+print(a*2)
+
+add/remove/delete the list the values
+--------------------------------------
+a=[3,2,"gan"]
+a.append(40) #adding a element
+print(a)
+a.remove("gan") #removing a element using value
+print(a)
+del(a[2]) # delete a element
+print(a)
+
+
+a1=[3,2,32,12,41]
+# a.clear()
+# print(a)
+a=max(a1)
+print(a)
+a=min(a1)
+print(a)
+a1.insert(1, 99)
+print(a)
+a1.sort() #asscending by default
+print(a)
+a1.sort(reverse=True)
+print(a)
+
+Tuple
+=====
+-Tuple is an ordered sequence of items same as a list. 
+-The only difference is that tuples are immutable i,e once created cannot be modified.
+-Tuples are used to write-protect data and are usually faster than lists as they cannot change dynamically
+-It is defined within parentheses () where items are separated by commas.
+
+a=(3,2,"gan",4,3)
+print(a)
+print(type(a))
+print(a[2])  #indexing
+print(a[0:2])  #slicing
+print(a[2:])
+print(a*2)		#repeatings
+print(a.count(3)) #count of 3 value
+print(a.index("gan")) #get the value of that index
+
+convert the list to tuple
+lst=[32,3,22,3]
+print(type(lst))
+tsl=tuple(lst)
+print(tsl)
+print(type(tsl))
+
+Set
+===
+-Set is an unordered collection of unique items
+-Set is defined by values separated by comma inside braces { }.
+-Items in a set are not ordered
+-We can perform set operations like union, intersection on two sets. Sets have unique values. They eliminate duplicates
+
+print("------")
+st={32,45,65,78,"gan",78,32}
+print(st)
+print(type(st))
+st.update([32,33])#update
+print(st)
+# print(st[0]) #does not allow indixing
+# print(st[0:4]) #does not allow slicing
+# print(st*3) #does not allow indixing
+# st.insert(32) #cannot insert
+st.remove("gan") #can remove
+print(st)
+
+converting to frozen set
+------------------------
+-you cannot do any operations on this frozen set . only we can do read the eleement
+
+st={32,45,65,78,"gan",78,32}
+f=frozenset(st)
+print(f)
+print(type(f))
+f.remove(20) #cannot do
+
+Range Type
+==========
+-Always range starts from 0th index.
+
+r=range(5)
+for i in r:
+    print(i)
+
+r=range(1,16)
+for i in r:
+    print(i)
+
+r=range(1,16,3) #step skips  3rd element
+for i in r:
+    print(i)
+
+
+Bytes and bytearray
+-------------------
+-you cannot add or modify the bytes elements
+-and no slicing and repitations are not allowed.
+
+lst=[3,2,32,12,76]
+print(type(lst))
+
+b=bytes(lst)
+print(type(b))
+
+lst=[3,2,32,12,76]
+print(type(lst))
+
+b=bytes(lst)
+print(type(b))
+
+c=bytearray(lst)
+print(type(c))
+c[3]=33
+print(c)
+
+dictionary
+==========
+-its genearlly key value pair
+-its uses curly braces { }
+
+
+dict1 = {1:"ganesh",2:'vedha',3:'banu'}
+print(dict1)
+print(type(dict1))
+k=dict1.keys()
+print(k)
+l=dict1.values()
+print(l)
+
+#iterating the key
+for i in k:
+    print(i)
+
+#iterating the value
+for i in l:
+    print(i)
+
+del dict1[1] #delete the individual item in dictionary
+
+
+

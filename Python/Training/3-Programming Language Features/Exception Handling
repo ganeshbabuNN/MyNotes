@@ -1,0 +1,207 @@
+Exception handling assertions and logging
+=========================================
+Expections
+Exception Class hierarchy
+Common Exceptions
+Handling exceptions
+Using Finally
+Using Else
+Logging in action
+logging configurations
+log exceptions
+using exceptions
+Raising exceptions
+Custom Exception
+Logging in action
+logging configurations
+log exceptions
+
+Expections
+==========
+Whenever an exception occurs, the program halts the execution, and thus the further code is not executed. Therefore, an exception is the error which python script is unable to tackle with.
+
+syntax
+try:  
+    # block of code   
+    # this may throw an exception  
+except:
+	# block of code 
+	#Run this code if exception occurs
+else:
+	# block of code 
+	#Run this code if no exception occurs
+finally:  
+    # block of code  
+    # Always run this code
+
+
+Exception Class hierarchy
+=========================
+
+BaseException <-- Exception  <---- standard Error 
+			  <-- Standard Error <---- EOFError, ZeroDivisonError,IdentationtError
+			  <-- Warning <-- DeprecatedWarning ,ImportWarning
+
+Common Exceptions
+==================
+A list of common exceptions that can be thrown from a normal python program is given below.
+
+ZeroDivisionError: Occurs when a number is divided by zero.
+NameError: It occurs when a name is not found. It may be local or global.
+IndentationError: If incorrect indentation is given.
+IOError: It occurs when Input Output operation fails.
+EOFError: It occurs when the end of the file is reached, and yet operations are being performed.
+
+Handling exceptions
+===================
+-If the python program contains suspicious code that may throw the exception, we must place that code in the try block. 
+-The try block must be followed with the except statement which contains a block of code that will be executed if there is some exception in the try block
+
+Example:
+try:
+    a,b=[int(x) for x in input("enter two numbers: ").split()]
+    division = a/b
+    print(division)
+except ZeroDivisionError:
+    print("division by zero is not allowed")
+    print("Please enter a non zero number")
+
+Using Finally
+=============
+We can use the finally block with the try block in which, we can pace the important code which must be executed before the try statement throws an exception.
+-assume i have writing the data to file
+
+try:
+    f=open("Myfile","w")
+    a,b=[int(x) for x in input("enter two numbers: ").split()]
+    division = a/b
+    f.write("writing %d into file"%division)
+except ZeroDivisionError:
+    print("division by zero is not allowed")
+    print("Please enter a non zero number")
+finally:
+    f.close()
+    print("file closed")
+
+
+Using Else
+==========
+Using Else statment,  we can place the code which will be executed in the scenario if no exception occurs in the try block
+
+ex:
+try:
+    f=open("Myfile","w")
+    a,b=[int(x) for x in input("enter two numbers: ").split()]
+    division = a/b
+    f.write("writing %d into file"%division)
+except ZeroDivisionError:
+    print("division by zero is not allowed")
+    print("Please enter a non zero number")
+else:
+    print("you have entered a non zero number")
+finally:
+    f.close()
+    print("file closed")
+
+print("code after exceptions")
+
+Raising exceptions
+==================
+An exception can be raised by using the raise clause in python. The syntax to use the raise statement is given below.
+
+syntax
+raise Exception_class,<value>  
+
+Points to remember
+To raise an exception, raise statement is used. The exception class name follows it.
+An exception can be provided with a value that can be given in the parenthesis.
+To access the value "as" keyword is used. "e" is used as a reference variable which stores the value of the exception.
+
+ex:
+try:  
+    age = int(input("Enter the age?"))  
+    if age<18:  
+        raise ValueError;  
+    else:  
+        print("the age is valid")  
+except ValueError:  
+    print("The age is not valid") 
+Custom Exception
+================
+The python allows us to create our own exceptions that can be raised from the program and caught using the except clause.
+
+Ex:
+class RaiseErrorCode(Exception):
+    def __init__(self,data):
+        self.data =data
+    
+    def __str__(self):
+        return self.data
+
+try:
+    raise RaiseErrorCode(4000)
+except RaiseErrorCode as ae:
+    print("Received error",ae.data)
+
+https://towardsdatascience.com/how-to-define-custom-exception-classes-in-python-bfa346629bca
+
+Logging in action
+logging configurations
+log exceptions
+
+
+Logging in action
+=================
+-Logs provide developers with an extra set of eyes that are constantly looking at the flow that an application is going through
+-based on the default loggel level, the order of the logging is executed, for example now the defaul level is WARNING, its start the order from the above.
+
+import logging
+
+logging.critical('This is a critical message')
+logging.error('This is an error message')
+logging.warning('This is a warning message')
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+
+
+logging configurations
+=====================
+-this will reset default log level
+
+import logging
+
+logging.basicConfig(filename="mylog.log",level=logging.INFO)
+
+logging.critical('This is a critical message')
+logging.error('This is an error message')
+logging.warning('This is a warning message')
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+
+log exceptions
+==============
+
+import logging
+
+logging.basicConfig(filename="mylog.log",level=logging.INFO)
+
+try:
+    f=open("Myfile","w")
+    a,b=[int(x) for x in input("enter two numbers: ").split()]
+    division = a/b
+    f.write("writing %d into file"%division)
+    logging.info("File has written completely")
+except ZeroDivisionError:
+    logging.error("division by zero is not allowed")
+    logging.error("Please enter a non zero number") 
+else:
+    logging.warning("you have entered a non zero number") 
+finally:
+    f.close()
+    logging.info("file closed")
+
+print("code after exceptions")
+
+
+Resources
+=========
