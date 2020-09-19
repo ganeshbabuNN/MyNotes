@@ -4,9 +4,6 @@ Assigning values to variable
 Rules and Naming Convention for Variables
 Variable Scope 
 Literals
- numeric literals
- string literals
-
 
 Introduction
 ============
@@ -183,18 +180,8 @@ print(x.real) #real literal (x.real) to create imaginary and real parts of compl
 -We can use both single, double, or triple quotes for a string
 
 strings = "This is Python" #is a string literal
-char = "C" #is a character literal
-multiline_str = """This is a multiline string with 
-more 
-than one 
-line code."""
-
-raw_str = r"raw \n string" #raw string literal
 
 print(strings)
-print(char)
-print(multiline_str)	
-print(raw_str)
 
 3)Boolean literials
 -------------------
@@ -203,17 +190,9 @@ print(raw_str)
 
 x=False
 y=True
-x = (1 == True) #In Python, True represents the value as 1 and False as 0
-y = (1 == False)
-a = True + 4
-b = False + 10
 
 print(x)
 print(y)
-print("x is", x)
-print("y is", y)
-print("a:", a)
-print("b:", b)
 
 4)Special literals
 ------------------
