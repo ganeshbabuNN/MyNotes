@@ -311,6 +311,10 @@ print(a)
 
 Using index and slicing
 *---------------------*
+
+Index:
+Syntax: objectType[indexNumber]
+
 #Using Index
 print(x[0]) #grab the first element
 print(type(x))
@@ -319,6 +323,10 @@ print(x[-1]) #grab the revesre element
 print(x[-2]) #grab the revesre element
 
 #Using Slicing
+
+Index:
+Syntax: objectType[start:end:skip]
+
 print(x[1:]) #grab from 1 index
 print(type(x))
 print(x[1:4]) #grab from 1 till 3 
@@ -362,6 +370,9 @@ Tuple
 -Tuples are used to write-protect data and are usually faster than lists as they cannot change dynamically
 -It is defined within parentheses () where items are separated by commas.
 
+sytnax:
+variable_name=(va1l,val2,val3)
+
 a=(3,2,"gan",4,3)
 print(a)
 print(type(a))
@@ -386,6 +397,9 @@ Set
 -Items in a set are not ordered
 -We can perform set operations like union, intersection on two sets. Sets have unique values. 
 -They eliminate duplicates
+
+syntax:
+varible={va1l,val2,val3}
 
 print("------")
 st={32,45,65,78,"gan",78,32}
@@ -498,3 +512,32 @@ for i in k:
 #iterating the value
 for i in l:
     print(i)
+
+converting one data type to other data
+======================================
+from None --> numeric --> sequence -->sets --> dict  ==== any objects converstion.
+
+myNone=None
+Myint=2
+myflot=3.2
+mystring="ganesh"
+mylist=[42,32,32,1]
+mytuple={'gbag','rubn','vbhk','prkh'}
+myset=(332,'ga','32','ds')
+mydict={1:'g',2:'rew',3:'han'}
+#creating a list 
+mylist1=[mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring] #createing a new list of different types
+#creating a tuple 
+mytuple1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new tuple of different types
+#creating a set
+myset1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new set of different types
+#creating a dict
+mydict1={1:mytuple}
+#adding in a existing list 
+#adding in a existing tuple 
+#adding in a existing set 
+#adding in a existing dict 
+#updating the list  
+#updating the tuple 
+#updating the set
+#updating the dict
