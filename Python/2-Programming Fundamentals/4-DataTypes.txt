@@ -210,7 +210,7 @@ To know the type of variable used in Python
 ===========================================
 to know the type of variable used
 Syntax:
-	Type variable-name or value
+	Type <variable-name or value>
 
 ex:
 print(Type(23.2))     -> <type 'float'>
@@ -224,6 +224,10 @@ String
 
 Creating a String
 -----------------
+
+syntax:
+	variable_name = <characteral or string literal >
+
 strings = "This is Python" #is a string literal
 char = "C" #is a character literal
 multiline_str = """This is a multiline string with 
@@ -243,6 +247,8 @@ Python escape characters
 To insert characters that are illegal in a string, use an escape character
 An escape character is a backslash \ followed by the character you want to insert.
 
+syntax
+	 " string literal "\
 Ex:
 print("we are so called "human" belongs to god kingdom") # does not work
 print("we are so called \"human\" belongs to god kingdom") # it works
@@ -311,9 +317,9 @@ print(a)
 
 Using index and slicing
 *---------------------*
-
 Index:
-Syntax: objectType[indexNumber]
+Syntax: 
+objectType[indexNumber]
 
 #Using Index
 print(x[0]) #grab the first element
@@ -324,7 +330,6 @@ print(x[-2]) #grab the revesre element
 
 #Using Slicing
 
-Index:
 Syntax: objectType[start:end:skip]
 
 print(x[1:]) #grab from 1 index
@@ -371,6 +376,7 @@ Tuple
 -It is defined within parentheses () where items are separated by commas.
 
 sytnax:
+
 variable_name=(va1l,val2,val3)
 
 a=(3,2,"gan",4,3)
@@ -431,6 +437,9 @@ Range Type
 -----------
 -Always range starts from 0th index.
 
+syntax
+ variable-name= range(upperbound,lowerbound)
+
 r=range(5) #setting up the lower bond.
 for i in r:
     print(i)
@@ -468,7 +477,7 @@ Dictionary
 -its uses curly braces {}
 
 Sytnax:
-{Key:value,key2:value}
+variable-name={Key:value,key2:value}
 
 my_dict={'k1':150,'k2':200,'k3':300,'k4':400,'k5':500,'k6':600,'k7':700} #normal dictionary
 my_dict['k1']  # Call values by their key
