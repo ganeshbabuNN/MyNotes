@@ -287,7 +287,7 @@ print("\x48\x65\x6c\x6c\x6f\x20\x57\x6f\x72\x6c\x64\x21 ") #Character with hex v
 
 we shall explore more on the string in upcoming string chapters.
 
-Sequences Type
+Sequences Type or data structure in pythonb
 --------------
 -In Python, Sequences are the general term for ordered sets
 -Sequences are a generic term for an ordered set which means that the order in which we input the items will be the same when we access them
@@ -303,9 +303,10 @@ List
 *--*
 -List is an ordered sequence that can hold a variety of object types.
 -All the items in a list do not need to be of the same type.
--Lists are mutable, meaning, the value of elements of a list can be altered.
+-Lists are mutable(Changeable), meaning, the value of elements of a list can be altered.
 -Items separated by commas are enclosed within brackets [ ]
 -List support indexing and slicing.list can be nested and also be have variety of useful methods that can be called of of them.
+-Allows duplicate members.
 
 syntax
 variable_name =[]
@@ -371,8 +372,9 @@ print(x.count(1)) #return the occurence of the value
 Tuple
 *--*
 -Tuple is an ordered sequence of items same as a list. 
--The only difference is that tuples are immutable i,e once created cannot be modified.
+-The only difference is that tuples are immutable(unchangeable) i,e once created cannot be modified.
 -Tuples are used to write-protect data and are usually faster than lists as they cannot change dynamically
+-Allows duplicate members
 -It is defined within parentheses () where items are separated by commas.
 
 sytnax:
@@ -398,7 +400,7 @@ print(type(tsl))
 
 Set
 *--*
--Set is an unordered collection of unique items
+-Set is an collection which is unordered and unindexed. No duplicate members.
 -Set is defined by values separated by comma inside braces {} but output shows in curly braces not like dictionary as it as key value pair
 -Items in a set are not ordered
 -We can perform set operations like union, intersection on two sets. Sets have unique values. 
@@ -471,10 +473,10 @@ print(c)
 
 Dictionary
 *--------*
+-Dictionary is a collection which is unordered, changeable and indexed. No duplicate members
 -Dictionary are unordered mappings for storing objects, Previously we saw how lists store objects in ordered sequence.,dicitonaries uses a key-value pariing instead.
 -This key-vale pair allows users to quickly grab objects without needing to know an index locations.
--it users curly buraces and colons to singify the kyes and their associated values.It is unordered and cannot be sorted
--its uses curly braces {}
+-it users curly buraces {} and colons to singify the kyes and their associated values.It is unordered and cannot be sorted
 
 Sytnax:
 variable-name={Key:value,key2:value}
