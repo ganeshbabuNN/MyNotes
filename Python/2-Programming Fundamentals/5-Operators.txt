@@ -75,14 +75,12 @@ The assignment operators are used to assign the value of the right expression to
 Operator		Description
 =				It assigns the value of the right expression to the left operand.
 +=				It increases the value of the left operand by the value of the right operand and assigns the modified value back to left operand. 
--=				It decreases the value of the left operand by the value of the right operand and assigns the modified value back to left operand. For example, if a = 20, b = 10 => a- = b will be equal to 
-				a =a-b and therefore, a = 10.
-*=				It multiplies the value of the left operand by the value of the right operand and assigns the modified value back to then the left operand. For example, if a = 10, b = 20 => a* = b will be equal to 
-				a = a* b and therefore, a = 200.
-%=				It divides the value of the left operand by the value of the right operand and assigns the reminder back to the left operand. For example, if a = 20, b = 10 => a % = b will be equal to 
+-=				It decreases the value of the left operand by the value of the right operand and assigns the modified value back to left operand. 
+*=				It multiplies the value of the left operand by the value of the right operand and assigns the modified value back to then the left operand.  
+%=				It divides the value of the left operand by the value of the right operand and assigns the reminder back to the left operand. 
 				a = a % b and therefore, a = 0..
-**=				a**=b will be equal to a=a**b, for example, if a = 4, b =2, a**=b will assign 4**2 = 16 to a.
-//=				A//=b will be equal to a = a// b, for example, if a = 4, b = 3, a//=b will assign 4//3 = 1 to a.
+**=				a**=b will be equal to a=a**b
+//=				A//=b will be equal to a = a// b
 
 a=30
 b=50
@@ -106,8 +104,8 @@ print("floor and equal to operator ",a)
 The logical operators are used primarily in the expression evaluation to make a decision. Python supports the following logical operators.
 
 Operator		Description
-and				If both the expression are true, then the condition will be true. If a and b are the two expressions, a → true, b → true => a and b → true.
-or				If one of the expressions is true, then the condition will be true. If a and b are the two expressions, a → true, b → false => a or b → true.
+and				If both the expression are true, then the condition will be true,else false 
+or				If one of the expressions is true, then the condition will be true ,else false 
 not				If an expression a is true, then not (a) will be false and vice versa.
 
 a=30
