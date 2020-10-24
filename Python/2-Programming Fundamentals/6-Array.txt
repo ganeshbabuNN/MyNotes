@@ -2,7 +2,7 @@ Array
 =====
 Introduction
 Array Declaration and constructions
-
+Is Python list same as an Array
 Disadvantages with arrays
 
 
