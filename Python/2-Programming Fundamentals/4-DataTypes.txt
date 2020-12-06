@@ -1,0 +1,554 @@
+Data Types
+Default value of Types
+Convert one data type to another
+To know the type of variable used in Python
+know ASCII , unicode and Numbers systems
+Strings
+data structures(collections) in python
+
+
+DataTypes
+===========
+-Every value in Python has a datatype. 
+-Since everything is an object in Python programming, data types are actually classes and variables are instance (object) of these classes.
+
+In Python, the data types are Organised in five types:
+1)None Type - An object that does not contain any value
+2)Numeric Type - int,float, complex
+3)Sequences  - can hold of other data types like str, bytes, bytearray,list,tuple, range
+4)sets - Does not allow duplicates
+5)Dict - key and value
+
+None Type
+---------
+None is a special constant in Python. It is a null value. None is not the same as False. None is not 0. None is not an empty string. Comparing None to anything other than None will always return False
+None is the only null value. It has its own datatype (NoneType). We can assign None to any variable, but you can not create other NoneType objects. All variables whose value is None are equal to each other
+
+type(None)
+None == 0 # == operator return True or False
+None == '' 
+None == False
+None == None
+a = None
+a == None
+b = None
+a == b
+
+Numeric Types
+-------------
+Integer type:
+Integers can be of any length, it is only limited by the memory available.
+Ex:
+a=13
+b=10
+c=2
+print(a,b,c)
+type(a)
+
+
+floating:
+-A floating-point number is accurate up to 15 decimal places.
+Ex:
+a=13.23
+b=10.12
+c=02.22
+print(a,b,c)
+type(a)
+
+Complex Type:
+-Complex numbers are written in the form, x + yj, 
+where x is the real part and y is the imaginary part. Here are some examples.
+
+ex:
+print(3+5j)
+
+Binary type
+-----------
+-A number with the prefix 0b is considered binary
+Ex:
+print(0b101011000)
+
+Hexadecimal Type
+----------------
+-A number with the prefix 0o is considered Hex
+Ex:
+print(0o530)
+
+Octal  Type
+-----------
+-A number with the prefix 0x is considered Octal
+Ex:
+print(0x158)
+
+Boolean Type
+------------
+-boolean has two  logical values of values True or False
+-Python comes with Booleans (with predefined True and False displays that are basically just the integers 1 and 0). It also has a placeholder object called None. Let's walk through a few quick examples of Booleans (we will dive deeper into them later in this course).
+
+Ex:
+x=False
+y=True
+x = (1 == True) #In Python, True represents the value as 1 and False as 0
+y = (1 == False)
+a = True + 4
+b = False + 10
+
+print(x)
+print(y)
+print("x is", x)
+print("y is", y)
+print("a:", a)
+print("b:", b)
+
+#We can use None as a placeholder for an object that we don't want to reassign yet:
+#None placeholder
+ b = None
+#Show
+print(b)
+None
+
+Know ASCII , unicode and Numbers systems
+*-------------------------------------*
+-All computer data is just numbers,Each character of text is stored as a number.When you press a key on the keyboard, the keyboard sends a number, corresponding to the key that was pressed,When text is displayed on your monitor, each character is read from memory as a number.Computer doesn't understand English or Hindi or any language.But computer do understand only 0 and 1.
+-0 means False ,1 means True
+-ASCII codes represent text in computers, communications equipment, and other devices that use text
+-UNicod is the subset of ASCII and extended upto 2^21 characters
+
+print(ord("h"),"is ASCII value" ) #print ASCII value
+print(chr(104 ),"from binary to value")
+
+ref:
+http://www.asciitable.com/ - ASCII table
+http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def
+https://youtu.be/61Bs7-ycL64
+
+Number System
+-------------
+1)Base 10(Decimal)- Represent any number using 10 digits [0–9]
+2)Base 2 (Binary) — Represent any number using 2 digits [0–1]
+3)Base 8 (Octal) — Represent any number using 8 digits [0–7]
+4)Base 16(Hexadecimal) — Represent any number using 10 digits and 6 characters [0–9, A, B, C, D, E, F]
+
+a=363
+print((a) ,"Decimal system")
+print(bin(a) ,"binary system")
+print(oct(a) ,"octal system")
+print(hex(a) ,"hex system")
+ 
+Ref
+https://www.quora.com/What-is-the-use-of-number-system-in-computer
+
+
+Default value of Types
+======================
+for number
+a=0
+
+for string
+a=''
+
+Convert one data type to another-Type converstion
+=================================================
+-The process of converting the value of one data type (integer, string, float, etc.) to another data type is called type conversion.
+-there are two types
+1)Implicit Type Conversion
+2)Explicit Type Conversion
+
+1)Implicit Type Conversion
+*------------------------*
+-In Implicit type conversion, Python automatically converts one data type to another data type. This process doesn't need any user involvement.
+
+ex:
+num_int=32
+num_float=32.11
+
+num_new=num_int+num_float
+print("datatype of num_int",type(num_int))
+print("datatype of num_float",type(num_float))
+
+print("value of num_new:",num_new)
+print("datatype of num_new",type(num_new))
+
+-we can see the num_new has a float data type because Python always converts smaller data types to larger data types to avoid the loss of data.
+
+-let's try adding a string and an integer, and see how Python deals with it
+num_int=32
+num_string="Ganesh"
+num_new1= num_int+num_string
+
+print("datatype of num_int",type(num_int))
+print("datatype of num_float",type(num_string))
+
+print("datatype of String",num_new1)
+
+-As we can see from the output, we got TypeError. Python is not able to use Implicit Conversion in such conditions.
+However, Python has a solution for these types of situations which is known as Explicit Conversion.
+
+2)Explicit Type Conversion
+*------------------------*
+-In Explicit Type Conversion, users convert the data type of an object to required data type. We use the predefined functions like int(), float(), str(), etc to perform explicit type conversion
+-This type of conversion is also called typecasting because the user casts (changes) the data type of the objects.
+
+Syntax :
+  <required_datatype>(expression)
+
+Ex:
+print(float("22.5"),"to string to  float Type") 
+print(int("22"),"to string to int Type") 
+print(int(22.5),"to float to int Type") 
+print(float(22),"to float to int Type") 
+
+Key Points to Remember
+----------------------
+1)Type Conversion is the conversion of object from one data type to another data type.
+2)Implicit Type Conversion is automatically performed by the Python interpreter.
+3)Python avoids the loss of data in Implicit Type Conversion.
+4)Explicit Type Conversion is also called Type Casting, the data types of objects are converted using predefined functions by the user.
+5)In Type Casting, loss of data may occur as we enforce the object to a specific data type
+
+To know the type of variable used in Python
+===========================================
+to know the type of variable used
+Syntax:
+	Type <variable-name or value>
+
+ex:
+print(Type(23.2))     -> <type 'float'>
+print(Type(23))       -> <type 'Int'>
+print(type("Ganesh")) -><type 'str'>
+
+String
+======
+-Strings are a group of characters written inside a single or double-quotes
+-Python does not have a character type so a single character inside quotes is also considered as a string
+
+Creating a String
+-----------------
+
+syntax:
+	variable_name = <characteral or string literal >
+
+strings = "This is Python" #is a string literal
+char = "C" #is a character literal
+multiline_str = """This is a multiline string with 
+more 
+than one 
+line code."""
+
+raw_str = r"raw \n string" #raw string literal
+
+print(strings)
+print(char)
+print(multiline_str)	
+print(raw_str)
+
+Python escape characters
+-----------------------
+To insert characters that are illegal in a string, use an escape character
+An escape character is a backslash \ followed by the character you want to insert.
+
+syntax
+	 " string literal "\
+Ex:
+print("we are so called "human" belongs to god kingdom") # does not work
+print("we are so called \"human\" belongs to god kingdom") # it works
+
+there are diff types:
+\newline -Backslash and newline ignored	
+\\ -Backslash (\)
+\' -Single quote (')
+\" -Double quote (")
+\a  -ASCII Bell (BEL)
+\b	-ASCII Backspace (BS)
+\f	-ASCII Formfeed (FF)
+\n	-ASCII Linefeed (LF)
+\r	-ASCII Carriage Return (CR)
+\t	-ASCII Horizontal Tab (TAB)
+\v	-ASCII Vertical Tab (VT)
+\ooo-Character with octal value ooo
+\xhh -Character with hex value hh
+
+Example:
+print("hello \
+world \
+:-)")  #Backslash and newline ignored
+print("positive\\negative") #backslash (\)
+print("\'positive\'") #Single quote (')
+print("\"positive\"") #Double quote (")
+print("Hello \a world ") #ASCII Bell (BEL)
+print("Hello \b world ") #ASCII Backspace (BS)
+print("Hello \f world! ") #ASCII Formfeed (FF)
+print("Hello\nworld! ") #ASCII Linefeed (LF)
+print("Hello \rWorld!") #ASCII Carriage Return (CR)
+print("Hello\tWorld! ") #ASCII Horizontal Tab (TAB)
+print("Hello \v World! ") #ASCII Vertical Tab (VT)
+print("\110\145\154\154\157\40\127\157\162\154\144\41 ") #Character with octal value ooo
+print("\x48\x65\x6c\x6c\x6f\x20\x57\x6f\x72\x6c\x64\x21 ") #Character with hex value hh
+
+we shall explore more on the string in upcoming string chapters.
+
+Sequences Type or data structure in pythonb
+--------------
+-In Python, Sequences are the general term for ordered sets
+-Sequences are a generic term for an ordered set which means that the order in which we input the items will be the same when we access them
+
+Python supports six different types of sequences:
+strings, lists, tuples, byte sequences, byte arrays, and range objects
+
+List -stores any values or objects in any order and stored it dynamically
+Set-  Does not allow duplicate
+dictionary - stores in key and value pair
+
+List
+*--*
+-List is an ordered sequence that can hold a variety of object types.
+-All the items in a list do not need to be of the same type.
+-Lists are mutable(Changeable), meaning, the value of elements of a list can be altered.
+-Items separated by commas are enclosed within brackets [ ]
+-List support indexing and slicing.list can be nested and also be have variety of useful methods that can be called of of them.
+-Allows duplicate members.
+
+syntax
+variable_name =[]
+
+Example:
+x=[1,2,4,'ganesh']
+type(x)
+print(a)
+
+Using index and slicing
+*---------------------*
+Index:
+Syntax: 
+objectType[indexNumber]
+
+#Using Index
+print(x[0]) #grab the first element
+print(type(x))
+print(x[1]) #grab the second element
+print(x[-1]) #grab the revesre element
+print(x[-2]) #grab the revesre element
+
+#Using Slicing
+
+Syntax: objectType[start:end:skip]
+
+print(x[1:]) #grab from 1 index
+print(type(x))
+print(x[1:4]) #grab from 1 till 3 
+print(x[1:4:2]) #grab from 1 till 4 skip 2
+print(x[:2]) #grab from second :2
+print(x[:-1]) #reverse
+print(x[1:-1]) #reverse
+
+add/remove/delete the list the values
+--------------------------------------
+x.append("babu")  #adding item using a value
+print(x)
+x.remove("babu") #remove item using a value
+print(x) 
+del(x[2]) #delete the item using index
+print(x)
+x.pop() #remove the last index of index
+print(x)
+
+additional methods
+a1=[3,2,32,12,41]
+# a.clear() #clear from list
+# print(a)
+a=max(a1) #min from list
+print(a)
+a=min(a1) #max from list
+print(a)
+a1.insert(1, 99) #inser the value from 1 index of the list a1
+print(a)
+a1.sort() #asscending by default
+print(a)
+a1.sort(reverse=True)
+print(a)
+print(x*2) #repeating
+print(x.count(1)) #return the occurence of the value
+
+Tuple
+*--*
+-Tuple is an ordered sequence of items same as a list. 
+-The only difference is that tuples are immutable(unchangeable) i,e once created cannot be modified.
+-Tuples are used to write-protect data and are usually faster than lists as they cannot change dynamically
+-Allows duplicate members
+-It is defined within parentheses () where items are separated by commas.
+
+sytnax:
+
+variable_name=(va1l,val2,val3)
+
+a=(3,2,"gan",4,3)
+print(a)
+print(type(a))
+print(a[2])  #indexing
+print(a[0:2])  #slicing
+print(a[2:])
+print(a*2)		#repeatings
+print(a.count(3)) #count of 3 value
+print(a.index("gan")) #get the value of that index
+
+convert the list to tuple:
+lst=[32,3,22,3]
+print(type(lst))
+tsl=tuple(lst)
+print(tsl)
+print(type(tsl))
+
+Set
+*--*
+-Set is an collection which is unordered and unindexed. No duplicate members.
+-Set is defined by values separated by comma inside braces {} but output shows in curly braces not like dictionary as it as key value pair
+-Items in a set are not ordered
+-We can perform set operations like union, intersection on two sets. Sets have unique values. 
+-They eliminate duplicates
+
+syntax:
+varible={va1l,val2,val3}
+
+print("------")
+st={32,45,65,78,"gan",78,32}
+#print(type(st)) #check the type of set
+st.update([33,65]) #update the existing the set
+#print(type(st)) #check the type of set
+# st[0] #cannot do indexing
+# st[2:] #cannot do slicing
+# st.insert(11) #cannot do insert
+# st.remove(32) #cann remove
+mylist=[3,2,3,3,2,2,1,3,4,5,3,2]  #creating list
+st.update(mylist) #updating the list
+mytuple=("G","B","E","DA") #creating tuple
+st.update(mytuple) #updating the tuple
+st.add(32) #adding in the list
+#st.add(32,32) # cannot add more then on value
+
+Converting to frozen set
+------------------------
+-you cannot do any operations on this frozen set . only we can do read the eleement
+
+st={32,45,65,78,"gan",78,32}
+f=frozenset(st)
+print(f)
+print(type(f))
+f.remove(20) #cannot do
+
+Range Type
+-----------
+-Always range starts from 0th index.
+
+syntax
+ variable-name= range(upperbound,lowerbound)
+
+r=range(5) #setting up the lower bond.
+for i in r:
+    print(i)
+
+r=range(1,16) #setting up the lower and upper bond.
+for i in r:
+    print(i)
+
+r=range(1,16,3) #step skips  3rd element
+for i in r:
+    print(i)
+
+
+Bytes and bytearray
+*----------------*
+-you cannot add or modify the bytes elements
+-and no slicing and repitations are not allowed.
+
+lst=[3,2,32,12,76]
+print(type(lst))
+
+b=bytes(lst)
+print(type(b))  
+
+c=bytearray(lst)
+print(type(c))
+c[3]=33
+print(c)
+
+Dictionary
+*--------*
+-Dictionary is a collection which is unordered, changeable and indexed. No duplicate members
+-Dictionary are unordered mappings for storing objects, Previously we saw how lists store objects in ordered sequence.,dicitonaries uses a key-value pariing instead.
+-This key-vale pair allows users to quickly grab objects without needing to know an index locations.
+-it users curly buraces {} and colons to singify the kyes and their associated values.It is unordered and cannot be sorted
+
+Sytnax:
+variable-name={Key:value,key2:value}
+
+my_dict={'k1':150,'k2':200,'k3':300,'k4':400,'k5':500,'k6':600,'k7':700} #normal dictionary
+my_dict['k1']  # Call values by their key
+my_dict1={'k1':100,'k2':200,'k3':[300,301,302,304],'k4':400,'k5':500,'k6':600,'k7':['num1','num2','num3']} #more then one dictionary
+my_dict1['k1'] #call items from the dictionary
+my_dict1['k3'][2] #Can call an index on that value
+my_dict2=my_dict1['k7'][0].upper()
+my_dict1['k4']=my_dict1['k4']-100 # Subtract 123 from the value
+my_dict1
+my_dict1['k1'] -= 50 # Set the object equal to itself minus 123 
+my_dict2 = {}# Create a new dictionary
+my_dict2
+my_dict2['k1'] ='val1'# Create a new key through assignment
+my_dict2 
+my_dict2['k2'] ='val2'# Can do this with any object
+my_dict2
+my_dict3={'k1':{'k2':{'k3':100}}} # Dictionary nested inside a dictionary nested inside a dictionary
+my_dict3['k1']['k2']['k3'] # Keep calling the keys
+
+
+#task to make the value ['C']
+my_dict4 = {'k1':['a','b','c']}
+mylist=my_dict4['k1'] # get the key and store those value in list
+mylist[2] #get those value in that list
+mylist1=mylist[2] #store into a list
+mylist1.upper() # now make it upper
+#looking the flexiablity of python
+my_dict4['k1'][2].upper() 
+my_dict4
+
+#addtional methods
+my_dict1.keys() # # Method to return a list of all keys 
+my_dict.values() # Method to grab all values
+my_dict.items() # Method to return tuples of all items
+del dict1[1] #delete the individual item in dictionary
+
+#iterating the key
+for i in k:
+    print(i)
+
+#iterating the value
+for i in l:
+    print(i)
+
+converting one data type to other data
+======================================
+from None --> numeric --> sequence -->sets --> dict  ==== any objects converstion.
+
+myNone=None
+Myint=2
+myflot=3.2
+mystring="ganesh"
+mylist=[42,32,32,1]
+mytuple={'gbag','rubn','vbhk','prkh'}
+myset=(332,'ga','32','ds')
+mydict={1:'g',2:'rew',3:'han'}
+#creating a list 
+mylist1=[mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring] #createing a new list of different types
+#creating a tuple 
+mytuple1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new tuple of different types
+#creating a set
+myset1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new set of different types
+#creating a dict
+mydict1={1:mytuple}
+#adding in a existing list 
+#adding in a existing tuple 
+#adding in a existing set 
+#adding in a existing dict 
+#updating the list  
+#updating the tuple 
+#updating the set
+#updating the dict

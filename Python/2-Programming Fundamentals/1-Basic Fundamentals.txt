@@ -102,7 +102,10 @@ Multi-line comment
 #This is a long comment
 #and it extends
 #to multiple lines
+<<<<<<< HEAD
 print("Hello world")
+=======
+>>>>>>> origin/master
 
 -Other way of doing this is to use triple quotes, either ''' or """. 
 These triple quotes are generally used for multi-line strings.
@@ -110,7 +113,10 @@ These triple quotes are generally used for multi-line strings.
 """This is also a
 perfect example of
 multi-line comments"""
+<<<<<<< HEAD
 print("Hello world")
+=======
+>>>>>>> origin/master
  
 how to write a better comments
 **-------------------------**

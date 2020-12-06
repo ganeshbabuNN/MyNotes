@@ -5,16 +5,23 @@ For Setuppting up in Mac using Eclipse
 to get the version of python
 Different python 2 and python 3
 
+<<<<<<< HEAD
 Intro
 =====
 
 
+=======
+>>>>>>> origin/master
 install python software
 =======================
 1)login to https://www.python.org/
 2)click on download and python 3.8.5
 3)click on the install icon and Click next next button
+<<<<<<< HEAD
 4)Write a Code.
+=======
+4)search for python IDE
+>>>>>>> origin/master
 
 For Setting up the Python in Windows using atom 
 =================================================

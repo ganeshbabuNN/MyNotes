@@ -4,6 +4,12 @@ Assigning values to variable
 Rules and Naming Convention for Variables
 Variable Scope 
 Literals
+<<<<<<< HEAD:Python/2-Programming Fundamentals/3-Variables.txt
+=======
+ numeric literals
+ string literals
+
+>>>>>>> origin/master:Python/2-Programming Fundamentals/2-Variables.txt
 
 Introduction
 ============
@@ -18,6 +24,7 @@ Delecration of variables
 -It allows us to create variable at required time
 -We don't need to declare explicitly variable in Python, its a dynamic typing language.
 -Python uses dynamic typing, meaning you can reassign variables to different data types. This makes Python very flexible in assigning data types; it differs from other languages that are statically typed.
+<<<<<<< HEAD:Python/2-Programming Fundamentals/3-Variables.txt
 
 Pros and Cons of Dynamic Typing
 -------------------------------
@@ -25,6 +32,15 @@ Pros of Dynamic Typing
 -very easy to work with
 -faster development time
 
+=======
+
+Pros and Cons of Dynamic Typing
+-------------------------------
+Pros of Dynamic Typing
+-very easy to work with
+-faster development time
+
+>>>>>>> origin/master:Python/2-Programming Fundamentals/2-Variables.txt
 Cons of Dynamic Typing
 -may result in unexpected bugs!
 -you need to be aware of `type()`
@@ -180,8 +196,23 @@ print(x.real) #real literal (x.real) to create imaginary and real parts of compl
 -We can use both single, double, or triple quotes for a string
 
 strings = "This is Python" #is a string literal
+<<<<<<< HEAD:Python/2-Programming Fundamentals/3-Variables.txt
 
 print(strings)
+=======
+char = "C" #is a character literal
+multiline_str = """This is a multiline string with 
+more 
+than one 
+line code."""
+
+raw_str = r"raw \n string" #raw string literal
+
+print(strings)
+print(char)
+print(multiline_str)	
+print(raw_str)
+>>>>>>> origin/master:Python/2-Programming Fundamentals/2-Variables.txt
 
 3)Boolean literials
 -------------------
