@@ -159,3 +159,12 @@ Python also provide Numpy Arrays which are a grid of values used in Data Science
 Disadvantages with arrays
 =========================
 the major it can hold only single data type 
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========

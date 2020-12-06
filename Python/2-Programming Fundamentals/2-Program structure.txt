@@ -22,3 +22,10 @@ Using Class
 
 resources
 =========
+
+
+Quiz:
+=====
+
+Assignment:
+===========

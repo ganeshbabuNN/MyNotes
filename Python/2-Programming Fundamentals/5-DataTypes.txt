@@ -552,3 +552,9 @@ mydict1={1:mytuple}
 #updating the tuple 
 #updating the set
 #updating the dict
+
+Quiz:
+=====
+
+Assignment:
+===========

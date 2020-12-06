@@ -33,3 +33,9 @@ Rules and Naming Convention for Constants
 	SPEED_OF_LIGHT
 	TEMP
 its same as the variables , Refers the variables
+
+Quiz:
+=====
+
+Assignment:
+===========

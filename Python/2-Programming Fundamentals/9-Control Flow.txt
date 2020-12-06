@@ -215,10 +215,6 @@ for i in table_range:
     print(f"{n} * {i} = {c}")
 
 -Using Range Function
-The range() function is used to generate the sequence of the numbers. If we pass the range(10), it will generate the numbers from 0 to 9. The syntax of the range() function is given below.
-Syntax:
-range(start,stop,step size)  
-
 for i in range(10):  
     print(i,end = ' ')  
 
@@ -361,3 +357,12 @@ while i<len(myname):
     pass
 
 break and continue statements can appear anywhere inside the loop’s body, but we will usually put them further nested in conjunction with an if statement to perform an action based on some condition.
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========

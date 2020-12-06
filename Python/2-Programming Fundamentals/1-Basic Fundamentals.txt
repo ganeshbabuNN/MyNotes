@@ -214,3 +214,9 @@ Example:
 print('hello')
 print 'hello' # cannot write like this.
 'hello' print  #cannot write like this as well.
+
+Quiz:
+=====
+
+Assignment:
+===========

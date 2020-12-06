@@ -217,3 +217,9 @@ print(student)
 print(vowels)
 
 -this will be discussed in detaild in the data structures and data types chapter.
+
+Quiz:
+=====
+
+Assignment:
+===========

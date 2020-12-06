@@ -351,9 +351,15 @@ print(f"My 10 character, four decimal number is:{num:10.4f}")
 For more info on formatted string literals visit https://docs.python.org/3/reference/lexical_analysis.html#f-strings
 That is the basics of string formatting!
 
+Quiz:
+=====
 
-Awesome resource
+Assignment:
+===========
 
+Resources
+=========
 https://pyformat.info/
+
 
 

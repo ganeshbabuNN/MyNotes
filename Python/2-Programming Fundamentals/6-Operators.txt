@@ -1,6 +1,7 @@
 Intro
 Type of operators
 operator precendenc and associativity
+Usefull operation in python
 
 Intro
 =====
@@ -242,3 +243,111 @@ For example,
 the expression 5 < 7 < 9 does not mean (5 < 7) < 9 or 5 < (7 < 9). 
 Also, the statement 5 < 7 < 9 is same as 5 < 7 and 7 < 9, and gets evaluated from left-to-right.
 Moreover, chaining of assignments operators like a = b = c is perfectly alright whereas the ‘a = b += c’ will result in an error
+
+Usefull operaters(functions) in python
+======================================
+-this will be discussed after control flow chapter
+
+Range Function
+--------------
+The range function allows you to quickly generate a list of integers, this comes in handy a lot, so take note of how to use it! There are 3 parameters you can pass, a start, a stop, and a step size. Let's see some examples
+
+Syntax:
+range(start,stop,step size)  
+
+range(0,11)# range from start and to end
+list(range(1,11))# cast to list functions # Notice how 11 is not included, up to but not including 11, just like slice notation!
+list(range(1,11,3))# cast to list functions with skip
+
+Note that this is a generator function, so to actually get a list out of it, we need to cast it to a list with list(). What is a generator? Its a special type of function that will generate information and not need to save it to memory
+
+enumerate
+---------
+enumerate is a very useful function to use with for loops. Let's imagine the following situation:
+
+classical way
+-here you need to remember the index and letter
+flag=0
+for letter in "ganesh babu":
+    print("At index {} the letter is {}".format(flag,letter))
+    flag+=1
+
+-Keeping track of how many loops you've gone through is so common, that enumerate was created so you don't need to worry about creating and updating this index_count or loop_count variable
+# Notice the tuple unpacking!
+for flag,letter in enumerate("ganesh babu"):
+    print("At index {} the letter is {}".format(flag,letter))
+
+zip
+---
+Notice the format enumerate actually returns, let's take a look by transforming it to a list()
+
+list(enumerate('abcde'))  #Notice the format enumerate actually returns, let's take a look by transforming it to a list.
+
+It was a list of tuples, meaning we could use tuple unpacking during our for loop. This data structure is actually very common in Python , especially when working with outside libraries. You can use the zip() function to quickly create a list of tuples by "zipping" up together two list.
+
+mylist1 = [1,2,3,4,5]
+mylist2 = ['a','b','c','d','e']
+
+# This one is also a generator! We will explain this later, but for now let's transform it to a list
+zip(mylist1,mylist2)
+
+list(zip(mylist1,mylist2))
+
+#To use the generator, we could just use a for loop
+for l1,l2 in zip(mylist1,mylist2):
+    print(f"for this tuple, first item was {l1} and second item was {l2}")
+
+In 
+--
+We've already seen the in keyword during the for loop, but we can also use it to quickly check if an object is in a list
+1 in [1,'X','z',3,32] #checking the list
+1 in (1,'X','z',3,32) #checking the tuple
+1 in {1,'X','z',3,32} #checking the set
+'a1' in {'a1':2,'a2':4} #checking dictionary by defalt keys
+'a1' in {'a1':2,'a2':4} #checking dictionary by defalt keys
+dic1 = {'a1':2,'a2':4}
+'a1' in dic1.keys() #checking the keys
+2 in dic1.values() # checking the values
+
+not in
+------
+1 not in [1,'X','z',3,32] #checking the list
+1 not in (1,'X','z',3,32) #checking the tuple
+1 not in {1,'X','z',3,32} #checking the set
+'a1' not in {'a1':2,'a2':4} #checking dictionary by defalt keys
+'a1' not in {'a1':2,'a2':4} #checking dictionary by defalt keys
+dic1 = {'a1':2,'a2':4}
+'a1' not in dic1.keys() #checking the keys
+2  not in dic1.values() # checking the values
+
+Min and Max
+-----------
+Quickly check the minimum or maximum of a list with these functions.
+mylist=[23,54,32,67,32,43]
+min(mylist)
+max(mylist)
+
+random
+------
+Python comes with a built in random library. There are a lot of functions included in this random library, so we will only show you two useful functions for now.
+
+#https://docs.python.org/3/library/random.html
+from random import shuffle
+
+# This shuffles the list "in-place" meaning it won't return
+# anything, instead it will effect the list passed
+shuffle(mylist)
+mylist
+
+from random import randint
+randint(0,100) # Return random integer in range [a, b], including both end points.
+
+input
+-----
+input('Enter Something into this box: ')
+
+Quiz:
+=====
+
+Assignment:
+===========
