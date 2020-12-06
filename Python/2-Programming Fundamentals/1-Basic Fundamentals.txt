@@ -4,6 +4,7 @@ Not basic element
 	statements
 	indentations
 	Expression
+Syntax
 
 Tokens
 ======
@@ -70,28 +71,69 @@ All the above will be discussed more in the Variable chapters
 operators
 ---------
 -operators are like +, - , * ...etc
-in detail will be discussion in Operator chapter
-
 Ex
 3+3 = 6
 
+in detail will be discussion in Operator chapter
 
 Comments
 ========
 -Comments are very important while writing a program. They describe what is going on inside a program, so that a person looking at the source code does not have a hard time figuring it out.
--this are ignored by the intrepreter
+-this are ignore by the intrepreter
+ 
+Types of comments
+-----------------
+there are three types
+1)single line comment
+2)multi line comment
+3)docstrings
 
-#this is single line comment 
+single line comment
+*-----------------*
+we use the hash (#) symbol to start writing a comment
+Ex:
+#print hello
+print('Hello')
 
-""" 
- this is multipline comment
+Multi-line comment
+*-----------------*
+-We can have comments that extend up to multiple lines.One way is to use the hash(#) symbol at the beginning of each line
 
-"""
-in detail will be discussion in Comments chapter
+#This is a long comment
+#and it extends
+#to multiple lines
+print("Hello world")
+
+-Other way of doing this is to use triple quotes, either ''' or """. 
+These triple quotes are generally used for multi-line strings.
+
+"""This is also a
+perfect example of
+multi-line comments"""
+print("Hello world")
+ 
+how to write a better comments
+**-------------------------**
+-Use comments to describe what a function does and not the specific details on how the function does it.
+-Try to remove as many redundant comments as possible. Try writing code that can explain itself, using better function/variable name choice.
+-Try to make the comments as short and concise as possible
+
+Docstrings in Python
+*-----------------*
+-A docstring is short for documentation string.
+-Python docstrings (documentation strings) are the string literals that appear right after the definition of a function, method, class, or module.
+
+def double(num):
+    """Function to double the value"""
+    return 2*num
+
+-The docstrings are associated with the object as their __doc__ attribute.
+print(double.__doc__)
 
 Statements
 ==========
 -Instructions that a Python interpreter can execute are called statements
+-Each statement is not ended with semicolon. its is identified by 
 -For example, 
 
 a = 1 
@@ -103,13 +145,13 @@ Multi-line statement
 --------------------
 In Python, the end of a statement is marked by a newline character. But we can make a statement extend over multiple lines with the line continuation character (\). For example:
 
-a = 1 + 2 + 3 + \
+     1 + 2 + 3 + \
     4 + 5 + 6 + \
     7 + 8 + 9
 
 This is an explicit line continuation. In Python, line continuation is implied inside parentheses ( ), brackets [ ], and braces { }.
 
-a = (1 + 2 + 3 +
+   (1 + 2 + 3 +
     4 + 5 + 6 +
     7 + 8 + 9)
 
@@ -121,6 +163,14 @@ colors = ['red',
 We can also put multiple statements in a single line using semicolons, as follows:
 a = 1; b = 2; c = 3
 
+Different type of statements
+----------------------------
+there two type so statements
+1)control flow statements
+2)looping statements.
+
+...we shall learn in details in upcoming chapters.
+
 Indentation
 ===========
 -In python each statment are not ended with semicolon(;) but some of the statement like if, for ,while are ended with colon(:)
@@ -128,6 +178,7 @@ Indentation
 -Python, however, uses indentation
 -A code block (body of a function, loop, etc.) starts with indentation and ends with the first unindented line. The amount of indentation is up to you, but it must be consistent throughout that block
 -Generally, four whitespaces are used for indentation and are preferred over tabs
+
 	for i in range(1,11):
 	    print(i)
 -The enforcement of indentation in Python makes the code look neat and clean
@@ -149,6 +200,17 @@ Expression
 -Although expressions contain values, variables, and operators, not every expression contains all of these elements. A value all by itself is considered an expression, and so is a variable.
 -Confusingly, evaluating an expression is not quite the same thing as printing a value
 
-mesage="hello world"
-message
-print message
+Assign:
+Write a expression for 100 
+50+50
+110-10
+10*10
+
+Syntax
+======
+its nothing but a set of rules for specific purpose
+
+Example:
+print('hello')
+print 'hello' # cannot write like this.
+'hello' print  #cannot write like this as well.

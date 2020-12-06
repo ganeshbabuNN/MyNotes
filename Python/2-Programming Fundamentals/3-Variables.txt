@@ -2,12 +2,8 @@ introduction
 Delecration of variables
 Assigning values to variable
 Rules and Naming Convention for Variables
-Variable Scope ?
+Variable Scope 
 Literals
- numeric literals
- string literals
- 	escape characters
-
 
 Introduction
 ============
@@ -20,16 +16,23 @@ Delecration of variables
 ========================
 -Python does not bound us to declare variable before using in the application
 -It allows us to create variable at required time
--We don't need to declare explicitly variable in Python
+-We don't need to declare explicitly variable in Python, its a dynamic typing language.
+-Python uses dynamic typing, meaning you can reassign variables to different data types. This makes Python very flexible in assigning data types; it differs from other languages that are statically typed.
 
-ex
-a=10
-b=20
+Pros and Cons of Dynamic Typing
+-------------------------------
+Pros of Dynamic Typing
+-very easy to work with
+-faster development time
+
+Cons of Dynamic Typing
+-may result in unexpected bugs!
+-you need to be aware of `type()`
 
 Assigning values to variable
 =============================
 -When we assign any value to the variable that variable is declared automatically
--The equal (=) operator is used to assign value to a variable
+-The single equal sign(=) operator is used to assign value to a variable
 
 a=10 
 print(a)
@@ -61,33 +64,87 @@ print(a)
 print(b)
 print(c)
 
-Rules and Naming Convention for Variables
-=========================================
-1)variable names should have a combination of letters in lowercase (a to z) or uppercase (A to Z) or digits (0 to 9) or an underscore (_). For example:
-	snake_case
-	MACRO_CASE
-	camelCase
-	CapWords
-2)Create a name that makes sense and must not be a keyword
-3)If you want to create a variable name having two words, use underscore to separate them. For example
-	my_name
-	current_salary
-4)Use capital letters possible to declare a constant. For example:
-	PI
-	G
-	MASS
-	SPEED_OF_LIGHT
-5)Never use special symbols like !, @, #, $, %, etc.
-6)Don't start a variable name with a digit.
+Rules and name conventions
+==========================
+1)names can not start with a number
+2)names can not contain spaces, use _ intead
+3)names can not contain any of these symbols
+	:'",<>/?|\!@#%^&*~-+
+4)names are lowercase with underscores if space between
+5)avoid using Python built-in keywords like list and str
+6)avoid using the single characters l (lowercase letter el), O (uppercase letter oh) and I (uppercase letter eye) as they can be confused with 1 and 0
+
+Follow this URL for the standard name 
+https://www.python.org/dev/peps/pep-0008/#function-and-variable-names
 
 Variable Scope
 ==============
+In programming languages, variables need to be defined before using them
+These variables can only be accessed in their area where they are defined, this is called scope.
+
+Type of scope
+1)Local scope
+2)Enclosing Scope
+3)Global scope
+4)Built in 
+
+Local scope
+-------------
+Local scope variables can only be accessed within its block.
+
+a = 10
+def function():
+    print("Hello")
+    b = 20
+function()
+print(a)
+print(b) #local scope
+
+Global Scope
+------------
+The variables that are declared in the global scope can be accessed from anywhere in the program
+
+a = 10
+def function():
+    print(a ," Inside the func")
+    print("Hello")
+    b = 20
+function()
+print(a ," outside the func")
+
+Enclosing Scope
+---------------
+A scope that isn’t local or global comes under enclosing scope.
+
+def vehicle():
+  fun= “Start”
+  def car():
+    model= “Toyota”
+    print(fun)
+    print(model)
+	car()
+vehicle()
+
+the variable fun is used inside the car() function. In that case, it is neither a local scope nor a global scope. This is called the enclosing scope
+
+Builtin Scope
+-------------
+When the Python doesn’t find an identifier in it’s local, enclosing or global scope, it then looks in the built-in scope to see if it’s defined there
+
+a = 5.5
+int(a)
+print(a)
+print(type(a))
+
+Python would see in the local scope first to see which of the variables are defined in the local scope, then it will look in the enclosing scope and then global scope.
+
 https://techvidvan.com/tutorials/python-variable-scope/
 
 Literals
 =========
 -Literal is a raw data given in a variable or constant. In Python, there are various types of literals they are as follows:
 -In Python, there are various types of literals they are as follows:
+
 1)Numeric Literals(integer,float,complext type)
 2)String literals
 3)Boolean literials
@@ -123,43 +180,8 @@ print(x.real) #real literal (x.real) to create imaginary and real parts of compl
 -We can use both single, double, or triple quotes for a string
 
 strings = "This is Python" #is a string literal
-char = "C" #is a character literal
-multiline_str = """This is a multiline string with 
-more 
-than one 
-line code."""
-
-unicode = u"\u00dcnic\u00f6de" #is a Unicode literal which supports characters other than English.
-#in this case, \u00dc represents Ãœ and \u00f6 represents Ã¶
-
-raw_str = r"raw \n string" #raw string literal
 
 print(strings)
-print(char)
-print(multiline_str)
-print(unicode)
-print(raw_str)
-
-Python Escape Characters
-*----------------------*
--To insert characters that are illegal in a string, use an escape character.
--An escape character is a backslash \ followed by the character you want to insert.
-
-Ex:
-print("we are so called "Dravidian" from south.")
-#use the \(black slash) to fix the above 
-print("we are so called \"Dravidian\" from south.")
-
-Other escape characters used
-\'-Single Quote	
-\\ -Black slash
-\n - New Line
-\r - Carriage Return
-\t - Tab
-\b - Backspace
-\f -Form Feed	
-\ooo -Octal value	
-\xhh -hexal value
 
 3)Boolean literials
 -------------------
@@ -168,38 +190,21 @@ Other escape characters used
 
 x=False
 y=True
-x = (1 == True) #In Python, True represents the value as 1 and False as 0
-y = (1 == False)
-a = True + 4
-b = False + 10
 
 print(x)
 print(y)
-print("x is", x)
-print("y is", y)
-print("a:", a)
-print("b:", b)
 
 4)Special literals
 ------------------
 -Python contains one special literal i.e. None. We use it to specify that the field has not been created.
 
-ex: ordering a drink or a food
-drink ="available"
-food = None
+ex: 
+a=None
+print(a)
 
-def menu(x):
-    if x ==drink:
-        print(drink)
-    else:
-        print(food)
-    
-menu(drink)
-menu(food)
-
-5)Collection literals(
+5)Collection literals
 ----------------------
--there are four types of lists,tuple,dictionary,set)
+-there are four types of lists,tuple,dictionary,set
 
 fruits=["apple","mango","orange","banana"] #list
 number = (1,2,3) #tuple
@@ -210,3 +215,5 @@ print(fruits)
 print(number)
 print(student)
 print(vowels)
+
+-this will be discussed in detaild in the data structures and data types chapter.
