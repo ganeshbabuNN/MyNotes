@@ -60,3 +60,8 @@ b=12
 c=23
 print(a,b,c)
 
+Quiz:
+=====
+
+Assignment:
+===========

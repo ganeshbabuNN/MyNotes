@@ -76,6 +76,12 @@ Different python 2 and python 3
 ===============================
 
 
+Quiz:
+=====
+
+Assignment:
+===========
+
 Resources
 ==========
 https://www.greenteapress.com/thinkpython/thinkCSpy/html/index.html
