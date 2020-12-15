@@ -1,0 +1,19 @@
+Pylint 
+Unitest
+
+Pylint 
+=====
+Install the pyfile
+------------------
+pip install pylint
+
+lets write a simple function
+
+
+
+
+Run with reports
+pylint myprogram.py --reports=y
+
+Ref:
+https://pypi.org/project/pylint/
