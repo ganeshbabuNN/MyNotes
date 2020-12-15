@@ -1,0 +1,160 @@
+Content
+Introduction
+Instal mysql and mysql workbench
+install mysql connector
+setup the database
+connect to the DB from python
+Read
+read-fetchall
+create
+delete
+
+Introduction
+============
+-in this we shall learn how to connect and execute statement to database
+-for every database there is a connector to perform the database operations
+
+steps to connect any DB
+1)install connector
+2)import those module
+3)creation connection
+4)create a cursor
+
+Instal mysql and mysql workbench
+================================
+-install the mysql database 
+
+install mysql connector
+=======================
+-pip3 install mysql-connector-python
+
+if not available install manually 
+--using pydev with eclipse
+-> goto eclipse--> preference python interpreter 
+2) click on the manage with pip
+3) enter -m pip install mysql-connector-python
+4) click on run
+setup the database
+==================
+
+using the mysql
+--------------
+1)create the database
+	create database mydb
+	use mydb
+2)create a table
+	create table emp(id int,name varchar(32))
+
+connect to the DB from python
+=============================
+
+for ORacle
+----------
+
+https://datatofish.com/how-to-connect-python-to-an-oracle-database-using-cx_oracle/
+
+using MySQL
+----------
+import mysql.connector
+
+con=mysql.connector.Connect(host='localhost',database='mydb',user='root',password='ganesh123')
+
+if con.is_connected():
+    print("connected to mysql db")
+con.close()
+
+Read
+====
+import mysql.connector
+
+con=mysql.connector.Connect(host='localhost',database='mydb',user='root',password='ganesh123')
+
+if con.is_connected():
+    print("connected to mysql db")
+
+cursor=con.cursor()
+cursor.execute('select * from emp')
+
+row=cursor.fetchone() #fetch only one record
+while row is not None:
+    print(row)
+    row=cursor.fetchone()
+
+cursor.close()
+con.close()
+
+read-fetchall
+=============
+import mysql.connector
+
+con=mysql.connector.Connect(host='localhost',database='mydb',user='root',password='ganesh123')
+
+if con.is_connected():
+    print("connected to mysql db")
+
+cursor=con.cursor()
+cursor.execute('select * from emp')
+
+row = cursor.fetchall()
+while row is not None:
+    print(row)
+    row=cursor.fetchone()
+
+cursor.close()
+con.close()
+create
+======
+import mysql.connector
+
+con=mysql.connector.Connect(host='localhost',database='mydb',user='root',password='ganesh123')
+
+if con.is_connected():
+    print("connected to mysql db")
+
+cursor=con.cursor()
+
+try:
+    cursor.execute("insert into emp values(2,'vedha')")
+    con.commit()
+    print("Employee added")
+except:
+    con.rollback()
+    
+cursor.close()
+con.close()
+
+delete
+=====
+import mysql.connector
+
+def delete(id):
+    con=mysql.connector.Connect(host='localhost',database='mydb',user='root',password='ganesh123')
+    if con.is_connected():
+        print("connected to mysql db")
+        cursor=con.cursor()
+        str="delete from emp where id='%d'"
+        args=(id)
+        try:
+            cursor.execute(str % args)
+            con.commit()
+            print("Employee deleted")
+        except:
+            con.rollback()
+        
+        cursor.close()
+        con.close()
+
+empid=int(input("Enter the Id: "))
+delete(empid)
+
+update
+======
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========

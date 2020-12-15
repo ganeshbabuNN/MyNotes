@@ -1,0 +1,46 @@
+Unittest
+========
+its is the unit testing libraries inspired by the 
+
+Installation
+============
+import unittest
+
+first Unit test case
+====================
+
+Module to test
+--------------
+-create the testprog.py file
+
+def cap_test(text):
+    """Make upper case of the start of each sentence"""
+    return text.capitalize()
+
+
+--create testprogtest.py file
+import unittest
+import testprog as cap
+
+class TestCap(unittest.TestCase):
+
+    def test_one_word(self): # test cases
+        text = 'python'  # input value
+        result = cap.cap_test(text)
+        self.assertEqual(result, 'Python') # expected value
+
+    def test_multiple_words(self): # test cases
+        text = 'hello python'
+        result = cap.cap_test(text)
+        self.assertEqual(result, 'Hello Python')
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+--Use a notepad++ or modern text editor like pycharm,VS code, eclipse
+
+Ref
+===
+https://docs.python.org/3/library/unittest.html

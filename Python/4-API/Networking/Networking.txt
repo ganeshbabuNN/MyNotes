@@ -1,0 +1,171 @@
+Content
+=======
+Introduction
+Downloading a HTML
+Downloading a image
+Socket Programming
+Create a server
+Create a client
+File Server
+File Client
+Sending Emails
+Email Client
+Run Mail Client
+Bonus 
+
+Introduction
+============
+
+
+
+Downloading a HTML
+==================
+-here you will learn the download the HTMl resources
+-we need to use the urlib modules.
+
+import urllib.request
+
+try:
+    url=urllib.request.urlopen("https://www.javatpoint.com/python-modules",)
+    content=url.read()
+    url.close()
+except urllib.error.HTTPError:
+    print("the web page is not found")
+    exit()
+
+f=open("python.html",'wb')
+f.write(content)
+f.close()
+
+Note: if you getting any certification error
+if your using macOS go to Macintosh HD > Applications > Python3.6 folder (or whatever version of python you're using) > double click on "Install Certificates.command" file or search for Install Certificates.command in search
+and
+Install Certificates.command
+Update Shell Profile.command
+
+Downloading a image
+===================
+import urllib.request
+
+urllib.request.urlretrieve("https://www.python.org/static/img/python-logo@2x.png","python.png")
+
+Socket Programming
+==================
+-Socket programming is a connection between the server and the client over the TCP/IP
+
+-once the socket is program, we need to bind the port and start listening to the port 
+socket->bind->listen->accept->send/recv-> close
+socket->connect->send/rec->close
+
+Create a server
+===============
+tcpipserver.py
+import socket
+
+host ='localhost'
+port=4000
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM) #AF_INET means Ipv4
+
+#we need to bind the port which accept the list
+s.bind((host,port))
+print("server listing on port: ",port)
+s.listen(1)
+c,addr = s.accept() #it returns the list
+print("connect shell from :",str(addr))
+c.send(b"hello how are you")
+c.send("bye")
+c.close()
+
+Create a client
+===============
+tcpipclient.py
+import socket
+
+s=socket.socket()
+s.connect(("localhost",4001))
+msg=s.recv(1024)
+while msg:
+    print("Received ",msg.decode())
+    msg = s.recv(1024)
+s.close()
+
+File Server
+===========
+filserver.py
+
+import socket
+host='localhost'
+port =6767
+
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.bind((host,port))
+print("server listensing on port:" ,port)
+s.listen(1)
+c, addr = s.accept()
+
+fileName = c.recv(1024)
+
+try:
+    f=open(fileName,'rb')
+    content =f.read()
+    c.send(content)
+    f.close()
+except FileNotFoundError:
+    c.send(b"file does not exist")
+
+c.close() 
+
+File Client
+===========
+client.
+import socket
+
+s=socket.socket()
+s.connect(("localhost",6767))
+fileName=input("Enter the file name: ")
+s.send(fileName.encode())
+content=s.recv(1024)
+print(content.decode())
+s.close()
+
+Sending Emails
+==============
+-creating a STMP client for sending email
+-create a STMP server --> login --> sending message --> quit
+
+Email Client
+============
+emailclient.py
+
+import smtplib
+from email.mime.text import MIMEText
+
+
+body="This is a test email, how are you"
+
+msg=MIMEText(body)
+msg['From']='ganeshbabu346@gmail.com'
+msg['To']="ganeshbabu346@hotmail.com"
+msg['Subject']="Hello"
+
+server=smtplib.SMTP("smtp.gmail.com",587)
+server.starttls()
+server.login("ganeshbabu346@gmail.com",'sddd')
+server.send(msg)
+print("mail sent")
+server.quit()
+
+Run Mail Client
+===============
+Run emailclient.py
+
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========

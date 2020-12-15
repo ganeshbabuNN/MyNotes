@@ -1,0 +1,67 @@
+Logging in action
+logging configurations
+log exceptions
+
+
+Logging in action
+=================
+-Logs provide developers with an extra set of eyes that are constantly looking at the flow that an application is going through
+-based on the default loggel level, the order of the logging is executed, for example now the defaul level is WARNING, its start the order from the above.
+
+import logging
+
+logging.critical('This is a critical message')
+logging.error('This is an error message')
+logging.warning('This is a warning message')
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+
+
+logging configurations
+=====================
+-this will reset default log level
+
+import logging
+
+logging.basicConfig(filename="mylog.log",level=logging.INFO)
+
+logging.critical('This is a critical message')
+logging.error('This is an error message')
+logging.warning('This is a warning message')
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+
+log exceptions
+==============
+
+import logging
+
+logging.basicConfig(filename="mylog.log",level=logging.INFO)
+
+try:
+    f=open("Myfile","w")
+    a,b=[int(x) for x in input("enter two numbers: ").split()]
+    division = a/b
+    f.write("writing %d into file"%division)
+    logging.info("File has written completely")
+except ZeroDivisionError:
+    logging.error("division by zero is not allowed")
+    logging.error("Please enter a non zero number") 
+else:
+    logging.warning("you have entered a non zero number") 
+finally:
+    f.close()
+    logging.info("file closed")
+
+print("code after exceptions")
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========
+https://www.javatpoint.com/logging-in-python
+https://realpython.com/python-logging/
