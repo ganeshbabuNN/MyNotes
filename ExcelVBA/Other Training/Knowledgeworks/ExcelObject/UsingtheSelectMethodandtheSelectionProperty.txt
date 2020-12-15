@@ -1,7 +1,0 @@
-Sub Labels()
-With Worksheets("Sheet1")
-.Range("A1") = "Name"
-.Range("B1") = "Address"
-.Range("A1:B1").Font.Bold = True
-End With
-End Sub

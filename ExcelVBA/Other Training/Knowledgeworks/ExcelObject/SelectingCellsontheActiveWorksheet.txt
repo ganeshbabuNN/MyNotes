@@ -1,6 +1,0 @@
-Sub CopyRow()
-Worksheets("Sheet1").Rows(1).Copy
-Worksheets("Sheet2").Select
-Worksheets("Sheet2").Rows(1).Select
-Worksheets("Sheet2").Paste
-End Sub

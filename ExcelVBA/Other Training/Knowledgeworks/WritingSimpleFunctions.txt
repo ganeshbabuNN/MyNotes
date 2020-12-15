@@ -1,3 +1,0 @@
-Function Multiply(a, b)
-Multiply = a  b
-End Function

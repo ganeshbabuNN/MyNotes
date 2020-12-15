@@ -1,3 +1,0 @@
-Sub msgboxemo()
-x = MsgBox("Test Message", vbAbortRetryIgnore Or vbCritical)
-End sub

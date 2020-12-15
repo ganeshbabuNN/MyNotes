@@ -1,3 +1,0 @@
-Sub hello()
-MsgBox ("welcome to VBA World")
-End Sub

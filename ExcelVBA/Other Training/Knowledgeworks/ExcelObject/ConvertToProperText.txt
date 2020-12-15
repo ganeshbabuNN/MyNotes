@@ -1,6 +1,0 @@
-Sub ConvertToProper()
-Dim cellObject As Object
-For Each cellObject In Selection
-cellObject.Formula = Application.Proper(cellObject)
-Next
-End Sub

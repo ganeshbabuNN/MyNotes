@@ -1,7 +1,0 @@
-Sub FirstOne()
-Worksheets(1).Activate
-End Sub
-
-Sub FourthOne()
-Sheets(4).Activate
-End Sub

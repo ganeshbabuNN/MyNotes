@@ -1,9 +1,0 @@
-Sub ApplyColor()
-Const Limit As Integer = 25
-For Each c In Range("a1:d25")
-If c.Value > Limit Then
-c.Interior.ColorIndex = 27
-End If
-Next c
-End Sub
-Referring

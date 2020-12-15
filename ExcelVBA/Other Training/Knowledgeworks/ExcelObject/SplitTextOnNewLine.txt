@@ -1,8 +1,0 @@
-Sub splitText()
-'splits Text active cell using ALT+10 char as separator
-Dim splitVals As Variant
-Dim totalVals As Long
-splitVals = Split(ActiveCell.Value, Chr(10))
-totalVals = UBound(splitVals)
-Range(Cells(ActiveCell.Row, ActiveCell.Column + 1), Cells(ActiveCell.Row, ActiveCell.Column + 1 + totalVals)).Value = splitVals
-End Sub

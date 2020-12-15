@@ -1,6 +1,0 @@
-Sub TestVariables()
-stemp = richard
-MsgBox VarType(stemp)
-stemp = 4
-MsgBox VarType(stemp)
-End Sub

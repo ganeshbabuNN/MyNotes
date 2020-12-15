@@ -1,7 +1,0 @@
-Sub Timedemo()
-MsgBox Hour("17:50")
-MsgBox Hour("6-Mar-2003 4:30pm")
-MsgBox Hour(11 / 24)
-MsgBox Second("4:35:48pm")
-MsgBox Minute(11.27 / 24)
-End Sub

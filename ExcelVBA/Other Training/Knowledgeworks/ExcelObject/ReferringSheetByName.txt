@@ -1,3 +1,0 @@
-Sub ActivateChart()
-Sheets("Chart1").Activate
-End Sub
