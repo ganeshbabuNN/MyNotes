@@ -1,7 +1,0 @@
-Introductions
-History of language
-Applications
-
-
-
-Python is a case-sensitive language
