@@ -1,0 +1,9 @@
+DISTINCT  – introduce you how to eliminate duplicate rows from the output of a query.
+WHERE – learn how to specify a condition for rows in the result set returned by a query.
+AND – combine two or more Boolean expressions and return true if all expressions are true.
+OR–  combine two or more Boolean expressions and return true if one of the expressions is true.
+FETCH – show you how to limit rows returned by a query using the row limiting clause.
+IN – determine if a value matches any value in a list or a subquery.
+BETWEEN – filter data based on a range of values.
+LIKE  – perform matching based on specific patterns.
+IS NULL and IS NOT NULL – check if an expression or values in a column is NULL or not

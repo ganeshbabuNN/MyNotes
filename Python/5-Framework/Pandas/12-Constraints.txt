@@ -1,0 +1,5 @@
+Primary key  – explain you to the primary key concept and show you how to use the primary key constraint to manage a primary key of a table.
+Foreign key – introduce you to the foreign key concept and show you use the foreign key constraint to enforce the relationship between tables.
+NOT NULL constraint – show you how to ensure a column not to accept null values.
+UNIQUE constraint – discuss how to ensure data stored in a column or a group of columns is unique among rows within the whole table.
+CHECK constraint – walk you through the process of adding logic for checking data before storing them in tables
