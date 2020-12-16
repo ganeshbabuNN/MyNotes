@@ -1,6 +1,6 @@
 Unittest
 ========
-its is the unit testing libraries inspired by the 
+its is the unit testing libraries inspired by the junit
 
 Installation
 ============
