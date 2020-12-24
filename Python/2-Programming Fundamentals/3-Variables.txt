@@ -67,7 +67,7 @@ print(c)
 Rules and name conventions
 ==========================
 1)names can not start with a number
-2)names can not contain spaces, use _ intead
+2)names can not contain spaces, use _ intead(snake Case)
 3)names can not contain any of these symbols
 	:'",<>/?|\!@#%^&*~-+
 4)names are lowercase with underscores if space between
