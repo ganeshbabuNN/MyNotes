@@ -1,7 +1,0 @@
-A visual explanation of Oracle Joins – a brief introduction to joins in Oracle using visual illustrations.
-INNER JOIN – show you how to query rows from a table that have matching rows from another table.
-LEFT JOIN – introduce you to the left-join concept and learn how to use it to select rows from the left table that have or don’t have the matching rows in the right table.
-RIGHT JOIN – explain the right-join concept and show you how to apply it to query rows from the right table that have or don’t have the matching rows in the left table.
-FULL OUTER JOIN – describe how to use the full outer join or full join to query data from two tables.
-CROSS JOIN – cover how to make a Cartesian product from multiple tables.
-Self-join – show you how to join a table to itself to query hierarchical data or compare rows within the same table

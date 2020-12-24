@@ -1,4 +1,0 @@
-Subquery – introduce the concept of subquery and how to use the subqueries to perform advanced data selection techniques.
-Correlated Subquery – learn about the correlated subquery which is a subquery that depends on the values returned by the outer query.
-EXISTS and NOT EXISTS – check for the existence of rows returned by a subquery.
-ANY, SOME, and ALL – compare a value to a list or subquery. Note that SOME and ANY are the same so they are interchangeable
