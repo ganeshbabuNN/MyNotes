@@ -43,6 +43,10 @@ c=2
 print(a,b,c)
 type(a)
 
+Signed and Unsigned Integer:
+Note: Variables such as integers can be represent in two ways, i.e., signed and unsigned. 
+Signed numbers use sign flag or can be distinguish between negative values and positive values. 
+Whereas unsigned numbers stored only positive numbers but not negative numbers
 
 floating:
 -A floating-point number is accurate up to 15 decimal places.
