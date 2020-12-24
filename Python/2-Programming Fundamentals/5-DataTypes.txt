@@ -156,8 +156,8 @@ print(x[-1]) #grab the revesre element
 print(x[-2]) #grab the revesre element
 
 #Using Slicing
-
-Syntax: objectType[start:end:skip]
+Syntax: 
+objectType[start:end:skip]
 
 print(x[1:]) #grab from 1 index
 print(type(x))
