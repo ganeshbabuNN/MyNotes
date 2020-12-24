@@ -4,8 +4,8 @@ Printing Strings
 String Indexing and Slicing
 String Properties
 Escape characters
-String Methods
 String Formatting(Huge chapters)
+String Methods
 
 Intro
 =====
@@ -46,15 +46,8 @@ print('Hello World 1')
 print('Hello World 2')
 print('See what I mean?')
 
-
-## String Basics
-We can also use a function called len() to check the length of a string!
-len('Hello World')
-
-Python's built-in len() function counts all of the characters in the string, including spaces and punctuation.
-
-String Indexing & slicing
-=========================
+Accessing String using Indexing & slicing
+==========================================
 We know strings are a sequence, which means Python can use indexes to call parts of the sequence. Let's learn how this works.
 
 Indexing
@@ -141,71 +134,37 @@ Ex:
 txt="we are so- called "Humans" to serve others"
 txt="we are so- called \"Humans\" to serve others" # fix the problem insert the backlash
 
-other types of escape characters in python:
-\	- single quote
-\\	- backslash
-\n	-New line
-\r 	-Carriage Return
-\t  - Tab
-\b  -Backspace
-\f  -Form Feed
-\ooo - Octal values
-\xhh -Hex value
+there are diff types:
+\newline -Backslash and newline ignored	
+\\ -Backslash (\)
+\' -Single quote (')
+\" -Double quote (")
+\a  -ASCII Bell (BEL)
+\b	-ASCII Backspace (BS)
+\f	-ASCII Formfeed (FF)
+\n	-ASCII Linefeed (LF)
+\r	-ASCII Carriage Return (CR)
+\t	-ASCII Horizontal Tab (TAB)
+\v	-ASCII Vertical Tab (VT)
+\ooo-Character with octal value ooo
+\xhh -Character with hex value hh
 
-txt="we are so- called God \\ Humans to serve others" 
-txt="we are so- called God \n  Humans to serve others" 
-txt="we are so- called God\rHumans to serve others" 
-txt="we are so- called God\tHumans to serve others" 
-txt="we are so- called God \bHumans to serve others"
-txt="\110\145\154\154\157"
-txt="\x48\x65\x6c\x6c\x6f"
-print(txt)
-
-unicode = u"\u00dcnic\u00f6de" #is a Unicode literal which supports characters other than English.
-#in this case, \u00dc represents  and \u00f6 represents รถ
-print(unicode)
-
-Basic Built-in String methods
-=============================
-Objects in Python usually have built-in methods. These methods are functions inside the object (we will learn about these in much more depth later) that can perform actions or commands on the object itself.
-We call methods with a period and then the method name. 
-Methods are in the form:
-object.method(parameters)
-
-Where parameters are extra arguments we can pass into the method. Don't worry if the details don't make 100% sense right now. Later on we will be creating our own objects and functions!
-Here are some examples of built-in methods in strings:
-s ='Hello World'
-s.upper() # Upper Case a string
-s.lower() # Lower case
-s.split() # Split a string by blank space (this is the default)
-s.split('W') # Split by a specific element (doesn't include the element that was split on)
-print(len(a)) #length of a string
-
-There are many more methods than the ones covered here. Visit the Advanced String section to find out more!
-
-Strips the spaces
------------------
--generally used to trimt he leading and lagging spaces in the given string.
-c=""" ganesh babu """;
-print(c.strip())  #striping the lead and lagging
-print(c.lstrip()) #striping left
-print(c.rstrip()) #striping left
-
--find functions
-print(c.find("ba")) #return the count of the index where search starts
-print(c.find("ba"),0,len(c)) #used 0 outside the find functions
-print(c.find("ab",9,len(c))) #start with 9 with max leng where the search looked into
-
--count function get the occurrence of a string.
-print(c.count("h"))
-
--replace
-print(c.replace("ga","hh"))
-
--case changes
-print(c.upper())
-print(c.lower())
-print(c.title())
+Example:
+print("hello \
+world \
+:-)")  #Backslash and newline ignored
+print("positive\\negative") #backslash (\)
+print("\'positive\'") #Single quote (')
+print("\"positive\"") #Double quote (")
+print("Hello \a world ") #ASCII Bell (BEL)
+print("Hello \b world ") #ASCII Backspace (BS)
+print("Hello \f world! ") #ASCII Formfeed (FF)
+print("Hello\nworld! ") #ASCII Linefeed (LF)
+print("Hello \rWorld!") #ASCII Carriage Return (CR)
+print("Hello\tWorld! ") #ASCII Horizontal Tab (TAB)
+print("Hello \v World! ") #ASCII Vertical Tab (VT)
+print("\110\145\154\154\157\40\127\157\162\154\144\41 ") #Character with octal value ooo
+print("\x48\x65\x6c\x6c\x6f\x20\x57\x6f\x72\x6c\x64\x21 ") #Character with hex value hh
 
 String Formatting
 =================
@@ -351,13 +310,69 @@ print(f"My 10 character, four decimal number is:{num:10.4f}")
 For more info on formatted string literals visit https://docs.python.org/3/reference/lexical_analysis.html#f-strings
 That is the basics of string formatting!
 
+
+Basic Built-in String methods
+=============================
+Objects in Python usually have built-in methods. These methods are functions inside the object (we will learn about these in much more depth later) that can perform actions or commands on the object itself.
+We call methods with a period and then the method name. 
+Methods are in the form:
+object.method(parameters)
+
+Where parameters are extra arguments we can pass into the method. Don't worry if the details don't make 100% sense right now. Later on we will be creating our own objects and functions!
+Here are some examples of built-in methods in strings:
+
+-split case
+s ='Hello World' 
+s.split() # Split a string by blank space (this is the default)
+s.split('W') # Split by a specific element (doesn't include the element that was split on)
+print(len(a)) #length of a string
+
+There are many more methods than the ones covered here. Visit the Advanced String section to find out more!
+
+--Strips the spaces
+#generally used to trimt he leading and lagging spaces in the given string.
+c=""" ganesh babu """;
+print(c.strip())  #striping the lead and lagging
+print(c.lstrip()) #striping left
+print(c.rstrip()) #striping left
+
+-find functions
+print(c.find("ba")) #return the count of the index where search starts
+print(c.find("ba"),0,len(c)) #used 0 outside the find functions
+print(c.find("ab",9,len(c))) #start with 9 with max leng where the search looked into
+
+-count function get the occurrence of a string.
+print(c.count("h"))
+
+-replace
+print(c.replace("ga","hh"))
+
+-case changes
+print(c.upper())
+print(c.lower())
+print(c.title())
+
+--length of the string
+We can also use a function called len() to check the length of a string!
+len('Hello World')
+
+-c.count('er') #Occurence of character in string
+-"ganesh" + "Babu" # concatenation
+-str.startswith(('g','a','s')) # start with the letter single or multiple(tuple)
+-str.endswith(('h','a')) # end with the letter single or multiple(tuple)
+-str12.isnumeric() #Return True if all characters in the string are numeric characters, and there is at least one characte
+-str13.isdigit() #Return True if all characters in the string are digits and there is at least one character,
+
+Python's built-in len() function counts all of the characters in the string, including spaces and punctuation.
+https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range  # for string methods
+
 Quiz:
 =====
 
 Assignment:
 ===========
 
-Resources
+Resources:
 =========
 https://pyformat.info/
 

@@ -2,10 +2,8 @@ Data Types
 Default value of Types
 Convert one data type to another
 To know the type of variable used in Python
-know ASCII , unicode and Numbers systems
 Strings
 data structures(collections) in python
-
 
 DataTypes
 ===========
@@ -15,7 +13,7 @@ DataTypes
 In Python, the data types are Organised in five types:
 1)None Type - An object that does not contain any value
 2)Numeric Type - int,float, complex
-3)Sequences  - can hold of other data types like str, bytes, bytearray,list,tuple, range
+3)Sequences  - can hold of other data types like str, bytes, bytearray,list,tuple,Range
 4)sets - Does not allow duplicates
 5)Dict - key and value
 
@@ -56,88 +54,16 @@ print(a,b,c)
 type(a)
 
 Complex Type:
--Complex numbers are written in the form, x + yj, 
-where x is the real part and y is the imaginary part. Here are some examples.
+Complex() returns a complex number with the value real + imag*1j or converts a string or number to a complex number.
+If the first parameter is a string, it will be interpreted as a complex number and the function must be called without a second parameter. The second parameter can never be a string. Each argument may be any numeric type (including complex). If imag is omitted, it defaults to zero and the constructor serves as a numeric conversion like int and float. If both arguments are omitted, returns 0j.
+If you are doing math or engineering that requires complex numbers (such as dynamics, control systems, or impedance of a circuit) this is a useful tool to have in Python.
 
 ex:
 print(3+5j)
 
-Binary type
------------
--A number with the prefix 0b is considered binary
-Ex:
-print(0b101011000)
-
-Hexadecimal Type
-----------------
--A number with the prefix 0o is considered Hex
-Ex:
-print(0o530)
-
-Octal  Type
------------
--A number with the prefix 0x is considered Octal
-Ex:
-print(0x158)
-
-Boolean Type
-------------
--boolean has two  logical values of values True or False
--Python comes with Booleans (with predefined True and False displays that are basically just the integers 1 and 0). It also has a placeholder object called None. Let's walk through a few quick examples of Booleans (we will dive deeper into them later in this course).
-
-Ex:
-x=False
-y=True
-x = (1 == True) #In Python, True represents the value as 1 and False as 0
-y = (1 == False)
-a = True + 4
-b = False + 10
-
-print(x)
-print(y)
-print("x is", x)
-print("y is", y)
-print("a:", a)
-print("b:", b)
-
-#We can use None as a placeholder for an object that we don't want to reassign yet:
-#None placeholder
- b = None
-#Show
-print(b)
-None
-
-Know ASCII , unicode and Numbers systems
-*-------------------------------------*
--All computer data is just numbers,Each character of text is stored as a number.When you press a key on the keyboard, the keyboard sends a number, corresponding to the key that was pressed,When text is displayed on your monitor, each character is read from memory as a number.Computer doesn't understand English or Hindi or any language.But computer do understand only 0 and 1.
--0 means False ,1 means True
--ASCII codes represent text in computers, communications equipment, and other devices that use text
--UNicod is the subset of ASCII and extended upto 2^21 characters
-
-print(ord("h"),"is ASCII value" ) #print ASCII value
-print(chr(104 ),"from binary to value")
-
-ref:
-http://www.asciitable.com/ - ASCII table
-http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def
-https://youtu.be/61Bs7-ycL64
-
-Number System
--------------
-1)Base 10(Decimal)- Represent any number using 10 digits [0–9]
-2)Base 2 (Binary) — Represent any number using 2 digits [0–1]
-3)Base 8 (Octal) — Represent any number using 8 digits [0–7]
-4)Base 16(Hexadecimal) — Represent any number using 10 digits and 6 characters [0–9, A, B, C, D, E, F]
-
-a=363
-print((a) ,"Decimal system")
-print(bin(a) ,"binary system")
-print(oct(a) ,"octal system")
-print(hex(a) ,"hex system")
- 
-Ref
-https://www.quora.com/What-is-the-use-of-number-system-in-computer
-
+complex(2,3)
+complex(10,1)
+complex('12+2j') #We can also pass strings:
 
 Default value of Types
 ======================
@@ -146,65 +72,6 @@ a=0
 
 for string
 a=''
-
-Convert one data type to another-Type converstion
-=================================================
--The process of converting the value of one data type (integer, string, float, etc.) to another data type is called type conversion.
--there are two types
-1)Implicit Type Conversion
-2)Explicit Type Conversion
-
-1)Implicit Type Conversion
-*------------------------*
--In Implicit type conversion, Python automatically converts one data type to another data type. This process doesn't need any user involvement.
-
-ex:
-num_int=32
-num_float=32.11
-
-num_new=num_int+num_float
-print("datatype of num_int",type(num_int))
-print("datatype of num_float",type(num_float))
-
-print("value of num_new:",num_new)
-print("datatype of num_new",type(num_new))
-
--we can see the num_new has a float data type because Python always converts smaller data types to larger data types to avoid the loss of data.
-
--let's try adding a string and an integer, and see how Python deals with it
-num_int=32
-num_string="Ganesh"
-num_new1= num_int+num_string
-
-print("datatype of num_int",type(num_int))
-print("datatype of num_float",type(num_string))
-
-print("datatype of String",num_new1)
-
--As we can see from the output, we got TypeError. Python is not able to use Implicit Conversion in such conditions.
-However, Python has a solution for these types of situations which is known as Explicit Conversion.
-
-2)Explicit Type Conversion
-*------------------------*
--In Explicit Type Conversion, users convert the data type of an object to required data type. We use the predefined functions like int(), float(), str(), etc to perform explicit type conversion
--This type of conversion is also called typecasting because the user casts (changes) the data type of the objects.
-
-Syntax :
-  <required_datatype>(expression)
-
-Ex:
-print(float("22.5"),"to string to  float Type") 
-print(int("22"),"to string to int Type") 
-print(int(22.5),"to float to int Type") 
-print(float(22),"to float to int Type") 
-
-Key Points to Remember
-----------------------
-1)Type Conversion is the conversion of object from one data type to another data type.
-2)Implicit Type Conversion is automatically performed by the Python interpreter.
-3)Python avoids the loss of data in Implicit Type Conversion.
-4)Explicit Type Conversion is also called Type Casting, the data types of objects are converted using predefined functions by the user.
-5)In Type Casting, loss of data may occur as we enforce the object to a specific data type
 
 To know the type of variable used in Python
 ===========================================
@@ -242,53 +109,8 @@ print(char)
 print(multiline_str)	
 print(raw_str)
 
-Python escape characters
------------------------
-To insert characters that are illegal in a string, use an escape character
-An escape character is a backslash \ followed by the character you want to insert.
-
-syntax
-	 " string literal "\
-Ex:
-print("we are so called "human" belongs to god kingdom") # does not work
-print("we are so called \"human\" belongs to god kingdom") # it works
-
-there are diff types:
-\newline -Backslash and newline ignored	
-\\ -Backslash (\)
-\' -Single quote (')
-\" -Double quote (")
-\a  -ASCII Bell (BEL)
-\b	-ASCII Backspace (BS)
-\f	-ASCII Formfeed (FF)
-\n	-ASCII Linefeed (LF)
-\r	-ASCII Carriage Return (CR)
-\t	-ASCII Horizontal Tab (TAB)
-\v	-ASCII Vertical Tab (VT)
-\ooo-Character with octal value ooo
-\xhh -Character with hex value hh
-
-Example:
-print("hello \
-world \
-:-)")  #Backslash and newline ignored
-print("positive\\negative") #backslash (\)
-print("\'positive\'") #Single quote (')
-print("\"positive\"") #Double quote (")
-print("Hello \a world ") #ASCII Bell (BEL)
-print("Hello \b world ") #ASCII Backspace (BS)
-print("Hello \f world! ") #ASCII Formfeed (FF)
-print("Hello\nworld! ") #ASCII Linefeed (LF)
-print("Hello \rWorld!") #ASCII Carriage Return (CR)
-print("Hello\tWorld! ") #ASCII Horizontal Tab (TAB)
-print("Hello \v World! ") #ASCII Vertical Tab (VT)
-print("\110\145\154\154\157\40\127\157\162\154\144\41 ") #Character with octal value ooo
-print("\x48\x65\x6c\x6c\x6f\x20\x57\x6f\x72\x6c\x64\x21 ") #Character with hex value hh
-
-we shall explore more on the string in upcoming string chapters.
-
-Sequences Type or data structure in pythonb
---------------
+Sequences Type or data structure in python
+==========================================
 -In Python, Sequences are the general term for ordered sets
 -Sequences are a generic term for an ordered set which means that the order in which we input the items will be the same when we access them
 
@@ -300,7 +122,7 @@ Set-  Does not allow duplicate
 dictionary - stores in key and value pair
 
 List
-*--*
+-----
 -List is an ordered sequence that can hold a variety of object types.
 -All the items in a list do not need to be of the same type.
 -Lists are mutable(Changeable), meaning, the value of elements of a list can be altered.
@@ -342,7 +164,7 @@ print(x[:-1]) #reverse
 print(x[1:-1]) #reverse
 
 add/remove/delete the list the values
---------------------------------------
+*-----------------------------------*
 x.append("babu")  #adding item using a value
 print(x)
 x.remove("babu") #remove item using a value
@@ -353,6 +175,7 @@ x.pop() #remove the last index of index
 print(x)
 
 additional methods
+*----------------*
 a1=[3,2,32,12,41]
 # a.clear() #clear from list
 # print(a)
@@ -370,7 +193,7 @@ print(x*2) #repeating
 print(x.count(1)) #return the occurence of the value
 
 Tuple
-*--*
+-----
 -Tuple is an ordered sequence of items same as a list. 
 -The only difference is that tuples are immutable(unchangeable) i,e once created cannot be modified.
 -Tuples are used to write-protect data and are usually faster than lists as they cannot change dynamically
@@ -398,8 +221,28 @@ tsl=tuple(lst)
 print(tsl)
 print(type(tsl))
 
+
+Range Type
+-----------
+-Always range starts from 0th index.
+
+syntax
+ variable-name= range(upperbound,lowerbound)
+
+r=range(5) #setting up the lower bond.
+for i in r:
+    print(i)
+
+r=range(1,16) #setting up the lower and upper bond.
+for i in r:
+    print(i)
+
+r=range(1,16,3) #step skips  3rd element
+for i in r:
+    print(i)
+
 Set
-*--*
+----
 -Set is an collection which is unordered and unindexed. No duplicate members.
 -Set is defined by values separated by comma inside braces {} but output shows in curly braces not like dictionary as it as key value pair
 -Items in a set are not ordered
@@ -426,7 +269,7 @@ st.add(32) #adding in the list
 #st.add(32,32) # cannot add more then on value
 
 Converting to frozen set
-------------------------
+*-----------------------*
 -you cannot do any operations on this frozen set . only we can do read the eleement
 
 st={32,45,65,78,"gan",78,32}
@@ -434,26 +277,6 @@ f=frozenset(st)
 print(f)
 print(type(f))
 f.remove(20) #cannot do
-
-Range Type
------------
--Always range starts from 0th index.
-
-syntax
- variable-name= range(upperbound,lowerbound)
-
-r=range(5) #setting up the lower bond.
-for i in r:
-    print(i)
-
-r=range(1,16) #setting up the lower and upper bond.
-for i in r:
-    print(i)
-
-r=range(1,16,3) #step skips  3rd element
-for i in r:
-    print(i)
-
 
 Bytes and bytearray
 *----------------*
@@ -472,7 +295,7 @@ c[3]=33
 print(c)
 
 Dictionary
-*--------*
+----------
 -Dictionary is a collection which is unordered, changeable and indexed. No duplicate members
 -Dictionary are unordered mappings for storing objects, Previously we saw how lists store objects in ordered sequence.,dicitonaries uses a key-value pariing instead.
 -This key-vale pair allows users to quickly grab objects without needing to know an index locations.
@@ -523,6 +346,17 @@ for i in k:
 #iterating the value
 for i in l:
     print(i)
+	
+Nesting Dictionaries
+--------------------
+Hopefully you're starting to see how powerful Python is with its flexibility of nesting objects and calling methods on them. Let's see a dictionary nested inside a dictionary:
+
+# Dictionary nested inside a dictionary nested inside a dictionary
+d = {'key1':{'nestkey':{'subnestkey':'value'}}}
+
+Wow! That's a quite the inception of dictionaries! Let's see how we can grab that value:
+# Keep calling the keys
+d['key1']['nestkey']['subnestkey']
 
 converting one data type to other data
 ======================================
@@ -558,3 +392,6 @@ Quiz:
 
 Assignment:
 ===========
+
+Resources:
+=========

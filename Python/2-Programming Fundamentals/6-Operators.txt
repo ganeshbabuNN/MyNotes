@@ -1,5 +1,6 @@
 Intro
 Type of operators
+Operator Overloading and Overriding
 operator precendenc and associativity
 Usefull operation in python
 
@@ -27,7 +28,7 @@ There are Type of Operators.
 Arithmetic operators are used to perform arithmetic operations between two operands.
 
 Operator				Description
-+ (Addition)			It is used to add two operands. 
++ (Addition)			It is used to add two operands or if you add a string it concatentations.
 - (Subtraction)			It is used to subtract the second operand from the first operand. If the first operand is less than the second operand, the value results negative.  
 / (divide)				It returns the quotient after dividing the first operand by the second operand. 
 * (Multiplication)		It is used to multiply one operand with the other. 
@@ -199,6 +200,33 @@ print(z)
 print(x is z)
 print(x is not z)
 
+
+Operator Overloading and Overriding
+-----------------------------------
+
+#Using number
+x=10
+y=3
+print(x+y)
+
+#string 
+s1 = "Hello"
+s2 ="How are you"
+
+print (s1+s2)
+
+#using list
+l1 = [1,2,3,4]
+l2=[5,6,7,8]
+print(l1+l2)
+
+
+#string 
+s1 = "Hello"
+s1 ="How are you"
+
+print(s1)
+
 operator precendenc and associativity
 =====================================
 The precedence of the operators is essential to find out since it enables us to know which operator should be evaluated first. 
@@ -247,55 +275,6 @@ Moreover, chaining of assignments operators like a = b = c is perfectly alright 
 Usefull operaters(functions) in python
 ======================================
 -this will be discussed after control flow chapter
-
-Range Function
---------------
-The range function allows you to quickly generate a list of integers, this comes in handy a lot, so take note of how to use it! There are 3 parameters you can pass, a start, a stop, and a step size. Let's see some examples
-
-Syntax:
-range(start,stop,step size)  
-
-range(0,11)# range from start and to end
-list(range(1,11))# cast to list functions # Notice how 11 is not included, up to but not including 11, just like slice notation!
-list(range(1,11,3))# cast to list functions with skip
-
-Note that this is a generator function, so to actually get a list out of it, we need to cast it to a list with list(). What is a generator? Its a special type of function that will generate information and not need to save it to memory
-
-enumerate
----------
-enumerate is a very useful function to use with for loops. Let's imagine the following situation:
-
-classical way
--here you need to remember the index and letter
-flag=0
-for letter in "ganesh babu":
-    print("At index {} the letter is {}".format(flag,letter))
-    flag+=1
-
--Keeping track of how many loops you've gone through is so common, that enumerate was created so you don't need to worry about creating and updating this index_count or loop_count variable
-# Notice the tuple unpacking!
-for flag,letter in enumerate("ganesh babu"):
-    print("At index {} the letter is {}".format(flag,letter))
-
-zip
----
-Notice the format enumerate actually returns, let's take a look by transforming it to a list()
-
-list(enumerate('abcde'))  #Notice the format enumerate actually returns, let's take a look by transforming it to a list.
-
-It was a list of tuples, meaning we could use tuple unpacking during our for loop. This data structure is actually very common in Python , especially when working with outside libraries. You can use the zip() function to quickly create a list of tuples by "zipping" up together two list.
-
-mylist1 = [1,2,3,4,5]
-mylist2 = ['a','b','c','d','e']
-
-# This one is also a generator! We will explain this later, but for now let's transform it to a list
-zip(mylist1,mylist2)
-
-list(zip(mylist1,mylist2))
-
-#To use the generator, we could just use a for loop
-for l1,l2 in zip(mylist1,mylist2):
-    print(f"for this tuple, first item was {l1} and second item was {l2}")
 
 In 
 --
@@ -351,3 +330,6 @@ Quiz:
 
 Assignment:
 ===========
+
+Resources:
+=========

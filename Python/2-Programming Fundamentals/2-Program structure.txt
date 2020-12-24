@@ -2,30 +2,52 @@ Introduction
 Command Prompt
 Using Function
 Using Class
-resources
+Help info
 
 
 Introduction
 ============
 
-
 Command Prompt
-=============
+==============
+print "hello world" #single statement
 
 Using Function
 ==============
+def sum(a,b): #funciton name with empty argument
+    return "hello world"
 
+sum(2,3)
 
 Using Class
 ===========
+class display1:  #class name
+    
+    def __init__(self): #constructor
+        print "hello world" 
+    
+    def sum(a,b): #method name
+	print("Hello world1")
+    
+    def sub(a,b): #method name
+	print("hello world2")
 
+t=display()
+t.sum(2,2)
+t.sub(3,4)
+print(t)
 
-resources
+Help info
 =========
-
+1)https://docs.python.org/3/library/index.html # official documents
+2)help(list.append)
+3)In jypter notebook press Shift+Tab for help or Tab for info on functions
 
 Quiz:
 =====
 
 Assignment:
 ===========
+
+Resources:
+=========

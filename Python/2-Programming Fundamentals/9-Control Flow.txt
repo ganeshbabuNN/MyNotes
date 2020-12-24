@@ -132,6 +132,8 @@ else:
 Iteration statements:
 =====================
 The flow of the programs written in any programming language is sequential by default. Sometimes we may need to alter the flow of the program. The execution of a specific code may need to be repeated several numbers of times.
+*For Loop
+*While Loop
 
 1)For loop
 ----------
