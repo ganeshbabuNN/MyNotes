@@ -29,8 +29,9 @@ Arithmetic operators are used to perform arithmetic operations between two opera
 
 Operator				Description
 + (Addition)			It is used to add two operands or if you add a string it concatentations.
-- (Subtraction)			It is used to subtract the second operand from the first operand. If the first operand is less than the second operand, the value results negative.  
-/ (divide)				It returns the quotient after dividing the first operand by the second operand. 
+- (Subtraction)			It is used to subtract the second operand from the first operand. 
+				If the first operand is less than the second operand, the value results negative.  
+/ (divide)			It returns the quotient after dividing the first operand by the second operand. 
 * (Multiplication)		It is used to multiply one operand with the other. 
 % (reminder)			It returns the reminder after dividing the first operand by the second operand. 
 ** (Exponent)			It is an exponent operator represented as it calculates the first operand power to the second operand.
@@ -176,14 +177,30 @@ Python membership operators are used to check the membership of value inside a P
 If the value is present in the data structure, then the resulting value is true otherwise it returns false.
 
 Operator	 Description
-in			 It is evaluated to be true if the first operand is found in the second operand (list, tuple, or dictionary).
+in	         It is evaluated to be true if the first operand is found in the second operand (list, tuple, or dictionary).
 not in		 It is evaluated to be true if the first operand is not found in the second operand (list, tuple, or dictionary).
 
-x=["ganesh","vaibhav","rudra"]
-y="praki " in x
-print("in operator ",y)
-y="praki " not in x
-print("in operator ",y)
+In operator
+*---------*
+1 in [1,'X','z',3,32] #checking the list
+1 in (1,'X','z',3,32) #checking the tuple
+1 in {1,'X','z',3,32} #checking the set
+'a1' in {'a1':2,'a2':4} #checking dictionary by defalt keys
+'a1' in {'a1':2,'a2':4} #checking dictionary by defalt keys
+dic1 = {'a1':2,'a2':4}
+'a1' in dic1.keys() #checking the keys
+2 in dic1.values() # checking the values
+
+not in
+*----*
+1 not in [1,'X','z',3,32] #checking the list
+1 not in (1,'X','z',3,32) #checking the tuple
+1 not in {1,'X','z',3,32} #checking the set
+'a1' not in {'a1':2,'a2':4} #checking dictionary by defalt keys
+'a1' not in {'a1':2,'a2':4} #checking dictionary by defalt keys
+dic1 = {'a1':2,'a2':4}
+'a1' not in dic1.keys() #checking the keys
+2  not in dic1.values() # checking the values
 
 7)Identity Operators
 --------------------
@@ -233,13 +250,13 @@ The precedence of the operators is essential to find out since it enables us to 
 The precedence table of the operators in Python is given below.
 
 Operator	Description
-**			The exponent operator is given priority over all the others used in the expression.
+**		The exponent operator is given priority over all the others used in the expression.
 ~ + -		The negation, unary plus, and minus.
 * / % //	The multiplication, divide, modules, reminder, and floor division.
-+ -			Binary plus, and minus
++ -		Binary plus, and minus
 >> <<		Left shift. and right shift
-&			Binary and.
-^ |			Binary xor, and or
+&		Binary and.
+^ |		Binary xor, and or
 <= < > >=	Comparison operators (less than, less than equal to, greater than, greater then equal to).
 <> == !=	Equality operators.
 = %= /= 	Assignment operators
@@ -274,31 +291,6 @@ Moreover, chaining of assignments operators like a = b = c is perfectly alright 
 
 Usefull operaters(functions) in python
 ======================================
--this will be discussed after control flow chapter
-
-In 
---
-We've already seen the in keyword during the for loop, but we can also use it to quickly check if an object is in a list
-1 in [1,'X','z',3,32] #checking the list
-1 in (1,'X','z',3,32) #checking the tuple
-1 in {1,'X','z',3,32} #checking the set
-'a1' in {'a1':2,'a2':4} #checking dictionary by defalt keys
-'a1' in {'a1':2,'a2':4} #checking dictionary by defalt keys
-dic1 = {'a1':2,'a2':4}
-'a1' in dic1.keys() #checking the keys
-2 in dic1.values() # checking the values
-
-not in
-------
-1 not in [1,'X','z',3,32] #checking the list
-1 not in (1,'X','z',3,32) #checking the tuple
-1 not in {1,'X','z',3,32} #checking the set
-'a1' not in {'a1':2,'a2':4} #checking dictionary by defalt keys
-'a1' not in {'a1':2,'a2':4} #checking dictionary by defalt keys
-dic1 = {'a1':2,'a2':4}
-'a1' not in dic1.keys() #checking the keys
-2  not in dic1.values() # checking the values
-
 Min and Max
 -----------
 Quickly check the minimum or maximum of a list with these functions.
