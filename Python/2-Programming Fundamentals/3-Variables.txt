@@ -33,6 +33,7 @@ Assigning values to variable
 =============================
 -When we assign any value to the variable that variable is declared automatically
 -The single equal sign(=) operator is used to assign value to a variable
+-the evaluations of the assignment starts from right -left associativity.
 
 a=10 
 print(a)
@@ -45,6 +46,9 @@ print(b)
 
 c='ravi'
 print(c)
+
+a=a+3 (#10+3) #evaulations order
+print(a)
 
 Multiple Assignment
 -------------------
