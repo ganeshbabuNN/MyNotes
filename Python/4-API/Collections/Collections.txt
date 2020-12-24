@@ -1,3 +1,88 @@
+
+Collection
+==========
+-The collections module is a built-in module that implements specialized container data types providing alternatives to Python’s general purpose built-in containers. 
+We've already gone over the basics: dict, list, set, and tuple.
+
+Counter
+=======
+-Counter is a dict subclass which helps count hashable objects. Inside of it elements are stored as dictionary keys and the counts of the objects are stored as the value.
+-In a simple, just takes the unique values of all the elements along with theire count of occurrences
+
+from collections import Counter
+gst = [53,2,4,4,6,5,57,7,67,567,46,45,54,4,23,45,6,7,8,3,454]
+Counter(gst)
+
+-string word character wise
+gst1=("sdsdfklsdfiuerkljiouvcfjklvciop;lkfsdoiupjlk;fdoifd;fdkldfjfd;l")
+Counter(gst1)
+
+god = ("God, in monotheistic thought, is conceived of as the supreme being, creator deity, and principal object of faith.God is usually conceived as being omnipotent (all-powerful), omniscient (all-knowing), omnipresent (all-present) and omnibenevolent (all-good) as well as having an eternal and necessary existence. These attributes are used either in way of analogy or are taken literally. God is most often held to be incorporeal (immaterial).Incorporeality and corporeality of God are related to conceptions of transcendence (being outside nature) and immanence (being in nature) of God, with positions of synthesis such as the immanent transcendence")
+word=god.split()
+Counter(word)
+
+# Methods with Counter()
+c = Counter(god)
+
+Methods of Collections
+----------------------
+Most_common:
+Return a list of the n most common elements and their counts from the most common to the least. If n is omitted or None, most_common() returns all elements in the counter. Elements with equal counts are ordered in the order first encountered
+c.most_common(2)
+
+sum(c.values()) # total of all counts
+# c.clear() # reset all counts
+list(c) ## list unique elements
+set(c) # convert to a set
+dict(c)  # convert to a regular dictionary
+c.items()  # convert to a list of (elem, cnt) pairs
+Counter(dict(c.items())) # convert from a list of (elem, cnt) pairs
+c.most_common()  # n least common elements
+c += Counter()  # remove zero and negative counts
+
+
+defaultdict
+===========
+defaultdict is a dictionary-like object which provides all methods provided by a dictionary but takes a first argument (default_factory) as a default data type for the dictionary. Using defaultdict is faster than doing the same using dict.set_default method.
+A defaultdict will never raise a KeyError. Any key that does not exist gets the value returned by the default factory.
+
+from collections import defaultdict
+d={}
+d['one']  #we cannot added a key without a value in normal dictionary
+
+#in order to allow key to be added withouth a value, use the defaultdict
+d=defaultdict(object) # this defaultdict allows to key to be added in the dictionary
+d['swift']
+d
+d=defaultdict(lambda:0) #you can initialize the value
+d['swift']
+d
+
+for i in d.items():
+    print(i)
+
+
+Namedtuple
+=========
+The standard tuple uses numerical indexes to access its members, for example:
+
+t = (12,13,14)
+t[0]
+
+For simple use cases, this is usually enough. On the other hand, remembering which index should be used for each value can lead to errors, especially if the tuple has a lot of fields and is constructed far from where it is used. A namedtuple assigns names, as well as the numerical index, to each member.
+Each kind of namedtuple is represented by its own class, created by using the namedtuple() factory function. The arguments are the name of the new class and a string containing the names of the elements.
+You can basically think of namedtuples as a very quick way of creating a new object/class type with some attribute fields. For example:
+
+from collections import namedtuple
+phone=namedtuple('phone',['make','model','modelnumber','year'])
+ganesh = phone(make='Apple',model='iphone8',modelnumber='MQ7F2LL/A',year=2019)
+
+We construct the namedtuple by first passing the object type name (Dog) and then passing a string with the variety of fields as a string with spaces between the field names. We can then call on the various attributes:
+
+ganesh.make
+ganesh.model
+ganesh.year
+
 Quiz:
 =====
 
@@ -6,3 +91,4 @@ Assignment:
 
 Resources
 =========
+https://docs.python.org/3/library/collections.htmlS

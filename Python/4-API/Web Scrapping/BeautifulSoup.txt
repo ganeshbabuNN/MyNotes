@@ -1,0 +1,282 @@
+Intro
+installations
+Ex1:Grabbing the title of a page
+Ex 2 - Grabbing all elements of a class
+Ex3:- Getting an Image from a Website
+Ex4:Working with Multiple Pages and Items
+Ex5:Extract Author and quotes 
+
+Intro
+=====
+Web scraping is the process of collecting and parsing raw data from the Web, and the Python community has come up with some pretty powerful web scraping tools.
+The Internet hosts perhaps the greatest source of information—and misinformation—on the planet. 
+Many disciplines, such as data science, business intelligence, and investigative reporting, can benefit enormously from collecting and analyzing data from websites.
+
+Guide to Web Scraping
+---------------------
+-Always be respectful and try to get premission to scrape, do not bombard a website with scraping requests, otherwise your IP address may be blocked!
+-Be aware that websites change often, meaning your code could go from working to totally broken from one day to the next.
+-Pretty much every web scraping project of interest is a unique and custom job, so try your best to generalize the skills learned here.
+
+Its good you should know HTML and CSS as a pre-requsites
+
+Scraping Guidelines
+-------------------
+Keep in mind you should always have permission for the website you are scraping! Check a websites terms and conditions for more info.
+Also keep in mind that a computer can send requests to a website very fast, so a website may block your computer's ip address if you send too many requests too quickly. 
+Lastly, websites change all the time! You will most likely need to update your code often for long term web-scraping jobs
+
+installations
+=============
+There are a few libraries you will need, you can go to your command line and install them with conda install (if you are using anaconda distribution), or pip install for other python distributions.
+
+conda install requests
+conda install lxml
+conda install bs4
+
+if you are not using the Anaconda Installation, you can use pip install instead of conda install, for example:
+
+pip install requests
+pip install lxml
+pip install bs4
+Now let's see what we can do with these libraries.
+
+Ex1:Grabbing the title of a page
+================================
+Let's start very simple, we will grab the title of a page. Remember that this is the HTML block with the title tag. 
+For this task we will use https://www.iana.org which is a website specifically made to serve as an example domain. 
+Let's go through the main steps:
+
+import requests
+
+# Step 1: Use the requests library to grab the page
+# Note, this may fail if you have a firewall blocking Python/Jupyter 
+# Note sometimes you need to run this twice if it fails the first time
+res=requests.get("https://www.iana.org")
+
+#This object is a requests.models.Response object and it actually contains the information from the website, for example:
+
+type(res)
+
+res.text #get the data content
+
+#Now we use BeautifulSoup to analyze the extracted page. 
+Technically we could use our own custom script to loook for items in the string of res.text 
+but the BeautifulSoup library already has lots of built-in tools and methods to grab information from a string of this nature (basically an HTML file). Using BeautifulSoup we can create a "soup" object that contains all the "ingredients" of the webpage. Don't ask me about the weird library names, I didn't choose them! :)
+
+import bs4
+soup = bs4.BeautifulSoup(res.text,"lxml")
+soup #get the formatted html page like page source
+
+#Now let's use the .select() method to grab elements. We are looking for the 'title' tag, so we will pass in 'title'
+soup.select('title')
+
+#Notice what is returned here, its actually a list containing all the title elements (along with their tags). You can use indexing or even looping to grab the elements from the list. Since this object it still a specialized tag, we cna use method calls to grab just the text.
+title_tag = soup.select('title')
+title_tag[0]
+type(title_tag[0])
+title_tag[0].getText() 
+
+Ex 2 - Grabbing all elements of a class
+=======================================
+Let's try to grab all the section headings of the Wikipedia Article on Grace Hopper from this URL: https://en.wikipedia.org/wiki/Grace_Hopper
+# First get the request
+res = requests.get('https://en.wikipedia.org/wiki/Grace_Hopper')
+
+# Create a soup from request
+soup = bs4.BeautifulSoup(res.text,"lxml")
+
+Now its time to figure out what we are actually looking for. Inspect the element on the page to see that the section headers have the class "mw-headline"
+ecause this is a class and not a straight tag, we need to adhere to some syntax for CSS. In this case
+
+Syntax used :
+soup.select('div') -All elements with the <div> tag
+soup.select('#some_id')-The HTML element containing the id attribute of some_id
+soup.select('.notice')-All the HTML elements with the CSS class named notice
+soup.select('div span')-Any elements named <span> that are within an element named <div>
+soup.select('div > span')-Any elements named <span> that are directly within an element named <div>, with no other element in between
+
+
+# note depending on your IP Address, 
+# this class may be called something different
+soup.select(".toctext")
+
+Ex3:- Getting an Image from a Website
+=====================================
+Let's attempt to grab the image of the Deep Blue Computer from this wikipedia article: https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)
+res = requests.get("https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)")
+soup = bs4.BeautifulSoup(res.text,'lxml')
+# image_info = soup.select('.image')
+image_info = soup.findAll('img')#grabbing the img tag
+image_info
+len(image_info)
+computer = image_info[0]
+type(computer)
+#You can make dictionary like calls for parts of the Tag, in this case, we are interested in the src , or "source" of the image, which should be its own .jpg or .png link:
+computer['src'] #We can actually display it with a markdown cell with the following:
+#Now that you have the actual src link, you can grab the image with requests and get along with the .content attribute. Note how we had to add https:// before the link, if you don't do this, requests will complain (but it gives you a pretty descriptive error code)
+image_link = requests.get('https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Deep_Blue.jpg/220px-Deep_Blue.jpg')
+# The raw content (its a binary file, meaning we will need to use binary read/write methods for saving it)
+image_link.content
+#Let's write this to a file:=, not the 'wb' call to denote a binary writing of the file.
+f = open('my_new_file_name.jpg','wb')
+f.write(image_link.content)
+f.close()
+
+Ex4:Working with Multiple Pages and Items
+=========================================
+Let's show a more realistic example of scraping a full site. The website: http://books.toscrape.com/index.html is specifically designed for people to scrape it. Let's try to get the title of every book that has a 2 star rating and at the end just have a Python list with all their titles.
+
+We will do the following:
+
+-Figure out the URL structure to go through every page
+-Scrap every page in the catalogue
+-Figure out what tag/class represents the Star rating
+-Filter by that star rating using an if statement
+-Store the results to a list
+We can see that the URL structure is the following:
+http://books.toscrape.com/catalogue/page-1.html
+
+base_url = 'http://books.toscrape.com/catalogue/page-{}.html'
+res = requests.get(base_url.format('1'))#We can then fill in the page number with .format()
+res = requests.get(base_url.format('2')) #We can then fill in the page number with .format()
+soup = bs4.BeautifulSoup(res.text,"lxml") #Now let's grab the products (books) from the get request result
+soup.select(".product_pod")
+products = soup.select(".product_pod") #Now we can see that each book has the product_pod class. We can select any tag with this class, and then further reduce it by its rating.
+example = products[0]
+type(example)
+example.attrs
+list(example.children) #Now by inspecting the site we can see that the class we want is class='star-rating Two' , if you click on this in your browser, you'll notice it displays the space as a . , so that means we want to search for ".star-rating.Two"
+example.select('.star-rating.Three')
+example.select('.star-rating.Two') #But we are looking for 2 stars, so it looks like we can just check to see if something was returned
+#Alternatively, we can just quickly check the text string to see if "star-rating Two" is in it. Either approach is fine (there are also many other alternative approaches!)
+#Now let's see how we can get the title if we have a 2-star match
+example.select('a')
+example.select('a')[1]
+example.select('a')[1]['title']
+
+#Okay, let's give it a shot by combining all the ideas we've talked about! (this should take about 20-60 seconds to complete running. Be aware a firwall may prevent this script from running. Also if you are getting a no response error, maybe try adding a sleep step with time.sleep(1).
+two_star_titles = []
+
+for n in range(1,51):
+
+    scrape_url = base_url.format(n)
+    res = requests.get(scrape_url)
+    
+    soup = bs4.BeautifulSoup(res.text,"lxml")
+    books = soup.select(".product_pod")
+    
+    for book in books:
+        if len(book.select('.star-rating.Two')) != 0:
+            two_star_titles.append(book.select('a')[1]['title'])
+
+two_star_titles
+#** Excellent! You should now have the tools necessary to scrape any websites that interest you! Keep in mind, the more complex the website, the harder it will be to scrape. Always ask for permission! **
+
+Ex5:Extract Author and quotes
+
+TASK: Import any libraries you think you'll need to scrape a website.
+import lxml
+import requests
+import bs4
+
+TASK: Use requests library and BeautifulSoup to connect to http://quotes.toscrape.com/ and get the HMTL text from the homepage.
+
+res = requests.get("http://quotes.toscrape.com/")
+res.text
+
+TASK: Get the names of all the authors on the first page
+soup = bs4.BeautifulSoup(res.text,'lxml')
+soup.select(".author")
+
+# I used a set to not worry about repeat authors.
+authors = set() 
+for name in soup.select(".author"):
+    authors.add(name.text)
+
+TASK: Create a list of all the quotes on the first page.
+quotes = []
+for quote in soup.select(".text"):
+    quotes.append(quote.text)
+
+quotes
+
+TASK: Inspect the site and use Beautiful Soup to extract the top ten tags from the requests text shown on the top right from the home page (e.g Love,Inspirational,Life, etc...). HINT: Keep in mind there are also tags underneath each quote, try to find a class only present in the top right tags, perhaps check the span
+
+soup = bs4.BeautifulSoup(res.text,'lxml')
+soup.select('.tag-item')
+
+for item in soup.select(".tag-item"):
+    print(item.text)
+
+TASK: Notice how there is more than one page, and subsequent pages look like this http://quotes.toscrape.com/page/2/. Use what you know about for loops and string concatenation to loop through all the pages and get all the unique authors on the website. Keep in mind there are many ways to achieve this, also note that you will need to somehow figure out how to check that your loop is on the last page with quotes. For debugging purposes, I will let you know that there are only 10 pages, so the last page is http://quotes.toscrape.com/page/10/, but try to create a loop that is robust enough that it wouldn't matter to know the amount of pages beforehand, perhaps use try/except for this, its up to you!
+
+Possible Solution #1 ( Assuming You Know Number of Pages)
+url = 'http://quotes.toscrape.com/page/'
+authors = set()
+
+for page in range(1,10):
+
+    # Concatenate to get new page URL
+    page_url = url+str(page)
+    # Obtain Request
+    res = requests.get(page_url)
+    # Turn into Soup
+    soup = bs4.BeautifulSoup(res.text,'lxml')
+    # Add Authors to our set
+    for name in soup.select(".author"):
+        authors.add(name.text)
+
+Possible Solution #2 ( Unknown Number of Pages, but knowledge of last page)
+Let's check what the last invalid page looks like:
+# Choose some huge page number we know doesn't exist
+page_url = url+str(9999999)
+
+# Obtain Request
+res = requests.get(page_url)
+
+# Turn into Soup
+soup = bs4.BeautifulSoup(res.text,'lxml')
+
+soup
+# This solution requires that the string "No quotes found!" only occurs on the last page.
+# If for some reason this string was on the other pages, we would need to be more detailed.
+"No quotes found!" in res.text
+
+page_still_valid = True
+authors = set()
+page = 1
+
+while page_still_valid:
+
+    # Concatenate to get new page URL
+    page_url = url+str(page)
+    
+    # Obtain Request
+    res = requests.get(page_url)
+    
+    # Check to see if we're on the last page
+    if "No quotes found!" in res.text:
+        break
+    
+    # Turn into Soup
+    soup = bs4.BeautifulSoup(res.text,'lxml')
+    
+    # Add Authors to our set
+    for name in soup.select(".author"):
+        authors.add(name.text)
+        
+    # Go to Next Page
+    page += 1
+
+There are lots of other potential solutions that are even more robust and flexible, the main idea is the same though, use a while loop to cycle through potential pages and have a break condition based on the invalid page.
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+========= 
+https://www.crummy.com/software/BeautifulSoup/bs4/doc/

@@ -1,0 +1,87 @@
+Timing your code
+================
+Sometimes it's important to know how long your code is taking to run, or at least know if a particular line of code is slowing down your entire project. 
+Python has a built-in timing module to do this.
+
+Example Function or Script
+--------------------------
+Here we have two functions that do the same thing, but in different ways. How can we tell which one is more efficient? Let's time it
+
+def func_one(n):
+    return [str(n) for n in range(n)]
+
+func_one(11)
+
+def func_two(n):
+    return[list(map(str,range(n)))]
+
+func_two(11)
+
+Timing Start and Stop
+---------------------
+We can try using the time module to simply calculate the elapsed time for the code. Keep in mind, due to the time module's precision, the code needs to take at least 0.1 seconds to complete
+
+import time
+#step1 : Get the start time
+start_time=time.time()
+#step2 : run your code you want to time
+result = func_one(10000000)
+#step 3 : calculated total time elapsed
+end_time=time.time()-start_time
+
+end_time
+
+#step1 : Get the start time
+start_time=time.time()
+#step2 : run your code you want to time
+result = func_two(10000000)
+#step 3 : calculated total time elapsed
+end_time=time.time()-start_time
+
+end_time
+
+Timeit Module
+=============
+What if we have two blocks of code that are quite fast, the difference from the time.time() method may not be enough to tell which is fater. 
+In this case, we can use the timeit module.
+The timeit module takes in two strings, a statement (stmt) and a setup. 
+It then runs the setup code and runs the stmt code some n number of times and reports back average length of time it took.
+
+import timeit
+
+The setup (anything that needs to be defined beforehand, such as def functions.)
+setup ='''
+def func_one(n):
+    return [str(n) for n in range(n)]
+'''
+stmt1='func_one(100000)' # execute the statement as number of times
+
+import timeit
+timeit.timeit(stmt,setup,number=100)
+
+setup2='''
+def func_two(n):
+    return[list(map(str,range(n)))] 
+'''
+stmt2='func_two(100000)' # execute the statement as number of times
+
+timeit.timeit(stmt2,setup2,number=100)
+
+In jypter magic method
+======================
+NOTE: This method is ONLY available in Jupyter and the magic command needs to be at the top of the cell with nothing above it (not even commented code)
+%%timeit
+func_one(100)
+
+%%timeit
+func_two(100)
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========
+https://docs.python.org/3/library/timeit.html

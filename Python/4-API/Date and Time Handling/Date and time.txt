@@ -1,7 +1,7 @@
 date and time
-Time since epoch
 finding the current date and time
 combining date and time
+Time since epoch
 sorting dates
 sleep()
 knowing the execution time of a program
@@ -10,24 +10,78 @@ Date and time
 =============
 In python, the date is not a data type, but we can work with the date objects by importing the module named with datetime, time, and calendar.
 
-Time since epoch
-================
-import time
+Finding the current date and time
+=================================
+datetime (as you might suspect) also allows us to work with date timestamps. Calendar date values are represented with the date class. 
+Instances have attributes for year, month, and day. It is easy to create a date representing today’s date using the today() class method.
 
-epochseconds=time.time()
-print(epochseconds)
-t=time.ctime(epochseconds)
-print(t)
-
-finding the current date and time
-================================
 import _datetime,datetime
 
 t=datetime.datetime.today()
 print('Current date: {}/{}/{}'.format(t.day,t.month,t.year))
 print('Current date: {}:{}:{}'.format(t.hour,t.minute,t.second))
 
-combining date and time
+#customizing the time/date
+today = datetime.date.today()
+print(today)
+print('ctime:', today.ctime())
+print('tuple:', today.timetuple())
+print('ordinal:', today.toordinal())
+print('Year :', today.year)
+print('Month:', today.month)
+print('Day  :', today.day)
+
+#As with time, the range of date values supported can be determined using the min and max attributes.
+print('Earliest  :', datetime.date.min)
+print('Latest    :', datetime.date.max)
+print('Resolution:', datetime.date.resolution)
+
+#Another way to create new date instances uses the replace() method of an existing date. For example, you can change the year, leaving the day and month alone.
+d1 = datetime.date(2015, 3, 11)
+print('d1:', d1)
+
+d2 = d1.replace(year=1990)
+print('d2:', d2)
+
+#We can perform arithmetic on date objects to check for time differences. For example:
+d1-d2
+
+current time
+============
+-Let's take a look at how we can extract time information from the datetime module. 
+-We can create a timestamp by specifying datetime.time(hour,minute,second,microsecond)
+
+import time
+epochseconds=time.time()
+print(epochseconds)
+t=time.ctime(epochseconds)
+print(t)
+
+Customising the time
+--------------------
+import datetime
+
+t = datetime.time(1, 12, 1)
+
+# Let's show the different components
+print(t)
+print('hour  :', t.hour)
+print('minute:', t.minute)
+print('second:', t.second)
+print('microsecond:', t.microsecond)
+print('tzinfo:', t.tzinfo)
+
+Note: A time instance only holds values of time, and not a date associated with the time.
+We can also check the min and max values a time of day can have in the module
+
+print('Earliest  :', datetime.time.min)
+print('Latest    :', datetime.time.max)
+print('Resolution:', datetime.time.resolution)
+
+The min and max class attributes reflect the valid range of times in a single day.
+
+
+Combining date and time
 =======================
 -we can create the date and the time object
 
@@ -36,7 +90,7 @@ from datetime import *
 d=date(2020,3,21)
 t=time(12,44)
 dt=datetime.combine(d,t)
-print(dt)
+print(dt)	
 
 sorting dates
 =============
@@ -79,7 +133,7 @@ ldate.sort()
 
 for d in ldate:
     print(d)
-    time.sleep(1)
+    time.sleep(1) # sleep for 1 millisecond
 
 knowing the execution time of a program
 =======================================
@@ -102,6 +156,42 @@ for d in ldate:
 endtime= time.perf_counter()
 print("Execution time",endtime-startime)
 
+Parsing the given date
+======================
+-if we know the date format
+date_string="12-12-2020"
+datetime.datetime.strptime('12-12-2020','%d-%m-%Y').strftime("%d-%m-%y")
+
+The datetime object has a method for formatting date objects into readable strings.
+The method is called strftime(), and takes one parameter, format, to specify the format of the returned string
+
+%a-Weekday, short version-Wed
+%A-Weekday, full version-Wednesday
+%w-Weekday as a number 0-6, 0 is Sunday-3
+%d-Day of month 01-31-31
+%b-Month name, short version-Dec
+%B-Month name, full version-December
+%m-Month as a number 01-12-12
+%y-Year, short version, without century-18
+%Y-Year, full version-2018
+%H-Hour 00-23-17
+%I-Hour 00-12-05
+%p-AM/PM-PM
+%M-Minute 00-59-41
+%S-Second 00-59-08
+%f-Microsecond 000000-999999-548513
+%z-UTC offset-+0100	
+%Z-Timezone-CST
+%j-Day number of year 001-366-365
+%U-Week number of year, Sunday as the first day of week, 00-53-52
+%W-Week number of year, Monday as the first day of week, 00-53-52	
+%c-Local version of date and time-Mon Dec 31 17:41:00 2018	
+%x-Local version of date-12/31/18	
+%X-Local version of time-17:41:00	
+%%-A % character-%	
+
+Ref:https://stackoverflow.com/questions/2265357/parse-date-string-and-change-format
+
 Quiz:
 =====
 
@@ -110,3 +200,5 @@ Assignment:
 
 Resources
 =========
+https://docs.python.org/3/library/datetime.html
+https://www.w3schools.com/python/python_datetime.asp

@@ -1,0 +1,207 @@
+Files
+OS Module
+shutil Module
+
+Files
+=====
+If you want to write the data into a file, you use file handling.
+
+syntax
+file object = open(<file-name>, <access-mode>, <buffering>)  
+
+access-mode
+r -It opens the file to read-only. The file pointer exists at the beginning.
+rb -It opens the file to read only in binary format. The file pointer exists at the beginning of the file.
+r+ -It opens the file to read and write both. The file pointer exists at the beginning of the file.
+rb+ -It opens the file to read and write both in binary format. The file pointer exists at the beginning of the file.
+w - It opens the file to write only. It overwrites the file if previously exists or creates a new one if no file exists with the same name. The file pointer exists at the beginning of the file.
+wb - It opens the file to write only in binary format. It overwrites the file if it exists previously or creates a new one if no file exists with the same name. The file pointer exists at the beginning of the file.
+w+ - It opens the file to write and read both. It is different from r+ in the sense that it overwrites the previous file if one exists whereas r+ doesn't overwrite the previously written file. It creates a new file if no file exists. The file pointer exists at the beginning of the file.
+wb+- It opens the file to write and read both in binary format. The file pointer exists at the beginning of the file.
+a - It opens the file in the append mode. The file pointer exists at the end of the previously written file if exists any. It creates a new file if no file exists with the same name.
+ab - It opens the file in the append mode in binary format. The pointer exists at the end of the previously written file. It creates a new file in binary format if no file exists with the same name.
+a+ - It opens a file to append and read both. The file pointer remains at the end of the file if a file exists. It creates a new file if no file exists with the same name.
+ab+- It opens a file to append and read both in binary format. The file pointer remains at the end of the file.
+
+
+Write String to a file
+----------------------
+
+f=open("mylog.txt","w")
+f.write("Hello, gani how are you")
+f.close()
+
+Read from a file
+----------------
+f=open("mylog.txt","r")
+c=f.read()
+print(c)
+f.close()
+
+Write multiple strings
+----------------------
+f=open("newfile.txt","w")
+print("Enter Text(Type # when your are done)")
+s=""
+while s!="#":
+    s=input()
+    f.write(s + "\n")
+f.close()
+
+#another method to write line by line
+f.writelines(s)
+
+
+Pickle
+------
+--Pickle is used for serializing and de-serializing Python object structures, also called marshalling or flattening. 
+--Serialization refers to the process of converting an object in memory to a byte stream that can be stored on disk or sent over a network. 
+Later on, this character stream can then be retrieved and de-serialized back to a Python object. 
+
+class Student:
+    def __init__(self,id,name,score):
+        self.id=id
+        self.name=name
+        self.score=score
+        
+    def display(self):
+        return print(self.id,self.name,self.score)
+
+
+serialize the object
+*-------------------*
+
+import pickle,studentpick
+
+f=open("student.bat","wb")
+s=studentpick.Student(12,"ganesh",69)
+pickle.dump(s,f)
+f.close()
+
+
+Unpickle
+*-------*
+-its usually de-serialize the object from the already serialized object
+
+import pickle
+f=open("student.bat","rb")
+obj=pickle.load(f)
+obj.display()
+f.close()
+
+Ref: https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
+
+OS Module
+========
+Python has a built-in os module that allows us to use operating system dependent functionality.
+
+Getting Directories
+-------------------
+You can get the current directory
+
+import os
+os.getcwd()
+
+or using pwd(in notebook only)
+
+Listing Files in a Directory
+------------------------------
+
+os.listdir() # In your current directory
+
+os.listdir("C:\\Users") #In any directory you pass
+
+Check if the file exists
+-----------------------
+import os,sys
+
+s="mylog.txt"
+if os.path.isfile(s):
+    print("file exists")
+else:
+    print("File does not exists")
+    sys.exit
+
+f=open(s,'r')
+con=f.read()
+print(con)
+
+Walking through a directory
+---------------------------
+Often you will just need to "walk" through a directory, that is visit every file or folder and check to see if a file is in the directory, and then perhaps do something with that file. 
+Usually recursively walking through every file and folder in a directory would be quite tricky to program, but luckily the os module has a direct method call for this called os.walk().
+
+for folder , sub_folders , files in os.walk("Example_Top_Level"):
+    
+    print("Currently looking at folder: "+ folder)
+    print('\n')
+    print("THE SUBFOLDERS ARE: ")
+    for sub_fold in sub_folders:
+        print("\t Subfolder: "+sub_fold )
+    
+    print('\n')
+    
+    print("THE FILES ARE: ")
+    for f in files:
+        print("\t File: "+f)
+    print('\n')
+
+
+walking to the directories path,dirname and file name
+------------------------------------------------------
+for path,dirname,file in os.walk(os.getcwd()):
+    print("path: ",path)
+    print("dirname: ",dirname)
+    print("file: ",file)
+
+Deleting the file
+------------------
+
+os.unlink(r"C:\Users\gbag\Desktop\internet\ds\sep 2020.pdf")  #which deletes a file at the path your provide
+os.rmdir(r"C:\Users\gbag\Desktop\internet\ds") #which deletes a folder (folder must be empty) at the path your provide
+
+send2Trash
+==========
+-this is external package
+-this will send to the trash instead of permanent removeal
+pip install send2trash
+
+send2trash.send2trash('new.txt')
+
+shutil.rmtree
+*-----------*
+-this is the most dangerous, as it will remove all files and folders contained in the path.
+**All of these methods can not be reversed! Which means if you make a mistake you won't be able to recover the file. Instead we will use the send2trash module. 
+-A safer alternative that sends deleted files to the trash bin instead of permanent removal.**
+shutil.rmtree(r"C:\Users\gbag\Desktop\internet\ds")  #send2trash module. A safer alternative that sends deleted files to the trash bin instead of permanent removal.
+
+
+Ref:https://docs.python.org/3/library/os.html
+
+shutil Module
+=============
+The shutil module offers a number of high-level operations on files and collections of file
+In particular, functions are provided which support file copying and remova
+You can use the built-in shutil module to to move files to different locations. 
+Keep in mind, there are permission restrictions, for example if you are logged in a User A, you won't be able to make changes to the top level Users folder without the proper permissions
+
+Copying the file
+----------------
+import shutil
+shutil.copy(r'C:\GBAG_Back\MyTraining\Python\4-API\File Handling\Files Handling.txt',r'C:\GBAG_Back\MyTraining\Python\4-API\File Handling\New folder')
+
+Moving the file
+---------------
+shutil.copy(r'C:\GBAG_Back\MyTraining\Python\4-API\File Handling\Files Handling.txt',r'C:\GBAG_Back\MyTraining\Python\4-API\File Handling\New folder')
+
+https://docs.python.org/3/library/shutil.html
+
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========

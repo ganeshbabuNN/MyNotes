@@ -1,0 +1,38 @@
+Math
+===
+Python comes with a built in math module and random module. 
+In this lecture we will give a brief tour of their capabilities. 
+Usually you can simply look up the function call you are looking for in the online documentation.
+
+min and max
+------------
+The min() and max() functions can be used to find the lowest or highest value in an iterable:
+
+x= min(5,10,12)
+y=max(4,2,2,33)
+print(x)
+print(y)
+
+abs()
+----
+The abs() function returns the absolute (positive) value of the specified number:
+
+abs(-20)
+
+pow
+---
+The pow(x, y) function returns the value of x to the power of y (xy).
+
+x=pow(4,3)
+print(x)
+
+	
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========

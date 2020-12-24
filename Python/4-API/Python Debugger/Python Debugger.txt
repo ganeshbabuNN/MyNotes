@@ -1,0 +1,48 @@
+Intro
+======
+You've probably used a variety of print statements to try to find errors in your code. 
+A better way of doing this is by using Python's built-in debugger module (pdb). 
+The pdb module implements an interactive debugging environment for Python programs. 
+It includes features to let you pause your program, look at the values of variables, and watch program execution step-by-step, so you can understand what your program actually does and find bugs in the logic.
+
+This is a bit difficult to show since it requires creating an error on purpose, but hopefully this simple example illustrates the power of the pdb module.
+Note: Keep in mind it would be pretty unusual to use pdb in an Jupyter Notebook setting.
+
+
+set_track()
+-----------
+
+ex:
+x=[1,2,3]
+y=2
+z=1
+r1=y+z
+print(r1)
+r2=y+x
+print(r2)
+
+
+when you set the set_trace() function
+
+import pdb
+x=[1,2,3]
+y=2z=1
+r1=y+z
+print(r1)
+pdb.set_trace()
+r2=y+x
+print(r2)
+
+Ref:
+https://docs.python.org/3/library/pdb.html
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========
+https://realpython.com/python-debugging-pdb/
+https://pymotw.com/2/pdb/

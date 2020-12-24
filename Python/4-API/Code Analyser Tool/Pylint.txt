@@ -1,0 +1,24 @@
+Pylint 
+=====
+Pylint is a Python static code analysis tool which looks for programming errors, helps enforcing a coding standard, 
+sniffs for code smells and offers simple refactoring suggestions.
+
+Install the pyfile
+==================
+pip install pylint
+
+lets write a simple function.
+# very simple functions
+def myfunc():
+	a=1
+	b=2
+	print(a)
+	print(b)
+
+-Run the Code with Simple 
+
+Run with reports
+pylint myprogram.py --reports=y
+
+Ref:
+https://pypi.org/project/pylint/
