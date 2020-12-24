@@ -169,14 +169,26 @@ x=[1,2,4,'ganesh']
 type(x)
 print(a)
 
+Creating
+*-------*
+#creating a empty 
+dep1=[]
+#creating a homogenous 
+dep1=['cdss','gdd','grt','rao']
+#creating a hetrogenous 
+dep2=['cdss','gdd','grt','rao',43,32.2,'23-jan-2019']
+#nested 
+dep3=[[1,2,3,4,5],[6,7],8,"ganesh"]
+
+Reading
+*-----*
 Using index and slicing
-*---------------------*
 Index:
 Syntax: 
 objectType[indexNumber]
 
 Refer indexing and Slicing.jpg
-
+x=[1,2,4,'ganesh']
 #Using Index
 print(x[0]) #grab the first element
 print(type(x))
@@ -196,16 +208,17 @@ print(x[:2]) #grab from second :2
 print(x[:-1]) #reverse
 print(x[1:-1]) #reverse
 
-add/remove/delete the list the values
-*-----------------------------------*
-x.append("babu")  #add the item at the end of the list
-print(x)
-x.remove("babu") #remove item using a value
-print(x) 
-del(x[2]) #delete the item using index
-print(x)
-x.pop() #remove the last index of index
-print(x)
+#searching using not in and in operator
+"gdd" in dep1 
+"grt" in dep1
+"gbs" not in dep1
+"finance" not in dep1
+
+updating
+*------*
+dep1.append("pmo")#add the item at the end of the list
+dep1.insert(2,"dm") #add after that index
+dep1.extend([2,3,2])  #add the list and understand the difference between extend and append
 
 #difference between append and extend
 x=[1,2,3,4]
@@ -217,16 +230,18 @@ x=[1,2,3,4]
 x.extend([5,6,7])
 x #check the value
 
+Deleting
+*-------*
+del dep1[5] #delete by index
+dep1.pop() #delete the last index added
+dep2.clear() #clear the list
+
 additional methods
 *----------------*
 a1=[3,2,32,12,41]
-# a.clear() #clear from list
-# print(a)
 a=max(a1) #min from list
 print(a)
 a=min(a1) #max from list
-print(a)
-a1.insert(1, 99) #inser the value from 1 index of the list a1
 print(a)
 a1.sort() #asscending by default
 print(a)
@@ -251,12 +266,8 @@ variable_name=(va1l,val2,val3)
 a=(3,2,"gan",4,3)
 print(a)
 print(type(a))
-print(a[2])  #indexing
-print(a[0:2])  #slicing
-print(a[2:])
-print(a*2)		#repeatings
-print(a.count(3)) #count of 3 value
-print(a.index("gan")) #get the value of that index
+
+#all the similar operations can be done same like list like create,read,update and delete
 
 #convert the list to tuple:
 lst=[32,3,22,3]
@@ -264,7 +275,6 @@ print(type(lst))
 tsl=tuple(lst)
 print(tsl)
 print(type(tsl))
-
 
 Range Type
 -----------
@@ -350,57 +360,98 @@ variable-name={Key:value,key2:value}
 
 Refer Dictionary_representations.jpg
 
-my_dict={'k1':150,'k2':200,'k3':300,'k4':400,'k5':500,'k6':600,'k7':700} #normal dictionary
-my_dict['k1']  # Call values by their key
-my_dict1={'k1':100,'k2':200,'k3':[300,301,302,304],'k4':400,'k5':500,'k6':600,'k7':['num1','num2','num3']} #more then one dictionary
-my_dict1['k1'] #call items from the dictionary
-my_dict1['k3'][2] #Can call an index on that value
-my_dict2=my_dict1['k7'][0].upper()
-my_dict1['k4']=my_dict1['k4']-100 # Subtract 123 from the value
-my_dict1
-my_dict1['k1'] -= 50 # Set the object equal to itself minus 123 
-my_dict2 = {}# Create a new dictionary
-my_dict2
-my_dict2['k1'] ='val1'# Create a new key through assignment
-my_dict2 
-my_dict2['k2'] ='val2'# Can do this with any object
-my_dict2
+Create
+*-----*
+#creating a empty dictionary
+fe1 ={}
+#creating only key
+fe2={"us"}
+#adding a key and value
+fe={
+    "us":59.2,
+    "euro":93.3,
+    "africa":7.30,
+    "uae":0.050,
+    "swiss":88,
+    "singapore":55.35,
+    "russian":73.45,
+    "china":11.26,
+    "australia":55.87,
+    "dum":[1,2,3,4]
+}
+#nested dictionary
 my_dict3={'k1':{'k2':{'k3':100}}} # Dictionary nested inside a dictionary nested inside a dictionary
+#create a list in a dictionary or any value type
+my_dict4={"k1":43,"l1":[1,2,3,4,5]}
+
+
+Reading
+*-----*
+#read by keys
+fe["us"]
 my_dict3['k1']['k2']['k3'] # Keep calling the keys
+fe.keys() #read all values 
+fe.values() #read all keys
+fe.items() #reads by items
+#read by index
+fe['dum'][2] 
+fe['dum'][1] 
+#additing a value
+fe['us']=fe['us']+20
+#read all the values using loops
+for i in fe.keys():
+    print(i)
+#read all the keys using loops
+for i in fe.values():
+    print(i)
+#read by keys and values using .item method using loops
+for k,v in fe.items():
+    print(k,v)
 
+#searching using not in and in operator
+"us" in fe #looks for the key in a dict not a value
+"china" in fe
+"us" not in fe
+"japan" not in fe
+#looking for a value using .values() method
+fe.values() # now check the values
+7.3 in fe.values()
+80 not in fe.values()
 
-#task to make the value ['C']
+updating
+*------*
+#update 
+#update the value existing key
+fe['us']=60
+fe['swiss']=76
+#update a list to a key
 my_dict4 = {'k1':['a','b','c']}
 mylist=my_dict4['k1'] # get the key and store those value in list
 mylist[2] #get those value in that list
 mylist1=mylist[2] #store into a list
-mylist1.upper() # now make it upper
-#looking the flexiablity of python
-my_dict4['k1'][2].upper() 
-my_dict4
+#update the existing key
+fe['usa']=fe['us'] #inserted at last
+del fe['us'] #delete the old key
+fe['cananda']=57.33 #inserting a new key
+fe_bit={'bitcoin':1717032.97,"bitcoincash":21092} #inserting a nother dictionary in diction
+fe['bitcoin']=1717032.97 #inserting a new key
+fe.update(fe_bit) #updated another dictionary
+fe.update({"dum":[3,4,2,3]})#update a multiple values
+fe
 
-#addtional methods
-my_dict1.keys() # # Method to return a list of all keys 
-my_dict.values() # Method to grab all values
-my_dict.items() # Method to return tuples of all items
-del dict1[1] #delete the individual item in dictionary
-
-#iterating the key
-for i in k:
-    print(i)
-
-#iterating the value
-for i in l:
-    print(i)
+deleting
+*------*
+del fe['bitcoin'] #delete by key
+del fe['dum'][3] #delete by index
+fe.pop('dum') #using pop method
 	
 Nesting Dictionaries
 --------------------
-Hopefully you're starting to see how powerful Python is with its flexibility of nesting objects and calling methods on them. Let's see a dictionary nested inside a dictionary:
+Hopefully you're starting to see how powerful Python is with its flexibility of nesting objects and calling methods on them. 
 
 # Dictionary nested inside a dictionary nested inside a dictionary
 d = {'key1':{'nestkey':{'subnestkey':'value'}}}
 
-Wow! That's a quite the inception of dictionaries! Let's see how we can grab that value:
 # Keep calling the keys
 d['key1']['nestkey']['subnestkey']
 
