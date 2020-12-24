@@ -9,7 +9,11 @@ String Methods
 
 Intro
 =====
--Strings are used in Python to record text information, such as names. Strings in Python are actually a sequence, which basically means Python keeps track of every element in the string as a sequence. For example, Python understands the string "hello' to be a sequence of letters in a specific order. This means we will be able to use indexing to grab particular letters (like the first letter, or the last letter).
+-Strings are used in Python to record text information, such as names. 
+-Remember string is immutable objects
+-Strings in Python are actually a sequence, which basically means Python keeps track of every element in the string as a sequence. 
+For example, Python understands the string "hello' to be a sequence of letters in a specific order. 
+-This means we will be able to use indexing to grab particular letters (like the first letter, or the last letter).
 -This idea of a sequence is an important one in Python and we will touch upon it later on in the future.
 
 Creating a String
@@ -350,18 +354,38 @@ print(c.replace("ga","hh"))
 -case changes
 print(c.upper())
 print(c.lower())
-print(c.title())
+print(c.title()) #its upper the first letter of each word
+print(c.capitalize()) #its upper the first letter of the string
 
 --length of the string
 We can also use a function called len() to check the length of a string!
 len('Hello World')
 
+-Concatentations
+"ganesh" + "Babu" # concatenation
+x="ganesh"
+x+"babu"
+
+-start and end of string
+str.startswith(('g','a','s')) # start with the letter single or multiple(tuple)
+str.endswith(('h','a')) # end with the letter single or multiple(tuple)
+
+-checking numeric or string
+str12.isnumeric() #Return True if all characters in the string are numeric characters, and there is at least one character
+str13.isdigit() #Return True if all characters in the string are digits and there is at least one character
+#detecting a floating point in a string using regex(this will cover later)
+s="ganesh babu st 323.22  and 23.22 , 2.1.1 and 43"
+re.findall(r"[-+]?\d*\.\d+|\d+",s)
+
+-using membership operators
+'f' in name
+name="ganesh"
+'a' in name # in operator
+'f' in name
+'a' not in name #not in operator
+'f' not in name
+
 -c.count('er') #Occurence of character in string
--"ganesh" + "Babu" # concatenation
--str.startswith(('g','a','s')) # start with the letter single or multiple(tuple)
--str.endswith(('h','a')) # end with the letter single or multiple(tuple)
--str12.isnumeric() #Return True if all characters in the string are numeric characters, and there is at least one characte
--str13.isdigit() #Return True if all characters in the string are digits and there is at least one character,
 
 Python's built-in len() function counts all of the characters in the string, including spaces and punctuation.
 https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range  # for string methods
