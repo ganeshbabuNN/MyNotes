@@ -169,7 +169,7 @@ print(x[1:-1]) #reverse
 
 add/remove/delete the list the values
 *-----------------------------------*
-x.append("babu")  #adding item using a value
+x.append("babu")  #add the item at the end of the list
 print(x)
 x.remove("babu") #remove item using a value
 print(x) 
@@ -205,6 +205,7 @@ a1.sort(reverse=True)
 print(a)
 print(x*2) #repeating
 print(x.count(1)) #return the occurence of the value
+print(len(a1)) #length of the item
 
 
 
@@ -373,35 +374,6 @@ d = {'key1':{'nestkey':{'subnestkey':'value'}}}
 Wow! That's a quite the inception of dictionaries! Let's see how we can grab that value:
 # Keep calling the keys
 d['key1']['nestkey']['subnestkey']
-
-converting one data type to other data
-======================================
-from None --> numeric --> sequence -->sets --> dict  ==== any objects converstion.
-
-myNone=None
-Myint=2
-myflot=3.2
-mystring="ganesh"
-mylist=[42,32,32,1]
-mytuple={'gbag','rubn','vbhk','prkh'}
-myset=(332,'ga','32','ds')
-mydict={1:'g',2:'rew',3:'han'}
-#creating a list 
-mylist1=[mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring] #createing a new list of different types
-#creating a tuple 
-mytuple1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new tuple of different types
-#creating a set
-myset1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new set of different types
-#creating a dict
-mydict1={1:mytuple}
-#adding in a existing list 
-#adding in a existing tuple 
-#adding in a existing set 
-#adding in a existing dict 
-#updating the list  
-#updating the tuple 
-#updating the set
-#updating the dict
 
 Quiz:
 =====

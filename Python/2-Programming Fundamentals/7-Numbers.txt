@@ -2,7 +2,7 @@ Intro
 Numeric Data Type
 Number Type Conversion or Datatype casting
 Built in functions
-Number system conversion
+Number system Conversiona
 
 Intro
 =====
@@ -70,6 +70,7 @@ Syntax :
 Type int(x) to convert x to a plain integer.
 Type long(x) to convert x to a long integer.
 Type float(x) to convert x to a floating-point number.
+Type str(x) to convert x to a String. 
 Type complex(x) to convert x to a complex number with real part x and imaginary part zero.
 Type complex(x, y) to convert x and y to a complex number with real part x and imaginary part y. x and y are numeric expressions
 
@@ -77,7 +78,39 @@ Ex:
 print(float("22.5"),"to string to  float Type") 
 print(int("22"),"to string to int Type") 
 print(int(22.5),"to float to int Type") 
-print(float(22),"to float to int Type") 
+print(float(22),"to float to float Type") 
+print(str(22),"to float to String Type")
+
+Same for sequence data types
+**-----------------------***
+from None --> numeric --> sequence -->sets --> dict  ==== any objects converstion.
+
+list,tuple,set, dict
+myNone=None
+Myint=2
+myflot=3.2
+mystring="ganesh"
+mylist=[42,32,32,1]
+mytuple={'gbag','rubn','vbhk','prkh'}
+myset=(332,'ga','32','ds')
+mydict={1:'g',2:'rew',3:'han'}
+#creating a list 
+mylist1=[mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring] #createing a new list of different types
+#creating a tuple 
+mytuple1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new tuple of different types
+#creating a set
+myset1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new set of different types
+#creating a dict
+mydict1={1:mytuple}
+#adding in a existing list 
+#adding in a existing tuple 
+#adding in a existing set 
+#adding in a existing dict 
+#updating the list  
+#updating the tuple 
+#updating the set
+#updating the dict
+
 
 Key Points to Remember
 ----------------------
@@ -254,7 +287,6 @@ random.gauss(mu=0,sigma=1)
 
 You can use Numpy for more numerical functions
 https://towardsdatascience.com/10-numpy-functions-you-should-know-1dc4863764c5
-
 
 Number system conversion
 ========================
