@@ -29,7 +29,7 @@ You'll later see that we can think of methods as having an argument 'self' refer
 
 Functions
 ---------
--before starting don't get discourged coz it is a new concept. Function_Leap.png
+-before starting don't get discourged coz it is a new concept. Refer Function_Leap.png
 -Formally, a function is a useful device that groups together a set of statements so they can be run more than once. They can also let us specify parameters that can serve as inputs to the functions.
 -On a more fundamental level, functions allow us to not have to repeatedly write the same code again and again. If you remember back to the lessons on strings and lists, 
 remember that we used a function len() to get the length of a string. Since checking the length of a sequence is a common task you would want to write a function that can do this repeatedly at command.
