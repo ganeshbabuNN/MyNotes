@@ -68,3 +68,5 @@ Assignment:
 
 Resources
 =========
+Style guide - official documentations
+https://www.python.org/dev/peps/pep-0008/#global-variable-names
