@@ -102,6 +102,7 @@ while row is not None:
 
 cursor.close()
 con.close()
+
 create
 ======
 import mysql.connector
