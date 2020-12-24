@@ -70,6 +70,9 @@ Accessing Array Element
 -----------------------
 We can access each element of an array using the index of the element.
 we can use indexing and slicing approach:
+
+Refer array diagram.jpg
+
 The below code shows how
 
 myarray1[0] #accessing the value 10 at 0  index

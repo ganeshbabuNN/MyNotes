@@ -364,6 +364,8 @@ Know ASCII , unicode and Numbers systems
 print(ord("h"),"is ASCII value" ) #print ASCII value
 print(chr(104 ),"from binary to value")
 
+Refer ASCII_Tables.jpg
+
 ref:
 http://www.asciitable.com/ - ASCII table
 http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def

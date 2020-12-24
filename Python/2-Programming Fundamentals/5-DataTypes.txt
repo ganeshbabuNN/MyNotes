@@ -113,6 +113,33 @@ print(char)
 print(multiline_str)	
 print(raw_str)
 
+
+indexing and Slicing
+---------------------
+-Each character in a string are stored as item in string memeory.
+Refer indexing and Slicing_helloworld.jpg
+x="helloworld"
+
+#Index
+Syntax: 
+objectType[indexNumber]
+
+print(x[0]) #grab the first element
+print(type(x))
+print(x[1]) #grab the second element
+print(x[-1]) #grab the revesre element
+print(x[-2]) #grab the revesre element
+print(x[3])
+
+#slicing
+print(x[1:]) #grab from 1 index
+print(type(x))
+print(x[1:4]) #grab from 1 till 3 
+print(x[1:4:2]) #grab from 1 till 4 skip 2
+print(x[:2]) #grab from second :2
+print(x[:-1]) #reverse
+print(x[1:-1]) #reverse
+
 Sequences Type or data structure in python
 ==========================================
 -In Python, Sequences are the general term for ordered sets
@@ -147,6 +174,8 @@ Using index and slicing
 Index:
 Syntax: 
 objectType[indexNumber]
+
+Refer indexing and Slicing.jpg
 
 #Using Index
 print(x[0]) #grab the first element
@@ -207,8 +236,6 @@ print(x*2) #repeating
 print(x.count(1)) #return the occurence of the value
 print(len(a1)) #length of the item
 
-
-
 Tuple
 -----
 -Tuple is an ordered sequence of items same as a list. 
@@ -231,7 +258,7 @@ print(a*2)		#repeatings
 print(a.count(3)) #count of 3 value
 print(a.index("gan")) #get the value of that index
 
-convert the list to tuple:
+#convert the list to tuple:
 lst=[32,3,22,3]
 print(type(lst))
 tsl=tuple(lst)
@@ -320,6 +347,8 @@ Dictionary
 
 Sytnax:
 variable-name={Key:value,key2:value}
+
+Refer Dictionary_representations.jpg
 
 my_dict={'k1':150,'k2':200,'k3':300,'k4':400,'k5':500,'k6':600,'k7':700} #normal dictionary
 my_dict['k1']  # Call values by their key
