@@ -1,0 +1,121 @@
+1)For Setting up the JDK in Windows
+2)For Setting up in Mac
+3)Resources
+4)Different flavour of JDK
+
+
+
+For Windows
+===========
+Step #1: Download latest stable Java software from SUN website (http://java.sun.com).
+Step #2: Install JDK software by double click on .exe file.
+Step #3: The following folders are created in JAVA_HOME after installing JDK.
+
+	%JAVA_HOME%/bin
+	%JAVA_HOME%/demo
+	%JAVA_HOME%/include
+	%JAVA_HOME%/jre
+	%JAVA_HOME%/lib
+
+Step #4: Set PATH, CLASSPATH, JAVA_HOME
+
+Once after installing java software, we have to set JAVA_HOME, PATH, and CLASSPATH environment variables. Though setting user defined environment variable JAVA_HOME is optional, but it is recommended to set.
+
+JAVA_HOME	
+---------
+-Should set to java home directory where java is installed.	
+-It is a user defined environment variable.
+-Create a new Varaible as JAVA_HOME = locate the home path.
+
+PATH
+----
+-Should set to Java Resources folder (i.e., bin)	
+-It is a system environment
+for multiple use semilcolon as separater %JAVA_HOME%/bin;
+
+CLASSPATH	
+---------
+-Should set to java class files(%JAVA_HOME%/jre/lib/rt.jar).	
+It is a system environment variable.
+
+For Mac
+=======
+Step #1: Download latest stable Java software from SUN website (http://java.sun.com).
+Step #2: Install JDK software by double click on .exe file.
+Step #3: The following folders are created in JAVA_HOME after installing JDK.
+
+	%JAVA_HOME%/bin
+
+Step #4: Set PATH, CLASSPATH, JAVA_HOME
+
+JAVA_HOME	
+---------
+-Should set to java home directory where java is installed.	
+-It is a user defined environment variable.
+
+export JAVA_HOME=/Library/Java/Home
+
+PATH
+----
+-Should set to Java Resources folder (i.e., bin)	
+-It is a system environment
+example :export PATH=$PATH:/usr/java/jdk1.6.0_10/bin or
+%JAVA_HOME/bin
+
+CLASSPATH	
+---------
+-Should set to java class files(%JAVA_HOME%/jre/lib/rt.jar).	
+-It is a system environment variable.
+
+
+2)For Setting up in Mac
+======================
+-echo $JAVA_HOME
+/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/
+
+- ~/.bash_profile is the file where the environmental variales are maintained.
+step1: cd ~/ --> go to home directory
+step2: ls -1 ~/.bash_profile
+step3: touch ~/.bash_profile
+step4: Vim  ~/.bash_profile
+
+
+Using VIM
+*-------*
+To make the all the .sh files executable  use the below command.
+sudo chmod +x ./bin/*.sh
+
+
+Vim Introductions
+*---------------*
+To open or create a file using Vim, run the following command, 
+1)then press i to insert text into it (insert mode): (use shift : in mac)
+2)Once you have modified a file, press [Esc] shift to the command mode and press :w and hit [Enter] as shown below.
+3)To save the file and exit at the same time, you can use the ESC and :x key and hit [Enter]. Optionally, press [Esc] and type Shift + Z Z to save and exit the file
+4)To save the file content to a new file named newname, use :w newname or :x newname and hit [Enter].
+
+
+3)Resources
+==========
+https://simply-how.com/getting-started-with-java-11#section-1
+
+4)Different flavour of JDK
+==========================
+Java is now developed as OpenJDK. Most JDK binaries are based on the OpenJDK codebase, including the Oracle JDK.
+Production-ready builds of JDK 11 can be downloaded from the following sources:
+
+Oracle OpenJDK: 
+OpenJDK builds by Oracle. A build is available only for the first 6 months of it's release.
+
+AdoptOpenJDK: 
+Provides prebuilt OpenJDK binaries using an open source build & test infrastructure, for more than 7 platforms (such as Linux, Windows, macOS, and Docker) with either the HotSpot or OpenJ9 JVM.
+
+Azul Zulu OpenJDK: 
+Also provides certified builds of OpenJDK for a wide array of platforms
+
+Oracle JDK: 
+Commercial Oracle branded builds of the JDK. Free for development use, but not in production.
+
+OpenJDK installation archive
+----------------------------
+https://jdk.java.net/archive/

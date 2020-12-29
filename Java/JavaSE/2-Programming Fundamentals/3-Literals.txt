@@ -1,0 +1,9 @@
+Intro
+=====
+Literals are syntactic representations of boolean, character, numeric, or string data. Literals provide a means of expressing specific values in your program
+
+Examaple:
+Public const a as integer = 4 ' integer literals
+Public const b as Boolean = true ' boolean literals
+Public const c as byte = 1   ' byte interals
+Public const d as long = 3423423   'long literals

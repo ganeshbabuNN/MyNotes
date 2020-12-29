@@ -1,0 +1,22 @@
+Escape Sequences for Character Values
+There are a number of escape sequences that are used for special characters:
+
+the Escape Sequence	Resulting Character
+\b	Backspace
+\f	Form feed
+\n	Linefeed character - note that it produces exactly one character, Unicode 10 (\u000A in hex)
+\r	Carriage return
+\t	Tab
+\"	Quote mark
+\'	Apostrophe
+\\	Backslash
+\uNNNN	Unicode value, where N is a base 16 digit from 0 through F; valid values are \u0000 through \uFFFF
+\NNN	Value expressed in octal; ranging from \000 to \377
+The escape sequences can either be used for single characters or within strings of text:
+
+char c = '\u1234';
+System.out.println("\t\tHello\n\t\tWorld");
+
+
+Ref
+https://www.webucator.com/tutorial/learn-java/java-basics.cfm

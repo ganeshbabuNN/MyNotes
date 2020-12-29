@@ -1,0 +1,195 @@
+Encapsulation (Data hiding & Method abstraction)
+1)Inheritance (IS-A Relationship)
+2)Polymorphism
+3)Method Signature
+a)Overloading
+b)Overriding
+e)Constructors
+f)this or super
+g)Final & static
+h)Abstract
+g)Interface
+
+
+Encapsulation
+==============
+
+Data hiding
+-----------
+One of the sound object-oriented programming techniques is hiding the data within the class by declaring them
+with private accessibility modifier. Making such variables available outside the class through public setter and getter methods. Data hiding says “restrict access and modification of internal data items through the use of getter and setter methods”.
+Example:
+public class Authentication{
+//Data hiding
+private String username;
+private String password;
+public void setUsername(String name){
+if((name != null) && name!=””){
+username = name;
+}else{
+}
+}
+Sop(“Username cannot be null or empty”);
+
+public String getUsername(){
+return username;
+}
+….
+….
+}
+Authentication obj = new Authentication();
+//obj.username=”aspire”;//Compilation error. obj.setUsername(“aspire”);//Ok
+obj.setUsername(“”);//validation error saying “Username cannot be null or empty.”
+
+Method Abstraction
+------------------
+
+One of the sound object-oriented programming techniques is “Hiding method implementation complexity from
+outside users” is called as method abstraction.
+//Method abstraction
+public boolean isValidUser(){
+//Use JDBC API for obtaining connection.
+Connection con = DriverManager.getConnection(“jdbc:oracle:thin:@localhost:1521:XE”, “scott”,
+“tiger”);
+Check with database whether user is already registered or not. If valid user then
+return true;
+else
+} 
+return false;
+
+			Encapsulation = Data hiding + Method Abstraction
+
+Encapsulation combines (or bundles) data members with method members together (or the facility that bundles data with the operations that perform on that data is called as encapsulation).
+Example:
+public class Authentication{
+//Data hiding
+private String username;
+private String password;
+
+public void setUsername(String name){
+if((name != null) && name!=”” ){
+username = name;
+}
+}
+public void setPassword(String pwd){
+if((pwd != null) && pwd!=”” ){
+Password = pwd;
+}
+}
+
+//Method abstraction
+public boolean isValidUser(){
+//Use JDBC API for obtaining connection.
+Connection con = DriverManager.getConnection(“jdbc:oracle:thin:@localhost:1521:XE”,
+“scott”, “tiger”);
+Check with database whether user is already registered or not. If valid user then
+return true;
+else
+return false;
+}
+}
+
+//Client program
+Public class AccessSite{
+public static void main(String[] args){
+Authentication auth = new Authentication();
+//set website username and password auth.setUsername(“aspire”); auth.setPassword(“aspire123”);
+boolean success= auth.isValidUser();
+if(success){
+System.out.println(“Logged into INBOX…”);
+}else{
+}
+}
+}
+
+
+Inheritance
+===========
+Define common methods in parent class and specific methods in child class.
+
+Example:
+class Figure{                     //Parent class private int width;
+private int height;
+public Figure(int w, int h){
+width = w;
+height = h;
+}
+public int getWidth() {
+return width;
+}
+public int getHeight() {
+return height;
+}
+public void move(int x, int y){ System.out.println("Move method...");
+}
+public void resize(int width, int height){
+System.out.println("Resize method....");
+}
+public void hide(){
+System.out.println("Hide method...");
+}
+public void show(){
+System.out.println("show method...");
+}
+}
+class Rectangle extends Figure{     //child class public Rectangle(int w, int h){
+super(w,h);//Invokes immediate parent class matching constructor
+}
+//subclass specific method.
+double area(){
+return getHeight()* getWidth();
+}
+}
+
+class Triangle extends Figure{
+public Triangle(int w, int h){
+super(w,h);
+}
+//subclass specific method.
+double area(){
+Return 0.5 * getHeight()* getWidth();
+}
+}
+
+Refer inheritance.jpg
+
+In the above example, Rectangle IS-A Figure. Similarly, Triangle IS-A Figure. So, inheritance is also called as IS-A
+relationship.
+ 
+
+The base class common methods move(), resize(), hide(), and show() are reused in the subclasses Rectangle and
+Triangle. Hence the main advantage with inheritance is Code REUSABILITY.
+The base class is also called as superclass, supertype, or parent class. The derived class is also called as subclass, subtype, or child class.
+In java, the extends keyword is used to inherit a superclass.
+Example:
+class Rectangle extends Figure{}
+
+In java, a class can inherit at most one superclass. This is called single level inheritance.
+Example:
+class C extends A, B{}                    //Compilation error.
+Conclusion: Java does not support multiple inheritance with classes but supports with interfaces.
+
+The inheritance relationship is represented as Hierarchical classification
+
+Refer Hierarchical classification.jpg
+The classes higher up in the hierarchy are more generalized and the classes lower down in the hierarchy are more specialized.
+
+Case 1: Subclass specific methods cannot be invoked using superclass reference variable.
+Example:
+Figure fRef = new Figure(10,20);
+fRef.move();
+//fRef.area();                                  //Compilation error. Undefined method.
+
+Case 2: As expected, subtype object is assigned to subtype reference variable:
+Example:
+Rectangle rRef = new Rectangle(10,20);
+rRef.move();
+rRef.area();                      //Compiles and runs without errors.
+
+Case 3: The subclass object can be assigned to a superclass reference variable. But, the subclass specific methods cannot be invoked using superclass reference variable, because the compiler only knows reference type methods but not actual runtime object methods.
+This assignment involves a widening reference conversion (upcasting).
+Example:
+Figure fRef = new Rectangle(10,30);   //Reference type widening. Subtype object is assigned to supertype ref var. fRef.move();//Ok
+
+
+

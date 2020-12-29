@@ -1,0 +1,78 @@
+The main drawback with Structured Programming languages such as C is its complexity increases once
+the project size reaches a certain size.
+
+To solve this problem, a new way to program was invented called Object Oriented Programming (OOP). OOP programming methods helps us to organize (simplify) complex programs through Encapsulation, Inheritance, and Polymorphism.
+
+C++ was developed by Stroustrup in 1979.
+
+Two main drawbacks with C++ language are : Platform dependent and won't support Internet and
+WWW.
+To solve these problems, the James Gosling developed a new language called JAVA at sun Microsystems in 1991, which is platform independent and supports WWW & Internet.
+Java was initially called as OAK? after he saw oak tree outside of his window at sun. Later he came to
+know that the Language ?OAK? already existed in the market. When a group of sun people visited a local
+coffee shop, the name ?JAVA? was suggested. Java is a slag term for coffee.
+
+Java Buzzwords
+==============
+The following are Java buzzwords:
+1.   Simple
+2.   Object Oriented
+ 
+3.   Robust
+4.   Platform Independent
+5.   Portable
+6.   Multithreaded (Or Parallel Execution)
+7.   Distributed (Or Networking)
+8.   Secure
+9.   Dynamic
+
+
+I. Simple
+---------
+Java is a simple language because of the following reasons:
+*java is syntactically related to C++ which is a direct decedent from C (i.e., C++ is evolved from C).
+Most of the syntax and characters are inherited from these two languages.
+*Some of the most confusing concepts in C/C++ are either left out of java or implemented in a cleaner way.
+For example: Pointers are completely eliminated from java. The disadvantage with pointers are
+overriding memory and corrupting data. In java, the memory management is implemented in a cleaner way using Garbage Collector (GC)
+
+II. Object Oriented
+-------------------
+Java language follows Object Oriented Programming (OOP) paradigm. The OOP principles are Encapsulation, Inheritance, and Polymorphism.
+Every Program in java is an Object Oriented Program. Java is a fully object oriented language but not
+pure object oriented language because of the existence of primitive data types. Small talk is a pure object oriented language. Literally everything in smalltalk is an object.
+
+
+III. Robust (Means Reliable)
+----------------------------
+Java is intended for writing reliable programs. Java provides Exception Handling mechanism which puts lots of emphasis on early checking for possible errors and dynamic checking. Java automatically handles Memory Management using Garbage collection. Java eliminates pointers.
+
+
+IV. Platform Independent
+-------------------------
+Write once, Run on any platform, Any time, Forever. Java is a platform independent language because of the bytecode. The compiled bytecode is common across all operating systems (platforms).
+The Java source files are compiled to a bytecode, where as C/C++ source files are directly compiled
+to a native code.
+
+Ref Platform Independent.jpg for diagram
+
+V. Portable
+------------
+The size of the primitive data types are fixed on all platforms.
+Also, binary data is stored in a fixed format, eliminating the ?big endian | Little Endian? confusion.
+
+VI. Parallel Execution ( or Multithreading)
+-------------------------------------------
+Reduces the execution time I,e., improves execution speed.
+
+VII. Networking (Or Distributed)
+--------------------------------
+Java has become one of the most popular language for N/W programming due to two salient features: Platform independent & Multithreading.
+
+VIII. Secure
+------------
+Java provides several layers of protection from dangerous code, virus, Trojan horses. Java security is provided from the Java Architecture itself. Also, Java security can be provided using security API.
+
+IX. Dynamic
+-----------
+It was designed to adapt to an evolving environment.

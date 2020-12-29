@@ -1,0 +1,28 @@
+
+
+
+initialSize: The initial number of connections that are created when the pool is started
+
+maxActive: The maximum number of active connections that can be allocated from this pool at any time. This attribute is used to limit the number of connections in a pool that can be open; so that capacity planning can be done on the database side
+
+maxIdle: The maximum number of idle connections that should be kept in the pool at all times. Idle connections are checked periodically (if enabled) and connections that have been idle for longer than minEvictableIdleTimeMillis will be released
+
+If maxIdle is set too low on heavily loaded systems it is possible you will see connections being closed and almost immediately new connections being opened. So it is better keep maxIdle to be close to maxActive.
+
+minIdle The minimum number of established connections that should be kept in the pool at all times. The connection pool can shrink below this number if validation queries fail.
+
+timeBetweenEvictionRunsMillis The number of milliseconds to sleep between runs of the idle object evictor thread. When non-positive, no idle object evictor thread will be run.
+
+minEvictableIdleTimeMillis the minimum amount of time an object may sit idle in the pool before it is eligible for eviction.
+
+Also if you want to ensure, no stale connection in your production system. You can use the below, but it is costly operation not good for performance critical one but suits for finance related application service.
+
+database.connectionPool.testOnBorrow=true
+database.connectionPool.testOnReturn=true
+database.connectionPool.testWhileIdle=true
+
+
+http://www.jcombat.com/core-java/understanding-connection-pooling
+https://stackoverflow.com/questions/4921642/what-is-object-pooling-in-java
+https://www.codepedia.org/ama/tomcat-jdbc-connection-pool-configuration-for-production-and-development/#Production_environment
+https://stackoverflow.com/questions/28364855/what-is-the-difference-between-maxtotal-and-maxidle-in-apache-commons-pool-2

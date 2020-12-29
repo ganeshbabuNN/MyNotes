@@ -1,0 +1,17 @@
+Java supports 3 types of comments:
+1)   Multline comments (From C language)
+	syntax:
+	/*
+	?.
+	?.
+	*/
+2)   Single Line comment (From C++ lanaguage)
+Example:
+	//Tomorrow is a holiday
+
+3)   Java doc comments
+This is newly added in JAVA. These comments are used to add description about class as well as methods.
+Syntax:
+	/**
+	*
+	*/

@@ -1,0 +1,13 @@
+Java Programming Structure
+==========================
+The java program is basically divided into following sections:
+
+[Comments Section] 
+[Package Declaration]
+[Import Statement(s)]
+<class modifiers> 
+Class <class name> [extends clause] [implements clause]{ 
+ [fields]
+ [constructors]
+ [methods]
+}
