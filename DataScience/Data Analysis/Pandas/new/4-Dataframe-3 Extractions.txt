@@ -1,0 +1,295 @@
+Intro to the DataFrames III Module + Import Dataset
+Use the set_index and reset_index methods to define a new DataFrame index
+Retrieve Rows by Index Label with loc Accessor
+Retrieve Rows by Index Position with iloc Accessor
+Passing second arguments to the loc and iloc Accessors
+Set New Value for a Specific Cell or Cells In a Row
+Set Multiple Values in a DataFrame
+Rename Index Labels or Columns in a DataFrame
+Delete Rows or Columns from a DataFrame
+Create Random Sample with the sample Method
+Use the nsmallest / nlargest methods to get rows with smallest / largest values.
+Filter A DataFrame with the where method
+Filter A DataFrame with the query method
+A Review of the apply Method on a pandas Series Object
+Apply a Function to every DataFrame Row with the apply Method
+Create a Copy of a DataFrame with the copy Method
+
+
+Intro to the DataFrames III Module + Import Dataset
+Use the set_index and reset_index methods to define a new DataFrame index
+=========================================================================
+bond=pd.read_csv("jamesbond.csv")
+bond.head()
+
+#appproach way 1
+bond=pd.read_csv("jamesbond.csv",index_col="Film")
+bond.head()
+output=None
+
+bond=pd.read_csv("jamesbond.csv")
+#set_index method helps to set the default index
+bond.set_index("Film",inplace=True) 
+bond.head()
+#drop parameter Delete columns to be used as the new index
+bond.reset_index(drop=True,inplace=True)
+bond
+
+bond=pd.read_csv("jamesbond.csv")
+#let us set the index again to understand how to safety remove the index
+bond.set_index("Film",inplace=True)
+bond.head(3)
+#Reset the index of the DataFrame, and use the default one instead.
+#If the DataFrame has a MultiIndex, this method can remove one or more levels.
+bond.reset_index(inplace=True)
+bond
+bond.set_index("Year",inplace=True)
+bond.head(3)
+bond.reset_index(inplace=True)
+bond
+
+
+Retrieve Rows by Index Label with loc Accessor
+==============================================
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+
+#accessing the rows by index label.
+bond.loc["GoldenEye"]
+bond.loc["Die Another Day"]
+# bond.loc["sacred bond"]
+bond.loc["Casino Royale"]
+bond.loc[["You Only Live Twice","Never Say Never Again"]] #search of more then one index valuve
+bond.loc[["Goldfinger","Licence to Kill","A View to a Kill"]]
+
+"Goldfinger" in bond.index
+
+Retrieve Rows by Index Position with iloc Accessor
+==================================================
+iloc genearlly access the index positions of the dataframe.
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+
+bond.loc[14] # specific index
+bond.loc[12]
+bond.loc[[4,5,11]] 
+
+Passing second arguments to the loc and iloc Accessors
+======================================================
+bond.loc["Live and Let Die":"Moonraker"]
+bond.loc[:"Octopussy"] #till end index
+
+bond.loc[[4,5]] # lookup the value in list
+bond.loc[1:4] #start and end index
+bond.loc[:6] # end index
+bond.loc[3:] #start index
+
+
+Set New Value for a Specific Cell or Cells In a Row
+===================================================
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+mask=bond["Actor"]=="Sean Connery"
+bond.loc[mask,"Actor"]="Sir Sean Connery"
+bond
+bond[bond["Actor"]=="Pierce Brosnan"]
+bond.loc[bond["Actor"]=="Pierce Brosnan"]=="Sir Pierce Brosnan"
+
+Set Multiple Values in a DataFrame
+==================================
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+bond.loc["Dr. No"]
+bond.loc["Dr. No","Actor"]="Sir Sean Connery" # specific cell
+bond.loc["Dr. No",["Box Office","Budget","Bond Actor Salary"]]=[558.0,9,0.8]
+bond.loc["Dr. No","Budget"]
+
+Rename Index Labels or Columns in a DataFrame
+=============================================
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+#using mapper parameter
+bond.rename(mapper={"Year":"Relased Date","Box Office":"Revenu","Bond Actor Salary":"Salary"},axis=0)
+bond.rename(mapper={"Year":"Relased Date","Box Office":"Revenu","Bond Actor Salary":"Salary"},axis="rows")
+bond.rename(mapper={"Year":"Relased Date","Box Office":"Revenu","Bond Actor Salary":"Salary"},axis="index")
+bond.rename(mapper={"Year":"Relased Date","Box Office":"Revenu","Bond Actor Salary":"Salary"},axis="index",inplace=True)
+
+#using columns parameter
+bond.rename(columns={"Year":"Release Date","Box Office":"Revenue","Bond Actor Salary":"Salary"},inplace=True)
+#rename the index
+bond.rename(index={"Dr. No":"Doctor No","GoldenEye":"Golden Eye","Moonranker":"Moon Ranker"},inplace=True)
+bond.loc["Doctor No"]
+#using bond.column attribute
+bond.columns =["Year","Actor","Director","Box Offce","Budget","Bond Salay"]
+
+bond.head(3)
+bond.tail(1)
+
+Delete Rows or Columns from a DataFrame
+=======================================
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+#Delete the row
+# bond.drop("Casino Royale",inplace=True)
+bond.drop(labels="Die Another Day",inplace=True)
+bond.drop(labels=["Diamonds Are Forever","For Your Eyes Only"],inplace=True) #more the one row value
+
+#using pop method
+# bond.pop("Box Office") #Return item and drop from frame no inplace argument is required
+actor= bond.pop("Box Office")
+actor # actors stores the information so of the dropped column
+
+#error parameter
+bond.rename(index={"Year":"Release Date","Director Name":"Director"},errors="raise",inplace=True)
+bond.rename(index={"Year":"Release Date","Director Name":"Director"},errors="ignore",inplace=True) #ignore arguments
+
+#using the del keyword
+del bond["Actor"]
+del bond["Year"]
+
+Create Random Sample with the sample Method
+===========================================
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+Sample method are usually used for the
+bond.sample(n=3,axis=1) #columns
+bond.sample(n=10,axis=0) #row wise
+bond.sample(frac=0.3,axis=0) #fraction from 0 - 1
+
+Use the nsmallest / nlargest methods to get rows with smallest / largest values.
+================================================================================
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+bond.sort_values("Box Office",ascending=False,inplace=True)
+bond.head(4)
+
+bond.nlargest(3,columns="Box Office")
+bond.nlargest(n=3,columns="Bond Actor Salary") #without sorting this is happening
+bond.nsmallest(4,columns="Box Office")
+bond.nsmallest(n=4,columns="Budget")
+bond["Box Office"].nlargest(3) #calling from dataframe
+bond["Budget"].nsmallest(3)
+
+Filter A DataFrame with the where method
+========================================
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+#Traidtional way
+mask1=bond["Actor"]=="Sean Connery"
+bond[mask]
+
+#using where method
+bond.where(mask1)
+bond.where(mask1).dropna(how="all")
+mask2=bond["Box Office"] > 600
+bond.where(mask2)
+bond.where(mask1 & mask2)
+
+Filter A DataFrame with the query method
+========================================
+query method is flexiable in writing any conditional query among the code.
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+bond.query('Actor== "Pierce Brosnan"')
+bond.query('Director=="Martin Campbell"')
+bond.query('Film=="A View to a Kill"')
+bond.query('Box_Office > 800')
+bond.query('Bond_Actor_Salary <3')
+bond.query('(Bond_Actor_Salary <3 ) | (Bond_Actor_Salary) > 3**100')
+bond.query("Actor=='Pierce Brosnan' or Actor=='David Niven'")
+bond.query("Actor in ['Sean Connery','Pierce Brosnam']")
+bond.query("Actor not in ['Sean Connery','Pierce Brosnam']")
+
+A Review of the apply Method on a pandas Series Object
+======================================================
+to get an idea, lets conver the money to millions in the respective columns
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+for that create a functions
+def convert_to_millions(num):
+    return str(num) + " MILLION!"
+
+cols=["Box Office","Budget","Bond Actor Salary"]
+for i in cols:
+    bond[i]=bond[i].apply(convert_to_millions)
+
+
+Apply a Function to every DataFrame Row with the apply Method
+=============================================================
+lets work on row level using the function
+excericse is the get the best movie comment on the actor wise
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+lets create a functions
+def good_movie(row):
+    actor=row[1] #row denotes the position of the column by index
+    BUDGET=row[4]
+    if actor=="Pierce Brosnan":
+        return "The best Movie"
+    elif actor=="Roger Moore" and BUDGET > 40 :
+        return "Enjoyable"
+    else:
+        return "No idea"
+
+#now apply the function and you shall get the series
+bond.apply(good_movie,axis=1)
+
+Create a Copy of a DataFrame with the copy Method
+=================================================
+#Copies the objects Make a copy of this object's indices and data.
+
+#making some changes in the main df
+directors=bond["Director"]
+directors.head()
+directors["A View to a Kill"] ="Mr John Glen" #get the warning message from compiler
+directors.head() #but it as overriddent
+bond.head() #it as overriddent he main dataframe also
+
+#to avoid the above issues
+directors=bond["Director"].copy() #this copies the new individual copy 
+directors.head()
+directors["A View to a Kill"] ="Mr John Glen" #get the warning message from compiler
+directors.head(3)
+bond.head(3)
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

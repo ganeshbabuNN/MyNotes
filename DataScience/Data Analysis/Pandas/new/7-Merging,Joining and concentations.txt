@@ -1,0 +1,190 @@
+Intro to the Merging, Joining, and Concatenating Section
+The pd.concat Method, Part 1
+The pd.concat Method, Part 2
+Inner Joins, Part 1
+Inner Joins, Part 2
+Outer Joins
+Lef joins
+The left_on and right_on Parameters
+Merging by Indexes with the left_index and right_index Parameters
+The .join() Method
+The pd.merge() Method
+
+Intro to the Merging, Joining, and Concatenating Section
+========================================================
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+week2.head() 
+week1.shape
+week2.shape
+
+
+The pd.concat Method, Part 1
+============================
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+
+week1.head()
+week2.head() 
+
+#using objs parameter
+pd.concat(objs=[week1,week2])
+#using ignore_index parameter
+#ignore_index 
+pd.concat(objs=[week1,week2],ignore_index=False)
+# If True, do not use the index values along the concatenation axis. The resulting axis will be labeled 0
+pd.concat(objs=[week1,week2],ignore_index=True)
+
+The pd.concat Method, Part 2
+============================
+#access the index
+sales.loc["week1",]
+sales.loc["week2",]
+
+sales.loc["week1",33]
+sales.loc["week2",230]
+
+#access index and column
+sales.loc[("week2",240),"Customer ID"]
+sales.loc[("week2",240),["Customer ID","Food ID"]]
+
+Inner Joins, Part 1
+===================
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+week2.head()
+
+week1.merge(week2,how='inner',on="Customer ID").head(4)
+week1[week1["Customer ID"]==155]
+week2[week2["Customer ID"]==155]
+
+#suffix parameter
+week1.merge(week2,how='inner',on="Customer ID",suffixes=['_Week1','_Week2']).head(4)
+week1.merge(week2,how='inner',on="Customer ID",suffixes=['_A','_B']).head(4)
+
+Inner Joins, Part 2
+===================
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+week2.head()
+
+week1.merge(week2,how='inner',on=['Customer ID',"Food ID"])
+week1[week1['Customer ID']==21]
+week2[week2['Customer ID']==21]
+
+Outer Joins
+==========
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+
+week2.head()
+
+week1.merge(week2,how='outer',on='Customer ID',suffixes=['_Week1',"_Week2"])
+#using indicator parameter show the which dataframe which came through
+merge=week1.merge(week2,how='outer',on='Customer ID',suffixes=['_Week1','_Week2'],indicator=True)
+
+merge['_merge'].value_counts()
+merge[merge["_merge"].isin(['left_only','right_only'])]
+
+Lef joins
+========
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+week1.head()
+week1.shape
+
+week1.merge(week2,how='left',on='Food ID',sort=True)
+
+The left_on and right_on Parameters
+===================================
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+week1.head()
+week1.shape
+
+week2.merge(customers,how='left',left_on='Food ID',right_on='ID').drop('ID',axis=1)
+
+Merging by Indexes with the left_index and right_index Parameters
+=================================================================
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+
+sales=week1.merge(customers,how='left',left_on='Customer ID',right_index=True)
+sales.merge(foods,how='left',left_on='Food ID',right_index=True)
+sales.head()
+
+week1.head()
+week2.head()
+
+week1.merge(week2,how='left',left_index=True,right_index=True,suffixes=["_week1","_week2"])
+
+The .join() Method
+==================
+#the main differences between merge and join method is join looks by default the index where the merge method to be specified expliclity .
+
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+satisfactions=pd.read_csv("Restaurant - Week 1 Satisfaction.csv")
+
+#here we use both the index from both the datasets which is specificied explictly
+week1.merge(satisfactions,how="left",left_index=True,right_index=True)
+#join method will look by index 
+week1.join(satisfactions)
+
+
+The pd.merge() Method
+=====================
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+satisfactions=pd.read_csv("Restaurant - Week 1 Satisfaction.csv")
+
+week2
+
+customers.head()
+
+#similar like merge method 
+pd.merge(week1,customers,how='left',left_on='Customer ID',right_on='ID')
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://pandas.pydata.org/docs/user_guide/merging.html
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.append.html
