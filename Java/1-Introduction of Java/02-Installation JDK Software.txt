@@ -38,8 +38,8 @@ CLASSPATH
 -Should set to java class files(%JAVA_HOME%/jre/lib/rt.jar).	
 It is a system environment variable.
 
-For Mac
-=======
+For Windows
+===========
 Step #1: Download latest stable Java software from SUN website (http://java.sun.com).
 Step #2: Install JDK software by double click on .exe file.
 Step #3: The following folders are created in JAVA_HOME after installing JDK.
