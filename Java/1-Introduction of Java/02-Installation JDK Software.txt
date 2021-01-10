@@ -70,8 +70,14 @@ CLASSPATH
 
 2)For Setting up in Mac
 ======================
--echo $JAVA_HOME
-/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/
+-using the VIM commond and set the below path.
+Step 1: Press shift : i and enter
+Step 2: Press Esc button
+Step 3: Press shift : w and enter
+Step 4: Press Shift : q and enter (for quitting)
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/
+
 
 - ~/.bash_profile is the file where the environmental variales are maintained.
 step1: cd ~/ --> go to home directory
@@ -79,6 +85,20 @@ step2: ls -1 ~/.bash_profile
 step3: touch ~/.bash_profile
 step4: Vim  ~/.bash_profile
 
+For unzipping the tar file
+*-------------------------*
+Point to that locations
+
+tar -xvf myfile.tar
+
+For .tar.gz, you can run:
+tar -xzvf myfile.tar.gz
+
+If you want to extract to any directory other than your cwd, use -C. e.g:
+tar -xvf myfile.tar -C somedirectory
+
+I suggest you read the man page for tar if you wish to do anything further:
+man tar
 
 Using VIM
 *-------*
