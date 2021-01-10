@@ -1,0 +1,225 @@
+Intro to the MultiIndex Module
+Create a MultiIndex on a DataFrame with the set_index Method
+Extract Index Level Values with the get_level_values Method
+Change Index Level Name with the set_names Method
+The sort_index Method on a MultiIndex DataFrame
+Extract Rows from a MultiIndex DataFrame
+The transpose Method on a MultiIndex DataFrame
+The .swaplevel() Method
+The .stack() Method
+The .unstack() Method, Part 1
+The .unstack() Method, Part 2
+The .unstack() Method, Part 3
+The pivot Method
+Use the pivot_table method to create an aggregate summary of a DataFrame
+Use the pd.melt method to create a narrow dataset from a wide one
+
+Intro to the MultiIndex Module
+==============================
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"])
+bigmac.head(3)
+
+Create a MultiIndex on a DataFrame with the set_index Method
+============================================================
+bigmac.nunique() #check the count of each observations
+
+#Set the DataFrame index using existing columns.
+Set the DataFrame index (row labels) using one or more existing columns or arrays (of the correct length). 
+The index can replace the existing index or expand on it
+bigmac.set_index(keys=["Date"])
+bigmac.set_index(keys=["Date","Country"])
+bigmac.set_index(keys=["Country","Date"])
+bigmac.set_index(keys=["Date","Country"],inplace=True)
+
+bigmac.sort_index(inplace=True) #for sorting the index
+bigmac.head(3)
+bigmac.index
+bigmac.index[0] #accessing index using index operator
+bigmac.index[1][0] 
+bigmac.index[3:100:4] #using slicing operator as well
+bigmac.index.names
+type(bigmac.index)
+
+Extract Index Level Values with the get_level_values Method
+===========================================================
+here you can set the index using index_col parameter in read_csv method.
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"])
+bigmac.head(3)
+
+bigmac.index.get_level_values("Date")
+bigmac.index.get_level_values(0)
+bigmac.index.get_level_values("Country")
+bigmac.index.get_level_values(1)
+
+Change Index Level Name with the set_names Method
+=================================================
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"])
+bigmac.head(3)
+
+#set_name, it sets the label of the index name not the index name.
+bigmac.index.set_names(names=["day","locations"],inplace=True)
+bigmac.index # check the name would have been changed
+bigmac.head(3)
+
+bigmac.index.set_names(names="date",level=0) #still you can access through the index name or label
+bigmac.index.set_names(names="Date",level=0) #if the index is multiindex level must be used. level can be access a index labels or names
+bigmac.index.set_names(names="Date",level="day") #access level by name
+bigmac.index.set_names(names="Date",level="day",inplace=True)
+
+The sort_index Method on a MultiIndex DataFrame
+===============================================
+sort_index method are used to sort the index either by ascending or descending.
+
+bigmac.sort_index()
+bigmac.sort_index(ascending=False)
+bigmac.sort_index(ascending=True)
+bigmac.sort_index(ascending=[False,True])
+bigmac.sort_index(ascending=[True,False],inplace=True)
+
+
+bigmac.head(3)
+bigmac.sort_index(level=0) #using the position of the index
+bigmac.sort_index(level="Date") #using the index name
+bigmac.sort_index(level=1) #observe this
+bigmac.sort_index(level="Country",ascending=False)
+
+Extract Rows from a MultiIndex DataFrame
+========================================
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"])
+bigmac.sort_index(inplace=True)
+bigmac.head(3)
+
+bigmac.loc["2010-01-01",'Argentina']
+bigmac.loc["2010-01-01","Price in US Dollars"] #to access the columns sort the index
+bigmac.loc[("2010-01-01","Argentina"),["Price in US Dollars"]]
+bigmac.loc[("2010-01-01","Argentina"),["Price in US Dollars","Price in US Dollars"]]
+
+bigmac.iloc[10]
+bigmac.iloc[[10,20]]
+bigmac.iloc[[10,20,100]]
+
+
+The transpose Method on a MultiIndex DataFrame
+==============================================
+%config Completer.use_jedi = False
+nba=pd.read_csv("nba.csv")
+nba.head(3)
+
+nba.transpose() # this will just to convert row index into column and column index to rows
+
+%config Completer.use_jedi = False
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"])
+bigmac.sort_index(inplace=True)
+bigmac.head(3)
+
+#this will convert rows index to column as level1- date and level -country
+and Price as Rows
+bigmac.transpose()
+
+bigmac=bigmac.transpose()
+bigmac
+
+bigmac.loc[("Price in US Dollars")]
+bigmac.loc[("Price in US Dollars",),("2010-01-01")]
+bigmac.loc[("Price in US Dollars",),("2010-01-01","Argentina")]
+bigmac.loc[("Price in US Dollars",),("2010-01-01","Argentina"):("2016-01-01",)]
+bigmac.loc[("Price in US Dollars",),("2010-01-01","Argentina"):("2016-01-01","Taiwan")]
+
+The .swaplevel() Method
+=======================
+%config Completer.use_jedi = False
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"])
+bigmac.sort_index(inplace=True)
+bigmac.head(3)
+
+bigmac.swaplevel()
+
+bigmac.swaplevel("Date","Country")
+bigmac.swaplevel("Country","Date")
+bigmac.swaplevel(1,0)
+bigmac.swaplevel(0,1)
+
+bigmac=bigmac.swaplevel(0,1)
+bigmac.head(3)
+
+The .stack() Method
+===================
+
+world=pd.read_csv("worldstats.csv",index_col=["country","year"])
+world.head()
+
+world.stack() #grouped the multiindex based on the level 
+
+world.stack().to_frame()
+
+The .unstack() Method, Part 1
+=============================
+
+a.head(3)
+a.unstack()
+a.unstack().unstack()
+a.unstack().unstack().unstack()
+a.unstack().unstack().unstack().unstack()
+
+The .unstack() Method, Part 2
+=============================
+a.unstack()
+a.unstack(0)
+a.unstack(1)
+a.unstack(-1)
+a.unstack(2)
+a.unstack(-2)
+a.unstack(-3)
+a.unstack(0)
+a.unstack(["country"])
+a.unstack(["country","year"])
+
+The .unstack() Method, Part 3
+=============================
+using the level parameter
+
+a.unstack(level=[1,0])
+a.unstack(level=["country","year"])
+a.unstack("year",fill_value=0) #using fill_value parameter
+
+The pivot Method
+================
+Return reshaped DataFrame organized by given index / column values.
+Reshape data (produce a "pivot" table) based on column values. 
+Uses unique values from specified `index` / `columns` to form axes of the resulting DataFrame. 
+This function does not support data aggregation, multiple values will result in a MultiIndex in the columns.
+
+sales=pd.read_csv("salesmen.csv",parse_dates=["Date"])
+sales['Salesman']=sales['Salesman'].astype("category")
+sales.info()
+
+sales.pivot(index="Date",columns="Salesman",values="Revenue")
+
+Use the pivot_table method to create an aggregate summary of a DataFrame
+=========================================================================
+foods.pivot_table(values="Spend",index="Item",aggfunc="sum")
+foods.pivot_table(values="Spend",index="Frequency",aggfunc="sum")
+foods.pivot_table(values="Spend",index=["Gender","Item"],aggfunc="sum")
+foods.pivot_table(values="Spend",index=["Gender","Item"],columns="City",aggfunc="sum")
+foods.pivot_table(values="Spend",index=["Gender","Item"],columns="City",aggfunc="max")
+foods.pivot_table(values="Spend",index=["Gender","Item"],columns="City",aggfunc="min")
+foods.pivot_table(values="Spend",index=["Gender","Item"],columns=["City","Frequency"],aggfunc="sum")
+pd.pivot_table(data=foods,values="Spend",index=["Gender","Item"],columns=["City","Frequency"],aggfunc="sum")
+
+Use the pd.melt method to create a narrow dataset from a wide one
+=================================================================
+sales=pd.read_csv("quarters.csv")
+sales
+
+pd.melt(sales,id_vars="Salesman",var_name="Quaters",value_name="Revenue")
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://pandas.pydata.org/docs/user_guide/advanced.html

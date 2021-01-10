@@ -1,0 +1,88 @@
+Intro to the Input and Output Section
+Pass a URL to the pd.read_csv Method
+Quick Object Conversions
+Export CSV File with the to_csv Method
+Install xlrd and openpyxl Libraries to Read and Write Excel Files
+Import Excel File into pandas with the read_excel Method
+Export Excel File with the to_excel Method
+
+Intro to the Input and Output Section
+=====================================
+import pandas as pd
+
+Pass a URL to the pd.read_csv Method
+====================================
+go to URL ; https://data.cityofnewyork.us/
+type babynames
+click on view data and export --> csv --> right click --> copy link address
+
+baby_names=pd.read_csv("https://data.cityofnewyork.us/api/views/25th-nujf/rows.csv")
+baby_names.shape[0]
+baby_names.head()
+
+pip install num2words
+from num2words import num2words
+num2words(baby_names.shape[0])
+
+Quick Object Conversions
+========================
+baby_names=pd.read_csv("https://data.cityofnewyork.us/api/views/25th-nujf/rows.csv")
+baby_names.head()
+
+baby_names["Child's First Name"].to_frame()
+baby_names["Child's First Name"].tolist()
+baby_names["Child's First Name"].to_dict()
+
+'!'.join(["a","b","c","d"])
+", ".join(baby_names["Child's First Name"].str.title().drop_duplicates().sort_values())
+
+Export CSV File with the to_csv Method
+======================================
+baby_names.to_csv("NYC_Baby_Names.csv")
+baby_names.to_csv("NYC_Baby_Names.csv",index=False)
+baby_names.to_csv("NYC_Baby_Names.csv",index=False,columns=["Gender","Ethnicity","Child's First Name"])
+baby_names.to_csv("NYC_Baby_Names.csv",index=False,columns=["Gender","Ethnicity","Child's First Name"],encoding='UTF-8')
+
+Install xlrd and openpyxl Libraries to Read and Write Excel Files
+=================================================================
+conda install xlrd openpyxl
+
+Import Excel File into pandas with the read_excel Method
+========================================================
+df=pd.read_excel("Data - Single Worksheet.xlsx")
+df
+pd.read_excel("Data - Multiple Worksheets.xlsx",sheet_name="Data 2")
+data=pd.read_excel("Data - Multiple Worksheets.xlsx",sheet_name=[0,1])
+data=pd.read_excel("Data - Multiple Worksheets.xlsx",sheet_name=["Data 1","Data 2"])
+
+type(data)
+data
+# data[0]
+data['Data 2']
+data=pd.read_excel("Data - Multiple Worksheets.xlsx",sheet_name=None)
+
+data
+
+Export Excel File with the to_excel Method
+==========================================
+import pandas as pd
+
+baby_names=pd.read_csv("https://data.cityofnewyork.us/api/views/25th-nujf/rows.csv")
+
+girls=baby_names[baby_names['Gender']=='FEMALE']
+boys=baby_names[baby_names['Gender']=='MALE']
+
+baby=pd.ExcelWriter("Baby_Names.xlsx")
+girls.to_excel(baby,sheet_name="Girls",index=False)
+boys.to_excel(baby,sheet_name="Boys",index=False)
+baby.save()
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

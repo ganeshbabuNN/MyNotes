@@ -1,0 +1,291 @@
+Intro to the Working with Dates and Times Module
+Review of Python's datetime Module
+The pandas Timestamp Object
+The pandas DateTimeIndex Object
+The pd.to_datetime() Method
+Create Ranges of Dates with pd.date range() method part-1
+Create Range of Dates with the pd.date_range() Method, Part 2
+Create Range of Dates with the pd.date_range() Method, Part 3
+The .dt Accessor
+Install pandas-datareader Library
+Import Financial Data Set with pandas_datareader Library
+Selecting Rows from a DataFrame with a DateTimeIndex
+Timestamp Object Attributes and Methods
+The pd.DateOffset Object
+Timeseries Offsets
+The Timedelta Object
+Timedeltas in a Dataset
+
+Intro to the Working with Dates and Times Module
+================================================
+import pandas as pd
+import datetime as dt
+
+
+Review of Python's datetime Module
+==================================
+sday = dt.date(2010,1,20)
+sday
+str(sday)
+
+sday.year
+sday.month
+sday.day
+
+#for including the time
+dt.datetime(2010,1,20,9)
+sometime=dt.datetime(2010,2,20,9,10,40)
+
+sometime.year
+sometime.month
+sometime.day
+sometime.day
+sometime.hour
+sometime.minute
+sometime.second
+
+The pandas Timestamp Object
+===========================
+pd.Timestamp("2015-03-31")
+pd.Timestamp("2015/03/31")
+pd.Timestamp("2015 03 31")
+pd.Timestamp("31/03/2015")
+pd.Timestamp("03/31/2015")
+pd.Timestamp("1/1/2019")
+pd.Timestamp("19/12/2019")
+pd.Timestamp("4/3/2019")
+pd.Timestamp("2021-03-04 08:32:15")
+pd.Timestamp("2021-03-04 08:32:15  PM")
+pd.Timestamp("2021-03-04 08:32:15  AM")
+pd.Timestamp("2021-03-04 08:32:15  AM")
+
+#using the python date functionality
+pd.Timestamp(dt.date(2020,1,23))
+pd.Timestamp(dt.datetime(2020,1,31,10,12,22))
+
+The pandas DateTimeIndex Object
+===============================
+dates=["2018-01-20","2019.01.20","2019/01/20","28-01-2020"]
+pd.DatetimeIndex(dates)
+
+dates=[dt.date(2018,1,20),dt.date(2020,3,19),dt.date(2003,11,20)]
+dtindex=pd.DatetimeIndex(dates)
+
+values=[100,200,300]
+pd.Series(data=values,index=dtindex)
+
+The pd.to_datetime() Method
+===========================
+pd.to_datetime("2010-04-18")
+pd.to_datetime(dt.date(2018,2,11))
+pd.to_datetime(dt.datetime(2019,2,8,11,33,33))
+pd.to_datetime(["2015-01-29","2014/2/12","2016","July 4th,1996"])
+
+times=pd.Series(["2015-01-29","2014/2/12","2016","July 4th,1996"])
+times
+
+pd.to_datetime(times)
+
+dates=pd.Series(["July 4th, 1996","10/04/1998","Hello","2091","2015-03-14"])
+dates
+
+pd.to_datetime(dates,errors='coerce')
+
+
+pd.to_datetime([1344938293,40394939343,39282738293,3929392932,8484938292])
+
+Create Ranges of Dates with pd.date range() method part-1
+=========================================================
+times=pd.date_range(start='2018-01-01',end='2019-01-01',freq="D")
+type(times)
+type(times[0])
+
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="2D")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="B")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="W")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="W-FRI")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="H")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="6H")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="M")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="MS")
+pd.date_range(start='2018-01-01',end='2019-01-01',freq="A")
+
+Create Range of Dates with the pd.date_range() Method, Part 2
+==============================================================
+pd.date_range(start='2012-09-09',periods=40,freq='D')
+pd.date_range(start='2012-09-09',periods=40,freq='B')
+pd.date_range(start='2012-09-09',periods=40,freq='W')
+pd.date_range(start='2012-09-09',periods=40,freq='W-SUN')
+pd.date_range(start='2012-09-09',periods=40,freq='W-TUE')
+pd.date_range(start='2012-09-09',periods=40,freq='MS')
+pd.date_range(start='2012-09-09',periods=40,freq='A')
+pd.date_range(start='2012-09-09',periods=40,freq='H')
+pd.date_range(start='2012-09-09',periods=40,freq='6H')
+
+Create Range of Dates with the pd.date_range() Method, Part 3
+=============================================================
+pd.date_range(end='1999-01-01',periods=20,freq='D')
+pd.date_range(end='1999-01-01',periods=20,freq='B')
+pd.date_range(end='1999-01-01',periods=20,freq='W')
+pd.date_range(end='1999-01-01',periods=20,freq='W-SUN')
+pd.date_range(end='1999-01-01',periods=20,freq='W-FRI')
+pd.date_range(end='1999-01-01',periods=20,freq='M')
+pd.date_range(end='1999-01-01',periods=20,freq='MS')
+pd.date_range(end='1999-01-01',periods=100,freq='7H')
+
+The .dt Accessor
+================
+bunchdates=pd.date_range(start='2000-01-01',end='2010-01-01',freq='24D')
+
+a=pd.Series(bunchdates)
+a.head(3)
+
+a.dt.month
+a.dt.day
+a.dt.weekday
+a.dt.month_name()
+a.dt.week
+a.dt.weekofyear
+a.dt.dayofweek
+a.dt.days_in_month
+a.dt.day_name()
+a.dt.is_month_end
+a.dt.is_month_start
+a.dt.is_quarter_end
+a.dt.is_quarter_start
+a.dt.is_year_end
+a.dt.is_year_start
+
+mask=a.dt.is_quarter_end
+a[mask]
+
+Install pandas-datareader Library
+=================================
+conda info -envs
+
+conda install pandas-datareader
+
+Import Financial Data Set with pandas_datareader Library
+========================================================
+import pandas as pd
+import datetime as dt
+from pandas_datareader import data
+
+stock=data.DataReader(name='INFY',data_source="yahoo",start='2010-01-01',end='2021-01-08')
+stock.shape
+
+stock.values
+stock.columns
+stock.index
+stock.axes
+
+Selecting Rows from a DataFrame with a DateTimeIndex
+===================================================
+stock=data.DataReader(name='INFY',data_source="yahoo",start='2010-01-01',end='2021-01-08')
+stock.shape
+
+birthdays=pd.date_range(start="2010-03-12",end="2020-02-03",freq=pd.DateOffset(years=1))
+birth_stocks=stock.index.isin(birthdays)
+stock[birth_stocks]
+stock.loc[birth_stocks]
+
+Timestamp Object Attributes and Methods
+=======================================
+stock=data.DataReader(name='INFY',data_source="yahoo",start='2010-01-01',end='2021-01-08')
+stock.shape
+
+someday=stock.index[500]
+someday
+stock.index.day_name()
+stock.insert(0,"Day of Week",stock.index.day_name())
+stock
+stock.insert(1,"Is start of the month",stock.index.is_month_start)
+stock[stock["Is start of the month"]==True]
+stock[stock["Is start of the month"]]
+
+The pd.DateOffset Object
+========================
+stock=data.DataReader(name='INFY',data_source="yahoo")
+stock.shape
+
+min(stock.index)
+stock['High']+5
+
+# stock.index+1 #it raises the error
+stock.index + pd.DateOffset(days=5) #this is where they use the offset method to add
+stock.index - pd.DateOffset(days=5)
+stock.index=stock.index - pd.DateOffset(days=5)
+
+stock.index+pd.DateOffset(weeks=2)
+stock.index- pd.DateOffset(weeks=1)
+
+stock.index+pd.DateOffset(months=2)
+stock.index- pd.DateOffset(months=1)
+
+stock.index+pd.DateOffset(years=2)
+stock.index- pd.DateOffset(years=1)
+
+stock.index + pd.DateOffset(years=1,months=10,days=10,hours=7,minutes=2)
+stock.index - pd.DateOffset(years=1,months=10,days=10,hours=7,minutes=2,seconds=23)
+
+Timeseries Offsets
+==================
+stock=data.DataReader(name='INFY',data_source="yahoo")
+stock.shape
+
+stock.index+pd.offsets.MonthEnd()
+stock.index-pd.offsets.MonthEnd()
+
+stock.index+pd.offsets.MonthBegin()
+stock.index-pd.offsets.MonthBegin()
+
+from pandas.tseries import offsets
+
+stock.tail()
+stock.index + offsets.MonthEnd()
+stock.index - offsets.BMonthEnd()
+
+stock.index + offsets.YearBegin()
+stock.index -offsets.YearBegin()
+
+The Timedelta Object
+====================
+time_a=pd.Timestamp("2020-03-11 04:34:17AM")
+time_b=pd.Timestamp("2020-03-20 03:39:49PM")
+time_a-time_b
+time_b-time_a
+
+time_a + pd.Timedelta(days=3)
+pd.Timedelta(days=3,minutes=30)
+pd.Timedelta(days=3,hours=3,minutes=30)
+pd.Timedelta(days=3,hours=3,minutes=30,seconds=20)
+pd.Timedelta(weeks=8,days=3,hours=3,minutes=30,seconds=20)
+
+pd.Timedelta("5 minutes")
+pd.Timedelta("6 hours 12 minutes")
+pd.Timedelta("4 days 6 hours 12 minutes")
+
+Timedeltas in a Dataset
+=======================
+shipping=pd.read_csv("ecommerce.csv",index_col="ID",parse_dates=["order_date","delivery_date"])
+shipping.head()
+
+shipping["Delivery Time"]=shipping["delivery_date"]-shipping["order_date"]
+shipping.head()
+
+shipping["Twice As Long"]=shipping["delivery_date"]+shipping["Delivery Time"]
+shipping.head(3)
+shipping.dtypes
+mask=shipping["Delivery Time"] > "3000 days"
+shipping[mask]
+shipping["Delivery Time"].min()
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
