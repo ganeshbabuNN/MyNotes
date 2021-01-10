@@ -78,7 +78,6 @@ Step 4: Press Shift : q and enter (for quitting)
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/
 
-
 - ~/.bash_profile is the file where the environmental variales are maintained.
 step1: cd ~/ --> go to home directory
 step2: ls -1 ~/.bash_profile
