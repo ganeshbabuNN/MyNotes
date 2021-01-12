@@ -1,0 +1,216 @@
+1)Intro
+2)query data from a single column
+3)Querying data from multiple columns
+4)Querying data from all columns of a table
+5)Select Case
+
+Intro
+=====
+Series is a one dimensional arrays.
+its like a single column
+
+DataFrame is a two dimensional array
+
+Series
+======
+Series is a one dimensional arrays.
+its like a single column
+
+#lets a string series
+gbs=["finance","globalit","NN Quality","global safety","GRA","GD","GMA","CSCA","PO","Supplychain"]
+len(gbs)
+
+pd.Series(gbs) #convert to to list 
+units = pd.Series(gbs)
+units
+#accessing the series
+units[1] #indexing
+units[1:3] #slicing but not step
+units[0:1]
+type(units)
+units.to_string()
+units
+
+#floating series
+stocks=[43.2,42,12,34.1,34.2,32,55]
+s=pd.Series(stock)
+s
+
+
+#boolean series
+reg=[True,False,False,True,False]
+r=pd.Series(reg)
+r
+
+Create A Series Object from a Python Dictionary
+-----------------------------------------------
+gdgbs={"cdss":"clinical data and systems support",
+     "gd":"global development",
+     "tdm":"trial data management",
+     "b&p":"biostatics and programming",
+     "cr":"clinical reporting",
+     "cmu":"centrialized monitoring unit",
+     "tbas":"trial business analyasis support",
+      "qbs":"Quality and business support"
+    }
+
+gdgbs['cdss']
+gdgbs.keys()
+gdgbs.values()
+gdgbs.items()
+
+pd.Series(gdgbs) #convert from Dic to Series
+
+Intro to Attributes on a Series Object
+--------------------------------------
+atrributes are like variables or a field of that class
+
+about_me=["smart","playboy","charming","humble","gentle"]
+ae=pd.Series(about_me)
+ae
+ae.values #shows the value
+ae.index #shows the index
+ae.dtype #show the availale index
+
+Intro to Methods on a Series Object
+-----------------------------------
+petrol_prices=[69,56.43,32.2,44.33,45.32,66]
+s=pd.Series(petrol_prices)
+s
+s.sum()
+print(s.product()) #multiple of each number
+s.mean()
+s.median()
+s.std()
+
+Parameters and Arguments
+------------------------
+The general Difference between parameters and arguments. 
+-Use this take place during the function call
+-Function parameter are the names listed in the function definitions.
+-Function arguments are the real values passed to the function.
+
+pd.Series(fruits,weekdays)
+pd.Series(data=fruits,index=weekdays) #using positional parameter and arguments
+pd.Series(fruits,index=weekdays)
+pd.Series(data=fruits,weekdays) #lookins for the paremter name if you specifiy in benginge
+#to give name of the series
+s=pd.Series(data=fruits,index=weekdays,name="fruits") 
+
+index uniqness
+*-------------*
+Index labels may not be unique all the time.
+fruits=["apple","banana","mango","grape","papaya","kiwi"]
+weekdays=["monday","tuesday","wednesday","thursday","friday","Monday"] #does it check for a unique values
+
+pd.Series(data=fruits,index=weekdays)
+pd.Series(data=fruits,index=weekdays,name="fruits") #to give the name of the series
+
+Create Series from Dataset with the pd.read_csv Method
+------------------------------------------------------
+pd.read_csv("pokemon.csv")
+#return the subset of columns
+pd.read_csv("pokemon.csv",usecols=["Pokemon"])
+#squeez :    If the parsed data only contains one column then return a Series.
+pokemon=pd.read_csv("pokemon.csv",usecols=["Pokemon"],squeeze=True)
+pokemon
+
+google=pd.read_csv("google_stock_price.csv",squeeze=True)
+google
+
+Use the head and tail Methods to Return Rows from Beginning and End of Dataset
+------------------------------------------------------------------------------
+Head gives you the first 5 records of the datasets , where the tail method gives the last 5 records of the datatsets.
+
+pokemon=pd.read_csv("pokemon.csv",usecols=["Pokemon"],squeeze=True)
+google=pd.read_csv("google_stock_price.csv",usecols=["Stock Price"],squeeze=True)
+
+pokemon.head()
+pokemon.head(10)#pass a argument
+pokemon.tail()
+pokemon.tail(10)#pass a argument
+
+google.head()
+google.head(10)#pass a argument
+google.tail()
+google.tail(4) #pass a argument
+
+Passing pandas Objects to Python Built-In Functions
+---------------------------------------------------
+pokemon=pd.read_csv("pokemon.csv",usecols=["Pokemon"],squeeze=True)
+google=pd.read_csv("google_stock_price.csv",usecols=["Stock Price"],squeeze=True)
+
+
+#lenght of the series including missing
+len(pokemon) 
+len(google)
+#to get the know the type of object
+type(pokemon)
+type(google)
+dir(pokemon) #diretory to view 
+
+#sorting the series
+sorted(pokemon) #by default it is ascending
+sorted(pokemon,reverse=True) #for descending
+#list
+list(pokemon)
+list(google)
+#dictionary viewing
+dict(pokemon)
+dict(google)
+#max and min functions
+max(pokemon)
+min(pokemon)
+max(google)
+min(google)
+
+Accessing More Series Attributes
+--------------------------------
+pokemon=pd.read_csv("pokemon.csv",usecols=["Pokemon"],squeeze=True)
+google=pd.read_csv("google_stock_price.csv",usecols=["Stock Price"],squeeze=True)
+
+#to knows the values
+pokemon.values
+google.values
+#to know the index range of the series
+pokemon.index
+google.index
+#to get to know the type of data type object
+pokemon.dtypes
+google.dtypes
+#to check if the series is unique or not
+pokemon.is_unique
+google.is_unique
+#to check the
+pokemon.ndim
+google.ndim
+#shapping the dataframe
+pokemon.shape
+google.shape
+#size of the series
+pokemon.size
+google.size
+#update the name
+pokemon.name="pocket Monster"
+pokemon
+pokemon.head()
+
+
+Dataframe
+---------
+
+
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://stackoverflow.com/questions/44921444/pandas-equivalent-of-sql-case-when-statement-to-create-new-variable

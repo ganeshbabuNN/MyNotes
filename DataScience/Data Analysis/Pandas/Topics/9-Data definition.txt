@@ -1,0 +1,26 @@
+1)intro 
+2)creating new tables in the database
+3)how to use the identity clause to define the identity column for a table
+4)how to change the structure of existing tables
+5)how to add one or more columns to an existing table
+6)how to change the definition of existing columns in a table
+7)how to use various statements to drop one or more columns from a table
+8)how to delete tables from the database
+9)delete all data from a table faster and more efficiently
+10)process of renaming a table and handling its dependent objects
+11)virtual columns and how to use them in the database tables
+12)Constraints
+13)Temporary Tables
+14)Views
+15)
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
