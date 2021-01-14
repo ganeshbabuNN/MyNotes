@@ -5,7 +5,9 @@ String Indexing and Slicing
 String Properties
 Escape characters
 String Formatting(Huge chapters)
+String Regular expressions
 String Methods
+
 
 Intro
 =====
@@ -231,7 +233,6 @@ print("my daily work day consumptions is %25.2f per year " %36512.2432)
 
 for more informations :https://docs.python.org/3/library/stdtypes.html#old-string-formatting
 
-
 Multiple Formatting
 *-----------------*
 print("myself %s working %5.2f per year, %r" %('Ganesh Babu',36512.2432,'Bye!'))
@@ -314,6 +315,13 @@ print(f"My 10 character, four decimal number is:{num:10.4f}")
 For more info on formatted string literals visit https://docs.python.org/3/reference/lexical_analysis.html#f-strings
 That is the basics of string formatting!
 
+String Regular expressions
+==========================
+The regular expressions can be defined as the sequence of characters which are used to search for a pattern in a string. 
+-The module re provides the support to use regex in the python program. 
+-The re module throws an exception if there is some error while using the regular expression.
+
+The details concepts are explained in API/Regular Expressions chapters.
 
 Basic Built-in String methods
 =============================
