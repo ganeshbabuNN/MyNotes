@@ -325,7 +325,8 @@ object.method(parameters)
 Where parameters are extra arguments we can pass into the method. Don't worry if the details don't make 100% sense right now. Later on we will be creating our own objects and functions!
 Here are some examples of built-in methods in strings:
 
--split case
+split case
+---------
 s ='Hello World' 
 s.split() # Split a string by blank space (this is the default)
 s.split('W') # Split by a specific element (doesn't include the element that was split on)
@@ -333,51 +334,81 @@ print(len(a)) #length of a string
 
 There are many more methods than the ones covered here. Visit the Advanced String section to find out more!
 
---Strips the spaces
+Strips the spaces
+-----------------
 #generally used to trimt he leading and lagging spaces in the given string.
 c=""" ganesh babu """;
 print(c.strip())  #striping the lead and lagging
 print(c.lstrip()) #striping left
 print(c.rstrip()) #striping left
 
--find functions
+x="ganesh \nbabu " #The splitlines() method splits a string into a list. The splitting is done at line breaks.
+
+
+x.splitlines() 
+
+find functions
+--------------
+Searches the string for a specified value and returns the position of where it was found
+
 print(c.find("ba")) #return the count of the index where search starts
 print(c.find("ba"),0,len(c)) #used 0 outside the find functions
 print(c.find("ab",9,len(c))) #start with 9 with max leng where the search looked into
+x.rfind('a')  #The rfind() method finds the last occurrence of the specified value.
 
--count function get the occurrence of a string.
+count function get the occurrence of a string.
+-----------------------------------------------
 print(c.count("h"))
 
--replace
+replace
+-------
 print(c.replace("ga","hh"))
 
--case changes
-print(c.upper())
-print(c.lower())
+case changes
+------------
+print(c.upper()) #convert to uppper case
+print(c.lower()) #covnert to lower case
+print(c.casefold()) #convert to lower case
 print(c.title()) #its upper the first letter of each word
 print(c.capitalize()) #its upper the first letter of the string
+print(c.islower()) #The islower() method returns True if all the characters are in lower case, otherwise False.
+x.swapcase() #Swaps cases, lower case becomes upper case and vice versa
 
---length of the string
+
+alignment 
+---------
+x='  Ganesh Babu'
+x.center(20) # The center() method will center align the string, using a specified character (space is default) as the fill character.
+x.ljust(20) #for left 
+x.rjust(20) #for right
+
+
+length of the string
+--------------------
 We can also use a function called len() to check the length of a string!
 len('Hello World')
 
--Concatentations
+Concatentations
+---------------
 "ganesh" + "Babu" # concatenation
 x="ganesh"
 x+"babu"
 
--start and end of string
+start and end of string
+-----------------------
 str.startswith(('g','a','s')) # start with the letter single or multiple(tuple)
 str.endswith(('h','a')) # end with the letter single or multiple(tuple)
 
--checking numeric or string
+checking numeric or string
+--------------------------
 str12.isnumeric() #Return True if all characters in the string are numeric characters, and there is at least one character
 str13.isdigit() #Return True if all characters in the string are digits and there is at least one character
 #detecting a floating point in a string using regex(this will cover later)
 s="ganesh babu st 323.22  and 23.22 , 2.1.1 and 43"
 re.findall(r"[-+]?\d*\.\d+|\d+",s)
 
--using membership operators
+using membership operators
+---------------------------
 'f' in name
 name="ganesh"
 'a' in name # in operator
@@ -385,7 +416,102 @@ name="ganesh"
 'a' not in name #not in operator
 'f' not in name
 
--c.count('er') #Occurence of character in string
+Occurence of character in string
+--------------------------------
+-c.count('er') #
+
+
+encoding the string
+-------------------
+#The encode() method encodes the string, using the specified encoding. If no encoding is specified, UTF-8 will be used.
+x='  Ganesh Babu'
+x.encode() 
+
+txt = "My name is Ståle"
+print(txt.encode(encoding="ascii",errors="backslashreplace"))
+print(txt.encode(encoding="ascii",errors="ignore"))
+print(txt.encode(encoding="ascii",errors="namereplace"))
+print(txt.encode(encoding="ascii",errors="replace"))
+print(txt.encode(encoding="ascii",errors="xmlcharrefreplace"))
+
+Tabing the string
+------------------
+The expandtabs() method sets the tab size to the specified number of whitespaces.
+
+x='G\ta\tn\te\ts\th\tB\ta\tb\tu'
+x.expandtabs()
+
+index
+------
+The index() method finds the first occurrence of the specified value.
+The index() method raises an exception if the value is not found.
+The index() method is almost the same as the find() method, the only difference is that the find() method returns -1 if the value is not found. (See example below)
+
+x='ganesh babu'x.index('e')
+x.index('e')
+
+#not found
+x.index('z')
+x.find('z')
+
+recongizing the string or number
+--------------------------------
+x='ganesh babu12'
+x.isalnum() #The isalnum() method returns True if all the characters are alphanumeric, meaning alphabet letter (a-z) and numbers (0-9). characters that are not alphanumeric: (space)!#%&? etc
+x.isalpha() #The isalpha() method returns True if all the characters are alphabet letters (a-z).
+
+x='1222'
+x.isdecimal()  #The isdigit() method returns True if all the characters are digits, otherwise False.if floating type is not digit
+#The isnumeric() method returns True if all the characters are numeric (0-9), otherwise False.
+
+
+Identifier
+----------
+The isidentifier() method returns True if the string is a valid identifier, otherwise False.
+A string is considered a valid identifier if it only contains alphanumeric letters (a-z) and (0-9), or underscores (_). A valid identifier cannot start with a number, or contain any spaces.
+
+a = "MyFolder"
+b = "Demo002"
+c = "2bring"
+d = "my demo"
+
+print(a.isidentifier())
+print(b.isidentifier())
+print(c.isidentifier())
+print(d.isidentifier())
+
+isprintable
+-----------
+The isprintable() method returns True if all the characters are printable, otherwise False. Example of none printable character can be carriage return and line feed.
+
+txt = "Hello! Are you #1?"
+x = txt.isprintable()
+print(x)
+
+txt = "Hello!\nAre you #1?"
+x = txt.isprintable()
+print(x)
+
+partitions
+----------
+The partition() method searches for a specified string, and splits the string into a tuple containing three elements.
+The first element contains the part before the specified string.
+The second element contains the specified string.
+The third element contains the part after the string.
+
+txt = "I could eat bananas all day"
+x = txt.partition("bananas")
+print(x)
+
+txt = "I could eat bananas all day"
+x = txt.partition("apples")
+print(x)
+
+fill
+----
+The zfill() method adds zeros (0) at the beginning of the string, until it reaches the specified length.
+
+x.zfill(10) 
 
 Python's built-in len() function counts all of the characters in the string, including spaces and punctuation.
 https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range  # for string methods

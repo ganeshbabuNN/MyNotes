@@ -146,9 +146,17 @@ print(x)
 lst=[2,32,3,2,3,2]
 sum(lst)
 
+#rounding the value
 round(4.5) #round to the nearest value
 round(4.5,1) #round to the nearest value
 round(4.9,2) #round to the nearest value
+
+#calculating percentage
+print(7.0/448.8)
+print(str(int((7.0/448.8)*100))+'%') #direct approach
+print('{:.1%}'.format((7.0/448.8)*100)) # use string formatting to specify precision
+print('{percent:.2%}'.format(percent=7.0/448.8))# using format
+print("{0:.0f}%".format((7.0/448.8) * 100))
 
 ref: https://docs.python.org/3/library/functions.html
 
@@ -182,6 +190,42 @@ math.nan #A floating-point “not a number" (NaN) value.
 
 Ref: https://docs.python.org/3/library/math.html
 
+Random Functions
+----------------
+#choice :Python number method choice() returns a random item from a list, tuple, or string.
+import random
+mylist=[432,234,23,21]
+mystr=['a','b','c','d']
+random.choice(mylist)
+random.choice(mystr)
+
+#randomrange-Python number method randrange() returns a randomly selected element from range(start, stop, step).
+import random
+random.randrange(100,1000,2) 
+
+#random
+Python number method random() returns a random float r, such that 0 is less than or equal to r and r is less than 1.
+import random
+random.random()
+
+#seed #seed() sets the integer starting value used in generating random numbers. Call this function before calling any other random module functio
+import random
+random.seed(10)
+random.random()
+
+#shuffle:Python number method shuffle() randomizes the items of a list in place.
+import random
+mylist=[32,23,2,3,3,3,4,41,4,4]
+random.shuffle(mylist)
+mylist
+
+#uniform()-uniform() returns a random float r, such that x is less than or equal to r and r is less than y.
+import random
+random.uniform(5, 10)
+
+mathematical and trignometrical functions
+https://docs.python.org/3/library/math.html#trigonometric-functions
+https://docs.python.org/3/library/math.html#
 Range Function
 --------------
 The range function allows you to quickly generate a list of integers, this comes in handy a lot, so take note of how to use it! There are 3 parameters you can pass, a start, a stop, and a step size. Let's see some examples
