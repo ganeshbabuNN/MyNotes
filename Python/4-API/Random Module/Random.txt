@@ -1,0 +1,72 @@
+Intro
+=====
+Random Module allows us to create random numbers. We can even set a seed to produce the same random set every time.
+The explanation of how a computer attempts to generate random numbers is beyond the scope of this course since it involves higher level mathmatics. 
+But if you are interested in this topic check out:
+
+import random
+random.randint(0,100) #randomly generate the number
+
+random.seed(33) # The value 101 is completely arbitrary, you can pass in any number you want
+random.randint(0,80) # You can run this cell as many times as you want, it will always return the same number
+
+Understanding a seed
+--------------------
+Setting a seed allows us to start from a seeded psuedorandom number generator, which means the same random numbers will show up in a series. 
+Note, you need the seed to be in the same cell if your using jupyter to guarantee the same results each time. 
+Getting a same set of random numbers can be important in situations where you will be trying different variations of functions and want to compare their performance on random values, 
+but want to do it fairly (so you need the same set of random numbers each time).
+
+random.seed(22) # The value 101 is completely arbitrary, you can pass in any number you want
+print(random.randint(0,80)) # You can run this cell as many times as you want, it will always return the same number
+print(random.randint(0,100)) # The value 101 is completely arbitrary, you can pass in any number you want
+print(random.randint(0,50)) # The value 101 is completely arbitrary, you can pass in any number you want
+print(random.randint(0,80)) # The value 101 is completely arbitrary, you can pass in any number you want
+
+Random Integers
+*-------------*
+random.randint(0,100)
+
+Random with Sequences
+*-------------------*
+mylist = list(range(0,20)) #Grab a random item from a list
+mylist
+random.choice(mylist) #select the choice list
+
+Sample with Replacement
+*----------------------*
+Take a sample size, allowing picking elements more than once. 
+Imagine a bag of numbered lottery balls, you reach in to grab a random lotto ball, then after marking down the number, 
+you place it back in the bag, then continue picking another one.
+
+random.choices(population=mylist,k=10)
+
+Sample without Replacement
+*------------------------*
+Once an item has been randomly picked, it can't be picked again. Imagine a bag of numbered lottery balls, 
+you reach in to grab a random lotto ball, then after marking down the number, 
+you leave it out of the bag, then continue picking another one.
+
+random.sample(population=mylist,k=10)
+
+Shuffle a list
+*------------*
+Note: This effects the object in place!
+# Don't assign this to anything!
+random.shuffle(mylist)
+
+mylist
+
+Random Distributions
+*------------------*
+
+Uniform distributions
+https://en.wikipedia.org/wiki/Uniform_distribution
+# Continuous, random picks a value between a and b, each value has equal change of being picked.
+random.uniform(a=0,b=100)
+
+https://en.wikipedia.org/wiki/Normal_distribution
+random.gauss(mu=0,sigma=1)
+
+You can use Numpy for more numerical functions
+https://towardsdatascience.com/10-numpy-functions-you-should-know-1dc4863764c5
