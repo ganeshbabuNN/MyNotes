@@ -1,0 +1,98 @@
+OS Module
+========
+Python OS module provides the facility to establish the interaction between the user and the operating system. 
+It offers many useful OS functions that are used to perform OS-based tasks and get related information about operating system.
+
+Getting Directories
+-------------------
+You can get the current directory
+
+import os
+os.getcwd()
+
+or using pwd(in notebook only)
+
+Listing Files in a Directory
+------------------------------
+
+os.listdir() # In your current directory
+
+os.listdir("C:\\Users") #In any directory you pass
+
+Check if the file exists
+-----------------------
+import os,sys
+
+s="mylog.txt"
+if os.path.isfile(s):
+    print("file exists")
+else:
+    print("File does not exists")
+    sys.exit
+
+f=open(s,'r')
+con=f.read()
+print(con)
+
+Walking through a directory
+---------------------------
+Often you will just need to "walk" through a directory, that is visit every file or folder and check to see if a file is in the directory, and then perhaps do something with that file. 
+Usually recursively walking through every file and folder in a directory would be quite tricky to program, but luckily the os module has a direct method call for this called os.walk().
+
+for folder , sub_folders , files in os.walk("Example_Top_Level"):
+    
+    print("Currently looking at folder: "+ folder)
+    print('\n')
+    print("THE SUBFOLDERS ARE: ")
+    for sub_fold in sub_folders:
+        print("\t Subfolder: "+sub_fold )
+    
+    print('\n')
+    
+    print("THE FILES ARE: ")
+    for f in files:
+        print("\t File: "+f)
+    print('\n')
+
+
+walking to the directories path,dirname and file name
+------------------------------------------------------
+for path,dirname,file in os.walk(os.getcwd()):
+    print("path: ",path)
+    print("dirname: ",dirname)
+    print("file: ",file)
+
+
+Getting the OS name
+-------------------
+This function provides the name of the operating system module that it imports.
+Currently, it registers 'posix', 'nt', 'os2', 'ce', 'java' and 'riscos'.
+
+print(os.name)
+
+creating a new folder
+---------------------
+The os.mkdir() function is used to create new directory. Consider the following example.
+
+This function provides the name of the operating system module that it imports.
+os.mkdir(r"C:\ganesh)
+
+change the directory
+--------------------
+The os module provides the chdir() function to change the current working directory.
+
+os.chdir(r"C:\GBAG_Back\MyTraining\Python\4-API\File Handling")
+
+Deleting the directory
+------------------
+os.rmdir(r"C:\Users\gbag\Desktop\internet\ds") #which deletes a folder (folder must be empty) at the path your provide
+
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========
