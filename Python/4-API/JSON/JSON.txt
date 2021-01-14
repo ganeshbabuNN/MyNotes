@@ -1,0 +1,197 @@
+Intro
+Working with Python JSON
+Serializing JSON
+Deserializing JSON
+Python Pretty Print JSON
+Encoding and Decoding
+
+intro
+=====
+JSON stands for JavaScript Object Notation, which is a widely used data format for data interchange on the web. JSON is the ideal format for organizing data between a client and a server.
+
+JSON mainly supports 6 types of data type In JavaScript:
+
+String
+Number
+Boolean
+Null
+Object
+Array
+
+JSON is built on the two structures:
+It stores data in the name/value pairs. It is treated as an object, record, dictionary, hash table, keyed list.
+The ordered list of values is treated as an array, vector, list, or sequence
+
+Working with Python JSON
+========================
+python provides a module called json. python suppots standard library marshal and pickle module.
+the encoding of  JSON data is called serializations , Serialization is a technique where data transforms in the series of bytes and transmitted across the network.
+The deserialization is the reverse process of decoding the data that is converted into the JSON format
+This module includes many built-in functions.
+
+import json
+print(dir(json))
+
+main functions are :
+load()
+loads()
+dump()
+dumps()
+
+Serializing JSON
+================
+Serialization is the technique to convert the Python objects to JSON
+
+python objects -JSON
+Dict - Object
+list,tuple - Array
+str-String
+int,float - number
+True - true
+False- false
+None-null
+
+Writing JSON Data into File
+----------------------------
+dump() function to transmit(encode) data in JSON format.
+import json
+student = {
+    "Name":"ganesh",
+    "ID":123,
+    "class":"MCA",
+    "Age":37,
+    "subject":["Computer Science","Mathematics","Java"]    
+}
+
+with open("data.json","w") as jfile:
+    json.dump(student,jfile)    
+
+#The dumps() function is used to store serialized data in the Python file. 
+It accepts only one argument that is Python data for serialization. 
+The file-like argument is not used because we aren't not writing data to disk
+
+import json
+student = {
+    "Name":"ganesh",
+    "ID":123,
+    "class":"MCA",
+    "Age":37,
+    "subject":["Computer Science","Mathematics","Java"]    
+}
+
+b=json.dumps(student)  
+print(b)
+
+The json.dump() function is used when we want to serialize the Python objects into JSON file and json.dumps() function is used to convert JSON data as a string for parsing and printing
+
+JSON with primitive types
+-------------------------
+JSON supports primitive data types, such as strings and numbers, as well as nested list, tuples and objects.
+#Python  list conversion to JSON  Array   
+print(json.dumps(["welcome","To","Python world"]))
+
+#python tuple conversion to JSON Array
+print(json.dumps(("welcome","To","Python world")))
+
+#python string conversion to JSON String
+print(json.dumps("Hello"))
+
+#python int conversion to JSON number
+print(json.dumps(1234))
+
+#python float conversion to JSON number
+print(json.dumps(23.433))
+
+#boolean conversion to their respective values
+print(json.dumps(True))
+print(json.dumps(False))
+
+#None Values to null
+print(json.dumps(None))
+
+
+Deserializing JSON
+==================
+Deserialization is the process to decode the JSON data into the Python objects.
+The json module provides two methods load() and loads(), which are used to convert JSON data in actual Python object form
+
+JSON-Python objects
+Object-Dict
+Array-list,tuple
+String-str
+number-int,float
+true-True
+false-False
+null-None
+
+-The load() function is used to deserialize the JSON data to Python object from the file. Consider the following example:
+import json
+student = {
+    "Name":"ganesh",
+    "ID":123,
+    "class":"MCA",
+    "Age":37,
+    "subject":["Computer Science","Mathematics","Java"]    
+}
+
+with open("data.json","w") as jfile:
+    json.dump(student,jfile) 
+
+with open("data.json",'r') as rfile:
+    b=json.load(rfile)
+
+print(b)
+
+loads() function, which is used to convert JSON data to Python object 
+
+import json
+#creating a list
+a=["Ganesh","Babu",(43,43,2,43),{"Name":"Vedha"}]
+#python object into json
+b=json.dumps(a)
+#json into python object
+c=json.loads(b)
+print(c)
+
+The json.load() function is used to load JSON file, whereas json.loads() function is used to load string.
+
+Python Pretty Print JSON
+========================
+import json
+student = '{ "Name":"ganesh",  "ID":123, "class":"MCA", "Age":37, "subject":["Computer Science","Mathematics","Java"] }' 
+
+stu_dict=json.loads(student)
+print(json.dumps(stu_dict,indent=3,sort_keys=True))
+
+Encoding and Decoding
+=====================
+Encoding is the technique for transforming the text or values into an encrypted form. 
+Encrypted data can only be used by the preferred user by decoding it. 
+Encoding is also known as serialization and decoding is also called deserialization. 
+Encoding and decoding are done for JSON(object) format. Python provides a popular package for such operations. 
+We can install it on Windows by the following command:
+
+install this package
+pip install demjson  
+
+Encoding - The demjson package provides encode() function that is used to convert the Python object into a JSON string representation. The syntax is given below
+
+import demjson
+student = [{ "Name":"ganesh",  "ID":123, "class":"MCA", "Age":37, "subject":"Computer Science"}]
+demjson.encode(student)
+
+Decoding-The demjson module provides decode() function, which is used to convert JSON object into Python format type. The syntax is given below:
+import demjson
+a='["ganesh","vedha","store","hydrogen"]'
+demjson.decode(a)
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========
+http://zetcode.com/python/simplejson/
+https://support.oneskyapp.com/hc/en-us/articles/208047697-JSON-sample-files
