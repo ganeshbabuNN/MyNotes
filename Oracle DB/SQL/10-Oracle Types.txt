@@ -1,0 +1,26 @@
+Oracle data types – give you an overview of the built-in Oracle data types
+NUMBER – introduces you to the numeric data type and show you how to use it to define numeric columns for a table.
+FLOAT – demystify float data type in Oracle by practical examples.
+CHAR – learn about fixed-length character string.
+NCHAR –  show you how to store fixed-length Unicode character data and explain the differences between CHAR and NCHAR data types
+VARCHAR2 – introduce you to the variable-length character and show you how to define variable-length character columns in a table.
+NVARCHAR2 – learn how to store variable-length Unicode characters in the database.
+DATE – discuss the date and time data type and show you how to handle date-time data effectively.
+TIMESTAMP – introduce you how to store date and time with the fractional seconds precision.
+INTERVAL– focus on the interval data types to store periods of time.
+TIMESTAMP WITH TIME ZONE – learn how to store datetime with timezone data.
+
+
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

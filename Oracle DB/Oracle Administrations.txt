@@ -1,0 +1,67 @@
+Section 1. Oracle Database Architecture
+Oracle Database Architecture – learn about the Oracle Database architecture and its components.
+Oracle Listener – introduce the Oracle Listener and show you how to manage the Oracle Listener such as starting, stopping, and checking its status
+
+Section 2. Database Administrative Tasks
+Start Oracle Database – show you how to use the STARTUP command to start Oracle Database instance
+Shutdown Oracle Database – describe various options to shutdown an Oracle Database instance using the SHUTDOWN command
+
+Section 3. Managing Tablespaces
+Oracle tablespace – introduce you to the Oracle tablespace and how Oracle uses tablespaces to store data
+CREATE TABLESPACE – show you how to create a new tablespace in the database.
+DROP TABLESPACE – learn how to remove a tablespace from the database.
+Extend Tablespace – describe various ways to extend the size of a tablespace.
+Temporary Tablespace – introduce you to temporary tablespaces and show you how to manipulate temporary tablespace effectively.
+Tablespace Group – learn about Oracle temporary tablespace group and how to use the tablespace group more effectively to optimize internal Oracle operations.
+
+Section 4. Users & Privileges
+CREATE USER – show you how to create a new user in the Oracle database.
+GRANT – learn how to grant system and object privileges to a specific user.
+REVOKE – describe how to revoke system and object privileges from a user.
+ALTER USER – use the alter statement to modify the authentication or database resource of a database user.
+DROP USER – show you how to delete a user from the Oracle Database.
+How to Grant All Privileges to a User – learn how to grant all privileges to a user.
+How to grant SELECT object privilege on one or more tables to a user – show you how to use grant the SELECT object privilege on one or more table to a user.
+How to Unlock a User – learn how to unlock an account.
+How to list users in the Oracle Database – show you how to list users in the Oracle Database.
+
+Section 5. Roles
+CREATE ROLE – show you how to group object or system privileges into a role and grant the role to users.
+SET ROLE – enable and disable roles for your current session.
+ALTER ROLE – modify the authorization needed to enable a role.
+DROP ROLE – learn how to remove a role from the database.
+
+Section 6. User Profiles
+CREATE PROFILE – describe how to create a user profile, which is a set of limits on database resource and password, and assign the profile to a user.
+ALTER ROLE – show you how to modify the resource limit and password management in a user profile.
+DROP PROFILE – show you how to delete a profile from the Oracle Database.
+
+
+Section 7. Data Migration
+External Tables – show you how to access data from a flat-file as if it were in a table.
+SQL*Loader – describe steps on how to load data from a flat-file into a table.
+Data Pump Export – learn step by step how to unload data (and meta-data) from the database.
+Data Pump Import – guide you on how to load data from an export dump file set into the database.
+
+Section 8. Database Links
+Create a database link – show you how to create a database link that allows you to access tables and views from a remote database.
+Alter database link – learn how to update the current password of a user of a database link.
+Drop a database link – describe how to remove a database link from the database.
+
+Section 9. Useful Tips
+Show tables –  list all tables which are owned by the current user, accessible by the current user, or all tables in the Oracle database
+How To Fix the “ORACLE initialization or shutdown in progress” error
+
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

@@ -1,0 +1,13 @@
+SELECT – show you how to query data from a single table
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://stackoverflow.com/questions/44921444/pandas-equivalent-of-sql-case-when-statement-to-create-new-variable

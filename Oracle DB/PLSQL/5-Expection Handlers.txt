@@ -1,0 +1,17 @@
+Exception –  show you how to handle exceptions in a block.
+Raise exceptions – learn how to raise an exception explicitly with the RAISE statement.
+Using raise_application_error – raise an exception with a user-defined error message.
+Exception propagation – learn about how PL/SQL propagates an unhandled exception from the current block to its enclosing block.
+Handling other unhandled exceptions – show you how to use the SQLCODE and SQLERRM functions to handle other unhandled exceptions.
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

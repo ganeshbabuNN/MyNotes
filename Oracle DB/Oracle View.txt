@@ -1,0 +1,22 @@
+Introduction to the Oracle View
+When to use the Oracle view
+Simplifying data retrieval
+Creating a view 
+Drop a view 
+Updatable views 
+Inline views 
+WITH CHECK OPTION
+Materialized views
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

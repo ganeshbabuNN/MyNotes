@@ -1,0 +1,20 @@
+
+INSERT – learn how to insert a row into a table.
+INSERT INTO SELECT – insert data into a table from the result of a query.
+INSERT ALL – discuss multitable insert statement to insert multiple rows into a table or multiple tables.
+UPDATE – teach you how to change the existing values of a table.
+DELETE – show you how to delete one or more row from a table.
+MERGE – walk you through the steps of performing a mixture of insertion, update, and deletion using a single statement.
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

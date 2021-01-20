@@ -1,0 +1,16 @@
+Basic LOOP statement – show you how to use the basic LOOP statement to execute a sequence of code multiple times.
+Numeric FOR LOOP statement – learn how to execute a sequence of statements a fixed number of times.
+WHILE loop – execute a sequence of statements as long as a specified condition is TRUE.
+CONTINUE – use the CONTINUE statement to skip the current iteration of the loop and immediately continue the next iteration.
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

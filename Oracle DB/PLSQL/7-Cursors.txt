@@ -1,0 +1,18 @@
+Cursor – introduce you to cursors including implicit and explicit cursors and shows you how to use them effectively to fetch data from a table
+Cursor FOR LOOP – show you how to use the cursor FOR LOOP statement to fetch and process each row from a cursor.
+Cursor with parameters – learn how to use the cursor with parameters to fetch data according to the input arguments passed to the cursor each time it is opened.
+Cursor Variables with REF CURSOR – guide you on how to use the cursor variable with ref cursor.
+Updatable cursor – introduce you to the Oracle updatable cursor to update data in the table.
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

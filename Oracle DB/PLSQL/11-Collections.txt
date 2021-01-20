@@ -1,0 +1,13 @@
+Associative Arrays – introduce you to associative arrays including declaring associative arrays, populating values, and iterating over array elements.
+Nested Tables – learn about nested tables.
+VARRAY – learn about variable-sized array and how to manipulate its elements effectively.
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

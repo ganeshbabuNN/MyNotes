@@ -1,0 +1,22 @@
+Triggers – introduce you to the Oracle trigger and show you how to create a new trigger.
+Statement-level triggers – learn how to use statement-level triggers to enforce additional security to the transaction.
+Row-level triggers – show you how to use row-level triggers for data-related activities.
+INSTEAD OF triggers – learn how to use the INSTEAD OF triggers to update tables via their views which cannot be modified directly through DML statements.
+Disable triggers – show you to disable a trigger or all triggers of a table.
+Enable triggers – describe steps to enable a trigger or all triggers of a table.
+Drop Triggers – guide you on how to drop a trigger from the database.
+How to fix the mutating table error – learn about the mutating table error and how to fix it using a compound trigger.
+
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

@@ -1,0 +1,13 @@
+Record – learn how to use record type to make your code more efficiently by shifting operations from field-level to record-level.
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

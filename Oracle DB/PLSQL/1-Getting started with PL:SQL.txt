@@ -1,0 +1,18 @@
+What is PL/SQL –  introduce you to PL/SQL programming language and its architecture.
+Anonymous Block – explain PL/SQL anonymous blocks and shows you how to execute an anonymous block in SQL*Plus and Oracle SQL Developer tools.
+Data Types – give you a brief overview of PL/SQL data types including number, Boolean, character, and datetime.
+Variables – introduce you to PL/SQL variables and shows you how to manipulate variables in programs efficiently.
+Comments – use single-line or multi-line comments to document your code to make it more readable and maintainable.
+Constants – learn how to declare constants that hold values that remain unchanged throughout the execution of the program.
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

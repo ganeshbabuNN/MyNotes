@@ -1,0 +1,17 @@
+Intro
+Creating a new index 
+Removing an index 
+Unique index
+Function-based index
+Bitmap index 
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

@@ -1,0 +1,22 @@
+Intro
+What is a sequence
+Creating a sequence
+Using a sequence
+Modifying a sequence
+Removing a sequence
+Oracle sequence privileges
+ALTER SEQUENCE 
+DROP SEQUENCE
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

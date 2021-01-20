@@ -1,0 +1,17 @@
+Procedure – a step-by-step guide to create, compile and execute a procedure from Oracle SQL Developer.
+Implicit statement results  – learn how to return one or more result sets fro a procedure.
+Function – show you how to develop a PL/SQL function and explain to you various ways to call a function.
+Cursor variables – learn how to use cursor variables using REF CURSOR type.
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

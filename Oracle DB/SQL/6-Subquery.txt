@@ -1,0 +1,16 @@
+Subquery – introduce the concept of subquery and how to use the subqueries to perform advanced data selection techniques.
+Correlated Subquery – learn about the correlated subquery which is a subquery that depends on the values returned by the outer query.
+EXISTS and NOT EXISTS – check for the existence of rows returned by a subquery
+ANY, SOME, and ALL – compare a value to a list or subquery. Note that SOME and ANY are the same so they are interchangeable
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+==========
+https://stackoverflow.com/questions/43574675/how-to-perform-the-equivalent-of-a-correlated-subquery-in-pandas
+https://stackoverflow.com/questions/52364597/how-to-write-subqueries-in-python-dataframe

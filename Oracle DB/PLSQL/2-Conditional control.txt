@@ -1,0 +1,16 @@
+IF statements – introduce you various IF statement to either execute or skip a sequence of statements based on a condition
+CASE statements – learn how to choose one sequence of statements out of many possible sequences to execute.
+GOTO – explain the GOTO statement and shows how to use it to transfer control to a labeled block or statement
+NULL statement – show you how to use the NULL statement to make the code more clear.
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

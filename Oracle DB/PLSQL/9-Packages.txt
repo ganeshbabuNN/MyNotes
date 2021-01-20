@@ -1,0 +1,18 @@
+Introduction to the PL/SQL package – introduce you to PL/SQL packages and explain to you the advantages of using them in your application development.
+Package specification – show you step by step how to create a package specification.
+Package body – learn how to create a package body.
+Drop Package – illustrate how to drop a PL/SQL package.
+
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

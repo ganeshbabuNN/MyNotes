@@ -1,0 +1,20 @@
+CREATE TABLE – walk you through the steps of creating new tables in the database.
+Identity Column – learn how to use the identity clause to define the identity column for a table.
+ALTER TABLE – teach you how to change the structure of existing tables.
+ALTER TABLE ADD column – show you how to add one or more columns to an existing table
+ALTER TABLE MODIFY column – show you how to change the definition of existing columns in a table.
+Drop columns – learn how to use various statements to drop one or more columns from a table.
+DROP TABLE – show you how to delete tables from the database.
+TRUNCATE TABLE – delete all data from a table faster and more efficiently.
+RENAME table –  walk you through the process of renaming a table and handling its dependent objects.
+Virtual columns – introduce you to virtual columns and how to use them in the database tables.
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
