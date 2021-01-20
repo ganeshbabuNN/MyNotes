@@ -1,0 +1,198 @@
+Intro
+Introduction to ElementTree
+Parsing XML Data
+For Loops
+XPath Expressions
+Modifying an XML
+Fixing Attributes
+Moving Elements
+Build XML Documents
+
+Intro
+=====
+-Extensible Markup Language (XML) is a markup language which encodes documents by defining a set of rules in both machine-readable and human-readable format. Extended from SGML (Standard Generalized Markup Language)
+-in XML, we can define custom tags. We can also use XML as a standard format to exchange information
+-XML documents have sections, called elements, defined by a beginning and an ending tag
+-A tag is a markup construct that begins with < and ends with >
+-The characters between the start-tag and end-tag, if there are any, are the element's content.
+-Elements can contain markup, including other elements, which are called "child elements".
+-The largest, top-level element is called the root, which contains all other elements
+-Attributes are name–value pair that exist within a start-tag or empty-element tag
+-An XML attribute can only have a single value and each attribute can appear at most once on each element
+
+Introduction to ElementTree
+===========================
+-The XML tree structure makes navigation, modification, and removal relatively simple programmatically
+- Python has a built in library, ElementTree, that has functions to read and manipulate XMLs (and other similarly structured files)
+-import ElementTree. It's a common practice to use the alias of ET:
+	import xml.etree.ElementTree as ET
+
+
+Parsing XML Data
+================
+First you need to read in the file with ElementTree.
+	tree = ET.parse('movies.xml')
+	root = tree.getroot()
+
+#get the root 
+root.tag
+#get the root attributes
+root.attrib
+
+
+For Loops
+=========
+- iterate over subelements (commonly called “children”) in the root by using a simple “for” loop
+	for child in root:
+	    print(child.tag, child.attrib)
+
+#root.iter() Typically it is helpful to know all the elements in the entire tree.
+#get the child tag
+child.tag
+child.attrib
+
+#iterate the all the tag
+for child in root:
+    print(child.tag,child.attrib)
+
+#using the list comprehnsions
+[elem.tag for elem in root.iter()]
+
+#You can expand the use of the iter() function to help with finding particular elements of interest.
+#root.iter() will list all subelements under the root that match the element specified
+#Here, you will list all attributes of the movie element in the tree:
+
+for movie in root.iter('movie'):
+    print(movie.attrib)
+
+XPath Expressions
+=================
+#Many times elements will not have attributes, they will only have text content. Using the attribute .text, you can print out this content
+#print out all the descriptions of the movies.
+
+for description in root.iter('description'):
+    print(description.text)
+
+#XPath is a query language used to search through an XML quickly and easily.Understanding XPath is critically important to scanning and populating XMLs
+#ElementTree has a .findall() function that will traverse the immediate children of the referenced element
+
+#you will search the tree for movies that came out in 1992:
+for movie in root.findall("./genre/decade/movie/[year='1992']"):
+    print(movie.attrib)
+
+#The function .findall() always begins at the element specified.
+#This type of function is extremely powerful for a "find and replace". You can even search on attributes!
+for movie in root.findall("./genre/decade/movie/format/[@multiple='Yes']"):
+    print(movie.attrib)
+
+# use '...' inside of XPath to return the parent element of the current element.
+for movie in root.findall("./genre/decade/movie/format[@multiple='Yes']..."):
+    print(movie.attrib)
+
+Modifying an XML
+================
+#the movie titles were an absolute mess. Now, print them out again:
+
+for movie in root.iter('movie'):
+    print(movie.attrib)
+
+#Fix the ‘2’ in Back 2 the Future. That should be a find and replace problem. Write code to find the title ‘Back 2 the Future’ and save it as a variable
+#.find() method returns an element of the tree. Much of the time, it is more useful to edit the content within an element
+b2tf = root.find("./genre/decade/movie[@title='Back 2 the Future']")
+print(b2tf)
+
+#Modify the title attribute of the Back 2 the Future element variable to read "Back to the Future"
+b2tf.attrib["title"] = "Back to the Future"
+print(b2tf.attrib)
+
+#Write out your changes back to the XML so they are permanently fixed in the document.
+#Use the .write() method to do this
+
+tree.write("movies.xml")
+tree = ET.parse('movies.xml')
+root = tree.getroot()
+for movie in root.iter('movie'):
+    print(movie.attrib)
+
+Fixing Attributes
+=================
+#The multiple attribute is incorrect in some places.
+#Use ElementTree to fix the designator based on how many formats the movie comes in
+
+for form in root.findall("./genre/decade/movie/format"):
+    print(form.attrib, form.text)
+
+#There is some work that needs to be done on this tag
+#You can use regex to find commas — that will tell whether the multiple attribute should be "Yes" or "No". 
+#Adding and modifying attributes can be done easily with the .set()method
+
+import re
+for form in root.findall("./genre/decade/movie/format"):
+    # Search for the commas in the format text
+    match = re.search(',',form.text)
+    if match:
+        form.set('multiple','Yes')
+    else:
+        form.set('multiple','No')
+# Write out the tree to the file again
+tree.write("movies.xml")
+tree = ET.parse('movies.xml')
+root = tree.getroot()
+for form in root.findall("./genre/decade/movie/format"):
+    print(form.attrib, form.text)
+
+Moving Elements
+===============
+#Some of the data has been placed in the wrong decade. Use what you have learned about XML and ElementTree to find and fix the decade data errors
+#both the decade tags and the year tags throughout the document
+
+for decade in root.findall("./genre/decade"):
+    print(decade.attrib)
+    for year in decade.findall("./movie/year"):
+        print(year.text)
+
+#two years that are in the wrong decade are the movies from the 2000s. Figure out what those movies are, using an XPath expression
+for movie in root.findall("./genre/decade/movie/[year='2000']"):
+    print(movie.attrib)
+
+#You have to add a new decade tag, the 2000s, to the Action genre in order to move the X-Men data
+#The .SubElement() method can be used to add this tag to the end of the XML
+
+action = root.find("./genre[@category='Action']")
+new_dec = ET.SubElement(action, 'decade')
+new_dec.attrib["years"] = '2000s'
+
+#Now append the X-Men movie to the 2000s and remove it from the 1990s, using .append() and .remove()
+xmen = root.find("./genre/decade/movie[@title='X-Men']")
+dec2000s = root.find("./genre[@category='Action']/decade[@years='2000s']")
+dec2000s.append(xmen)
+dec1990s = root.find("./genre[@category='Action']/decade[@years='1990s']")
+dec1990s.remove(xmen)
+
+Build XML Documents
+===================
+# so you were able to essentially move an entire movie to a new decade.Save your changes back to the XML
+
+tree.write("movies.xml")
+tree = ET.parse('movies.xml')
+root = tree.getroot()
+print(ET.tostring(root, encoding='utf8').decode('utf8'))
+
+
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+
+Resources
+=========
+https://docs.python.org/3.9/library/xml.etree.elementtree.html - offical tutorial
+https://towardsdatascience.com/processing-xml-in-python-elementtree-c8992941efd2
+https://www.geeksforgeeks.org/xml-parsing-python/
+https://en.wikipedia.org/wiki/XML
+
+https://www.cs.utexas.edu/~mitra/csFall2015/cs329/lectures/xml.html
+http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/xml/xml_examples.asp.html
