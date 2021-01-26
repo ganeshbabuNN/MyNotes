@@ -405,7 +405,7 @@ Map values of Series according to input correspondence.
 import pandas as pd
 import numpy as np
 pokeman_name=pd.read_csv("pokemon.csv", usecols=["Pokemon"],squeeze = True)
-pokeman_type=pd.read_csv("pokemon.csv",index_col=["Type"],squeeze=True)
+pokeman_type=pd.read_csv("pokemon.csv",index_col=["Pokemon"],squeeze=True)
 
 pokeman_name.head()
 pokeman_type.head()
@@ -423,7 +423,9 @@ Resources:
 
 Assignment
 ==========
-## Create a list with 4 countries - United States, France, Germany, Italy
+1)in the apply section example , use map method to get the index label as stock price and values as the category
+
+2)## Create a list with 4 countries - United States, France, Germany, Italy
 # Create a new Series by passing in the list of countries
 # Assign the Series to a "countries" variable
 
@@ -441,7 +443,7 @@ recipe = {
 }
 
 
-2)
+3)
 # Assume pandas ha salready been imported and assigned to the alias "pd".
 
 flavors = ["Spicy Sweet Chili", "Cool Ranch", "Nacho Cheese", "Salsa Verde"]
@@ -466,7 +468,7 @@ flavors = ["Spicy Sweet Chili", "Cool Ranch", "Nacho Cheese", "Salsa Verde"]
 #   2         Nacho Cheese
 #   1           Cool Ranch
 #   dtype: object
-doritos.sort_values(ascending=False)
+
 
 
 
@@ -480,7 +482,7 @@ doritos.sort_values(ascending=False)
 #   0    Spicy Sweet Chili
 #   dtype: object
 
-3)
+4)
 # Let's say I have a dictionary that maps guitar types
 # to their colors
 guitars_dict = {
@@ -491,16 +493,15 @@ guitars_dict = {
 
 # Create a new Series object, passing in the guitars_dict dictionary as the data source.
 # Assign the resulting Series to a "guitars" variable.
-guitars=pd.Series(guitars_dict)
+
 
 # Access the value for the index position of 0 within the "guitars" Series.
 # Assign the value to a "fender_color" variable.
-guitars[0]="fender_color"
+
 
 # Access the value for the index label of "Gibson Les Paul" in the "guitars" Series.
 # Assign the value to a "gibson_color" variable.
-# guitars_dict["Gibson Les Paul"]=="gibson_color"
+
 
 # Access the value for the index label of "ESP Eclipse" in the "guitars" Series.
 # Assign the value to a "esp_color" variable.
-# guitars_dict["ESP Eclipse"]="esp_color"
