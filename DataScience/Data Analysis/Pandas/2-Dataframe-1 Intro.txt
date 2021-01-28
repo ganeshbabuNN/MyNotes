@@ -132,11 +132,12 @@ nba.head(3)
 nba.tail(3)
 
 #remove at the row level
-nba.dropna(how="all",inplace=True) # If all values are NA, drop that row or column.
-nba.dropna(how="all",inplace=True) # If any NA values are present, drop that row or column.
+nba.dropna(axis=0,how="all",inplace=True) # If all values are NA, drop that row or column.
+nba.dropna(axis=0,how="all",inplace=True) # If any NA values are present, drop that row or column.
 
 #remove at the column level
-nba.dropna(subset=["Salary","College"]) #remove na of the specific one or more columns
+nba.dropna(axis=1,subset=["Salary","College"]) #remove na of the specific one or more columns
+nba.dropna(axis=1,how="all")
 nba # check
 
 Reteriving the null value in the dataframe
