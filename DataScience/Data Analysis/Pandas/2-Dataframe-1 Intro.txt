@@ -6,7 +6,7 @@ Select Two or More Columns from a DataFrame
 Add New Column to DataFrame
 Broadcasting Operations on DataFrames
 A Review of the value_counts Method
-Drop DataFrame Rows with Null Values with the dropna Method
+Drop DataFrame Rows/columns with Null Values with the dropna Method
 reteriving the null value in the dataframe
 Fill in Null DataFrame Values with the fillna Method
 Convert DataFrame Column Types with the astype Method
@@ -120,7 +120,7 @@ nba["Position"].value_counts()
 nba["Weight"].value_counts().tail()
 nba["Salary"].value_counts().head()
 
-Drop DataFrame Rows with Null Values with the dropna Method
+Drop DataFrame Rows/columns with Null Values with the dropna Method
 ===========================================================
 Use the .dropna() method of using the how parameter 
 * 'any' : If any NA values are present, drop that row or column.
