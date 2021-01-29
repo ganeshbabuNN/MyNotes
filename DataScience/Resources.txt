@@ -11,6 +11,9 @@ Youtube Resources
 =================
 https://www.youtube.com/watch?v=HVBk2Ge_Q98
 
+notebook samples for data science
+=================================
+https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks#statistics-machine-learning-and-data-science
 
 Blogs
 ====
@@ -21,3 +24,5 @@ https://www.kaggle.com/discussion
 Ref:
 https://medium.com/datadriveninvestor/10-python-automatic-eda-libraries-which-makes-data-scientist-life-easier-825d0a928570
 https://www.youtube.com/watch?v=HVBk2Ge_Q98
+
+
