@@ -1,0 +1,139 @@
+Conda commands (most frequently used)
+==============
+https://docs.conda.io/projects/conda/en/latest/commands.html
+#get the python version
+python -V
+
+#get the version 
+conda -V
+
+#update the latest conda version
+conda update conda
+
+#what is environemnt
+
+env --> list of all your packages/libraries/API..etc
+
+conda -V or conda --version #get the conda versions
+python -V or python --version #get the python version
+conda list anaconda$ #to get the Anaconda version
+conda info #info of current environment
+
+#getting the list of environment
+conda info --envs
+conda env list
+
+Creating 
+--------
+#create the new environment
+conda create -n datasandbox
+
+#clone the environment	
+conda create -n myclone --clone datasandbox1
+
+#Create a new conda environment named myenv with the Python version specified. Pip and about 15 other packages are installed
+conda create -n myenv python=3.8
+
+#activate the specific environment
+conda activate base
+
+#deactivate the environment
+conda deactivate # for base
+
+#Cloneing the environment
+conda create --name brga_risk_report --clone base
+
+updating 
+---------
+#list of installed packages
+conda list
+
+#install specific libraries
+conda install pandas
+conda install jupyter notebook bottleneck numexpr matplotib
+
+#install more then one packages
+conda update package_name_1 package_name_2
+
+
+#update the specific package
+conda update package_name
+conda update pandas
+
+#update the specific version
+conda update package_name=X.Y.Z
+conda install scipy=0.15.0
+
+#update all the packages
+conda update --all #update all libraries
+
+Deleting the envionrment
+------------------------
+#remove the environment
+conda env remove --name datasandbox
+
+#remove all the packages in that environment
+conda remove -n myenv --all
+
+Exporting the environment
+-------------------------
+#exporting the package list of yml output(open in IE)
+conda env export > C:\GBAG_Back\MyTraining\DataScience\pandas\en.yml
+
+#share this file with others and they can recreate your exact conda environment
+conda env create -f C:\GBAG_Back\MyTraining\DataScience\pandas\en.yml
+$ conda env update --prefix myenv --file en.yml --prune
+
+jupyter commands
+===============
+#Start the jypter notebook
+jupyter notebook
+navigating to notebook
+
+#shutting down notebook
+
+#Saving the notebook name
+#walkthrough through the menu bar
+file, view
+execution type
+
+#cell types and cell modes
+#code cell exeuctions in notebook
+
+
+#popular keyboard shortcuts
+#Change cell types
+Esc - escaped the model
+Esc-M- switched to markdown mode #press (1-6) for mark down
+Esc-Y - switche to cell mode
+
+#execution
+ctl+enter -Execute the cell
+alt+enter - execute and enter the cell
+H - shortcuts windows
+
+#cell creations
+B -insert a below cell
+A- insert a above cell
+
+#cell editing
+X- cut the cell
+c-Copy 
+v-paste
+d-delete
+
+#kernel operations
+i - interupt operations
+0- restart 
+
+#import libaries into juptyer notebook
+
+
+
+Ref:
+https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks#pandas-for-data-analysis
+sample jupyter notebooks" search in google
+
+data informations
+=================
+https://binaryterms.com/difference-between-entity-and-attribute-in-database.html
