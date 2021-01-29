@@ -1,0 +1,23 @@
+models
+=====-
+https://github.com/rasbt/deeplearning-models
+
+github markdown commands
+=======================
+Ref
+https://guides.github.com/features/mastering-markdown/
+
+Youtube Resources
+=================
+https://www.youtube.com/watch?v=HVBk2Ge_Q98
+
+
+Blogs
+====
+https://inblog.in/
+https://www.kaggle.com/notebooks
+https://www.kaggle.com/discussion
+
+Ref:
+https://medium.com/datadriveninvestor/10-python-automatic-eda-libraries-which-makes-data-scientist-life-easier-825d0a928570
+https://www.youtube.com/watch?v=HVBk2Ge_Q98
