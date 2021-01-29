@@ -1,11 +1,53 @@
-
-Dataset Repo
-============
+Cross-disciplinary data repositories, data collections and data search engines
+=============================================================================
 https://archive.ics.uci.edu/ml/index.php
-https://www.kaggle.com/datasets
-https://vincentarelbundock.github.io/Rdatasets/articles/data.html #genearlly R datasets
 
-gist
+https://vincentarelbundock.github.io/Rdatasets/articles/data.html #genearlly R datasets
+https://www.kaggle.com/datasets
+
+https://opendata.socrata.com/
+
+https://www.data.gov/  --- US website
+
+https://data.gov.in/ --- india website
+
+https://github.com/fivethirtyeight/data
+https://github.com/ivanceras/sakila
+
+https://cloud.google.com/bigquery/public-data/
+
+https://www.reddit.com/r/datasets/
+
+http://linkeddata.org
+http://figshare.com
+http://datacite.org
+http://databib.org
+http://aws.amazon.com/datasets
+http://usgovxml.com
+http://www.assetmacro.com
+
+http://datasource.kapsarc.org
+
+https://opendata.cityofnewyork.us/ #baby names
+
+stack overflow survey datasets
+==============================
+https://insights.stackoverflow.com/survey
+
+
+generic websites
+================
+https://cloud.google.com/bigquery/public-data/
+
+https://data.world/datasets
+
+
+Donal trump pooling
+-------------------
+https://data.fivethirtyeight.com/
+
+
+Gist
 ====
 cars.csv
 https://gist.githubusercontent.com/ganeshbabuNN/c79541c89228bdc926bd3f13df9a7abb/raw/62a3a30c883e3490d58f48a9d815f62e7858c5a0/cars.csv
@@ -27,3 +69,6 @@ https://gist.githubusercontent.com/ganeshbabuNN/80b55569fde8eb6a81518d4c8921c7a6
 
 pokeman.csv
 https://gist.githubusercontent.com/ganeshbabuNN/a66cb8bbaabf54f08829273298f16250/raw/206fd7ade657b31ffcbfefc629bddeb73a2731a2/pokeman.csv%22)
+
+
+https://www.kaggle.com/rhuebner/human-resources-data-set
