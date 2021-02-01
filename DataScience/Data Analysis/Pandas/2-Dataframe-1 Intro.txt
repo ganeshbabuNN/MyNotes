@@ -198,7 +198,9 @@ nba["Salary"].fillna(0,inplace=True)
 nba["College"].fillna("No College",inplace=True)
 
 #for multiple columns
-nba.fillna({"Salary":'0',"Weight":'0',"Height":'0',"Age":'0',"Number":'0'},inplace=True)
+nba.fillna({"Salary":0,"Weight":0,"Height":0,"Age":0,"Number":0},inplace=True)
+nba.fillna(nba[['Salary','College',"Weight","Age","Number"]].fillna(0),inplace=True)
+nba[['Salary','College',"Weight","Age","Number"]].fillna(0)
 
 #Remove from the DataFrame the columns with more than 50% of missing data using drop():
 column_nan=nba.columns[nba.isnull().any()]
