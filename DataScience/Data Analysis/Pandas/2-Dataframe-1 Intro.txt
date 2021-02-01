@@ -163,14 +163,6 @@ column_nan
 for column in column_nan: #get the sum of the each null value
     print(column, nba[column].isnull().sum())
 
-#optimized way get the sum()
-nba.isnull().sum()
-#Get the column with the maximum number of missing data
-nba.isnull().sum().nlargest()
-nba.isnull().sum().nlargest(1) # top 1 largest
-nba.isnull().sum().nlargest(3) # top 3 largest
-nba.isnull().sum().sum() #Get the number total of missing data in the DataFrame
-
 #Get a list of columns with missing data using .isnull().any() By default row wise
 nba.isnull().any(axis=1) #Find rows with missing data
 nba.index[nba.isnull().any(axis=1)] #Get a list of rows with missing data
@@ -197,13 +189,16 @@ nba = pd.read_csv("nba.csv")
 nba.head(3)
 nba.tail(3)
 
+nba.isnull() #checking the null
+
 nba.fillna(0) #fill the missing values to 0  row level
 
 # at the column level
 nba["Salary"].fillna(0,inplace=True)
 nba["College"].fillna("No College",inplace=True)
 
-nba.isnull() #checking the null
+#for multiple columns
+nba.fillna({"Salary":'0',"Weight":'0',"Height":'0',"Age":'0',"Number":'0'},inplace=True)
 
 #Remove from the DataFrame the columns with more than 50% of missing data using drop():
 column_nan=nba.columns[nba.isnull().any()]
