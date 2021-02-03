@@ -230,7 +230,7 @@ Sort a DataFrame with the sort_values Method
 ============================================
 nba=pd.read_csv("nba.csv")
 
-#ascending parameter
+#sorting only column
 nba.sort_values("Name",ascending="False",inplace=True)
 nba.sort_values("Age",ascending="False",inplace=True)
 nba.sort_values("Salary",ascending="False",inplace=True) # descending
@@ -241,8 +241,6 @@ na_position parameter:Puts NaNs at the beginning if `first`; `last` puts NaNs at
 nba.sort_values("Salary",na_position="first")#sort NaN first 
 nba.sort_values("Salary",na_position="last")#sort NaN last
 
-Sort a DataFrame with the sort_values Method
-============================================
 #sorting more then one column
 nba.sort_values(["Team","Name"],ascending=[True,False],inplace=True)
 
