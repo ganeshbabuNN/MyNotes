@@ -348,7 +348,7 @@ Know ASCII , unicode and Numbers systems
 -All computer data is just numbers,Each character of text is stored as a number.When you press a key on the keyboard, the keyboard sends a number, corresponding to the key that was pressed,When text is displayed on your monitor, each character is read from memory as a number.Computer doesn't understand English or Hindi or any language.But computer do understand only 0 and 1.
 -0 means False ,1 means True
 -ASCII codes represent text in computers, communications equipment, and other devices that use text
--UNicod is the subset of ASCII and extended upto 2^21 characters
+-UNICODE is the subset of ASCII and extended upto 2^21 characters
 
 print(ord("h"),"is ASCII value" ) #print ASCII value
 print(chr(104 ),"from binary to value")
@@ -362,6 +362,12 @@ https://youtu.be/61Bs7-ycL64
 https://realpython.com/python-encodings-guide/
 https://byjus.com/maths/number-system/
 https://byjus.com/maths/hexadecimal-number-system/
+
+Note:
+ASCII, stands for American Standard Code for Information Interchange. 
+It's a 7-bit character code where every single bit represents a unique character. On this webpage you will find 8 bits, 256 characters, ASCII table according to Windows-1252 (code page 1252) which is a superset of ISO 8859-1 in terms of printable characters. 
+In the range 128 to 159 (hex 80 to 9F), ISO/IEC 8859-1 has invisible control characters, while Windows-1252 has writable characters. Windows-1252 is probably the most-used 8-bit character encoding in the world.
+https://www.ascii-code.com/ #list of control characters(0-31,32-127,128-255)
 
 Quiz:
 =====
