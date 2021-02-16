@@ -88,4 +88,5 @@ https://www.greenteapress.com/thinkpython/thinkCSpy/html/index.html
 https://www.javatpoint.com/python-tutorial
 https://www.programiz.com/python-programming
 https://thispointer.com/learn-python/
+https://codescracker.com/python/program/index.htm  #lot of examples
 
