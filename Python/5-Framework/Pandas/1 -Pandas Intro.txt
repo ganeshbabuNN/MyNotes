@@ -1,0 +1,67 @@
+Intro
+Python Pandas Introduction
+Key Features of Pandas
+Benefits of Pandas
+Python Pandas Data Structure
+
+intro
+=====
+Python Pandas is defined as an open-source library that provides high-performance data manipulation in Python
+
+Python Pandas Introduction
+==========================
+-Pandas is defined as an open-source library that provides high-performance data manipulation in Python
+-The name of Pandas is derived from the word Panel Data, which means an Econometrics from Multidimensional data. It is used for data analysis in Python and developed by Wes McKinney in 2008
+-Data analysis requires lots of processing, such as restructuring, cleaning or merging, etc
+- There are different tools are available for fast data processing, such as Numpy, Scipy, Cython, and Panda. But we prefer Pandas because working with Pandas is fast, simple and more expressive than other tool
+
+Key Features of Pandas
+======================
+-It has a fast and efficient DataFrame object with the default and customized indexing.
+-Used for reshaping and pivoting of the data sets.
+-Group by data for aggregations and transformations.
+-It is used for data alignment and integration of the missing data.
+-Provide the functionality of Time Series.
+-Handle multiple operations of the data sets such as subsetting, slicing, filtering, groupBy, re-ordering, and re-shaping.
+-It integrates with the other libraries such as SciPy, and scikit-learn.
+-Provides fast performance, and If you want to speed it, even more, you can use the Cython.
+
+Benefits of Pandas
+==================
+-Data Representation: It represents the data in a form that is suited for data analysis through its DataFrame and Series.
+-Clear code: The clear API of the Pandas allows you to focus on the core part of the code. So, it provides clear and concise code for the user.
+
+
+Python Pandas Data Structure
+============================
+The Pandas provides two data structures for processing the data, i.e., Series and DataFrame, which are discussed below:
+
+1) Series
+---------
+-It is defined as a one-dimensional array that is capable of storing various data types
+-The row labels of series are called the index. We can easily convert the list, tuple, and dictionary into series using "series' method.
+-A Series cannot contain multiple columns. It has one parameter
+
+Creating Series from Array:
+import pandas as pd  
+import numpy as np  
+info = np.array(['P','a','n','d','a','s'])  
+a = pd.Series(info)  
+print(a)
+
+2)DataFrame
+-----------
+-It is a widely used data structure of pandas and works with a two-dimensional array with labeled axes (rows and columns). 
+-DataFrame is defined as a standard way to store data and has two different indexes
+
+Quiz
+====
+
+Assignment
+==========
+https://github.com/guipsamora/pandas_exercises
+https://github.com/ajcr/100-pandas-puzzles
+
+Resources:
+=========
+https://towardsdatascience.com/top-4-repositories-on-github-to-learn-pandas-1008cb769f77 

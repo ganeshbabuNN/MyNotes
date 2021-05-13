@@ -1,0 +1,91 @@
+Intro to Visualization Section
+Use the plot Method to Render a Line Chart
+Modifying Plot Aesthetics with matplotlib Templates
+Creating Bar Graphs to Show Counts
+Creating Pie Charts to Represent Proportions
+Visualization
+
+Intro to Visualization Section
+===============================
+import pandas as pd
+from pandas_datareader import data
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+
+
+Use the plot Method to Render a Line Chart
+==========================================
+stock=data.DataReader(name='INFY',data_source='yahoo',start='2010-01-01',end='2020-01-08')
+stock.head()
+
+stock.plot(y="High")
+stock['High'].plot()
+stock[['High','Close']].plot()
+
+Modifying Plot Aesthetics with matplotlib Templates
+===================================================
+stock=data.DataReader(name='INFY',data_source='yahoo',start='2010-01-01',end='2020-01-08')
+stock.head()
+
+
+plt.style.available
+
+plt.style.use('seaborn')
+stock['High'].plot()
+
+plt.style.use('ggplot')
+stock['High'].plot()
+
+plt.style.use('dark_background')
+
+stock['High'].plot()
+
+Creating Bar Graphs to Show Counts
+==================================
+stock=data.DataReader(name='INFY',data_source='yahoo',start='2010-01-01',end='2020-01-08')
+stock.head()
+
+def rank_per(num):
+    if num <=10 :
+        return "Poor"
+    elif num  <=50:
+        return "satisfactory"
+    else:
+        return "Steller"
+
+plt.style.use("seaborn-notebook")
+stockplt=stock['Close'].apply(rank_per).value_counts()
+stockplt.plot(kind='barh')
+
+plt.style.use("_classic_test")
+stockplt=stock['Close'].apply(rank_per).value_counts()
+stockplt.plot(kind='bar')
+
+Creating Pie Charts to Represent Proportions
+============================================
+stock=data.DataReader(name='INFY',data_source='yahoo',start='2010-01-01',end='2020-01-08')
+stock.head()
+
+stock['Close'].mean()
+
+stock
+
+def rank_performance(num):
+    if num >= 7.92593:
+        return "Above Average"
+    else:
+        return "Below Average"
+
+plt.style.use("dark_background")
+stock["Close"].apply(rank_performance).value_counts().plot(kind="pie",legend=True)
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

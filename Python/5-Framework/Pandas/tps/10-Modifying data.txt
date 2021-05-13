@@ -1,0 +1,19 @@
+1)intro 
+2)how to insert a row into a table?
+3)insert data into a table from the result of a query
+4)insert multiple rows into a table or multiple tables -
+5)how to change the existing values of a table -update
+6)how to delete one or more row from a table - delete
+7)performing a mixture of insertion, update, and deletion using a single statement
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

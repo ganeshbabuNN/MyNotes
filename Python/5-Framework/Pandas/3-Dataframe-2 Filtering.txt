@@ -1,0 +1,223 @@
+This Module's Dataset + Memory Optimization
+Filter DataFrame with More than One Condition (AND - &)
+Filter DataFrame with More than One Condition (OR - |)
+Check for Inclusion with the isin Method
+Check for Null and Present DataFrame Values with the isnull and notnull Methods
+Check For Inclusion Within a Range of Values with the between Method
+Check for Duplicate DataFrame Rows with the duplicated Method
+Delete Duplicate DataFrame Rows with the drop_duplicates Method
+Identify and Count Unique Values with the unique and nunique Methods
+
+
+This Module's Dataset + Memory Optimization
+===========================================
+we can use info() function
+--------------------------
+We can use Pandas info() function to find the total memory usage of a dataframe.
+Pandas info() function is mainly used for information about each of the columns, their data types, and how many values are not null for each variable. 
+Pandas info() fnction also gives us the memory usage at the end of its report
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df.head()
+
+#To get the full memory usage, we provide memory_usage=”deep” argument to info()
+df.info(memory_usage="deep")
+#We can get each column/variable level memory usage using Pandas memory_usage() function
+#We get memory used by each column/variable in bytes
+df.memory_usage()
+#We can get memory usage iuncluding object datatype using the argument deep=True to memory_usage() function
+df.memory_usage(deep=True)
+#Since memory_usage() function returns a dataframe of memory usage, we can sum it to get the total memory used
+df.memory_usage(deep=True).sum()
+
+Typically, object variables can have large memory footprint.
+By converting object variable of type string to categorical, one can reduce memory footprint
+
+#lets do a excercise converting into the types variable and check the memory.
+df["Gender"].nunique() #count of duplicates
+df["Gender"].unique() #uniques values 
+df["Gender"]=df["Gender"].astype("category")
+df["Start Date"]=pd.to_datetime(df["Start Date"]) #praise to the dates
+df["Last Login Time"]=pd.to_datetime(df["Last Login Time"])
+df["Senior Management"].unique() ##get the unique value of senior management variable
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Team"].unique() #get the unique value of team variable
+df["Team"]=df["Team"].astype("category")
+
+#convert_dtypes() function and convert the to best data types automatically. 
+#Another big advantage of using convert_dtypes() is that it supports Pandas new type for missing values pd.NA
+#generally
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"]) #use parse_date function to convert to the datetime 
+df.convert_dtypes().dtypes
+
+Ref:
+https://cmdlinetips.com/2020/03/memory-usage-of-pandas-dataframe
+
+
+Filter DataFrame with More than One Condition (AND - &)
+=======================================================
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+print(df.memory_usage().sum())
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Gender"]=df["Gender"].astype("category")
+df["Team"]=df["Team"].astype("category")
+print(df.memory_usage().sum())
+df.head()
+df.convert_dtypes().dtypes
+df.info()
+
+#using the AND condition if both the condtion are truee it returns the values
+cond1 = df["Gender"]=="Male"
+cond2 = df["Team"] =="Marketing"
+#using one conditions
+df[cond1 & cond2]
+
+Filter DataFrame with More than One Condition (OR - |)
+======================================================
+#using the AND condition if both the condtion are truee it returns the values
+cond1 = df["Gender"]=="Female"
+cond2 = df["Team"] =="Marketing"
+#using one conditions
+df[cond1 | cond2] 
+
+
+#more then two conditions
+print(df["Start Date"].min())
+print(df["Start Date"].max())
+df["Team"].unique().to_list()
+
+cond1=df["First Name"]=="Robert"
+cond2=df["Team"]=="Client Services"
+cond3=df["Start Date"] < "1983-06-13"
+df[(cond1 & cond2)| cond3]
+
+Check for Inclusion with the isin Method
+========================================
+#isin method accepts the list values .
+#this should be called using the series object
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Gender"]=df["Gender"].astype("category")
+df["Team"]=df["Team"].astype("category")
+df.head()
+
+#single parameter filtering
+cond1=df["Gender"].isin(["Male"])
+df[cond1]
+#multiple parameter filtering
+cond1=df["Gender"].isin(["Female"])
+cond2=df["Team"].isin(["Sales","Finance","Engineering"])
+df[cond1 & cond2]
+
+Check for Null and Present DataFrame Values with the isnull and notnull Methods
+===============================================================================
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Gender"]=df["Gender"].astype("category")
+df["Team"]=df["Team"].astype("category")
+df.head()
+
+#isnull() returns the boolean value of an series
+cond1 = df["Team"].isnull()
+df[cond1]
+
+#notnull() returns the not
+cond1=df["Team"].notnull()
+df[cond1]
+df[~df["Team"].isnull()] #using negations operator
+df[df["Team"]!=''] #using the Not equal to operator
+
+Check For Inclusion Within a Range of Values with the between Method
+====================================================================
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Gender"]=df["Gender"].astype("category")
+df["Team"]=df["Team"].astype("category")
+df.head()
+
+df["Salary"].describe()
+cond=df["Salary"].between(90000,110000) #range of salary
+df[cond]
+
+df["Bonus %"].describe()
+cond1=df["Bonus %"].between(5,15) #range of bonus
+df[cond1]
+
+print(df["Start Date"].min())
+print(df["Start Date"].max())
+con=df["Start Date"].between("1982-01-01","2014-01-01") #range of dates
+df[con]
+
+Check for Duplicate DataFrame Rows with the duplicated Method
+=============================================================
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Gender"]=df["Gender"].astype("category")
+df["Team"]=df["Team"].astype("category")
+df.head()
+
+df.sort_values("First Name",inplace=True)
+#keeps default keep=First is a boolean series is returned on the basis of duplicate values in the First Name column
+cond=df["First Name"].duplicated() #default keep="first"
+cond=df["First Name"].duplicated(keep="first") 
+df[cond].head(10)
+#use negation operator to get the uniques values
+df[~df["First Name"].duplicated(keep=False)]
+
+Experimental:
+*keep="first" and "False" need experimented*
+first : Drop duplicates except for the first occurrence.
+last : Drop duplicates except for the last occurrence.
+False : Drop all duplicates
+
+#the keep parameter is set to False, duplicate values are listed
+df[df["First Name"].duplicated(keep=False)]
+#using keep=last
+df[df["First Name"].duplicated(keep="last")]
+df.duplicated(subset=['First Name']).any() # # We were expecting True, as Aaron can be seen twice.
+df.duplicated().any() #whole dataframe
+df.duplicated(subset=["First Name","Start Date"]).any()
+df.duplicated(subset=["First Name"],keep="first") #Drop duplicates except for the first occurrence.
+df.duplicated(subset=["First Name"],keep="last") #Drop duplicates except for the last occurrence.
+df.duplicated(subset=["First Name"],keep=False) #Drop all duplicates	
+
+#https://stackoverflow.com/questions/50242968/check-for-duplicate-values-in-pandas-dataframe-column
+
+Delete Duplicate DataFrame Rows with the drop_duplicates Method
+================================================================
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Gender"]=df["Gender"].astype("category")
+df["Team"]=df["Team"].astype("category")
+df.head()
+
+len(df)
+len(df.drop_duplicates())
+df.drop_duplicates(subset=["First Name"],keep=False)
+df.drop_duplicates(subset=["First Name","Team"],inplace=True)
+df.head(3)
+len(df)
+
+Identify and Count Unique Values with the unique and nunique Methods
+====================================================================
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Gender"]=df["Gender"].astype("category")
+df["Team"]=df["Team"].astype("category")
+df.head()
+
+unique() returns of the list of the unique value in a series
+df["Gender"].unique() #uniques values 
+
+nunique() returns of the count of the unique value in a series
+df["Gender"].nunique() #count of duplicates
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
