@@ -10,8 +10,8 @@ First program
 ============
 using print
 -----------
-print "hello world"
-
+print "hello world" #this is supported in python 2.0
+print("hello world" #this is supported in python 3x onwards
 
 using functions
 ---------------
@@ -22,25 +22,23 @@ display()
 
 using oops
 ----------
-class display1:
-    
-    def __init__(self):
-        print "hello world" 
+class display:    
+    def __init__(self): 
+        print("hello world")
+    def add(self):
+        return 3+4
 
-t=display()
-print(t)
+t=display() #create the object
+t.add() #run the method inside the class
 
 How to detect it is a function or a class
 ========================================
+print(type(a),callable(a)) #using the functions
 
-class display1():
-    def __init__(self):
-        return ("hello world")
+Callable : a callable is something that can be called. This built-in method in Python checks and returns True if the object passed appears to be callable, but may not be, otherwise False
+Type: The type() function either returns the type of the object or returns a new type object based on the arguments passed
 
-a=display1
-print(a)
-print(type(a),callable(a))
-
+#lets create a object for the below function, check the if the object is callable.
 def display():
     return "hello world"
 
@@ -49,16 +47,16 @@ print(b)
 print(type(b),callable(b))
 
 
-testing the input and output 
+Testing the Input and Output 
 ===========================
-a =input("Enter the number:")
+a =input("Enter the number:") #input statement
 print(a)
 
 displaying the multiple output in same line
 a=12
 b=12
 c=23
-print(a,b,c)
+print(a,b,c) #Output 
 
 Quiz:
 =====
