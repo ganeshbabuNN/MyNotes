@@ -13,9 +13,10 @@ DataTypes
 In Python, the data types are Organised in five types:
 1)None Type - An object that does not contain any value
 2)Numeric Type - int,float, complex
-3)Sequences(collections datatypes)  - can hold of other data types like str, bytes, bytearray,list,tuple,Range 
-4)sets - Does not allow duplicates
-5)Dict - key and value
+3)Boolean Type
+4)Sequences(collections datatypes)  - can hold of other data types like str, bytes, bytearray,list,tuple,Range 
+5)sets - Does not allow duplicates
+6)Dict - key and value
 
 None Type
 ---------
@@ -68,6 +69,15 @@ print(3+5j)
 complex(2,3)
 complex(10,1)
 complex('12+2j') #We can also pass strings:
+
+Boolean Types
+-------------
+There are two True or False
+
+a=True
+b=False
+print(a)
+print(b)
 
 Default value of Types
 ======================
