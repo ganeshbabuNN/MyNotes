@@ -13,10 +13,9 @@ DataTypes
 In Python, the data types are Organised in five types:
 1)None Type - An object that does not contain any value
 2)Numeric Type - int,float, complex
-3)Boolean Type
-4)Sequences(collections datatypes)  - can hold of other data types like str, bytes, bytearray,list,tuple,Range 
-5)sets - Does not allow duplicates
-6)Dict - key and value
+3)Sequences  - can hold of other data types like str, bytes, bytearray,list,tuple,Range
+4)sets - Does not allow duplicates
+5)Dict - key and value
 
 None Type
 ---------
@@ -70,15 +69,6 @@ complex(2,3)
 complex(10,1)
 complex('12+2j') #We can also pass strings:
 
-Boolean Types
--------------
-There are two True or False
-
-a=True
-b=False
-print(a)
-print(b)
-
 Default value of Types
 ======================
 for number
@@ -103,10 +93,7 @@ String
 -Strings are a group of characters written inside a single or double-quotes
 -Python does not have a character type so a single character inside quotes is also considered as a string
 
-Creating a String
------------------
-
-syntax:
+Syntax:
 	variable_name = <characteral or string literal >
 
 strings = "This is Python" #is a string literal
@@ -123,33 +110,6 @@ print(char)
 print(multiline_str)	
 print(raw_str)
 
-
-indexing and Slicing
----------------------
--Each character in a string are stored as item in string memeory.
-Refer indexing and Slicing_helloworld.jpg
-x="helloworld"
-
-#Index
-Syntax: 
-objectType[indexNumber]
-
-print(x[0]) #grab the first element
-print(type(x))
-print(x[1]) #grab the second element
-print(x[-1]) #grab the revesre element
-print(x[-2]) #grab the revesre element
-print(x[3])
-
-#slicing
-print(x[1:]) #grab from 1 index
-print(type(x))
-print(x[1:4]) #grab from 1 till 3 
-print(x[1:4:2]) #grab from 1 till 4 skip 2
-print(x[:2]) #grab from second :2
-print(x[:-1]) #reverse
-print(x[1:-1]) #reverse
-
 Sequences Type or data structure in python
 ==========================================
 -In Python, Sequences are the general term for ordered sets
@@ -164,127 +124,68 @@ dictionary - stores in key and value pair
 
 List
 -----
--List is an ordered sequence that can hold a variety of object types.
--All the items in a list do not need to be of the same type.
--Lists are mutable(Changeable), meaning, the value of elements of a list can be altered.
--Items separated by commas are enclosed within brackets [ ]
--List support indexing and slicing.list can be nested and also be have variety of useful methods that can be called of of them.
--Allows duplicate members.
+-the list can contain data of different types. 
+-The items stored in the list are separated with a comma (,) and enclosed within square brackets [].
+-We can use slice [:] operators to access the data of the list. 
+-The concatenation operator (+) and repetition operator (*) works with the list in the same way as they were working with the strings
 
 syntax
-variable_name =[]
+variable_name=[]
 
 Example:
 x=[1,2,4,'ganesh']
 type(x)
 print(a)
 
-Creating
-*-------*
-#creating a empty 
-dep1=[]
-#creating a homogenous 
-dep1=['cdss','gdd','grt','rao']
-#creating a hetrogenous 
-dep2=['cdss','gdd','grt','rao',43,32.2,'23-jan-2019']
-#nested 
-dep3=[[1,2,3,4,5],[6,7],8,"ganesh"]
-
-Reading
-*-----*
-Using index and slicing
-Index:
-Syntax: 
-objectType[indexNumber]
-
-Refer indexing and Slicing.jpg
-x=[1,2,4,'ganesh']
-#Using Index
-print(x[0]) #grab the first element
-print(type(x))
-print(x[1]) #grab the second element
-print(x[-1]) #grab the revesre element
-print(x[-2]) #grab the revesre element
+#indexing
+x[1]
 
 #Using Slicing
 Syntax: 
 objectType[start:end:skip]
 
-print(x[1:]) #grab from 1 index
-print(type(x))
 print(x[1:4]) #grab from 1 till 3 
-print(x[1:4:2]) #grab from 1 till 4 skip 2
-print(x[:2]) #grab from second :2
-print(x[:-1]) #reverse
-print(x[1:-1]) #reverse
 
-#searching using not in and in operator
-"gdd" in dep1 
-"grt" in dep1
-"gbs" not in dep1
-"finance" not in dep1
+#concatentaion
+x+x
 
-updating
-*------*
-dep1.append("pmo")#add the item at the end of the list
-dep1.insert(2,"dm") #add after that index
-dep1.extend([2,3,2])  #add the list and understand the difference between extend and append
-
-#difference between append and extend
-x=[1,2,3,4]
-#append
-x.append([5,6,7])
-x #check the the value which have inner list
-# lets do for extend
-x=[1,2,3,4]
-x.extend([5,6,7])
-x #check the value
-
-Deleting
-*-------*
-del dep1[5] #delete by index
-dep1.pop() #delete the last index added
-dep2.clear() #clear the list
-
-additional methods
-*----------------*
-a1=[3,2,32,12,41]
-a=max(a1) #min from list
-print(a)
-a=min(a1) #max from list
-print(a)
-a1.sort() #asscending by default
-print(a)
-a1.sort(reverse=True)
-print(a)
-print(x*2) #repeating
-print(x.count(1)) #return the occurence of the value
-print(len(a1)) #length of the item
+#repeations operator
+x*x
 
 Tuple
 -----
--Tuple is an ordered sequence of items same as a list. 
--The only difference is that tuples are immutable(unchangeable) i,e once created cannot be modified.
--Tuples are used to write-protect data and are usually faster than lists as they cannot change dynamically
--Allows duplicate members
--It is defined within parentheses () where items are separated by commas.
+-A tuple is similar to the list in many ways.
+-Like lists, tuples also contain the collection of the items of different data types.
+-The items of the tuple are separated with a comma (,) and enclosed in parentheses ()
+-A tuple is a read-only data structure as we can't modify the size and value of the items of a tuple
 
 sytnax:
-
 variable_name=(va1l,val2,val3)
 
 a=(3,2,"gan",4,3)
+
+#printing the tuple
 print(a)
+
+#getting the type 
 print(type(a))
 
-#all the similar operations can be done same like list like create,read,update and delete
+#tuple indexing
+a[1]
+a[4]
 
-#convert the list to tuple:
-lst=[32,3,22,3]
-print(type(lst))
-tsl=tuple(lst)
-print(tsl)
-print(type(tsl))
+#tuple slicing
+a[1:]
+a[0:1]
+
+#tuple concentations
+a+a
+
+#tuple repeatations
+a*3
+
+#tuple adding a value
+a[2]="hi"
 
 Range Type
 -----------
@@ -307,30 +208,29 @@ for i in r:
 
 Set
 ----
--Set is an collection which is unordered and unindexed. No duplicate members.
--Set is defined by values separated by comma inside braces {} but output shows in curly braces not like dictionary as it as key value pair
--Items in a set are not ordered
--We can perform set operations like union, intersection on two sets. Sets have unique values. 
--They eliminate duplicates
+-Python Set is the unordered collection of the data type.
+-It is iterable, mutable(can modify after creation), and has unique elements.
+-The set is created by using a built-in function set() or or a sequence of elements is passed in the curly braces {}
 
 syntax:
 varible={va1l,val2,val3}
 
-print("------")
+#creating a empty set
+st ={}
+#creating a set
 st={32,45,65,78,"gan",78,32}
-#print(type(st)) #check the type of set
-st.update([33,65]) #update the existing the set
-#print(type(st)) #check the type of set
-# st[0] #cannot do indexing
-# st[2:] #cannot do slicing
-# st.insert(11) #cannot do insert
-# st.remove(32) #cann remove
-mylist=[3,2,3,3,2,2,1,3,4,5,3,2]  #creating list
-st.update(mylist) #updating the list
-mytuple=("G","B","E","DA") #creating tuple
-st.update(mytuple) #updating the tuple
-st.add(32) #adding in the list
-#st.add(32,32) # cannot add more then on value
+
+#checking the type 
+#print(type(st))
+
+st[0] #cannot do indexing
+st[2:] #cannot do slicing
+
+#adding element in set
+st.add(32) 
+
+#removing from set
+# st.remove(32) 
 
 Converting to frozen set
 *-----------------------*
@@ -360,22 +260,17 @@ print(c)
 
 Dictionary
 ----------
--Dictionary is a collection which is unordered, changeable and indexed. No duplicate members
--Dictionary are unordered mappings for storing objects, Previously we saw how lists store objects in ordered sequence.,dicitonaries uses a key-value pariing instead.
--This key-vale pair allows users to quickly grab objects without needing to know an index locations.
--it users curly buraces {} and colons to singify the kyes and their associated values.It is unordered and cannot be sorted
+-Dictionary is an unordered set of a key-value pair of items.
+-Key can hold any primitive data type, whereas value is an arbitrary Python object.
 
 Sytnax:
 variable-name={Key:value,key2:value}
 
 Refer Dictionary_representations.jpg
 
-Create
-*-----*
 #creating a empty dictionary
 fe1 ={}
-#creating only key
-fe2={"us"}
+
 #adding a key and value
 fe={
     "us":59.2,
@@ -389,81 +284,16 @@ fe={
     "australia":55.87,
     "dum":[1,2,3,4]
 }
-#nested dictionary
-my_dict3={'k1':{'k2':{'k3':100}}} # Dictionary nested inside a dictionary nested inside a dictionary
-#create a list in a dictionary or any value type
-my_dict4={"k1":43,"l1":[1,2,3,4,5]}
 
-
-Reading
-*-----*
 #read by keys
 fe["us"]
-my_dict3['k1']['k2']['k3'] # Keep calling the keys
-fe.keys() #read all values 
-fe.values() #read all keys
-fe.items() #reads by items
+
 #read by index
 fe['dum'][2] 
 fe['dum'][1] 
-#additing a value
-fe['us']=fe['us']+20
-#read all the values using loops
-for i in fe.keys():
-    print(i)
-#read all the keys using loops
-for i in fe.values():
-    print(i)
-#read by keys and values using .item method using loops
-for k,v in fe.items():
-    print(k,v)
 
-#searching using not in and in operator
-"us" in fe #looks for the key in a dict not a value
-"china" in fe
-"us" not in fe
-"japan" not in fe
-#looking for a value using .values() method
-fe.values() # now check the values
-7.3 in fe.values()
-80 not in fe.values()
-
-updating
-*------*
-#update 
-#update the value existing key
-fe['us']=60
-fe['swiss']=76
-#update a list to a key
-my_dict4 = {'k1':['a','b','c']}
-mylist=my_dict4['k1'] # get the key and store those value in list
-mylist[2] #get those value in that list
-mylist1=mylist[2] #store into a list
-#update the existing key
-fe['usa']=fe['us'] #inserted at last
-del fe['us'] #delete the old key
-fe['cananda']=57.33 #inserting a new key
-fe_bit={'bitcoin':1717032.97,"bitcoincash":21092} #inserting a nother dictionary in diction
-fe['bitcoin']=1717032.97 #inserting a new key
-fe.update(fe_bit) #updated another dictionary
-fe.update({"dum":[3,4,2,3]})#update a multiple values
-fe
-
-deleting
-*------*
-del fe['bitcoin'] #delete by key
-del fe['dum'][3] #delete by index
-fe.pop('dum') #using pop method
-	
-Nesting Dictionaries
---------------------
-Hopefully you're starting to see how powerful Python is with its flexibility of nesting objects and calling methods on them. 
-
-# Dictionary nested inside a dictionary nested inside a dictionary
-d = {'key1':{'nestkey':{'subnestkey':'value'}}}
-
-# Keep calling the keys
-d['key1']['nestkey']['subnestkey']
+fe.keys() #print all keys
+fe.values() #print all values
 
 Quiz:
 =====
