@@ -34,6 +34,8 @@ if not available install manually
 2) click on the manage with pip
 3) enter -m pip install mysql-connector-python
 4) click on run
+
+
 setup the database
 ==================
 
