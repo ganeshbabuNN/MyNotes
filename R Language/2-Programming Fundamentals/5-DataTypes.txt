@@ -134,8 +134,9 @@ String
 *Strings are a group of characters written inside a single or double-quotes
 *Internally R stores every string within double quotes, even when you create them with single quote
 
-Creating a String
------------------
+'Hello world'
+"Hello world"
+
 #using double quotes
 mychar <- "R is a Super Programming language"
 cat(mychar,"\n")
@@ -146,35 +147,7 @@ mychar <- 'R is a Super Programming language'
 cat(mychar,"\n")
 class(mychar)
 
-Rules Applied in String Construction
-------------------------------------
-*The quotes at the beginning and end of a string should be both double quotes or both single quote. They can not be mixed.
-*Double quotes can be inserted into a string starting and ending with single quote.
-*Single quote can be inserted into a string starting and ending with double quotes.
-*Double quotes can not be inserted into a string starting and ending with double quotes.
-*Single quote can not be inserted into a string starting and ending with single quote.
-
-example of valid strings
-*----------------------*
-a <- "learn the R Programming language"
-print(a)
-
-a <- 'learn the R Programming language'
-print(a) #observe the output R takes internally Double quotes
-
-a <- "learn the R 'Programming language"  
-print(a) #observer the output 
-
-a <- 'learn the R "Programming language'
-print(a) #observer the output 
-
-example of In-valid strings
-*----------------------*
-a <- "learn the R "Programming language'
-a <- 'learn the R 'Programming language'
-a <- "learn the R"Programming language"
-
-*we shall learn more on the string manipulations using function in next chapters
+*we shall learn more on the string chapter using function in next chapters
 
 data structure(or Sequence Type)
 ================================

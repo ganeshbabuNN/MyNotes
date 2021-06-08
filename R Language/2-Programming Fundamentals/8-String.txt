@@ -11,46 +11,64 @@ String Methods
 
 Intro
 =====
--Strings are used in Python to record text information, such as names. 
--Remember string is immutable objects
--Strings in Python are actually a sequence, which basically means Python keeps track of every element in the string as a sequence. 
-For example, Python understands the string "hello' to be a sequence of letters in a specific order. 
--This means we will be able to use indexing to grab particular letters (like the first letter, or the last letter).
--This idea of a sequence is an important one in Python and we will touch upon it later on in the future.
+*Strings are a group of characters written inside a single or double-quotes
+*Internally R stores every string within double quotes, even when you create them with single quote
 
 Creating a String
 ================
--To create a string in Python you need to use either single quotes or double quotes.
-# Single word
-'hello
+'Hello World' #using Single quotes
+"Hello world" #using double quotes
 
-'This is also a string' # Entire phrase
+mychar <- "R is a Super Programming language"
+cat(mychar,"\n")
+class(mychar)
 
-# We can also use double quote
-"String built with double quotes"
+mychar <- 'R is a Super Programming language'
+cat(mychar,"\n")
+class(mychar)
 
-# Be careful with quotes!
-' I'm using single quotes, but this will create an error'
+mystr<-' I'm using single quotes, but this will create an error'# Be careful with quotes!
+#for correcting the above , use double quotes
+mystr<-"I'm using single quotes, but this will create an error"
 
-The reason for the error above is because the single quote in I'm stopped the string. You can use combinations of double and single quotes to get the complete statement
-
-"Now I'm ready to use the single quotes inside a string!"
+Rules Applied in String Construction
+------------------------------------
+*The quotes at the beginning and end of a string should be both double quotes or both single quote. They can not be mixed.
+*Double quotes can be inserted into a string starting and ending with single quote.
+*Single quote can be inserted into a string starting and ending with double quotes.
+*Double quotes can not be inserted into a string starting and ending with double quotes.
+*Single quote can not be inserted into a string starting and ending with single quote.
 
 Printing a String
 =================
-Using Jupyter notebook with just a string in a cell will automatically output strings, but the correct way to display strings in your output is by using a print function
+using R studio, you can directly enter
 
 # We can simply declare a string
-'Hello World'
+'Hello world'
 
-# Note that we can't output multiple strings this way
-'Hello World 1'
-'Hello World 2'
+cat("hello world") #using cat function
+print("Hello world") #using print
+paste("hello world","welcome to R programming") #using paste functions
 
-#We can use a print statement to print a string.
-print('Hello World 1')
-print('Hello World 2')
-print('See what I mean?')
+Example of valid strings
+*----------------------*
+a <- "learn the R Programming language"
+print(a)
+
+a <- 'learn the R Programming language'
+print(a) #observe the output R takes internally Double quotes
+
+a <- "learn the R 'Programming language"  
+print(a) #observer the output 
+
+a <- 'learn the R "Programming language'
+print(a) #observer the output 
+
+example of In-valid strings
+*----------------------*
+a <- "learn the R "Programming language'
+a <- 'learn the R 'Programming language'
+a <- "learn the R"Programming language"
 
 Accessing String using Indexing & slicing
 ==========================================
