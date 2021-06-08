@@ -1,13 +1,12 @@
 Intro
 Creating Strings
 Printing Strings
-String Indexing and Slicing
+Accessing String elements
 String Properties
 Escape characters
 String Formatting(Huge chapters)
 String Regular expressions
 String Methods
-
 
 Intro
 =====
@@ -70,84 +69,38 @@ a <- "learn the R "Programming language'
 a <- 'learn the R 'Programming language'
 a <- "learn the R"Programming language"
 
-Accessing String using Indexing & slicing
-==========================================
-We know strings are a sequence, which means Python can use indexes to call parts of the sequence. Let's learn how this works.
-
-Indexing
---------
-In Python, we use brackets [] after an object to call its index. We should also note that indexing starts at 0 for Python. Let's create a new object called <code>s</code> and then walk through a few examples of indexing.
+Accessing String elements
+=========================
+-The individual characters of a string can be extracted from a string by using the indexing methods of a string
+-There are two R’s inbuilt functions in order to access both the single character as well as the substrings of the string
+-substr() or substring() function in R extracts substrings out of a string beginning with the start index and ending with the end index
 
 Syntax:
-string['index number]
+substr(..., start, end)
+or 
+substring(..., start, end)
 
-s = 'Hello World' # Assign s as a string
-H	e	l	l	o		w	o	r	l	d
-0	1	2	3	4	5	6	7	8	9	10  - index number
-0	-10 -9	-8	-7	-6	-5	-4	-3	-2	-1   -reverse index
-
-s #Check
-print(s) # Print the object 
-# Show first element (in this case a letter)
-s[0]
-s[1]
-s[9]
-s[-10]
-
-slicing
--------
-We can use a : to perform *slicing* which grabs everything up to a designated point. 
-
-Sytnax:
-slice(start:stop:step)
-
-start (optional) - Starting integer where the slicing of the object starts. Default to None if not provided.
-stop - Integer until which the slicing takes place. The slicing stops at index stop -1 (last element).
-step (optional) - Integer value which determines the increment between each index for slicing. Defaults to None if not provided
-
-For example:
-s[1:] # Grab everything past the first term all the way to the length of s which is len(s)
-s # Note that there is no change to the original s
-s[:3] # Grab everything UP TO the 3rd index
-
-Note the above slicing. Here we're telling Python to grab everything from 0 up to 3. It doesn't include the 3rd index. You'll notice this a lot in Python, where statements and are usually in the context of "up to, but not including".
-s[:] #Everything
-
-We can also use negative indexing to go backwards.
-s[-1] # Last letter (one index behind 0 so it loops back around)
-s[:-1] # Grab everything but the last letter
-print(s[-2:-1]) #-3 represent the last index
-
-We can also use index and slice notation to grab elements of a sequence by a specified step size (the default is 1). For instance we can use two colons in a row and then a number specifying the frequency to grab elements. For example:
-s[::1] # Grab everything, but go in steps size of 1
-s[::2] # Grab everything, but go in step sizes of 2
-s[::-1] # We can use this to print a string backwards
+x <- "Learn R programming"
+substr(x,1,1) #grapping from start 1 to end 1
+substr(x,1,5) #grapping from start 1 to end 4
+substr(x,7,7) #grapping from start 7 to end 7
+substr(x,8,8) #grapping from start 8 to end 8
 
 String Properties
 =================
-It's important to note that strings have an important property known as *immutability*. This means that once a string is created, the elements within it can not be changed or replaced. For example:
+String in R are mutable in nature.
 
-s = 'Hello World' # Assign s as a string
-s
-s[0] = 'x' # Let's try to change the first letter to 'x'
+x <- 'hello world'
+x <- 'ganesh' #its is able to override.
 
-Notice how the error tells us directly what we can't do, change the item assignment!
-Something we can do is concatenate strings!
+#Joining the strings
+x <-'ganesh'
+y <-'babu'
+paste(x,y)
 
-s
-s + ' concatenate me!' # Concatenate strings!
-s = s + ' concatenate me!' # We can reassign s completely though! #dont overrun same variable. agin and again
-print(s)
-s
-
-We can use the multiplication symbol to create repetition!
-letter = 'z'
-letter*10
-
-be aware of the string numbers 
-sum = '2' + '3'
-print(sum) # what is the output?
-
+#length of the string
+x <- 'hello world'
+nchar(x)
 
 Escape characters
 =================
@@ -158,37 +111,20 @@ Ex:
 txt="we are so- called "Humans" to serve others"
 txt="we are so- called \"Humans\" to serve others" # fix the problem insert the backlash
 
-there are diff types:
-\newline -Backslash and newline ignored	
-\\ -Backslash (\)
-\' -Single quote (')
-\" -Double quote (")
-\a  -ASCII Bell (BEL)
-\b	-ASCII Backspace (BS)
-\f	-ASCII Formfeed (FF)
-\n	-ASCII Linefeed (LF)
-\r	-ASCII Carriage Return (CR)
-\t	-ASCII Horizontal Tab (TAB)
-\v	-ASCII Vertical Tab (VT)
-\ooo-Character with octal value ooo
-\xhh -Character with hex value hh
+There are difference types:
+\': single quote. You don’t need to escape single quote inside a double-quoted string, so we can also use "'" in the previous example.
+\": double quote. Similarly, double quotes can be used inside a single-quoted string, i.e. '"'.
+\n: Starts a new line.
+\t: tab character.
+\b: Backspace.
+\": Double quote.
+\r: Carriage return.
+\\: Single Backslash
 
 Example:
-print("hello \
-world \
-:-)")  #Backslash and newline ignored
 print("positive\\negative") #backslash (\)
 print("\'positive\'") #Single quote (')
 print("\"positive\"") #Double quote (")
-print("Hello \a world ") #ASCII Bell (BEL)
-print("Hello \b world ") #ASCII Backspace (BS)
-print("Hello \f world! ") #ASCII Formfeed (FF)
-print("Hello\nworld! ") #ASCII Linefeed (LF)
-print("Hello \rWorld!") #ASCII Carriage Return (CR)
-print("Hello\tWorld! ") #ASCII Horizontal Tab (TAB)
-print("Hello \v World! ") #ASCII Vertical Tab (VT)
-print("\110\145\154\154\157\40\127\157\162\154\144\41 ") #Character with octal value ooo
-print("\x48\x65\x6c\x6c\x6f\x20\x57\x6f\x72\x6c\x64\x21 ") #Character with hex value hh
 
 String Formatting
 =================
@@ -199,348 +135,248 @@ company='Novo nordisk'
 experience='7'
 name ='Ganesh babu'
 
-" Myself, '+name+' working in '+company+' for past '+experience+' years." # concatenation classical way
-f"Myself, {name} working in {company} for past {experience} years." #string formatting put f as prefix
+#using cat functions
+cat("Myself,",name,'working in',company,' for past ',experience,' years.') 
+#using paste functions
+paste("Myself,",name,'working in',company,' for past ',experience,' years.') 
 
 There are three ways to perform string formatting
--The oldest method involves placeholders using the modulo % character.
--An improved technique uses the .format() string method.
--The newest method, introduced with Python 3.6, uses formatted string literals, called f-strings.
-Since you will likely encounter all three versions in someone else's code, we describe each of them here
+1)using cat functions (classical way)
+2)using paste functions (classical way)
+3)using stringf() in R
 
-Formatting with placeholders (%)
--------------------------------
-You can use %s to inject strings into your print statements. The modulo % is referred to as a "string formatting operator".
-print('Myself, %s working in %s for past %s years.')
-
-You can pass multiple items by placing them inside a tuple after the % operator.
-print("Myself, %s working in %s for past %s years."%('Ganesh Babu','Novo Nordisk','7+'))
-
-You can also pass variable names:
-company='Novo nordisk'
-experience='7'
-name ='Ganesh babu'
-print("Myself, %s working in %s for past %s years."%(name,company,experience))
-
-Format conversion methods using %
-*--------------------------------*
-It should be noted that two methods %s and %r convert any python object to a string using two separate methods: str() and repr(). 
-We will learn more about these functions later on in the course, but you should note that %r and repr() deliver the string representation of the object, including quotation marks and any escape characters.
-
-print("my name is %s" %'Ganesh Babu') #%s converts the format into strings
-print("my name is %r" %'Ganesh Babu') #%r retruns the string representations of a object
-
-As another example, \t inserts a tab into a string.
-print("my name is %s" %'Ganesh \t Babu')  
-print("my name is %r" %'Ganesh \tBabu')  
-
-The %s operator converts whatever it sees into a string, including integers and floats. The %d operator converts numbers to integers first, without rounding. 
-Note the difference below:
-print("my salary is %s per day " %960.36) #%s operator converts whatever it sees into a string, including integers and floats
-print("my salary is %d per day " %960.36) #The %d operator converts numbers to integers first, without rounding
-
-Padding and Precision of Floating Point Numbers
-*---------------------------------------------*
-Floating point numbers use the format %5.2f. Here, 5 would be the minimum number of characters the string should contain; these may be padded with whitespace if the entire number does not have this many digits. Next to this, .2f stands for how many numbers to show past the decimal point. Let's see some examples:
-
-print("my daily work day consumptions is %10.2f per year " %36512.2432) #365 days 12 months 24 hours 32 mins
-print("my daily work day consumptions is %1.0f per year " %36512.2432)
-print("my daily work day consumptions is %1.5f per year " %36512.2432)
-print("my daily work day consumptions is %10.2f per year " %36512.2432)
-print("my daily work day consumptions is %25.2f per year " %36512.2432)
-
-for more informations :https://docs.python.org/3/library/stdtypes.html#old-string-formatting
-
-Multiple Formatting
-*-----------------*
-print("myself %s working %5.2f per year, %r" %('Ganesh Babu',36512.2432,'Bye!'))
-
-
-Using format()
+Using stringf()
 --------------
-A better way to format objects into your strings for print statements is with the string .format()
+stringf()
+sprintf("%s is %f feet tall\n", "Sven", 7.1)      # OK
+sprintf("%s is %i feet tall\n", "Sven", 7  )  # OK
+sprintf("%.0f%% said yes (out of a sample of size %.0f)", 66.666, 3)
+sprintf("%f", pi)
+sprintf("%.3f", pi) #Format Places Before Decimal Point
+sprintf("%1.0f", pi)#Format Places Before Decimal Point
+sprintf("%5.1f", pi)#Format Places Before Decimal Point
+sprintf("%05.1f", pi)#Format Places Before Decimal Point
+sprintf("%+f", pi) #To print the Non-Numeric Values in R,
+sprintf("% f", pi) #
+sprintf("%-10f", pi) # left justified
+sprintf("%e", pi) #Control Scientific Notation using sprintf() function
+sprintf("%E", pi) #Control Scientific Notation using sprintf() function
+sprintf("%g", pi) #Control Scientific Notation using sprintf() function
+sprintf("%g",   1e6 * pi) # -> exponential
+sprintf("%.9g", 1e6 * pi) # -> "fixed"
+sprintf("%G", 1e-6 * pi)
 
-Syntax:
-String here{} then also {}'.format('INSERTED'))
+sprintf("%1.f", 101)## no truncation:
 
-# insert the first string in the format index
-print('Myself {}'.format('Ganesh Babu ')) 
+## re-use one argument three times, show difference between %x and %X
+xx <- sprintf("%1$d %1$x %1$X", 0:15)
+xx
+xx <- matrix(xx, dimnames = list(rep("", 16), "%d%x%X"))
+noquote(format(xx, justify = "right"))
 
-# Inserted objects can be called by index position
-print("Myself, {} working in {} for past {} years.".format('Ganesh Babu','Novo Nordisk','7+')) 
+sprintf("%09s", month.name)
+n <- 1:18
+sprintf(paste0("e with %2d digits = %.", n, "g"), n, exp(1))
 
-#Inserted objects can be assigned keywords
-print("Myself, {a} working in {b} for past {c} years.".format(a='Ganesh Babu',b='Novo Nordisk',c='7+'))  
+## Using arguments out of order using %
+sprintf("second %2$1.0f, first %1$5.2f, third %3$1.0f", pi, 2, 3)
 
-#Inserted objects can be reused, avoiding duplication:
-print('A %s saved is a %s earned.' %('penny','penny'))
-# vs.
-print('A {p} saved is a {p} earned.'.format(p='penny'))
+## Using asterisk for width or precision
+sprintf("precision %.*f, width '%*.3f'", 3, pi, 8, pi)
 
-Alignment, padding and precision with .format()
-----------------------------------------------
-Within the curly braces you can assign field lengths, left/right alignments, rounding parameters and more
-print('{0:8} | {1:9}'.format('Fruit', 'Quantity'))
-print('{0:8} | {1:9}'.format('Apples', 3.))
-print('{0:8} | {1:9}'.format('Oranges', 10))
+## Asterisk and argument re-use, 'e' example reiterated:
+sprintf("e with %1$2d digits = %2$.*1$g", n, exp(1))
 
-#By default, .format() aligns text to the left, numbers to the right. You can pass an optional <,^, or > to set a left, center or right alignment:
-print('{0:<8} | {1:^8} | {2:>8}'.format('Left','Center','Right'))
-print('{0:<8} | {1:^8} | {2:>8}'.format(11,22,33))
+## re-cycle arguments
+sprintf("%s %d", "test", 1:3)
 
-#You can precede the aligment operator with a padding character
-print('{0:=<8} | {1:-^8} | {2:.>8}'.format('Left','Center','Right'))
-print('{0:=<8} | {1:-^8} | {2:.>8}'.format(11,22,33))
-
-#Field widths and float precision are handled in a way similar to placeholders. The following two print statements are equivalent:
-print('This is my ten-character, two-decimal number:%10.2f' %13.579)
-print('This is my ten-character, two-decimal number:{0:10.2f}'.format(13.579))
-
-Note that there are 5 spaces following the colon, and 5 characters taken up by 13.58, for a total of ten characters.
-For more information on the string .format() method visit https://docs.python.org/3/library/string.html#formatstrings
-
-Formatted String Literals (f-strings)
--------------------------------------
-Introduced in Python 3.6, f-strings offer several benefits over the older `.format()` string method described above. 
-For one, you can bring outside variables immediately into to the string rather than pass them as arguments through `.format(var)`.
-
-company='Novo nordisk'
-experience='7'
-name ='Ganesh babu'
-
-Where with the .format() method you might see {value:10.4f}, with f-strings this can become {value:{10}.{6}}
-print(f"myself name is {name}")
-
-Pass !r to get the string representation:
-print(f"myself name is {name!r}")
-
-Float formatting follows "result: {value:{width}.{precision}}"
-Where with the .format() method you might see {value:10.4f}, with f-strings this can become {value:{10}.{6}}
-num = 23.45678
-print("My 10 character, four decimal number is:{0:10.4f}".format(num))
-print(f"My 10 character, four decimal number is:{num:{10}.{6}}")
-
-Note that with f-strings, precision refers to the total number of digits, not just those following the decimal. This fits more closely with scientific notation and statistical analysis. Unfortunately, f-strings do not pad to the right of the decimal, even if precision allows it:
-num = 23.45
-print("My 10 character, four decimal number is:{0:10.4f}".format(num))
-print(f"My 10 character, four decimal number is:{num:{10}.{6}}")
-
-If this becomes important, you can always use .format() method syntax inside an f-string:
-num = 23.45
-print("My 10 character, four decimal number is:{0:10.4f}".format(num))
-print(f"My 10 character, four decimal number is:{num:10.4f}")
-
-For more info on formatted string literals visit https://docs.python.org/3/reference/lexical_analysis.html#f-strings
-That is the basics of string formatting!
+## binary output showing rounding/representation errors
+x <- seq(0, 1.0, 0.1); y <- c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1)
+cbind(x, sprintf("%a", x), sprintf("%a", y))
 
 String Regular expressions
 ==========================
 The regular expressions can be defined as the sequence of characters which are used to search for a pattern in a string. 
--The module re provides the support to use regex in the python program. 
--The re module throws an exception if there is some error while using the regular expression.
 
 The details concepts are explained in API/Regular Expressions chapters.
 
 Basic Built-in String methods
 =============================
-Objects in Python usually have built-in methods. These methods are functions inside the object (we will learn about these in much more depth later) that can perform actions or commands on the object itself.
-We call methods with a period and then the method name. 
-Methods are in the form:
-object.method(parameters)
-
-Where parameters are extra arguments we can pass into the method. Don't worry if the details don't make 100% sense right now. Later on we will be creating our own objects and functions!
-Here are some examples of built-in methods in strings:
+Objects are usually have built-in methods. These methods are functions inside the object (we will learn about these in much more depth later) that can perform actions or commands on the object itself.
 
 split case
 ---------
-s ='Hello World' 
-s.split() # Split a string by blank space (this is the default)
-s.split('W') # Split by a specific element (doesn't include the element that was split on)
-print(len(a)) #length of a string
+x <- "ganesh babu"
+strsplit(x," ") #split based on delimiter
+strsplit(x," ")[[1]] #extract only that element
 
-There are many more methods than the ones covered here. Visit the Advanced String section to find out more!
+#using str_split
+https://stringr.tidyverse.org/reference/str_split.html
 
 Strips the spaces
 -----------------
 #generally used to trimt he leading and lagging spaces in the given string.
-c=""" ganesh babu """;
-print(c.strip())  #striping the lead and lagging
-print(c.lstrip()) #striping left
-print(c.rstrip()) #striping left
-
-x="ganesh \nbabu " #The splitlines() method splits a string into a list. The splitting is done at line breaks.
-
-
-x.splitlines() 
+a=" ganesh babu ";
+trimws(a, which = c("left")) #Strip Leading Space left
+trimws(a, which = c("right")) #Strip Trailing Space
+trimws(a, which = c("both")) #Strip leading and trailing space
+gsub('\\s+', '', a) #Strip all the Spaces in Column in R:
 
 find functions
 --------------
 Searches the string for a specified value and returns the position of where it was found
 
-print(c.find("ba")) #return the count of the index where search starts
-print(c.find("ba"),0,len(c)) #used 0 outside the find functions
-print(c.find("ab",9,len(c))) #start with 9 with max leng where the search looked into
-x.rfind('a')  #The rfind() method finds the last occurrence of the specified value.
+text <- "This should be supported on all platforms as it is a feature of C99. The format is not uniquely defined"
+grep("ganesh",text) #return the position of the string of the first index
+
+text1 <- c("gbag","gbag","brga",'rubn','prkh','zktu')
+grep("brga",text1)
 
 count function get the occurrence of a string.
 -----------------------------------------------
-print(c.count("h"))
+text1 <- c("gbag","gbag","brga",'rubn','prkh','zktu')
+length(grep("gbag",text1))
 
 replace
 -------
-print(c.replace("ga","hh"))
+text <- "This should be supported on all platforms as it is a feature of C99. The format is not uniquely defined"
+gsub("supported","support",text)
+
+#in file handing scenario
+x <- c("file_a.csv", "file_b.csv", "file_c.csv")
+y <- gsub("file_","", x)
+y
 
 case changes
 ------------
-print(c.upper()) #convert to uppper case
-print(c.lower()) #covnert to lower case
-print(c.casefold()) #convert to lower case
-print(c.title()) #its upper the first letter of each word
-print(c.capitalize()) #its upper the first letter of the string
-print(c.islower()) #The islower() method returns True if all the characters are in lower case, otherwise False.
-x.swapcase() #Swaps cases, lower case becomes upper case and vice versa
+a<-"hello world"
+a
+to_upper(a) #upper case
+tolower(a) #lower case
 
+library(stringr)
+#https://stringr.tidyverse.org/
+str_to_title(a) #title CASE
 
-alignment 
----------
+Text alignment 
+---------------
+install.packages("DescTools")
+library("DesTools")
 x='  Ganesh Babu'
 x.center(20) # The center() method will center align the string, using a specified character (space is default) as the fill character.
 x.ljust(20) #for left 
 x.rjust(20) #for right
 
-
 length of the string
 --------------------
-We can also use a function called len() to check the length of a string!
-len('Hello World')
+library(DescTools)
+x="ganesh babu"
+str_length(x)
 
 Concatentations
 ---------------
-"ganesh" + "Babu" # concatenation
-x="ganesh"
-x+"babu"
+cat("ganesh","babu")
+paste("ganesh","babu","g")
 
-start and end of string
+start ,end and contains of string
 -----------------------
-str.startswith(('g','a','s')) # start with the letter single or multiple(tuple)
-str.endswith(('h','a')) # end with the letter single or multiple(tuple)
+
+#using grepl functions
+x="ganesh babu"
+grepl('^ga',x)
+grepl('bu$',x)
+
+#using substr funcionts
+substr(x, 1, 2) == 'ga'
+substr(x, nchar(x)-1, nchar(x)) == 'bu'
+
+#r3.3 the below functions exists
+startsWith(x,"ga")
+endsWith(x,"bu"
+
+-for text contain.
+x <- 'ganesh babu'
+#using grepl function
+grepl("ne",x)
+grepl("za",x)
+
+#using str_dection function
+library(stringr)
+str_detect(x,"ne")
+str_detect(x,"za")
 
 checking numeric or string
 --------------------------
-str12.isnumeric() #Return True if all characters in the string are numeric characters, and there is at least one character
-str13.isdigit() #Return True if all characters in the string are digits and there is at least one character
-#detecting a floating point in a string using regex(this will cover later)
-s="ganesh babu st 323.22  and 23.22 , 2.1.1 and 43"
-re.findall(r"[-+]?\d*\.\d+|\d+",s)
+x="ganesh"
+y=23
+z=32L
+is.character(x) #check string
+is.numeric(y)  #check numeric
+is.integer(z)  #check integer
 
 using membership operators
 ---------------------------
-'f' in name
-name="ganesh"
-'a' in name # in operator
-'f' in name
-'a' not in name #not in operator
-'f' not in name
+x= c("ganesh","vedha","rect","rocky")
+
+#using in operator
+'ganesh' %in% x
+'rect' %in% x
+'nadi' %in% x
+
+#using not in operator using !
+`%!in%` <- Negate(`%in%`) #this is tricky
+'ganesh' %!in% x
+'rect' %!in% x
+'nadi' %!in% x
 
 Occurence of character in string
 --------------------------------
--c.count('er') #
+x <- 'ganesh babu'
 
+#using str_count function
+library(stringr)
+str_count(x,"b")
+str_count(x,"a")
+
+#base R
+lengths(lapply(x, grepRaw, pattern = "b", all = TRUE, fixed = TRUE))
+
+#using gregexpr
+lengths(gregexpr('a', x))
 
 encoding the string
 -------------------
-#The encode() method encodes the string, using the specified encoding. If no encoding is specified, UTF-8 will be used.
-x='  Ganesh Babu'
-x.encode() 
-
 txt = "My name is Ståle"
-print(txt.encode(encoding="ascii",errors="backslashreplace"))
-print(txt.encode(encoding="ascii",errors="ignore"))
-print(txt.encode(encoding="ascii",errors="namereplace"))
-print(txt.encode(encoding="ascii",errors="replace"))
-print(txt.encode(encoding="ascii",errors="xmlcharrefreplace"))
+txt
+
+#using stringi package
+library(stringi)
+stri_trans_general(txt, "Latin-ASCII")
 
 Tabing the string
 ------------------
-The expandtabs() method sets the tab size to the specified number of whitespaces.
+x <-'ganesh babu'
 
-x='G\ta\tn\te\ts\th\tB\ta\tb\tu'
-x.expandtabs()
+#using cat function
+cat(x,"\t",3,"\n")
+ot=cat(x,"\t",3,"\n")
+
+#using paste function
+paste(x,3,sep="\t")
+#store in a output
+ot=paste(x,3,sep=":\t")
+ot
 
 index
 ------
-The index() method finds the first occurrence of the specified value.
-The index() method raises an exception if the value is not found.
-The index() method is almost the same as the find() method, the only difference is that the find() method returns -1 if the value is not found. (See example below)
+x<-"ganesh babu"
 
-x='ganesh babu'x.index('e')
-x.index('e')
+#using substr function
+i=1
+substr(x,i,i+1)
 
-#not found
-x.index('z')
-x.find('z')
-
-recongizing the string or number
---------------------------------
-x='ganesh babu12'
-x.isalnum() #The isalnum() method returns True if all the characters are alphanumeric, meaning alphabet letter (a-z) and numbers (0-9). characters that are not alphanumeric: (space)!#%&? etc
-x.isalpha() #The isalpha() method returns True if all the characters are alphabet letters (a-z).
-
-x='1222'
-x.isdecimal()  #The isdigit() method returns True if all the characters are digits, otherwise False.if floating type is not digit
-#The isnumeric() method returns True if all the characters are numeric (0-9), otherwise False.
-
-
-Identifier
-----------
-The isidentifier() method returns True if the string is a valid identifier, otherwise False.
-A string is considered a valid identifier if it only contains alphanumeric letters (a-z) and (0-9), or underscores (_). A valid identifier cannot start with a number, or contain any spaces.
-
-a = "MyFolder"
-b = "Demo002"
-c = "2bring"
-d = "my demo"
-
-print(a.isidentifier())
-print(b.isidentifier())
-print(c.isidentifier())
-print(d.isidentifier())
-
-isprintable
------------
-The isprintable() method returns True if all the characters are printable, otherwise False. Example of none printable character can be carriage return and line feed.
-
-txt = "Hello! Are you #1?"
-x = txt.isprintable()
-print(x)
-
-txt = "Hello!\nAre you #1?"
-x = txt.isprintable()
-print(x)
-
-partitions
-----------
-The partition() method searches for a specified string, and splits the string into a tuple containing three elements.
-The first element contains the part before the specified string.
-The second element contains the specified string.
-The third element contains the part after the string.
-
-txt = "I could eat bananas all day"
-x = txt.partition("bananas")
-print(x)
-
-txt = "I could eat bananas all day"
-x = txt.partition("apples")
-print(x)
-
-fill
-----
-The zfill() method adds zeros (0) at the beginning of the string, until it reaches the specified length.
-
-x.zfill(10) 
-
-Python's built-in len() function counts all of the characters in the string, including spaces and punctuation.
-https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range  # for string methods
+#using grep and strsplit function
+grep("[gb]", strsplit(x, split="")[[1]])
 
 Quiz:
 =====
@@ -552,6 +388,12 @@ Resources:
 =========
 https://www.tutorialspoint.com/r/r_strings.htm
 https://www.gastonsanchez.com/r4strings/
-
-
-
+https://www.geeksforgeeks.org/r-strings/
+https://www.r-bloggers.com/2020/01/objects-that-feel-mutable-in-r/
+https://www.tutorialkart.com/r-tutorial/find-length-of-string-in-r-programming/
+https://rstudio-pubs-static.s3.amazonaws.com/74603_76cd14d5983f47408fdf0b323550b846.html
+https://bookdown.org/yihui/rmarkdown-cookbook/latex-output.html
+https://cran.r-project.org/doc/manuals/R-lang.html#Literal-constants  --officials
+https://www.datacamp.com/community/tutorials/strings-in-r
+#https://stringr.tidyverse.org/
+https://www.rdocumentation.org/packages/DescTools/versions/0.99.41/topics/StrAlign
