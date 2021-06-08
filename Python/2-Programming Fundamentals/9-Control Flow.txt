@@ -365,6 +365,20 @@ Quiz:
 
 Assignment:
 ===========
+A1)how to check if a greater then b
+A2)how to check if the given value is a number or not
+A3)how to check if the given value is a odd or not
+A4)how to check if the given value is a even or not
+A5)how to check is given year is a leap year or not
+A6)how to check is given value is a even or not
+A7)how to check if the given value is a string or number.
+A8)how to check the given value is available in the given string("Life","is","Beautiful") or not
+A9)how to check if given value is less, show if it is a even or odd and same for value is greater then 20 , show if it even or odd
+A10)how to check given character is vowel or constant?
+A11)how to check if the given age is child(<18) or a old guy(>30) or a adult
+A12)how to check if the marks given is first class(>75), second class(>65) and third class(>35) and fail(<35)
+A13)Build a calculator for options addition,subraction,multiplications and divisions.
+A14)how to find which is the largest of given 4 numbers
 
 Resources
 =========
