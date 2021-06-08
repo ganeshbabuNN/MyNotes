@@ -1,0 +1,20 @@
+Offical documentation
+=====================
+language fundamentals
+---------------------
+https://cran.r-project.org/doc/manuals/r-release/R-lang.html - language fundamentals
+
+Introduction 
+-----------
+https://cran.r-project.org/doc/manuals/r-release/R-intro.html- an intro to R
+
+other sites
+===========
+https://www.statmethods.net/index.html
+https://www.geeksforgeeks.org/r-tutorial/
+https://www.tutorialspoint.com/r/index.htm
+https://www.javatpoint.com/r-tutorial
+https://www.freecodecamp.org/news/r-programming-language-explained/
+https://bookdown.org/yihui/rmarkdown-cookbook/- Latex
+https://stackoverflow.com/tags/r/info  #info packages
+https://www.w3schools.in/category/r/
