@@ -1,0 +1,139 @@
+Introduction
+Command Prompt
+Using Function
+Using Class
+Help info
+
+Introduction
+============
+In R we have 
+
+Command Prompt
+==============
+-# We can use the print() function
+print("Hello World!")
+
+## Quotes can be suppressed in the output
+print("Hello World!", quote = FALSE)
+
+## If there are more than 1 item, we can concatenate using paste()
+print(paste("How","are","you?"))
+
+#print is a statement
+#Hello world! is a string literals
+#paste is functions and statement
+
+Using Function
+==============
+
+hello <- function() {
+  print("hello world")
+}
+
+hello()
+
+#hellow is a function name which is an identifier
+#function is a keyword
+#print is a statement
+#function has its syntax
+
+Using Class
+===========
+studentDetails <- list(name="ganesh",age=43,contact="india",grade=12) #studentdetails contains the list of elements passing a list
+class(studentDetails)<-"studentinfo" 
+studentDetails #call
+
+# studentinfo and studentDetails new created class
+#class is a keyword
+#studentdetails is a identifier
+#name,age,contact,grade are the identifier as well and act as a argument for list
+
+Help info
+=========
+help(print) #Getting help on a function that you know the name of ? or help
+?print
+example(paste) #Use the example function to see examples of how to use it.
+example(`for`)
+
+demo() #The demo function gives longer demonstrations of how to use a function.
+demo(package = .packages(all.available = TRUE)) # all demos
+demo(plotmath)
+demo(graphics)
+
+#functional searching
+??regression #Finding a function that you don't know the name of Use ?? or, equivalently, help.search.
+help.search("regression")
+??"logistic regression"#Again, non-standard names and phrases need to be quoted.
+apropos("a$") # apropos finds functions and variables in the current session-space (but not in installed but not-loaded packages) that match a regular expression.
+RSiteSearch("logistic regression") #findFn in sos wraps RSiteSearch returning the results as a HTML table.
+
+#packages info
+View(available.packages()) #available.packages tells you all the packages that are available in the repositories that you set via setRepositories.
+View(installed.packages()) # installed.packages tells you all the packages that you have installed in all the libraries specified in .libPaths
+library() # library (without any arguments) is similar, returning the names and tag-line of installed packages
+.libPaths()
+
+data() #data with no arguments tells you which datasets are available on your machine.
+search()#search tells you which packages have been loaded.
+packageDescription("utils")    #packageDescription shows you the contents of a package's DESCRIPTION file. Likewise news read the NEWS file
+
+ls() #ls lists the variables in an global environment
+ls(all.names = TRUE) # including names beginning with '.'
+ls("package:broom")     # everything for the sp package
+str(a) #Most variables can be inspected using str or summary.
+summary(a)
+
+#directorys
+getwd() # print the current working directory - cwd
+ls()    # list the objects in the current workspace
+
+setwd(mydirectory)      # change to mydirectory
+setwd("c:/docs/mydir")  # note / instead of \ in windows
+setwd("/usr/rob/mydir") # on linux
+
+# view and set options for the session
+help(options) # learn about available options
+options() # view current option settings
+options(digits=3) # number of digits to print on output
+
+# work with your previous commands
+history() # display last 25 commands
+history(max.show=Inf) # display all previous commands
+
+# save your command history
+savehistory(file="myfile") # default is ".Rhistory"
+
+# recall your command history
+loadhistory(file="myfile") # default is ".Rhistory"
+
+# save the workspace to the file .RData in the cwd
+save.image()
+
+# save specific objects to a file
+# if you don't specify the path, the cwd is assumed
+save(object list,file="myfile.RData")
+
+# load a workspace into the current session
+# if you don't specify the path, the cwd is assumed
+load("myfile.RData")
+
+q() # quit R. You will be prompted to save the workspace.
+
+Note Handling files in R
+-------------------
+R gets confused if you use a path in your code like:
+c:\mydocuments\myfile.txt
+
+This is because R sees "\" as an escape character. Instead, use:
+c:\\my documents\\myfile.txt
+c:/mydocuments/myfile.txt
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources:
+=========
+https://www.statmethods.net/interface/workspace.html

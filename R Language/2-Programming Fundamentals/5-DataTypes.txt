@@ -1,0 +1,311 @@
+Introduction
+Data Types
+Default value of Types
+Convert one data type to another
+To know the type of variable
+Strings
+data structures
+Handling missing values
+
+Introduction
+============
+*In programming languages, we need to use various variables to store various information. Variables are the reserved memory location to store values. As we create a variable in our program, some space is reserved in memory
+*In R, there are several data types such as integer, string, etc. The operating system allocates memory based on the data type of the variable and decides what can be stored in the reserved memory
+*In R, there are 6 data types
+1)Numeric 
+2)Integer
+3)Logical
+4)Complex
+5)Characters
+6)Raw
+
+DataTypes
+=========
+we shall understand the different type of data type
+
+
+Logical
+------
+*It is a special data type for data with only two possible values which can be construed as true/false.
+mylogical <- TRUE
+mylogical2 <-FALSE
+cat("mylogical",mylogical,"\n") #printing the output
+cat("mylogical2",mylogical2)
+class(mylogical) #type of the variable
+
+Numeric
+-------
+*Decimal value is called numeric in R, and it is the default computational data type.
+
+#using normal
+mynumeric <- 323
+cat("mynumeric",mynumeric,"\n")
+class(mynumeric)
+
+#decimal
+mynumeric <- 3.2 #for decimal
+cat("mynumeric",mynumeric,"\n")
+class(mynumeric)
+
+Interger
+--------
+*Here, L tells R to store the value as an integer,
+
+myinteger <- 322L #prefix if it is integer
+cat("myinteger",myinteger,"\n")
+class(myinteger)
+
+
+Complex
+-------
+*A complex value in R is defined as the pure imaginary value i.
+
+mycomplex <- 3+2i
+cat(mycomplex)
+class(mycomplex)
+
+Character
+---------
+*In R programming, a character is used to represent string values. We convert objects into character values with the help ofas.character() function.
+
+#using double quotes
+mychar <- "R is a Super Programming language"
+cat(mychar,"\n")
+class(mychar)
+
+#use single quotes also
+mychar <- 'R is a Super Programming language'
+cat(mychar,"\n")
+class(mychar)
+
+Raw
+---
+*A raw data type is used to holds raw bytes.
+
+myraw <- charToRaw("R is a Super Programming language")
+cat(myraw,"\n")
+class(myraw)
+
+Default value of Types
+======================
+for number
+a=0
+
+for string
+a=''
+
+To know the type of variable used
+=================================
+there are two ways
+#typeof() function in R Language is used to return the types of data used as the arguments.
+typeof(a)
+typeof(b)
+typeof(c)
+typeof(d)
+typeof(e)
+
+#class() function in R Language is used to return the class of data used as the arguments.
+class(a)
+class(b)
+class(c)
+class(d)
+class(e)
+
+
+Difference between typeof and class()
+------------------------------------
+#normal variable level
+myVariable <- rpois(20,2)
+myVariable
+typeof(myVariable)
+class(myVariable)
+
+#there is a difference in using dataframe level
+df1 <- data.frame(myVariable)
+df1
+typeof(df1)
+class(df1)
+
+*will discuss in details about all these types in Data types in upcoming chapters
+
+
+String
+======
+*Strings are a group of characters written inside a single or double-quotes
+*Internally R stores every string within double quotes, even when you create them with single quote
+
+Creating a String
+-----------------
+#using double quotes
+mychar <- "R is a Super Programming language"
+cat(mychar,"\n")
+class(mychar)
+
+#use single quotes also
+mychar <- 'R is a Super Programming language'
+cat(mychar,"\n")
+class(mychar)
+
+Rules Applied in String Construction
+------------------------------------
+*The quotes at the beginning and end of a string should be both double quotes or both single quote. They can not be mixed.
+*Double quotes can be inserted into a string starting and ending with single quote.
+*Single quote can be inserted into a string starting and ending with double quotes.
+*Double quotes can not be inserted into a string starting and ending with double quotes.
+*Single quote can not be inserted into a string starting and ending with single quote.
+
+example of valid strings
+*----------------------*
+a <- "learn the R Programming language"
+print(a)
+
+a <- 'learn the R Programming language'
+print(a) #observe the output R takes internally Double quotes
+
+a <- "learn the R 'Programming language"  
+print(a) #observer the output 
+
+a <- 'learn the R "Programming language'
+print(a) #observer the output 
+
+example of In-valid strings
+*----------------------*
+a <- "learn the R "Programming language'
+a <- 'learn the R 'Programming language'
+a <- "learn the R"Programming language"
+
+*we shall learn more on the string manipulations using function in next chapters
+
+data structure(or Sequence Type)
+================================
+*In computer science, a data structure is a data organization, management, and storage format that enables efficient access and modification
+* More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
+
+There are different types of R objects
+1)Vectors
+2)List
+3)Matricesss
+4)Arrays
+5)Factors
+6)DataFrame
+
+Vectors
+--------
+-The very basic data types are the R-objects called vectors which hold elements of different classes as shown above
+-When you want to create vector with more than one element
+-You should use c() function which means to combine the elements into a vector
+
+#create a vector
+names <- c("Ganesh","babu","Kumar","Veeresh")
+names
+class(names)
+
+
+list
+----
+-A list is an R-object which can contain many different types of elements inside it like vectors, functions and even another list inside it
+
+syntax:
+	list()
+
+#create a list using list() function
+names <- list("Ganesh","babu","Kumar","Veeresh",12,TRUE,12L)
+names
+class(names)
+
+#addding a vector into a list
+names1 <- list(c(34,23,45,32),names)
+names1
+class(names1)
+
+matrices
+--------
+-A matrix is a two-dimensional rectangular data set.
+-It can be created using a vector input to the matrix function
+
+syntax:
+matrix(data, nrow, ncol, byrow, dim_name)  
+
+#create a matrices
+names <- matrix(c("Ganesh","babu","Kumar","Veeresh"),nrow=2,ncol=2,byrow = TRUE)
+names
+class(names)
+
+arrays
+------
+-While matrices are confined to two dimensions, arrays can be of any number of dimensions
+-The array function takes a dim attribute which creates the required number of dimension.
+
+syntax:
+	array_name <- array(data,dim(row_size,col_size,dim_names))
+
+#create a array
+names <- array(c("Ganesh","babu","Kumar","Veeresh"),dim=c(2,2,2))
+names
+class(names)
+
+Factors
+-------
+-Factors are the r-objects which are created using a vector
+-It stores the vector along with the distinct values of the elements in the vector as labels
+-The labels are always character irrespective of whether it is numeric or character or Boolean etc. in the input vector.
+
+syntax:
+	factor()
+
+#creating vector as input
+names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
+names
+
+#test it is a factor
+is.factor((names))
+
+#apply a factor function
+factor_data <- factor(names)
+class(factor_data)
+
+#print the factor
+factor_data
+
+DataFrame
+----------
+-Data frames are tabular data objects
+-Unlike a matrix in data frame each column can contain different modes of data
+-It is a list of vectors of equal length.
+
+syntax:
+	data.frame()
+
+#creating a dataframew
+
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+stu.data
+class(stu.data)
+typeof(stu.data)
+print(stu.data)
+
+
+Handling missing values
+=======================
+*Handling missing values in R, one of the common tasks in data analysis is handling missing values.
+*In R, missing values are often represented by the symbol NA (not available) or some other value that represents missing values (i.e. 99).
+*Impossible values (e.g., dividing by zero) are represented by the symbol NaN (not a number)
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources:
+=========
+https://www.tutorialspoint.com/r/r_data_types.htm
+https://www.r-bloggers.com/2021/04/handling-missing-values-in-r/

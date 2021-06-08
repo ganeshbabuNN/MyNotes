@@ -1,0 +1,188 @@
+introduction 
+Delecration of variables
+Assigning values to variable
+Rules and Naming Convention for Variables
+Variable Scope  
+
+Introduction
+============
+A variable provides us with named storage that our programs can manipulate
+A variable in R can store an atomic vector, group of atomic vectors or a combination of many Robjects
+
+Delecration of variables
+========================
+-In R, a variable itself is not declared of any data type, rather it gets the data type of the R - object assigned to it
+-So R is called a dynamically typed language, which means that we can change a variable’s data type of the same variable again and again when using it in a program
+
+a <- 2
+b <-2.8
+c <-"ganesh"
+d <- "3"
+e <- 1+2i
+
+To know which type of variable
+------------------------------
+#typeof() function in R Language is used to return the types of data used as the arguments.
+typeof(a)
+typeof(b)
+typeof(c)
+typeof(d)
+typeof(e)
+
+#class() function in R Language is used to return the class of data used as the arguments.
+class(a)
+class(b)
+class(c)
+class(d)
+class(e)
+
+finding variables
+-----------------
+print(ls()) #To know all the variables currently available in the workspace we use the ls() function
+print(ls(pattern = "var")) ## List the variables starting with the pattern "var".
+print(ls(all.name = TRUE)) #The variables starting with dot(.) are hidden, they can be listed using "all.names = TRUE" argument to ls() function.
+
+Checking the variables using exists functions
+---------------------------------------------
+a <- 6 
+exists("a")
+
+Deleting Variables
+------------------
+rm(var.3) #Variables can be deleted by using the rm() function.
+print(var.3)
+
+rm(list = ls()) #All the variables can be deleted by using the rm() and ls() function together.
+print(ls())
+
+Pros and Cons of Dynamic Typing
+-------------------------------
+Pros of Dynamic Typing
+-very easy to work with
+-faster development time
+
+Cons of Dynamic Typing
+-may result in unexpected bugs!
+-you need to be aware of `typeof()`
+
+Assigning values to variable
+============================
+*The variables can be assigned values using leftward, rightward and equal to operator.
+*the values of the variables can be printed using print() or cat() function. The cat() function combines multiple items into a continuous print output.
+
+# Assignment using equal operator.
+var1 = c(0,1,2,3)           
+
+# Assignment using leftward operator.
+var2 <- c("I am ","Ganesh")   
+
+# Assignment using rightward operator.   
+c(TRUE,1) -> var3      #C(TRUE,1) is a mixed types     
+
+print(var1)
+cat ("var1 is ", var1 ,"\n")
+cat ("var2 is ", var2 ,"\n")
+cat ("var3 is ", var3 ,"\n")
+
+Multiple Assignment
+-------------------
+-Rallows us to assign a value to multiple variables in a single statement which is also known as multiple assignment.
+
+1. Assigning single value to multiple variables
+x=y=z=5
+print(x)
+print(y)
+print(z)
+
+2.Assigning multiple values to multiple variables is not allowed in R like
+
+a,b,c = 3,4,5
+print(a)
+print(b)
+print(c)
+
+Rules and name conventions
+==========================
+Rules
+-----
+*Has letters, numbers, dot and underscore 
+var_name2.	
+*Does not have the character '%'. Only dot(.) and underscore allowed.
+var_name%	
+*Does not start with a number
+2var_name	
+*Can start with a dot(.) but the dot(.)should not be followed by a number.
+.var_name,
+var.name
+*The starting dot is followed by a number making it invalid.
+.2var_name	
+*Starts with _ which is not valid
+_var_name
+
+conventions
+-----------
+*this are suggestion ways
+myVariable	#camel case
+myVaraible_  #for tempervory case
+
+Variable Scope
+==============
+In programming languages, variables need to be defined before using them
+These variables can only be accessed in their area where they are defined, this is called scope.
+
+Type of scope
+1)Global Variables
+2)Local Variables
+
+Global Variables
+-------------
+*As the name suggests, Global Variables can be accessed from any part of the program.
+*They are available throughout the lifetime of a program.
+*They are declared anywhere in the program outside all of the functions or blocks.
+*Declaring global variables: Global variables are usually declared outside of all of the functions and blocks. They can be accessed from any portion of the program.
+
+a <- 7 # global variables
+
+#creating a functions
+display <- function(){
+  print(a) #accessing the global variable
+}
+
+display() #calling the function
+
+#changing the value of global variable
+a <- 10
+print(a)
+
+2)Local Varaibles
+------------------
+*Variables defined within a function or block are said to be local to those functions.
+*Local variables do not exist outside the block in which they are declared, i.e. they can not be accessed or used outside that block.
+*Declaring local variables: Local variables are declared inside a block.
+
+a <- 7
+
+#creating a functions
+display <- function(){
+  print(a) #accessing the global variable
+  b <- 6 #assing a local variable
+  print(b) #accessign the local variable
+}
+
+display() #calling the function
+
+#changing the value of global variable
+a <- 10
+print(a)
+print(b) #accessing the local variable
+b <-3 #cannot change the local variable and it assuems it a new varible
+print(b)
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources:
+=========
