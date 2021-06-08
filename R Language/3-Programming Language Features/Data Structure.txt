@@ -1,0 +1,927 @@
+Vectors
+List
+matrices
+Arrays
+Factors
+DataFrame
+
+data structure(or Sequence Type)
+================================
+*In computer science, a data structure is a data organization, management, and storage format that enables efficient access and modification
+* More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
+
+There are different types of R objects
+1)Vectors
+2)List
+3)Matrices
+4)Arrays
+5)Factors
+6)DataFrame
+
+Vectors
+=======
+-In R, a sequence of elements which share the same data type is known as vector.
+-A vector supports logical, integer, double, character, complex, or raw data type.
+-the elements which are contained in vector known as components of the vector.
+-A vector length is basically the number of elements in the vector, and it is calculated with the help of the length() function
+
+Creating a vector
+-----------------
+-In R, we use c() function to create a vector, we shall learn this in atomic vector sections
+-This function returns one-dimenional array or simple vector. All arguments are restricted to common data type which is a type of return value
+-there are two ways of creating a vectors using colon (:) and seq() functions
+
+using colon(:) operator
+myvector <- 3:10
+myvector
+myvector <- -4:10
+myvector
+
+using seq() function
+myvector <- seq(1,10)
+myvector
+myvector <- seq(1,10,by=5) #by using by parameter to divide each components
+myvector
+class(myvector)
+myvector <- seq(1,10,length.out = 5) #desired length of the sequence
+myvector
+
+Atomic Vector
+-------------
+-Vector is classified into two parts, i.e., Atomic vectors and Lists.They have three common properties, i.e., function type, function length, and attribute function
+-There is only one difference between atomic vectors and lists. In an atomic vector, all the elements are of the same type, but in the list, the elements are of different data types.list we shall learn in upcoming topics
+
+Numeric Vector
+*----------*
+-The decimal values are known as numeric data types in R
+-A vector which contains numeric elements is known as a numeric vector.
+
+mynv <- 45.3
+mynv
+class(mynv)
+mynv1 <- c(3.2,3.34,3.54,55)
+mynv1
+class(mynv1)
+
+Integer Vector
+*----------*
+-A non-fraction numeric value is known as integer data
+-There is two way to assign an integer value to a variable, i.e., by using as.integer() function and appending of L to the value
+
+myic <- as.integer(4)
+myic
+class(myic)
+myic <- 5L
+myic
+class(myic)
+myic <- c(1,2,3,4,5)
+myic
+class(myic)
+myic <- c(1L,2L,4L,7L)
+myic
+class(myic)
+
+Character Vector
+*-----------*
+-A character is held as a one-byte integer in memory
+-there are two different ways to create a character data type value, i.e., 
+using as.character() function and by typing string between double quotes("") or single quotes('')
+-A vector which contains character elements is known as an character vector.
+
+mycv <-"ganesh"
+mycv
+class(mycv)
+mycv <-'babu'
+mycv
+class(mycv)
+mycv <-'65'
+mycv
+class(mycv)
+mycv <- as.character(32)
+mycv
+class(mycv)
+mycv <- c("ganesh","babu","kutty","nisika","nishu")
+mycv
+class(mycv)
+
+logical Vector
+*-----------*
+-The logical data types have only two values i.e., True or False
+-A vector which contains Boolean values is known as the logical vector
+
+mylv <- as.logical(4)
+mylv
+class(mylv)
+mylv <- as.logical(0) #0 applys false
+mylv
+class(mylv)
+mylv <- as.logical(-4)
+mylv
+class(mylv)
+mylv <- as.logical(1) #1 applys true
+mylv
+class(mylv)
+
+a<-4
+b<-5
+c<-9
+e<- b<c
+e
+f<-b<a
+f
+mylog<-c(a<b,c>e,f=a,a>b)#comboing
+mylog
+
+Accessing elements in vector
+--------------------------
+-We can access the elements of a vector with the help of vector indexing
+#indexing a numeric/integer vector
+myindex <- c(1,2,3,4,5,6,7,8,9,10)
+myindex
+myindex[1]
+myindex[0]# the first index is always 1 not 0
+myindex[3]
+
+#indexing a character vector
+mychar <- c("ganesh"=37,"vedha"=28,"nishu"=8)
+mychar
+mychar["ganesh"]
+
+#indexing a logical vector
+mylog <- c(1,2,3,4,5,6)
+mylog[c(TRUE,FALSE,FALSE,TRUE,FALSE,TRUE)]
+
+Vector Operations or manipulations
+---------------------------------
+-In R, there are various operation like  add, subtract, multiply or divide which is performed on the vector
+
+Combining vectors
+*--------------*
+-By combining one or more vectors, it forms a new vector which contains all the elements of each vector.
+
+a <- c(1,2,3,4,5,6)
+b<- c(7,8,9,10,11,12)
+c(a,b) #combing a vector
+
+Arthematic vectors
+*--------------*
+-The arithmetic operations are performed member-by-member on vectors
+
+a <- c(1,2,3,4,5,6)
+b<- c(7,8,9,10,11,12)
+a+b #additions
+a-b #sub
+a/b #div
+a%%b #mod
+
+Logical index vector
+*-----------------*
+-The vector members are TRUE only when the corresponding members of the original vector are included in the slice; otherwise, it will be false.
+
+a <- c(1,2,3,4,5,6)
+a1 <- c(TRUE,FALSE,TRUE,FALSE,FALSE,TRUE)
+a[a1]
+
+
+Numeric Index vector
+*----------------*
+-we specify the index between square braces [ ] for indexing a numerical value. If our index is negative, it will return us all the values except for the index which we have specified
+
+a <- c(43,45,77,66,56,33,227,78,3,32,224,65)
+a[3]
+a[-3] # will prompt R to convert -3 into its absolute value and then search for the value which occupies that index
+a[13]
+
+
+Duplicate index
+*------------*
+-An index vector allows duplicate values which means we can access one element twice in one operation
+a <- c(43,45,77,66,56,33,227,78,3,32,224,65)
+a[c(1,4,4,3)]
+
+Range index
+*-------*
+-Range index is used to slice our vector to form a new vector. For slicing, we used colon(:) operator. 
+
+a <- c(43,45,77,66,56,33,227,78,3,32,224,65)
+a[3:10]
+
+Out of order indexes
+*-----------------*
+-In R, the index vector can be out-of-order
+a <- c("ganesh","babu","kutty","nisika","nishu")
+b<-a[2:5]  
+b[c(2,1,3,4,5,6)]
+
+Named vector
+*-----------*
+
+a <- c("ganesh","babu","kutty","nisika","nishu")
+a
+names(a)=c("son",'son1','son3','daughter','daughter1') #created a named vector
+a
+a["son1"]
+#for more then one value
+a[c("son","son1")]
+
+Applications of vectors
+--------------------
+-In machine learning for principal component analysis vectors are used. They are extended to eigenvalues and eigenvector and then used for performing decomposition in vector space
+-The inputs which are provided to the deep learning model are in the form of vectors. These vectors consist of standardized data which is supplied to the input layer of the neural network
+-In the development of support vector machine algorithms, vectors are used.
+-Vector operations are utilized in neural networks for various operations like image recognition and text processing
+
+List 
+====
+-Lists are the objects of R which contain elements of different types such as number, vectors, string and another list inside it.
+- list is a data structure which has components of mixed data types
+
+#adding vector in a list
+mynum <- c(1,2,3,4,5,6)
+myint <- c(32.3L,5.3L,5.7L,2.4L)
+mychar <- c("ga","va","ve","ru","prav")
+mylog <- c(TRUE,FALSE,TRUE,FALSE)
+mylist <- list(mynum,myint,mychar,mylog,mylog)
+mylist
+class(mylist)
+
+#creating a list
+mylista <- (TRUE,32,3.2,"fes",FALSE)
+
+Creating a list
+---------------
+-The process of creating a list is the same as a vector
+- In R, the vector is created with the help of c() function. Like c() function, there is another function, i.e., list() which is used to create a list in R
+
+syntax:
+ list()
+
+#creating list with same data type
+list1 <- list(1,2,3,4,5)
+list2 <- list(3.2,4.5,5.3,5.6,22.2)
+list3 <- list('ga','var','re','pav')
+list4 <-list(TRUE,FALSE,TRUE,FALSE)
+list1
+list2
+list3
+list4
+class(list1)
+
+
+#Creating the list with different data type
+mylist <- list(TRUE,32,3L,"Ganesh",c(13,34,5,6))
+mylist
+class(mylist)
+
+Accessing List Elements
+--------------------
+-R provides two ways through which we can access the elements of a list using indexing method(same as vector) and accessing using help of names
+
+#accessing list index
+list_data <- list(c("ganesh","veersh","rudresh"),matrix(c(32,56,56,34,22,43),nrow=2),list("MCA","BTECH","BE")) 
+list_data
+
+list_data[1] #accessing the first element
+list_data[3] #accessing the thrid element
+list_data[3][1]
+
+#accessing using name
+#R provides a very easy way for accessing elements, i.e., by giving the name to each element of a list
+#creating a vector, list and matrix
+list_data <- list(c("ganesh","veersh","rudresh"),matrix(c(32,56,56,34,22,43),nrow=2),list("MCA","BTECH","BE")) 
+list_data
+
+#giving the name of the list
+names(list_data) <- c("students","marks","Course")
+
+list_data$students
+list_data["students"]
+list_data$marks
+list_data$Course
+
+List operations
+------------
+
+#creating a vector, list and matrix
+list_data <- list(c("ganesh","veersh","rudresh"),matrix(c(32,56,56,34,22,43),nrow=2),list("MCA","BTECH","BE")) 
+list_data
+
+#giving the name of the list
+names(list_data) <- c("students","marks","Course")
+
+#adding 
+list_data[4] <- "Vedha"
+list_data
+
+#Reading the 4th element
+list_data[3]
+list_data$Course
+list_data$Course[2]
+
+#updating 
+list_data[4] <-"Banu"
+list_data
+
+#removing
+list_data[4] <- NULL
+
+Converting list to vector
+----------------------
+-There is a drawback with the list, i.e., we cannot perform all the arithmetic operations on list elements.
+-To remove this, drawback R provides unlist() function. This function converts the list into vectors
+
+
+list1 <- list(5:10) #creating list 1
+list1
+list2 <- list(15:20)  #creating list 2
+list2
+
+#converting list into vector
+v1 <- unlist(list1)
+v1
+v2 <- unlist(list2)
+v2
+
+#adding the vector
+resutl <- v1+v2
+
+Merging Lists
+-----------
+-R allows us to merge one or more lists into one lis
+-Merging is done with the help of the list() function also
+-To merge the lists, we have to pass all the lists into list function as a parameter, and it returns a list which contains all the elements which are present in the lists
+
+even_list <- list(2,4,6,8,10)
+odd_list <- list(0,3,5,7,9)
+
+#merging
+merged_list <-list(even_list,odd_list)
+
+#printing
+merged_list
+
+matrix
+======
+-It is a two-dimensional rectangular data set is known as a matrix
+-A matrix is created with the help of the vector input to the matrix function
+- matrix, elements are arranged in a fixed number of rows and columns
+-we can perform addition, subtraction, multiplication, and division operation
+
+create a matrix
+--------------
+-R provides the matrix() function to create a matrix. This function plays an important role in data analysis.
+
+syntax:
+matrix(data, nrow, ncol, byrow, dim_name)  
+
+# Defining the column and row names.  
+row_names <- c("row1","row2","row3","row4") # 4 rows
+col_names <- c("col1","col2","col3","col4","col5") # 5 cols  i,e 4 X 5 = 20 
+
+mymat1 <- matrix(c(1:20),nrow=4,byrow=TRUE,dimnames = list(row_names,col_names))
+mymat1
+
+Accessing matrix elements in R
+-----------------------------
+-we can easily access the elements of our matrix by using the index of the element
+-There are three ways to access the elements from the matrix
+*We can access the element which presents on nth row and mth column
+*We can access all the elements of the matrix which are present on the nth row.
+*We can also access all the elements of the matrix which are present on the mth column
+
+
+# Defining the column and row names.  
+row_names <- c("row1","row2","row3","row4") # 4 rows
+col_names <- c("col1","col2","col3","col4","col5") # 5 cols  i,e 4 X 5 = 20 
+
+mymat1 <- matrix(c(1:20),nrow=4,byrow=TRUE,dimnames = list(row_names,col_names))
+mymat1
+
+mymat1[3,2] #accessing 3 row and 2nd col
+mymat1[1,4]
+mymat1[1]
+mymat1[,3]
+
+Modification of the matrix
+------------------------
+-This modification technique is quite simple to perform matrix modification
+
+# Defining the column and row names.  
+row_names <- c("row1","row2","row3","row4") # 4 rows
+col_names <- c("col1","col2","col3","col4","col5") # 5 cols  i,e 4 X 5 = 20 
+
+mymat1 <- matrix(c(1:20),nrow=4,byrow=TRUE,dimnames = list(row_names,col_names))
+mymat1
+
+mymat1[3] <- 5 #modifying the 3rd row
+mymat1
+
+Use of Relational Operator
+--------------------------
+-R provides another way to perform matrix medication.
+- In this method, we used some relational operators like >, <, ==
+
+
+# Defining the column and row names.  
+row_names <- c("row1","row2","row3","row4") # 4 rows
+col_names <- c("col1","col2","col3","col4","col5") # 5 cols  i,e 4 X 5 = 20 
+
+mymat1[mymat1==12]<- 0 ##Replacing element that equal to the 12  
+mymat1
+
+mymat1[mymat1>12]<- 0 ##Replacing element greater to the 12  
+mymat1
+
+Addition of Rows and Columns
+--------------------------
+-The third method of matrix modification is through the addition of rows and columns using the cbind() and rbind() function
+-The cbind() and rbind() function are used to add a column and a row respectively
+
+
+# Defining the column and row names.  
+row_names <- c("row1","row2","row3","row4") # 4 rows
+col_names <- c("col1","col2","col3") # 3 cols  i,e 4 X 3 = 15
+
+mymat1 <- matrix(c(1:20),nrow=4,byrow=TRUE,dimnames = list(row_names,col_names))
+mymat1
+
+#adding rows
+rbind(mymat1,c(1,2,3,4,5)) #get the column numbers
+mymat1
+
+#adding columns
+cbind(mymat1,c(9,8,7,6))
+
+#transpose of the matrix using t() function
+t(mymat1)
+
+#modifying the the dim of the matrix using the dim() function
+dim(mymat1) <- c(1,20)
+dim(mymat1)
+mymat1
+
+Matrix operations
+---------------
+-We can perform the mathematical operations on a matrix such as addition, subtraction, multiplication, etc.
+
+m1 <- matrix(c(1:10),nrow=2,ncol=5)
+m1
+m2 <- matrix(c(11:20),nrow=2,ncol=5)
+m2
+
+#addtions
+sum <- m1+m2
+sum
+
+#sub
+sub <- m1-m2
+sub
+
+#mul
+mul <- m1*m2
+mul
+
+#multiple by constant
+mul <- m1 *3
+mul
+
+#divions
+div <- m1/m2
+div
+
+Applications of matrix
+--------------------
+*In geology, Matrices takes surveys and plot graphs, statistics, and used to study in different fields
+*Matrix is the representation method which helps in plotting common survey things.
+*In robotics and automation, Matrices have the topmost elements for the robot movements.
+*Matrices are mainly used in calculating the gross domestic products in Economics, and it also helps in calculating the capability of goods and products.
+*In computer-based application, matrices play a crucial role in the creation of realistic seeming motion.
+
+
+Array 
+=====
+-arrays are the data objects which allow us to store data in more than two dimensions
+-an array is created with the help of the array() function
+-This array() function takes a vector as an input and to create an array it uses vectors values in the dim parameter.
+
+syntax:
+	array_name <- array(data,dim(row_size,col_size,dim_names))
+
+
+Creating an array
+---------------
+-There are only two steps to create a matrix
+1)In the first step, we will create two vectors of different lengths.
+2)Once our vectors are created, we take these vectors as inputs to the array.
+
+#creating a vector of different lengths
+v1 <- c(1,3,5)
+v2 <- c(5,6,7,8,9,9)
+
+#passing this to array
+array1 <- array(c(v1,v2),dim=c(3,3,1))
+array1
+
+array2 <- array(c(v1,v2),dim=c(3,3,2)) #dimension incrase
+array2
+
+Naming rows and columns
+---------------------
+-we can give the names to the rows, columns, and matrices of the array.
+-This is done with the help of the dim name parameter of the array() function
+
+#creating a vector of different lengths
+v1 <- c(1,3,5)
+v2 <- c(5,6,7,8,9,9)
+
+#assing the names and columns
+row_names <- c("row1","row2","row3")
+col_names <- c("col1","col2","col3")
+matrix_names <- c("Matrix1","Matrix2")
+
+#passing into a array
+array1 <- array(c(v1,v2),dim=c(3,3,2),dimnames=list(row_names,col_names,matrix_names))
+array1
+
+Accessing the element of list
+---------------------------
+-The elements are accessed with the help of the index. Simply, we can access the elements of the array with the help of the indexing method
+
+#creating a vector of different lengths
+v1 <- c(1,3,5)
+v2 <- c(5,6,7,8,9,9,5,6,7)
+
+#assing the names and columns
+row_names <- c("row1","row2","row3")
+col_names <- c("col1","col2","col3")
+matrix_names <- c("Matrix1","Matrix2")
+
+#passing into a array
+array1 <- array(c(v1,v2),dim=c(3,3,2),dimnames=list(row_names,col_names,matrix_names))
+array1
+
+#accessing the first dimeansion with 1st row and 2 column
+array1[1,2,1]
+
+#accessing the 2row and 1rd col of 2nd matrz
+array1[2,1,2]
+
+#accessing the 2nd matrix
+array1[,,2]
+       
+
+Array operations or manipulations
+--------------------------------
+#creating a vector of different lengths
+v1 <- c(1,3,5)
+v2 <- c(5,6,7,8,9,9,5,6,7)
+
+#Creating a array1
+array1 <- array(c(v1,v2),dim=c(3,3,2))
+array1
+
+#creating other vector of diff lengh
+v3 <- c(2,4,6)
+v4 <- c(93,2,4,5,7,8)
+
+#Creating a array2
+array2 <- array(c(v3,v4),dim=c(3,3,2))
+array2
+
+#creating a matrix
+mat1 <- array1[,,2]
+mat2 <- array2[,,2]
+mat1+mat2
+arr3 <- mat1 +mat2
+arr3
+
+Calculations across array elements
+--------------------------------
+-For calculation purpose, r provides apply() function. This apply function contains three parameters i.e., x, margin, and function
+
+syntax
+apply(x,margin,fun)
+
+#creating a vector of different lengths
+v1 <- c(1,3,5)
+v2 <- c(5,6,7,8,9,9,5,6,7)
+
+#creating an array
+arr1 <- array(c(v1,v2),dim=c(3,3,2))
+arr1
+
+#using apply function
+res <- apply(arr1,c(1),sum) #row level
+res <- apply(arr1,c(2),sum)#column level
+res
+
+Factor
+======
+-Factors are the r-objects which are created using a vector
+-It stores the vector along with the distinct values of the elements in the vector as labels.
+-The labels are always character irrespective of whether it is numeric or character or Boolean etc. in the input vector.
+
+
+Creating a factor
+--------------
+-Factors are created using the factor() function. The nlevels functions gives the count of levels.
+
+syntax:
+ factor_data <- factor(vector)
+
+#creating vector as input
+names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
+names
+is.factor((names))
+
+#apply a factor function
+factor_data <- factor(names)
+class(factor_data)
+factor_data
+
+Accessing components of factor
+----------------------------
+-We can access the element with the help of the indexing method or using logical vectors.
+
+#creating vector as input
+names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
+names
+is.factor((names))
+
+#apply a factor function
+factor_data <- factor(names)
+class(factor_data)
+
+#printing all elements of factor
+factor_data
+
+#accessing 4th element of factor
+factor_data[4]
+
+#access 5th and 6th element
+factor_data[c(5,6)]
+
+#accessing all elements expect 4th one
+factor_data[-4]
+
+#accessing elements using logical vector
+factor_data[c(TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE)]
+
+Modification of factor
+--------------------
+-R allows us to modify the facto
+-We can modify the value of a factor by simply re-assigning it
+
+#creating vector as input
+names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
+names
+is.factor((names))
+
+#apply a factor function
+factor_data <- factor(names)
+class(factor_data)
+
+#printing all elements of factor
+factor_data
+
+#change 4th element of factor 
+factor_data[4]<-"Vedha"
+factor_data
+
+#change 4th element of factor to other
+factor_data[4]<-"Keertina" #Cannot assign values outside levels
+factor_data
+
+#adding the value to the level
+levels(factor_data) <- c(levels(factor_data),"Keertina")
+factor_data
+factor_data[4]<-"Keertina"
+factor_data
+
+Factor in Data Frame
+-----------------
+-When we create a frame with a column of text data, R treats this text column as categorical data and creates factor on it.
+
+
+# Creating the vectors for data frame.  
+height <- c(125,132,156,133,144,165,111)  
+weight <- c(33,66,44,40,23,56,43)  
+gender <- c("male","male","female","female","male","female","male")  
+
+#creating the data frame
+student_info <- data.frame(height,weight,gender,stringsAsFactors=FALSE)
+student_info
+
+#testing if gender column is factor
+is.factor(student_info$gender)
+
+#printing
+student_info$gender
+
+Changing order of the levels
+---------------------------
+In R, we can change the order of the levels in the factor with the help of the factor function.
+
+#creating vector as input
+names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
+
+#apply a factor function
+factor_data <- factor(names)
+class(factor_data)
+factor_data
+
+#apply factor funciton with the required order of the level
+new_factor <- factor(factor_data,levels=c("vedha","kumar","nishu","ganesh"))
+new_factor
+
+Generating Factor Levels
+----------------------
+-R provides gl() function to generate factor levels
+-This function takes three arguments i.e., n, k, and labels
+
+syntax:
+gl(n,k,labels)
+-n indicates the number of levels.
+-k indicates the number of replications.
+-labels is a vector of labels for the resulting factor levels.
+
+gen_factor <- gl(3,5,labels=c("BCA","MCA","BTECH"))
+gen_factor
+
+Dataframe
+=========
+-A data frame is a two-dimensional array-like structure or a table in which a column contains values of one variable, and rows contains one set of values from each column
+-A data frame is used to store data table and the vectors which are present in the form of a list in a data frame, are of equal length
+
+-There are following characteristics of a data frame.
+*The columns name should be non-empty.
+*The rows name should be unique.
+*The data which is stored in a data frame can be a factor, numeric, or character type.
+*Each column contains the same number of data items.
+
+Creating a Dataframe
+------------------
+-the data frames are created with the help of frame() function of data
+-This function contains the vectors of any type such as numeric, character, or integer.
+
+#creating a dataframew
+
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+stu.data
+class(stu.data)
+typeof(stu.data)
+print(stu.data)
+
+or
+
+student_id = c(14:19)
+student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh")
+student_age =c(32,44,34,56,34,23)
+student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC")
+student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24"))
+
+stu.data <- data.frame(student_id,student_name,student_age,student_class,student_join)
+
+
+structure of R Data Frame
+-----------------------
+-R provides an in-build function called str() which returns the data with its complete structure.
+
+#creating a dataframew
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+#using str functions to get the structure of the data frame
+str(stu.data)
+
+Extracting data from Data Frame
+----------------------------
+-We can extract the data in three ways which are as follows
+*We can extract the specific columns from a data frame using the column name.
+*We can extract the specific rows also from a data frame
+*We can extract the specific rows corresponding to specific columns.
+
+Extracting the specific columns from a data frame
+*---------------------------------------------*
+
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+#extracting the specific column name
+final <- data.frame(stu.data$student_id,stu.data$student_name)
+final
+
+Extracting the specific Rows from a data frame
+*-------------------------------------------*
+
+#creating a dataframew
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+#extracting the specific row name
+final <- stu.data[1,]
+final
+
+#extracting the two row from a a dataframe
+final <- stu.data[1:2,]
+final
+
+#extracting the specific cell
+final <- stu.data[1,2]
+final
+
+Extracting specific rows corresponding to specific columns
+*------------------------------------------------------*
+#creating a dataframew
+
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+#extracting 2nd and 3rd row to the 1st and 4th colum
+final <- stu.data[c(2,3),c(1,4)]
+final
+
+Modification in Data frame
+-------------------------
+-Like matrices modification, we can modify like our data frame through re-assignment. We cannot only add rows and columns, but also we can delete them
+
+#creating a dataframew
+
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+stu.data
+
+#adding rows 
+x <- list(13,"guru",12,"BE","2022-03-21")
+rbind(stu.data,x)
+
+#adding a column 
+y <- c("bengaluru","kolar","shimoga","hampi","Bellary","tirupati") #observe c function not a list
+cbind(stu.data,"Address"=y)
+
+#deleting rows from data frame
+stu.data <- stu.data[-1,]
+stu.data
+
+#delete columsn from data frame
+stu.data$student_join <- NULL
+stu.data
+
+Summary of data in Data Frames
+----------------------------
+R provides the summary() function to extract the statistical summary and nature of the data.
+
+#creating a dataframew
+
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+stu.data
+
+#summary data
+summary(stu.data)
