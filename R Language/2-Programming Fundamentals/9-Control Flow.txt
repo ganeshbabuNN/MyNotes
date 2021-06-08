@@ -446,6 +446,17 @@ for(val in c(1:10)){
   print(val)
 }
 
+#
+j<-0
+while(j<10){
+  if(j==7){
+    j=j+1
+    next
+  }
+  cat("the number is=",j,"\n")
+  j=j+1
+}
+
 break and continue statements can appear anywhere inside the loop’s body, but we will usually put them further nested in conjunction with an if statement to perform an action based on some condition.
 
 Quiz:
