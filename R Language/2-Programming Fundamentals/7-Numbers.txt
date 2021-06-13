@@ -9,18 +9,21 @@ Intro
 Number data types store numeric values. They are immutable data types, means that changing the value of a number data type results in a newly allocated object
 
 Number objects are created when you assign a value to them. For example −
-var1 = 1
-var2 = 10
+x <- 32 
+.Internal(inspect(x))
+y <- 33
+.Internal(inspect(y))
+y <- 32
+.Internal(inspect(y)) #get the memory address
 
-You can also delete the reference to a number object by using the del statement. The syntax of the del statement is −
-
-del var
-del var_a, var_b
-
+You can also delete the reference to a number object by using the rm function. The syntax of the del statement is −
+a<-3
+b<-'ga'
+rm(a,b)
 
 Numeric Data Type
 =================
-there are integer , long(no longer supported in python 3.x), float, complex
+there are numeric and integer
 
 Number Type Conversion or Datatype casting
 =================================================
@@ -31,292 +34,466 @@ Number Type Conversion or Datatype casting
 
 1)Implicit Type Conversion
 *------------------------*
--In Implicit type conversion, Python automatically converts one data type to another data type. This process doesn't need any user involvement.
+-In Implicit type conversion, R automatically converts one data type to another data type. This process doesn't need any user involvement.
 
 ex:
-num_int=32
-num_float=32.11
+xx <- c(1.7, "a")
+xx #check and observea
+xx <- c(TRUE, 2)
+xx
+xx <- c("a", TRUE)
+xx
 
-num_new=num_int+num_float
-print("datatype of num_int",type(num_int))
-print("datatype of num_float",type(num_float))
+The coersion rule goes logical -> integer -> numeric -> complex -> character.
 
-print("value of num_new:",num_new)
-print("datatype of num_new",type(num_new))
-
--we can see the num_new has a float data type because Python always converts smaller data types to larger data types to avoid the loss of data.
-
--let's try adding a string and an integer, and see how Python deals with it
-num_int=32
-num_string="Ganesh"
-num_new1= num_int+num_string
-
-print("datatype of num_int",type(num_int))
-print("datatype of num_float",type(num_string))
-
-print("datatype of String",num_new1)
-
--As we can see from the output, we got TypeError. Python is not able to use Implicit Conversion in such conditions.
-However, Python has a solution for these types of situations which is known as Explicit Conversion.
+ex:
+1 < "2"
+# TRUE
+"1" > 2
+# FALSE
+1 < "a"
+# TRUE
 
 2)Explicit Type Conversion
 *------------------------*
--In Explicit Type Conversion, users convert the data type of an object to required data type. We use the predefined functions like int(), float(), str(), etc to perform explicit type conversion
--This type of conversion is also called typecasting because the user casts (changes) the data type of the objects.
+-In Explicit Type Conversion, users convert the data type of an object to required data type. 
 
-Syntax :
-  <required_datatype>(expression)
-  
-Type int(x) to convert x to a plain integer.
-Type long(x) to convert x to a long integer.
-Type float(x) to convert x to a floating-point number.
-Type str(x) to convert x to a String. 
-Type complex(x) to convert x to a complex number with real part x and imaginary part zero.
-Type complex(x, y) to convert x and y to a complex number with real part x and imaginary part y. x and y are numeric expressions
-
-Ex:
-print(float("22.5"),"to string to  float Type") 
-print(int("22"),"to string to int Type") 
-print(int(22.5),"to float to int Type") 
-print(float(22),"to float to float Type") 
-print(str(22),"to float to String Type")
+#explicity converting it
+as.numeric(43L)
+as.integer(32.2)
+as.character('ga32')
+as.vector(list(3,2,4))
+as.matrix(list(2,3,3,2))
+as.data.frame(list(32,3,23,32))
 
 Same for sequence data types
 **-----------------------***
-from None --> numeric --> sequence -->sets --> dict  ==== any objects converstion.
-
-list,tuple,set, dict
-myNone=None
-Myint=2
-myflot=3.2
-mystring="ganesh"
-mylist=[42,32,32,1]
-mytuple={'gbag','rubn','vbhk','prkh'}
-myset=(332,'ga','32','ds')
-mydict={1:'g',2:'rew',3:'han'}
-#creating a list 
-mylist1=[mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring] #createing a new list of different types
-#creating a tuple 
-mytuple1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new tuple of different types
-#creating a set
-myset1=(mylist,mytuple,myset,mydict,myNone,Myint,myflot,mystring) #createing a new set of different types
-#creating a dict
-mydict1={1:mytuple}
-#adding in a existing list 
-#adding in a existing tuple 
-#adding in a existing set 
-#adding in a existing dict 
-#updating the list  
-#updating the tuple 
-#updating the set
-#updating the dict
+from  logical -> integer -> numeric -> complex -> character.
 
 
 Key Points to Remember
 ----------------------
 1)Type Conversion is the conversion of object from one data type to another data type.
-2)Implicit Type Conversion is automatically performed by the Python interpreter.
-3)Python avoids the loss of data in Implicit Type Conversion.
-4)Explicit Type Conversion is also called Type Casting, the data types of objects are converted using predefined functions by the user.
-5)In Type Casting, loss of data may occur as we enforce the object to a specific data type
+2)Implicit Type Conversion is automatically performed by the R interpreter.
+3)Explicit Type Conversion is also called Type Casting, the data types of objects are converted using predefined functions by the user.
+4)In Type Casting, loss of data may occur as we enforce the object to a specific data type
 
 Built in functions
 ==================
+#abs value
+It returns the absolute value of input x.	
+abs(-394)
 
-#min and max
-The min() and max() functions can be used to find the lowest or highest value in an iterable:
+#ceiling value
+It returns the smallest integer which is larger than or equal to x.	
 
-x= min(5,10,12)
-y=max(4,2,2,33)
-print(x)
-print(y)
+ceiling(4.323)
 
-#abs()
-The abs() function returns the absolute (positive) value of the specified number:
+#floor value
+It returns the largest integer, which is smaller than or equal to x.	
+floort(3.455t)
 
-abs(-20)
+#log value
+It returns common logarithm of input x.	
+log10(3.32)
+It returns natural logarithm of input x.	
+lg(3.32)
 
-#pow
-The pow(x, y) function returns the value of x to the power of y (xy).
 
-x=pow(4,3)
-print(x)
+#truncating the decimal
+It returns the truncate value of input x.	
 
-#sum
-lst=[2,32,3,2,3,2]
-sum(lst)
+trunc(5.99)
 
-#rounding the value
-round(4.5) #round to the nearest value
-round(4.5,1) #round to the nearest value
-round(4.9,2) #round to the nearest value
+#round
+It returns round value of input x.	
+round(2.36222,digit=2)
+
+#commong log
+log10(3.23)
+
+#sign functions
+signif(2.323,digit=4)
+
+#exponentia
+It returns exponent.	
+
+exp(32)
+
+#sin cos  tan
+sin(3)
+cos(3)
+tan(32)
+
 
 #calculating percentage
-print(7.0/448.8)
-print(str(int((7.0/448.8)*100))+'%') #direct approach
-print('{:.1%}'.format((7.0/448.8)*100)) # use string formatting to specify precision
-print('{percent:.2%}'.format(percent=7.0/448.8))# using format
-print("{0:.0f}%".format((7.0/448.8) * 100))
+mystu <- data.frame(name=c('a','b','c','d','e','f','g'),
+                    marks=c(43,45,67,32,56,23,54))
 
-ref: https://docs.python.org/3/library/functions.html
+#simple method
+mystu$markpc <- mystu$marks/sum(mystu$marks)
+mystu
 
-From Math Module
+#dplyr method no need to specify any method
+library(dplyr)
+mystu <- mutate(mystu,marks/sum(marks))
+mystu
+
+#With Loops for Automation
+#apply to all the columns
+sapply(names(mystu)[-1], function(x) {
+  mystu[paste0(x, "_pct")] <<- mystu[x] / sum(mystu[x])
+})
+
+mystu
+
+#Solution 2: with a for() loop 
+for(col in names(mystu)[-1]) {
+  mystu[paste0(col, "_pct")] = mystu[col] / sum(mystu[col])
+}
+
+mystu
+
+
+From Math functon
 ----------------
-Python comes with a built in math module and random module. 
-In this lecture we will give a brief tour of their capabilities. 
-Usually you can simply look up the function call you are looking for in the online documentation.
 
-#sqrt:
-import math
-y=math.sqrt(43)
-print(y)
+#sqrt value
+It returns the square root of input x.	
+sqrt(4)
 
-#Ceil and floor:
-The math.ceil() method rounds a number upwards to its nearest integer, and 
-the math.floor() method rounds a number downwards to its nearest integer, and returns the result:
+#max min function
+x <-c(1.234,2.342,-4.562,5.671,12.345,-14.567)
+max(x)
+min(x)
+#data with  NA
+x <-c(1.234,2.342,-4.562,5.671,12.345,-14.567,NA)
+max(x, na.rm=TRUE)
+min(x, na.rm=TRUE)
 
-import math
-print(math.ceil(1.4))
-print(math.floor(1.4))
+#data with character vector
+y<-c("d","e","a","x")
+max(y)
+min(y)
+
+#data with dataframe
+mystu <- data.frame(name=c('a','b','c','d','e','f','g'),
+                    marks=c(43,45,67,32,56,23,54))
+mystu
+min(mystu$marks)
+max(mystu$marks)
+
+#column wise maximum using max min function:
+mapply(max,mystu[c(1,2)])
+mapply(min,mystu[c(1,2)])
 
 #pi
-import math
-print(math.pi)
+print(pi)
 
-math.e #mathematical constant e = 2.718281…, to available precision
-math.tau #he mathematical constant τ = 6.283185…, to available precision
-math.inf #A floating-point positive infinity.
-math.nan #A floating-point “not a number" (NaN) value. 
+#cos(x), sin(x), tan(x) functions
+It returns cos(x), sin(x) value of input x.	
+x<- 4
+print(cos(x))
+print(sin(x))
+print(tan(x))
 
-Ref: https://docs.python.org/3/library/math.html
+
+#It returns sum.	
+syntax:
+  sum(x)	
+a<-c(0:10, 40)
+xm<-sum(a)
+print(xm)
+
+#It returns differences with lag indicating which lag to use.	
+syntax:
+  max(x)	
+a<-c(0:10, 40)
+xm<-diff(a)
+print(xm)
+
+
+#Column center or standardize a matrix.	
+syntax:
+  scale(x, center=TRUE, scale=TRUE)
+
+a <- matrix(1:9,3,3)
+scale(x)
+
+statistical functions
+---------------------
+#It is used to find the height of the probability distribution at each point to a given mean and standard deviation
+syntax:
+  dnorm(x, m=0, sd=1, log=False)
+a <- seq(-7, 7, by=0.1)
+a         
+b <- dnorm(a, mean=2.5, sd=0.5)
+b
+png(file="dnorm.png")
+plot(x,y)
+dev.off()
+
+#it is used to find the probability of a normally distributed random numbers which are less than the value of a given number.
+syntax:
+  pnorm(q, m=0, sd=1, lower.tail=TRUE, log.p=FALSE)
+a <- seq(-7, 7, by=0.2)
+a
+b <- dnorm(a, mean=2.5, sd=2)
+b
+png(file="pnorm.png")
+plot(x,y)
+dev.off()
+
+#It is used to find a number whose cumulative value matches with the probability value.
+syntax:
+  qnorm(p, m=0, sd=1)
+
+a <- seq(1, 2, by=002)
+a
+b <- qnorm(a, mean=2.5, sd=0.5)
+b
+png(file="qnorm.png")
+plot(x,y)
+dev.off()
+
+#It is used to generate random numbers whose distribution is normal.
+syntax:
+  rnorm(n, m=0, sd=1)
+y <- rnorm(40)
+y
+png(file="rnorm.png")
+hist(y, main="Normal Distribution")
+dev.off()
+
+#It is used to find the probability density distribution at each point.	
+syntax:
+  dbinom(x, size, prob)	
+
+a<-seq(0, 40, by=1)
+a
+b<- dbinom(a, 40, 0.5)
+b
+png(file="pnorm.png")
+plot(x,y)
+dev.off()
+
+#It is used to find the cumulative probability (a single value representing the probability) of an event.	
+syntax:
+  pbinom(q, size, prob)	
+a <- pbinom(25, 40,0.5)
+print(a)
+
+#It is used to find a number whose cumulative value matches the probability value.	
+sytnax:
+  qbinom(p, size, prob)	
+
+a <- qbinom(0.25, 40,01/2)
+a
+
+#It is used to generate required number of random values of a given probability from a given sample.	
+syntax:
+  rbinom(n, size, prob)
+
+a <- rbinom(6, 140,0.4)
+a
+
+#it is the probability of x successes in a period when the expected number of events is lambda (λ)	
+syntax:
+  dpois(x, lamba)
+
+dpois(a=2, lambda=3)+dpois(a=3, lambda=3)+dpois(z=4, labda=4)
+
+
+#It is a cumulative probability of less than or equal to q successes.	
+syntax:
+  ppois(q, lamba)
+ppois(q=4, lambda=3, lower.tail=TRUE)-ppois(q=1, lambda=3, lower.tail=TRUE)
+
+#It is used to generate random numbers from the poisson distribution.	
+syntax:
+  rpois(n, lamba)
+rpois(10, 10)
+
+#This function provide information about the uniform distribution on the interval from min to max. It gives the density.	
+syntax:
+  dunif(x, min=0, max=1)
+dunif(x, min=0, max=1, log=FALSE)
+
+#It gives the distributed function	
+syntax:
+  punif(q, min=0, max=1)
+punif(q, min=0, max=1, lower.tail=TRUE, log.p=FALSE)
+
+#It gives the quantile function.	
+sytnax:
+  qunif(p, min=0, max=1)	
+qunif(p, min=0, max=1, lower.tail=TRUE, log.p=FALSE)
+
+
+#It generates random deviates.	
+syntax:
+  runif(x, min=0, max=1)	
+runif(x, min=0, max=1)
+
+#It is used to find the mean for x object	
+syntax:
+  mean(x, trim=0, na.rm=FALSE)
+a<-c(0:10, 40)
+xm<-mean(a)
+print(xm)
+
+#It returns standard deviation of an object.	
+syntax:
+  sd(x)
+
+a<-c(0:10, 40)
+xm<-sd(a)
+print(xm)
+
+
+#It returns median.	
+sytnax:
+  median(x)	
+
+a<-c(0:10, 40)
+xm<-meadian(a)
+print(xm)
+
+#It returns quantile where x is the numeric vector whose quantiles are desired and probs is a numeric vector with probabilities in [0, 1]	
+syntax:
+  quantilie(x, probs)	
+
+#It returns range.	
+syntax:
+  range(x)	
+a<-c(0:10, 40)
+xm<-range(a)
+print(xm)
+
 
 Random Functions
 ----------------
-#choice :Python number method choice() returns a random item from a list, tuple, or string.
-import random
-mylist=[432,234,23,21]
-mystr=['a','b','c','d']
-random.choice(mylist)
-random.choice(mystr)
+#Generate a random number between 5.0 and 7.5
+x1 <- runif(1,5.0,7.5)
+x1
 
-#randomrange-Python number method randrange() returns a randomly selected element from range(start, stop, step).
-import random
-random.randrange(100,1000,2) 
+#If you want to generate multiple random value
+x2 <- runif(4, 5.0, 7.5)
+x2
 
-#random
-Python number method random() returns a random float r, such that 0 is less than or equal to r and r is less than 1.
-import random
-random.random()
+#Generate a random integer between 1 and 10
+x3 <- sample(1:10, 1)
+x3
 
-#seed #seed() sets the integer starting value used in generating random numbers. Call this function before calling any other random module functio
-import random
-random.seed(10)
-random.random()
+#f we want to generate more than one random number, 
+x4 <- sample(1:10, 5, replace=T)
+x4
 
-#shuffle:Python number method shuffle() randomizes the items of a list in place.
-import random
-mylist=[32,23,2,3,3,3,4,41,4,4]
-random.shuffle(mylist)
-mylist
+#Select 6 random numbers between 1 and 40, without replacement
+x5 <- sample(1:40, 6, replace=F)
+x5
 
-#uniform()-uniform() returns a random float r, such that x is less than or equal to r and r is less than y.
-import random
-random.uniform(5, 10)
+#Select 10 items from a list of 50
+state.name #list of states
+length(state.name)
+sample(state.name, 10)
 
-mathematical and trignometrical functions
-https://docs.python.org/3/library/math.html#trigonometric-functions
-https://docs.python.org/3/library/math.html#
+> ?runif
+> ?sample
+> ?.Random.seed
 
 Range Function
 --------------
-The range function allows you to quickly generate a list of integers, this comes in handy a lot, so take note of how to use it! There are 3 parameters you can pass, a start, a stop, and a step size. Let's see some examples
+Range function in R, returns a vector containing the minimum and maximum of all the given arguments
 
-Syntax:
-range(start,stop,step size)  
+# R Range function - for a numeric vector
 
-range(0,11)# range from start and to end
-list(range(1,11))# cast to list functions # Notice how 11 is not included, up to but not including 11, just like slice notation!
-list(range(1,11,3))# cast to list functions with skip
+x <- c(2,7,1,-17,Inf,35,21,7)
+x
 
-Note that this is a generator function, so to actually get a list out of it, we need to cast it to a list with list(). What is a generator? Its a special type of function that will generate information and not need to save it to memory
+#Range function with NA:
+x <- c(2,7,1,-17,Inf,35,21,7,NA)
+range(x,na.rm=TRUE)
 
-zip
----
-Notice the format enumerate actually returns, let's take a look by transforming it to a list()
-list(enumerate('abcde'))  #Notice the format enumerate actually returns, let's take a look by transforming it to a list.
-It was a list of tuples, meaning we could use tuple unpacking during our for loop. 
-This data structure is actually very common in Python , especially when working with outside libraries. 
-You can use the zip() function to quickly create a list of tuples by "zipping" up together two list.
+#Range function for a character vector:
+x<-c("a","h","x","i","j")
+range(x)
 
-mylist1 = [1,2,3,4,5]
-mylist2 = ['a','b','c','d','e']
+#range() function in R of the dataframe column
+mystu <- data.frame(name=c('a','b','c','d','e','f','g'),
+                    marks=c(43,45,67,32,56,23,54))
 
-# This one is also a generator! We will explain this later, but for now let's transform it to a list
-zip(mylist1,mylist2)
+range(mystu$marks)
 
-list(zip(mylist1,mylist2))
+summary
+range() function is used to find the lowest and highest value of the vector
+range() function of a vector with NA values  by using na.rm = FALSE
+Highest and lowest value of the column in dataframe is also accomplished using range() function.
 
-#To use the generator, we could just use a for loop
-for l1,l2 in zip(mylist1,mylist2):
-    print(f"for this tuple, first item was {l1} and second item was {l2}")
+zip liek functions using mapply
+-------------------------------
+dict <- new.env(hash = TRUE)
+dict
+Add <- function(key, val) dict[[key]]<- val
+Add
 
-Random Module
-=============
-Random Module allows us to create random numbers. We can even set a seed to produce the same random set every time.
-The explanation of how a computer attempts to generate random numbers is beyond the scope of this course since it involves higher level mathmatics. 
-But if you are interested in this topic check out:
-
-import random
-random.randint(0,100) #randomly generate the number
-
-random.seed(33) # The value 101 is completely arbitrary, you can pass in any number you want
-random.randint(0,80) # You can run this cell as many times as you want, it will always return the same number
-
-Refer the Random module in API/Random Module chapters
-
-You can use Numpy for more numerical functions
-https://towardsdatascience.com/10-numpy-functions-you-should-know-1dc4863764c5
+name=c('a','b','c','d','e','f','g')
+marks=c(43,45,67,32,56,23,54)
+mapply(Add, name, marks)
 
 Number system conversion
 ========================
 
 Binary type
 -----------
--A number with the prefix 0b is considered binary
-Ex:
-print(0b101011000)
+# R Program to convert an integer to binary
+# Loading library
+library(binaryLogic)
+# Calling as.binary() function
+as.binary(1)
+as.binary(10)
+as.binary(-1)
+as.binary(0xAB)
 
 Hexadecimal Type
 ----------------
--A number with the prefix 0o is considered Hex
-Ex:
-print(0o530)
+# R Program to convert an integer to hexadecimal
+
+library(gmp)
+x <- '6917530144339624323'
+x_bigz <- as.bigz(x)
+as.character(x_bigz, b = 16)
+
+#convert to the hexi to integer
+strtoi('0x7f8cff8b')
+
+V <- c(0xa373, 0x115c6, 0xa373, 0x115c6, 0x176b3)
+sprintf("%d", V)
+-WW345RFV 
+
 
 Octal  Type
 -----------
--A number with the prefix 0x is considered Octal
-Ex:
-print(0x158)
+on <- as.octmode(c(16, 32, 127:129))
+on
 
 Boolean Type
 ------------
 -boolean has two  logical values of values True or False
--Python comes with Booleans (with predefined True and False displays that are basically just the integers 1 and 0). It also has a placeholder object called None. Let's walk through a few quick examples of Booleans (we will dive deeper into them later in this course).
+-R comes with Booleans (with predefined True and False displays that are basically just the integers 1 and 0). It also has a placeholder object called None. Let's walk through a few quick examples of Booleans (we will dive deeper into them later in this course).
 
 Ex:
-x=False
-y=True
-x = (1 == True) #In Python, True represents the value as 1 and False as 0
-y = (1 == False)
-a = True + 4
-b = False + 10
+x=FALSE
+y=TRUE
+x = (1 == TRUE) #In R, True represents the value as 1 and False as 0
+x
+y = (1 == TRUE)
+y
+a = TRUE + 4
+a
+b = FALSE + 10
+b
 
-print(x)
-print(y)
-print("x is", x)
-print("y is", y)
-print("a:", a)
-print("b:", b)
 
 #We can use None as a placeholder for an object that we don't want to reassign yet:
 #None placeholder
@@ -341,6 +518,7 @@ print(hex(a) ,"hex system")
  
 Ref
 https://www.quora.com/What-is-the-use-of-number-system-in-computer
+https://www.tutorialspoint.com/computer_logical_organization/number_system_conversion.htm
 
 
 Know ASCII , unicode and Numbers systems
@@ -350,8 +528,12 @@ Know ASCII , unicode and Numbers systems
 -ASCII codes represent text in computers, communications equipment, and other devices that use text
 -UNicod is the subset of ASCII and extended upto 2^21 characters
 
-print(ord("h"),"is ASCII value" ) #print ASCII value
-print(chr(104 ),"from binary to value")
+test<-utf8ToInt("Apples")
+test
+
+tes1=intToUtf8(test)
+test1
+
 
 Refer ASCII_Tables.jpg
 
@@ -359,7 +541,6 @@ ref:
 http://www.asciitable.com/ - ASCII table
 http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def
 https://youtu.be/61Bs7-ycL64
-https://realpython.com/python-encodings-guide/
 https://byjus.com/maths/number-system/
 https://byjus.com/maths/hexadecimal-number-system/
 
@@ -372,3 +553,8 @@ Assignment:
 
 Resources:
 =========
+https://resbaz.github.io/2014-r-materials/lessons/01-intro_r/data-structures.html
+https://www.statmethods.net/management/typeconversion.html
+https://rforexcelusers.com/calculate-percent-column-r/
+https://blog.revolutionanalytics.com/2009/02/how-to-choose-a-random-number-in-r.html
+https://www.datasciencemadesimple.com/range-function-in-r/

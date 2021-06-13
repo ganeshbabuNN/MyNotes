@@ -88,19 +88,12 @@ substr(x,8,8) #grapping from start 8 to end 8
 
 String Properties
 =================
-String in R are mutable in nature.
+String in R are immutable in nature.
 
-x <- 'hello world'
-x <- 'ganesh' #its is able to override.
-
-#Joining the strings
-x <-'ganesh'
-y <-'babu'
-paste(x,y)
-
-#length of the string
-x <- 'hello world'
-nchar(x)
+x <-"ganesh"
+.Internal(inspect(x))
+x <-"babu" #it overides but the memory address will not change
+.Internal(inspect(x))
 
 Escape characters
 =================
@@ -205,7 +198,7 @@ Basic Built-in String methods
 Objects are usually have built-in methods. These methods are functions inside the object (we will learn about these in much more depth later) that can perform actions or commands on the object itself.
 
 split case
----------
+----------
 x <- "ganesh babu"
 strsplit(x," ") #split based on delimiter
 strsplit(x," ")[[1]] #extract only that element
@@ -247,11 +240,15 @@ x <- c("file_a.csv", "file_b.csv", "file_c.csv")
 y <- gsub("file_","", x)
 y
 
-case changes
+#It finds pattern in x and replaces it with replacement (new) text.
+st1<- "England is beautiful but no the part of EU"
+sub("England", "UK", st1)
+
+Case changes
 ------------
 a<-"hello world"
 a
-to_upper(a) #upper case
+toupper(a) #upper case
 tolower(a) #lower case
 
 library(stringr)
@@ -272,6 +269,9 @@ length of the string
 library(DescTools)
 x="ganesh babu"
 str_length(x)
+
+#using nchar functions
+nchar(x)
 
 Concatentations
 ---------------
@@ -377,6 +377,7 @@ substr(x,i,i+1)
 
 #using grep and strsplit function
 grep("[gb]", strsplit(x, split="")[[1]])
+
 
 Quiz:
 =====

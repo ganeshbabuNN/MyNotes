@@ -1,7 +1,6 @@
 Introduction
 Data Types
 Default value of Types
-Convert one data type to another
 To know the type of variable
 Strings
 data structures
@@ -111,6 +110,17 @@ class(c)
 class(d)
 class(e)
 
+To test the type data type
+--------------------------
+use is methods
+
+is.numeric(23.2)
+is.integer(32)
+is.charcter('2')
+is.vector(4)
+is.matrix()
+is.data.frame()
+is.logical(0)
 
 Difference between typeof and class()
 ------------------------------------
