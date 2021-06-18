@@ -1,0 +1,21 @@
+-Summarizing data in multiple columns, want to propose a grand mean of multiple columns in a table.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+	dbms=xlsx out=survey REPLACE;
+run;
+
+proc sql;
+	title 'summary of the survey table';
+	select mean(survey1) as s1_mean format=5.2,
+		   mean(survey2) as s2_mean format=5.2,
+		   mean(survey3) as s3_mean format=5.2,
+		   mean(survey4) as s4_mean format=5.2,
+		   mean(calculated s1_mean,calculated s2_mean,calculated s3_mean,calculated s4_mean) as grandmean format=4.1
+	from survey;
+quit;
+
+proc sql;
+	title 'grandmean of the survey table';
+	 select mean(mean(survey1),mean(survey2),mean(survey3),mean(survey4)) as grandmean format=4.1
+	 from survey;
+quit;

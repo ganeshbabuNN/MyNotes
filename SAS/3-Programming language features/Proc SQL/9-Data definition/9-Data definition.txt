@@ -1,0 +1,318 @@
+Create New Table without Rows by using the CREATE TABLE Statement
+Create Tables from a Query Result using CREATE TABLE with AS Keyword
+Create Tables like an Existing Table with LIKE clause & Copy an Existing Table
+Alter Columns with the ALTER TABLE statement: Add a Column
+Alter Columns with the ALTER TABLE statement: Modify or Delete a Column
+Use SQL Procedure Tables & Delete Tables
+Proc SQL Views: Create, Describe, and Delete PROC SQL Views
+Proc SQL Views: Use Proc SQL Views
+Proc SQL Views: Specify/Use In-Line Views
+
+Create New Table without Rows by using the CREATE TABLE Statement
+=================================================================
+-The CREATE TABLE statement enables you to create tables without rows from column definitions  or to create tables from a query result. 
+-You can also use CREATE TABLE to copy an existing table.
+
+-create a new table without rows by using the CREATE TABLE statement to define the columns and their attributes. 
+You can specify a column's name, type, length, informat, format, and label.
+
+proc sql;
+   create table staff_info
+          ( name 	 char(10),          /*10–character column for students' first name */
+            gender   char(1),            /*1- character column for students' gender*/         
+			surlogdate    num				/*numeric column for student birthdate*/
+         				 informat=date9.     /* with an informat */
+               			 format=date9.);      /* and format of DATE9. */
+quit;
+
+-Use the DESCRIBE TABLE statement to verify that the table exists and to see the column attributes.
+
+proc sql;
+   describe table staff_info;
+quit;
+
+
+Create Tables from a Query Result using CREATE TABLE with AS Keyword 
+====================================================================
+-Creating Tables from a Query Result
+-To create a PROC SQL table from a query result, use a CREATE TABLE statement with the AS keyword, 
+and place it before the SELECT statement. When a table is created this way, 
+its data is derived from the table or view that is referenced in the query's FROM clause.
+-The new table's column names are as specified in the query's SELECT clause list. 
+The new table's column attributes (the type, length, informat, format, and extended attributes) 
+are the same as the selected source columns.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+-In this form of the CREATE TABLE statement, assigning an alias to a column renames the column, 
+but assigning a label does not. 
+Note the use of the OUTOBS option, which limits the size of the table to 10 rows
+
+proc sql outobs=4;
+	create table newdata as 
+	select staff_id 'staff ID',
+		   employee_name 'staff name',
+           survey1,survey2,survey2,
+		   surlogdate 'Last survey logged data' format=data10. 
+		from survey; 
+quit;
+
+Create Tables like an Existing Table with LIKE clause & Copy an Existing Table
+==============================================================================
+-Creating Tables like an Existing Table
+-To create an empty table that has the same columns and attributes as an existing table or view, 
+use the LIKE clause in the CREATE TABLE statement
+
+proc sql;
+ create table newsurveydata
+	like survey;
+ 
+ describe table newsurveydata;
+quit;
+
+-A quick way to copy a table using PROC SQL is to use the CREATE TABLE statement with a query that returns an entire table.
+
+proc sql;
+	create table newsurveydata1 as
+	 select * from survey;
+quit;
+
+-You can use SAS data set options in the CREATE TABLE statement.
+example: The DROP= option 
+-For more info on SAS data set options, Please visit the following link
+http://support.sas.com/documentation/cdl/en/lrdict/64316/HTML/default/viewer.htm#a002295655.htm 
+
+proc sql;
+	create table newsurveydata1 as
+	 select * from survey(drop=survey1 survey2 survey3);
+quit;
+
+Alter Columns with the ALTER TABLE statement: Add a Column 
+==========================================================
+The ALTER TABLE statement adds, modifies, and deletes columns in existing tables. 
+You can use the ALTER TABLE statement with tables only; it does not work with views. 
+A note appears in the SAS log that describes how you have modified the table
+
+Adding a Column
+--------------
+The ADD clause adds a new column to an existing table. You must specify the column name 
+and data type. You can also specify a length (LENGTH=), format (FORMAT=), 
+informat (INFORMAT=), and a label (LABEL=).
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc sql;
+   create table new_survey /* Create the new_score_data empty table. */
+    like survey; 
+	insert into new_survey
+	select * from survey;
+	title '';
+	select * from new_survey;
+quit;
+	  
+-add a new column without data values
+proc sql;
+	alter table new_survey
+		add sur_mean num label='Mean of the survey of this month' format 2.1;
+
+		title "adding sur_mean";
+		select * from new_survey;
+quit;     
+
+-The following UPDATE statement changes the missing values to the appropriate 
+mean of survey1,2,3,4
+proc sql;
+	   update new_survey
+	   		set sur_mean=mean(survey1,survey2,survey3,survey4);
+
+		title "survey ";
+		select * from new_survey;
+quit;
+
+-You can accomplish the same update by using an arithmetic expression to create 
+mean of score 1,2,3 column as you re-create the table:
+
+proc sql;
+	   create table new_survey as 
+	   select * , 
+	          mean(survey1,survey2,survey3,survey4) label='average of survey1,2,3,4' format 4.1
+		from survey
+		where gender='female';
+
+		select * from new_survey;
+quit;
+
+Alter Columns with the ALTER TABLE statement: Modify or Delete a Column 
+=======================================================================
+Modifying a Column
+------------------
+You can use the MODIFY clause to change the width, informat, format, and label of a column. 
+To change a column's name, use the RENAME= data set option. You cannot change 
+a column's data type by using the MODIFY clause
+
+/*renaming the existing column */	  
+proc sql;
+   create table new_survey as /* Create the new_score_data empty table. */
+   select * from survey (rename=(gender=sex)); /* renaming the existing column table. */
+quit;
+
+proc sql;
+	alter table new_survey
+	 modify surlogdate label='loged date' format=date11.;
+
+	 select * from new_survey;
+quit;
+
+Deleting a Column
+-----------------
+The DROP clause deletes columns from tables
+
+proc sql;
+   alter table new_survey
+	drop surlogdate; 
+quit;
+ 
+
+Use SQL Procedure Tables & Delete Tables 
+========================================
+-Using SQL Procedure Tables in SAS Software & Deleting a table*
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc sql;
+	create table new_survey like survey;
+	insert into new_survey 
+	select * from survey ;
+quit;
+
+-Using SQL Procedure Tables in SAS Software
+-----------------------------------------------
+Because PROC SQL tables are SAS data files, you can use them as input to a DATA step 
+or to other SAS procedures.*/
+
+proc means data=new_survey;
+	var survey1-survey4;
+run;
+
+-Deleting a Table
+-----------------
+To delete a PROC SQL table, use the DROP TABLE statement:*/ 
+proc sql;
+	drop table new_survey;
+quit;
+
+Proc SQL Views: Create, Describe, and Delete PROC SQL Views 
+===========================================================
+Creating and Using PROC SQL Views
+
+Overview of Creating and Using PROC SQL Views
+A PROC SQL view contains a stored query that is executed when you use the view in a 
+SAS procedure or DATA step. Views are useful for the following reasons:
+1)often save space, because a view is frequently quite small compared with the data 
+that it accesses
+2)prevent users from continually submitting queries to omit unwanted columns or row
+3)shield sensitive or confidential columns from users while enabling the same users 
+to view other columns in the same table
+4)ensure that input data sets are always current, because data is derived from tables 
+at execution time
+5)hide complex joins or queries from users*/
+
+/*1. Creating Views
+-------------------
+To create a PROC SQL view, use the CREATE VIEW statement
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+	dbms=xlsx out=survey REPLACE;
+run;
+
+proc sql;
+	create view new_survey as
+		select *,
+			sum(survey1,survey2,survey3,survey4) as sur_mean,
+		case
+			when calculated sur_mean >=12 then 'A'
+			when 11 <=calculated sur_mean <12 then 'B'
+			when 10 <=calculated sur_mean <11 then'C'
+			when 9 <=calculated sur_mean <10 then 'D'
+			when 8< calculated sur_mean <9 then 'E'
+			else 'Absent'	
+		end 
+	as grade
+		from survey;
+	select * from new_survey;
+quit;
+
+-Describing a View
+------------------
+The DESCRIBE VIEW statement writes a description of the PROC SQL view to the SAS log.
+proc sql;
+	describe view new_survey;
+quit;
+
+/*3. Deleting a View
+---------------------
+To delete a view, use the DROP VIEW statement:*/
+
+proc sql;
+	drop view new_survey;
+	select * from new_survey;
+quit;
+
+
+Proc SQL Views: Use Proc SQL Views 
+==================================
+You can use PROC SQL views as input to a DATA step or to other SAS procedures. 
+The syntax for using a PROC SQL view in SAS is the same as that for a PROC SQL table. 
+
+-using in procedures
+proc means data=new_survey;
+	var survey1-survey4;
+run;
+
+-using in data step
+data data_fromView;
+	set new_survey;
+run;
+
+Proc SQL Views: Specify/Use In-Line Views 	
+==========================================
+-Specifying In-Line Views
+-------------------------
+In some cases, you might want to use a query in a FROM clause instead of a table or view. 
+You could create a view and refer to it in your FROM clause, but that process involves two steps. 
+To save the extra step, specify the view in-line, enclosed in parentheses, in the FROM clause.
+
+An in-line view is a query that appears in the FROM clause. An in-line view produces a table internally 
+that the outer query uses to select data. Unlike views that are created with the CREATE VIEW statement, 
+in-line views are not assigned names and cannot be referenced in other queries or SAS procedures 
+as if they were tables. An in-line view can be referenced only in the query in which it is defined.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+	dbms=xlsx out=survey REPLACE;
+run;
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys1'
+	dbms=xlsx out=survey1 REPLACE;
+run;
+
+data survey1_mean(keep=staff_id sur_mean);
+	set survey1;
+	sur_mean=mean(survey1,survey2,survey3,survey4);
+run;
+
+proc sql;
+	select a1.staff_id,
+	       a1.employee_name,
+		   a1.gender,
+		  mean(survey1,survey2,survey3,survey4) format = 4.1  as sur1_mean,
+		   a.mean1
+		from (select mean(sur_mean) format = 4.1 as mean1 from survey1_mean) as a, 
+			  survey as a1
+		where (calculated sur1_mean < calculated mean1);
+quit;

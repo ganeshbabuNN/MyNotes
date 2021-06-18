@@ -1,0 +1,397 @@
+SELECT Statement: Overview
+SELECT Clause: Eliminate Duplicate Rows Using the DISTINCT Keyword
+SELECT Clause: Create Columns
+SELECT Clause: Assign Values Conditionally by Using a CASE Expression
+SELECT Clause: Replace Missing Values with COALESCE Function and Case Expression
+
+SELECT Statement: Overview 
+===========================
+The SELECT statement is the primary tool of PROC SQL. You can use it to retrieve data from a table. 
+You can use several optional clauses within the SELECT statement to place restrictions on a query.
+
+SELECT and FROM Clauses
+The SELECT statement must contain a SELECT clause and a FROM clause, both of which are requiredin a PROC SQL query. 
+
+For example:
+/*display the title,release_year, rental_year from flim table*/
+ select title from flim;
+
+This SELECT statement contains the following:
+a SELECT clause that lists the column ‘title ’,FROM clause that lists the table 'flim',
+which contains the ‘title’ column.
+
+SELECT Clause: Eliminate Duplicate Rows Using the DISTINCT Keyword
+==================================================================
+Selecting Columns in a Table
+When you retrieve data from a table, you can select one or more columns by using variations of the basic SELECT statement.
+
+Selecting All Columns in a Table: Use an asterisk in the SELECT clause to select all columns in a table.
+--------------------------------------------------
+proc sql outobs=7;
+select * 
+from survey1;
+quit;
+
+Selecting specific Columns in a Table: If you want to select more than one column, then you must separate the names of the columns with commas
+--------------------------------------------------
+proc sql outobs=7;
+select staff_id,depid
+from survey1;
+quit;
+
+Note:The OUTOBS= option limits the number of rows (observations) in the output. OUTOBS= is similar to the OBS= data set option.
+
+Eliminating Duplicate Rows from the Query Results
+--------------------------------------------------
+In some cases, you might want to find only the unique values in a column. 
+You can eliminate the duplicate rows from the results by using the DISTINCT keyword in the SELECT clause.
+
+proc sql ;
+select distinct gender from survey1;
+quit;
+
+This program produces a single row of output for each gender value.
+
+When you specify all of a table's columns in a SELECT clause with the DISTINCT keyword, 
+PROC SQL eliminates duplicate rows, or rows in which the values in all of the columns match, from the results.
+proc sql ;
+Select distinct *
+From flim_actor;
+quit;
+
+*other variations;
+proc sql;
+select distinct gender,* from survey1;
+quit;
+
+Determining the Structure of a Table
+------------------------------------
+To obtain a list of all of the columns in a table and their attributes, you can use the DESCRIBE TABLE statement. 
+The following example generates a description of the score_datatable. PROC SQL writes the description to the log.
+
+proc sql;
+describe table survey1;
+quit;
+
+Example:
+-------
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys1'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+proc print data=survey1;
+run;
+
+proc sql;
+ select gender from survey1;
+quit;
+
+proc sql;
+ select distinct gender from survey1;
+quit;
+
+proc sql;
+ select distinct * from survey1;
+quit;
+
+proc sql;
+ select distinct gender,* from survey1;
+quit;
+
+/*To obtain a list of all of the columns in a table and their attributes*/
+proc sql;
+	describe table survey1;
+quit;
+
+SELECT Clause: Create Columns
+=============================
+Creating New Columns
+In addition to selecting columns that are stored in a table, you can create new columns that exist for the duration of the query. 
+These columns can contain text or calculations. 
+PROC SQL writes the columns that you create as if they were columns from the table.
+
+
+Adding Text to Output
+-----------------------
+You can add text to the output by including a string expression, or literal expression, in a query. 
+The following query includes two strings "Each actor is given Id like is" , "along with the flim ID" as additional columns in the output:
+
+/*Adding Text to Output*/
+
+select 
+   "survey for the staff",staff_id ,"is",survey1
+from survey1;
+
+To prevent the column headings ‘Name’ and ‘Score1’ from printing, you can assign a label that starts with a special character to each of the columns.
+PROC SQL does not output the column name when a label is assigned, and it does not output labels that begin with special characters. 
+For example, you could use the following query to suppress the column names: Name, film_actor.
+
+select 
+   "survey for the staff",staff_id label="#","is",survey1 label="#"
+from survey1;
+
+Calculating Values and Assigning a Column Alias
+------------------------------------------------
+You can perform calculations with values that you retrieve from numeric columns.
+By specifying a column alias, you can assign a new name to any column within a PROC SQL query. 
+The new name must follow the rules for SAS names. The name persists only for that query.
+the following calculation like count and sum .
+
+mean(survey1) as survey1_mean format 4.1,
+mean(survey2) as survey2_mean format 4.1,
+mean(survey3) as survey3_mean format 4.1,
+mean(survey4) as survey4_mean format 4.1
+
+*mix different aggregate functions;
+sum(survey1) as survey1_mean format 4.1,
+count(survey2) as survey2_mean format 4.1,
+min(survey3) as survey3_mean format 4.1,
+max(survey4) as survey4_mean format 4.1
+
+Referring to a Calculated Column by Alias
+-----------------------------------------
+When you use a column alias to refer to a calculated value, 
+you must use the CALCULATED keyword with the aliasto inform PROC SQL that the value is calculated within the query. 
+The following example uses two calculated values, score1_aveand score2_ave, to calculate a third value, Diff12:
+
+/*Calculating Values, Assigning a Column Alias,
+Referring to a Calculated Column by Alias*/
+sum(survey1) as survey1_mean format 4.1,
+count(survey2) as survey2_mean format 4.1,
+min(survey3) as survey3_mean format 4.1,
+max(survey4) as survey4_mean format 4.1,
+(calculated survey1_mean-calculated survey2_mean) as Diff12 format 4.1
+
+Note:You can use an alias to refer to a calculated column in a SELECT clause, a WHERE clause, or ORDER BY clause but not the summary functions which are used only SELECT and HAVING clause.
+
+*using the alias ;
+select staff_id,
+   depid as deparment_id,
+   survey1 as week1,
+   survey2 as week2,
+   gender as sex	
+from survey1
+where  deparment_id = 6
+order by sex;
+
+*not the summary functions and check the error;
+select *,
+		sum(survey1) as survey1_mean format 4.1,
+		count(survey2) as survey2_mean format 4.1,
+		min(survey3) as survey3_mean format 4.1,
+		max(survey4) as survey4_mean format 4.1,
+		(calculated survey1_mean-calculated survey2_mean) as Diff12 format 4.1
+from survey1
+where calculated survey1_mean > 50
+order by calculated survey1_mean;
+
+Example:
+-------
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys1'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+/*Adding Text to Output*/
+proc sql;
+	select 
+		   "survey for the staff",staff_id ,"is",survey1
+	from survey1;
+quit;
+
+/*PROC SQL does not output the column name when a label is assigned, 
+and it does not output labels that begin with special characters. */
+proc sql;
+	select 
+		   "survey for the staff",staff_id label="#","is",survey1 label="#"
+	from survey1;
+quit;
+
+/*Calculating Values, Assigning a Column Alias,
+Referring to a Calculated Column by Alias*/
+proc sql;
+	create table survey_data5 as 
+/*By specifying a column alias, you can assign a new name 
+to any column within a PROC SQL query.*/  
+ 	select *,
+		mean(survey1) as survey1_mean format 4.1,
+		mean(survey2) as survey2_mean format 4.1,
+		mean(survey3) as survey3_mean format 4.1,
+		mean(survey4) as survey4_mean format 4.1
+		/*When you use a column alias to refer to a calculated value, you must 
+use the CALCULATED keyword with the alias to inform PROC SQL that the 
+value is calculated within the query. */ 
+	from survey1
+	group by gender
+	order by gender;
+quit;
+
+proc print data=survey_data5;
+run;
+
+SELECT Clause: Assign Values Conditionally by Using a CASE Expression
+=====================================================================
+Assigning Values Conditionally
+Using a Simple CASE Expression
+CASE expressions enable you to interpret and change some or all of the data values in a column to make the data more useful or meaningful.
+You can use conditional logic within a query by using a CASE expression to conditionally assign a value. 
+You can use a CASE expression anywhere that you can use a column name. You must close the CASE logic with the END keyword.
+
+simple case expression
+----------------------
+Here is an examplecode of using simple CASE expression:
+/*
+	< 1 = Very Poor
+	>1  <=2 = Poor
+	>2  <=3 = Good
+	>3 <=4 = Very Good
+*/
+case 
+	when calculated survey_mean <=1 then 'Very Poor'
+	when calculated survey_mean >1 and calculated survey_mean <=2 then 'Poor'
+	when calculated survey_mean >2 and calculated survey_mean <=3 then 'Good'
+	when calculated survey_mean >3 and  calculated survey_mean <=4 then 'Very Good' 
+end as result
+
+Using the CASE-OPERAND Form
+---------------------------
+You can also construct a CASE expression by using the CASE-OPERAND form
+When you use the CASE-OPERAND form of the CASE expression, the conditions must all be equality tests. 
+That is, they cannot use comparison operators or other types of operators, as are used in "Using a Simple CASE Expression"
+
+case gender
+when 1 then 'Male'
+when 2 then 'Female' 
+end as Sex
+
+Excercise:
+----------
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys1'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+proc print data=survey1; 
+run;
+
+/*Using a Simple CASE Expression  --- can use comparison operators or other types of operators
+Please Note: You must close the CASE logic with the END keyword.*/
+proc sql;
+	select staff_id,
+		   survey1,survey2,survey3,survey4,
+		   mean(survey1,survey2,survey3,survey4) as survey_mean,
+		   case 
+			  when calculated survey_mean <=1 then 'Very Poor'
+			  when calculated survey_mean >1 and calculated survey_mean <=2 then 'Poor'
+			  when calculated survey_mean >2 and calculated survey_mean <=3 then 'Good'
+			  when calculated survey_mean >3 and  calculated survey_mean <=4 then 'Very Good' 
+		   end as result
+	from survey1
+	where calculated survey_mean <> .;
+quit;
+
+/*Using the CASE-OPERAND Form --- must all be equality tests*/
+proc sql;
+	select staff_id,
+		   survey1,survey2,survey3,survey4,gender,
+		   case gender
+			  when 1 then 'Male'
+			  when 2 then 'Female' 
+		   end as Sex
+	from survey1 ;
+quit;
+
+SELECT Clause: Replace Missing Values with COALESCE Function and Case Expression
+================================================================================
+Replacing Missing Values
+The COALESCE function enables you to replace missing values in a column with a new value that you specify.
+
+For example, the following query replaces missing values in the Score1 column in the score_datatable with the numerical value-7, 
+and replaces missing values in the Gender column in the score_datatable with the character value ‘Missing’.
+proc sql;
+select Name, coalesce(score1, -7) as score1, coalesce(gender, ‘Missing’) as gender
+from score_data;
+
+The following CASE expression shows another way to perform the same replacement of missing values. 
+However, the COALESCE function requires fewer lines of code to obtain the same results:
+
+using the COALESCE functions
+----------------------------
+select depid,
+   coalesce(survey1,-7) as survey1,
+   coalesce(survey2,-7) as survey2,
+   coalesce(survey3,-1) as survey3, 
+   coalesce(survey4,-7) as survey4, 
+   coalesce(gender,'missing') as Sex /*for character */
+from survey1;
+
+using a simple case expression
+---------------------------------
+select staff_id,
+   case 
+	 when survey1=. then -7
+	 else survey1
+   end as survey1,
+   case 
+	 when survey2=. then -7
+	 else survey2
+   end as survey2,
+   case 
+	 when survey3=. then -7
+	 else survey3
+   end as survey3,
+   case 
+	 when survey4=. then -7
+	 else survey4
+   end as survey4,
+   case
+	when gender='' then 'Missing'
+	else gender
+   end as Sex
+from survey1;
+
+Excercise:
+----------
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+/*using Coalesce function: 
+The COALESCE function enables you to replace missing values in a column with a new value that you specify.
+The following query 
+replaces missing values in the Score1 column in the score_data table with the value -7
+and replaces missing values in the Gender column with the word Missing */
+proc sql;
+	select depid,
+		   coalesce(survey1,-7) as survey1,
+		   coalesce(survey2,-7) as survey2,
+		   coalesce(survey3,-1) as survey3, 
+		   coalesce(survey4,-7) as survey4, 
+		   coalesce(gender,'missing') as Sex /*for character */
+	from survey1;
+quit;
+/*use Case expression:
+The following CASE expression shows another way to perform the same replacement of missing values. 
+However, the COALESCE function requires fewer lines of code to obtain the same results*/
+proc sql;
+	select staff_id,
+		   case 
+			 when survey1=. then -7
+			 else survey1
+		   end as survey1,
+		   case 
+			 when survey2=. then -7
+			 else survey2
+		   end as survey2,
+		   case 
+			 when survey3=. then -7
+			 else survey3
+		   end as survey3,
+		   case 
+			 when survey4=. then -7
+			 else survey4
+		   end as survey4,
+		   case
+			when gender='' then 'Missing'
+			else gender
+		   end as Sex
+	from survey1;
+quit;

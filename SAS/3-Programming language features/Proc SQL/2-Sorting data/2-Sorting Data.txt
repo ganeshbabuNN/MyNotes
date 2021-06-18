@@ -1,0 +1,91 @@
+ORDER BY Clause: Sort Data
+
+ORDER BY Clause: Sort Data 
+==========================
+Overview
+(1) When you use an ORDER BY clause, you change the order of the output but not the order of 
+the rows that are stored in the table.
+(2) The PROC SQL default sort order is ascending. To order the results, specify ASC for ascending or DESC for descending. 
+(3) You can specify a sort order for each column in the ORDER BY clause. When you specify multiple columns in the ORDER BY clause, 
+the first column determines the primary row order of the results. Subsequent columns determine the order of rows 
+that have the same value for the primary sort.
+(4) PROC SQL sorts nulls, or missing values, before character or numeric data. 
+Therefore, when you specify ascending order, missing values appear first in the query results. 
+
+-sort by one or multiple coulumns (the column names separated by commas)
+Note: The results list stduent with missing Gender first 
+because PROC SQL sorts missing values first in an ascending sort
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+-order by numeric category missing sorts first by ascending
+proc sql;
+	select * 
+	from survey1
+	order by depid asc;
+quit;
+
+-order by character category 
+------------------------------
+proc sql;
+	select * 
+	from survey1
+	order by gender desc;
+quit;
+
+-order by more than one variable
+------------------------------
+proc sql;
+	select * 
+	from survey1
+	order by gender,depid;
+quit;
+
+-Sorting by Calculated Column
+------------------------------
+-You can sort by a calculated column by specifying its alias in the ORDER BY clause. */
+
+proc sql;
+	select *,
+		   mean(survey1,survey2,survey3,survey4) as survey_mean format 4.1
+	from survey1
+	order by survey_mean;
+quit;
+
+-Sorting by Column Position
+---------------------------
+-You can sort by any column within the SELECT clause by specifying its numerical position. 
+-By specifying a position instead of a name, 
+-you can sort by a calculated column that has no alias
+
+proc sql;
+	select staff_id,
+		   survey1,
+		   survey2,
+		   survey3,
+		   survey4,
+		   gender,
+		   mean(survey1,survey2,survey3,survey4) as survey_mean format 4.1,
+		   depid
+	from survey1
+	order by 1,5,7;
+quit;
+
+-Sorting by Columns That Are Not Selected
+-----------------------------------------
+-You can sort query results by columns that are not included in the query. 
+
+proc sql;
+	select staff_id,
+		   survey1,
+		   survey2,
+		   survey3,
+		   survey4,
+/*		   gender,*/
+		   mean(survey1,survey2,survey3,survey4) /*as survey_mean format 4.1*/,
+		   depid
+	from survey1
+	order by 7 desc,1 desc;
+quit;

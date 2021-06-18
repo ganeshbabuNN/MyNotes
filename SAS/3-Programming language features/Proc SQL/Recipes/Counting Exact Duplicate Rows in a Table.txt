@@ -1,0 +1,19 @@
+counting Exact duplicate rows in table. The duplicate records often exists in the uncleaned data.Identify the duplicate are the common task in data management assignments.
+in this steps we will generate duplicate are the common task in data management assignments.
+
+in this example we will generate duplicate records and count the number of duplicate rows.
+
+You must include all of the columns in your table in the GROUP by clause to find exact duplicates , then we eliminate the exact dups. For partial dups(such as having same name
+but different info) further investigation often is needed during data cleaning process.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys2'
+	dbms=xlsx out=survey REPLACE;
+run;
+
+proc sql;
+	title 'duplicates rows in the table';
+	select *,count(*) as count
+	from survey
+	group by employee_name,depid,survey1,survey2,survey3,survey4
+	having count(*) > 1;
+quit;

@@ -1,0 +1,36 @@
+want to compare :
+percent of student wait in carline (yes on carline) and not wait in carline (No on carline) for each class.
+
+this example:
+1.subquery: uses a subquery to calculate the subtotal counts for each value of carline 
+
+2.select clause: 
+a.count class by each value of class and carline combinations (group by clause)
+b.uses the calculated class count as the numerator and the subtotal from the subquery as the denominator for the percentage calculations
+
+3.From clause : the code joins the results of the subquery (subtotal (subtotal of yes , no on carline) with the orginal table on where clause (explain and show in second proc sql program.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+	dbms=xlsx out=survey REPLACE;
+run;
+
+proc sql;
+	title 'percent of the dept wise who opted for survey';
+	select distinct
+	       survey.depid,
+		   count(staff_id) as count_depid, 
+		   count_sur,
+		   count_sur/calculated count_depid as percent format=percent8.2
+	from survey,
+		 (select depid,count(survey1) as count_sur from survey group by depid) as sur_data2
+	where survey.depid=sur_data2.depid 
+	group by survey.depid;
+quit;
+
+proc sql;
+select survey.depid,count(staff_id) as count 
+from survey group by survey.depid;
+
+select survey.depid,count(survey1) as count 
+from survey group by survey.depid;	
+quit;

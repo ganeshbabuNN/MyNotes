@@ -1,0 +1,27 @@
+Creating a customized sort order want sort the data using logical order of months.
+solutions
+-create a new column, sorter that will have values of 1 through 5 for months from jan to may use the new column to order the query , but do not select it to appear.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_staffs'
+	dbms=xlsx out=staff REPLACE;
+run;
+proc sql;
+	select employee_name,depid,sorter
+	from (select employee_name,depid, 
+		   case 
+			when month(hiredate)=1  then 1
+		    when month(hiredate)=2 then 2
+		    when month(hiredate)=3 then 3 
+			when month(hiredate)=4 then 4
+			when month(hiredate)=5 then 5 
+			when month(hiredate)=6 then 6
+			when month(hiredate)=7 then 7
+			when month(hiredate)=8 then 8 
+			when month(hiredate)=9 then 9
+			when month(hiredate)=10 then 10 
+			when month(hiredate)=11 then 11
+			when month(hiredate)=12 then 12 
+		   end as sorter
+			from staff)
+    order by sorter,employee_name;
+quit;

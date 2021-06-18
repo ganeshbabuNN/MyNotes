@@ -1,0 +1,38 @@
+--To create a summary report that allow the rewards points for each student for each month.
+1. uses an inline view to create three temp columns , jan , feb and mar.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_staffs'
+	dbms=xlsx out=staff REPLACE;
+run;
+
+solutions
+1-uses an inline view to create three temp columns , jan , feb and mar based on the month part of the date column.
+the inline view is a query that performs the followings.
+-select the students name column-
+-use a CASE expression to assign the value of points to one of three columns , jan , feb or mars, depending on the value of the month part of the date columns
+
+2.the otuer SELECT  statement in the query perform the following.
+-select the name of student 
+-uses the summary function SUM to acculmate the jan,feb and mar points.
+-uses the GROUP BY statement to produce a line in the table for each students.
+
+PROC SQL;
+	SELECT depid,
+		   sum(jan) label='jan_netpayrate',
+		   sum(feb) label='feb_netpayrate',
+		   sum(mar) label='mar_netpayrate'
+	FROM (select depid, 
+		   case when month(hiredate)=1 and year(hiredate)> 2000 then payrate end as jan,
+		   case when month(hiredate)=2 and year(hiredate)> 2000 then payrate end as feb,
+		   case when month(hiredate)=3 and year(hiredate)> 2000 then payrate end as mar
+	from staff)
+	group by depid;
+QUIT;
+
+proc sql;
+	select depid, 
+		   case when month(hiredate)=1 and year(hiredate)> 2 then payrate end as jan,
+		   case when month(hiredate)=2 and year(hiredate)> 2000 then payrate end as feb,
+		   case when month(hiredate)=3 and year(hiredate)> 2000 then payrate end as mar
+	from staff;
+quit;

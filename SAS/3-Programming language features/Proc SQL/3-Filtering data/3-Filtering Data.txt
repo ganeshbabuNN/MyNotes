@@ -1,0 +1,295 @@
+WHERE Clause: Retrieving Rows That Satisfy a Condition
+	Using Comparison operators
+	Using logical operators
+	Using Other Conditional Operators
+	Using the IS MISSING (IS NULL) Operator
+	Using the BETWEEN-AND Operators
+	Using the LIKE Operator
+	Using Truncated String Comparison Operators
+	Using a WHERE Clause with Missing Values
+Summarizing Data using aggregate functions (or summary functions)
+
+WHERE Clause: Retrieving Rows That Satisfy a Condition
+=======================================================
+The WHERE clause enables you to retrieve only rows from a table that satisfy a condition. 
+WHERE clauses can contain any of the columns in a table, including columns that are not selected.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_stafftimes'
+dbms=xlsx out=stafftime REPLACE ;
+run;
+
+Using Comparison operators
+-----------------------
+1)You can use comparison operators in a WHERE clause to select different subsets of data
+
+proc sql;
+	title 'employees who worked 120 hours i,e 1 month 30 hrs per week';
+	select *,
+	sum(hour_wk1,hour_wk2,hour_wk3,hour_wk4) as total_hr
+	from stafftime
+	where calculated total_hr < 120;
+quit;
+
+
+Using logical operators
+-----------------------
+You can use logical operators to construct a WHERE clause that contains two or more expressions.
+You can use parentheses to improve the readability of WHERE clauses that contain multiple expressions.
+
+proc sql;
+	title 'employees who worked between 100 and 120 hours';
+	select *,
+	sum(hour_wk1,hour_wk2,hour_wk3,hour_wk4) as total_hr
+	from stafftime
+	where calculated total_hr > 100 and calculated total_hr <120 ;
+quit;
+
+Using Other Conditional Operators
+-------------------------------------
+Note:  All of these operators can be prefixed with the NOT operator to form a negative condition.*/
+Using the IN Operator, The IN operator enables you to include values within a list that you supply. */
+
+proc sql;
+	title 'getting the employee who error rate per day is 4 and 3';
+	select *,
+	sum(hour_wk1,hour_wk2,hour_wk3,hour_wk4) as total_hr
+	from stafftime
+	where daily_error_rate in (4,3);
+quit;
+
+Using the IS MISSING (IS NULL) Operator
+---------------------------------------
+The IS MISSING operator enables you to identify rows that contain columns with missing values.
+
+proc sql;
+	title 'getting the employee who have not work with their duty stamped';
+	select *,
+	mean(hour_wk1,hour_wk2,hour_wk3,hour_wk4) as total_hr
+	from stafftime
+	where calculated total_hr is missing;
+quit;
+
+-you can use the not operators to reverse the result
+
+proc sql;
+	title 'getting the employee who have work with their duty stamped';
+	select *,
+	mean(hour_wk1,hour_wk2,hour_wk3,hour_wk4) as total_hr
+	from stafftime
+	where calculated total_hr is not missing;
+quit;
+
+
+Using the BETWEEN-AND Operators
+-------------------------------
+To select rows based on a range of values, you can use the BETWEEN-AND operators.
+Because the BETWEEN-AND operators are inclusive, the values that you specify in the BETWEEN-AND expression are included in the results.
+
+proc sql;
+	title 'employees who worked between 100 and 120 hours';
+	select *,
+	sum(hour_wk1,hour_wk2,hour_wk3,hour_wk4) as total_hr
+	from stafftime
+	where calculated total_hr between 100 and 120 ;
+quit;
+
+Using the LIKE Operator
+-----------------------
+-The LIKE condition selects rows by comparing character strings with a pattern-matching specification
+-It resolves to true and displays the matched strings if the left operand matches the pattern specified by the right operand
+underscore (_) - matches any single character.
+percent sign (%) -matches any sequence of zero or more characters.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_film_texts'
+dbms=xlsx out=filmtexts REPLACE ;
+run;
+
+-Using the Single characters
+proc sql;
+	title 'filter the pattern of moves starting letter with _ON';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where  title like '_ON___ %';
+quit;
+
+-Using the matching the sequence
+proc sql;
+	title 'filter the pattern of moves which are related with student';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where calculated desp like '%student%';
+quit;
+
+proc sql;
+	title 'filter the pattern of moves starting letter with _ON';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where  title like '_ON___ %' and calculated desp like '%student%';
+quit;
+
+https://documentation.sas.com/?docsetId=sqlproc&docsetTarget=n1ege2983n6h0vn1s1uj1459phr9.htm&docsetVersion=9.4&locale=en
+
+Using Truncated String Comparison Operators
+-------------------------------------------
+Truncated string comparison operators are used to compare two strings. 
+PROC SQL truncates the longer string to be the same length as the shorter string.
+
+Truncated String Comparison Operators:
+Symbol	Definition
+EQT		equal to truncated strings
+GTT		greater than truncated strings
+LTT		less than truncated strings
+GET		greater than or equal to truncated strings
+LET		less than or equal to truncated strings
+NET		not equal to truncated strings
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_film_texts'
+dbms=xlsx out=filmtexts REPLACE ;
+run;
+
+proc sql;
+	title 'find the movie which are starts with DON';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where title EQT 'DON';
+quit;
+
+https://documentation.sas.com/?docsetId=sqlproc&docsetTarget=p020urejdmvi7vn1t9avbvazqapu.htm&docsetVersion=9.4&locale=en#n0tcl9lmusfteon1entll2ua55r1
+
+Using a WHERE Clause with Missing Values
+-----------------------------------------
+-If a column that you specify in a WHERE clause contains missing values, then a query might provide unexpected results.
+
+PROC SQL;
+	title 'get the employee whos survey are poor';
+	SELECT *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+	from survey1
+where calculated survey_mean <=2;
+QUIT;
+
+/* not missing */
+PROC SQL;
+	title 'get the true employee whos survey are poor';
+	SELECT *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+	from survey1
+where calculated survey_mean <=2 and calculated survey_mean is not missing;
+QUIT;
+
+Summarizing Data using aggregate functions (or summary functions)
+================================================================
+Summarizing Data using aggregate functions (or summary functions)(Proc SQL_Summarizing Data.sas)
+=================================================================
+-Overview of Summarizing Data
+-You can use an aggregate function (or summary function) to produce a statistical summary of data in a table. 
+-The aggregate function instructs PROC SQL in how to combine data in one or 
+more columns. 
+-when you use an aggregate function, PROC SQL applies the function to the entire table, 
+unless you use a GROUP BY clause. You can use aggregate functions in the SELECT or HAVING clauses.
+
+You can use aggregate, or summary functions, by using a WHERE clause. 
+
+Function			Definition
+AVG, MEAN			mean or average of values
+COUNT, FREQ, N		number of nonmissing values
+CSS					corrected sum of squares
+Cv					coefficient of variation (percent)
+MAX					largest value
+MIN					smallest value
+NMISS				number of missing values
+PRT					probability of a greater absolute value of Student's t
+RANGE				range of values
+STD					standard deviation
+STDERR				standard error of the mean
+SUM					sum of values
+SUMWGT				sum of the WEIGHT variable values
+T					Student's t value for testing the hypothesis that the population mean is zero
+USS					uncorrected sum of squares
+vAR					variance
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+Using the MEAN Function with a WHERE Clause
+-------------------------------------------
+PROC SQL;
+	title 'mean of the survey for each employee';
+	SELECT *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+	from survey1;
+QUIT;
+
+Displaying Sums
+--------------
+The SUM function produces a single row of output for the requested sum
+because no non-aggregate value appears in the SELECT clause.
+--- an example of PROC SQL combined information from multiple rows of data 
+into a single row of output.
+
+PROC SQL;
+	title 'count of gender';
+	SELECT sum(survey1) as survey1_sum
+	from survey1;
+QUIT;
+
+
+Remerging Summary Statistics
+----------------------------
+Aggregate functions, such as the MAX function, can cause the same calculation to 
+repeat for every row. This occurs whenever PROC SQL remerges data
+
+PROC SQL;
+	title 'remerging the summary statistics';
+	SELECT *,
+		   mean(survey1,survey2,survey3,survey4) as survey_mean,
+		   max(calculated survey_mean) as survey_max
+	from survey1
+	order by survey_mean;
+QUIT;
+
+Using Aggregate Functions with Unique Values
+---------------------------------------------
+-Counting Unique Values
+-You can use DISTINCT with an aggregate function to cause the function to use only unique 
+values from a column.
+
+PROC SQL;
+	title 'mean of the survey for each employee';
+	SELECT count(distinct depid)
+	from survey1;
+QUIT;
+
+
+Counting Nonmissing Values
+--------------------------
+-all nonmissing values are counted including duplicated values 
+-Compare the previous example with the following query, which does not use 
+-the DISTINCT keyword 
+
+	PROC SQL;
+		title 'count of gender';
+		SELECT count( gender)
+		from survey1;
+	QUIT;
+
+Counting All Rows
+----------------
+-In the previous two examples, the missing values are ignored by the COUNT function. 
+-To obtain a count of all rows in the table
+
+PROC SQL;
+	title 'count of gender';
+	SELECT count(*)
+	from survey1;
+QUIT;
+
