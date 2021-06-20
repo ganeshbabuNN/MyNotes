@@ -1,0 +1,82 @@
+Exception handling 
+==================
+Error
+Expections
+Exception Handling Constructs in R
+
+Error
+====
+Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning R
+
+let see some different type of error
+
+ex:
+SyntaxError
+-----------
+'hello world' + 3
+
+IndexError
+ModuleNotFoundError
+KeyError
+ImportError
+TypeError
+ValueError
+NameError
+ZeroDivisionError
+
+Expections
+==========
+Exception handling is the process of handling the errors that might occur in the code and avoid abrupt halt of the code. In simple English, our code should either end by performing the intended task or prints a useful message if it is not able to complete the task
+
+Exception Handling Constructs in R
+==================================
+1)Try
+2)Try catch
+
+Using try
+---------
+We need to enclose the objectionable statements in the try block. The statements passed inside are like arguments to a function. In case you have more than one statements, it is preferred that you write a function with all those statements and call the function inside the try block
+
+v <- list(1, 2, 4, ’0',5)
+for (i in v) {
+print(5/i)
+}
+
+Using the try block we can see the code ran for all the other cases even after the error in one of the iteration.
+
+Using tryCatch
+--------------
+The try block will not let your code stop but does not provide any mechanism to handle the exception. By handling I mean the actions we want to perform if some error occurs in code execution.
+
+In this case, we can use the tryCatch block to handle the exception.
+
+We will enclose the objectionable statement in the tryCatch block and pass one more parameter to the tryCatch, error.
+
+The error takes as input a function or an instruction and we can perform all the remedial steps to be performed in case of an error in this function.
+v <- list(1, 2, 4, '0', 5)
+for (i in v) {
+try(print(5 / i))
+
+
+Quiz:
+=====
+
+Assignment:
+===========
+1-Handle the exception thrown by the code below by using try and except blocks.
+	for i in ['a','b','c']:
+	    print(i**2)
+2-Handle the exception thrown by the code below by using try and except blocks. Then use a finally block to print 'All Done.'
+	x = 5
+	y = 0
+	z = x/y
+3-Write a function that asks for an integer and prints the square of it. Use a while loop with a try, except, else block to account for incorrect inputs(it need to ask again and again if there is a wrong input)
+	def ask():
+	    pass 
+
+Resources
+=========
+https://www.geeksforgeeks.org/handling-errors-in-r-programming/
+https://www.r-bloggers.com/2012/10/error-handling-in-r/
+https://medium.com/analytics-vidhya/error-handling-in-r-23b22d82fa6f
+https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781784390815/1/ch01lvl1sec18/handling-errors-in-a-function

@@ -1,0 +1,246 @@
+Oops Introductions
+Class and Object
+create a class
+
+Introductions
+=============
+-OOps are Object oriented programming allows programmers to create their own objects that have methods and attributes.
+-recall that after defining a string, list..etc you were able to call methods off of them with .method_name() sytnax
+-Oops allows users to create their own objects.
+-in general OOps allows us to create code that is more usable
+-FOr much larger scripts of R code, functions by themselves aren't enought for orgnaization and repeatability.
+-Common repeated tasks and objects can be defined with OOp to create code that is more usable
+--Here field name or attribute are like variables
+--Here the methods are like functions.
+
+Class and Object
+================
+Class is the blueprint or a prototype from which objects are made by encapsulating data members and functions. 
+An object is a data structure that contains some methods that act upon its attributes.
+
+Ref classobject.jpg
+
+S3 and S4 are the two important systems in Object Oriented Programming:
+
+-S3 is used to overload any function. Therefore, we can call different names of the function. And, it depends upon the type of input parameter or the number of a parameter
+-An important characteristic of OOP is S4. However, it poses a limitation as it is quite tricky to debug. An alternate for the S4 is the reference class.
+
+S3 Class
+--------
+-With the help of the S3 class, you can avail its ability to implement generic function OO
+-Also, using only the first argument, S3 is able to dispatch
+- S3 is different from conventional programming languages like Java, C++, and C# that implement message passing OO
+-In oops, the S3 is used to overload any function. So that we can call the functions with different names and it depends on the type of input parameter or the number of parameters
+
+S4 Class
+--------
+-S4 Class is a bit similar to S3 but it is more formal than the latter.
+-It differs from S3 in two different ways
+-Firstly, in S4, there are formal class definitions that provide description and representation of classes.
+-S4 also facilitates multiple dispatches
+
+S3 Class
+=========
+Creating a S3 Class
+-------------------
+-In R, we define a function which will create a class and return the object of the created class. 
+-A list is made with relevant members, class of the list is determined, and a copy of the list is returned. There is the following syntax to create a class
+
+variable_name <- list(member1, member2, member3.........memberN)  
+
+#lets start
+s <- list(name = "Ganesh", age = 35, GPA = 8.0)  
+s
+class(s)<- "Faculty"
+
+#Let us now define our generic function print.
+print
+function (x, ...)
+#Like print function, we will make a generic function GPA to assign a new value to our GPA member. 
+#In the following way we will make the generic function GPA
+
+GPA <- function(obj1){  
+  UseMethod("GPA")  
+}  
+
+GPA
+
+#Once our generic function GPA is created, we will implement a default function for it
+GPA.default <- function(obj){  
+  cat("We are entering in generic function\n")  
+}  
+
+GPA.default()
+
+#After that we will make a new method for our GPA function in the following way
+
+GPA.Faculty<- function(obj){  
+  cat("Final GPA is ",obj$GPA,"\n") 
+  print(obj$name)
+  print(obj$age)
+}
+
+#And at last we will run the method GPA as
+GPA(s)
+
+Inheritance
+-----------
+Inheritance means extracting the features of one class into another class. In the S3 class of R, inheritance is achieved by applying the class attribute in a vector.
+
+#For inheritance, we first create a function which creates new object of class faculty in the following way
+
+faculty<- function(n,a,g) {  
+  value <- list(name=n, age=a, GPA=g)  
+  attr(value, "class") <- "faculty"  
+  value  
+}
+
+#After that we will define a method for generic function print() as
+print.student <- function(obj1) {
+  cat(obj1$name, "\n")
+  cat(obj1$age, "years old\n")
+  cat("GPA:", obj1$GPA, "\n")
+}  
+
+#Now, we will create an object of class InternationalFaculty which will inherit from faculty class. This process will be done by assigning a character vector of class name as:
+class(obj1) <- c(child, parent)
+
+# create a list  
+fac <- list(name="vedha", age=22, GPA=3.5, country="India")  
+
+#After that we will define a method for generic function print() as
+# make it of the class InternationalFaculty which is derived from the class Faculty  
+class(fac) <- c("InternationalFaculty","Faculty")  
+# print it out  
+fac #When we run the above code which we have discussed, 
+
+#We can see above that, we have not defined any method of form print. InternationalFaculty (), the method called print.Faculty(). 
+#This method of class Faculty was inherited.
+#So our next step is to defined print.InternationalFaculty() in the following way:
+print.InternationalFaculty<- function(obj1) {  
+  cat(obj1$name, "is from", obj1$country, "\n")  
+} 
+
+#The above function will overwrite the method defined for class faculty as
+fac
+
+
+getS3method and getAnywhere function
+------------------------------------
+#There are the two most common and popular S3 method functions which are used in R. The first method is getS3method() and the second one is getAnywhere().
+
+#S3 finds the appropriate method associated with a class, and it is useful to see how a method is implemented. Sometimes, the methods are non-visible, 
+#because they are hidden in a namespace. We use getS3method or getAnywhere to solve this problem.
+
+getS3method("fac")
+
+getAnywhere("fac")
+
+S4 Class
+========
+-The S4 class is similar to the S3 but is more formal than the latter one
+- It differs from S3 in two different ways. First, in S4, there are formal class definitions which provide a description and representation of classes. In addition, it has special auxiliary functions for defining methods and generics
+-The S4 also offers multiple dispatches.
+-This means that common functions are capable of taking methods based on multiple arguments which are based on class.
+
+Creating S4 Class
+-----------------
+-In R, we use setClass() command for creating S4 class
+-In S4 class, we will specify a function for verifying the data consistency and also specify the default value. In R, member variables are called slots
+-To create an S3 class, we have to define the class and its slots. There are the following steps to create an S4 class
+
+Step1:
+-----
+In the first step, we will create a new class called faculty with three slots name, age, and GPA.
+
+setClass("faculty", slots=list(name="character", age="numeric", GPA="numeric"))  
+?setClass
+
+Step 2:
+-------
+-In the next step, we will create the object of S4 class
+-R provides new() function to create an object of S4 class.
+-In this new function we pass the class name and the values for the slots in the following way
+
+setClass("faculty", slots=list(name="character", age="numeric", GPA="numeric"))  
+# creating an object using new()  
+# providing the class name and value for slots  
+s <- new("faculty",name="Ganesh", age=22, GPA=3.5)  
+s
+
+Creating S4 objects using a generator function
+----------------------------------------------
+The setClass() function returns a generator function. This generator function helps in creating new objects. And it acts as a constructor.
+
+A <- setClass("faculty", slots=list(name="character", age="numeric", GPA="numeric"))  
+A
+
+Now we can use the above constructor function to create new objects. The constructor in turn uses the new() function to create objects. It is just a wrap around. Let's see an example to understand how S4 object is created with the help of generator function.
+
+faculty<-setClass("faculty", slots=list(name="character", age="numeric", GPA="numeric"))  
+# creating an object using generator() function  
+# providing the class name and value for slots  
+faculty(name="Shubham", age=22, GPA=3.5)  
+
+Inheritance in S4 class
+-----------------------
+Like S3 class, we can perform inheritance in S4 class also. The derived class will inherit both attributes and methods of the parent class. Let's start understanding that how we can perform inheritance in S4 class. 
+There are the following ways to perform inheritance in S4 class:
+
+Step 1:
+-------
+In the first step, we will create or define class with appropriate slots in the following way:
+
+setClass("faculty",
+         slots = list(name = "character", age = "numeric", GPA = "numeric"))
+
+Step 2:
+-------
+After defining class, our next step is to define class method for the display() generic function. This will be done in the following manner:
+         
+setMethod("show", "faculty", function(object) {
+  cat(object@name, "\n")
+  cat(object@age, "years old\n")
+  cat("GPA:", object@GPA, "\n")
+}) 
+
+Step 3:
+------
+In the next step, we will define the derived class with the argument contains. The derived class is defined in the following way
+
+setClass("Internationalfaculty",  
+         slots=list(country="character"),  
+         contains="faculty"  
+)  
+ 
+
+In our derived class we have defined only one attribute i.e. country. Other attributes will be inherited from its parent class.
+s <- new("Internationalfaculty",name="Ganesh", age=20, GPA=3.5, country="India") 
+s
+
+When we did show(s), the method defines for class faculty gets called. We can also define methods for the derived class of the base class as in the case of the S3 system.
+
+Classes and objects are the most important concepts of Object Oriented Programming language(OOP).
+
+Quiz:
+=====
+
+Assignment:
+===========
+1-Create a line class cotaining two methods which accepts the co-ordintates as a pair of tuples and return slop and distance of line
+	ex: coordinate1= (3,2)
+	    coordinate1= (34,22)
+	   li = Line(coordinate1,coordinate2)
+Note: get the formulae of slop and distiance formulae from internet
+2-Create a Cylinder class containing two method volume and surface area which accepts height and radius 
+	Ex:	c = Cylinder(2,3)
+		c.volume()
+		c.surface_area()
+Note: get the formulae volume of cyclinder and surface area of the cyclinder.
+3-create a bank account class that has two attributes for owner and balance and two methods deposit,withdraw. As an added requirement, withdrawals may not exceed the available balance. 
+Instantiate your class, make several deposits and withdrawals, and test to make sure the account can't be overdrawn.
+
+Resources
+=========
+https://data-flair.training/blogs/object-oriented-programming-in-r/
+https://data-flair.training/blogs/machine-learning-datasets/  R Projects

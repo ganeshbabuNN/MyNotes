@@ -1,0 +1,133 @@
+Intro
+Package Operations
+Load Package to Library
+The Difference Between A Package And A Library
+Modules
+
+Intro
+=====
+R packages are a collection of R functions, complied code and sample data. 
+They are stored under a directory called "library" in the R environment. 
+By default, R installs a set of packages during installation. 
+More packages are added later, when they are needed for some specific purpose. 
+When we start the R console, only the default packages are available by default. 
+Other packages which are already installed have to be loaded explicitly to be used by the R program that is going to use them.
+
+Official packages and modules
+https://cran.r-project.org/web/packages/
+
+-The basic information about a package is provided in the DESCRIPTION file, where you can find out what the package does, 
+who the author is, what version the documentation belongs to, the date, the type of license its use, and the package dependencies
+
+
+Package Operations
+==================
+
+#Check Available R Packages. Get library locations containing R packages
+When we execute the above code, it produces the following result. It may vary depending on the local settings of your pc.
+
+.libPaths()
+
+in R studio , you can see in the  packages panel
+
+#Get the list of all the packages installed
+library()
+
+#Get all packages currently loaded in the R environment
+When we execute the below code, it produces the following result. It may vary depending on the local settings of your pc.
+search()
+
+#To check what packages are installed on your computer, you can use:
+installed.packages()
+
+#Uninstalling a package is straightforward with the function remove.packages(), in your case:
+remove.packages("vioplot")
+
+#You can check what packages need an update with a call to the function:
+old.packages()
+
+#You can update all packages by using:
+update.packages()
+
+#But for a specific package, just use once again:
+install.packages("vioplot")
+
+Install a New Package
+=====================
+-There is something called repository where Packages are located so you can install from it.
+-Three of the most popular repositories for R packages are:
+*CRAN:the official repository, it is a network of ftp and web servers maintained by the R community around the world
+*Bioconductor:this is a topic specific repository, intended for open source software for bioinformatics. As CRAN, it has its own submission and review processes, and its community is very active having several conferences and meetings per year
+*Github:although this is not R specific, Github is probably the most popular repository for open source projects. Its popularity comes from the unlimited space for open source, the integration with git, a version control software
+
+There are two ways to add new R packages. 
+One is installing directly from the CRAN directory and another is downloading the package to your local system and installing it manually.
+
+Install directly from CRAN
+--------------------------
+The following command gets the packages directly from CRAN webpage and installs the package in the R environment
+You may be prompted to choose a nearest mirror. Choose the one appropriate to your location.
+
+install.packages("Package Name")
+ 
+# Install the package named "XML".
+ install.packages("XML")
+
+
+Install package manually
+------------------------
+Go to the link R Packages to download the package needed. 
+https://cran.r-project.org/web/packages/available_packages_by_name.html
+
+Save the package as a .zip file in a suitable location in the local system.
+
+Now you can run the following command to install this package in the R environment.
+install.packages(file_name_with_path, repos = NULL, type = "source")
+
+# Install the package named "XML"
+install.packages("E:/XML_3.98-1.3.zip", repos = NULL, type = "source")
+
+
+Load Package to Library
+=======================
+Before a package can be used in the code, it must be loaded to the current R environment. 
+You also need to load a package that is already installed previously but not available in the current environment.
+
+A package is loaded using the following command −
+library("package Name", lib.loc = "path to library")
+
+# Load the package named "XML"
+install.packages("E:/XML_3.98-1.3.zip", repos = NULL, type = "source")
+
+The Difference Between A Package And A Library
+===============================================
+library() is the command used to load a package, and it refers to the place where the package is contained, usually a folder on your computer, while a package is the collection of functions bundled conveniently.
+
+
+Modules
+=======
+A module allows you to logically organize your R code
+A module is a file consisting of R code. 
+A module can define functions, classes and variables. A module can also include runnable code.
+Provides modules as an organizational unit for source code.
+
+sytnax:
+From CRAN:
+install.packages("modules")
+
+From GitHub:
+devtools::install_github("wahani/modules")
+
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========
+https://intro2r.com/dir-struct.html
+https://wahani.github.io/modules/
+https://www.datacamp.com/community/tutorials/r-packages-guide
+https://www.tutorialspoint.com/r/r_packages.htm

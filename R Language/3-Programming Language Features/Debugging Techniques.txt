@@ -1,0 +1,223 @@
+what is debuging
+Fundamental principles of Debugging
+traceback() function
+debug() function
+browser() functions
+trace() functions
+Recover Function
+Debugging Installed Packages
+Error Handling and Recovery
+
+what is debuging
+===============
+-In computer programming, debugging is a multi-step process which involves identifying a problem, isolating the source of the problem, and then fixing the problem or determining a way to work around it
+-The final step of debugging is to test an improvement or workaround and ensure that it works.
+-The grammatically correct program may give us incorrect results due to some logical errors which are known as "bug."
+-In case, if such errors occur, then we need to find out why and where they have occurred so that we can fix them. The procedure to identify and fix bugs is called "debugging."
+
+In R debugging as various terms
+1)fundamental Principle
+2)Functions
+3)Debugging installed Packages
+4)Error Handling & Recovery
+
+Fundamental principles of Debugging
+===================================
+There few princples
+1)The essence of debugging
+2)Start Smell
+3)Debug in a modular
+4)Antibugging
+
+1)The essence of debugging
+--------------------------
+Fixing a bugging is a process of confirmation. 
+It gradually confirms that many aspects we believe to be true about the code are true actually. 
+When it is found that one such assumption is false, there we found a clue to the bug's location.
+
+a <- b^2 + 3*c(z, 2)  
+x<- 28  
+if (x+q> 0)   
+  t<- 1   
+else   
+  u<- -10
+
+2)Start Smell
+-------------
+Stick to small, simple test cases, at least at the beginning of the R debug process. 
+Working with big data objects can make it difficult to think about the problem. Of course, 
+we should eventually test our code in large, complex cases, but start small.
+
+3)Debug in a modular
+--------------------
+Most professional software developers agree that the code should be written in a modular manner. 
+Our first-level code should not be too long for a function call. 
+And those functions should not be too long and should call another function if necessary. 
+This makes the code easier to write and helps others understand when the time comes to extend the code.
+
+We should debug in a top-down manner. Suppose we have the debug state of our function f () and it has the below line.
+
+For ex:
+Y <- g (x, 8)  
+
+Currently, say no to debug (g). Execute the line and see if g () returns the value that we expect. If this happens, we simply have to avoid the single-step time-consuming process through g(). If g () returns an incorrect value, now is the time to call debug (g).
+
+4. Antibugging
+--------------
+If there is a section of a code in which a variable z should be positive then we can insert the following line for better performance:
+
+Stopifnot(z>0)
+
+When there is a bug in the code like the value of z is equal to -3, then the Stopifnot() function is called and will bring things right there with an error message :
+z=-3
+Stopifnot(z>0)
+Error:z>0 is not TRUE
+
+traceback() function
+====================
+If our code has already crashed and we want to know where the offensive line is, try traceback()
+This will (sometimes) show the location somewhere in the code of the problem.
+ When an R function fails, an error is printed on the screen. Immediately after the error, we can call traceback () to see on which function the error occurred. 
+The traceback () function prints the list of functions which were called before the error had occurred. The functions are printed in reverse order.
+
+for ex:
+f <- function(a){
+  x<- a-ql(a)
+  x
+}
+
+ql <- function(b){
+  r <- b*mn(b)  
+  r
+}
+
+mn<- function(p){  
+  r <- log(p)  
+  if(r<10)  
+    r^2  
+  else  
+    r^3  
+}  
+
+f(-2) 
+
+When we run the above code, it will generate the following output:
+After finding the following error we call our traceback() function and when we run, it will show the following output:
+traceback()
+
+debug() function
+================
+In R, debug () function allows the user to step through the execution of a function. 
+At any point, we can print the values of the variables or draw a graph of the results within the function. 
+Keep hitting enter for next steps.
+While debugging, we can just type "c" to continue to the end of the current block of code. 
+Traceback () does not tell us where the function error occurred. 
+To know which line is causing the error, we have to step through the function using debug ()
+
+func<- function(a,value){  
+  subt<- value-a  
+  squar<- subt^2  
+  collect <- sum(squar)  
+  collect  
+} 
+
+debug(func)  
+func(1,5) 
+
+
+browser() functions
+===================
+The browser() function halts the execution of a function until the user allows it to continue. 
+This is useful if we don't want to step through the complete code, line-by-line, but we wish to stop it at a certain point so we can check what's going on.
+
+func<- function(a,value){  
+  subt<- value-a  
+  squar<- subt^2  
+  browser() ## start point 
+  collect <- sum(squar)  
+  browser() ## end point
+  collect  
+} 
+
+func(1,5) 
+
+trace() functions
+=================
+The trace() function call allows the user to insert bits of code into the function. 
+The syntax for the R debug function trace () is a bit awkward for first-time users. It may be better to use debug ().
+
+f <- function(a){  
+  x <- a-ql(a)  
+  x  
+} 
+
+ql<- function(b){  
+  r <- b*mn(b)  
+  r  
+}  
+
+
+mn<- function(p){  
+  r <- log(p)  
+  if(r<10)  
+    r^2  
+  else  
+    r^3  
+}  
+
+as.list(body(mn))  
+trace("mn",quote(if(is.nan(r)){browser()}),at=3,print=FALSE)  
+f(1)  
+f(-1) 
+
+Recover Function
+================
+When we will perform debugging of a function, recover () allows us to examine variables in an upper-level function.
+By typing a number in the selection, we are navigated to the function on the call stack and deployed in a browser environment.
+The recover () function is used as an error handler, set using options () (eg. Adopt (error = retrieval)).
+When a function throws an error, execution is stopped at the point of failure. We can browse the function call and examine the environment to find the source of the problem.
+
+f <- function(a){  
+  x <- a-ql(a)  
+  x  
+}  
+ql<- function(b){  
+  r <- b*mn(b)  
+  r  
+}  
+mn<- function(p){  
+  r <- log(p)  
+  if(r<10)  
+    r^2  
+  else  
+    r^3  
+}  
+as.list(body(mn))  
+trace("mn",quote(if(is.nan(r)){recover()}),at=3,print=FALSE)  
+f(-1) 
+
+Debugging Installed Packages
+============================
+There is probability of an error stemming by an installed R package.The several ways by which we can solve our problem are as follows
+1)Setting the options ( error = recover) and then it is proceeded line by line by the code using n
+2)In complex situations, we should have a copy of the function code. In R the function entering is used to print out the function code which can be copied into the text editor. We can edit this by loading it into the global workspace and then by performing debugging
+3)If our problems are not solved, then we have to download the source code. We can also use the devtools package and the install(), load_all() functions to make our procedure quicker
+
+Error Handling and Recovery
+===========================
+Exception or error handling is a process of response to odd events of code that interrupts the flow of code. 
+In general, the scope for the exception handler begins with a try and ends with a catch. 
+R provides the try (), and trycatch () functions for the same.
+
+The try () function is the wrapper function for trycatch () that prints the error and then continues.
+On the other hand, trycatch () gives us control of the error function and, optionally, also continues the process of the function.
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources
+=========
+https://www.javatpoint.com/r-debugging

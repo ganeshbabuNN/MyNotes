@@ -1,0 +1,21 @@
+The 4 OOP principles
+======================
+1)encapsulation
+2)inheritance
+3)Polymorphsm
+4)abstractions
+
+**This notes will be updated later
+
+Quiz:
+=====
+1)what is the uses of the classes and methods
+2)what is the methods and atrributes?
+3)what is the function and variables?
+4)what is attributes?
+
+Assignment:
+===========
+
+Resources
+=========
