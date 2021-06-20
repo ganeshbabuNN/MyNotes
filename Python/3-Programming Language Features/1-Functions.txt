@@ -18,15 +18,6 @@ Built in Functions
 
 Introduction
 =============
-Methods
-------
-We've already seen a few example of methods when learning about Object and Data Structure Types in Python.
-Methods are essentially functions built into objects. Later on in the course we will learn about how to create our own objects and methods using Object Oriented Programming (OOP) and classes.
-Methods perform specific actions on an object and can also take arguments, just like a function. This lecture will serve as just a brief introduction to methods and get you thinking about overall design methods that we will touch back upon when we reach OOP in the course.
-Methods are in the form:
-	object.method(arg1,arg2,etc...)
-You'll later see that we can think of methods as having an argument 'self' referring to the object itself. You can't see this argument but we will be using it later on in the course during the OOP lectures.
-
 Functions
 ---------
 -before starting don't get discourged coz it is a new concept. Refer Function_Leap.png
@@ -39,6 +30,15 @@ remember that we used a function len() to get the length of a string. Since chec
 Why even use functions:
 Put simply, you should use functions when you plan on using a block of code multiple times. The function will allow you to call the same block of code without having to write it multiple times. 
 This in turn will allow you to create more complex Python scripts. To really understand this though, we should actually write our own functions!
+
+Methods
+------
+We've already seen a few example of methods when learning about Object and Data Structure Types in Python.
+Methods are essentially functions built into objects. Later on in the course we will learn about how to create our own objects and methods using Object Oriented Programming (OOP) and classes.
+Methods perform specific actions on an object and can also take arguments, just like a function. This lecture will serve as just a brief introduction to methods and get you thinking about overall design methods that we will touch back upon when we reach OOP in the course.
+Methods are in the form:
+	object.method(arg1,arg2,etc...)
+You'll later see that we can think of methods as having an argument 'self' referring to the object itself. You can't see this argument but we will be using it later on in the course during the OOP lectures.
 
 Anotomy of functions
 ===================
