@@ -1,0 +1,100 @@
+Practice 1. How to detect Positive and Negative Numbers
+Practice 2. How to check for Even and odd Numbers
+Practice 3. How to check for Greatest of 3 Numbers
+Practice 4. How to check for divisibility of a Number
+Practice 5. How to convert from Celsius to Fahrenheit
+Practice 6. How to convert from Fahrenheit to Celsius
+Practice 7. How to create a calendar
+Practice 8. How to calculate Mass, Density and Volume
+Practice 9 How to determine the quadrant of a point
+Practice 10. How to determine if a Triangle exist
+Practice 11. How to check for Leap year
+Practice 12. How to check if a point belongs to Circle
+Practice 13. How to create quadratic Equation
+Practice 14. How to make ques of Random number
+Practice 15. How to print out the ASCII Table
+Practice 16. How to create a Multiplication Table using while loop
+Practice 17. How to create Multiplication Table using for loop
+Practice 18. How to convert from base 2 to 9
+Practice 19. How to build a simple Calculator
+Practice 20. Number of digits in an Integer
+Practice 21. How to get Sum and Product of digits
+Practice 22. How to make a Binary search of number in an array
+Practice 23. How to sum of N series of an element
+Practice 24. How to get value of Even and Odd digits
+Practice 25. How to get a Factorial using a while loop
+Practice 26. How to get Factorial using for loop
+Practice 27. How to create a Fibonacci Sequence
+Practice 28. How to get the value of Fibonacci Element
+Practice 29. How to get find the Greatest Common Divisor
+Practice 30. How to maximum value of a floating point number
+Practice 31. How to get Prime and Complex Numbers
+Practice 32. Quadratic Equation with Solutions at specified Range of Coefficient
+Practice 33. How to Reverse Numbers
+Practice 34. How to expand Strings of Alphabet
+Practice 35. How to Replace a Substring of a String
+Practice 36. How to select Integers from String
+Practice 37. How to sort words according to their length
+Practice 38. How to find the longest word in a String
+Practice 39. How to get Percentage of Uppercase and Lowercase
+Practice 40. How to check for String Palindrome
+Practice 41. How to generate Random numbers using Arrays
+Practice 42. How to get the Maximum Element in an Array
+Practice 43. How to get the Minimum Element in an Array
+Practice 44. How to get the Number of Even and Odd numbers
+Practice 45. How to get Positive numbers out of Negative Numbers
+Practice 46. How to get numbers greater than the average of an Array
+Practice 47. How to Replace list-items with -1, 0, 1
+Practice 48. How to check for File Extension
+Practice 49. How to remove symbols from Text
+Practice 50. How to get Intersection of list using for loop
+Practice 51. Simple Intersection of List
+Practice 52. Longest ordered sequence in ascending order
+Practice 53. How to get the most occurrence Element
+Practice 54. How to bubble sort elements of an Array
+Practice 55. How to sort Array using Selection sorting
+Practice 56. How to generate Matrix of Random numbers
+Practice 57. How to get the rows and columns with maximum sum of elements
+Practice 58. Sum items in rows and columns of elements
+Practice 59. How to sum diagonals of a Matrix
+Practice 60. How to interchange the principal diagonals of matrix
+Practice 61. How to sort columns of element by sorting the first row
+Practice 62. How to check rows and columns that has particular element
+Practice 63. How to generate beautiful Unicode
+Practice 64. How to get prices of products
+Practice 65. How to make list of dictionary using 2 Lists
+Practice 66. How to delete dictionary item
+Practice 67. Return value of 2 Arguments using function
+Practice 68. How to fill List
+Practice 69. How to get the Arithmetic mean of a List
+Practice 70. How to generate Fibonacci sequence using Function
+Practice 71. How to get Fibonacci value using recursion
+Practice 72. How to get Factorial using recursion
+Practice 73. How to get the LCM
+Practice 74. How to Reverse Word Sequence
+Practice 75. How to search for Binary numbers
+Practice 76. How to make a ring shift or recycle items of a list
+Practice 77. How to Read Text
+Practice 78. How to use Read Method
+Practice 79. How to use ReadLine Method
+Practice 80. How to use ReadLines Method
+Practice 81. How to Write to File
+Practice 82. How to Read Text from File to Dictionary
+Practice 83. How to count Number of Lines, Words and Letters in a text file
+Practice 84. How to capture String Errors
+Practice 85. How to check for non existence of number
+Practice 86. How to display Error message for non existed files
+Practice 87. How to get Division by Zero error
+Practice 88. How to get Index out of Exception
+Practice 89. How to Raise Exceptions
+Practice 90. How to use classes and constructor
+Practice 91. How to fill a list with natural Numbers
+Practice 92. How to fill a list with Random Numbers
+Practice 93. How to select Even Numbers from list
+Practice 94. How to create List from Dictionary
+Practice 95. How to unpack Matrix into one level list
+Practice 96. Read Data from file into Lines and Characters
+Practice 97. How to calculate the Orbital speed
+Practice 98. Sum of a Random of 3 digit numbers
+Practice 99. How to calculate the Area and Perimeter of Right Angle Triangle
+Practice 100. How to get Total Surface Area of a Cylinder
