@@ -1,0 +1,138 @@
+Practice 1. Hello world
+Practice 2. How to accept input from User 
+Practice 3. How to sum 2 integers from user 
+Practice 4. How to build a simple interest calculator
+Practice 5. How to multily float numbers.
+Practice 6. How to Find ASCII value 
+Practice 7. How to get quotient and remainder 
+Practice 8. How to swap 2 numbers 
+Practice 9. alternative method to swap2 numbers.
+Practice 10. How to swap 2 Strings 
+Practice 11. How to add Complex Numbers
+Practice 12. How to calculate sum of digit number
+Practice 13. How to calculate Area of a Circle 
+Practice 14. How to calculate Area of a Circle 
+Practice 15. How to calculate Area of a Rectangle 
+Practice 16. How to calculate Area of Square 
+Practice 17. How to calculate Area of a Triangle 
+Practice 18. How to calculate volume of a Cube 
+Practice 19. How to calculate Area of a Cylinder 
+Practice 20. How to calculate volume of Sphere 
+Practice 21. How to generate Random Numbers 
+Practice 22. How to calculate gross salary 
+Practice 23. How to calculate percentage 
+Practice 24. A program to shut down computer
+Practice 25. A program to get IP address
+Practice 26. A program for Date and Time 
+Practice 27. How to detect Even and Odd numbers
+Practice 28. How to detect Vowels and Consonants 
+Practice 29. How to detect Greatest of 3 Numbers 
+Practice 30. How to find Roots of Quadratic Equation 
+Practice 31. How to detect a Leap Year 
+Practice 32. How to display Student_s Grade 
+Practice 33. How to Sum a given a Number 
+Practice 34. How to Calculate factorial using function 
+Practice 35. How to create Multiplication Table 
+Practice 36. How to create Fibonacci Sequence 
+Practice 37. How to Reverse Numbers 
+Practice 38. How to Reverse Numbers using Array 
+Practice 39. How to Reverse String 
+Practice 40. How to check Palindrome 
+Practice 41. How to create Prime Numbers 
+Practice 42. How to Calculate HCF and LCM 
+Practice 43. How to detect Armstrong Numbers 
+Practice 44. How to generate Armstrong Numbers 
+Practice 45. How to create Half Pyramid Pattern 
+Practice 46. How to create half pyramid 
+Practice 47. How to create Full Pyramid 
+Practice 48. How to create Inverted Half Pyramid 
+Practice 49. How to create Paschal Triangle 
+Practice 50. How to create Perfect Square 
+Practice 51. How to create Diamond pattern 
+Practice 52. How to build Simple Calculator 
+Practice 53. How to Reverse Numbers using Array 
+Practice 54. How to Reverse Array without Pointer
+Practice 55. How to find Length of String
+Practice 56. How to Add 2 Matrices with Multidimensional Array
+Practice 57. How to Subtract 2 Matrices
+Practice 58. How to Multiply 2 Matrices
+Practice 59. How to Transpose a Matrix
+Practice 60. How to Add 2 Numbers
+Practice 61. How to sum Array Elements
+Practice 62. How to sort String
+Practice 63. How to Find the Maximum Element in an Array
+Practice 64. How to Merge 2 Arrays
+Practice 65. How to insert a new Element into an Array
+Practice 66. How to delete an Element in an Array
+Practice 67. Check frequency of occurrence of a character
+Practice 68. How to remove spaces in-between strings
+Practice 69. String Concatenation
+Practice 70. Find the length of Strings
+Practice 71. How to copy Strings
+Practice 72. How to Compare Strings
+Practice 73. How to get the substring of a string
+Practice 74. How to find the Minimum Element
+Practice 75. How to remove Vowels from String
+Practice 76. How to use Structure
+Practice 77. How to add 2 distances using Structure
+Practice 78. How to generate Student_s Data using Union
+Practice 79. How to write to File
+Practice 80. How to read a File
+Practice 81. How to Delete a File
+Practice How to copy one file into another
+Practice 83. How to copy more than one Files
+Practice 84. How to print out source code
+Practice 85. How to convert from Binary to Decimal
+Practice 86. How to convert from Binary to Hexadecimal
+Practice 87. How to convert from Decimal to Octal
+Practice 88. How to convert from Decimal to Binary
+Practice 89. How to Convert from Decimal to Binary Bitwise
+Practice 90. How to build Binary Pattern
+Practice 91. Squares of N Numbers
+Practice 92. How to get square of number entered by user
+Practice 93. How to check for Positive Number
+Practice 94. Alternative method to check for Positive Number
+Practice 95. How to Add first and last digit of a Number
+Practice 96. How to find Factors of a Number
+Practice 97. How to Check Average of numbers
+Practice 98. How to convert from Uppercase to Lowercase
+Practice 99. How to create Binary Pattern
+Practice 100. How to convert from Binary to Octal
+Practice 101. How to create a Diamond Pattern
+Practice 102. How to create Diamond Outline
+Practice 103. How to Create Diamond of Numbers
+Practice 104. How to create Floyd's pattern
+Practice 105. How to create a Hollow Diamond pattern
+Practice 106. How to create a Hollow square pattern
+Practice 107. How to create Hour Glass pattern
+Practice 108. How to create Star Hash pyramid pattern
+Practice 109. How to create Nested Star Hash Pyramid
+Practice 110. How to create Alpha Numeric Pattern
+Practice 111. How to build Numeric Diamond Pattern
+Practice 112. How to create Numeric Pattern
+Practice 113. How to create Numeric Pattern (Part 2)
+Practice 114. How to create Numeric Pattern (Part 3)
+Practice 115. How to create Numeric Pattern ( part 4)
+Practice 116. How to create Pascal Triangle
+Practice 117. How to create Pascal Triangle (Part 2)
+Practice 118. How to create Pascal Triangle using Function
+Practice 119. How to create Half Cone pattern
+Practice 120. How to create Alpha pattern
+Practice 121. How to create Alphabet Pattern
+Practice 122. How to create Numeric pattern (Part 5)
+Practice 123. How to create inverted Half Cone
+Practice 124. How to create a Simple Pattern (Part 2)
+Practice 125. How to create Numeric Diagonal
+Practice 126. How to create a Simple Pattern(Part 3)
+Practice 127. How to create a Steep slope pattern
+Practice 128. How to check for Float and Integer
+Practice 129. How to create Numeric Slope Pattern
+Practice 130. How to create Pyramid pattern
+Practice 131. How to create Rectangular Pattern
+Practice 132. How to create Rectangular Star Pattern
+Practice 133. How to create Inverted Cone
+Practice 134. How to create a Rhombus pattern
+Practice 135. How to create Square Kite Pattern
+Practice 136. How to create Square star pattern
+Practice 137. How to create an X pattern
+Practice 138. How to create a Triangle without fill

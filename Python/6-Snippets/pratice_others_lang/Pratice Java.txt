@@ -1,0 +1,120 @@
+Pratice 1. Hello world
+Practice 2. PrintWriter
+Practice 3. Basic Arithmetic Calculators
+Practice 5. Date and Time
+Practice 6. Swapping two different values
+Practice 7. Method Overloading
+Practice 8. String Overloading
+Practice 9. Method Overriding
+Practice 10. Use of Final Keyword as a variable
+Practice 11. Use of final Keyword as a method
+Practice 12. Use of finalized keyword
+Practice 13. Static Variable
+Practice 14. Program for Interface
+Practice 15. Super class
+Practice 16. How to use This keyword
+Practice 17. Print numbers in Matrix Format
+Practice 19. Matrix Subtraction
+Practice 20. Matrix Multiplication
+Practice 21. Triangular Pattern (1)
+Practice 22. Triangular Pattern (2)
+Practice 23. Triangular Pattern (3)
+Practice 24.Practice Triangular Pattern (4)
+Practice 25. Paschal Triangle
+Practice 27. Multiplication Table
+Practice 28. Area of a Triangle
+Practice 29. How to detect largest Number input from a user
+Practice 30. Use of maths operators for Calculator
+Practice 31. A program for calculating Factorial
+Practice 32. A program to determine Student's grade
+Practice 33. Detect Negative and Positive Numbers from a user
+Practice 34. Detect Even and Odd Numbers
+Practice 35. A program for Fibonacci Sequence
+Practice 36. A program to check palindrome number
+Practice 37. Program to check Vowels and Consonants
+Practice 38. Print out Arrays
+Practice 39. Print out Array from user
+Practice 40. Print out Arrays in ascending order
+Practice 41. Print out String Arrays
+Practice 42. Sorting an Array
+Practice 43. Program to search an element in an Array
+Practice 44. Insert Element in an Array
+Practice 45. Program to Reverse an Array
+Practice 46. Minimum and Maximum Element in Array
+Practice 47. A program to merge two Arrays
+Practice 48. A program to sort a Merged Array
+Practice 49. Abstract Class
+Practice 50. A program for Abstract class and Abstract Method
+Practice 51. Array to String
+Practice 52. A Program to calculate Array_s average
+Practice 53. For Loop
+Practice 54. Infinite Loop
+Practice 55. Generate Random Numbers
+Practice 56. Reverse a Number
+Practice 57. Convert fro Fahrenheit to Centigrade
+Practice 58. Convert Centigrade to Fahrenheit
+Practice 59. Reverse a Number using For loop
+Practice 60. Program to print out Prime Numbers
+Practice 61. A program to swap two different Numbers
+Practice 62. A program to swap two different numbers (2)
+Practice 63. Print out current Date and Time
+Practice 64. Program to detect a leap year
+Practice 65. program to detect Prime numbers only
+Practice 66. A program to check a perfect square
+Practice 67. Program to convert from Decimal to Binary
+Practice 68. Sum of Digits from User
+Practice 69. A program to find two top maximum numbers in an Array
+Practice 70. A program to convert from String to Character
+Practice 71. A program to convert from String to other Data Types
+Practice 72. A program to check Armstrong Numbers
+Practice 73. A program to calculate Arithmetic Mean
+Practice 74. Program to calculate HCF and LCM
+Practice 75. Program to convert from Decimal to Octal
+Practice 76. A program to convert from Binary to Decimal
+Practice 77. Program to convert from Decimal to HexaDecimal
+Practice 78. Program to create current locale
+Practice 79. A program for Array List
+Practice 80. Iterate through HashMap
+Practice 81. A program to sort HashMap
+Practice 82. Sort HashMap by Values
+Practice 83. Program to find longest sub string
+Practice 84. A program to get Employee_s data
+Practice 85. A program to sort Object using comparable interface
+Practice 86. A program to sort Object using Comparator Interface
+Practice 87. A program to detect first non repeated character
+Practice 88. A program to generate permutation of a string
+Practice 89. A program to get the result of the longest Palindrome
+Practice 90. A program to sort Array in Descending order
+Practice 91. A program to remove duplicate element in a list
+Practice 92. A program to run a Thread
+Practice 93. A program to create a Thread using runnable interface
+Practice 94. A program to join two Threads
+Practice 95. Program to remove Multiple spaces in a String
+Practice 96. A program to find the union of two Arrays
+Practice 97. A program to find intersection of two Arrays
+Practice 98. A program to detect if a number is of power of 2
+Practice 99. A program for Exception Handling
+Practice 100. A program for Multiple catch Blocks in Exception Handling
+Practice 101. A program to implement Exception Handling using Finally Block
+Practice 102. A program to implement Try-Catch-Finally Blocks
+Practice 103. A program to implement Throw in java
+Practice 104. A program for User Define Exception
+Practice 105. A program for Constructor Inheritance
+Project 106. A program for super class in Inheritance
+Practice 107. A program to clone Objects
+Practice 108. A program to get sub-list from an Array with clone
+Practice 109. A program to sync Array list using Collections.synchochroniseList
+Practice 110. A program to get the last occurrence of an object in an Array list
+Practice 111. A program to demonstrate Single Inheritance
+Practice 112. A program to demonstrate MultiLevel Inheritance
+Practice 113. A program to demonstrate Hierarchical Inheritance
+Practice 114. A project to print different String functions
+Practice 115. A program to count Number of words in a String variable
+Practice 116. A program to find Armstrong using Multithreading
+Practice 117. A program to find Prime Numbers using Multithreading
+Practice 118. A program to print out Alphabets A-Z using Multithreading
+Practice 119. A program to print out Alphabet using Alternate
+Project 120. A program to print out Numbers
+Practice 121. A program to check for Even Numbers
+Practice 122. A program to check for Odd Numbers
+Practice 123. A program to get square of Numbers with Multithreading

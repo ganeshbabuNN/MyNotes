@@ -1,0 +1,108 @@
+Practice 1. Hello world
+Practice 2. User of variables
+Practice 3. Understanding local and global variable
+Practice 4. user input
+Practice 5. How to accept strings from users
+Practice 6. how to add 2 Numbers.
+Practice 7. How to use maths operators
+Practice 8. How to add n Numbers
+Practice 9. How to use if Statement
+Practice 10. How use Nested if Statement
+Practice 11. How to use if else Statement
+Practice 12. How to use else if Statement
+Practice 13. How to use switch Statement
+Practice 14. Nested switch Statement
+Practice 15. How to use while Loop
+Practice 16. do while loop
+Practice 17. How to use for loop
+Practice 18. Prime Numbers
+Practice 19. Area of a Triangle
+Practice 20. How to find Even and Odd Numbers
+Practice 21. How to add digits from user
+Practice 22. How to find Greatest of three Numbers
+Practice 23. How to swap numbers using variables
+Practice 24. How to swap Numbers using 2 variables
+Practice 25. How to calculate the percentage
+Practice 26. How to calculate Gross Salary
+Practice 27. How to calculate Simple Interest
+Practice 28. How to check a Leap Year
+Practice 29. How to get HCF using Recursive Function
+Practice 30. How to calculate the LCM
+Practice 31. How to calculate LCM and HCF
+Practice 32. How to get Factorial of nCr and nPr
+Practice 33. How to reverse numbers
+Practice 34. How to reverse arrays of Numbers
+Practice 35. How to check for a Palindrome
+Practice 36. How to generate Prime Numbers
+Practice 37. List of Prime Numbers
+Practice 38. How to check for Armstrong Numbers
+Practice 39. How to Generate Armstrong Numbers
+Practice 40. Calculate Factorial
+Practice 41. How to calculate Factorial using Recursive function
+Practice 42. How to create a Fibonacci Series
+Practice 43. Fibonacci Series using Recursive Function
+Practice 44. Mathematical Functions
+Practice 45. How to generate Random Numbers
+Practice 46. How to convert from Binary to Hexadecimal
+Practice 47. How to convert from Binary to Octal
+Practice 48. How to convert from Binary to Decimal
+Practice 49. How to convert from Decimal to Octal
+Practice 50. How to convert from Decimal to Binary
+Practice 51. How to convert from Decimal to Bitwise
+Practice 52. How to find first and last number in an Array
+Practice 53. How to pass Arrays to Functions
+Practice 54. How to find maximum element in Array
+Practice 55. How to find the minimum element in an Array
+Practice 56. How to Reverse Array Elements
+Practice 57. How to insert a new element into an Array
+Practice 58. How to delete an Element in Array
+Practice 59. How to Merge 2 Arrays
+Practice 60. How to add two matrices
+Practice 61. How to subtract two Matrices
+Practice 62. How to Transpose a Matrix
+Practice 63. How to multiply 2 matrices
+Practice 64. Simple String Format
+Practice 65. How to check for Length of String using for loop
+Practice 66. How to check for length of String using function
+Practice 67. How to compare Strings using for loop
+Practice 68. How to compare two Strings using Function
+Practice 69. How to copy Strings
+Practice 70. How to copy strings using strcpy
+Practice 71. How to make concatenation using a for loop
+Practice 72. How to concatenation using strcat
+Practice 73. How to Reverse a string using while loop
+Practice 74. How to Reverse a String using strrev
+Practice 75. How to Reverse Complete Sentence
+Practice 76. How to check if a String is a Palindrome
+Practice 77. How to convert from Uppercase to Lowercase
+Practice 78. How to convert from Uppercase to Lowercase using strlwr
+Practice 79. How to convert from Uppercase to Lowercase using while loop
+Practice 80. How to convert from Lowercase to Uppercase using strupr
+Practice 81. How to Remove vowels from string
+Practice 82. How to find the frequency occurrence of a Character
+Practice 83. How to check Vowels and Consonants
+Practice 84. How to get number of Vowels, Consonants, Digits and Whitespaces
+Practice 85. How to search for an Element in an Array
+Practice 86. How to check for an Element in an Array using Recursive function
+Practice 87. How to sort Array using Bubble
+Practice 88. How to sort Arrays using Insertion
+Practice 89. How to sort Arrays using Selection method
+Practice 90. How to call by Value
+Practice 91. How to call by Reference
+Practice 92. How to call by Pointer
+Practice 93. How to Write to a file
+Practice 94. How to Read from a file
+Practice 95. How to add 2 Numbers using function
+Practice 96. How to subtract two Numbers using function
+Practice 97. How to create Classes
+Practice 98. How to Pass Argument to Function
+Practice 99. How to use inline function
+Practice 100. How to check length of string using Pointer
+Practice 101. How to create a Pyramid pattern
+Practice 102. How to create a Right Angled Triangle
+Practice 103. How to a Diamond pattern
+Practice 104. How to create a Right Angle Triangle pattern
+Practice 105. How to create Alphabet pattern
+Practice 106. How to create a Pascal Triangle pattern
+Practice 107. How create a Floyd_s Triangle
+Practice 108. How to create Numeric Pyramid pattern
