@@ -760,7 +760,7 @@ Dataframe
 *Each column contains the same number of data items.
 
 Creating a Dataframe
-------------------
+----------------------
 -the data frames are created with the help of frame() function of data
 -This function contains the vectors of any type such as numeric, character, or integer.
 
@@ -780,19 +780,83 @@ class(stu.data)
 typeof(stu.data)
 print(stu.data)
 
-or
+converting dataframe from vector
+*------------------------------*
+#converting named vector to dataframe
+employee <- c('John Doe','Peter Gynn','Jolie Hope')
+salary <- c(21000, 23400, 26800)
+startdate <- as.Date(c('2010-11-1','2008-3-25','2007-3-14'))
 
-student_id = c(14:19)
-student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh")
-student_age =c(32,44,34,56,34,23)
-student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC")
-student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24"))
+employ.data <- data.frame(employee, salary, startdate)
+employ.data
+str(employ.data)
 
-stu.data <- data.frame(student_id,student_name,student_age,student_class,student_join)
+#using dplr
+library(dplyr)
+testVect <- structure(c("11.2.0.3.0", "12.89", "12.71"), .Names = c("db_version", 
+                                                                    "elapsed_time", "cpu_time"))
+testVect %>% bind_rows() #using dplyr
+
+#converting a vector of fixed length
+myvector <- c("1", "darkorange", "16876", "16890", "2", "pink", "6833", "7189", 
+              "2", "pink", "9181", "9279", "2", "darkgreen", "1846", "2170")
+myvector
+m1 <- matrix(myvector, ncol=4, byrow=TRUE)#convert to matrix with fixed column
+m1
+d1 <- as.data.frame(m1, stringsAsFactors=FALSE)
+d1
+
+#read.table method
+m2=read.table(text = paste(myvector, collapse = " "), 
+              col.names = paste0("V", 1:4))
+m2
+
+converting dataframe from list
+*----------------------------*
+#base R
+test1 <- list( c('a','b','c'), c(a='d',b='e',c='f'))
+data.frame(t(sapply(test1,c)))
+
+#data.table library
+library(data.table)
+test1 <- list(col1 <-list(a=1,b=2,c=3),
+              col2 <- list(a=4,b=5,c=6))
+rbindlist(test1)
+
+#using dplyr
+library(dplyr)
+test1 <- list(col1 <-list(a=1,b=2,c=3),
+              col2 <- list(a=4,b=5,c=6))
+bind_rows(test1)
+
+converting dataframe from matrix
+*-------------------------------*
+Mat1 = matrix(c(1, 5, 14, 23, 54, 9, 15, 85, 3, 42, 9, 7, 42, 87, 16), ncol=3)
+Mat1
+
+DF2 = as.data.frame(t(Mat1))
+DF2
+
+#using col names
+Mat1 = matrix(c(1, 5, 14, 23, 54, 9, 15, 85, 3, 42, 9, 7, 42, 87, 16), ncol=3)
+Mat1
+
+DF2 = as.data.frame(t(Mat1), row.names= c('name1', 'name2', 'name3'))
+DF2
+
+Converting array to dataframe
+*---------------------------*
+ar <- array(c(1, 5, 14, 23, 54, 9, 15, 85, 3, 42, 9, 7, 42, 87, 16))
+ar
+as.data.frame(ar)
+#using dimension
+ar <- array(c(1, 5, 14, 23, 54, 9, 15, 85, 3, 42, 9, 7, 42, 87, 16),dim =c(1,15))
+ar
+as.data.frame(ar)
 
 
 structure of R Data Frame
------------------------
+-------------------------
 -R provides an in-build function called str() which returns the data with its complete structure.
 
 #creating a dataframew
@@ -809,7 +873,7 @@ stu.data <- data.frame(
 str(stu.data)
 
 Extracting data from Data Frame
-----------------------------
+-------------------------------
 -We can extract the data in three ways which are as follows
 *We can extract the specific columns from a data frame using the column name.
 *We can extract the specific rows also from a data frame
@@ -817,33 +881,12 @@ Extracting data from Data Frame
 
 Extracting the specific columns from a data frame
 *---------------------------------------------*
-
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
-
 #extracting the specific column name
 final <- data.frame(stu.data$student_id,stu.data$student_name)
 final
 
 Extracting the specific Rows from a data frame
 *-------------------------------------------*
-
-#creating a dataframew
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
-
 #extracting the specific row name
 final <- stu.data[1,]
 final
@@ -858,17 +901,6 @@ final
 
 Extracting specific rows corresponding to specific columns
 *------------------------------------------------------*
-#creating a dataframew
-
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
-
 #extracting 2nd and 3rd row to the 1st and 4th colum
 final <- stu.data[c(2,3),c(1,4)]
 final
@@ -876,20 +908,6 @@ final
 Modification in Data frame
 -------------------------
 -Like matrices modification, we can modify like our data frame through re-assignment. We cannot only add rows and columns, but also we can delete them
-
-#creating a dataframew
-
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
-
-stu.data
-
 #adding rows 
 x <- list(13,"guru",12,"BE","2022-03-21")
 rbind(stu.data,x)
@@ -909,19 +927,6 @@ stu.data
 Summary of data in Data Frames
 ----------------------------
 R provides the summary() function to extract the statistical summary and nature of the data.
-
-#creating a dataframew
-
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
-
-stu.data
 
 #summary data
 summary(stu.data)
