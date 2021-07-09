@@ -164,9 +164,9 @@ there are diff types:
 \" -Double quote (")
 \a  -ASCII Bell (BEL)
 \b	-ASCII Backspace (BS)
-\f	-ASCII Formfeed (FF)
-\n	-ASCII Linefeed (LF)
-\r	-ASCII Carriage Return (CR)
+\f	-ASCII Formfeed (FF)-(\f or 0xC): To take control at starting of next page.
+\n	-ASCII Linefeed (LF)-(\n or 0xA): To Take control at starting of next line.
+\r	-ASCII Carriage Return (CR)-(\r or 0xD): To take control at starting of same line
 \t	-ASCII Horizontal Tab (TAB)
 \v	-ASCII Vertical Tab (VT)
 \ooo-Character with octal value ooo
