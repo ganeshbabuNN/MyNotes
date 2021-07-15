@@ -49,13 +49,14 @@ Checking the variables using exists functions
 a <- 6 
 exists("a")
 
-Deleting Variables
-------------------
+Deleting/removing Variables
+---------------------------
 rm(var.3) #Variables can be deleted by using the rm() function.
 print(var.3)
-
+rm(x)
+rm(y, z)#more then one variable
 rm(list = ls()) #All the variables can be deleted by using the rm() and ls() function together.
-print(ls())
+rm(list=ls()) ### to remove all the variables
 
 Pros and Cons of Dynamic Typing
 -------------------------------
@@ -179,19 +180,6 @@ print(a)
 print(b) #accessing the local variable
 b <-3 #cannot change the local variable and it assuems it a new varible
 print(b)
-
-Variable manipulations
------------------------
-### to get the list of the variables in the environment
-ls()
-
-### to remove a variable from the environment
-### we use the rm() function
-rm(x)
-rm(y, z)
-
-### to remove all the variables
-rm(list=ls())
 
 Quiz:
 =====
