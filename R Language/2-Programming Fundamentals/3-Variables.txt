@@ -23,6 +23,7 @@ e <- 1+2i
 To know which type of variable
 ------------------------------
 #typeof() function in R Language is used to return the types of data used as the arguments.
+### the type represents how the object is stored in the memory
 typeof(a)
 typeof(b)
 typeof(c)
@@ -30,6 +31,7 @@ typeof(d)
 typeof(e)
 
 #class() function in R Language is used to return the class of data used as the arguments.
+#the class represents the abstract type of the object
 class(a)
 class(b)
 class(c)
