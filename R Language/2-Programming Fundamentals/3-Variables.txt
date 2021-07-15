@@ -12,7 +12,7 @@ A variable in R can store an atomic vector, group of atomic vectors or a combina
 Delecration of variables
 ========================
 -In R, a variable itself is not declared of any data type, rather it gets the data type of the R - object assigned to it
--So R is called a dynamically typed language, which means that we can change a variable’s data type of the same variable again and again when using it in a program
+-So R is called a dynamically typed language, which means that we can change a variableâ€™s data type of the same variable again and again when using it in a program
 
 a <- 2
 b <-2.8
@@ -177,6 +177,19 @@ print(a)
 print(b) #accessing the local variable
 b <-3 #cannot change the local variable and it assuems it a new varible
 print(b)
+
+Variable manipulations
+-----------------------
+### to get the list of the variables in the environment
+ls()
+
+### to remove a variable from the environment
+### we use the rm() function
+rm(x)
+rm(y, z)
+
+### to remove all the variables
+rm(list=ls())
 
 Quiz:
 =====
