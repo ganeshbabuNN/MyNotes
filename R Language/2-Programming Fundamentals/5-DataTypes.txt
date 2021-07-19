@@ -183,6 +183,7 @@ names <- c("Ganesh","babu","Kumar","Veeresh")
 names
 class(names)
 
+*Note even numeric, logical, character and vecotr of different types can also be created . this is expalined in detail in data structure chapter.
 
 list
 ----
