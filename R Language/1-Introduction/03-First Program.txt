@@ -4,6 +4,8 @@ Testing the input and output
 
 First program
 =============
+-Remember R is a case sensitive language
+
 using print function
 --------------------
 -we just need a print function. No need of any packages or main functions, just a simple print function is enough---------
