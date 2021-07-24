@@ -69,8 +69,7 @@ x <- c("abc", "d ef", "   ")
 grep("\\S", x, value = TRUE)
 
 -find the components that contain words
--a word is a string that contains at least
--one alpha-numeric character (letter, number and underscore)
+-a word is a string that contains at least  one alpha-numeric character (letter, number and underscore)
 -N.B. the underscore (_) is alpha-numeric character, while the dash (-) is not
 x <- c("stop", "stop12", "456", "abc ", "abc-_","", "4$#", "$&#", "#@_", "#@-")
 grep("\\w", x, value = TRUE)
