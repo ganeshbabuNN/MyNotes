@@ -4,6 +4,7 @@ matrices
 Arrays
 Factors
 DataFrame
+Apply Family Functions
 
 Data structure(or Sequence Type)
 ================================
@@ -31,20 +32,111 @@ Creating a vector
 -This function returns one-dimenional array or simple vector. All arguments are restricted to common data type which is a type of return value
 -there are two ways of creating a vectors using colon (:) and seq() functions
 
-using colon(:) operator
-myvector <- 3:10
-myvector
-myvector <- -4:10
-myvector
 
-using seq() function
+using the c() function:
+*---------------------*
+x <- c(10, 20, 30, 40, 50)
+x
+class(x)
+typeof(x)
+
+using colon(:) operator:
+-the colon operator helps us create sequences of integers
+myvector <- 3:10 #ascending order
+myvector
+myvector <- -4:10  #using reverse
+myvector
+z <- 10:1 #sequence in descending order
+z
+# we can also use variables with the colon operator
+i <- 3
+j <- 7
+k <- i:j
+k
+typeof(k)
+### we can combine the colon operator with the c() function
+w <- c(3:9, 70)
+w
+typeof(w)
+z <- c(1:10, 20:-5)
+z
+typeof(z)
+
+using rep() function:
+*------------------*
+# with rep() we create vectors with replicated values
+# we must specify the value and the number of times to replicate it
+x <- rep(5, 3)
+x
+# we can do the same for strings and logical values
+y <- rep("ab", 6)
+y
+# we can combine rep() with c()
+# to replicate an entire vector
+z <- rep(c(1, 2, 3), 5)
+z
+# to replicate the vector element-wise
+# we use the each argument
+w <- rep(c(1, 2, 3), each = 5)
+w
+# we can also combine rep() with the colon operator
+q <- rep(2:5, 3)
+q
+# to repeat the sequence element-wise we use each
+s <- rep(2:5, each = 3)
+s
+# other functions that replicate values
+# the function numeric() will get us a vector of zeros
+t <- numeric(4)
+t
+# the function character() will get us a vector of empty strings
+k <- character(4)
+k
+# the function logical() will get us a vector of FALSE values
+u <- logical(4)
+u
+
+using seq() function:
+*------------------*
+-the seq() function creates sequences of real numbers
+-we must specify the value and the number of times to replicate it
 myvector <- seq(1,10)
 myvector
-myvector <- seq(1,10,by=5) #by using by parameter to divide each components
-myvector
-class(myvector)
-myvector <- seq(1,10,length.out = 5) #desired length of the sequence
-myvector
+# the start value,the end value and the step (distance between components)
+# the default step value is 1
+x <- seq(from=1, to=10, by=0.5)
+x
+# if we enter the arguments in this exact order (start, stop, step)
+# we don't have to write their names
+y <- seq(1, 10, 0.5)
+y
+# other example
+z <- seq(0, 20, 2)
+z
+# one more example
+w <- seq(1, 10, 2) ### the sequence stops at 9, because the difference between 10 and 1 and is not a multiple of 2
+w
+# we can also create sequences in reversed order
+# using a negative step
+t <- seq(11, 1, -2)
+t
+# instead of specifying the step, we can specify the number of components in the sequence (the program will compute the step),we indicate the number of components using the length argument
+# create a sequence of 10 numbers between 1 and 5
+q <- seq(1, 5, length=10)
+##the step is computed by dividing the difference,between the stop and start values,to the number of components minus one
+##in this case, the step is (5-1)/9 = 0.4444
+q
+# create a sequence of 100 numbers from -3 to 25
+x <- seq(-3, 25, length = 100)
+##the step is (25+3)/99 = 0.282828
+x
+#we can combine the seq() function with c() and rep()
+y <- c(seq(1, 10, length=5), 30, 40)
+y
+z <- rep(seq(1, 3, 0.5), 3)
+z
+w <- rep(seq(1, 3, 0.5), each = 3)
+w
 
 Atomic Vector
 *------------*
@@ -62,6 +154,10 @@ class(mynv)
 mynv1 <- c(3.2,3.34,3.54,55)
 mynv1
 class(mynv1)
+### we can do the same for strings and logical values
+y <- rep("ab", 6)
+y
+
 
 Integer Vector
 **----------**
@@ -132,8 +228,88 @@ f
 mylog<-c(a<b,c>e,f=a,a>b)#comboing
 mylog
 
-Accessing elements in vector
---------------------------
+Create vector of random number
+*----------------------------*
+-the vectors of random numbers are useful in simulations and other statistical applications
+-create a vector of discrete random numbers with the sample() function
+-we must indicate the population and the number of values to be generated (sample)
+
+#generate 12 random numbers from 1 to 100
+n <- sample(100, 12)
+n
+
+# the population can be any vector
+h <- 100:300
+n <- sample(h, 10)
+n
+
+# in these examples, the selection was made without replacement(we got vectors of unique values),the replace option in the sample function() is set to FALSE by default ,if we set it to TRUE, the selection will be made with replacement
+n <- sample(30, 15, replace = TRUE)
+n
+
+# if the sample is greater than the population,the replace option must be set to TRUE, generate 50 random numbers from 1 to 10
+m <- sample(10, 50, replace = TRUE)  
+m
+
+#if we don't allow the replacement, we get an error message
+m <- sample(10, 50)
+
+# generating vectors of continuous random numbers using a few common statistical distributions
+#to generate a vector of random numbers with a normal distribution we use the rnorm() function
+#we must specify the number of values (trials), mean and standard deviation
+#by default, mean is equal to 0 and standard deviation to 1
+x <- rnorm(100, 10, 5)
+x
+x <- rnorm(100)
+x
+
+#to generate a vector of uniform random numbers
+#we use the runif() function
+# we must specify the number of trials and the range (lower and upper limit)
+# be default, range is 0-1
+y <- runif(100, 1, 5)
+y
+
+#to generate a vector of exponential random numbers
+#we use the rexp() function
+#we must specify the number of trials and the rate (1/mean)
+z <- rexp(100, 1/50)
+z
+
+Create empty vector
+*------------------*
+-in some cases we need to initialize a vector before using it, by creating an empty vector
+-there are several ways to do that
+-using an empty c() function
+
+x <- c()
+x
+typeof(x)
+length(x)
+
+-using the NULL value
+y <- NULL
+y
+typeof(y)
+
+-using an empty vector() function
+z <- vector()  # will get us a logical empty vector
+z
+typeof(z)
+
+-to add values to the empty vectors
+x <- c(x, 1, 2)
+x
+typeof(x)
+y <- c(y, 1, 2)
+y
+typeof(y)
+z <- c(z, 1, 2)
+z
+typeof(z)
+
+Reading/Accessing elements in vector
+------------------------------------
 -We can access the elements of a vector with the help of vector indexing
 #indexing a numeric/integer vector
 myindex <- c(1,2,3,4,5,6,7,8,9,10)
@@ -151,8 +327,157 @@ mychar["ganesh"]
 mylog <- c(1,2,3,4,5,6)
 mylog[c(TRUE,FALSE,FALSE,TRUE,FALSE,TRUE)]
 
+
+Indexing vectors using numeric indices
+*------------------------------------*
+-indexing a vector means accessing the vector components
+-the indices (subscripts) must be put between square brackets
+
+x <- c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+x[2] # access one component
+x[c(1,3,8)] # access several components
+x[2:5] # access components in order
+x[5:2]
+x[c(1:4, 7)] # combine the methods above
+x[length(x)] # access the last component (when we don't know the length)
+n <- 3:5 # we can put the indices in a separate vector
+x[n]
+# the negative indices help us remove a component
+x[-2] # remove one component
+x[c(-1, -3, -6)] # remove several components
+x[-2:-4] # remove components in order
+x[-4:-2]  # the order is not important here
+x[c(-1:-5, -9)] # combine the methods above
+x[-length(x)] # remove the last component (when we don't know the length)
+x[c(3, -7)] # we cannot mix negative and positive indices
+x[c(0, -7)] # only zeros can be mixed with negative indices
+x[-7] # this has the same effect as...
+x <- c(7, 8, 9, 10) # we can add components to an existing vector,(or edit components) using indices
+x[5] <- 11
+x
+x[2] <- 100
+x
+p[1] <- 3 # we cannot do this if the vector was not pre-defined
+p <- c() # so we must define the vector first
+p[1] <- 3 # then we can add components
+p[2] <- 7
+p
+x <- c(9, 10, 11, 12) # to insert a component into an existing vector, we must "break" the vector
+x <- c(x[1:3], 50, x[4]) # we want to insert 50 between 11 and 12
+x
+
+Filtering vectors
+*----------------*
+-Vector filtering (or slicing) is the operation of selecting,the components that meet one or more conditions
+-the filtering conditions must be put between square brackets
+
+#the filtering conditions must be put between square brackets
+x <- c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+# select the components that are greater than 45
+y <- x[x>45]
+y
+#select the components that are smaller than 72
+y <- x[x<72]
+y
+#select the components that are equal to 30
+y <- x[x==30]
+y
+#select the components that are different from 30
+y <- x[x!=30]
+y
+# select the components that are greater than 27 AND lower than 83
+y <- x[x>27&x<83]
+y
+# select the components that are lower than 35 OR greater than 71
+y <- x[x<35|x>71]
+y
+# select the components that are lower than 60 OR greater than 20
+y <- x[x<60|x>20]
+y
+# select the components that are greater than 20 AND different from 80
+y <- x[x>20&x!=80]
+y
+# select the components that are greater than 20 OR different from 80
+y <- x[x>20|x!=80]
+y
+# to find out the indices of the components that meet a condition we can use the which() function
+which(x==40)
+which(x<54)
+which(x>43)
+#of course, we can store these indices in a vector to use them later
+i <- which(x>43)
+i
+#to check whether a value can be found in a vector and we can use the binary operator %in% & it returns TRUE if the value is present
+40 %in% x
+86 %in% x
+
+all() AND any()
+*--------------*
+-all() is a special function that checks whether all the components in a vector meet a certain condition
+
+# the result is either TRUE or FALSE
+x <- c(1, 3, 5, 7, 9, 11, 13, 15)
+
+# check whether all the components are greater than zero
+all(x>0)
+
+# check whether all the components are lower than 50
+all(x<50)
+
+# check whether all the components are lower than 8
+all(x<8)
+
+# check whether all the components are greater than 10
+all(x>10)
+
+# check whether all the components are greater than 0 and lower than 10
+all(x>0&x<10)
+
+# check whether all the components are greater than 0 and lower than 35
+all(x>0&x<35)
+
+# check whether all the components are greater than 0or lower than 7
+all(x>0|x<7)
+
+# check whether all the components are greater than 4 or lower than 7
+all(x>4|x<7)
+
+# check whether all the components are greater than 4 or lower than 2
+all(x>4|x<2)
+
+#any() is a function that checks whether any component in a vector meets a certain condition
+x
+
+### is there a component (any) greater than 4?
+any(x>4)
+
+### is there a component lower than than 0?
+any(x<0)
+
+### is there a component equal to 11?
+any(x==11)
+
+### is there a component equal to 4?
+any(x==4)
+
+### is there a component lower than 10
+### and greater than 3?
+any(x<10&x>3)
+
+### is there a component lower than 4
+### and greater than 9?
+any(x<4&x>9)
+
+### is there a component lower than 4
+### or greater than 9?
+any(x<4|x>9)
+
+### is there a component lower than 0
+### or greater than 100?
+any(x<0|x>100)
+
 Vector Operations or manipulations
----------------------------------
+----------------------------------
 -In R, there are various operation like  add, subtract, multiply or divide which is performed on the vector
 
 Combining vectors
@@ -163,16 +488,38 @@ a <- c(1,2,3,4,5,6)
 b<- c(7,8,9,10,11,12)
 c(a,b) #combing a vector
 
+### if we nest two or more c() functions
+### the result is one vector only
+w <- c(c(1, 2, 3), 25)
+w
+s <- c(c(2, 4, 6), c(10, 12, 14))
+s
+
 Arthematic vectors
 *--------------*
 -The arithmetic operations are performed member-by-member on vectors
 
-a <- c(1,2,3,4,5,6)
-b<- c(7,8,9,10,11,12)
-a+b #additions
-a-b #sub
-a/b #div
-a%%b #mod
+x <- c(2, 4, 6, 8)
+y <- c(10, 20, 30, 40)
+z <- x + y
+z
+x - y
+x * y
+x / y
+y / x
+x %% y
+y %% x
+
+# if the vectors have different lengths
+# the shorter vector is recycled
+x <- c(1, 2, 3, 4)
+y <- c(9, 10)
+x + y
+
+# y was recycled to (9, 10, 9, 10)
+x * y
+y %% x
+
 
 Logical index vector
 *-----------------*
@@ -181,6 +528,10 @@ Logical index vector
 a <- c(1,2,3,4,5,6)
 a1 <- c(TRUE,FALSE,TRUE,FALSE,FALSE,TRUE)
 a[a1]
+x <- c(1, 2, 3, 4) # we need to access the second and the third components
+i <- c(FALSE, TRUE, TRUE, FALSE) # we create a logical vector of the same length
+x[i] # we index the x vector
+x[c(FALSE, TRUE, TRUE, FALSE)] # we can do this directly as well
 
 
 Numeric Index vector
@@ -192,15 +543,14 @@ a[3]
 a[-3] # will prompt R to convert -3 into its absolute value and then search for the value which occupies that index
 a[13]
 
-
 Duplicate index
-*------------*
+*--------------*
 -An index vector allows duplicate values which means we can access one element twice in one operation
 a <- c(43,45,77,66,56,33,227,78,3,32,224,65)
 a[c(1,4,4,3)]
 
 Range index
-*-------*
+*---------*
 -Range index is used to slice our vector to form a new vector. For slicing, we used colon(:) operator. 
 
 a <- c(43,45,77,66,56,33,227,78,3,32,224,65)
@@ -222,6 +572,355 @@ a
 a["son1"]
 #for more then one value
 a[c("son","son1")]
+
+# in some cases we might need to assign a name ,to each component of a vector
+# the vector below contains the salaries of three employees, John, Andrew and Mary (in this order)
+salary <- c(4000, 2700, 3200)
+# to add the employees names, we use the names() function
+names(salary) <- c("John", "Andrew", "Mary")
+salary
+# if a vector has names, we can access the components using them
+salary["Andrew"]
+# to remove names we assign the NULL value to the names() function
+names(salary) <- NULL
+salary
+
+
+Basic Statistical Indicators
+*--------------------------*
+x <- c(2, 4, 6, 15, 17, 19)
+# to add the components of a numeric vector
+sum(x)
+# we can store the result in a new vector
+y <- sum(x)
+y
+
+# to multiply the components of a numeric vector
+prod(x)
+
+# to compute the cumulative sum
+cumsum(x)
+
+# to compute the cumulative product
+cumprod(x)
+
+# compute the mean of the components
+mean(x)
+
+# compute the median of the components
+median(x)
+
+# compute the variance of the components
+var(x)
+
+# compute the standard deviation of the components
+sd(x)
+
+# get the summary statistics for a numeric vector
+summary(x)
+
+Vectorized operations
+*-------------------*
+# vectorized operations are operations that apply to all the components of a vector simultaneously (in parallel)
+# this is very effective feature of R that saves us from writing a lot of loops (vectorized operations are actually loops)
+# the result of a vectorized operation is a vector
+# here's the main vectorized operations
+# adding a vector to a scalar
+
+x <- c(1,2,3,4,5)
+y <- x + 10
+y
+
+# multiplying a vector by a scalar
+y <- x * 3
+y
+
+# computing the modulo values of the components (the remainders from dividing each component to a scalar)
+y <- x %% 2
+y
+
+# raising the vector components at a power
+y <- x ^ 2
+y
+
+# exponentiate each component
+exp(x)
+
+# extraction of the square root
+sqrt(x)
+x ^ (1/2)
+
+# or extraction of any root
+x ^ (1/3)
+
+# compute the natural logarithm
+log(x)
+
+# compute the trigonometrical functions (sin, cos etc.)
+sin(x)
+cos(x)
+
+# compute the absolute value
+abs(x)
+
+# round the vector components
+z <- c(1.3, 3.7, 9.5)
+round(z)
+
+# round to the closest lower interger
+floor(z)
+
+# round to the closest higher interger
+ceiling(z)
+
+# round to the specified number of significant digits
+# using the signif() function
+# we have to specify the vector and the number of digits
+w <- c(3.954, 7.200, 9.028)
+signif(w, 1)
+signif(w, 2)
+signif(w, 3)
+
+# compute the factorial of each element
+factorial(x)
+
+Missing values in vectors
+*-----------------------*
+-the missing (unknown) values are represented by the NA symbol
+-here's a vector that stores the salaries of five employees
+
+sal <- c(3500, 1800, 2400, NA, 2900)
+
+#let's try to compute the average salary
+mean(sal)
+
+# we must remove the missing value first
+sal2 <- na.omit(sal)
+sal2
+mean(sal2)
+
+# a simpler way to do the same
+mean(sal, na.rm = TRUE)
+
+# the missing values count for the vector length
+length(sal)
+
+# to identify the missing values we can use the function is.na()
+y <- is.na(sal)
+y
+
+Sorting a vectors
+*---------------*
+x <- c(6, 8, 3, 11, 5, 10, 2, 17)
+sort(x)
+
+# the vector itself does not change
+x
+
+# to get the order of indices we can use the order() function
+order(x)
+
+# we can store the sorted values in an new vector
+y <- sort(x)
+y
+
+# to sort the components in decreasing order
+y <- sort(x, decreasing = TRUE)
+y
+
+# we can sort character and logical vectors as well
+w <- c("z", "a", "n", "d")
+sort(w)
+sort(w, decreasing = TRUE)
+q <- c(TRUE, FALSE, TRUE, FALSE)
+sort(q)
+sort(q, decreasing = TRUE)
+
+Minima and Maxima
+*---------------*
+-to get the minimum and maximum values in a vector
+-we use the min() and max() functions
+
+x <- c(4, 1, 7, 5, 12, 6)
+min(x)
+max(x)
+
+-to determine the indices of the minimum and maximum values
+-we use the which.min() and which.max() functions
+which.min(x)
+which.max(x)
+
+-the functions pmin() and pmax() allow us to determine
+-the minima and maxima from pairs of vector values
+x
+y <- c(2, 9, 7, 6, 10, 14)
+
+ifelse() function
+*---------------*
+-ifelse() is a simplified version of the if-else conditional statement
+-it is applied to vectors
+-the function syntax:
+  ifelse(condition, action if true, action if false)
+
+# condition - condition to be checked (tested)
+# action if true - the action that the program must do if the condition is met
+# action if false - the action that the program must do if the condition is NOT met
+
+# the condition generates a logical vector
+# that takes the value TRUE if the condition is satisfied
+# and the value FALSE otherwise
+
+# we will build an ifelse() function that checks whether the elements
+# in a vector are even numbers
+# if so, they will be divided to two, if not they will be copied
+
+x <- c(6, 10, 9, 5, 20, 7, 16)
+y <- ifelse(x%%2 == 0, x/2, x)
+y
+
+#create an ifelse() function that multiplies the component by 5
+#if it is lower than or equal to 12 and by 3 if it is greater than 12
+
+x <- c(2, 6, 15, 10, 20, 14)
+y <- ifelse(x<=12, x * 5, x * 3)
+y
+
+# let's create another ifelse() function that does the following:
+# if the component is greater than or equal to zero, it extracts the square root
+# otherwise, it changes the component sign and then extracts the square root
+x <- c(25, -36, 100, 0, -1, 49, 4, -68)
+y <- ifelse(x>=0, sqrt(x), sqrt(-x))
+y
+
+# to remove warnings, we can do as follows
+y <- sqrt(ifelse(x>=0, x, -x))
+y
+
+# one last example: an ifelse() function that returns 1
+# if the square of the component is greater than 100 and 0 otherwise
+
+x <- c(15, 6, 10, 30, 4)
+y <- ifelse(x^2>100, 1, 0)
+y
+
+Testing Vector Equality
+*---------------------*
+
+# the comparisons between vectors are vectorized operations
+# the comparison is done element-wise
+
+x <- c(7, 10, 3, 9, 6)
+y <- c(2, 14, 5, 15, 6)
+
+# the operation below returns TRUE for the pairs of components
+# where x is greater than y and FALSE for the pairs of components
+# wherey y is greater than x
+
+x > y
+
+# the operation below returns TRUE for the pairs of components
+# where y is greater than x and FALSE for the pairs of components
+# wherey x is greater than y
+
+y > x 
+
+# the operation below returns TRUE for the pairs of components
+# where x is equal to y
+y == x
+
+# to check whether two vectors are equal
+# (all the components are the same)
+
+x <- c(2, 4, 6)
+y <- c(2, 4, 6)
+all(y == x)
+
+# the function all() can be used for other comparisons too
+x <- c(7, 8, 9)
+y <- c(2, 4, 6)
+
+# check whether all components in x are greater than 
+# their corresponding components in y
+all(x>y)
+
+# and conversely
+all(y>x)
+
+# the function any() can also be used for comparisons
+x <- c(4, 5, 6, 8)
+y <- c(2, 7, 10, 8)
+
+# check whether at least one component in x is greater than 
+# its corresponding component in y
+
+any(x>y)
+
+# and conversely
+any(y>x)
+
+# check whether at least one component in x is equal to 
+# its corresponding component in y
+any(x==y)
+
+# another function that allows us to test vector equality
+# is identical()
+x <- c(1, 2, 3)
+y <- c(1, 2, 3)
+z <- c(1, 2, 5)
+identical(x, y)
+identical(x, z)
+
+# another helpful function is all.equal()
+# if the vectors are identical, it returns TRUE
+# if not, it returns the mean difference between components
+all.equal(x, y)
+all.equal(x, z)  # mean difference is 0.6667: (5-3)/3
+
+# one important issue
+x <- c(4, 5, 6)
+y <- 4:6
+identical(x, y)
+
+# these vectors are not identical, because they are of different types
+typeof(x)
+typeof(y)
+
+# however, the all.equal() function returns TRUE
+all.equal(x, y)
+
+# that's because all.equal() evaluates the "near identity"
+# it is interested only in the components values
+# and not in the vectors type
+
+Vector Correlations
+*-----------------*
+# we can use the Pearson correlation coefficient
+# to assess the correlation between two numeric vectors
+
+# the vectors must have the same length
+# the vector of the employees' annual salaries (in thousands)
+sal <- c(80, 66, 42, 40, 75, 82, 54, 44, 85, 83)
+
+# the vector of the employees' education (in years of school completed)
+edu <- c(15, 18, 12, 12, 16, 17, 13, 12, 17, 16)
+
+# to compute the correlation we use the cor.test() function
+cor.test(sal, edu)
+
+
+Update the vector
+-----------------
+edu <- c(15, 18, 12, 12, 16, 17, 13, 12, 17, 16)
+edu[1] <- 34
+edu
+edu[c(1,4)] <- c(6,5) #updating more then one value
+edu
+
+
+Delete the Vectors
+-----------------
+rm(edu, emp)#for single or multiple
+
 
 Applications of vectors
 --------------------
@@ -271,8 +970,84 @@ mylist <- list(TRUE,32,3L,"Ganesh",c(13,34,5,6))
 mylist
 class(mylist)
 
-Accessing List Elements
---------------------
+CREATING LISTS WITH THE list() FUNCTION
+*-------------------------------------*
+# let's create a list of four employees in a company,Mark, Tom, Laura and Sandra
+# for each employee we have the following information , name, age, gender, annual salary, whether they are managers or not
+employees <- list(names=c("Mark", "Tom", "Laura", "Sandra"),
+                  age=c(49, 28, 35, 25),
+                  gender=c("m", "m", "f", "f"),
+                  salary=c(75000, 62000, 55000, 46000),
+                  manager=c(TRUE, FALSE, FALSE, FALSE))
+
+employees
+
+# we can create a list without object names as well (but it is preferable to have names)
+employees2 <- list(c("Mark", "Tom", "Laura", "Sandra"),
+                  c(49, 28, 35, 25),
+                  c("m", "m", "f", "f"),
+                  c(75000, 62000, 55000, 46000),
+                  c(TRUE, FALSE, FALSE, FALSE))
+
+employees2
+
+# if there are no names, the objects are referred using indices between double brackets
+#if you want to give the names of the object, then use the below example.
+
+names(employees2) <- c("students","age","gender","salary","manager")
+employees2
+
+# for example, [[1]]
+# getting object class and type
+
+class(employees)
+typeof(employees)
+
+# print list structure
+str(employees)
+
+# print the objects names
+names(employees)
+
+# the objects in a list DO NOT have to be of the same length
+# let's make a list with that contains the dishes ordered 
+# by three friends at a restaurant, as well as their total bill
+# their names are Fred, Jack and Peter
+
+lunch <- list(Fred=c("omelette", "fried potatos", "chicken", "icecream"),
+              Jack=c("salad", "beef steak"),
+              Peter=c("salad", "lasagna", "pancakes"),
+              bill = 100)
+
+lunch
+
+str(lunch)
+
+CREATING LISTS WITH THE vector() FUNCTION
+*---------------------------------------*
+-we will create the same list of employees as in the previous lecture
+-first we create an empty list by setting the mode parameter to list
+
+employ <- vector(mode = "list")
+class(employ)
+
+#now we can add objects to our list
+employ[["names"]] <- c("Mark", "Tom", "Laura", "Sandra")
+employ[["age"]] <- c(49, 28, 35, 25)
+employ[["gender"]] <- c("m", "m", "f", "f")
+employ[["salary"]] <- c(75000, 62000, 55000, 46000)
+employ[["manager"]] <- c(TRUE, FALSE, FALSE, FALSE)
+employ
+
+
+creating from vector, list and matrix
+*---------------------------------*
+list_data <- list(c("ganesh","veersh","rudresh"),matrix(c(32,56,56,34,22,43),nrow=2),list("MCA","BTECH","BE")) 
+list_data
+
+
+Reading/Accessing List Elements
+-------------------------------
 -R provides two ways through which we can access the elements of a list using indexing method(same as vector) and accessing using help of names
 
 #accessing list index
@@ -297,31 +1072,238 @@ list_data["students"]
 list_data$marks
 list_data$Course
 
-List operations
-------------
 
-#creating a vector, list and matrix
-list_data <- list(c("ganesh","veersh","rudresh"),matrix(c(32,56,56,34,22,43),nrow=2),list("MCA","BTECH","BE")) 
-list_data
+INDEXING LISTS USING BRACKETS
+*---------------------------*
+-to access objects we use double brackets
+-to access individual elements we use simple brackets
 
-#giving the name of the list
-names(list_data) <- c("students","marks","Course")
+employees <- list(names=c("Mark", "Tom", "Laura", "Sandra"),
+                  age=c(49, 28, 35, 25),
+                  gender=c("m", "m", "f", "f"),
+                  salary=c(75000, 62000, 55000, 46000),
+                  manager=c(TRUE, FALSE, FALSE, FALSE))
 
-#adding 
-list_data[4] <- "Vedha"
-list_data
+-extract the vector of names
+employees[["names"]]
+x <- employees[["names"]]
+x
+class(x)
+typeof(x)
 
-#Reading the 4th element
-list_data[3]
-list_data$Course
-list_data$Course[2]
+# extract the vector of ages
+employees[["age"]]
 
-#updating 
+# if we don't have names, we can use the object indices
+employees[[1]]
+employees[[5]]
+
+# to access an individual element, we put its index
+# betwen simple brackets
+# get Laura's name
+employees[["names"]][3]
+employees[[1]][3]
+
+# alternatively
+employees[[c(1,3)]]
+
+# other examples
+# get Tom's salary
+employees[["salary"]][2]
+employees[[4]][2]
+employees[[c(4,2)]]
+
+# get Mark's, Tom's and Laura's salaries 
+employees[["salary"]][1:3]
+
+# get Mark's and Sandra's salaries
+employees[["salary"]][c(1,4)]
+
+# to remove elements we use negative indices
+employees[["salary"]][-2]
+employees[["age"]][-1:-3]
+
+INDEXING LISTS USING THE OBJECTS NAMES
+*------------------------------------*
+employees <- list(names=c("Mark", "Tom", "Laura", "Sandra"),
+                  age=c(49, 28, 35, 25),
+                  gender=c("m", "m", "f", "f"),
+                  salary=c(75000, 62000, 55000, 46000),
+                  manager=c(TRUE, FALSE, FALSE, FALSE))
+
+employees
+
+# access the vectors of names, gender, salary
+employees$names
+employees$gender
+employees$salary
+
+# get Tom's salary
+employees$salary[2]
+
+# get Tom's, Laura's and Sandra's salaries
+employees$salary[2:4]
+
+# we can also remove elements (Mark's salary, in this case)
+employees$salary[-1]
+
+# create a sub-list with ages and salaries only
+emp2 <- list(age=employees$age, salary=employees$salary)
+class(emp2)
+emp2
+
+Updating the list
+-----------------
+# we can edit the list elements directly
+employees <- list(names=c("Mark", "Tom", "Laura", "Sandra"),
+                  age=c(49, 28, 35, 25),
+                  gender=c("m", "m", "f", "f"),
+                  salary=c(75000, 62000, 55000, 46000),
+                  manager=c(TRUE, FALSE, FALSE, FALSE))
+
+employees
+
+# change Tom's salary from 62000 to 64000
+employees[["salary"]][2] <- 64000
+
+# or
+employees$salary[2] <- 64000
+
+# Laura has become a manager
+employees[["manager"]][3] <- TRUE
+employees
+
+# change all the employees' salaries
+employees[["salary"]] <- c(85000, 70000, 69000, 48000)
+employees
+
+#updating using index 
 list_data[4] <-"Banu"
 list_data
 
+
+Adding the list
+*-------------*
+# we can add new objects to lists directly
+
+employees <- list(names=c("Mark", "Tom", "Laura", "Sandra"),
+                  age=c(49, 28, 35, 25),
+                  gender=c("m", "m", "f", "f"),
+                  salary=c(75000, 62000, 55000, 46000),
+                  manager=c(TRUE, FALSE, FALSE, FALSE))
+
+employees
+
+# add the number of monthly working hours for each employee 
+employees$hours <- c(200, 220, 235, 215)
+employees
+
+# to remove an object, we assign the NULL value to it
+employees$hours <- NULL
+employees
+
+# we can also add new elements to the existing objects
+# add a new employee with the following data:
+# name: Ken
+# age: 58
+# gender: male
+# annual salary: 43000
+# manager: no
+
+employees[["names"]][5] <- "Ken"
+employees[["age"]][5] <- 58
+employees[["gender"]][5] <- "m"
+employees[["salary"]][5] <- 43000
+employees[["manager"]][5] <- FALSE
+employees+
+
+list_data[4] <- "Vedha"
+list_data
+
+
+Delete the Vectors
+------------------
+rm(edu, emp)#for single or multiple
+
+
 #removing
 list_data[4] <- NULL
+
+List operations
+--------------
+Applying functions to list:
+# to perform operations with list elements ,we use the lapply() function
+
+# this function can be used only when ,the list elements are of the same type (numeric)
+# create a list of car technical specifications, engine size (engine), horsepower (horse) and curb weight (weight)
+
+carspec <- list(engine=c(1.8, 3.2, 3.5, 1.8, 2.8, 4.2),
+                  horse=c(140, 225, 210, 150, 200, 310),
+                  weight=c(2639, 3517, 3850, 2998, 3561, 3902))
+
+carspec
+
+#in the lapply() function we have to specify:
+#the list name and the function to apply to the objects
+# compute the average value for each object
+
+lapply(carspec, mean)
+
+# the result is a list with the same length as the initial list
+l <- lapply(carspec, mean)
+l
+class(l)
+typeof(l)
+
+# compute the standard deviation for each object
+lapply(carspec, sd)
+
+# compute the sum and product for each object
+lapply(carspec, sum)
+lapply(carspec, prod)
+
+# compute the cumulative sum and product for each object
+lapply(carspec, cumsum)
+lapply(carspec, cumprod)
+
+# compute the logarithm of each value (if all the values are strictly positive)
+lapply(carspec, log)
+
+# and so on
+# we can also apply an user-defined function
+f <- function (x) { x^2 + 3 * x }
+lapply(carspec, f)
+
+# sapply() is a simplified version of lapply()
+# it has the same syntax, 
+# but it returns a vector, not a list
+sapply(carspec, mean)
+s <- sapply(carspec, mean)
+class(s)
+typeof(s)
+s
+names(s)
+
+# the vector has the same length as the number of objects in the list
+# and its components have the same names as the list objects
+# however, sapply() will return a list if we set
+# the option simplify to FALSE
+s <- sapply(carspec, mean, simplify = FALSE)
+s
+class(s)
+
+#what happens if the list objects are not of the same type?
+carspec2 <- list(make=c("Toyota", "Honda", "Renault", "Mazda", "Volkswagen", "BMW"),
+                 engine=c(1.8, 3.2, 3.5, 1.8, 2.8, 4.2),
+                 horse=c(140, 225, 210, 150, 200, 310),
+                 weight=c(2639, 3517, 3850, 2998, 3561, 3902))
+
+# the lapply() function returns NA for the make object
+# plus an error message
+lapply(carspec2, mean)
+
+# so does the sapply() function
+sapply(carspec2, mean)
 
 Converting list to vector
 ----------------------
@@ -358,6 +1340,50 @@ merged_list <-list(even_list,odd_list)
 #printing
 merged_list
 
+
+# PRACTICAL LIST EXAMPLE:REGRESSION ANALYSIS OUTPUT
+----------------------------------------------------
+# in R, the regression analysis output is actually a list
+# we can use what we have learned until now to "read" this output
+# we will run a regression analysis to determine whether
+# a car price is influenced by engine size and horse power
+# the vector of the dependent variable (price in thousands)
+
+price <- c(21.5, 28.4, 42.0, 23.9, 33.9, 62.0, 26.9, 33.4, 39, 21.9)
+
+# the vectors of the predictors
+engine <- c(1.8, 3.2, 3.5, 1.8, 2.8, 4.2, 2.5, 2.8, 2.8, 3.1)
+horse <- c(140, 225, 210, 150, 200, 310, 170, 193, 195, 175)
+
+# fit the regression model
+fit <- lm(price~engine+horse)
+
+# fit is a list
+typeof(fit)
+names(fit)
+
+# let's print a few list objects
+# the regression coefficients
+fit$coefficients
+
+# the coefficient of the variable engine
+fit$coefficients[2]
+
+# the intercept
+fit$coefficients[1]
+
+# the regression equation
+fit$call
+
+# the variables in the model
+fit$model
+
+# the predicted values of the response variable (price)
+fit$fitted.values
+
+# the residuals (differences between predicted and actual values)
+fit$residuals
+
 matrix
 ======
 -It is a two-dimensional rectangular data set is known as a matrix
@@ -368,6 +1394,8 @@ matrix
 create a matrix
 --------------
 -R provides the matrix() function to create a matrix. This function plays an important role in data analysis.
+-a matrix is a collection of data elements of the same type arranged in a two-dimensional rectangle
+-to create a matrix we must indicate the elements as well as the number of rows (nrow) and columns (ncol)
 
 syntax:
 matrix(data, nrow, ncol, byrow, dim_name)  
@@ -379,8 +1407,135 @@ col_names <- c("col1","col2","col3","col4","col5") # 5 cols  i,e 4 X 5 = 20
 mymat1 <- matrix(c(1:20),nrow=4,byrow=TRUE,dimnames = list(row_names,col_names))
 mymat1
 
-Accessing matrix elements in R
------------------------------
+m <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
+m
+
+# by default, any matrix is created column-wise
+# to change that we set the byrow option to TRUE
+m <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3, byrow = TRUE)
+m
+
+# get class and type
+class(m)
+typeof(m)
+
+# get the matrix dimensions
+dim(m)
+nrow(m)
+ncol(m)
+
+# other matrix examples
+m <- matrix(1:12, nrow = 4, byrow = TRUE)
+m
+typeof(m)
+
+m <- matrix(rep(8, 9), nrow = 3)
+m
+
+m <- matrix(seq(1,5,length=20), nrow = 5, byrow = TRUE)
+m
+
+m <- matrix(rnorm(20), nrow = 5, byrow = TRUE)
+m
+
+# we can also create matrices containing
+# character or logical data elements
+
+Creating multidimensional arrays
+*------------------------------*
+
+# a multidimensional array stores several two-dimensional
+# data structures (i.e matrices)
+# the matrices must have the SAME dimensions
+# suppose that we have three brands that sell in two supermarkets
+# create a matrix that contain the brands codes and prices
+# in the first supermarket
+
+market1 <- matrix(c(22,44,66,9,11,5), nrow=3)
+rownames(market1) <- c("brand1", "brand2", "brand3")
+colnames(market1) <- c("code", "price")
+market1
+
+# create another matrix that contain the brands codes and prices
+# in the second supermarket
+market2 <- matrix(c(55,77,99,10,14,20), nrow=3)
+rownames(market2) <- c("brand1", "brand2", "brand3")
+colnames(market2) <- c("code", "price")
+market2
+
+# create an array with these matrices
+# using the array() function
+# in the array() function we have to specify: 
+
+# the data sources (i.e. matrices)
+# the dimensions
+
+# the order of the dimensions is: rows, columns, layers
+# each matrix has three rows and two columns
+# and the array has two layers (the two matrices)
+markets <- array(data=c(market1, market2), dim=c(3,2,2))
+
+# if we don't specify the dimensions, the result will be a vector, not an array
+markets2 <- array(data=c(market1, market2))
+markets2
+
+# print the array
+markets
+
+# specify the dimension names
+markets <- array(data=c(market1, market2), dim=c(3,2,2),
+      dimnames = list(c("brand1", "brand2", "brand3"), c("code", "price"), c("smark1", "smark2")))
+markets
+
+# get the dimensions
+dim(markets)
+dimnames(markets)
+
+Indexing Arrays
+*-------------*
+# the indices must be put between square brackets
+# we have to use three indices:
+# the first index is for the rows in the matrices
+# the second index is for the columns in the matrices
+# the third index is for the layers
+markets
+
+# access the first layer (matrix)
+markets[,,1]
+
+# access the second layer (matrix)
+markets[,,2]
+
+# access the second column of the first matrix
+markets[,2,1]
+
+# access the first column of the second matrix
+
+markets[,1,2]
+
+# access the third row, second column in the first matrix
+markets[3,2,1]
+
+# access the second row, second column in the second matrix
+markets[2,2,2]
+
+# access the first row in the first matrix
+markets[1,,1]
+
+# access the third row in the second matrix
+markets[3,,2]
+
+# access the second row, first column in both matrices
+markets[2,1,]
+
+# access the third row in both matrices
+markets[3,,]
+
+# access the first column in both matrices
+markets[,1,]
+
+Reading/Accessing matrix elements in R
+---------------------------------------
 -we can easily access the elements of our matrix by using the index of the element
 -There are three ways to access the elements from the matrix
 *We can access the element which presents on nth row and mth column
@@ -400,8 +1555,8 @@ mymat1[1,4]
 mymat1[1]
 mymat1[,3]
 
-Modification of the matrix
-------------------------
+Update Modification of the matrix
+---------------------------------
 -This modification technique is quite simple to perform matrix modification
 
 # Defining the column and row names.  
@@ -415,7 +1570,7 @@ mymat1[3] <- 5 #modifying the 3rd row
 mymat1
 
 Use of Relational Operator
---------------------------
+*------------------------*
 -R provides another way to perform matrix medication.
 - In this method, we used some relational operators like >, <, ==
 
@@ -431,32 +1586,285 @@ mymat1[mymat1>12]<- 0 ##Replacing element greater to the 12
 mymat1
 
 Addition of Rows and Columns
---------------------------
+*--------------------------*
 -The third method of matrix modification is through the addition of rows and columns using the cbind() and rbind() function
 -The cbind() and rbind() function are used to add a column and a row respectively
 
 
-# Defining the column and row names.  
-row_names <- c("row1","row2","row3","row4") # 4 rows
-col_names <- c("col1","col2","col3") # 3 cols  i,e 4 X 3 = 15
+# these vectors must have the same length
+x <- c(1,2,3,4)
+y <- c(10,11,12,13)
+z <- c(20,30,40,50)
 
-mymat1 <- matrix(c(1:20),nrow=4,byrow=TRUE,dimnames = list(row_names,col_names))
-mymat1
+# if we use rbind(), our vectors will be rows
+m <- rbind(x, y, z)
+m
 
-#adding rows
-rbind(mymat1,c(1,2,3,4,5)) #get the column numbers
-mymat1
+class(m)
+typeof(m)
 
-#adding columns
-cbind(mymat1,c(9,8,7,6))
+# we can bind the vectors in any order
+m <- rbind(y, z, x)
+m
 
-#transpose of the matrix using t() function
-t(mymat1)
+# we can also bind the same vector several times
+m <- rbind(x, y, x, z)
+m
 
-#modifying the the dim of the matrix using the dim() function
-dim(mymat1) <- c(1,20)
-dim(mymat1)
-mymat1
+# it is not necessary to create the vectors first
+# we can enter them directly in the rbind() function
+m <- rbind(c(1, 2, 3), c(7, 8, 9), c(21, 22, 23))
+m
+
+# if we use cbind() the vectors will be columns
+m <- cbind(x, y, z)
+m
+
+class(m)
+
+Names Matrices rows and columns
+*-----------------------------*
+# we can name rows and columns when we create the matrix
+# using the dimnames option in the matrix() function
+m <- matrix(c(1,2,3,4,5,6), nrow = 2, 
+            dimnames = list(c("row1", "row2"), c("col1", "col2", "col3")))
+m
+
+# alternatively, we can name rows and columns at any time
+# after creating the matrix
+# using the functions rownames() and colnames()
+m <- matrix(c(1,2,3,4,5,6), nrow = 2)
+m
+
+rownames(m) <- c("row1", "row2")
+m
+
+colnames(m) <- c("col1", "col2", "col3")
+m
+
+# to remove names
+rownames(m) <- NULL
+m
+
+colnames(m) <- NULL
+m
+
+Indexing Matrices
+*---------------*
+# indexing means accessing one or several matrix elements
+# indices must be put between square brackets
+
+# we must use two indices: one for the row
+# and the other one for the column
+
+m <- matrix(1:16, nrow = 4, byrow = TRUE)
+m
+
+# access the element on row 2, column 3
+m[2,3]
+
+# access the element on row 4, column 1
+m[4,1]
+
+# access the element on row 2, column 2
+# and the element on row 4, column 3
+c(m[2,2], m[4,3])
+
+# access the row 2
+m[2,]
+
+# we can put the elements in this row in a vector
+x <- m[2,]
+x
+
+# access column 3
+m[,3]
+
+# access the elements on row 2, columns 2,3 and 4
+m[2,2:4]
+m
+
+# access the elements on column3, rows 1 and 4
+m[c(1,4),3]
+
+# access the elements on rows 2 and 4, columns 2 and 4
+m
+m[c(2,4), c(2,4)]
+
+# access the elements on rows 2, 3 and 4, columns 3 and 4
+m[2:4, 3:4]
+
+# access the elements at the intersection of rows 1 and 2 with columns 1 and 2
+# and the elements at the intersection of rows 3 and 4 with columns 3 and 4
+# (the result will be a vector)
+m
+
+c(m[1:2, 1:2], m[3:4, 3:4])
+
+# access the fifth element, in column-wise order
+m[5]
+
+# access the fifth and the seventh element, in column-wise order
+m[c(5, 7)]
+
+# access the fifth, the sixth and the seventh element, in column-wise order
+m[5:7]
+m
+
+# to remove elements we use negative indices
+# access the row 2 less the element on the third column
+m[2, -3]
+
+# access the row 4 less the elements on the second and fourth column
+m[4, c(-2, -4)]
+
+# access the rows 2, 3 and 4 less the element on the first column
+m[2:4,-1]
+
+FILTERING MATRICES
+*----------------*
+# filtering means accessing elements that meet a certain condition
+# this condition must be put between square brackets
+# create a 4x4 matrix of 16 discrete random numbers between 1 to 100
+
+i <- sample(100, 16, replace = TRUE)
+m <- matrix(i, nrow = 4, byrow = TRUE)
+m
+
+# select the elements that are greater than 50
+m[m>50]
+
+# select the elements that are smaller than 70
+m[m<70]
+
+# select the elements that are smaller than 70 and greater than 30
+m[m<70&m>30]
+
+# select the elements that are greater than 70 or smaller than 20
+m[m>70|m<20]
+
+# select the elements that are equal to a given value
+m[m==99]
+
+# select the elements that are equal to a given value or lower than 30
+m[m==99|m<30]
+
+# to find out the indices of the elements that meet a condition
+# we use the which() function
+m
+which(m==14)
+
+# the indices are returned in column-wise order
+m
+which(m>50)
+
+Updating/Editing the Matrices
+-----------------------------
+# we can edit elements in matrices by assigning values to them directly
+m <- matrix(1:16, nrow = 4, byrow = TRUE)
+m
+
+# assign the value 100 to the element on row 3, column 4
+m[3,4] <- 100
+m
+
+# assign the value 100 to the seventh element, in column-wise order
+m[7] <- 100
+m
+
+# assign the value 100 to the elements on row 1, columns 2, 3 and 4
+m[1, 2:4] <- 100
+m
+
+# assign the value 0 to the entire second row
+m[2,] <- 0
+
+m
+
+# we can also assign multiple values at once
+# assign the values 31, 32 and 33 to the elements on row 1, columns 2, 3 and 4
+m[1, 2:4] <- c(31, 32, 33)
+m
+
+# assign the values 51 to 54 to the entire third column
+m[,3] <- 51:54
+m
+
+# assign the values 1000 and 2000 to the seventh and the nineth elements
+# in column-wise order
+m[c(7, 9)] <- c(1000, 2000)
+m
+
+Adding and Deleting rows and columns from a matrix
+*------------------------------------------------*
+
+m <- matrix(1:16, nrow = 4, byrow = TRUE)
+m
+
+# to add rows we use the rbind() function
+m <- rbind(m, c(50, 60, 70, 80))
+
+# the vector length must be equal to the number of columns in the matrix
+m
+
+# alternatively
+x <- c(8, 10, 12, 14)
+m <- rbind(m, x)
+m
+
+# in this case the new row will have the vector name
+# if we don't want that, we can remove the name
+rownames(m) <- NULL
+
+# we can also use rbind() to bind two or more matrices
+# these matrices must have the same number of columns
+m2 <- matrix(21:28, nrow = 2, byrow = TRUE)
+m2
+m <- rbind(m, m2)
+m
+
+# to add columns in a matrix we use the cbind() function
+m <- matrix(1:16, nrow = 4, byrow = TRUE)
+m
+m <- cbind(m, c(100, 101, 102, 103))
+
+# the vector length must be equal to the number of rows in the matrix 
+m
+
+# we can also use cbind() to bind two or more matrices
+# these matrices must have the same number of rows
+m2 <- matrix(51:58, nrow = 4, byrow = TRUE)
+m2
+m <- cbind(m, m2)
+m
+
+# to remove rows and column we simply use negative indices
+m <- matrix(1:16, nrow = 4, byrow = TRUE)
+m
+
+# remove the second row (and create a new matrix, m1)
+m1 <- m[-2,]
+m1
+
+# remove the first column
+m1 <- m[,-1]
+m1
+
+# remove the first and the third row
+m1 <- m[c(-1, -3),]
+m1
+
+# remove the first and the third column
+m1 <- m[,c(-1, -3)]
+m1
+
+# remove the first, the second and the third row
+m1 <- m[-1:-3,]
+m1
+
+# remove the first, the second and the third column
+m1 <- m[,-1:-3]
+m1
 
 Matrix operations
 ---------------
@@ -487,6 +1895,255 @@ mul
 div <- m1/m2
 div
 
+Minima and maxima
+*---------------*
+# create a 4x5 matrix of 20 random numbers
+i <- sample(100, 20)
+m <- matrix(i, nrow = 4, byrow = TRUE)
+m
+
+# get the minimum and maximum value, overall
+min(m)
+max(m)
+
+# get the minimum value in the third row
+min(m[3,])
+
+# get the maximum value in the fourth column
+max(m[,4])
+
+# to get the indices of the minimum and maximum values
+# we use the functions which.min() and which.max()
+# the indices of the overall minimum and maximum values
+m
+which.min(m)
+which.max(m)
+
+# the index of the minimum value in the third row
+which.min(m[3,])
+
+# the index of the maximum value in the fifth column
+which.max(m[,5])
+
+# we can also use the pmin() and pmax() functions
+# to get the minima and maxima for pairs of rows and columns
+# get the minima for the rows 2 and 3
+m
+
+pmin(m[2,], m[3,])
+
+# get the maxima for the rows 2 and 3
+pmax(m[2,], m[3,])
+
+Adding and mulitplication matrices
+*--------------------------------*
+
+# we can add or multiply two matrices of the same dimensions element-wise
+# create two 3x3 matrices
+m1 <- matrix(1:9, nrow = 3, byrow = TRUE)
+m2 <- matrix(101:109, nrow = 3, byrow = TRUE)
+m <- m1 + m2
+m
+m <- m1 * m2
+m
+
+# to perform real matrix multiplication we use the %*% operator
+# the number of columns in the first matrix must be equal to
+# the number of rows in the second matrix
+# the resulted matrix will have the  number of rows of the first matrix
+# and the number of columns of the second matrix
+# let's create a 3x5 matrix...
+m1 <- matrix(1:15, nrow = 3, byrow = TRUE)
+m1
+
+# ...and a 5x4 matrix
+m2 <- matrix(1:20, nrow = 5, byrow = TRUE)
+m2
+
+# these two matrices can be multiplied
+# the result will be a 3x4 matrix
+m <- m1 %*% m2
+
+
+Apply functions to matrices-1
+*---------------------------*
+# to perform operations on the matrix rows and columns
+# we can use the apply() function
+# the arguments of the apply() function are:
+
+# the matrix name
+# the dimension we apply the function to (1 for rows, 2 for columns)
+# the function to apply
+
+# create a 4x4 matrix
+
+m <- matrix(1:16, nrow = 4)
+m
+
+# compute the sum of the elements on each row and column, respectively
+apply(m, 1, sum)
+apply(m, 2, sum)
+
+# compute the product of the elements on each row and column, respectively
+apply(m, 1, prod)
+apply(m, 2, prod)
+
+# compute the mean for each row and column, respectively
+apply(m, 1, mean)
+apply(m, 2, mean)
+
+# compute the standard deviation for each row and column, respectively
+apply(m, 1, sd)
+apply(m, 2, sd)
+
+
+Apply functions to matrices-2
+*---------------------------*
+
+#create a 4x4 matrix
+m <- matrix(1:16, nrow = 4, byrow = TRUE)
+m
+
+# compute the cumulative sums for the data values in each row
+apply(m, 1, cumsum)
+
+# the cumulative sums are computed by row,
+# BUT the matrix is built column-wise (the default way in R)
+
+# to built the same matrix row-wise
+# we have to use the matrix() function
+m
+m1 <- matrix(apply(m, 1, cumsum), nrow = 4, byrow = TRUE)
+m1
+
+# compute the cumulative sums for each column
+m
+
+apply(m, 2, cumsum)
+
+# now everything is OK: the cumulative sums are computed by columns
+# and the matrix is built column-wise
+
+# the same happens when we use the cumprod function
+# that computes the cumulative products (verify by yourself)
+
+# and the same happens when we use other functions
+# and apply the function by row (using the 1 argument)
+m
+
+# compute the square roots by row
+apply(m, 1, sqrt)
+
+# compute the natural logarithms by row
+apply(m, 1, log)
+
+# compute the antilogarithms by row
+apply(m, 1, exp)
+
+# to get a row-wise matrix using the sqrt function
+m
+
+m1 <- matrix(apply(m, 1, sqrt), nrow = 4, byrow = TRUE)
+m1
+
+# to get a row-wise matrix using the log function
+m
+
+m1 <- matrix(apply(m, 1, log), nrow = 4, byrow = TRUE)
+m1
+
+# the same happens when we use a custom function
+# applied by row
+f <- function (x) { 2*x + 3 }
+m
+apply(m, 1, f)
+
+# to get a row-wise matrix
+m1 <- matrix(apply(m, 1, f), nrow = 4, byrow = TRUE)
+m1
+
+# IN SUMMARY:
+# when we compute the cumulative sum, cumulative product
+# square root, logarithm, exponential, sin, cos etc. by COLUMN, no problem arises
+
+# however, when we compute the same functions by ROW the resulted matrix is transposed  (because, by default, R builds the matrices column-wise)
+# so to get the resulted matrix row-wise we have to use the matrix() function
+
+Apply functions to matrices-3
+*---------------------------*
+# the sweep() function is useful when we have to
+# perform different operations on various matrix rows and columns
+# create the matrix
+m <- matrix(1:12, nrow = 3, byrow = TRUE)
+m
+
+# for the sweep() function we must specify:
+# the data source (our matrix)
+# the dimension (1 for rows, 2 for columns)
+# the vector of values (its length must be equal to the number of columns/rows)
+# a binary operator between quotation marks: "+", "-", "*" or "/"
+# add 10, 20 and 30 to each row, respectively 
+
+sweep(m, 1, c(10, 20, 30), "+")
+
+# substract 10, 20 and 30 from each row, respectively
+sweep(m, 1, c(10, 20, 30), "-")
+
+# multiply each row by 10, 20 and 30, respectively
+sweep(m, 1, c(10, 20, 30), "*")
+
+# divide each row by 10, 20 and 30, respectively
+sweep(m, 1, c(10, 20, 30), "/")
+
+# add 10, 20, 30 and 40 to each column, respectively 
+sweep(m, 2, c(10, 20, 30, 40), "+")
+
+# substract 10, 20, 30 and 40 from each column, respectively
+sweep(m, 2, c(10, 20, 30, 40), "-")
+
+# multiply each column by 10, 20, 30 and 40, respectively
+sweep(m, 2, c(10, 20, 30, 40), "*")
+
+# divide each column by 10, 20, 30 and 40, respectively
+sweep(m, 2, c(10, 20, 30, 40), "/")
+
+Other Matrix Operations
+*---------------------*
+# to transpose a matrix, we use the t() function
+m <- matrix(1:20, nrow = 5, byrow = TRUE)
+m
+t(m)
+
+# to compute the determinant of a quadratic matrix
+# we use the det() function
+m <- matrix(c(2, 4, 8, 12, 5, 7, 9, 15, 10), nrow = 3, byrow = TRUE)
+m
+det(m)
+
+# to compute the inverse of a quadratic matrix
+# we use the solve() function
+# it only works if the determinant is different from zero
+mi <- solve(m)
+mi
+m %*% mi
+
+# to extract the elements on the main diagonal of a quadratic matrix
+# we use the diag() function
+m
+x <- diag(m)
+x
+class(x)
+
+# we can apply the diag() function to a vector as well
+# in this case we get a quadratic matrix that contains the vector components 
+# in the main diagonal and zero everywhere else
+x <- c(10, 12, 14, 16, 18)
+diag(x)
+
+# we can use the diag() function to create an identity matrix
+# this will create a 5*5 identity matrix
+diag(rep(1, 5))
+
 Applications of matrix
 --------------------
 *In geology, Matrices takes surveys and plot graphs, statistics, and used to study in different fields
@@ -494,7 +2151,6 @@ Applications of matrix
 *In robotics and automation, Matrices have the topmost elements for the robot movements.
 *Matrices are mainly used in calculating the gross domestic products in Economics, and it also helps in calculating the capability of goods and products.
 *In computer-based application, matrices play a crucial role in the creation of realistic seeming motion.
-
 
 Array 
 =====
@@ -616,88 +2272,155 @@ res
 Factor
 ======
 -Factors are the r-objects which are created using a vector
+-factors are categorical variables
+-they take on a limited number of distinct values called levels
 -It stores the vector along with the distinct values of the elements in the vector as labels.
 -The labels are always character irrespective of whether it is numeric or character or Boolean etc. in the input vector.
 
-
 Creating a factor
---------------
+----------------
 -Factors are created using the factor() function. The nlevels functions gives the count of levels.
 
 syntax:
  factor_data <- factor(vector)
 
-#creating vector as input
-names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
-names
-is.factor((names))
+#Creating a numeric vector
+x <- c(4, 4, 6, 5, 6, 6, 6, 4, 4, 5, 4, 5, 6, 4)
+x
+
+#creating a string vector
+y <- c("a", "b", "c", "b", "a", "c", "b", "a", "a", "c")
+y
 
 #apply a factor function
-factor_data <- factor(names)
-class(factor_data)
-factor_data
+f <- factor(x)
+f
+ff <- factor(y)
+ff
 
-Accessing components of factor
-----------------------------
+#to check the factor
+is.factor((f))
+is.factor((ff))
+
+# to get the factor levels
+levels(f)
+levels(ff)
+
+#to check the object
+class(f)
+class(ff)
+
+# we can assign labels to factor values
+# suppose that in the x vector the codes 4, 5 and 6
+# are actually car brands:
+# Ford, Toyota and Mercedes, respectively
+
+# so let's label the factor levels accordingly
+x
+f <- factor(x, labels = c("Ford", "Toyota", "Mercedes"))
+f
+
+# get a factor length
+length(f)
+
+
+Reading/Accessing components of factor
+--------------------------------------
 -We can access the element with the help of the indexing method or using logical vectors.
 
 #creating vector as input
-names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
-names
-is.factor((names))
+x <- c(4, 4, 6, 5, 6, 6, 6, 4, 4, 5, 4, 5, 6, 4)
+x
 
 #apply a factor function
-factor_data <- factor(names)
-class(factor_data)
+f <- factor(x)
+f
+is.factor((f))
+class(f)
 
 #printing all elements of factor
-factor_data
+f
 
 #accessing 4th element of factor
-factor_data[4]
+f[4]
 
 #access 5th and 6th element
-factor_data[c(5,6)]
+f[c(5,6)]
 
 #accessing all elements expect 4th one
-factor_data[-4]
+f[-4]
 
 #accessing elements using logical vector
-factor_data[c(TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE)]
+f[c(TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,0)]
+f
 
-Modification of factor
---------------------
--R allows us to modify the facto
+update/Modifcation of factor
+----------------------------
+-R allows us to modify the factor
 -We can modify the value of a factor by simply re-assigning it
 
 #creating vector as input
-names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
-names
-is.factor((names))
-
-#apply a factor function
-factor_data <- factor(names)
-class(factor_data)
+x <- c(1,1,3,2,2,1,3,3,2,1,1,2,3)
+f <- ordered(x, labels = c("elementary", "middle", "high"))
+f
+class(f)
 
 #printing all elements of factor
-factor_data
+f
+
+# get a factor length
+length(f)
+
+# index a factor (access the tenth value, for instance)
+f[14]
+
+# add a new value to a factor
+f[14] <- "elementary"
+f[14]
 
 #change 4th element of factor 
-factor_data[4]<-"Vedha"
-factor_data
+f[10]
+f[10] <- "middle"
+f[10]
 
 #change 4th element of factor to other
-factor_data[4]<-"Keertina" #Cannot assign values outside levels
-factor_data
+f[10] <- "ss"
+f[10]
 
 #adding the value to the level
-levels(factor_data) <- c(levels(factor_data),"Keertina")
-factor_data
-factor_data[4]<-"Keertina"
-factor_data
+##to change the codes we can use the levels option
+##suppose that for some reason we have to change the codes as follows:
+##4 becomes Mercedes
+##6 becomes Toyota
+##5 becomes Ford
+f <- factor(x, levels= c(5,6,4), labels = c("Ford", "Toyota", "Mercedes"))
+x
+f
+
+# if the factor levels are ordered, we will use
+# the ordered() function to create it
+
+# suppose that in the vector x below the codes 1, 2 and 3
+# represent respondents' education levels:
+# elementary, middle and high, respectively
+x <- c(1,1,3,2,2,1,3,3,2,1,1,2,3)
+f <- ordered(x, levels=c(1,2,3), labels = c("elementary", "middle", "high"))
+f
+
+# even if we change the coding, the order stays the same
+f <- ordered(x, levels=c(3,2,1), labels = c("elementary", "middle", "high"))
+f
+
+# it is not absolutely necessary to specify the levels (the program will take them as we have specified in the labels option)
+f <- ordered(x, labels = c("elementary", "middle", "high"))
+f
+
+### we cannot add a new value to a factor without defining that level first
+f[15] <- "unknown"
+f
 
 Factor in Data Frame
------------------
+--------------------
 -When we create a frame with a column of text data, R treats this text column as categorical data and creates factor on it.
 
 
@@ -746,6 +2469,100 @@ gl(n,k,labels)
 gen_factor <- gl(3,5,labels=c("BCA","MCA","BTECH"))
 gen_factor
 
+Factor operations
+------------------
+
+SPLITTING A VECTOR USING A FACTOR LEVELS
+*---------------------------------------*
+# suppose we have a vector with the employees' salaries
+sal <- c(1000, 1800, 2500, 1750, 1900, 2700, 2100, 1100)
+sal
+
+# and a factor containing the same employee categories (worker - W, middle manager - MM, top manager - TM)
+categ <- factor(c("W", "MM", "TM", "MM", "W", "TM", "MM", "W"))
+categ
+
+# the function split() returns the vector values by factor levels
+split(sal, categ)
+
+# this function returns a list
+s <- split(sal, categ)
+s
+class(s)
+
+# the list names are the factor levels
+names(s)
+
+# we can also split by several factors
+# let's add a new factor called gender
+gender <- factor(c("Male", "Female", "Male", "Male", "Female", "Female", "Male", "Female"))
+
+# split by category and gender
+s <- split(sal, list(categ, gender))
+s
+
+# the result is a list again
+class(s)
+
+THE tapply() FUNCTION
+*-------------------*
+
+# the tapply() function applies an operation to a vector values
+# broken down by factor levels
+sal <- c(1000, 1800, 2500, 1750, 1900, 2700, 2100, 1100)
+categ <- factor(c("W", "MM", "TM", "MM", "W", "TM", "MM", "W"))
+
+# compute the mean salary by category
+tapply(sal, categ, mean)
+
+# tapply() returns an array
+t <- tapply(sal, categ, mean)
+class(t)
+
+# let's add a new factor: gender
+gender <- factor(c("Male", "Female", "Male", "Male", "Female", "Female", "Male", "Female"))
+
+# compute the mean by both category and gender
+t <- tapply(sal, list(categ, gender), mean)
+t
+
+# this time tapply() returned a matrix
+class(t)
+
+THE by() FUNCTION
+*---------------*
+# by() does a similar thing as tapply()
+# it applies an operation to a vector values
+# broken down by factor levels
+sal <- c(1000, 1800, 2500, 1750, 1900, 2700, 2100, 1100)
+categ <- factor(c("W", "MM", "TM", "MM", "W", "TM", "MM", "W"))
+
+# compute the mean salary by category
+by(sal, categ, mean)
+b <- by(sal, categ, mean)
+
+# the object b is of a special class called "by"
+class(b)
+typeof(b)
+
+# we can index b as a vector
+b[2]
+
+# we can convert b into a list as well
+b <- as.list(b)
+class(b)
+b
+
+# now we can index the object b as a list
+b$TM
+
+Delete the Vectors
+------------------
+rm(b, f)#for single or multiple
+
+#removing
+list_data[4] <- NULL
+
 Dataframe
 =========
 -A data frame is a two-dimensional array-like structure or a table in which a column contains values of one variable, and rows contains one set of values from each column
@@ -761,30 +2578,16 @@ CREATING a Dataframe
 ----------------------
 -the data frames are created with the help of frame() function of data
 -This function contains the vectors of any type such as numeric, character, or integer.
+-Like lists, data frames are collections of objects ,unlike lists, the objects in a data frame must have the SAME length ,in essence, a data frame is a list where all the objects have the same length
+-to create a data frame we use the data.frame() function,create two vectors of the same length (10)
 
 creating a empty dataframe
 *-------------------------*
 df=data.frame()
 
-converting dataframe from vector
+Converting dataframe from vector
 *------------------------------*
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
-
-stu.data
-class(stu.data)
-typeof(stu.data)
-print(stu.data)
-
-or
-
-#converting named vector to dataframe
+#converting named vector to dataframe.
 employee <- c('John Doe','Peter Gynn','Jolie Hope')
 salary <- c(21000, 23400, 26800)
 startdate <- as.Date(c('2010-11-1','2008-3-25','2007-3-14'))
@@ -792,12 +2595,6 @@ startdate <- as.Date(c('2010-11-1','2008-3-25','2007-3-14'))
 employ.data <- data.frame(employee, salary, startdate)
 employ.data
 str(employ.data)
-
-#using dplr
-library(dplyr)
-testVect <- structure(c("11.2.0.3.0", "12.89", "12.71"), .Names = c("db_version", 
-                                                                    "elapsed_time", "cpu_time"))
-testVect %>% bind_rows() #using dplyr
 
 #converting a vector of fixed length
 myvector <- c("1", "darkorange", "16876", "16890", "2", "pink", "6833", "7189", 
@@ -812,6 +2609,56 @@ d1
 m2=read.table(text = paste(myvector, collapse = " "), 
               col.names = paste0("V", 1:4))
 m2
+
+x <- 1:10
+y <- rnorm(10)
+dt <- data.frame(x, y)
+dt
+View(dt)
+
+-the objects in a data frame may be also of character or logical type
+z <- c("a","b","c","d","e","f","g","h","i","j")
+w <- c(TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE)
+dt <- data.frame(x,y,z,w, stringsAsFactors = FALSE)
+dt
+View(dt)
+
+-the objects (columns) in a data frame are also called variables
+-the rows are also called entries or observations
+-by default, the data frames rows don't have names ,(the row.names option in the data.frame() function is set to NULL) ,however, we can name the rows if we want to
+
+dt <- data.frame(x,y,z,w, 
+                row.names = c("row1","row2","row3","row4","row5","row6","row7","row8","row9","row10"),
+                stringsAsFactors = FALSE)
+dt
+View(dt)
+
+-get object class and type
+class(dt)
+typeof(dt)
+
+-get data frame dimensions
+dim(dt)
+nrow(dt)
+ncol(dt)
+
+-get the data frame structure
+str(dt)	
+
+using data.frame() function:-
+stu.data <- data.frame(
+  student_id = c(14:19),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_age =c(32,44,34,56,34,23),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
+  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
+  stringsAsFactors = FALSE
+)
+
+stu.data
+class(stu.data)
+typeof(stu.data)
+print(stu.data)
 
 converting dataframe from list
 *----------------------------*
@@ -856,48 +2703,196 @@ ar <- array(c(1, 5, 14, 23, 54, 9, 15, 85, 3, 42, 9, 7, 42, 87, 16),dim =c(1,15)
 ar
 as.data.frame(ar)
 
-
-structure of R Data Frame
--------------------------
--R provides an in-build function called str() which returns the data with its complete structure.
-
-#creating a dataframew
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
-
 #using str functions to get the structure of the data frame
 str(stu.data)
 
-READING the Dataframe
----------------------
+Creating dataframe from loadfiles
+*--------------------------------*
+-in the R program we can read a file in table format (.csv or .txt) and create a data frame from it .we use the functions read.csv() and read.delim()
+-first we have to make sure that the directory that contains and the file is our working directory to read a .csv file we use the read.csv() function.
+bm <- read.csv("bank-marketing.csv", header = TRUE, sep = ";", stringsAsFactors = FALSE)
+bm
+View(bm)
+
+
+-if the table in the external file does not have a header, we set header = FALSE (by defaut it is TRUE),if the .csv file is already organized in columns
+we do not have to specify any separator
+car <- read.csv("carsales.csv", stringsAsFactors = FALSE)
+car
+View(car)
+str(car)
+
+-to read a text file we can either use read.csv() or read.delim()
+cpu <- read.csv("cpu-performance-data.txt", sep = ",", header = FALSE, stringsAsFactors = FALSE)
+View(cpu)
+
+-alternatively
+cpu <- read.delim("cpu-performance-data.txt", sep = ",", header = FALSE, stringsAsFactors = FALSE)
+cpu
+View(cpu)
+
+
+-if the source file has no header, the program automatically,assigns names to the columns (variables): V1, V2 and so on,we will be able to change these names later on, if we want to
+
+Write a data frame in a external file
+*------------------------------------*
+-this is useful when we have created a data frame,and want to save it on the hard disk for later use
+
+x <- 1:10
+y <- rnorm(10)
+z <- c("a","b","c","d","e","f","g","h","i","j")
+w <- c(TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE)
+dt <- data.frame(x,y,z,w, stringsAsFactors = FALSE)
+View(dt)
+
+-save the data frame on the hard disk as a .csv file ,(it will be written in the working directory)
+write.csv(dt, file = "example.csv")
+
+-to omit row names
+write.csv(dt, file = "example2.csv", row.names = FALSE)
+
+-create a .csv file with spaces as separators
+write.table(dt, file = "example3.csv", row.names = FALSE)
+
+READING/Accessing the Dataframe
+-------------------------------
 reading operations generally read by rows , column using index and named index.
 
-celebrities = data.frame(name = c("Andrew", "Mathew", "Dany", "Philip", "John", "Bing", "Monica"),
-                         age = c(28, 23, 49, 29, 38, 23, 29),
-                         income = c(25.2, 10.5, 11, 21.9, 44, 11.5, 45))
+bm <- read.csv("bank-marketing.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";")
+View(bm)
+bm
 
-celebrities
-str(celebrities)
-typeof(celebrities)
-class(celebrities)
+-get data frame dimensions
+dim(bm)
+nrow(bm)
+ncol(bm)
 
-#accessing Rows
-celebrities[1,]#read 1st row
-celebrities[1:3,] #range of rows
-celebrities[,1]#read 2st row
-celebrities[,1:2] #range of columns
-celebrities[1,2]#read 1st row and 2 column
-celebrities[c(2,5),c(1,3)] # access elements from rows(2,5), columns(1,3)
+-get the data frame structure
+str(bm)	
+
+#accessing/Indexings Rows 
+bm[3,]#read 1st row
+bm[,2]#read 2st row
+bm[1:3,] #range of rows
+bm[,1:2] #range of columns
+bm[1,2]#read 1st row and 2 column
+bm[c(2,5),c(1,3)] # access elements from rows(2,5), columns(1,3)
+bm[2, 1:3] #get the values in the second row, columns one to three
+bm[2:4, 5:8] #get the values in rows two to four, columns five to eight
+bm[2:4, c(5:8, 11)] #get the values in rows two to four, columns five to eight and elevem
+bm1 <- bm[-1,] #to remove rows and columns we use negative indices remove the first row
+View(bm1)
+bm1 <- bm[,-3] #remove the third column (marital)
+View(bm1)
+bm1 <- bm[-1:-5,-3:-5] #remove rows one to five and columns three to five (marital, education, default)
+View(bm1)
 
 #accessing columns
-celebrities(celebrities$name)
-celebrities(celebrities$name,celebrities$age)
+bm[,c("job","age")] #using named index
+bm[,c(1,3)] #using the column index
+bm$age
+bm[,6] #get the values in the sixth column (balance)
+bm[[2]] #access the second column (job)
+bm[[2]][10] #access the second column (job), row 10
+bm[["balance"]] #get the variable balance
+bm[["balance"]][4] #get the fourth value of the variable balance
+bm$balance #other way to get the variable balance
+bm$balance[5] #get the fifth value of the variable balance
+balance <- bm$balance[2:7] #get the second to the seventh value of the variable balance (rows 2-7)
+balance #the result is a vector
+class(balance)
+
+Selecting a random sample of rows(Observations)
+*---------------------------------------------*
+-this operation is very useful in resampling, for example we will extract 100 rows, at random, from the bm data frame
+bm <- read.csv("bank-marketing.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";")
+View(bm)
+
+-get the number of rows in our data frame
+nrows <- nrow(bm)
+nrows
+
+-generate 100 random integers from 1 to nrows, without replacement
+i <- sample(nrows, 100)
+i
+
+-i will be the vector of indices for our new data frame
+bm1 <- bm[i,]
+View(bm1)
+
+-we can also create a data frame with the remaining rows
+bm2 <- bm[-i,]
+View(bm2)
+
+Filtering dataframes
+*------------------*
+-filtering (slicing) means selecting the rows (entries) that meet one or several conditions
+-the condition(s) must be put between square brackets,we will filter the data frame bm
+
+bm <- read.csv("bank-marketing.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";")
+View(bm)
+
+-select the rows where the balance is greater than 1000
+bm1 <- bm[bm$balance > 1000,]
+View(bm1)
+
+-select the rows where the contact duration is lower than 150
+bm1 <- bm[bm$duration < 150,]
+View(bm1)
+
+-select the rows where the contact duration is equal to 185
+bm1 <- bm[bm$duration == 185,]
+View(bm1)
+
+-select the rows where the education level is tertiary
+bm1 <- bm[bm$education == "tertiary",]
+View(bm1)
+
+-select the rows where the education level is tertiary and the balance is greater than 2000
+bm1 <- bm[bm$education == "tertiary" & bm$balance > 2000,]
+View(bm1)
+
+-select the rows where the education level is tertiary and the marital status is married
+bm1 <- bm[bm$education == "tertiary" & bm$marital == "married",]
+View(bm1)
+
+-we can also select the columns to show in the new data frame, select the rows where the education level is tertiary and the marital status is married
+but only the first four columns and the balance
+bm1 <- bm[bm$education == "tertiary" & bm$marital == "married", c(1:4,6)]
+View(bm1)
+
+Sorting the dataframes
+*---------------------*
+car <- read.csv("carsales.csv", header = TRUE, stringsAsFactors = FALSE)
+View(car)
+
+-to order a data frame we use the order() function this function must be put between square brackets ,sort by price in ascending order
+car2 <- car[order(car$price),]
+View(car2)
+
+-sort by price in descending order
+car2 <- car[order(-car$price),]
+
+-alternatively
+car2 <- car[order(car$price, decreasing = TRUE),]
+
+-sort by engine size and horsepower, ascending
+car2 <- car[order(car$engine, car$horse),]
+
+-sort by engine size ascending and horsepower descending
+car2 <- car[order(car$engine, -car$horse),]
+
+-we can sort by character variables as well
+bm <- read.csv("bank-marketing.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";")
+View(bm)
+
+-sort by education, first ascending then descending
+bm2 <- bm[order(bm$education),]
+View(bm2)
+bm2 <- bm[order(bm$education, decreasing = TRUE),]
+
+-it is not allowed to put the minus sign before a character variable
+bm2 <- bm[order(-bm$education),]
 
 Summary of data in Data Frames
 *----------------------------*
@@ -910,31 +2905,168 @@ UPDATING the dataframe
 ----------------------
 updating operations may be updating the values, modifying the row , column..etc
 
-updating the value
-*----------------*
-celebrities
-celebrities[1,3] <- 4
-celebrities
+-we can edit a data frame directly by assigning a value to any element
+bm <- read.csv("bank-marketing.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";")
+View(bm)
 
-adding a row
-*----------*
-#using R bind functions
-new_data = data.frame(name = c("ganesh", "banu", "vedha"),
-                         age = c(28, 23, 49),
-                         income = c(25.2, 10.5, 11))
-new_data
-celebrities=rbind(celebrities,new_data)
-celebrities
+-suppose we want to change the marital status for the customer in row 2 to married
+bm[2,3] <- "married"
 
-adding a column of data
-*---------------------*
-using cbind functions
-car <-  c("Audi","Toyota","Bugati","Audi","Agera R","Bugati","Audi")
-cbind(celebrities,"car"=car)
+-a more convenient way is to mention the column name change the balance for the first customer to 1000
+bm$balance[1] <- 1000
 
-#directly of the column
-celebrities$car = c("Audi","Toyota","Bugati","Audi","Agera R","Bugati","Audi")
+-change the loan value for the seventh customer to no
+bm$loan[7] <- "no"
 
+-we can change more than one element simultaneously change the balance value for rows 4, 5 and 6to 400, 500 and 600 respectively
+bm$balance[4:6] <- c(400,500,600)
+
+Adding rows and columns to dataframe
+*----------------------------------*
+-we can add rows and columns to data frames using the rbind() and cbind() functions
+car <- read.csv("carsales.csv", header = TRUE, stringsAsFactors = FALSE)
+View(car)
+
+-add a new car with the following data
+price: 26.4
+engine: 3.2
+horse: 225
+weight: 3500
+car2 <- rbind(car, c(26.4, 3.2, 225, 3500))
+View(car2)
+
+-add a new variable, formed by uniform random numbers called x
+x <- runif(nrow(car))
+car3 <- cbind(car, x)
+View(car3)
+
+-we can add several columns at once
+z <- runif(nrow(car), 1, 2)
+w <- runif(nrow(car), 99, 100)
+car4 <- cbind(car, z, w)
+View(car4)
+
+-we can compute a new variable based on the existing ones ,create a new variable that stores the halved car prices
+car$price2 <- car$price / 2
+
+-create another variable that stores the ratio price/weight
+car$pw <- car$price / car$weight
+
+-to delete a column (variable)
+car$pw <- NULL
+
+Naming rows and columns in data frames
+*------------------------------------*
+-to name or rename rows and columns we usev the rownames() and colnames() functions, respectively ,let's assign the numbers from 1001 to 1155 as row names for the data frame car
+car <- read.csv("carsales.csv", header = TRUE, stringsAsFactors = FALSE)
+View(car)
+x <- 1001:1155
+rownames(car) <- x
+
+-we can edit the row names individually change the name of the third row
+rownames(car)[3] <- "BMW"
+
+-change the names of the rows four, five and six
+rownames(car)[4:6] <- c("Renault", "Mazda", "Ford")
+
+-change the name of the variable weight in curbweight
+colnames(car)[4] <- "curbweight"
+
+Adding functions to dataframes
+*----------------------------*
+-since data frames are both lists and matrices,we can use the apply() and lapply() functions with them but only if the variables are of the same type (numeric)
+car <- read.csv("carsales.csv", header = TRUE, stringsAsFactors = FALSE)
+View(car)
+
+-compute the variable means using the apply() function
+m <- apply(car, 2, mean)
+m
+
+-m is a vector
+class(m)
+
+-compute the variable means using the lapply() function
+ml <- lapply(car, mean)
+ml
+
+-ml is a list
+class(ml)
+
+-if we want to get a vector, we can also use the sapply() function
+sm <- sapply(car, mean)
+sm
+class(sm)
+
+-if we set the simplify option to FALSE ,the sapply() function will return a list
+sm2 <- sapply(car, mean, simplify = FALSE)
+sm2
+class(sm2)
+
+-what happens if we try to use apply(),when all the variables are not numeric?
+bm <- read.csv("bank-marketing.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";")
+View(bm)
+apply(bm, 2, mean)
+
+-the apply() function returns NA for all the variables
+lapply(bm, mean)
+
+-the lapply() function returns NA for the non-numeric variables
+sapply(bm, mean)
+
+-the sapply() function returns NA for the non-numeric variables
+
+Shuffling data frames
+*-------------------*
+-shuffling means ordering the entries at random
+car <- read.csv("carsales.csv", header = TRUE, stringsAsFactors = FALSE)
+View(car)
+
+-create a vector of uniform random numbers
+rnd <- runif(nrow(car))
+car <- car[order(rnd),]
+
+Merging data frames
+*-------------------*
+-we can easily merge two data frames that have 
+-two or more variables with the same name
+-the merging variables should have unique values for example ID, SSN, computer IP etc.
+-create a new data frame, employ,it will contain the employees IDs,
+-names and annual salaries
+
+id <- c(101, 102, 103, 104, 105)
+name <- c("Mark", "Lisa", "John", "Anna", "Peter")
+salary <- c(62000, 75000, 48000, 42000, 56000)
+employ <- data.frame(id, name, salary)
+employ
+
+-the data frame hours will contain (for the same employees)
+-the IDs and the number of working hours in the last month
+h <- c(235, 220, 247, 215, 260)
+hours <- data.frame(id, h)
+hours
+
+-merge the data frames using the merge() function
+-the merging variable is indicated with the by option
+dt <- merge(employ, hours, by = "id")
+dt
+
+-if the merging variables have different names (but same values)
+-we must indicate them using the options by.x and by.y
+-the data frame birth will contain the birth places
+-for the same employees
+-this time the IDs are stored in a variable called code
+
+code <- c(104, 105, 101, 103, 102)
+bplace <- c("Boston", "New York", "Chicago", "Dallas", "Seattle")
+birth <- data.frame(code, bplace)
+birth
+dt
+
+employ2 <- merge(dt, birth, by.x = "id", by.y = "code")
+employ2
+
+-by.x indicates the merging variable for the first data frame
+-by.y indicates the merging variable for the second data frame
 
 Deleting the dataframe
 ----------------------
@@ -961,3 +3093,151 @@ droping the dataframe
 *-------------------*
 "celebrities" %in% ls() #searching dataframe is there is R session
 rm("celebrities") 
+
+Using Tibbles then dataframes
+-----------------------------
+Tibbles are a modern take on data frames. They keep the features that have stood the test of time, and drop the features that used to be convenient but are now frustrating (i.e. converting character vectors to factors).
+
+library(tibble)
+...ctd
+
+Ref: https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html
+
+Apply Family Functions
+======================
+-The apply() family pertains to the R base package and is populated with functions to manipulate slices of data from matrices, arrays, lists and dataframes in a repetitive way
+-These functions allow crossing the data in a number of ways and avoid explicit use of loop constructs. They act on an input list, matrix or array and apply a named function with one or several optional arguments
+
+The called function could be:
+-An aggregating function, like for example the mean, or the sum (that return a number or scalar)
+-Other transforming or subsetting functions; and
+-Other vectorized functions, which yield more complex structures like lists, vectors, matrices, and arrays.
+
+there apply(), lapply() , sapply(), vapply(), mapply(), rapply(), and tapply() functions.
+
+apply()
+------
+- operates on arrays
+
+# Construct a 5x6 matrix
+X <- matrix(rnorm(30), nrow=5, ncol=6)
+X
+
+apply(X,2,sum)
+
+lapply()
+--------
+-You want to apply a given function to every element of a list and obtain a list as a result
+-It can be used for other objects like dataframes, lists or vectors
+-The output returned is a list (which explains the “l” in the function name), which has the same number of elements as the object passed to it
+-The [ notation is the select operator. Remember, for example, that to extract all the elements of the third line of B requires: B[3,];
+-The [[ ]] notation expresses the fact that we are dealing with lists: [[2]] means the second element of the list. This is also shown in the output given by R
+-The output is a list with as many elements as the element in the input
+-Note that you could also have extracted a single element for each matrice, like this: lapply(MyList,"[", 1, 2)
+
+A <- matrix(1:9,nrow = 3,ncol = 3)
+B <- matrix(4:15,nrow = 3,ncol = 3)
+C <- matrix(8:10,nrow = 3,ncol = 2)
+A
+B
+C
+MyList <- list(A,B,C)
+MyList
+
+# Extract the 2nd column from `MyList` with the selection operator `[` with `lapply()`
+lapply(MyList,"[", , 2)
+
+# Extract the 1st row from `MyList`
+lapply(MyList,"[", 1, )
+
+
+sapply()
+--------
+-The sapply() function works like lapply(), but it tries to simplify the output to the most elementary data structure that is possible.
+-And indeed, sapply() is a ‘wrapper’ function for lapply()
+
+A <- matrix(1:9,nrow = 3,ncol = 3)
+B <- matrix(4:15,nrow = 3,ncol = 3)
+C <- matrix(8:10,nrow = 3,ncol = 2)
+A
+B
+C
+MyList <- list(A,B,C)
+MyList
+
+# Return a list with `lapply()`
+lapply(MyList,"[", 2, 1 )
+
+# Return a vector with `sapply()`
+sapply(MyList,"[", 2, 1 )
+
+# Return a list with `sapply()`
+sapply(MyList,"[", 2, 1, simplify=F)
+
+# Return a vector with `unlist()`
+unlist(lapply(MyList,"[", 2, 1 ))
+
+rep() function
+--------------
+When you apply it to a vector or a factor x, the function replicates its values a specified number of times
+
+# Initialize `Z`
+Z <- sapply(MyList,"[", 1,1 )
+
+# Return `Z`
+Z
+
+# Replicate the values of `Z`
+Z <- rep(Z,c(3,1,2))
+
+# Return `Z`
+Z
+
+vapply()
+--------
+
+
+mapply()
+--------
+-The mapply() function stands for ‘multivariate’ apply.
+-Its purpose is to be able to vectorize arguments to a function that is not usually accepting vectors as arguments
+-mapply() applies a Function to Multiple List or multiple Vector Arguments
+
+
+# Create a 4x4 matrix
+Q1 <- matrix(c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4)),4,4)
+
+# Print `Q1`
+print(Q1)
+
+# Or use `mapply()`
+Q2 <- mapply(rep,1:4,4)
+Q2
+
+# Print `Q2`
+print(Q2)
+
+The Sweep() Function
+--------------------
+..ctd
+
+
+The aggregate() Function
+------------------------
+..ctd
+
+
+
+Ref:https://www.datacamp.com/community/tutorials/r-tutorial-apply-family
+https://ademos.people.uic.edu/Chapter4.html
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
