@@ -263,103 +263,96 @@ print("\"positive\"") #Double quote (")
 String Regular expressions
 ==========================
 The regular expressions can be defined as the sequence of characters which are used to search for a pattern in a string. 
-### a regular expression is a sequence of characters used to define a pattern
-### these expressions are used in the functions
-### that find or replace patterns in strings
-### grep(), grepl(), regexpr(), gregexpr(), regexec()
-### sub(), gsub()
-### they can be also used in other functions like strsplit()
-### find the components in a character vector
-### that contain at least one of the letters l or d
+-a regular expression is a sequence of characters used to define a pattern
+-these expressions are used in the functions
+-that find or replace patterns in strings
+grep(), grepl(), regexpr(), gregexpr(), regexec()
+sub(), gsub()
+-they can be also used in other functions like strsplit()
+-find the components in a character vector that contain at least one of the letters l or d
 grep("[ld]", c("Philadelphia", "Milwaukee", "Boston"), value = TRUE)
 grepl("[ld]", c("Philadelphia", "Milwaukee", "Boston"))
 
-### replace the l and d letters with a $
+-replace the l and d letters with a $
 gsub("[ld]", "$", c("Philadelphia", "Milwaukee", "Boston"))
 
-### replace the l and d letters with three asterisks
+-replace the l and d letters with three asterisks
 gsub("[ld]", "***", c("Philadelphia", "Milwaukee", "Boston"))
 
-### find the components in a character vector
-### that contain any other letters than l or d
+-find the components in a character vector that contain any other letters than l or d
 grep("[^ld]", c("Philadelphia", "Milwaukee", "Boston"), value = TRUE)
 grepl("[^ld]", c("Philadelphia", "Milwaukee", "Boston"))
 grep("[^top]", c("stop", "pause", "top"), value = TRUE)
 
-### find the components in a character vector
-### that contain any of the characters 2 or 5
+-find the components in a character vector that contain any of the characters 2 or 5
 grep("[25]", c("as148", "tm254", "wd570"), value = TRUE)
 
-### find the components in a character vector
-### that contain any other characters than 2 or 5
+-find the components in a character vector that contain any other characters than 2 or 5
 grep("[^25]", c("as148", "25", "wd570"), value = TRUE)
 
-### find the components in a character vector
-### that contain any of the characters in the 2-5 interval
+-find the components in a character vector that contain any of the characters in the 2-5 interval
 grep("[2-5]", c("as148", "tm254", "wd189"), value = TRUE)
 
-### find the components in a character vector
-### that contain any other character than the characters in the 2-5 interval
+-find the components in a character vector that contain any other character than the characters in the 2-5 interval
 grep("[^2-5]", c("as148", "234", "167"), value = TRUE)
 
-### the period (.) replaces any character
+-the period (.) replaces any character
 x <- c("target", "window", "store", "stairs")
 
-### find the components that contain the sequence 
-### t - any character - r
+-find the components that contain the sequence t - any character - r
 grep("t.r", x, value = TRUE)
 
-### find the components that contain the sequence 
-### t - any two characters - r
+-find the components that contain the sequence 
+t - any two characters - r
 grep("t..r", x, value = TRUE)
 
-### to represent a period we precede it with two backslashes (\\.)
+-to represent a period we precede it with two backslashes (\\.)
 x <- c("bnm", "as.d", "qwe.")
 
-### find the components that contain a period
+-find the components that contain a period
 grep("\\.", x, value = TRUE)
 
-### find the components that contain at least a digit
+-find the components that contain at least a digit
 x <- c("stop", "wait35", "4abc")
 grep("\\d", x, value = TRUE)
 
-### find the components that contain other characters than digits
+-find the components that contain other characters than digits
 x <- c("stop", "wait35", "789")
-
 grep("\\D", x, value = TRUE)
 
-### find the components that contain at least a space
+-find the components that contain at least a space
 x <- c("abc", "d ef", "ghi  ")
 grep("\\s", x, value = TRUE)
 
-### find the components that contain other characters than spaces
+-find the components that contain other characters than spaces
 x <- c("abc", "d ef", "   ")
 grep("\\S", x, value = TRUE)
 
-### find the components that contain words
-### a word is a string that contains at least
-### one alpha-numeric character (letter, number and underscore)
-### N.B. the underscore (_) is alpha-numeric character, while the dash (-) is not
+-find the components that contain words
+-a word is a string that contains at least
+-one alpha-numeric character (letter, number and underscore)
+-N.B. the underscore (_) is alpha-numeric character, while the dash (-) is not
 x <- c("stop", "stop12", "456", "abc ", "abc-_","", "4$#", "$&#", "#@_", "#@-")
 grep("\\w", x, value = TRUE)
 
-### "stop", "stop12", "456", "abc ", "abc-_" are words
-### "4$#" is a word (it contains an alpha-numeric character)
-### "" is not a word (it is an empty string)
-### "#@_" is a word (it contains the underscore, which is alpha-numeric)
-### "$&#" is not a word (it only contains special characters)
-### "#@-" is not a word (because the dash is not alpha-numeric)
-### find the components that contain non-words
-### a non-word is a string that does not contain any
-### alpha-numeric character (only spaces and special characters)
+-"stop", "stop12", "456", "abc ", "abc-_" are words
+-"4$#" is a word (it contains an alpha-numeric character)
+-"" is not a word (it is an empty string)
+-"#@_" is a word (it contains the underscore, which is alpha-numeric)
+-"$&#" is not a word (it only contains special characters)
+-"#@-" is not a word (because the dash is not alpha-numeric)
+
+-find the components that contain non-words
+-a non-word is a string that does not contain any
+-alpha-numeric character (only spaces and special characters)
 x
 grep("\\W", x, value = TRUE)
 
-### "stop", "stop12" and "456" do NOT contain non-words
-### (all their characters are alpha-numeric)
-### "" is an empty string, so it does NOT contain non-words
-### "abc ", "abc-_" do contain non-words (space and dash, respectively)
-### "4$#", "$&#", "#@_" and "#@-" do contain non-words (special characters)
+- "stop", "stop12" and "456" do NOT contain non-words
+-(all their characters are alpha-numeric)
+-"" is an empty string, so it does NOT contain non-words
+-"abc ", "abc-_" do contain non-words (space and dash, respectively)
+-"4$#", "$&#", "#@_" and "#@-" do contain non-words (special characters)
 
 The details concepts are explained in API/Regular Expressions chapters if required
 
