@@ -16,7 +16,7 @@ Intro
 Creating a String
 ================
 'Hello World' #using Single quotes
-"Hello world" #using double quotes
+"Hello world" #using double quotes #but we cannot use double quotes or single quotes ,in the same statement more than one time
 
 mychar <- "R is a Super Programming language"
 cat(mychar,"\n")
@@ -29,6 +29,55 @@ class(mychar)
 mystr<-' I'm using single quotes, but this will create an error'# Be careful with quotes!
 #for correcting the above , use double quotes
 mystr<-"I'm using single quotes, but this will create an error"
+
+x <- "Hello 'my' friends"
+x
+y <- 'Hello 'my' friends'
+y
+# but we cannot use double quotes or single quotes in the same statement more than one time
+#count the number of characters in the string
+nchar(x)
+
+#get class and type
+class(x)
+typeof(x)
+
+#create empty strings and empty character vectors
+#create an empty string
+x <- ""
+x
+nchar(x)
+
+# create a vector of two empty strings 
+y <- character(2)
+y
+length(y)
+nchar(y)
+
+# create an empty character vector
+z <- character(0)
+z
+length(z)
+nchar(z)
+
+# add a component to the vector
+z[1] <- "Tom"
+length(z)
+nchar(z)
+
+#check whether a variable is of character type
+x <- "The wheather is fine"
+is.character(x)
+
+# convert a numeric vector in a character vector
+x <- c(2, 3, 4)
+typeof(x)
+
+x <- as.character(x)
+x
+
+typeof(x)
+is.character(x)
 
 Rules Applied in String Construction
 ------------------------------------
@@ -69,6 +118,86 @@ a <- "learn the R "Programming language'
 a <- 'learn the R 'Programming language'
 a <- "learn the R"Programming language"
 
+String Formatting
+=================
+String formatting lets you inject items into a string rather than trying to chain items together using commas or string concatenation. As a quick comparison, consider:
+
+for example
+company='Novo nordisk'
+experience='7'
+name ='Ganesh babu'
+
+#using cat functions
+cat("Myself,",name,'working in',company,' for past ',experience,' years.') 
+#using paste functions
+paste("Myself,",name,'working in',company,' for past ',experience,' years.') 
+
+There are three ways to perform string formatting
+1)using cat functions (classical way)
+2)using paste functions (classical way)
+3)using stringf() in R
+
+Using stringf()
+--------------
+stringf()
+-the sprintf() function offers more advanced formatting options
+-syntax: sprintf(format, string)
+-all the formats start with a % sign
+-and they are put between double quotes
+-%f is used for decimal numbers
+-by default, it prints six decimals
+sprintf("%f", 0.725896956)
+
+-to print 3 decimals only
+sprintf("%.3f", 0.725896956)
+
+-round the number (print no decimals)
+sprintf("%.f", 0.725896956)
+
+-print the + sign (for positive numbers)
+sprintf("%+f", 0.725896956)
+
+-print the + sign (but the first 3 decimals only)
+sprintf("%+.3f", 0.725896956)
+
+-%e and %E print the number in exponential format
+sprintf("%e", 82.235691)
+sprintf("%E", 82.235691)
+
+-%g prints six digits by default
+sprintf("%g", 82.235691)
+
+-print the first 4 digits
+sprintf("%.4g", 82.235691)
+
+-%s prints the desired number of characters in a string
+sprintf("%.4s", "Philadelphia")
+
+-%d is used to print integers
+sprintf("%d", 23755)
+
+-advanced uses of the sprintf() function
+-we want to print "This book costs 12.8 dollars" the book price is 12.82)
+sprintf("This book costs %.1f dollars", 12.82)
+
+-we want to print the following:
+"The sum of the numbers 7 and 3 is 10"
+a <- 7
+b <- 3
+x <- sprintf("The sum of the numbers %d and %d is %d", a, b, a+b)
+x
+
+-we want to print the following:
+-"The sum of the numbers 4.5 and 10 is 14.5"
+a <- 4.5
+b <- 10
+x <- sprintf("The sum of the numbers %.1f and %d is %.1f", a, b, a+b)
+x
+
+-binary output showing rounding/representation errors
+x <- seq(0, 1.0, 0.1); y <- c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1)
+cbind(x, sprintf("%a", x), sprintf("%a", y))
+
 Accessing String elements
 =========================
 -The individual characters of a string can be extracted from a string by using the indexing methods of a string
@@ -85,6 +214,18 @@ substr(x,1,1) #grapping from start 1 to end 1
 substr(x,1,5) #grapping from start 1 to end 4
 substr(x,7,7) #grapping from start 7 to end 7
 substr(x,8,8) #grapping from start 8 to end 8
+
+-create sequences of letters using the built-in vector letters
+letters
+
+-the first letter of the alphabet
+letters[1]
+
+-the first five letters of the alphabet
+letters[1:5]
+
+-the first, fifth and fourteenth letters of the alphabet
+ letters[c(1, 5, 14)]
 
 String Properties
 =================
@@ -118,74 +259,6 @@ Example:
 print("positive\\negative") #backslash (\)
 print("\'positive\'") #Single quote (')
 print("\"positive\"") #Double quote (")
-
-String Formatting
-=================
-String formatting lets you inject items into a string rather than trying to chain items together using commas or string concatenation. As a quick comparison, consider:
-
-for example
-company='Novo nordisk'
-experience='7'
-name ='Ganesh babu'
-
-#using cat functions
-cat("Myself,",name,'working in',company,' for past ',experience,' years.') 
-#using paste functions
-paste("Myself,",name,'working in',company,' for past ',experience,' years.') 
-
-There are three ways to perform string formatting
-1)using cat functions (classical way)
-2)using paste functions (classical way)
-3)using stringf() in R
-
-Using stringf()
---------------
-stringf()
-sprintf("%s is %f feet tall\n", "Sven", 7.1)      # OK
-sprintf("%s is %i feet tall\n", "Sven", 7  )  # OK
-sprintf("%.0f%% said yes (out of a sample of size %.0f)", 66.666, 3)
-sprintf("%f", pi)
-sprintf("%.3f", pi) #Format Places Before Decimal Point
-sprintf("%1.0f", pi)#Format Places Before Decimal Point
-sprintf("%5.1f", pi)#Format Places Before Decimal Point
-sprintf("%05.1f", pi)#Format Places Before Decimal Point
-sprintf("%+f", pi) #To print the Non-Numeric Values in R,
-sprintf("% f", pi) #
-sprintf("%-10f", pi) # left justified
-sprintf("%e", pi) #Control Scientific Notation using sprintf() function
-sprintf("%E", pi) #Control Scientific Notation using sprintf() function
-sprintf("%g", pi) #Control Scientific Notation using sprintf() function
-sprintf("%g",   1e6 * pi) # -> exponential
-sprintf("%.9g", 1e6 * pi) # -> "fixed"
-sprintf("%G", 1e-6 * pi)
-
-sprintf("%1.f", 101)## no truncation:
-
-## re-use one argument three times, show difference between %x and %X
-xx <- sprintf("%1$d %1$x %1$X", 0:15)
-xx
-xx <- matrix(xx, dimnames = list(rep("", 16), "%d%x%X"))
-noquote(format(xx, justify = "right"))
-
-sprintf("%09s", month.name)
-n <- 1:18
-sprintf(paste0("e with %2d digits = %.", n, "g"), n, exp(1))
-
-## Using arguments out of order using %
-sprintf("second %2$1.0f, first %1$5.2f, third %3$1.0f", pi, 2, 3)
-
-## Using asterisk for width or precision
-sprintf("precision %.*f, width '%*.3f'", 3, pi, 8, pi)
-
-## Asterisk and argument re-use, 'e' example reiterated:
-sprintf("e with %1$2d digits = %2$.*1$g", n, exp(1))
-
-## re-cycle arguments
-sprintf("%s %d", "test", 1:3)
-
-## binary output showing rounding/representation errors
-x <- seq(0, 1.0, 0.1); y <- c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1)
-cbind(x, sprintf("%a", x), sprintf("%a", y))
 
 String Regular expressions
 ==========================
@@ -240,9 +313,22 @@ x <- c("file_a.csv", "file_b.csv", "file_c.csv")
 y <- gsub("file_","", x)
 y
 
-#It finds pattern in x and replaces it with replacement (new) text.
+-t finds pattern in x and replaces it with replacement (new) text.
 st1<- "England is beautiful but no the part of EU"
 sub("England", "UK", st1)
+
+- the chartr() function helps us change characters in a string
+x <- "Mary has o cat"
+chartr("o", "a", x) #to change the o into a
+x <- "Mary has o dog" #another example to see how chartr() behaves
+x <- "Mary has o dog" #chartr("o", "a", x)
+-so chartr() changes ALL the specified characters
+-in the following string a was replaced with *
+-and r was replaced with $
+x <- "B*rry h*s * $ed t$uck"
+
+-to change each of them into the correct character
+chartr("*$", "ar", x)
 
 Case changes
 ------------
@@ -250,6 +336,8 @@ a<-"hello world"
 a
 toupper(a) #upper case
 tolower(a) #lower case
+casefold(a)# by default, casefold() converts everything to lower case
+casefold(x, upper = TRUE) ## we can change this by setting the upper option to TRUE
 
 library(stringr)
 #https://stringr.tidyverse.org/
@@ -276,11 +364,52 @@ nchar(x)
 Concatentations
 ---------------
 cat("ganesh","babu")
-paste("ganesh","babu","g")
+# we can concatenate string variables using the c() function
+#however, the result may not be as expected
+x <- "The weather"
+y <- "is fine"
+z <- c(x, y)
+z
+
+#a more useful concatenating function for strings is paste()
+z <- paste(x, y)
+z
+z <- paste(x, y, sep = " ") # the default separator is the space
+z # we can indicate the separator using the sep option
+z <- paste(x, y, sep = "") # to use no separator
+z
+z <- paste(x, y, sep = "-") # to use the dash as a separator
+z
+x <- c("a", "b", "c", "d") 
+y <- c(1, 2, 3, 4)
+w <- paste(x, y) # paste() can be used to concatenate character vectors as well,it will concatenate them element-wise
+w
+w <- paste(x, y, sep = "--") # use a double dash as a separator (instead of the space)
+w
+w <- paste(x, y, sep = "--", collapse = ",") # to put a comma between the pairs of elements we use the collapse option
+w
+w <- paste(x, y, sep = "--", collapse = ", ") # put a comma and a space between the pairs
+w
+x <- c("The weather", "we go to")
+y <- c("is fine", "take a walk")
+z <- paste(x, y, collapse = " and ") # another example of using collapse
+z
+#in conclusion, we use sep to indicate 
+#the separator between the elements in a pair
+#and we use collapse to indicate the separator between pairs
+# paste0() is a version of paste
+# that uses no separator by default
+paste0("Port", "land")
+paste("Port", "land", sep="") # this is the same as writing
+cat("The weather is fine") # another concatenating (and formatting) function is cat()
+# the cat() function does not return a vector
+# the line indicator ([1]) is missing
+# the default separator of cat() is the space
+cat("The weather", "is fine")
+cat("The weather", "is fine", sep = "_")# we can modify the separator with the sep option
 
 start ,end and contains of string
------------------------
-
+---------------------------------
 #using grepl functions
 x="ganesh babu"
 grepl('^ga',x)
@@ -289,6 +418,23 @@ grepl('bu$',x)
 #using substr funcionts
 substr(x, 1, 2) == 'ga'
 substr(x, nchar(x)-1, nchar(x)) == 'bu'
+substr(x, 5, 9) #extract five characters from x form the fifth to the nineth
+substr(x, 10, 5) #try to extract characters in reverse order form the tenth to the fifth
+x <- c("Philadelphia", "Chicago", "Seattle")
+substr(x, 2, 4) # extract three characters from each component (2, 3 and 4)
+substr(x, 2, 2) <- "$" # in the vector above, replace the second character in each component with a $ sign
+substr(x, 2, 4) <- "$$$" #replace the characters 2, 3 and 4 with "$$$"
+# replace the second character in each component:
+# with a $ in the first component
+# with a * in the second component
+# with a & in the third component
+substr(x, 2, 2) <- c("$", "*", "&")
+# replace the characters 2, 3 and 4 in each component
+# with $*& in the first component
+# with *&$ in the second component
+# with &$* in the third component
+substr(x, 2, 4) <- c("$*&", "*&$", "&$*")
+x
 
 #r3.3 the below functions exists
 startsWith(x,"ga")
