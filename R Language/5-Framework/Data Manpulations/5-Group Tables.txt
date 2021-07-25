@@ -23,7 +23,8 @@ Grouping by various wise
 ------------------------
 using dplyr
 *--------*
-summarise() creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input.
+summarise() creates a new data frame. It will have one (or more) rows for each combination of grouping variables;
+if there are no grouping variables, the output will have a single row summarising all observations in the input.
 
 group_by(storms,year) 
 stroms_group <- group_by(storms,year)
@@ -73,12 +74,12 @@ storms %>% group_by(status) %>% summarise(mn_mean=mean(wind),n=n()) %>% filter(m
 
 How to generate multiple grouping sets in a query
 =================================================
-Aggregate is a function in base R which can, as the name suggests, aggregate the inputted data.frame d.f by applying a function specified by the FUN parameter to each column of sub-data.frames defined by the by input parameter
+Aggregate is a function in base R which can, as the name suggests, aggregate the inputted data.frame d.f by applying a function specified 
+by the FUN parameter to each column of sub-data.frames defined by the by input parameter
 
 #getting summary of all numerical variables in a grouping way
 library(dplyr)
 aggregate(cbind(wind,pressure,month,day,hour)~status,data=storms,FUN=mean)    
-
 
 ..ctd
 
