@@ -1,8 +1,7 @@
 intro 
 how to group rows into subgroups and apply an aggregate function for each group
-show you how to filter a group of rows
+Filter a group of rows
 how to generate multiple grouping sets in a query
-how to calculate multiple levels of subtotals across a specified group of dimensions
 Cross Tabluted reports
 
 Intro
@@ -23,8 +22,7 @@ Grouping by various wise
 ------------------------
 using dplyr
 *--------*
-summarise() creates a new data frame. It will have one (or more) rows for each combination of grouping variables;
-if there are no grouping variables, the output will have a single row summarising all observations in the input.
+summarise() creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input.
 
 group_by(storms,year) 
 stroms_group <- group_by(storms,year)
@@ -74,12 +72,12 @@ storms %>% group_by(status) %>% summarise(mn_mean=mean(wind),n=n()) %>% filter(m
 
 How to generate multiple grouping sets in a query
 =================================================
-Aggregate is a function in base R which can, as the name suggests, aggregate the inputted data.frame d.f by applying a function specified 
-by the FUN parameter to each column of sub-data.frames defined by the by input parameter
+Aggregate is a function in base R which can, as the name suggests, aggregate the inputted data.frame d.f by applying a function specified by the FUN parameter to each column of sub-data.frames defined by the by input parameter
 
 #getting summary of all numerical variables in a grouping way
 library(dplyr)
 aggregate(cbind(wind,pressure,month,day,hour)~status,data=storms,FUN=mean)    
+
 
 ..ctd
 
@@ -149,8 +147,10 @@ summary(lobsters)
 
 #group_by one variable
 lobsters %>% group_by(year) %>% summarize(count_by_year=n())
+
 #group_by multiple variables
 lobsters %>% group_by(site,year) %>% summarize(count_by_year=n())
+
 #summarize multiple variables
 lobsters %>% group_by(site,year) %>% summarize(count_by_year=n(),
                                                mean_size_m=mean(size_mm))
@@ -165,6 +165,7 @@ site_sumary_Year <- lobsters %>% group_by(site,year) %>% summarize(count_by_year
                                                sd_size_mm=sd(size_mm,na.rm=TRUE))
 #Table formatting with kable()
 site_sumary_Year %>% kable()
+
 #mutate :create a new variable
 lobsters %>% mutate(size_m=size_mm/1000) #create single variable
 lobsters %>% mutate(size_m=size_mm/1000,millenia=2000,Observer="Allison Horst") #create multiple variable
@@ -172,7 +173,8 @@ lobsters %>% mutate(size_m=size_mm/1000,millenia=2000,Observer="Allison Horst") 
 #select:select the variable
 lobsters %>% select(date,site,size_mm)
 
-Ref:#https://rstudio-conf-2020.github.io/r-for-excel/pivot-tables.html#group_by-one-variable
+Ref:
+#https://rstudio-conf-2020.github.io/r-for-excel/pivot-tables.html#group_by-one-variable
 #https://github.com/FunAtHome/r-workshop/blob/gh-pages/PivotTables.Rmd
 
 using aggregate using base R
@@ -190,10 +192,12 @@ lobsters=read_xlsx("employee_flipAPI.xlsx")
 bigmac= read_csv("bigmac.csv")
 bigmac
 str(bigmac_1)
+
 #just aggregate the list by
 aggregate(bigmac,by=list(bigmac$Country),FUN=mean)
 mean_bigmac<- aggregate(bigmac,by=list(bigmac$Country),FUN=mean)
 mean_bigmac %>% select(Group.1,"Price in US Dollars")
+
 #Handling missing values with the aggregate() function
 aggregate(bigmac,by=list(bigmac$Country),FUN=mean,na.rm=TRUE)
 mean_bigmac
@@ -221,6 +225,7 @@ library(readr)
 #transform rows into columns and draw summary
 relig_income
 relig_income %>% pivot_longer(cols=religion,names_to="income",values_to="sum")
+
 #put explanations to eliminate the other columns
 relig_income %>% pivot_longer(cols=!religion,names_to="income",values_to="sum")
 
@@ -228,6 +233,7 @@ relig_income %>% pivot_longer(cols=!religion,names_to="income",values_to="sum")
 library(dplyr)
 billboard
 billboard %>% pivot_longer(cols=starts_with("wk"),names_to="week",values_to="rank",values_drop_na=TRUE)
+
 #convert the week variable to an integer
 billboard %>% 
   pivot_longer(
@@ -238,6 +244,7 @@ billboard %>%
     values_to = "rank",
     values_drop_na = TRUE,
 )
+
 # you could do this with a single argument by using readr::parse_number() which automatically strips non-numeric components
 billboard %>% 
   pivot_longer(
@@ -247,6 +254,7 @@ billboard %>%
     values_to = "rank",
     values_drop_na = TRUE,
   )
+
 #Many variables in column names
 who
 who %>% pivot_longer(
