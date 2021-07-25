@@ -1,0 +1,274 @@
+intro 
+how to group rows into subgroups and apply an aggregate function for each group
+show you how to filter a group of rows
+how to generate multiple grouping sets in a query
+how to calculate multiple levels of subtotals across a specified group of dimensions
+Cross Tabluted reports
+
+Intro
+=====
+-Performing a calculation with one or more variables over the whole data set is useful, but very often we also need to carry out an operation on different subsets of our data
+-The group_by function provides a more elegant solution to this kind of problem
+-It doesn’t do all that much on its own though
+-All the group_by function does is add a bit of grouping information to a tibble or data frame
+
+syntax:
+	group_by(data_set, vname1, vname2, ...)
+
+
+How to group rows into subgroups and apply an aggregate function for each group
+===============================================================================
+
+Grouping by various wise
+------------------------
+using dplyr
+*--------*
+summarise() creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input.
+
+group_by(storms,year) 
+stroms_group <- group_by(storms,year)
+#apply for the summarise functions
+summarise(stroms_group,mean.wind=mean(wind))
+
+#using the operator
+storms %>%  group_by(year) %>% summarise(mean.wind=mean(wind))
+
+grouping more than one variable
+-------------------------------
+
+using dplyr
+*---------*
+unique(storms$status)
+stroms_grp <- group_by(storms,status,year)
+summarise(stroms_grp,mean_wind=mean(wind),mean_pressure=mean(pressure))
+
+#using the operator
+storms %>%  group_by(status,year) %>% summarise(mean_wind=mean(wind),mean_pressure=mean(pressure))
+          
+Using group_by with other verbs
+--------------------------------
+
+using dplyr
+*---------*
+#The summarise function is the only dplyr verb we’ll use with grouped tibbles in this book
+#When mutate or transmute are used with a grouped object they still add new variables, but now the calculations occur “by group”
+stroms_grp <- group_by(storms,status)
+stroms_grp
+transmute(stroms_grp,wind_centered=wind-mean(wind))
+
+#using the operator
+storms %>%  group_by(status) %>% transmute(wind_centered=wind-mean(wind)) %>% unique()
+
+Removing grouping information
+-----------------------------
+
+using dplyr
+*---------*
+ungroup(stroms_grp)
+
+Filter a group of rows
+======================
+
+storms %>% group_by(status) %>% summarise(mn_mean=mean(wind),n=n()) %>% filter(mn_mean >30) %>% select(status,mn_mean) %>% arrange(status)
+
+How to generate multiple grouping sets in a query
+=================================================
+Aggregate is a function in base R which can, as the name suggests, aggregate the inputted data.frame d.f by applying a function specified by the FUN parameter to each column of sub-data.frames defined by the by input parameter
+
+#getting summary of all numerical variables in a grouping way
+library(dplyr)
+aggregate(cbind(wind,pressure,month,day,hour)~status,data=storms,FUN=mean)    
+
+
+..ctd
+
+Cross Tabluted reports
+======================
+A pivoting spec is a data frame that describes the metadata stored in the column name, with one row for each column, and one column for each variable mashed into the column name
+
+using pivottabler library
+-------------------------
+The pivottabler package enables pivot tables to be created and rendered/exported with just a few lines of R.
+Pivot tables are constructed natively in R, either via a short one line command to build a basic pivot table or via series of R commands that gradually build a more bespoke pivot table to meet your needs.
+
+library(pivottabler)
+bhmtrains
+?bhmtrains
+#get the count of the train category based on 
+qhpvt(bhmtrains, "TOC", "TrainCategory", "n()")
+?qhpvt
+unique(bhmtrains$TOC)
+unique(bhmtrains$TrainCategory)
+#Extending the Basic Pivot Table
+pt <- PivotTable$new()
+pt$addData(bhmtrains)
+pt$addColumnDataGroups("TrainCategory")
+pt$addColumnDataGroups("PowerType")    #    << **** CODE CHANGE **** <<
+pt$addRowDataGroups("TOC")
+pt$defineCalculation(calculationName="TotalTrains", summariseExpression="n()")
+pt$renderPivot() #render to HTML
+pt# to console
+
+library(pivottabler)
+pt <- PivotTable$new()
+pt$addData(bhmtrains)
+pt$addColumnDataGroups("TrainCategory")
+pt$addRowDataGroups("TOC")
+pt$addRowDataGroups("PowerType")    #    << **** CODE CHANGE **** <<
+pt$defineCalculation(calculationName="TotalTrains", summariseExpression="n()")
+pt$renderPivot()
+
+...ctd
+
+Ref:#https://cran.r-project.org/web/packages/pivottabler/vignettes/v00-vignettes.html
+
+using pivot tables from dplyr
+----------------------------
+Pivot tables are powerful tools in Excel for summarizing data in different ways. We will create these tables using the group_by and summarize functions from the dplyr package (part of the Tidyverse).
+
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) # install.packages('skimr')
+library(kableExtra) # install.packages('kableExtra')
+
+library(readxl)
+#Setting the working directory
+setwd("C:/Users/gbag/Downloads/pratice/pandas-Datasets/pandas-Datasets/")
+getwd()
+
+lobsters=read_xlsx("lobsters.xlsx")
+lobsters2=read_xlsx("lobsters2.xlsx")
+
+#skimr::skim =To look at summary statistics we’ve used summary
+skimr::skim(lobsters)
+
+head(lobsters)
+summary(lobsters)
+
+#group_by one variable
+lobsters %>% group_by(year) %>% summarize(count_by_year=n())
+#group_by multiple variables
+lobsters %>% group_by(site,year) %>% summarize(count_by_year=n())
+#summarize multiple variables
+lobsters %>% group_by(site,year) %>% summarize(count_by_year=n(),
+                                               mean_size_m=mean(size_mm))
+
+#to excluse the above with NA, using na.rm=TRUE
+lobsters %>% group_by(site,year) %>% summarize(count_by_year=n(), 
+                                               mean_size_m=mean(size_mm,na.rm=TRUE),
+                                               sd_size_mm=sd(size_mm,na.rm=TRUE))
+
+site_sumary_Year <- lobsters %>% group_by(site,year) %>% summarize(count_by_year=n(), 
+                                               mean_size_m=mean(size_mm,na.rm=TRUE),
+                                               sd_size_mm=sd(size_mm,na.rm=TRUE))
+#Table formatting with kable()
+site_sumary_Year %>% kable()
+#mutate :create a new variable
+lobsters %>% mutate(size_m=size_mm/1000) #create single variable
+lobsters %>% mutate(size_m=size_mm/1000,millenia=2000,Observer="Allison Horst") #create multiple variable
+
+#select:select the variable
+lobsters %>% select(date,site,size_mm)
+
+Ref:#https://rstudio-conf-2020.github.io/r-for-excel/pivot-tables.html#group_by-one-variable
+#https://github.com/FunAtHome/r-workshop/blob/gh-pages/PivotTables.Rmd
+
+using aggregate using base R
+-----------------------------
+To perform aggregation, we need to specify three things in the code:
+-The data that we want to aggregate
+-The variable to group by within the data
+-The calculation to apply to the groups (what you want to find out)
+
+library(readxl)
+#Setting the working directory
+setwd("C:/Users/gbag/Downloads/pratice/pandas-Datasets/pandas-Datasets/")
+getwd()
+lobsters=read_xlsx("employee_flipAPI.xlsx")
+bigmac= read_csv("bigmac.csv")
+bigmac
+str(bigmac_1)
+#just aggregate the list by
+aggregate(bigmac,by=list(bigmac$Country),FUN=mean)
+mean_bigmac<- aggregate(bigmac,by=list(bigmac$Country),FUN=mean)
+mean_bigmac %>% select(Group.1,"Price in US Dollars")
+#Handling missing values with the aggregate() function
+aggregate(bigmac,by=list(bigmac$Country),FUN=mean,na.rm=TRUE)
+mean_bigmac
+
+#applying a function 
+larg_dol <- function(x){
+  if(length(x)==1)
+    return(x)
+  return(sort(x,decreasing = TRUE)[2])
+}
+
+agg <- aggregate(bigmac,by=list(bigmac$Date,bigmac$Country),FUN=larg_dol) %>% select(Group.1,Group.2,"Price in US Dollars")
+agg
+
+Ref:
+#ref https://www.r-bloggers.com/2018/07/how-to-aggregate-data-in-r/
+#https://www.journaldev.com/47761/aggregate-function-in-r     
+
+using Pivoting in dplyr
+-----------------------
+library(tidyr)
+library(dplyr)
+library(readr)
+
+#transform rows into columns and draw summary
+relig_income
+relig_income %>% pivot_longer(cols=religion,names_to="income",values_to="sum")
+#put explanations to eliminate the other columns
+relig_income %>% pivot_longer(cols=!religion,names_to="income",values_to="sum")
+
+#Numeric data in column names
+library(dplyr)
+billboard
+billboard %>% pivot_longer(cols=starts_with("wk"),names_to="week",values_to="rank",values_drop_na=TRUE)
+#convert the week variable to an integer
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    names_prefix = "wk",
+    names_transform = list(week = as.integer),
+    values_to = "rank",
+    values_drop_na = TRUE,
+)
+# you could do this with a single argument by using readr::parse_number() which automatically strips non-numeric components
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    names_transform = list(week = readr::parse_number),
+    values_to = "rank",
+    values_drop_na = TRUE,
+  )
+#Many variables in column names
+who
+who %>% pivot_longer(
+  cols = new_sp_m014:newrel_f65,
+  names_to = c("diagnosis", "gender", "age"), 
+  names_pattern = "new_?(.*)_(.)(.*)",
+  values_to = "count"
+)
+
+Ref:https://tidyr.tidyverse.org/articles/pivot.html#introduction-1
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://towardsdatascience.com/grouping-data-with-r-ef95cee48dc6
+https://dzchilds.github.io/eda-for-bio/grouping-and-summarising-data.html#getting-ready-2
+https://www.red-gate.com/simple-talk/development/dotnet-development/data-manipulation-in-r-beyond-sql/
+https://dplyr.tidyverse.org/reference/group_by.html
+https://www3.nd.edu/~steve/computing_with_data/24_dplyr/dplyr.html
+https://tidyr.tidyverse.org/articles/pivot.html#string-data-in-column-names

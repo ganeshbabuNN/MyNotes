@@ -1,0 +1,112 @@
+Intro
+Histograms
+Plotting a functions
+Quiz
+assignment
+Resources
+
+Intro
+=====
+there are four main basic plots have been used so far
+1)scatter plot :the scatterplot chart (or dot chart) is used to examine the relationship between two numeric variables
+2)Line chart :a line chart is used to display data that change continously over time
+3)Bar chart :a bar chart is used to compare values accross categories using vertical or horizontal bars
+4)Histograms : a histogram visually represents the distribution of a random variable
+5)piechart :A pie chart is a circular graphical view of data.
+6)box plots: a boxplot is a standardized way to display,a variable distribution by using five summary indicators minimum, first quartile, median, third quartile, maximum
+
+Histograms
+==========
+a histogram visually represents the distribution of a random variable
+we plot a histogram using the hist() function
+the histogram of a discrete distribution
+
+x <- sample(500, 200, replace = TRUE)
+hist(x)
+
+the histogram of a normal distribution (continuous)
+y <- rnorm(200)
+hist(y)
+
+add a custom title
+------------------
+hist(y, main = "Histogram Example")
+
+change the bar and border color
+-------------------------------
+hist(y, main = "Histogram Example",
+     col = "red")
+
+hist(y, main = "Histogram Example",
+     col = "red", border = "darkgreen")
+
+change the number of bars
+-------------------------
+hist(y, main = "Histogram Example",
+     col = "red", breaks = 50)
+
+hist(y, main = "Histogram Example",
+     col = "red", breaks = 5)
+
+represent the relative frequencies (percentages) on the y axes
+---------------------------------------------------------------
+hist(y, main = "Histogram Example",
+     col = "red", border = "darkgreen",
+     freq = FALSE)
+
+PLOTTING DENSITY LINES
+----------------------
+a density line represents ,the distribution of a continuous variable
+
+x <- rnorm(200)
+
+#get the probability density of our variable
+dx <- density(x)
+
+plot(dx)
+
+add custom title and labels change the line color
+------------------------------------------------
+plot(dx, main = "Density Line",
+     xlab = "x", ylab = "Frequency",
+     col = "red")
+
+make the line thicker
+---------------------
+plot(dx, main = "Density Line",
+     xlab = "x", ylab = "Frequency",
+     col = "red", lwd = 2)
+
+change the line format
+----------------------
+plot(dx, main = "Density Line",
+     xlab = "x", ylab = "Frequency",
+     col = "red", lwd = 2, lty = 2)
+
+add a new density line on the same chart
+----------------------------------------
+create a new variable and compute the probability density
+y <- rnorm(200)
+dy <- density(y)
+
+plot the first line
+--------------------
+plot(dx, main = "Density Lines",
+     xlab = "x", ylab = "Frequency",
+     col = "red")
+
+plot the second line using the lines() function
+-----------------------------------------------
+lines(dy, col = "darkgreen")
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.journaldev.com/36083/plot-function-in-r

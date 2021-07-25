@@ -1,0 +1,181 @@
+Intro
+Concatenating datasets
+Tranposing multiple columns into single column
+Tranposing single column into multiple columns
+Tranposing rows into column and column into rows
+Quiz
+assignment
+Resources
+
+intro
+=====
+In general,We see how to structure our data leading to the four rules defining a tidy dataset:
+
+1)Each variable has its own column
+2)Each observation has its own row
+3)Each value must have its own cell
+4)Each type of observational unit forms a table
+
+Concatenating datasets
+=====================
+At the high level, there are two ways you can merge datasets; you can add information by adding more rows or by adding more columns to your dataset. 
+In general, when you have datasets that have the same set of columns or have the same set of observations,
+you can concatenate them vertically or horizontally, respectively. Let's learn by seeing some examples.
+
+Adding datasets horizontally(Columns)
+-------------------------------------
+-When you have datasets representing the same set of observations, you can concatenate such datasets horizontally.
+-The cbind function – short for column bind – is a merge function that can be used to combine two data frames with the same number of multiple rows into a single data frame
+
+df1 = data.frame(
+  StudentId = c(101:106),
+  Product = c(
+    "Hindi",
+    "English",
+    "Maths",
+    "Science",
+    "Political Science",
+    "Physics"
+  )
+)
+df1 
+
+
+df2 = data.frame(versionType = c("pdf","book","pdf","epub","pdf","title"))
+df2 
+
+cbind(df1,df2)
+
+Adding datasets vertically(rows)
+-------------------------------
+-When you have multiple datasets that have the same set of columns, you can concatenate one dataset to another,vertically.
+-Rbind can be used to append two dataframes with the same number of columns together
+
+df1 = data.frame(
+  StudentId = c(101:106),
+  Product = c(
+    "Hindi",
+    "English",
+    "Maths",
+    "Science",
+    "Political Science",
+    "Physics"
+  )
+)
+df1 
+
+#We will build on the example we started with cbind, the column bind function
+new <- cbind(StudentId=c(200,201,202),
+             Product=c("geometry","philosophy","chemistry"))
+new            
+
+#And we can use rbind to join the two.
+total <- rbind(df1,new)
+total
+
+Tranposing multiple columns into single column
+==============================================
+-This is like converting Wide Format Data to Long Format
+-This can be achieved using melt and gather()functions.
+
+#example -1
+set.seed(123)
+N <- 15
+colm1  <- sample(1:15, N, replace=TRUE)
+colm2  <- sample(1:15, N, replace=TRUE)
+colm3  <- sample(1:15, N, replace=TRUE)
+df_Temp <- data.frame(colm1, colm2,colm3)
+df_Temp$id<-seq(nrow(df_Temp))
+df_Temp
+
+
+#it takes multiple columns of data and convert it into a single column of data
+library(reshape2)
+molted=melt(df_Temp,id.vars=c("id"))
+molted
+
+#example -2 
+Refer Wide to Long.png
+mydata = read.table(text= "ID setosa versicolor virginica
+                    1 5.1 NA NA
+                    2 4.9 NA NA
+                    3 NA 7 NA
+                    4 NA 6.4 NA
+                    5 NA NA 6.3
+                    6 NA NA 5.8
+                    ", header=TRUE)
+
+#The following program would reshape data from wide to long format.
+library(reshape2)
+x = colnames(mydata[,-1])
+t = melt(mydata,id.vars = "ID",measure.vars = x , variable.name="Species", value.name="Sepal.Length",na.rm = TRUE)
+t
+
+#tidyr : gather() function
+library(tidyr)
+This function transforms data from wide to long format
+gather(mydata, Species, Sepal.Length, x, na.rm = TRUE)
+
+Tranposing  single column into multiple columns
+===============================================
+-This is like Convert Long to Wide Format
+-This can be achieved using dcast and spread()functions.
+
+Using dcast function when you have a molten dataset then you can convert the molten dataset into an original format using this function
+
+Example 1:on the above example 1 datasets
+library(reshape2)
+data <- read.table(text="X Y    Z
+                   ID12   2012-06    566
+                   ID1    2012-06  10239
+                   ID6    2012-06    524
+                   ID12   2012-07   2360
+                   ID1    2012-07   13853
+                   ID6    2012-07    2352
+                   ID12   2012-08   3950
+                   ID1    2012-08   14738
+                   ID6    2012-08   4104",header=TRUE)
+
+#R Code : Transform Long to Wide Format
+mydt = dcast(data,X~Y,value.var = "Z")
+mydt
+
+#tidyr : Spread( ) Function
+library(tidyr)
+mydt = spread(data, Y, Z)
+mydt
+
+Tranposing rows into column and column into rows
+================================================
+-using transform function
+-It is used to change the rows into columns and columns into rows
+
+set.seed(123)
+N <- 15
+colm1  <- sample(1:15, N, replace=TRUE)
+colm2  <- sample(1:15, N, replace=TRUE)
+colm3  <- sample(1:15, N, replace=TRUE)
+
+df_Temp <- data.frame(colm1, colm2,colm3)
+df_Temp$id<-seq(nrow(df_Temp))
+df_Temp
+
+trans <- t(df_Temp)  #columns into rows
+trans
+
+trans1 <- t(trans) #rows into columns
+trans1
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+Ref:https://rpubs.com/Mentors_Ubiqum/Transpose_Dataframe
+https://www.datacamp.com/community/tutorials/data-reshaping-in-r
+https://www.listendata.com/2016/01/transpose-data-in-r.html

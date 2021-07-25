@@ -1,0 +1,244 @@
+Intro
+Selecting the rows or observations
+selecting the observations based on conditions
+Limitings rows returned by a query.
+Filter data based on a values
+How to eliminate duplicate rows from the output of a query
+perform matching based on specific patterns
+Check if an expression or values in a column is NULL or not
+Slice Family functions in R
+Random selecting the rows
+
+Intro
+=====
+#install and load the tidyverse package
+library(tidyverse)
+
+#data
+name <- c("sasi","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
+gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
+age <- c(29,67,40,23,26,34,55,42,18,73,18)
+weight <- c(52,65,80,57,71,90,67,78,85,50,85)
+height <- c(165,171,183,154,173,167,169,180,190,145,190)
+maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
+dob <- as.Date(c("1988-01-20","1983-01-22","1983-03-18","1978-01-11","1968-01-14","1999-03-24","1988-03-22","1955-01-19","1986-03-21","1968-04-26","1987-02-23"))
+
+health <- tibble(name,gender,age, weight, height,maristatus,dob) #tibble create the dataframe
+health
+view(health)
+
+class(health)
+typeof(health)
+str(health)
+### get data frame dimensions
+dim(health)
+nrow(health)
+ncol(health)
+
+Selecting the rows or observations
+==================================
+Base R
+------
+health[3,] #Select the 3rd row
+health[1:4,] #Select only 4 rows
+health[2,5] #Select 2nd row and 5 column
+health[c(2,3),c(5,4)] #select specific row and columns using combine function
+health[[3]][3] #accessing the 3rd column of 3 row
+
+Selecting the observations based on conditions
+==============================================
+base R
+------
+#based on the conditional variable values
+health[which(health$gender=='F'),] #one condition
+
+health[which(health$gender=='F' & health$age < 55) ,] #more then one condition using AND operator
+health[which(health$gender=='F' | health$age < 55) ,] #more then one condition using OR operator
+health[which((health$gender=='F' | health$age < 55) & (health$maristatus==FALSE)) ,] #more then more then two condtions
+health[which(!health$gender=='F'),] #using NOT operator
+
+#using subset function
+#The subset( ) function is the easiest way to select variables and observations
+subset(health,gender=='F') #one condition
+
+subset(health,gender=='F' & age <55 ) #more then one condition using AND operator
+subset(health,gender=='F' | age < 55) #more then one condition using OR operator
+subset(health,(gender=='F' | age < 55) & maristatus==FALSE) #more then more then two condtions with %in%
+subset(health,!gender=='F')  #using NOT operator
+
+Using dplyr
+-----------
+#one conditions
+filter(health,gender=='F') #one condition
+#multiple conditions
+filter(health,(age %in% c(18,23,26)) #more then more then two condtions with %in%
+filter(health,gender=='F' & age <55 ) #more then one condition using AND operator
+filter(health,gender=='F' | age < 55) #more then one condition using OR operator
+filter(health,(gender=='F' | age < 55) & maristatus==FALSE) #more then more then two condtions
+filter(health,!gender=='F') #using NOT operator
+
+filtering using row index
+-------------------------
+data=health[which(health$gender=='F' & health$age < 55) ,]
+data
+as.integer(rownames(data))#rownames return the index of the row
+row=as.integer(rownames(data))
+health[row,]
+
+filtering using column index
+----------------------------
+colnames(health)
+col=colnames(health) #return the column index
+col_index=data.frame(col) #return the column index
+row=as.integer(rownames(col_index)) #return the row index of the column
+health[row,]
+
+Ref: https://medium.com/@smitpate08/how-to-easily-find-column-and-row-index-numbers-in-r-f720c435730
+
+Limitings rows returned by a query
+==================================
+head(health,5) #first 5 rows
+tail(health,6) #last 6 rows
+
+filter data based on a values
+=============================
+base R
+------
+subset(health,grepl("u",name))
+subset(health, as.Date("1983-01-01") <= dob & dob <= as.Date("2019-06-30")) #range of values using date
+
+dplyr
+-----
+filter(health,grepl("u",name))
+
+tidyverse
+---------
+dplyr::filter(health, between(dob, as.Date("1983-01-01"), as.Date("2019-06-30")))  #range of values using date
+
+data.table
+----------
+library(data.table)
+as.data.table(health)[ between(dob, as.Date("1983-01-01"), as.Date("2019-06-30")), ] #range of values using date
+
+Ref:https://github.com/FunAtHome/r-workshop/blob/gh-pages/intro-to-filter-join.Rmd
+
+How to eliminate duplicate rows from the output of a query
+==========================================================
+base R
+------
+duplicated(health$gender) #duplicated returns a logical vector of length nrow(x) indicating which rows are duplicates.
+unique(health$gender) #unique returns a data table with duplicated rows removed.
+myuniq <- unique(health[,c(2,3)])
+myuniq
+#Remove Duplicates based on a column using duplicated() function
+health[!duplicated(health$gender), ]
+
+Using dplyr
+-----------
+#using filter
+health %>% filter(duplicated(.[["age"]])) #only duplicated elements
+health %>% filter(age %in% unique (.[["age"]][duplicated(.[["age"]])])) #all duplicate elements
+
+#using distinct
+health1 <- select(health,age,weight)
+health1
+
+# Remove duplicate rows of the dataframe
+distinct(health1)
+health1 %>% distinct()
+
+#Remove Duplicate Rows based on a variable
+distinct(health,gender, .keep_all= TRUE)
+health %>% distinct(age, .keep_all= TRUE)
+
+#Remove Duplicate Rows based on multiple variables
+distinct(health,age,weight, .keep_all= TRUE)
+health %>% distinct(age,weight, .keep_all= TRUE)
+
+#DROP Duplicates in R using unique() function in R
+unique(health1)
+
+#unique rows of the dataframe by keeping last occurrences
+unique(health1, fromLast=T)
+
+#unique value of the columns in the dataframe
+unique(health$gender)
+
+perform matching based on specific patterns
+===========================================
+
+
+Check if an expression or values in a column is NULL or not
+=========================================================
+
+base R
+-------
+
+#checking data frame 
+health$name <- NULL
+is.null(health$name)
+health <- NULL
+is.null(health)
+!is.null(health) #is not null
+
+#checking in vecotr
+x1 <- c(3,4,5,6,7,8)
+is.null(x1)
+x2 <- NULL
+is.null(x)
+!is.null(x) #check if object not null
+
+#checking in vecotr
+mylist <- list()
+mylist[[1]]<-x1
+mylist[[2]] <- health[1:3,3:5]
+mylist
+is.null(mylist) #checking null
+mylist <- NULL
+is.null(mylist)
+
+Slice Family functions in R
+===========================
+
+dplyr
+-----
+head and tail:
+health %>% slice_head(n=5) # top first 5 rows
+health %>% slice_tail(n=5) # botton last 5 rows
+health %>% top_n(6) #return n rows of dataframe with respect achiveved by using top_n() functions 
+
+min and min:
+health %>% slice_max(weight,n=5) # max with top 5 rows
+health %>% slice_min(weight,n=5) # min with last 5 rows
+
+group by
+health %>% group_by(gender) %>% slice_head(n=10) #top return n rows of the group by 
+health %>% group_by(gender) %>% slice_tail(n=10) #last return n rows of the group by
+
+Random selecting the rows
+=========================
+health[sample(1:nrow(health),3,replace=FALSE),] # 3 sample size
+
+using dplyr
+-----------
+health %>% slice_sample(n=5) # sample 5 rows
+sample_n(health,5) #sample by N rows
+sample_frac(health,0.9)  #sampel by fractions
+
+Quiz
+====
+
+Assignment
+==========
+1)Filter iris for petal length less than 1.6
+2)Filter iris for sepal length greater than 5.0 and sepal width greater than 3.0
+3)Filter iris for petal width being either 0.2, 0.3 or 1.4, and species is virginica
+
+Resources:
+=========
+https://dplyr.tidyverse.org/reference/filter.html
+https://www.statmethods.net/management/userfunctions.html
+https://jangorecki.gitlab.io/data.cube/library/data.table/html/duplicated.html
+https://www.datasciencemadesimple.com/remove-duplicate-rows-r-using-dplyr-distinct-function/
+https://www.datasciencemadesimple.com/filter-subsetting-rows-r-using-dplyr/
+https://statisticsglobe.com/r-is-null-function/
