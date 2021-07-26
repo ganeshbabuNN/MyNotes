@@ -1,0 +1,58 @@
+data test;     
+input var1 var2;  
+cards;
+1 1
+2 2
+3 2
+2 6
+4 2
+1 3
+4 3
+;
+run;
+
+proc freq     
+     data = test;     
+     tables var1 var2 / nocum nocol norow nopercent;
+run;
+
+/*The Right Way to Obtain Duplicates in SAS*/
+proc sort data=test;
+by var1 ;
+run;
+data single dup;     
+     set test;     
+     by var1;     
+     if first.var1 and last.var1          
+          then output single;     
+     else output dup;
+run;
+
+data _null_;
+  set test end=eod;
+  if _n_=1 then do;
+    declare hash v ();
+      v.definekey('var1');
+      v.definedata('var1','_point');
+      v.definedone();
+    declare hash duplicates (dataset:'test (obs=0)',ordered:'a',multidata:'y');
+      duplicates.definekey('var1');
+      duplicates.definedata(all:'y');
+      duplicates.definedone();
+  end;
+
+  if v.find()^=0 then v.add(key:var1,data:var1,data:_n_);  /*If new var1 add it to hash*/
+  else do;                 /* Not new var1? Then we are processing a duplicate       */
+    duplicates.add();      /* First add incoming duplicate                          */
+    if _point^=. then do;  /* Then go back to add the first dupe if not already done*/
+      set test point=_point;
+      duplicates.add();
+      v.replace(key:var1,data:var1,data:.);
+    end;
+  end;
+  if eod then rc=duplicates.output(dataset:'duplicates2');
+run;
+
+Resources: https://support.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2018/1654-2018.pdf
+https://communities.sas.com/t5/SAS-Communities-Library/Getting-All-Duplicates-within-a-SAS-Data-Set/ta-p/223575#
+https://www.mwsug.org/proceedings/2011/sas101/MWSUG-2011-S111.pdf  - journel
