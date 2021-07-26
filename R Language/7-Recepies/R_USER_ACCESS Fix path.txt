@@ -1,0 +1,21 @@
+Way 1:
+
+1)Create the folder C:\Users\gbag\Downloads\rpackages
+2)Click Start --> Control Panel --> User Accounts --> Change my environmental variables
+3)The Environmental Variables window pops up. If you see R_LIBS_USER, highlight it and click Edit. Otherwise click New. Both actions open a window with fields for Variable and Value.
+4)In my case, R_LIBS_USER was already there, and the value was a path to my desktop. I added to the path the folder that I created, separated by semicolon as mentioned above. C:\R\Library;C:\Users\Eric.Krantz\Desktop\R stuff\Packages. 
+NOTE: I could have removed the path to the Desktop location and simply left C:\Users\gbag\Downloads\rpackages
+
+Way 2:
+1)make sure the directory you want to install your packages into exists. If you want to respect the convention, use: C:\Users\username\R\win-library\rversion (for example, something like: C:\Users\gbag\Downloads\rpackages)
+2)create a .Renviron file in your home directory (which might be on the network drive?), and in it, write one single line that defines the R_LIBS_USER variable to be your custom path:
+	R_LIBS_USER=C:\Users\gbag\Downloads\rpackages 
+	If a .Renviron file exists, R will read it at startup and use the variables as they are defined in there, before running the code in the .Rprofile. You can read about it in help(Startup)
+	
+	
+	
+
+.libPaths("C:\\Users\\gbag\\Downloads\\rpackages")
+
+install.packages("haven",lib =.libPaths()[1])
+install.packages("tidyverse",lib =.libPaths()[1])

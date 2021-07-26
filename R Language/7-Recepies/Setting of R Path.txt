@@ -1,0 +1,22 @@
+the proper solution is to set environment variable R_LIBS_USER to the value of the file path to your desired library folder as opposed to getting RStudio to recognize a Rprofile.site file.
+To set environment variable R_LIBS_USER in Windows, go to the Control Panel (System Properties -> Advanced system properties -> Environment Variables -> User Variables) to a desired value (the path to your library folder), e.g.
+Variable name: R_LIBS_USER 
+Variable value: C:/software/Rpackages  
+If for some reason you do not have access to the control panel, you can try running rundll32 sysdm.cpl,EditEnvironmentVariables from the command line on Windows and add the environment variable from there.
+
+Setting R_LIBS_USER will ensure that the library shows up first in .libPaths() regardless of starting RStudio directly or by right-clicking an file and "Open With" to start RStudio.
+
+The Rprofile solution can work if RStudio is always started by clicking the RStudio shortcut. In this case, setting the default working directory to the directory that houses your Rprofile will be sufficient. The Rprofile solution does not work when clicking on a file to start RStudio because that changes the working directory away from the default working directory.
+-------------------------------------------
+> getwd()
+[1] "C:/Users/me/Documents"
+Then I used a text editor to write a simple .Rprofile file with the following line in it
+
+.libPaths("C:/software/Rpackages")
+Finally, when I start R and run .libPaths() I get the desired output:
+
+> .libPaths()
+[1] "C:/software/Rpackages"               "C:/Program Files/R/R-2.15.2/library"
+[3] "C:/Program Files/RStudio/R/library"
+
+> .libPaths()[-1]
