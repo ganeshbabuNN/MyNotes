@@ -1,10 +1,5 @@
 Intro
 Line Chart
-Bar Chart
-Histograms
-piechart
-Box Plots
-Plotting a functions
 Quiz
 assignment
 Resources

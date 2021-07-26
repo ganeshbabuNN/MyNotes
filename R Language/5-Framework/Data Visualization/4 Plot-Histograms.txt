@@ -1,6 +1,5 @@
 Intro
 Histograms
-Plotting a functions
 Quiz
 assignment
 Resources
