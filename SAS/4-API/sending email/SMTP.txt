@@ -1,0 +1,27 @@
+options emailsys=mapi;
+filename mailbox email;
+data _null;
+File Mailbox to = 'gbag@novonordisk.com' from = 'gbag@novonordisk.com' subject = 'test';
+put "Hi"
+run;
+
+
+filename outbox email 'gbag@novonordisk.com';
+
+data _null_;
+  file outbox
+
+     /* Overrides value in filename statement */
+     to=('gbag@novonordisk.com' 'gbag@novonordisk.com')
+     cc=('gbag@novonordisk.com')
+     subject='My SAS output'
+/*     attach=('results.out' 'code.sas')*/
+     ;
+  put 'Folks,';
+  put 'Attached is my output from the 
+      SAS program I ran last night.';
+  put 'It worked well!';
+run;
+
+Resources
+https://support.sas.com/resources/papers/proceedings/pdfs/sgf2008/038-2008.pdf
