@@ -1,3 +1,0 @@
-SAS uses a regular expression called as perl regular expression
-
-https://documentation.sas.com/?docsetId=lefunctionsref&docsetTarget=p1vz3ljudbd756n19502acxazevk.htm&docsetVersion=9.4&locale=en
