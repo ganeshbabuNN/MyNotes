@@ -1,0 +1,151 @@
+SAS Programming Advanced Certification Prep Course: 3 in 1
+===========================================================
+Course Overview, Course Supplements, SAS University (SAS Studio) Installation
+Course Introduction
+the complete and step-by-step guide to Install SAS studio 
+Virtual box 6.0: download and set up SAS University Edition & its shared folder
+Downloadable course materials: SAS programs and Data used in the course + PPTs 
+File path/directory in SAS studio
+How to use SAS onDemand academics if you can NOT install SAS University Edition 
+
+1.SAS SQL Proc SQL introduction
+Proc SQL introduction
+
+2.SAS SQL -SELECT statement Retrieving Data from a Single Table
+SELECT Statement: Overview
+SELECT Clause: Eliminate Duplicate Rows Using the DISTINCT Keyword
+SELECT Clause: Create Columns
+SELECT Clause: Assign Values Conditionally by Using a CASE Expression
+SELECT Clause: Replace Missing Values with COALESCE Function and Case Expression
+ORDER BY Clause: Sort Data
+WHERE Clause: Retrieving Rows That Satisfy a Condition
+Summarizing Data using aggregate functions (or summary functions)
+GROUP BY Clause: Group Data
+HAVING Clause: Filter Grouped Data
+
+3.SAS SQL- JOIN  Retrieving Data from Multiple Tables
+Inner Join Data: Use Where Clause, Use Inner Join keyword, Comparison Operators
+Inner Join Data: Effect of Missing Values on Join, Use Multiple Matching Columns
+Inner Join Data: Inner Join More Than Two Tables, Self-Joins
+Outer Join Data: Left, Right and Full Outer Joins
+Specialty Joins: cross joins, union joins, and natural joins
+Comparison of DATA Step Match-Merges with PROC SQL Joins: Part 1
+Comparison of DATA Step Match-Merges with PROC SQL Joins: Part 2
+
+4.SAS SQL Subqueries Using Subqueries to Select Data
+Single-Value and Multiple-Value Subqueries
+Testing for the Existence of a Group of Values
+Correlated Subqueries and Combining a Join with a Subquery
+Multiple Levels of Subquery Nesting
+
+5.SAS SQL Combine Queries with Set Operators
+UNION: Produce all unique rows from both queries
+EXCEPT: Produce all unique rows from both queries
+INTERSECT: Produce rows that are common to both query results
+OUTER UNION: Concatenate the query results
+EXCLUSIVE UNION: Produce Rows from the First or Second Query
+
+6.SAS SQL Creating and Updating Tables and Views
+Create New Table without Rows by using the CREATE TABLE Statement
+Create Tables from a Query Result using CREATE TABLE with AS Keyword
+Create Tables like an Existing Table with LIKE clause & Copy an Existing Table
+Insert Rows into Tables using Insert Statement with the SET Clause
+Insert Rows into Tables using Insert Statement with the VALUE Clause
+Insert Rows into Tables using Insert Statement with a Query
+Update All Rows with the Same Expression using Update Statement
+Update All Rows with Different Expressions using Update Statement
+Alter Columns with the ALTER TABLE statement: Add a Column
+Alter Columns with the ALTER TABLE statement: Modify or Delete a Column
+Use SQL Procedure Tables & Delete Tables
+Proc SQL Views: Create, Describe, and Delete PROC SQL Views
+Proc SQL Views: Use Proc SQL Views
+Proc SQL Views: Specify/Use In-Line Views
+
+7.SAS SQL Practical Examples Using PROC SQL
+Comparing Old and New Tables
+Overlaying Missing Data Values
+Computing Percentages within Subtotals
+Counting Exact Duplicate Rows in a Table
+Expanding Hierarchical Data in a Table
+Summarizing Data in Multiple Columns
+Creating a Summary Report
+Creating a Customized Sort Order
+Updating a Table with Values from Another Table
+
+8.SAS Macro-SAS Macro Introduction
+SAS Macro Overview
+Replacing Text Strings Using Macro Variables
+Generating SAS Code Using Macros
+Passing Information into a Macro Using Parameters
+
+9.SAS Macro Macro Variables & Macro Functions
+SAS macro variables: Introduction
+Automatic macro variables
+User-Defined Macro Variables
+Displaying Macro Variable Values in the SAS Log: using SYMBOLGEN
+Displaying Macro Variable Values in the SAS Log: using %PUT
+Using Macro Quoting Function to Mask Special Characters:%STR
+More on Using Macro Quoting Functions to Mask Special Characters:%STR
+Using Macro Functions to Manipulate Character Strings: %UPCASE
+Using Macro Functions to Manipulate Character Strings: %SUBSTR
+Using Macro Functions to Manipulate Character Strings: %SCAN
+Using %SYSFUNC function to execute other SAS functions
+Combining Macro Variable References with Texts
+Using delimiter for a macro variable name immediately before text
+More on using delimiter for a macro variable name immediately before text
+
+10 SAS Macro Create & Use macro variables during a data step or a Proc SQL step
+Use macro variables during execution of a data step: Symput routine
+Create multiple macro variables with SYMPUT and Indirect referencing with &&
+Obtaining Macro Variable Values during DATA Step Execution with SYMGET Function
+Creating Macro Variables during PROC SQL Step Execution: INTO clause
+Creating a series of related Macro Variables with the INTO Clause in Proc SQL
+Creating one macro variable holding a Delimited List of Values with INTO clause
+
+11. SAS Macro Creating and Using Macro Programs
+Basic Concepts: Defining, Compiling and Calling Macros
+Developing and Debugging Macros with options: MPRINT, MLOGIC
+Using Macro Parameters: Positional Parameters
+Using Macro Parameters: Keyword Parameters
+Using Macro Parameters: Mixed Parameters
+Processing Statements Conditionally at the macro level: %IF%THEN%ELSE %DO%END
+Processing Statements Interactively With the iterative %DO statement
+
+12.Advanced Techniques and Efficiencies Indexes
+Index Overview & Create Indexes in Data step
+Managing Indexes with PROC DATASETS
+Managing Indexes with PROC SQL
+
+13.Advanced Techniques and Efficiencies Combining Data Vertically
+Combining Data Vertically using FILENAME statement
+Combining Data Vertically using FILEVAR = option
+
+14.Advanced Techniques and Efficiencies Combining Data Horizontally
+Combine Summary Data and Detail Data conditionally with multiple SET statements
+Combine Data with multiple SET statements with KEY = option: Using an Index
+Using Hash Objects as Lookup Tables
+
+15.Advanced Techniques and Efficiencies Formats & Arrays
+Creating Custom Formats Using the PICTURE Statement
+Stored custom formats permanently & Manage it with FMTSEARCH= system option 
+Use formats to create data via lookups
+Using the ARRAY Statement to Combine Data
+Processing data with multiple dimensional Arrays 
+
+16 Advanced Techniques and Efficiencies Perform effective benchmarking
+Understand resources related to efficiency
+Use SAS system options to track resources 
+Using Benchmarks to Compare Techniques
+
+17.Advanced Techniques and Efficiencies Controlling Data Storage Space
+Reducing length for Numeric Variables
+Compressing Data Files
+use SAS data steps views to conserve data storage space
+
+18.Advanced Techniques and Efficiencies PROC FCMP functions and subroutines
+Create and use user-defined Functions with PROC FCMP
+Create and use Subroutines with PROC FCMP
+Advanced Techniques & Efficiencies: compare techniques to eliminate duplicates
+eliminate duplicate data using Data step
+eliminate duplicate data using Proc Sort
+eliminate duplicate data using Proc SQL 
