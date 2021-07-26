@@ -1,295 +1,446 @@
-Introduction
-Data Types
-Default value of Types
-To know the type of variable
+Data types
+Type of Datatypes
+controlling the input and output values
 Strings
-data structures
-Handling missing values
 
-Introduction
-============
-*In programming languages, we need to use various variables to store various information. Variables are the reserved memory location to store values. As we create a variable in our program, some space is reserved in memory
-*In R, there are several data types such as integer, string, etc. The operating system allocates memory based on the data type of the variable and decides what can be stored in the reserved memory
-*In R, there are 6 data types
-1)Numeric 
-2)Integer
-3)Logical
-4)Complex
-5)Characters
-6)Raw
+Data types
+==========
+the type of value which is stored in a variable or hold portion of a memory.
 
-DataTypes
-=========
-we shall understand the different type of data type
+Type of Datatypes
+==================
+In SAS has three types of variables as below −
+1)Numeric Variables
+2)Character Variables
+3)Date Variables
 
+1)Numeric Variables
+-------------------
+This is the default variable type. These variables are used in mathematical expressions.
+the INPUT statement shows the declaration of numeric variables
 
-Logical
-------
-*It is a special data type for data with only two possible values which can be construed as true/false.
-mylogical <- TRUE
-mylogical2 <-FALSE
-cat("mylogical",mylogical,"\n") #printing the output
-cat("mylogical2",mylogical2)
-class(mylogical) #type of the variable
+Syntax: 
+INPUT VAR1 VAR2 VAR3; 		#Define numeric variables in the data set.
 
-Numeric
--------
-*Decimal value is called numeric in R, and it is the default computational data type.
+Example:
+INPUT ID SALARY COMM_PERCENT;
 
-#using normal
-mynumeric <- 323
-cat("mynumeric",mynumeric,"\n")
-class(mynumeric)
+2)Character Variables
+----------------------
+-They are treated as text or strings. 
+-A variable becomes a character variable by adding a $ sing with a space at the end of the variable name
+-the INPUT statement shows the declaration of character variables
 
-#decimal
-mynumeric <- 3.2 #for decimal
-cat("mynumeric",mynumeric,"\n")
-class(mynumeric)
+Syntax
+INPUT VAR1 $ VAR2 $ VAR3 $; 	#Define character variables in the data set.
 
-Interger
---------
-*Here, L tells R to store the value as an integer,
+Example
+INPUT FNAME $ LNAME $ ADDRESS $;
 
-myinteger <- 322L #prefix if it is integer
-cat("myinteger",myinteger,"\n")
-class(myinteger)
+Date Variables
+--------------
+These variables are treated only as dates and they need to be in valid date formats.
 
+Syntax
+INPUT VAR1 DATE11. VAR2 MMDDYY10. ; #Define date variables in the data set.
+In the above syntax, the INPUT statement shows the declaration of date variables.
 
-Complex
--------
-*A complex value in R is defined as the pure imaginary value i.
+Example
+INPUT DOB DATE11. START_DATE MMDDYY10. ;
 
-mycomplex <- 3+2i
-cat(mycomplex)
-class(mycomplex)
+https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a0n1lv4lem9hdc0v.htm&docsetVersion=9.4&locale=en
 
-Character
+controlling the input and output values
+=======================================
+Generally in SAS, output values are controlling using SAS formats and inputs values by informats;
+
+informats
 ---------
-*In R programming, a character is used to represent string values. We convert objects into character values with the help ofas.character() function.
-
-#using double quotes
-mychar <- "R is a Super Programming language"
-cat(mychar,"\n")
-class(mychar)
-
-#use single quotes also
-mychar <- 'R is a Super Programming language'
-cat(mychar,"\n")
-class(mychar)
-
-Raw
----
-*A raw data type is used to holds raw bytes.
-
-myraw <- charToRaw("R is a Super Programming language")
-cat(myraw,"\n")
-class(myraw)
-
-Default value of Types
-======================
-for number
-a=0
-
-for string
-a=''
-
-To know the type of variable used
-=================================
-there are two ways
-#typeof() function in R Language is used to return the types of data used as the arguments.
-typeof(a)
-typeof(b)
-typeof(c)
-typeof(d)
-typeof(e)
-
-#class() function in R Language is used to return the class of data used as the arguments.
-class(a)
-class(b)
-class(c)
-class(d)
-class(e)
-
-To test the type data type
---------------------------
-use is methods
-
-is.numeric(23.2)
-is.integer(32)
-is.charcter('2')
-is.vector(4)
-is.matrix()
-is.data.frame()
-is.logical(0)
-
-Difference between typeof and class()
-------------------------------------
-#normal variable level
-myVariable <- rpois(20,2)
-myVariable
-typeof(myVariable)
-class(myVariable)
-
-#there is a difference in using dataframe level
-df1 <- data.frame(myVariable)
-df1
-typeof(df1)
-class(df1)
-
-*will discuss in details about all these types in Data types in upcoming chapters
-
-
-String
-======
-*Strings are a group of characters written inside a single or double-quotes
-*Internally R stores every string within double quotes, even when you create them with single quote
-
-'Hello world'
-"Hello world"
-
-#using double quotes
-mychar <- "R is a Super Programming language"
-cat(mychar,"\n")
-class(mychar)
-
-#use single quotes also
-mychar <- 'R is a Super Programming language'
-cat(mychar,"\n")
-class(mychar)
-
-*we shall learn more on the string chapter using function in next chapters
-
-data structure(or Sequence Type)
-================================
-*In computer science, a data structure is a data organization, management, and storage format that enables efficient access and modification
-* More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
-
-There are different types of R objects
-1)Vectors
-2)List
-3)Matricesss
-4)Arrays
-5)Factors
-6)DataFrame
-
-Vectors
---------
--The very basic data types are the R-objects called vectors which hold elements of different classes as shown above
--When you want to create vector with more than one element
--You should use c() function which means to combine the elements into a vector
-
-#create a vector
-names <- c("Ganesh","babu","Kumar","Veeresh")
-names
-class(names)
-
-*Note even numeric, logical, character and vecotr of different types can also be created . this is expalined in detail in data structure chapter.
-
-list
-----
--A list is an R-object which can contain many different types of elements inside it like vectors, functions and even another list inside it
+An informat is a type of SAS language element that applies a pattern to or executes instructions for a data value to be read as input.
 
 syntax:
-	list()
+input var1 var ;
 
-#create a list using list() function
-names <- list("Ganesh","babu","Kumar","Veeresh",12,TRUE,12L)
-names
-class(names)
+example:
+input @15 style $3. @21 price 5.2
 
-#addding a vector into a list
-names1 <- list(c(34,23,45,32),names)
-names1
-class(names1)
+some formats are:
+inFormat-Use
+n. -Maximum "n" number of columns with no decimal point.
+n.p -Maximum "n" number of columns with "p" decimal points.
+COMMAn.p- Maximum "n" number of columns with "p" decimal places which removes any comma or dollar signs.
 
-matrices
---------
--A matrix is a two-dimensional rectangular data set.
--It can be created using a vector input to the matrix function
+Numeric formats
+(32332,32332,3213.21,323.32)=BESTw.
+(32.2,3821.23,9494.23)=(4.1,7.2,10.2)
 
-syntax:
-matrix(data, nrow, ncol, byrow, dim_name)  
+String 
 
-#create a matrices
-names <- matrix(c("Ganesh","babu","Kumar","Veeresh"),nrow=2,ncol=2,byrow = TRUE)
-names
-class(names)
+date informats:
+(12032011,12-03-2011,12/03/11)-(mmddyy8.,mmddyy10.,mmddyy8.)
+(14032011,14-03-2011,14/03/11)-(ddmmyy8.,ddmmyy10.,ddmmyy8.)
+(14mar2011,14-mar-2011,14/mar/11)-(date9.,date11.,date9.)
+14-mar-2011	-anydtdte15.
 
-arrays
-------
--While matrices are confined to two dimensions, arrays can be of any number of dimensions
--The array function takes a dim attribute which creates the required number of dimension.
+Ways to apply the INformats
+*-----------------------*
 
-syntax:
-	array_name <- array(data,dim(row_size,col_size,dim_names))
+1)using input function
+-The INPUT function converts a SAS character expression using a specified informat.
 
-#create a array
-names <- array(c("Ganesh","babu","Kumar","Veeresh"),dim=c(2,2,2))
-names
-class(names)
+for numeric :
+data _null_;
+var1='918.613';
+var2=input(var1,2.);
+var21=input(var1,2.1);
+var3=input(var1,3.);
+var31=input(var1,3.1);
+var32=input(var1,3.2);
+var4=input(var1,4.1);
+var41=input(var1,4.3);
+var42=input(var1,5.);
+var5=input(var1,5.1);
+var51=input(var1,5.2);
+var6=input(var1,6.1);
+var7=input(var1,6.2);
+var8=input(var1,6.3);
+var9=input(var1,7.);
+var10=input(var1,7.1);
+var11=input(var1,8.);
+var12=input(var1,8.1);
+put var2;
+put var21;
+put var3;
+put var31;
+put var32;
+put var4;
+put var41;
+put var42;
+put var5;
+put var51;
+put var6;
+put var7;
+put var8;
+put var9;
+put var10;
+put var11;
+put var12;
+run;
 
-Factors
+for string:
+we shall use the functions 
+
+data _null_;
+var1='ganesh';
+var2='babu';
+var3 = cat(var1,var2);
+put var3; 
+run;
+
+for dates:
+for dates:
+data _null_;
+var1='03-mar-2019';
+var11='03mar2019';
+var12='03mar19';
+var13='03-04-2019';
+/*var131='03/04/2019';*/
+var14='03042019';
+var15='030419';
+var16='03-04-2019';
+var18='03042019';
+var19='030419';
+var20='mar 4 2020';
+var3=input(var1,date11.);
+var31=input(var11,date9.);
+var32=input(var12,date7.);
+/*var322=input(var12,date6.);*/
+var33=input(var13,ddmmyy10.);
+/*var331=input(var131,ddmmyy10.);*/
+var34=input(var14,ddmmyy8.);
+var35=input(var15,ddmmyy6.);
+var36=input(var16,mmddyy10.);
+var37=input(var18,mmddyy8.);
+var38=input(var19,mmddyy6.);
+var39=input(var20,anydtdte20.);
+put var3 worddate20.; 
+put var31 worddate20.; 
+put var32 worddate20.;
+put var322 worddate20.; 
+put var33 worddate20.; 
+put var331 worddate20.;
+put var34 worddate20.;
+put var35 worddate20.;
+put var36 worddate20.;
+put var37 worddate20.;
+put var38 worddate20.;
+put var39 worddate20.;
+run;
+
+2)  USING INPUT STATMENT
+
+for numeric:
+data staff;
+	input x 6.;  ; /*maxiiuum width of the data*/ 
+datalines; 
+	datalines;
+	7383
+	4332.921
+	43.2
+	453.23
+	23.209
+	.32
+	;
+run;
+
+for String informats:
+data staffname;
+input name $1-4;
+cards;
+ganeshbabu
+giriredddy
+manjunathswami
+karthik
+gani
+;
+run;
+
+for date example:
+data staffdate;
+input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
+format date1 date11. date2 mmddyy9. date3 worddate20. date4 ddmmyy10. date5 date5.;
+datalines;
+12mar2019 12-03-2020 031220 14/mar/2020 june 13 1983
+12mar2020 03-03-2020 031222 14-jun-2020 july 13 1983
+;
+run;
+
+observer this way with @
+data staffdate;
+input date1 date12. date2 ddmmyy11. date3 mmddyy8.;
+cards;
+12mar2020 12-03-2019 03/20/20
+12-mar-2013 12/03/2019 03-20-20
+;
+run;
+ 
+3)using the informat statement;
+-The INFORMAT statement associates an informat with a variable.
+
+data staffdate;
+input @1 date1 @11 date2 @22 date3 @29 date4 @41 date5 ; 
+informat date1 date9. date2 ddmmyy10. date3 ddmmyy6. date4 date11. date5 ANYDTDTE13.; ;
+datalines;
+12mar2019 12-03-2020 031220 14/mar/2020 june 13 1983
+12mar2020 03-03-2020 031222 14-jun-2020 july 13 1983
+;
+run;
+
+4)Using attrib statement
+it is associated with the informat statement
+
+data staffdate;
+input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
+attrib date1-date5 format=date11.;
+datalines;
+12mar2019 12-03-2020 031220 14/mar/2020 june 13 1983
+12mar2020 03-03-2020 031222 14-jun-2020 july 13 1983
+;
+run;
+
+
+User-Defined Informats
+*--------------------*
+
+https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
+
+formats
 -------
--Factors are the r-objects which are created using a vector
--It stores the vector along with the distinct values of the elements in the vector as labels
--The labels are always character irrespective of whether it is numeric or character or Boolean etc. in the input vector.
+A format is a type of SAS language element that applies a pattern to or executes instructions for a data value to be displayed or written as output
 
-syntax:
-	factor()
+Syntax:
+$Varname Formatnamew.d
 
-#creating vector as input
-names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
-names
+$- indicate character
+w is the maximum number of data columns (including digits after decimal & the decimal point itself) allowed to be stored for the variable.
+d-d is the number of digits to the right of the decima
 
-#test it is a factor
-is.factor((names))
+some formats are:
+Format-Use
+n. -Maximum "n" number of columns with no decimal point.
+n.p -Maximum "n" number of columns with "p" decimal points.
+COMMAn.p- Maximum "n" number of columns with "p" decimal places which removes any comma or dollar signs.
 
-#apply a factor function
-factor_data <- factor(names)
-class(factor_data)
+date formats:
+input date - informat
+03/11/2014- mmddyy10.
+03/11/14-mmddyy8.
+December 11, 2012-worddate20.
+14mar2011-date9.
+14-mar-2011-date11.
+14-mar-2011	-anydtdte15.
 
-#print the factor
-factor_data
+Ways to apply the formats
+*-----------------------*
+some of the comman ways.
 
-DataFrame
-----------
--Data frames are tabular data objects
--Unlike a matrix in data frame each column can contain different modes of data
--It is a list of vectors of equal length.
+1) using PUT Statement
 
-syntax:
-	data.frame()
+for numeric:
+data _null_;
+	var1=1456.3; 
+	var2 = 12.1232;
+	put var1 6.; 
+	put var1 8.; 
+	put var1 8.2;   *for decimal informat, memory are not buffered but for width it is buffered;
+	put var1 3.1;   *width itself buffered , its error , scientist  3EN, data compression, winzip, winrar ;
+	put var2 5.1;
+	put var2 5.4;
+	put var1 dollar11.4;
+run;
 
-#creating a dataframew
+for date:
+data _null_;
+	var1='march 2 2010';
+	var2=input(var1,ANYDTDTE12.);
+	put var2 date10.;
+	put var2 date11.;
+	put var2 date9.;
+	put var2 date8.;
+	put var2 date7.;
+	put var2 date6.;
+    put var2 date5.;
+    *put var2 date4.;
+    put var2 mmddyy9.;
+    put var2 ddmmyy10.;
+    put var2 worddate20.;
+run;
 
-stu.data <- data.frame(
-  student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
-  student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-  student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
-  stringsAsFactors = FALSE
-)
+2)using format statements
 
-stu.data
-class(stu.data)
-typeof(stu.data)
-print(stu.data)
+for Numeric :
+data _null_;
+	var1='march 2 2010';
+	var2=input(var1,ANYDTDTE12.);
+	put var2 date10.;
+	put var2 date11.;
+	put var2 date9.;
+	put var2 date8.;
+	put var2 date7.;
+	put var2 date6.;
+    put var2 date5.;
+    *put var2 date4.;
+    put var2 mmddyy9.;
+    put var2 ddmmyy10.;
+    put var2 worddate20.;
+run;
 
+for date example:
+data staffdate;
+input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
+format date1 date11. date2 mmddyy9. date3 worddate20. date4 ddmmyy10. date5 date5.;
+datalines;
+12mar2019 12-03-2020 031220 14/mar/2020 june 13 1983
+12mar2020 03-03-2020 031222 14-jun-2020 july 13 1983
+;
+run;
 
-Handling missing values
-=======================
-*Handling missing values in R, one of the common tasks in data analysis is handling missing values.
-*In R, missing values are often represented by the symbol NA (not available) or some other value that represents missing values (i.e. 99).
-*Impossible values (e.g., dividing by zero) are represented by the symbol NaN (not a number)
+3)Using attrib statment.
+data staffdate;
+input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
+attrib date1-date5 format=date11.;
+datalines;
+12mar2019 12-03-2020 031220 14/mar/2020 june 13 1983
+12mar2020 03-03-2020 031222 14-jun-2020 july 13 1983
+;
+run;
 
-Quiz:
-=====
+User-Defined Formats
+*------------------*
+The FORMAT procedure creates formats that will later be associated with variables in a FORMAT statement. The procedure starts with the statement PROC FORMAT and continues with one or more VALUE statements:
 
-Assignment:
-===========
+The FORMAT procedure creates formats that will later be associated with variables in a FORMAT statement. The procedure starts with the statement PROC FORMAT and continues with one or more VALUE statements:
 
-Resources:
-=========
-https://www.tutorialspoint.com/r/r_data_types.htm
-https://www.r-bloggers.com/2021/04/handling-missing-values-in-r/
+PROC FORMAT;
+VALUE format-name range-1 = 'formatted-text-1'
+range-2 = 'formatted-text-2'
+……
+range-n = 'formatted-text-n';
+
+where format-name
+•must begin with a dollar sign ($) if the format applies to character data
+•must be a valid SAS name
+•cannot be the name of an existing SAS format
+•cannot end in a number
+•does not end in a period when specified in a VALUE statement
+•Beginning with SAS9, a numeric format name can be up to 32 characters in length. A character format name can be up to 31 characters in length.
+
+PROC FORMAT;
+VALUE format-name range-1 = 'formatted-text-1'
+range-2 = 'formatted-text-2'
+……
+range-n = 'formatted-text-n';
+
+Each range
+•is the value of a variable that is assigned to the text given in quotation marks on the right side of the equal sign.
+•Character values should be enclosed in quotation marks (e.g. 'A' = 'Asia').
+•If there is more than one value in the range, then separate the values with a comma or use the hyphen (-) for a continuous range. (e.g. 1, 3, 5, 7, 9 = 'Odd’)
+•The keywords LOW and HIGH can be used in ranges to indicate the lowest and the highest non-missing value for the variable. (The keyword LOW does not include missing numeric values. BUT If applied to a character format, the keyword LOW includes missing character values.) (e.g. 500000 -HIGH = 'Not Affordable’)
+•You can also use the less than symbol (<) in ranges to exclude either end point of the range. (e.g. 13 -< 20 = 'Teenager’)
+•The OTHER keyword can be used to assign a format to any values not listed in the VALUE statement. (e.g. OTHER = 'Bad Data’)
+
+The following are examples of valid rangespecifications
+'A' = 'Asia'
+1, 3, 5, 7, 9 = 'Odd'
+500000 -HIGH = 'Not Affordable'
+13 -< 20 = 'Teenager'
+0 <-HIGH = 'Positive Non Zero'
+OTHER = 'Bad Data'
+
+Assigning Your User-defined Formats to Variables
+
+Just as with SAS formats, you associate a user-defined format with a variable in a FORMAT statement. When associating a format with a variable, remember to
+•use the same format name in the FORMAT statement that you specified in the VALUE statement
+•place a period at the end of your user-defined format name when it is used in the FORMAT statement. (Note: a period isnotrequired at the end of the SAS built-in formats)
+•If you do not format all of a variable's values, then those that are not listed in the VALUE statement are printed as they appear in the SAS data set
+
+proc import datafile = "C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys" 
+DBMS = xlsx out = surveys replace ;
+run;
+
+data surveys1;
+set surveys;
+    TotalSurvey= sum (survey1, survey2, survey3,survey4);
+	AverageSurvey= mean (survey1, survey2, survey3,survey4);
+run;
+
+proc format;
+	VALUE $gender 	'male' = 'M'              
+                	'female' = 'F';   
+    VALUE survey1s   1 = 'PIP'
+   				     2 = 'Needs Improvement'
+   					 3= 'Fully Meets'  
+   					 4 = 'Exceeds'; 
+   VALUE survey2s   1 = 'PIP'
+   				     2 = 'Needs Improvement'
+   					 3= 'Fully Meets'  
+   					 4 = 'Exceeds';
+   VALUE survey3s   1 = 'PIP'
+   				     2 = 'Needs Improvement'
+   					 3= 'Fully Meets'  
+   					 4 = 'Exceeds'; 
+   VALUE survey4s   1 = 'PIP'
+   				     2 = 'Needs Improvement'
+   					 3= 'Fully Meets'  
+   					 4 = 'Exceeds';
+run;
+
+PROC PRINT DATA = surveys1;
+   FORMAT gender $gender. survey1 survey1s. survey2 survey2s. survey3 survey3s. survey4 survey4s.;
+   TITLE 'Results Printed with User-Defined Formats';
+RUN;
+
+PROC PRINT DATA = surveys1;
+   TITLE 'Results Printed without User-Defined Formats';
+RUN;
+https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a0n1lv4lem9hdc0v.htm&docsetVersion=9.4&locale=en

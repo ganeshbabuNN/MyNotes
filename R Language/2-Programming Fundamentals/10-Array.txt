@@ -1,1 +1,279 @@
-Array is part of the data structure chapter in R.
+Intro
+One-Dimensional Arrays
+	calculation on existing variable
+	Creating a new variable
+	Manipulating Character Variables
+	Defining Array Bounds
+DO OVER and Implicit Arrays
+Multi-Dimensional Arrays
+
+Intro
+=====
+-Do you often need to perform the same manipulation on multiple variables?
+-If so, arrays are a great tool to simplify your SAS code and improve your programming efficiency.
+-By using arrays, you can execute complex data manipulation tasks, 
+allowing you to manipulate multiple variables with DO LOOPs and carry out a variety of data transformations with limited lines of code
+
+Declaring a array
+----------------
+-using a Array keyword this has been declared
+
+syntax:
+array array-name {X} $ length array-elements initial-values
+
+Each array statement must at minimum contain these 3 elements:
+-Array-name: The name of the array
+-X: the number of elements in the array
+-Array-elements: the list of variables to be grouped within the array
+
+the array statement can also include
+-$: A dollar sign ($) to denote character variables in the array
+length: A length value to declare a common length for elements in the array
+initial-value(s): An initial value to assign to element(s) in the array
+
+--Few of the declarations:
+Defining Arrays
+*-------------*
+array rain {5} janr febr marr aprr mayr;
+array days{7} d1-d7;
+array month{*} jan feb jul oct nov;
+array x{*} _NUMERIC_;
+array qbx{10};
+array meal{3}; 
+
+Assigning Initial Numeric Values
+*------------------------------*
+array test{4} t1 t2 t3 t4 (90 80 70 70);
+array test{4} t1-t4 (90 80 2*70);
+array test{4} _TEMPORARY_ (90 80 70 70);
+
+Defining Initial Character Values
+*-------------------------------*
+array test2{*} $ a1 a2 a3 ('a','b','c');
+
+Defining More Advanced Array
+*------------------------*
+array new{2:5} green jacobs denato fetzer;
+array x{5,3} score1-score15;
+array test{3:4,3:7} test1-test10;
+array temp{0:999} _TEMPORARY_;
+array x{10} (2*1:5);
+
+data test;
+array a{10} a1-a10;
+do i=1 to 10;
+	a{i}=i;
+end;
+run;
+
+
+https://documentation.sas.com/?docsetId=lestmtsref&docsetTarget=p08do6szetrxe2n136ush727sbuo.htm&docsetVersion=9.4&locale=en
+
+There are two types of array
+----------------------------
+1-One Dimensional array
+2-Multi dimensional array
+
+One-Dimensional Arrays
+=======================
+​-The simplest form of SAS arrays are a one-dimensional arrays. In one-dimension arrays, a grouping of SAS variables is grouped under a single array. 
+-Once variables are grouped under a single array, you can easily perform the same calculation on all the variables with just a few lines of code.
+-Once variables are grouped under a single array, you can easily perform the same calculation on all the variables with just a few lines of code
+
+
+1A :Performing a Repetitive Calculation on Multiple Variables, Without an Array
+---------------------------------------------------------------------------
+-To demonstrate how arrays can simplify your code let’s first look at how this calculation can be done without using arrays
+-Below is the basic Data Step code to complete this task. 
+-Two PROC PRINT statements are also added to allow for an easy comparison of the first 10 observations of the original and modified datasets
+
+/*payment per hour basis per dollars.*/
+data  hour_wkdata;
+ set work.stafftime;
+hour_wk1 = hour_wk1*24.25;
+hour_wk2 = hour_wk2*24.25;
+hour_wk3 =  hour_wk3*24.25;
+hour_wk4 =  hour_wk4*24.25;
+hour_wk5 =  hour_wk5*24.25;
+hour_wk6 =  hour_wk6*24.25;
+hour_wk7 =  hour_wk7*24.25; 
+run; 
+
+proc print data = work.stafftime (obs=10);
+ var  hour_wk1- hour_wk7;
+ title "First 10 records of unmodified hour_wkdata dataset";
+run;
+
+proc print data =  hour_wkdata (obs=10);
+  var  hour_wk1- hour_wk7;
+ title "First 10 records of unmodified hour_wkdata dataset";
+run;
+
+1B:Performing a Repetitive Calculation on Multiple Variables, With an Array
+------------------------------------------------------------------------
+-now lets write the using arary using the above example.
+-Number of elements: (*) – the asterisks can be used in place of an explicit number which tells SAS to count the number of array elements for you
+
+data  hour_wk_array;
+ set work.stafftime;
+ 
+ array  hour_wk1_cov{*}  hour_wk1- hour_wk17;  *declaring a variable of array ;
+ 
+ do i = 1 to 17;
+   hour_wk1_cov{i} =  hour_wk1_cov{i}*24.25;
+ end;
+run;
+
+proc print data = work.stafftime (obs=10);
+ var  hour_wk1- hour_wk7;
+ title "First 10 records of unmodified hour_wkdata dataset";
+run;
+ 
+proc print data =  hour_wk_array (obs=10);
+  var  hour_wk1- hour_wk7;
+ title "First 10 records of modifed hour_wkdata dataset";
+run;
+
+2A:Creating a variable using without array;
+-------------------------------------------
+-Normal way we do in data step.
+
+/*payment per hour basis per dollars with new hours.*/
+data  hour_wkdata;
+set work.stafftime;
+hour_wkNew1 = hour_wk1*24.25;
+hour_wkNew2 = hour_wk2*24.25;
+hour_wkNew3 =  hour_wk3*24.25;
+hour_wkNew4 =  hour_wk4*24.25;
+hour_wkNew5 =  hour_wk5*24.25;
+hour_wkNew6 =  hour_wk6*24.25;
+hour_wkNew7 =  hour_wk7*24.25; 
+run; 
+
+proc print data=hour_wkdata;
+ var hour_wk1-hour_wk7 hour_wkNew1-hour_wkNew7;
+run;
+
+2B:Creating a variable using array:
+-------------------------------
+/*payment per hour basis per dollars.*/
+data  hour_wK_array;
+set work.stafftime;
+array hour_wkNew(7) hour_wkNew1-hour_wkNew7;
+array hour_usd(7) hour_wk1-hour_wk7;
+
+do i=1 to 7;
+	hour_wkNew{i}=hour_usd{i}*24.36;  *creating a variable using array;
+end;
+
+run; 
+
+proc print data=hour_wK_array;
+ var hour_wk1-hour_wk7 hour_wkNew1-hour_wkNew7;
+run;
+
+Manipulating Character Variables
+--------------------------------
+-In addition to performing calculations on numeric variables, you can also use one-dimensional arrays to manipulate character variables
+data film_text_char;
+	set work.film_text;
+	array convert_lower{*} title description;
+	do i=1 to 2;
+		convert_lower{i} = upcase(convert_lower{i});
+	end;
+run;
+
+-By using _character_ in place of the variables listed for the array elements.
+
+data film_text_char;
+	set work.film_text;
+	array convert_lower{*} _character_;
+	do i=1 to 2;
+		convert_lower{i} = upcase(convert_lower{i});
+	end;
+run;
+
+Defining Array Bounds
+---------------------
+By default, SAS automatically starts the bounds of an ARRAY at 1.
+
+Using Customized Array Bounds
+-----------------------------
+-The first array will contain the group of new variables and the second array will contain the original price variables to be used in the calculation
+-To define the custom bounds for the array, the start and end points of the bounds are placed inside the curly brackets ({}) and separated by a colon, as shown below.
+
+data  hour_wK_array;
+set work.stafftime;
+array hour_wkNew(3:7) hour_wkNew3-hour_wkNew7;
+array hour_usd(3:7) hour_wk3-hour_wk7;
+
+do i= 3 to 7;
+	hour_wkNew{i}=hour_usd{i}*24.36;  *creating a variable using array;
+end;
+
+run; 
+
+proc print data=hour_wK_array;
+ var hour_wk3-hour_wk7 hour_wkNew3-hour_wkNew7;
+run;
+
+DO OVER and Implicit Arrays
+---------------------------
+-​There are two main types of arrays, implicit and explicit.
+-Explicit arrays are the most common type of arrays and are the only type of arrays that have been discussed thus far in the article.
+-However, implicit arrays are an alternative type of array available in SAS and can also be useful.
+-With explicit arrays, the index specification (either an asterisks or number of elements in the array) must be explicitly defined in the array statement 
+after the array name in curly parentheses ({})
+-However in an implicit array, an index specification indicating the number of array elements is not required
+-The advantage of not having to count the number of elements in the array is that you can use the DO OVER statement in place of a traditional DO LOOP
+-The DO OVER statement will automatically iterate across all elements in the array, without you having to specify the number of elements.
+
+Using DO OVER to Perform a Calculation on all Character Variables
+-----------------------------------------------------------------
+-The _character_ reserved variable in SAS to easily group all character variables in a single array without having to type them individually.
+-With an implicit array, we can simplify this code even further. To define an implicit array, 
+we simply omit the array dimension (number of elements) after stating the array name
+-After defining the array name and array elements, we can use the DO OVER LOOP to loop through all values of the array without listing any of them
+
+data flim_array(keep=title rating special_features);
+	set work.film;
+	array convert_lower title rating special_features;
+	do over convert_lower;
+		convert_lower = lowcase(convert_lower);
+	end;
+run;
+
+proc print data=work.flim_array;
+run;
+
+Multi-Dimensional Arrays
+========================
+-A Multi-Dimensional array is a more complex version of an array that can be used to combine multiple groups of elements into a single array
+-A multi-dimensional array allows you to create nested DO LOOPS (a DO LOOP within a DO LOOP) for more complex data manipulation tasks.
+-While the utility of multidimensional arrays becomes more apparent with the most complex data manipulation tasks
+-we will just demonstrate here with a simplified example how to iterate over a nested DO LOOP with a two dimensional array
+
+data stafftime_array;
+	set work.stafftime;
+	array conver{2,3} hour_wk1-hour_wk3 hour_wk4-hour_wk6;
+
+	do i=1 to 2;
+		do j=1 to 3;
+			conver{i,j}=conver{i,j} * 24.34; 
+		end;
+	end;
+run;
+
+proc print data=work.stafftime(obs=10);
+var hour_wk1-hour_wk3 hour_wk4-hour_wk6;
+run;
+
+proc print data=work.stafftime_array(obs=10);
+var hour_wk1-hour_wk3 hour_wk4-hour_wk6;
+run;
+
+Rescourses
+----------
+https://documentation.sas.com/?docsetId=lestmtsref&docsetTarget=p08do6szetrxe2n136ush727sbuo.htm&docsetVersion=9.4&locale=en#n0apwywsfhhtkyn180agsqcbfbit
+
+https://www.sascrunch.com/sas-arrays.html
