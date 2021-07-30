@@ -123,19 +123,21 @@ as.data.frame(ar)
 
 How to add one or more columns(variables) to an existing table
 ===================================================
-
-Base R
-------
-
-
-Using dplyr
------------
 rm(starwars)
 starwars <- read.csv("starwars.csv")
 is.na(starwars)
 starwars$mass <- as.numeric(starwars$mass)
 starwars$mass
 glimpse(starwars)
+
+Base R
+------
+starwars$mass2 <- starwars$mass*2
+starwars$mass2_squared <- starwars$mass2 * starwars$mass2
+starwars
+
+Using dplyr
+-----------
 
 # Newly created variables are available immediately
 starwars %>% select(name,mass) %>% 
