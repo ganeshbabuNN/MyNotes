@@ -41,19 +41,26 @@ health[order(age),] #ascending numeric
 health[order(-age),] #descending numeric
 health[order(name),] #ascending numeric
 health[order(-name),] #descending numeric
+
 #sorting multiple column
 health[order(name,age,-weight,-height),] #weight and height descending
 health[order(name,age,-weight,height,dob),] #weight and date descending
 
 Using dplyr
---------------
-using arrange function
+------------
+-Arrange() can sort rows according to a variable (e.g. sort age in ascending order)
+-Important arguments in the function are (i) data source and (ii) variable to be sorted. The default is to sort in
+ascending order, but we can use desc() to sort in descending order
+
 sytnax:
 	arrange(data source, variable, …)
+	arrange(data source, desc(variable), …)
 
 #sorting single column
+library(dplyr)
 arrange(health,name) #ascending
 arrange(health,desc(name)) #descending
+
 #sorting multiple column
 arrange(health,name,age,desc(weight),desc(height)) #weight and height descending
 arrange(health,name,age,desc(weight),desc(dob))#weight and date descending
@@ -64,11 +71,12 @@ Sorting the data with missing values
 -in R missing are generally the value as NA
 
 Traditional way
------------------
+---------------
 health[order(-height)]
 
 Using dplyr
-----------------
+-----------
+library(dplyr)
 arrange(health,desc(height)) #always treated at the end of the value
 arrange(health,height) #always treated at the end of the value.
 
@@ -80,7 +88,8 @@ Traditional way
 health[order(-dob),] #not define for date
 
 Using dplyr
-----------------
+-----------
+library(dplyr)
 arrange(health,desc(dob)) #descending
 arrange(health,dob) #ascending
 

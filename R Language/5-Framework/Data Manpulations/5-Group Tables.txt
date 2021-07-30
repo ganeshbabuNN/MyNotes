@@ -20,53 +20,133 @@ How to group rows into subgroups and apply an aggregate function for each group
 
 Grouping by various wise
 ------------------------
-using dplyr
-*--------*
+#Install and load packages
+library(dplyr)
+library(magrittr)
+
 summarise() creates a new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input.
 
-group_by(storms,year) 
+#gropuby 
 stroms_group <- group_by(storms,year)
+
 #apply for the summarise functions
 summarise(stroms_group,mean.wind=mean(wind))
 
-#using the operator
+#combing the steps using forward pipe operator operator 
 storms %>%  group_by(year) %>% summarise(mean.wind=mean(wind))
 
 grouping more than one variable
--------------------------------
+------------------------------
+#Install and load packages
+library(dplyr)
+library(magrittr)
 
-using dplyr
-*---------*
 unique(storms$status)
-stroms_grp <- group_by(storms,status,year)
-summarise(stroms_grp,mean_wind=mean(wind),mean_pressure=mean(pressure))
 
-#using the operator
+#using gropuby 
+stroms_group <- group_by(storms,status,year)
+
+#apply for the summarise functions
+summarise(stroms_group,mean_wind=mean(wind),mean_pressure=mean(pressure))
+
+#using the forward operator operator
 storms %>%  group_by(status,year) %>% summarise(mean_wind=mean(wind),mean_pressure=mean(pressure))
-          
-Using group_by with other verbs
+
+grouping with summary functions
 --------------------------------
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) # install.packages('skimr')
+library(kableExtra) # install.packages('kableExtra')
+
+library(readxl)
+#Setting the working directory
+setwd("C:/Users/gbag/Downloads/pratice/pandas-Datasets/pandas-Datasets/")
+getwd()
+
+lobsters=read_xlsx("lobsters.xlsx")
+lobsters2=read_xlsx("lobsters2.xlsx")
+
+#skimr::skim =To look at summary statistics we’ve used summary
+skimr::skim(lobsters)
+
+head(lobsters)
+summary(lobsters)
+
+#group_by one variable
+lobsters %>% group_by(year) %>% summarize(count_by_year=n())
+
+#group_by multiple variables
+lobsters %>% group_by(site,year) %>% summarize(count_by_year=n())
+
+#summarize multiple variables
+lobsters %>% group_by(site,year) %>% summarize(count_by_year=n(),
+                                               mean_size_m=mean(size_mm))
+
+#to excluse the above with NA, using na.rm=TRUE
+lobsters %>% group_by(site,year) %>% summarize(count_by_year=n(), 
+                                               mean_size_m=mean(size_mm,na.rm=TRUE),
+                                               sd_size_mm=sd(size_mm,na.rm=TRUE))
+
+site_sumary_Year <- lobsters %>% group_by(site,year) %>% summarize(count_by_year=n(), 
+                                               mean_size_m=mean(size_mm,na.rm=TRUE),
+                                               sd_size_mm=sd(size_mm,na.rm=TRUE))
+#Table formatting with kable()
+site_sumary_Year %>% kable()
+
+#mutate :create a new variable
+lobsters %>% mutate(size_m=size_mm/1000) #create single variable
+lobsters %>% mutate(size_m=size_mm/1000,millenia=2000,Observer="Allison Horst") #create multiple variable
+
+#select:select the variable
+lobsters %>% select(date,site,size_mm)
+
+Ref:
+#https://rstudio-conf-2020.github.io/r-for-excel/pivot-tables.html#group_by-one-variable
+#https://github.com/FunAtHome/r-workshop/blob/gh-pages/PivotTables.Rmd
+          
+group_by with other verbs
+--------------------------
 
 using dplyr
 *---------*
+#Install and load packages
+library(dplyr)
+library(magrittr)
+
 #The summarise function is the only dplyr verb we’ll use with grouped tibbles in this book
 #When mutate or transmute are used with a grouped object they still add new variables, but now the calculations occur “by group”
-stroms_grp <- group_by(storms,status)
-stroms_grp
-transmute(stroms_grp,wind_centered=wind-mean(wind))
 
-#using the operator
-storms %>%  group_by(status) %>% transmute(wind_centered=wind-mean(wind)) %>% unique()
+#grouping based on transmute
+storms %>% group_by(status,year) %>% transmute(win_center=wind-mean(wind))
+storms %>%  group_by(status) %>% transmute(wind_centered=wind-mean(wind)) %>% unique()  #distinct the entire value
+
+#grouping based on slice verb
+storms %>% group_by(status) %>% select(status,wind,pressure)  %>% slice_head(n=2)
+
+#pop parameter : When specifying the proportion of rows to include non-integer sizes are rounded down, so group a gets 0 rows
+storms %>% group_by(status) %>% select(status,wind,pressure)  %>% slice_head(prop =0.5)
 
 Removing grouping information
 -----------------------------
+#Install and load packages
+library(dplyr)
+library(magrittr)
 
 using dplyr
 *---------*
+#using gropuby 
+stroms_group <- group_by(storms,status,year)
+
+#Using ungroup
 ungroup(stroms_grp)
 
 Filter a group of rows
 ======================
+#Install and load packages
+library(dplyr)
+library(magrittr)
 
 storms %>% group_by(status) %>% summarise(mn_mean=mean(wind),n=n()) %>% filter(mn_mean >30) %>% select(status,mn_mean) %>% arrange(status)
 
@@ -75,9 +155,8 @@ How to generate multiple grouping sets in a query
 Aggregate is a function in base R which can, as the name suggests, aggregate the inputted data.frame d.f by applying a function specified by the FUN parameter to each column of sub-data.frames defined by the by input parameter
 
 #getting summary of all numerical variables in a grouping way
-library(dplyr)
+Base R:
 aggregate(cbind(wind,pressure,month,day,hour)~status,data=storms,FUN=mean)    
-
 
 ..ctd
 

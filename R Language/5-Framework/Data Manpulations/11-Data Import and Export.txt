@@ -17,6 +17,17 @@ Intro
 -We can also write data into files which will be stored and accessed by the operating system
 -R can read and write into various file formats like csv, excel, xml etc.
 
+setting your directory
+----------------------
+# Get and print current working directory.
+print(getwd()) 
+
+# Set current working directory.
+setwd("C:/Users/gbag/Downloads/pratice/pandas-Datasets/pandas-Datasets")
+
+# Get and print current working directory.
+print(getwd())
+
 Handling Text files
 ===================
 -A text file present on your local machine can be read using a slightly modified read.table command
@@ -37,10 +48,12 @@ write.table(data_frame, file = "data.txt", sep = "\t")
 
 Handling csv files
 ==================
-## Get and print current working directory.
+# Get and print current working directory.
 print(getwd()) 
+
 # Set current working directory.
 setwd("C:/Users/gbag/Downloads/pratice/pandas-Datasets/pandas-Datasets")
+
 # Get and print current working directory.
 print(getwd())
 
@@ -93,6 +106,18 @@ emp_sheet2<-read.xlsx("Data - Multiple Worksheets.xlsx",sheetIndex = 2) #reading
 #writing the excel file
 write.xlsx(emp_sheet1,"output.xlsx")
 read.xlsx("output.xlsx",sheetIndex = 1)
+
+#dynamically write into many sheets using loop
+for (i in 1:noctry) {
+     write.xlsx(tab110rev[i,,], file="table.xlsx", sheetName = countrylist[i],
+                col.names=FALSE, row.names=FALSE, append = T)  
+}
+
+#write into multiple sheets
+library(openxlsx)
+#create a named list of your dataframes. The list names will be the worksheet names.
+xl_lst <- list('df1_name' = iris, 'df2_name' = mtcars)
+write.xlsx(xl_lst, file = "xl_with_2_worksheets.xlsx")
 
 Handling Binary files
 =====================

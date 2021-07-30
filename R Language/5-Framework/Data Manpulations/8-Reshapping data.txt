@@ -79,6 +79,9 @@ Tranposing multiple columns into single column
 -This is like converting Wide Format Data to Long Format
 -This can be achieved using melt and gather()functions.
 
+
+using melt functions
+---------------------
 #example -1
 set.seed(123)
 N <- 15
@@ -89,13 +92,12 @@ df_Temp <- data.frame(colm1, colm2,colm3)
 df_Temp$id<-seq(nrow(df_Temp))
 df_Temp
 
-
 #it takes multiple columns of data and convert it into a single column of data
 library(reshape2)
 molted=melt(df_Temp,id.vars=c("id"))
 molted
 
-#example -2 
+#example -2:
 Refer Wide to Long.png
 mydata = read.table(text= "ID setosa versicolor virginica
                     1 5.1 NA NA
@@ -112,18 +114,40 @@ x = colnames(mydata[,-1])
 t = melt(mydata,id.vars = "ID",measure.vars = x , variable.name="Species", value.name="Sepal.Length",na.rm = TRUE)
 t
 
-#tidyr : gather() function
+Using gather functions - Tidyr
+------------------------------
+#Install and load packages
 library(tidyr)
+library(magrittr)
+
 This function transforms data from wide to long format
-gather(mydata, Species, Sepal.Length, x, na.rm = TRUE)
+library(tidyr)
+library(magrittr)
+df_Temp %>% gather(colm1,colm2,colm3,key="cols",value="points")
+
+Construct the hogwarts1 data to do regressive operations
+grf <- c(2678, 978, 23) 
+sly <- c(3476, 1002, 34) 
+rav <- c(2445, 889, 54) 
+huf <- c(1998, 700, 12) 
+activity <- c("Quiddich", "Duelling", "Potions") 
+hogwarts1 <- tibble(activity, grf, sly, rav, huf)
+hogwarts1
+hogwarts1 %>% gather(grf, sly, rav, huf,key="house",value="points") %>% 
+  group_by(house) %>% 
+  summarise(av_points=mean(points)) %>% 
+  slice(which.max(av_points)) %>% 
+  select(house)
+
 
 Tranposing  single column into multiple columns
 ===============================================
 -This is like Convert Long to Wide Format
 -This can be achieved using dcast and spread()functions.
 
+Using dcast functions
+---------------------
 Using dcast function when you have a molten dataset then you can convert the molten dataset into an original format using this function
-
 Example 1:on the above example 1 datasets
 library(reshape2)
 data <- read.table(text="X Y    Z
@@ -141,10 +165,39 @@ data <- read.table(text="X Y    Z
 mydt = dcast(data,X~Y,value.var = "Z")
 mydt
 
-#tidyr : Spread( ) Function
+Using spread functions
+----------------------
+#Install and load packages
 library(tidyr)
-mydt = spread(data, Y, Z)
-mydt
+library(magrittr)
+
+Athlete <- c("John", "John", "Sandra", "Sandra") 
+Event <- rep("Long Jump", times = 4) 
+columnC <- c("Points", "Attempts", "Points", "Attempts") 
+columnD <- c(10,3,3,1) 
+sportsday2 <- tibble(Athlete, Event, columnC, columnD)
+sportsday2
+
+#convert int row into columns
+sportsday2 %>% tibble(key='columnC',value='columnD')
+
+Using separte functions 
+----------------------
+this will pulls apart multiple values in a single cell into separate cells. you can define what the separator is.
+
+#Install and load packages
+library(tidyr)
+library(magrittr)
+
+#Construct the sportsday3 data 
+Athlete <- rep(c("John", "Jack", "Sandra"), each = 3) 
+Event <- rep(c("Long Jump", "Javelin", "High Jump"), each = 3) 
+columnC <- c("6/3", "5/2", "10/3", "5/1", "4/1", "2/1", "8/3", "7/2", "3/1") 
+sportsday3 <- tibble(Athlete, Event, columnC)
+sportsday3
+
+#using the columnC for to split.
+sportsday3 %>% separate(columnC, into = c("Points", "Attempts"), sep = "/")
 
 Tranposing rows into column and column into rows
 ================================================
@@ -212,7 +265,9 @@ using pivot tables from dplyr
 ----------------------------
 Pivot tables are powerful tools in Excel for summarizing data in different ways. We will create these tables using the group_by and summarize functions from the dplyr package (part of the Tidyverse).
 
-library(tidyverse)
+library(tidyverse) --combinations of all packages
+library(tidyr)
+library(magrittr)
 library(readxl)
 library(here)
 library(skimr) # install.packages('skimr')
@@ -637,8 +692,8 @@ pivot_longer_spec(construction, spec)
 
 ##Theory
 construction %>% pivot_longer_spec(spec) %>% pivot_wider_spec(spec)
-Ref:https://tidyr.tidyverse.org/articles/pivot.html#introduction-1
 
+Ref:https://tidyr.tidyverse.org/articles/pivot.html#introduction-1
 Quiz
 ====
 

@@ -3,16 +3,16 @@ Selecting the rows or observations
 selecting the observations based on conditions
 Limitings rows returned by a query.
 Filter data based on a values
+how to get the distinct data
 How to eliminate duplicate rows from the output of a query
 perform matching based on specific patterns
 Check if an expression or values in a column is NULL or not
-Slice Family functions in R
 Random selecting the rows
+Hanlding the missing values
 
 Intro
 =====
 #install and load the tidyverse package
-library(tidyverse)
 
 #data
 name <- c("sasi","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
@@ -45,31 +45,82 @@ health[2,5] #Select 2nd row and 5 column
 health[c(2,3),c(5,4)] #select specific row and columns using combine function
 health[[3]][3] #accessing the 3rd column of 3 row
 
+Using dplyr:
+-----------
+-Selecting row numbers using dplyr slice()
+-Used to select or de select rows by their row number (e.g. row 1 and row 11). Unlike filter we do not set conditions
+-Important arguments in the function are (i) data source and (ii) row numbers to select
+	slice(data source, row numbers, …)
+
+library(dplyr)
+
+#using slice
+slice(health,1)
+slice(health,1:3)
+slice(health,2,5)
+slice(health,c(2,3),c(5,4))
+slice(health,c(2,3),c(5,4))
+
+#using forward operator
+health %>% slice(5:n()) #from 5th row to ending
+health %>% slice(-(1:4)) # Rows can be dropped with negative indices:
+
+#min and min:
+health %>% slice_max(weight,n=5) # max with top 5 rows
+health %>% slice_min(weight,n=5) # min with last 5 rows
+
+#slice verb in group by:
+health %>% group_by(gender) %>% slice_head(n=10) #top return n rows of the group by 
+health %>% group_by(gender) %>% slice_tail(n=10) #last return n rows of the group by
+
+#Between function:
+health %>% filter(between(row_number(),5,n())) #between range
+
 Selecting the observations based on conditions
 ==============================================
 base R
 ------
-#based on the conditional variable values
+#one conditions
 health[which(health$gender=='F'),] #one condition
 
+#two conditions
 health[which(health$gender=='F' & health$age < 55) ,] #more then one condition using AND operator
 health[which(health$gender=='F' | health$age < 55) ,] #more then one condition using OR operator
 health[which((health$gender=='F' | health$age < 55) & (health$maristatus==FALSE)) ,] #more then more then two condtions
 health[which(!health$gender=='F'),] #using NOT operator
 
-#using subset function
+using subset function
+---------------------
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
 #The subset( ) function is the easiest way to select variables and observations
+
+library(dplyr)
+#one conditions
 subset(health,gender=='F') #one condition
 
+#two conditions
 subset(health,gender=='F' & age <55 ) #more then one condition using AND operator
 subset(health,gender=='F' | age < 55) #more then one condition using OR operator
 subset(health,(gender=='F' | age < 55) & maristatus==FALSE) #more then more then two condtions with %in%
 subset(health,!gender=='F')  #using NOT operator
 
-Using dplyr
------------
+using dplyr using filter functions
+----------------------------------
+-using filter functions
+-Used to sub set rows/observations based on conditions being met as TRUE (e.g. height > 170)
+-Important arguments in the function are (i) data source and (ii) a condition whereby if TRUE the data is kept
+	filter(data source, condition, …)
+
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
 #one conditions
-filter(health,gender=='F') #one condition
+filter(health,gender=='F')
+
 #multiple conditions
 filter(health,(age %in% c(18,23,26)) #more then more then two condtions with %in%
 filter(health,gender=='F' & age <55 ) #more then one condition using AND operator
@@ -77,19 +128,31 @@ filter(health,gender=='F' | age < 55) #more then one condition using OR operator
 filter(health,(gender=='F' | age < 55) & maristatus==FALSE) #more then more then two condtions
 filter(health,!gender=='F') #using NOT operator
 
-filtering using row index
+#using the pipe operatore
+library(magrittr)
+health %>% filter(age %in% c(18,23,26))      
+health %>% filter(gender=='F' & age <55)
+health %>% filter((gender=='F' & age <55) & (maristatus==FALSE))
+
+Filtering using row index
 -------------------------
+#using base R
 data=health[which(health$gender=='F' & health$age < 55) ,]
 data
-as.integer(rownames(data))#rownames return the index of the row
+
+#rownames return the index of the row
+as.integer(rownames(data))
 row=as.integer(rownames(data))
 health[row,]
 
 filtering using column index
 ----------------------------
+#using base R
 colnames(health)
 col=colnames(health) #return the column index
-col_index=data.frame(col) #return the column index
+
+#return the column index
+col_index=data.frame(col)
 row=as.integer(rownames(col_index)) #return the row index of the column
 health[row,]
 
@@ -97,23 +160,40 @@ Ref: https://medium.com/@smitpate08/how-to-easily-find-column-and-row-index-numb
 
 Limitings rows returned by a query
 ==================================
+
+base R
+------
 head(health,5) #first 5 rows
 tail(health,6) #last 6 rows
 
+Using dplyr
+----------
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
+#slice:
+health %>% slice(1L) #first row
+health %>% slice(n()) #last row
+
+#Slice head and tail
+health %>% slice_head(n=5) # top first 5 rows
+health %>% slice_tail(n=5) # botton last 5 rows
+
+#return n rows of dataframe with respect achiveved by using top_n() functions 
+health %>% top_n(6)
+
+#using row_number() functions
+health %>% filter(row_number()==1L) #reterive first row
+health %>% filter(row_number()==n()) #reterive the last row
+
 filter data based on a values
 =============================
+
 base R
 ------
 subset(health,grepl("u",name))
 subset(health, as.Date("1983-01-01") <= dob & dob <= as.Date("2019-06-30")) #range of values using date
-
-dplyr
------
-filter(health,grepl("u",name))
-
-tidyverse
----------
-dplyr::filter(health, between(dob, as.Date("1983-01-01"), as.Date("2019-06-30")))  #range of values using date
 
 data.table
 ----------
@@ -122,30 +202,69 @@ as.data.table(health)[ between(dob, as.Date("1983-01-01"), as.Date("2019-06-30")
 
 Ref:https://github.com/FunAtHome/r-workshop/blob/gh-pages/intro-to-filter-join.Rmd
 
+dplyr
+-----
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
+#load the tidyverse package
+library(tidyverse)
+dplyr::filter(health, between(dob, as.Date("1983-01-01"), as.Date("2019-06-30")))  #range of values using date
+
+#using filter functions
+filter(health,grepl("u",name))
+
+how to get the distinct data
+============================
+
+base R
+------
+unique(health$gender) #unique returns a data table with duplicated rows removed.
+myuniq <- unique(health[,c(2,3)])
+myuniq
+
+#unique value of the columns in the dataframe
+unique(health$gender)
+
+#unique rows of the dataframe by keeping last occurrences
+unique(health1, fromLast=T)
+
+Using dplyr
+-----------
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
+#using distinct
+health1 <- select(health,age,weight)
+distinct(health1)
+health1 %>% distinct()
+
 How to eliminate duplicate rows from the output of a query
 ==========================================================
 base R
 ------
 duplicated(health$gender) #duplicated returns a logical vector of length nrow(x) indicating which rows are duplicates.
-unique(health$gender) #unique returns a data table with duplicated rows removed.
-myuniq <- unique(health[,c(2,3)])
-myuniq
+
 #Remove Duplicates based on a column using duplicated() function
 health[!duplicated(health$gender), ]
 
 Using dplyr
 -----------
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
 #using filter
 health %>% filter(duplicated(.[["age"]])) #only duplicated elements
 health %>% filter(age %in% unique (.[["age"]][duplicated(.[["age"]])])) #all duplicate elements
 
-#using distinct
-health1 <- select(health,age,weight)
-health1
-
 # Remove duplicate rows of the dataframe
 distinct(health1)
 health1 %>% distinct()
+health %>% count(age) #record count of the variable
+health %>% count(age) %>% filter(n>1)  #record count of the variable filter duplicates 
 
 #Remove Duplicate Rows based on a variable
 distinct(health,gender, .keep_all= TRUE)
@@ -158,22 +277,21 @@ health %>% distinct(age,weight, .keep_all= TRUE)
 #DROP Duplicates in R using unique() function in R
 unique(health1)
 
-#unique rows of the dataframe by keeping last occurrences
-unique(health1, fromLast=T)
+#return all duplicated elements
+health %>% filter(duplicated(age) | duplicated(weight,fromLast = TRUE))
 
-#unique value of the columns in the dataframe
-unique(health$gender)
+# making dummy variable of all duplicated
+health %>% mutate(age.dup = ifelse(duplicated(age) | duplicated(age,fromLast = TRUE),1,0))
+health %>% mutate(dup_age=duplicated(age)) %>% filter(dup_age) #another alternate approach
 
 perform matching based on specific patterns
 ===========================================
-
+--refer regular expression chapter
 
 Check if an expression or values in a column is NULL or not
 =========================================================
-
 base R
--------
-
+------
 #checking data frame 
 health$name <- NULL
 is.null(health$name)
@@ -188,7 +306,7 @@ x2 <- NULL
 is.null(x)
 !is.null(x) #check if object not null
 
-#checking in vecotr
+#checking in vector
 mylist <- list()
 mylist[[1]]<-x1
 mylist[[2]] <- health[1:3,3:5]
@@ -197,33 +315,218 @@ is.null(mylist) #checking null
 mylist <- NULL
 is.null(mylist)
 
-Slice Family functions in R
-===========================
-
-dplyr
------
-head and tail:
-health %>% slice_head(n=5) # top first 5 rows
-health %>% slice_tail(n=5) # botton last 5 rows
-health %>% top_n(6) #return n rows of dataframe with respect achiveved by using top_n() functions 
-
-min and min:
-health %>% slice_max(weight,n=5) # max with top 5 rows
-health %>% slice_min(weight,n=5) # min with last 5 rows
-
-group by
-health %>% group_by(gender) %>% slice_head(n=10) #top return n rows of the group by 
-health %>% group_by(gender) %>% slice_tail(n=10) #last return n rows of the group by
-
 Random selecting the rows
 =========================
+
+using base R
+-------------
 health[sample(1:nrow(health),3,replace=FALSE),] # 3 sample size
 
 using dplyr
 -----------
-health %>% slice_sample(n=5) # sample 5 rows
+-slice_sample() allows you to random select with or without replacement
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
+#sample() functions
 sample_n(health,5) #sample by N rows
 sample_frac(health,0.9)  #sampel by fractions
+
+#using forward operator
+health %>% slice_sample(n=5) # sample 5 rows
+
+#based on the weight the sample is generated
+health %>% slice_sample(weight_by = age, n = 5)
+
+Hanlding the missing values
+============================
+In there are are two different type of missing values one is standard and other is non-standard onces
+
+1)standard missing values are NA(Not Available) and Nan(Not a number)
+2)non-standard missing values apart from the standard one  “na”, “NA”, and “N/A”,--,@l...etc
+
+# Get and print current working directory.
+print(getwd()) 
+
+# Set current working directory.
+setwd("C:/Users/gbag/Downloads/pratice/Datasets")
+
+# Get and print current working directory.
+print(getwd())
+
+standard missing values handling
+--------------------------------
+# reading in the data
+telecom <- read.csv("telecom.csv")
+
+#Usually the data is read in to a dataframe, but the tidyverse actually uses tibbles.
+
+#I like to use the glimpse function to look at the variable names and types.
+glimpse(telecom)
+
+#lets look on the monthly for handling missing values
+select(telecom,MonthlyCharges)
+
+-There’s two empty cells, and one with “Nan”. These are obviously missing values.
+-We can see how R recognizes these using the is.na function.
+
+# looking at MonthlyCharges
+telecom$MonthlyCharges
+is.na(telecom$MonthlyCharges)
+
+-We can see that the two missing cells were recognized as “NA” and the other missing value with Nan was identified by R as “NaN”.
+-When we run the is.na function, R recognizes both types of missing values. We can see this because there’s three TRUE values that are returned when we run is.na.
+-It’s important to note the difference between “NA” and “NaN”. We can use the help function to take a closer look at both values.
+
+# using the help function to learn about NA
+help(NA)
+
+-Taking a look at the bottom right window we can see that “NA” or “Not Available” is used for missing values.
+-“NaN” or “Not a Number” is used for numeric calculations. If a value is undefined, such as 0/0, “NaN” is the appropriate way to represent this.
+-There is also a is.nan function. Try running this with both “NA” and “NaN”. You’ll see that it returns a value of TRUE for “NaN” but FALSE for “NA”.
+-The is.na function on the other hand is more generic, so it will detect both types of missing values.
+
+# looking at the distinct values
+telecom %>%
+  distinct(MonthlyCharges)
+
+-If we want to get a quick count of the distinct values we can use the summarisefunction.
+# counting missing values
+telecom %>% summarise(n=sum(is.na(MonthlyCharges)))
+
+-Maybe we want to do multiple things at once. Let’s say we want to get a count of unique values, as well as missing values, and also the median value of MonthlyCharges.
+
+-This produces an organized little tibble of our summary data.
+#get the count of distinct values
+telecom %>% summarise(n=n_distinct(MonthlyCharges))
+
+# counting unique, missing, and median values
+telecom %>% summarise(n = n_distinct(MonthlyCharges),
+                 na = sum(is.na(MonthlyCharges)),
+                 med = median(MonthlyCharges, na.rm = TRUE))
+
+-It looks like all the missing values are back. So what happened?
+-Basically this means if we apply a mutate to some of the data with just a pipe operator, it will show us a modified view of the data, but it won’t be a permanent modification.
+-To permanently modify the data, we need to assign the mutate to the original data using the assignment operator <-.
+
+
+#replace the missing values to the other whatever you prefare here in this case put the median value
+telecom_1 <-telecom %>% mutate(MonthlyCharges=replace(MonthlyCharges,is.na(MonthlyCharges),median(MonthlyCharges, na.rm = TRUE)))
+
+-Now if we take another look at the data, it should be modified.
+telecom_1
+
+Non standard missing values handling
+------------------------------------
+telecom = read.csv("telecom.csv")
+
+-Let’s take a quick look at the next column, TotalCharges, to see what I mean.
+telecom
+telecom$TotalCharges
+is.na(telecom$TotalCharges)
+
+-We can see there’s three different missing values, “na”, “NA”, and “N/A”.
+-In the previous example we saw that R recognized “NA” as a missing value, but what about “na” and “N/A”?
+-Let’s take a look at this column and use is.na to see if R recognizes all of these as missing values.
+-Looking at the results we can see that R only identified “NA” as a missing value.
+
+
+#getting summary of the missing values
+telecom %>% summarise(count=sum(is.na(TotalCharges)))
+
+-We’ll need to replace both “na” and “N/A” with “NA” to make sure that R recognizes all of these as missing values.
+-Let’s use the mutate function to replace these with the correct missing value types. Keep in mind that we need to use the assignment operator to make sure the changes are permanent.
+
+#We’ll need to replace both “na” and “N/A” with “NA” to make sure that R recognizes all of these as missing values
+# replacing with standard missing value type, NA
+telecom <- telecom %>%
+  mutate(TotalCharges = replace(TotalCharges, TotalCharges=="na", NA)) %>%
+  mutate(TotalCharges = replace(TotalCharges, TotalCharges=="N/A", NA))
+
+# taking another look
+telecom$TotalCharges
+
+#lets again the summary 
+is.na(telecom$TotalCharges)
+
+-R thinks that the column values are characters. We can confirm this with the glimpse function.
+#let take the glimpse of it
+glimpse(telecom$TotalCharges)
+
+-Let’s change these to numeric types.
+# changing to numeric type
+telecom$TotalCharges <- as.numeric(telecom$TotalCharges)
+glimpse(telecom$TotalCharges)
+
+
+An even simpler way to change all of the missing values is to change the column to numeric before doing anything else.
+-Let’s import the data again so that we have the missing values again.
+# importing the data again
+telecom <- read_csv("telecom.csv")
+telecom$TotalCharges
+
+-Now let’s try changing the column to numbers.
+telecom$TotalCharges <- as.numeric(telecom$TotalCharges)
+glimpse(telecom$TotalCharges)
+
+-Finally, let’s finish up by replacing the missing values with the median.
+# replace missing values with median
+telecom <- telecom %>%
+  mutate(TotalCharges = replace(TotalCharges,
+                                is.na(TotalCharges),
+                                median(TotalCharges, na.rm = T)))
+telecom$TotalCharges
+
+# change TotalCharges to numeric type
+telecom$TotalCharges <- as.numeric(telecom$TotalCharges)
+telecom$TotalCharges
+
+telecom$TotalCharges <- as.numeric(telecom$TotalCharges)
+glimpse(telecom)
+
+
+More Missing Values
+-------------------
+-So far we’ve looked at standard missing values like “NA” and non-standard values like “n/a” and “N/A”.
+-There’s numerous other ways to represent missing data.
+Maybe I was manually entering in data and chose to use “ — ” for missing values.On the other hand, maybe you prefer to just leave the cell blank.
+-Let’s learn about detecting some of these more unusual types of missing values.
+
+telecom = read.csv("telecom.csv")
+telecom
+
+-We can see that there’s three missing values.Two are represented with “ — ” and one is just an empty cell.
+
+# looking at PaymentMethod
+telecom$PaymentMethod
+is.na(telecom$PaymentMethod)
+
+-R was only to identify one of the missing values, the empty cell.
+-Let’s go ahead and use mutate to change “ — “ to NA.
+
+# replacing "--" with NA
+telecom <- telecom %>%
+  mutate(PaymentMethod = replace(PaymentMethod, PaymentMethod ==  "--", NA)) %>% 
+  mutate(PaymentMethod = replace(PaymentMethod, PaymentMethod ==  "", NA))
+
+is.na(telecom$PaymentMethod)
+telecom$PaymentMethod
+
+-Now we can see that all three missing values now show up.
+-So far we’ve either left missing values alone, or replaced them with a median.
+-What about dealing with missing values in a column of character types?
+-Rather than just exclude the missing values, let’s convert the NAs to a new category, called “unavailable”.
+
+# replace NA with "unavailable"
+telecom <- telecom %>%
+  mutate(PaymentMethod = replace(PaymentMethod, is.na(PaymentMethod), "unavailable"))
+telecom$PaymentMethod
+
+-Now we can see that our three missing values, NA, have been converted to a new category, “unavailable”.
+
+ref:https://towardsdatascience.com/data-cleaning-with-r-and-the-tidyverse-detecting-missing-values-ea23c519bc62
+https://www.datacamp.com/community/tutorials/pipe-r-tutorial
 
 Quiz
 ====

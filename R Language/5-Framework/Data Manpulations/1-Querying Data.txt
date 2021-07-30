@@ -45,8 +45,9 @@ health
 view(health) 
 
 Using dplyr
-------------
---using select function
+-----------
+-using select function
+
 sytnax:
 	select(data source, variables to select, …)
 
@@ -102,11 +103,21 @@ health
 
 Using dplyr
 -----------
+library(dplyr)
+library(magrittr)
+-Used to select or de select columns (e.g. select gender and weight)
+-Important arguments in the function are (i) data source and (ii) the variables you wish to select
+	syntax: select(data source, variables to select, …)
+
 select(health,name,gender,weight)#using variable name
 select(health,1:3) #using the range index
 select(health,c(1,2,3)) #using the index
 select(health,-3) #remove the 3rd variable
 select(health,c(-3,-4)) #remove the 3rd and 4rd variable
+
+#using everything() functions
+-If we only care about age being first, we can use everything() to ensure all other variables are included
+health %>% select(age, everything())
 
 Quiz
 ====

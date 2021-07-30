@@ -3,6 +3,7 @@ Merging the dataframe
 Merge rows 
 Merge more than two dataframes
 
+
 intro
 =====
 -In R Language, dataframes are generic data objects which are used to store the tabular data. Dataframes are considered to be the most popular 
@@ -64,17 +65,22 @@ Natural Join or Inner Join
 -Inner join is used to keep only those rows that are matched from the dataframes, in this, we actually specify the argument all = FALSE
 -If we try to understand this using set theory then we can say here we are actually performing the intersection operation
 
-base R
-------
+Using base R
+*-----------*
 df = merge(x = df1, y = df2, by = c("StudentId","id name")) #assume if there different key 
 df = merge(x = df1, y = df2, by = "StudentId")
 df
 
-dplyr
------
+using dplyr
+*--------*
+#load the dplyr package
 library(dplyr)
+library(magrittr)
+
 inner_join(df1,df2, by = c("StudentId","id name")) #assume if there different key 
 df <- inner_join(df1,df2,by="StudentId")
+
+#using forward operator
 df= df1 %>% inner_join(df2,by="StudentId")
 df
 
@@ -84,14 +90,20 @@ Left Outer Join
 -If we try to understand this using a basic set theory then we can say here we are actually displaying complete set x.
 
 base R
-------
+*------*
 df = merge(x = df1, y = df2, by = "StudentId",
            all.x = TRUE)
 df
 
-dplyr
------
+using dplyr
+*--------*
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
 df <- left_join(df1,df2,by="StudentId")
+
+#forward pip operator
 df= df1 %>% left_join(df2,by="StudentId")
 df
 
@@ -108,7 +120,13 @@ df
 
 dplyr
 -----
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
 df <- right_join(df1,df2,by="StudentId")
+
+#forward pip operator
 df= df1 %>% right_join(df2,by="StudentId")
 df
 
@@ -126,7 +144,14 @@ df
 
 dplyr
 -----
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
+
 df <- full_join(df1,df2,by="StudentId")
+
+#forward pip operator
 df= df1 %>% full_join(df2,by="StudentId")
 df
 
@@ -142,17 +167,23 @@ df
 
 
 Semi Join
----------
+*-------*
 This join is somewhat like inner join, with only the left dataframe columns and values are selected. 
 
 dplyr
 -----
+#load the dplyr package
+library(dplyr)
+library(magrittr)
+
 df <- semi_join(df1,df2,by="StudentId")
+
+#forward pip operator
 df = df1 %>% semi_join(df2, by = "StudentId")
 df
 
 Anti Join
----------
+*--------*
 -In terms of set theory, we can say anti-join as set difference operation, 
 -for example, A = (1, 2, 3, 4) B = (2, 3, 5) then the output of A-B will be set (1, 4). 
 -This join is somewhat like df1 – df2, as it basically selects all rows from df1 that are actually not present in df2.
@@ -166,6 +197,7 @@ Merge rows
 ==========
 -You can also merge data frames by row names.
 
+#base R
 df1 <- data.frame(var=c("one","Two","three","four","five"),data=c(1,5,1,6,8))
 rownames(df1) <- c("A", "B", "C", "D", "E")
 df1
@@ -181,12 +213,12 @@ Merge more than two dataframes
 ==============================
 It is worth to mention that you can iteratively merge data frames in R, concatenating the merge function
 
-Base R:
--------
 #You can merge the three data frames merging two and then merging the output with the remaining data set
 merge(x, merge(y, z))
+
 #Note that you can specify the arguments you prefer for each join and that you can concatenate as many merges as you need
 merge(x, merge(y, z, all = TRUE), all = TRUE)
+
 #A cleaner alternative is to use the Reduce function as follows, so instead of concatenating the merge functions, you can specify all the data frames inside a list
 Reduce(function(x, y) merge(x, y), list(x, y, z))
 
