@@ -1,0 +1,58 @@
+Intro
+Box Plots
+Quiz
+assignment
+Resources
+
+Box Plots
+=========
+-geom_boxplot () provides offers a boxplot aesthetic
+-Important arguments for the function are as follows
+	ggplot(data)
+	geom_boxplot(aes(x axis variable, y axis variable))
+
+-Additional arguments outside of the aes can be used to alter the colour or fill of the boxes beyond default settings (e.g. geom_boxplot aes (x, y), colour = “red”, fill = “blue”)
+-Additional arguments inside of the aes can be used to link an additional variable (e.g. varZ ) to the colour or fill ( e.g for example we can colour code the boxes against varZ by bringing colour inside the aes geom_boxplot aes (x, y, colour = varZ
+-We can add points on top of the boxplots geom_point () or geom_jitter () but we need to manage the aes(see examples next)
+
+
+library(ggplot2)
+
+#plot
+ggplot(iris) + geom_boxplot(aes(Petal.Width,Petal.Length))
+
+#colour
+ggplot(iris) + geom_boxplot(aes(Petal.Width,Petal.Length),colour="red")
+
+#shape and colour
+ggplot(iris) + geom_boxplot(aes(Petal.Width,Petal.Length),fill="red")
+
+#colour of spieces
+ggplot(iris) + geom_boxplot(aes(Petal.Width,Petal.Length,colour = Species))
+
+#Species as a colour variable + points
+ggplot(iris, aes(Species, Petal.Length, colour = Species))+
+  geom_boxplot() +
+  geom_point()
+
+#Species as a colour variable + jittered
+ggplot(iris, aes(Species, Petal.Length, colour = Species))+
+  geom_boxplot() +
+  geom_jitter()
+
+Quiz
+====
+1)Create a boxplot of “cut” on x axis and “price” on the y axis
+2)Modify the plot so that all the boxes are filled in purple
+3)Modify the plot further so that the variable “cut” is shown as different box colours
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.journaldev.com/36083/plot-function-in-r
+
+
+

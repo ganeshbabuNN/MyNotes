@@ -1,0 +1,53 @@
+Intro
+Scatter Plots
+Quiz
+assignment
+Resources
+
+
+Scatter Plots
+=============
+-geom_point () provides a points (marker) aesthetic used in scatterplots
+-Important arguments for the function are as follows
+	ggplot(data)
+	geom_point(aes(x axis variable, y axis variable))
+-Additional arguments outside of the aes can be used to alter the shape, size or colour of the points beyond default settings (e.g. geom_point aes (x, y), shape = 4, size = 2, colour = “blue”)
+-Additional arguments inside of the aes can be used to link an additional variable (e.g. varZ ) to the shape, size or colour ( e.g for example we can colour code the points against varZ by bringing colour inside the aes geom_point aes (x, y, colour = varZ ), shape = 4, size = 2)
+
+library(ggplot2)
+
+#plot
+ggplot(iris) + geom_point(aes(Petal.Width,Petal.Length))
+
+#shape
+ggplot(iris) + geom_point(aes(Petal.Width,Petal.Length),shape=2)
+
+#shape and colour
+ggplot(iris) + geom_point(aes(Petal.Width,Petal.Length),shape=2,colour="red")
+
+#size
+ggplot(iris) + geom_point(aes(Petal.Width,Petal.Length),size=3)
+
+#colour of species
+ggplot(iris) + geom_point(aes(Petal.Width,Petal.Length,colour=Species))
+
+#shape of species
+ggplot(iris) + geom_point(aes(Petal.Width,Petal.Length,shape=Species,colour=Species))
+
+
+Quiz
+====
+1)Create a scatterplot of “carat” on x axis and “price” on the y axis.
+2)Modify the plot so that the variable “cut” is shown as different marker shapes
+3)Modify the plot further so that the variable “ color ” is shown as different marker colours
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.journaldev.com/36083/plot-function-in-r
+
+
+
