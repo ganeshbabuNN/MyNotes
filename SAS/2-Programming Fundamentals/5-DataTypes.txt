@@ -2,6 +2,8 @@ Data types
 Type of Datatypes
 controlling the input and output values
 Strings
+Converstion one datatype of other
+
 
 Data types
 ==========
@@ -341,3 +343,32 @@ User-Defined Formats
 *------------------*
 
 https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a0n1lv4lem9hdc0v.htm&docsetVersion=9.4&locale=en
+
+String
+======
+
+Converstion one datatype of other
+==================================
+-INPUT Function is used to convert character variable to numeric.
+	syntax: new_num=input(character-variable, 4.);
+
+data temp;
+x = '12345';
+new_x = input(x,5.);
+run;
+
+-the variable x is a character variable as it is defined in quotes '12345'. The newly created variable new_x is in numeric format
+
+-PUT Function is used to convert numeric variable to character.
+	new_char=put(numeric,4.0);
+
+data temp;
+x = 12345;
+new_x = put(x,5.);
+run;
+
+-In this example, the variable x is originally in numeric format and later converted to character in the new variable new_x.
+
+
+
+
