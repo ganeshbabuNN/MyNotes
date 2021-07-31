@@ -317,23 +317,6 @@ run;
 
 2)using format statements
 
-for Numeric :
-data _null_;
-	var1='march 2 2010';
-	var2=input(var1,ANYDTDTE12.);
-	put var2 date10.;
-	put var2 date11.;
-	put var2 date9.;
-	put var2 date8.;
-	put var2 date7.;
-	put var2 date6.;
-    put var2 date5.;
-    *put var2 date4.;
-    put var2 mmddyy9.;
-    put var2 ddmmyy10.;
-    put var2 worddate20.;
-run;
-
 for date example:
 data staffdate;
 input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
