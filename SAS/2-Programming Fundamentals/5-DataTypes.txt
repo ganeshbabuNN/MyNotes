@@ -78,7 +78,6 @@ String
 
 date informats:
 (12032011,12-03-2011,12/03/11)-(mmddyy8.,mmddyy10.,mmddyy8.)
-(14032011,14-03-2011,14/03/11)-(ddmmyy8.,ddmmyy10.,ddmmyy8.)
 (14mar2011,14-mar-2011,14/mar/11)-(date9.,date11.,date9.)
 14-mar-2011	-anydtdte15.
 
