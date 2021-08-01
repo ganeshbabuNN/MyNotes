@@ -81,7 +81,34 @@ run;
 
 https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a0n1lv4lem9hdc0v.htm&docsetVersion=9.4&locale=en
 
-controlling the input and output values
+
+Converstion one datatype of other
+==================================
+input function
+--------------
+-INPUT Function is used to convert character variable to numeric.
+	syntax: new_num=input(character-variable, 4.);
+
+data temp;
+x = '12345';
+new_x = input(x,5.);
+run;
+
+-the variable x is a character variable as it is defined in quotes '12345'. The newly created variable new_x is in numeric format
+
+put function
+------------
+-PUT Function is used to convert numeric variable to character.
+	new_char=put(numeric,4.0);
+
+data temp;
+x = 12345;
+new_x = put(x,5.);
+run;
+
+-In this example, the variable x is originally in numeric format and later converted to character in the new variable new_x.
+
+Controlling the input and output values
 =======================================
 Generally there are two formats and informats
 
@@ -93,7 +120,7 @@ informats
 An informat is a type of SAS language element that applies a pattern to or executes instructions for a data value to be read as input.
 
 syntax:
-input var1 <informat> var<informat> ;
+input var1 <informatw.p> var<informat w.p>;
 
 example:
 input num1 6.3 num2 5.2; # numeric informat 
@@ -119,8 +146,12 @@ date informats:
 (14mar2011,14-mar-2011,14/mar/11)-(date9.,date11.,date9.)
 (14-mar-2011,12032011)-(anydtdte15.,anydtdte8.,)
 
-Ways to apply the INformats
-*-----------------------*
+There are Fours way to execute
+*----------------------------*
+1)using input functions
+2)Using input statement
+3)using the informat statement
+4)using the Attrib statement
 
 1)using input function
 -The INPUT function converts a SAS character expression using a specified informat.
@@ -288,7 +319,6 @@ run;
 
 User-Defined Informats
 *--------------------*
-
 https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
 
 formats
@@ -296,7 +326,7 @@ formats
 A format is a type of SAS language element that applies a pattern to or executes instructions for a data value to be displayed or written as output
 
 Syntax:
-$Varname Formatnamew.d
+$Varname Formatname w.d
 
 $- indicate character
 w is the maximum number of data columns (including digits after decimal & the decimal point itself) allowed to be stored for the variable.
@@ -317,9 +347,11 @@ December 11, 2012-worddate20.
 14-mar-2011-date11.
 14-mar-2011	-anydtdte15.
 
-Ways to apply the formats
-*-----------------------*
-some of the comman ways.
+There are Fours way to execute
+*----------------------------*
+1)using put functions
+2)using the format statement
+3)using the Attrib statement
 
 1) using PUT Statement
 
@@ -382,29 +414,3 @@ https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a
 
 String
 ======
-
-Converstion one datatype of other
-==================================
--INPUT Function is used to convert character variable to numeric.
-	syntax: new_num=input(character-variable, 4.);
-
-data temp;
-x = '12345';
-new_x = input(x,5.);
-run;
-
--the variable x is a character variable as it is defined in quotes '12345'. The newly created variable new_x is in numeric format
-
--PUT Function is used to convert numeric variable to character.
-	new_char=put(numeric,4.0);
-
-data temp;
-x = 12345;
-new_x = put(x,5.);
-run;
-
--In this example, the variable x is originally in numeric format and later converted to character in the new variable new_x.
-
-
-
-
