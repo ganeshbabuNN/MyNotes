@@ -1,3 +1,4 @@
+Intro
 Algorithms and Flowcharts
 Token or word(in SAS)
 Type of Token
@@ -10,6 +11,13 @@ Type of Token
 indentations
 SAS Data Set
 SAS inbuilt datasets.
+Quiz
+assignment
+Resources
+
+Intro
+=====
+
 
 Algorithms
 ==========
@@ -173,6 +181,16 @@ SAS inbuilt datsets
 ===================
 Libraries -> My Libraries -> SASHELP  uses cars
 
+Quiz
+====
+
+Assignment
+==========
+
 Resources
 ==========
 https://documentation.sas.com/?docsetId=lepg&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en - Programming guide
+
+
+
+

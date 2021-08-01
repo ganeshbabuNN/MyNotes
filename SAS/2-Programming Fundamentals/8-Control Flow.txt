@@ -1,5 +1,12 @@
-intro
+Intro
 type of control flow
+Quiz
+assignment
+Resources
+
+Intro
+=====
+
 
 
 Type of control statment
@@ -256,3 +263,13 @@ data temp;
 set employees;
 if sal <= 35000 then DELETE; 
 run;
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

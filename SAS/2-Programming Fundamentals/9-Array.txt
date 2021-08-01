@@ -6,6 +6,13 @@ One-Dimensional Arrays
 	Defining Array Bounds
 DO OVER and Implicit Arrays
 Multi-Dimensional Arrays
+Quiz
+assignment
+Resources
+
+intro
+=====
+
 
 Intro
 =====
@@ -272,8 +279,15 @@ proc print data=work.stafftime_array(obs=10);
 var hour_wk1-hour_wk3 hour_wk4-hour_wk6;
 run;
 
-Rescourses
+Quiz
+====
+
+Assignment
+==========
+
+Resources:
 ----------
 https://documentation.sas.com/?docsetId=lestmtsref&docsetTarget=p08do6szetrxe2n136ush727sbuo.htm&docsetVersion=9.4&locale=en#n0apwywsfhhtkyn180agsqcbfbit
 
 https://www.sascrunch.com/sas-arrays.html
+

@@ -1,3 +1,11 @@
+Intro
+Quiz
+assignment
+Resources
+
+intro
+=====
+
 options emailsys=mapi;
 filename mailbox email;
 data _null;
@@ -23,5 +31,13 @@ data _null_;
   put 'It worked well!';
 run;
 
-Resources
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
 https://support.sas.com/resources/papers/proceedings/pdfs/sgf2008/038-2008.pdf

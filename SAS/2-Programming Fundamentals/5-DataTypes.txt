@@ -1,8 +1,16 @@
+Intro
 Data types
 Type of Datatypes
 controlling the input and output values
 Strings
 Converstion one datatype of other
+Quiz
+assignment
+Resources
+
+Intro
+=====
+
 
 Data types
 ==========
@@ -450,3 +458,14 @@ https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a
 
 String
 ======
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

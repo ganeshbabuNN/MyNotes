@@ -1,13 +1,14 @@
-Introduction
+Intro
 SAS program stuture
 	data step
 	PROC step
 	output step
-resources
+Quiz
+assignment
+Resources
 
-
-Introduction
-============
+intro
+=====
 The SAS Programming involves first creating/reading the data sets into the memory and then doing the analysis on this data. 
 We need to understand the flow in which a program is written to achieve this
 
@@ -89,3 +90,14 @@ where bonus > 40000;
 run;
 
 https://documentation.sas.com/?docsetId=proc&docsetTarget=n17dcq1elcvpvkn1pkecj41cva6j.htm&docsetVersion=9.4&locale=en#p1hdwnsto2gmcon1w8kuhhsnlyd2
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

@@ -1,8 +1,11 @@
 Intro
 Using Quotation Marks with Character Constants
 Comparing Character Constants and Character Variables
+Quiz
+assignment
+Resources
 
-intro
+Intro
 ====
 -A SAS constant is a number or a character string that indicates a fixed value. 
 -Constants can be used as expressions in many SAS statements, including variable assignment and IF-THEN statements
@@ -55,3 +58,14 @@ run;
 proc print data=ganesh;
 run;
 footnote 'This''s a footnote';
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

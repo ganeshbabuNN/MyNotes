@@ -1,7 +1,9 @@
 Intro
 Two major category operator
 Types of operators
-
+Quiz
+assignment
+Resources
 
 Intro
 =====
@@ -219,3 +221,13 @@ k=(a**b**c);
 l=(a+b)/d+(b+c/2)
 put f g h i j k l;
 run;
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

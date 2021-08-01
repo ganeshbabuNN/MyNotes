@@ -1,9 +1,13 @@
+Intro
 Variables
 Types of variables
 	How to store the value into a variables
 	How the conditional expression are evaulated
 Rules of the names.
 Missing Values
+Quiz
+assignment
+Resources
 
 Intro
 =====
@@ -171,3 +175,13 @@ always appear before observations in which values of the BY variable contain onl
 
 
 https://documentation.sas.com/?docsetId=lrcon&docsetTarget=p0scp8gshsuwx9n1etoje5bnizi7.htm&docsetVersion=9.4&locale=en
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
