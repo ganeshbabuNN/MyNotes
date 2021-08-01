@@ -100,7 +100,7 @@ input num1 6.3 num2 5.2; # numeric informat
 input char1 $3. char2 $1-4; # character informat
 input date1 date11. date2 mmddyy10.; # date informat
 
--Always the informations followup by w.p
+-Always the informat followup by w.p
 where w = width i,e -Maximum "w" number of columns with no decimal point.
 p is precision  i,e n.p -Maximum "w" number of columns with "p" decimal points.
 
