@@ -196,17 +196,13 @@ put var12;
 run;
 
 for string:
-we shall use the functions 
-
-data _null_;
-var1='ganesh';
-var2='babu';
-var3 = cat(var1,var2);
-put var3; 
+data test;
+var1='ganeshbabug';
+var2=input(var1,$7.);
+var3=input(var1,$10.);
 run;
 
-for dates:
-for dates:
+for dates: 
 data _null_;
 var1='03-mar-2019';
 var11='03mar2019';
@@ -246,7 +242,6 @@ put var39 worddate20.;
 run;
 
 2)  USING INPUT STATMENT
-
 for numeric:
 data staff;
 	input x 6.;  ; /*maxiiuum width of the data*/ 
@@ -261,7 +256,7 @@ datalines;
 	;
 run;
 
-for String informats:
+for String :
 data staffname;
 input name $1-4;
 cards;
@@ -273,7 +268,7 @@ gani
 ;
 run;
 
-for date example:
+for date :
 data staffdate;
 input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
 format date1 date11. date2 mmddyy9. date3 worddate20. date4 ddmmyy10. date5 date5.;
@@ -295,6 +290,19 @@ run;
 3)using the informat statement;
 -The INFORMAT statement associates an informat with a variable.
 
+-combine numeric,date,character
+data acctinatt2;
+input acctnum date1 date2 date3 amount test $;
+informat acctnum 4. date1 mmddyy10. date2 mmddyy8. date3 mmddyy6. amount dollar9. test $5.;
+datalines;
+1221 01/15/1960 09-11-12 090921 $1,003.59 test1
+1234 01/17/1960 10-11-12 101012 $672.05 test2
+4222 01/19/1960 11-11-12 110113 $702.77 test3
+6552 01/22/1987 12-11-12 110919 $1,209.61 test4
+;
+run;
+
+-date
 data staffdate;
 input @1 date1 @11 date2 @22 date3 @29 date4 @41 date5 ; 
 informat date1 date9. date2 ddmmyy10. date3 ddmmyy6. date4 date11. date5 ANYDTDTE13.; ;
@@ -307,6 +315,20 @@ run;
 4)Using attrib statement
 it is associated with the informat statement
 
+-mixing of number, date and string
+data acctinatt2;
+input acctnum date1 date2 date3 amount test $;
+informat acctnum 4. date1 mmddyy10. date2 mmddyy8. date3 mmddyy6. amount dollar9. test $5.;
+attrib date1-date3 format=date11.;
+datalines;
+1221 01/15/1960 09-11-12 090921 $1,003.59 test1
+1234 01/17/1960 10-11-12 101012 $672.05 test2
+4222 01/19/1960 11-11-12 110113 $702.77 test3
+6552 01/22/1987 12-11-12 110919 $1,209.61 test4
+;
+run;
+
+-date
 data staffdate;
 input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
 attrib date1-date5 format=date11.;
@@ -315,6 +337,7 @@ datalines;
 12mar2020 03-03-2020 031222 14-jun-2020 july 13 1983
 ;
 run;
+
 
 
 User-Defined Informats
@@ -334,9 +357,17 @@ d-d is the number of digits to the right of the decima
 
 some formats are:
 Format-Use
-n. -Maximum "n" number of columns with no decimal point.
-n.p -Maximum "n" number of columns with "p" decimal points.
+-Always the format followup by w.p
+where w = width i,e -Maximum "w" number of columns with no decimal point.
+p is precision  i,e n.p -Maximum "w" number of columns with "p" decimal points.
+-for comm informat type
 COMMAn.p- Maximum "n" number of columns with "p" decimal places which removes any comma or dollar signs.
+
+numeric formats:
+
+
+strings formats:
+
 
 date formats:
 input date - informat
