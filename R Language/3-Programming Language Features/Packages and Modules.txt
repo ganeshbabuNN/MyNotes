@@ -3,6 +3,9 @@ Package Operations
 Load Package to Library
 The Difference Between A Package And A Library
 Modules
+Quiz
+Assignment
+Resources
 
 Intro
 =====

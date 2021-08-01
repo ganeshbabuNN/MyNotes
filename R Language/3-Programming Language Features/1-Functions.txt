@@ -16,6 +16,9 @@ keyword argument
 default arguments
 returning variable number of argument
 Built in Functions
+Quiz
+Assignment
+Resources
 
 Introduction
 =============

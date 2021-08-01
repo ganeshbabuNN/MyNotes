@@ -7,6 +7,9 @@ Escape characters
 String Formatting(Huge chapters)
 String Regular expressions
 String Methods
+Quiz
+Assignment
+Resources
 
 Intro
 =====
@@ -139,7 +142,6 @@ There are three ways to perform string formatting
 
 Using stringf()
 --------------
-stringf()
 -the sprintf() function offers more advanced formatting options
 -syntax: sprintf(format, string)
 -all the formats start with a % sign

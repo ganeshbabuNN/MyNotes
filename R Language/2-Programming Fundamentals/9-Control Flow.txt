@@ -1,310 +1,505 @@
-intro
-type of control flow
+Control Flow
+============
+Introduction
+Type of statments
+	1)Selection(conditional) statements 
+	2)Iteration statements
+	3)Transfer statements
+Quiz
+Assignment
+Resources
 
+Introduction
+============
+Control flow statements govern the flow (order) of control (execution) in a program during execution. There are three main categories of control flow statements:
 
-Type of control statment
-=======================
-1)Decision making or branching
-2)Looping statement
+Selection(conditional) statements:
+=================================
+Decision making is the most important aspect of almost all the programming languages. As the name implies, decision making allows us to run a particular block of code for a particular decision. Here, the decisions are made on the validity of the particular conditions. Condition checking is the backbone of decision making.
 
-Decision making or branching
-============================
-Decision making structures require the programmer to specify one or more conditions to be evaluated or tested by the program, 
-along with a statement or statements to be executed if the condition is determined to be true, and optionally, 
-other statements to be executed if the condition is determined to be false.
+*If statement
+*if else statment
+*else-if statment
+*Switch Statment
 
-types of branching
-------------------
-1)IF statement
-2)IF-THEN-ELSE statement
-3)IF-THEN-ELSE-IF statement
-4)IF-THEN-DELETE statement
-5)IF-THEN-DO statment
-6)Case Statment
-
-1)IF statement
-*-------------*
-An IF statement consists of a boolean expression followed by SAS statements.
-
-Syntax
-The basic syntax for creating an if statement in SAS is −
-IF (condition );
-
-example:
-data temp;
-set employees;
-if bonus > 40000;
-run;
-
-2)IF-THEN-ELSE statement
-*----------------------*
-An IF-THEN-ELSEstatement consists of a boolean expression with a THEN statements.This ia again followed by an ELSE Statement.
-
-Syntax
-The basic syntax for creating an if statement in SAS is −
-IF (condition ) THEN result1;
-ELSE result2;
--If the condition evaluates to be true, then the respective observation is processed.
-
-Example:
-data temp;
-set employees;
-if bonus > 40000 then BONUSRANGE ='HIGH';
-ELSE BONUSRANGE='LOW';
-run;
-
-3)IF-THEN-ELSE-IF statement
-*-------------------------*
-An IF-THEN-ELSE-IF statement consists of a boolean expression with a THEN statements. This ia again followed by an ELSE Statement
-
-Syntax
-The basic syntax for creating an if statement in SAS is −
-IF (condition1) THEN result1;
-ELSE IF (condition2) THEN result2;
-ELSE IF (condition3) THEN result3;
-
-Example:
-data temp;
-set employees;
-if sal <= 35000 then SALRANGE ='LOW';
-ELSE IF 35000 < sal < 45000 THEN SALRANGE='MEDIUM';
-ELSE IF sal >= 45000 THEN SALRANGE='HIGH';
-run;
-
-4)IF-THEN-DELETE statement
-*------------------------*
-An IF-THEN-DELETE statement consists of a boolean expression followed by SAS THEN DELETE statement.
-
-Syntax
-The basic syntax for creating an if statement in SAS is.
-IF (condition ) THEN DELETE;
-If the condition evaluates to be true, then the respective observation is processed
-
-Example
-data temp;
-set employees;
-if sal <= 35000 then DELETE; 
-run;
-
-5)IF-THEN-DO statment:
-*--------------------*
-Using IF-THEN statements without the ELSE statement causes SAS to evaluate all IF-THEN statements. Using IF-THEN statements with the ELSE statement causes SAS to execute IF-THEN statements until it encounters the first true statement. Subsequent IF-THEN statements are not evaluated. (Source: support.sas.com)
-The DO statement is the simplest form of DO group processing. The statements between the DO and END statements are called a DO group. You can nest DO statements within DO groups.
-
-A simple DO statement is often used within IF-THEN/ELSE statements to designate a group of statements to be executed depending on whether the IF condition is true or false.
-
-sytnax:
-IF <conditions> THEN DO;
-statement1;
-statement2;
-...
-statementn;
-END;
-
-Example:
-
-length PerformanceScore $20;
-	if averagesurvey <=1 then do;
-		perfscoreID =1;
-		PerformanceScore='PIP';
-	end;
-	else if averagesurvey >1 and averagesurvey <=2 then do;
-		perfscoreID =2;
-		PerformanceScore="Needs Improvement";
-	end;
-	else if averagesurvey >2 and averagesurvey <=3 then do;
-		perfscoreID =3;
-		PerformanceScore="Fully Meets";
-	end;
-	else if averagesurvey >=4 then do;
-		perfscoreID =4;
-		PerformanceScore="Exceeds";
-end; 
-
-5)Case Statment
-*-------------*
-only applicable for PROC SQL procedures.
-
-syntax
-CASE <case-operand>
-WHEN when-condition THEN result-expression
-<WHENwhen-conditionTHENresult-expression...>
-<ELSE result-expression>
-END;
-
-Example
-
-looping
-=======
--In general, statements are executed sequentially  − The first statement in a function is executed first, followed by the second, and so on.
-But when you want the same set of statements to be executed again and again, we need the help of Loops
-
-Type of loops
--------------
-1)Do index - The loop continues from the start value till the stop value of the index variable.
-2)Do While - The loop continues till the while condition becomes false.
-3)DO UNTIL - The loop continues till the UNTIL condition becomes True.
-
-https://online.stat.psu.edu/stat481/lesson/18
-
-1)do Index
-----------
--This DO Index loop uses a index variable for its start and end value. The SAS statements are repeatedly executed until the final value of the index variable is reached.
-
-Syntax
-DO index-variable = start TO stop BY increment;
-        action statements;
-END;
-
-Example:
--printing from 1 to 10;
-data _null_; 
-do i=1 to 7;
-	put i;
-	output;
-end;
-run;
-
-data do_loop; 
-do var=1 to 5;
-	loopdemo=var;
-	output;
-end;
-run;
-
--cummulative sum
-data do_loop; 
-sum =0;
-do var=1 to 5;
-	sum=sum+var; 
-end;
-run;
-
--cummulative sum for each row
-data do_loop; 
-sum =0;
-	do var=1 to 5;
-		sum=sum+var; 
-		output;
-	end;
-run;
-
--printing a tables;
-data _null_;
-	a=2;
-	do i=1 to 10;
-		b = a * i;
-		put a "*" i "=" b;	
-	end;
-run;
-
--Nested loop
-DATA _null_;
-DO i = 1 to 4;
-    DO j = 1 to 5;
-	   put i j;
-        output;
-            END;
-    END;
-RUN; 
-
-*Iteratively Processing Data
-data test;
-input num1 num2;
-drop i;
-do i=1 to num1;
-	ganesh=num2+2;
-end;
-cards;
-1 42
-2 32
-3 11
-4 14
-5 14
-6 65
-7 87
-;
-run;
-
-2)do While
-----------
-This DO WHILE loop uses a WHILE condition. The SAS statements are repeatedly executed until the while condition becomes false.
+if statement
+------------
+The if statement is used to test a specific condition. If the condition is true, a block of code (if-block) will be executed.
 
 syntax:
-DO WHILE (variable  condition);
-. . . SAS statements . . . ;
-END;
+ex:
+if(boolean_expression) {  
+   // If the boolean expression is true, then statement(s) will be executed.   
+}  
+	
+if TRUE{
+  print("it is true")
+}
 
-*printing from 1 to 10;
-data temp1;
-var =1;
-do while(var <6);
-	sum=var;
-	var+1;
-	output;
-end;
-run;
 
-*cummulative sum
-data temp1;
-var =1;
-sum=0;
-do while(var <6);
-	sum=sum+var;
-	var+1; 
-end;
-run;
+#ex1:program to check even number of not
+num=as.integer(readline("enter the number"))
+if(num%%2==2){
+  print("this is a even number")
+}
 
-*cummulative sum for each row
-data temp1;
-var =1;
-sum=0;
-do while(var <6);
-	sum=sum+var;
-	var+1;
-	output;
-end;
-run;
+#ex2:Program to print the largest of the three numbers
+a=2
+b=3
+c=2
 
-3)DO UNTIL
+if(a>b){
+  cat("a is largest")
+}
+
+if(b>a){
+  cat ("b is largest")
+}
+
+if(c>a){
+  cat("c is largest")
+}
+
+NOTE: do not forget to put a parentheis in a single boolean expression or else it shall throw an error.
+
+If else statment
+----------------
+The if-else statement is similar to if statement except the fact that, it also provides the block of the code for the false case of the condition to be checked. If the condition provided in the if statement is false, then the else statement will be executed.
+
+Syntax:
+if(boolean_expression) {  
+   // statement(s) will be executed if the boolean expression is true.  
+} else {  
+   // statement(s) will be executed if the boolean expression is false.  
+} 
+
+#Ex1: Program to check your eligablity to vote.
+age <- 43
+if (age>18){
+  cat("your eligable for vote")
+}else{
+  cat("your not eligable for vote")
+}
+
+
+#ex2:program to check even number of not
+num <- 3
+if(num%%2==0){
+  print("The number is even")
+}else{
+  print("the nubmer is odd")
+}
+
+Else-if statment
+----------------
+The elif statement enables us to check multiple conditions and execute the specific block of statements depending upon the true condition among them. We can have any number of elif statements in our program depending upon our need. However, using elif is optional.
+
+Syntax:
+if(boolean_expression 1) {  
+   // This block executes when the boolean expression 1 is true.  
+} else if( boolean_expression 2) {  
+   // This block executes when the boolean expression 2 is true.  
+} else if( boolean_expression 3) {  
+   // This block executes when the boolean expression 3 is true.  
+} else {  
+   // This block executes when none of the above condition is true.   
+}
+	
+#ex1:Program to check which number is equal to 10 or 50 or 100
+num <- 20
+if (num==10){
+  print("Number is equal to 10")
+}else if(num==50){
+  print("number is equal to 50")
+}else if(num==100){
+  print("numbe ris equal to 100")
+}else{
+  print("number is not equal to either 10 or 50 or 100")
+}
+	
+#ex:Program to check the Grade of the student marks
+#A --> greater 85 and less or equal to 100
+#B+ --> greater 60 and less or equal to 85
+#B --> greater 40 and less or equal to 60
+#C --> greater 30 and less or equal to 40
+#Fail --> < 30
+
+marks = 40
+if (marks >85 & marks<=100){
+  print("Grade A")
+}else if(marks >60 & marks<=85){
+  print("Grade B+")
+}else if(marks >40 & marks<=60){
+  print("Grade B")
+}else if(marks>30 & marks<=40){
+  print("Grade C")
+}else{
+  print("Fail")
+}
+
+NOTE: do not forget to put a parentheis in a double boolean expression or else it shall throw an error.+
+
+Switch Statment
+---------------
+-A switch statement is a selection control mechanism that allows the value of an expression to change the control flow of program execution via map and search.
+-There are basically two ways in which one of the cases is selected:
+1)If the cases are values like a character vector, and the expression is evaluated to a number than the expression's result is used as an index to select the case.
+2)When the cases have both case value and output value like ["case_1"="value1"], then the expression value is matched against case values. If there is a match with the case, the corresponding value is the output
+
+syntax:
+	switch(expression, case1, case2, case3....)  
+
+#ex1
+x <- switch(
+  2, 
+  "ganesh",
+  "babu",
+  "Veer",
+  "gyn"
+)
+
+print(x) #prints by index
+
+#ex2
+x=1
+y=2
+a<- switch(
+  paste(x,y,sep=""),
+  "11"="Hello 11",
+  "12"="Hello 12",
+  "22"="Hello 22",
+  "42"="Hello 42",
+  "42"="Hello 42",
+  "66"="Hello 66",
+)
+
+print(a)
+
+#ex3
+a="14"
+x=1
+y=2
+
+m<-switch(
+  a,
+  "12"=cat("additions",x+y),
+  "13"=cat("Subractions",x-y),
+  "14"=cat("Multiplications",x*y),
+  "15"=cat("Division",x/y)
+)
+
+print(m)
+
+
+Iteration statements:
+=====================
+The flow of the programs written in any programming language is sequential by default. Sometimes we may need to alter the flow of the program. The execution of a specific code may need to be repeated several numbers of times.
+*For Loop
+*While Loop
+
+1)For loop
 ----------
-The DO UNTIL loop uses a UNTIL condition. The SAS statements are repeatedly executed till the UNTIL condition becomes TRUE
+The for loop is used in the case where we need to execute some part of the code until the given condition is satisfied. The for loop is also called as a per-tested loop. It is better to use for loop if the number of iteration is known in advance.
 
-Syntax
-DO UNTIl (variable  condition);
-. . . SAS statements . . . ;
-END;
+Syntax:
+for (initialization_Statement; test_Expression; update_Statement)  
+{  
+    // statements inside the body of the loop   
+}  		
 
-*printing from 1 to 10;
-data temp1;
-var=1;
-sum=0;
-do until(var >6);
-	sum=sum+var;
-	var+1;
-	output;
-end;
-run;
+Ex: Program to iterate the sequences types, list, tuple, dict and sets
 
-*cummulative sum
-data temp1;
-var=1;
-sum=0;
-do until(var >6);
-	sum=sum+var;
-	var+1; 
-end;
-run;
+#iterate a vector
+names <- c("Ganesh","babu","Kumar","Veeresh")
+for(i in a){
+  print(i)
+}
 
-*cummulative sum for each row
-data temp1;
-var=1;
-sum=0;
-do until(var >6);
-	sum=sum+var;
-	var+1; 
-	output;
-end;
-run;
+#iterate a list
+names <- list("Ganesh","babu","Kumar","Veeresh",12,TRUE,12L)
+for(i in names){
+  print(i)
+}
+
+#iterate a matrix
+names <- matrix(c("Ganesh","babu","Kumar","Veeresh"),nrow=2,ncol=2,byrow = TRUE)
+for(r in 1:nrow(names))
+  for (c in 1:ncol(names))
+    print(paste("names[",r,",",c,"]=",names[r,c]))
+
+print(names)
+
+#create a list of three vectors
+company<- list(empname=c("ganesh","babu","kumar","jaitely"),
+               age=c(12,34,23,45),
+               status=TRUE)
+for(p in company){
+  print(p)
+}
+
+#count of no of evens numbers in a vector
+x <- c(2,5,3,9,8,11,6,44,43,47,67,95,33,65,12,45,12)  
+count=0
+for (val in x){
+  if(val%%2==0){
+    count=count+1
+    #print(val)#to display the those number
+  }
+}
+print(count)
+
+#iterate a string
+x<-"Ganesh babu"
+count=0
+for (i in x){
+  print(i[count])
+  count=count+1
+}
 
 
+Nested for loop in python
+*-----------------------*
+syntx:
+for <variable_Name1> in <iterable/Sequence>: #outer loop
+	for <variable_Name2> in <iterable/Sequence>: #inner loop 
+		#statements
+	#other statments
+
+#print the tables 
+for(i in c(1:10)){
+  for (j in c(1:5)){
+    print(paste(i,"X",j,"=",i*j))
+  }
+}
+
+Repeat Loop
+-----------
+-A repeat loop is used to iterate a block of code
+-It is a special type of loop in which there is no condition to exit from the loop
+-For exiting, we include a break statement with a user-defined condition
+-A repeat loop constructs with the help of the repeat keyword in R
+
+syntax:
+repeat {   
+   commands   
+   if(condition) {  
+      break  
+   }  
+} 
+
+#using vector
+v <- c("Hello","World","bangaluru")
+length(v)
+cnt <- 2
+repeat{
+    print(v)
+    cnt=cnt+1
+    if(cnt ==length(v)){
+      break
+    }
+}
+
+#Example 3: Infinity repeat loop
+total <- 0
+num<-10
+repeat{
+  total=total+num
+  num=num+1
+  cat("sum is =",total,"\n")
+}
+
+#Ex 4:repeat loop with next
+a<- 1
+repeat{
+  if(a==10)
+    break
+  if(a==7){ #skip the 7
+    a=a+1
+    next
+  }
+  print(a)
+  a=a+1
+}
+
+
+while loop
+-------------
+The while loop is to be used in the scenario where we don't know the number of iterations in advance. The block of statements is executed in the while loop until the condition specified in the while loop is satisfied. It is also called a pre-tested loop.
+
+sytnax:
+while (test_expression) {  
+   statement  
+}  
+
+
+#print the number from 1 to 10
+i <- 1
+while (i<10){
+  print(i)
+  i=i+1
+}
+
+#print the table for given number
+num=3
+i=1
+while (i<11){
+  print(paste(num,"X",i,"=",num*i))
+  i=i+1
+}
+
+#print using a list
+mylist =list("H","yellow",3,03,99,'Ganesh')
+i=0
+while (i<length(mylist)){
+  print(mylist)
+  i=i+1
+}
+
+infinite loop
+If the condition is given in the while loop never becomes false, then the while loop will never terminate, and it turns into the infinite while loop.
+
+mylist =list("H","yellow",3,03,99,'Ganesh')
+i=0
+while (i<length(mylist)){
+  print(mylist) 
+}
+
+Transfer statements:
+====================
+1)break
+2)next 
+
+We can use break, continue, and pass statements in our loops to add additional functionality for various cases. The three statements are defined by:
+
+break statement
+---------------
+Break Statement - When the break statement is encountered, it brings control out of the loop.
+Breaks out of the current closest enclosing loop.
+
+#break in repeat loop
+a <- 1
+repeat {
+  print("hello")
+  if(a>=5)
+    break
+  a=a+1
+}
+
+a<-c("hello","world")
+count<- 2
+repeat {
+  print(v)
+  count <- count+1
+  if (count >5){
+    break
+  }
+}
+
+#break in while loop
+a <-1
+while (a<10){
+  print(a)
+  if(a==5){
+    break
+  }
+  a=a+1
+}
+
+#break in a for loop
+for(i in c(2,4,6,8,10)){
+  for(j in c(1,3)){
+    if (i==6){
+      break
+    }
+    print(i)
+  }
+  
+}
+
+
+Next statment
+-------------
+-The next statement is used to skip any remaining statements in the loop and continue executing. 
+-In simple words, a next statement is a statement which skips the current iteration of a loop without terminating it
+
+#next in repeat looop
+a<-1
+repeat{
+  if(a==10)
+    break
+  if(a==5)
+    next
+  print(a)
+  a<-a+1
+}
+
+#next in while loop
+a<-1
+while(a<10){
+  if(a==5)
+    next
+  print(a)
+  a=a+1
+}
+
+#next in for loop
+for(val in c(1:10)){
+  if(val==3)
+    next
+  print(val)
+}
+
+#
+j<-0
+while(j<10){
+  if(j==7){
+    j=j+1
+    next
+  }
+  cat("the number is=",j,"\n")
+  j=j+1
+}
+
+break and continue statements can appear anywhere inside the loop’s body, but we will usually put them further nested in conjunction with an if statement to perform an action based on some condition.
+
+Quiz:
+=====
+
+Assignment:
+===========
+A1)how to check if a greater then b
+A2)how to check if the given value is a number or not
+A3)how to check if the given value is a odd or not
+A4)how to check if the given value is a even or not
+A5)how to check is given year is a leap year or not
+A6)how to check is given value is a even or not
+A7)how to check if the given value is a string or number.
+A8)how to check the given value is available in the given string("Life","is","Beautiful") or not
+A9)how to check if given value is less, show if it is a even or odd and same for value is greater then 20 , show if it even or odd
+A10)how to check given character is vowel or constant?
+A11)how to check if the given age is child(<18) or a old guy(>30) or a adult
+A12)how to check if the marks given is first class(>75), second class(>65) and third class(>35) and fail(<35)
+A13)Build a calculator for options addition,subraction,multiplications and divisions.
+A14)how to find which is the largest of given 4 numbers
+A15)Print the table of the given number
+A16)Print the below Star
+*
+**
+***
+****
+*****
+A17)Print the cumulative sum of that given number
+A18)Print the number from 1 to 20 , skip the odd numbers
+A19)Print the number from 1 to 20 ,but add first print odd sequence like 3
+A20)Print the cube of the number of the given number in cumulative way.
+A21)Program to find the sum of the digits of the number
+A22)Program to check a number is palindrome or not
+A23)program to find the frequency of a digit in the number
+A24)Program to check a number is Armstrong or not 
+A25)How to check the number is a prime number or not
+A26)Print the sum of all positive numbers in array c(10L,-11L,12L,-13L,14L,-15L,16L,-17L,18L) 
+
+Resources
+=========
+https://www.tutorialspoint.com/r/r_decision_making.htm
+https://www.tutorialspoint.com/r/r_loops.htm

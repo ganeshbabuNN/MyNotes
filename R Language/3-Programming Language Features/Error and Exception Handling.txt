@@ -1,8 +1,9 @@
-Exception handling 
-==================
 Error
 Expections
 Exception Handling Constructs in R
+Quiz
+Assigment
+Resources
 
 Error
 ====

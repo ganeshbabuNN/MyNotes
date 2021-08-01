@@ -1,220 +1,241 @@
 Intro
-Two major category operator
-Types of operators
-
+Type of operators
+Operator Overloading and Overriding
+operator precedence and associativity
+Quiz
+Assignment
+Resources
 
 Intro
 =====
-An operator in SAS is a symbol which is used in a mathematical, logical or comparison expression.
+-The operator can be defined as a symbol which is responsible for a particular operation between two operands.
+-An operator is a symbol which tells the compiler to perform specific logical or mathematical manipulations
+-R programming is very rich in built-in operators
+Operators are used to perform operations on variables and values.
 
-two major category of operator
-==============================
-1)Prefix Operators:
-2)Infix Operators
+Type of operators
+==================
+There are Type of Operators.
+1)Arithmetic operators
+2)Relational operators
+3)Logical Operators
+4)Assignment Operators
+5)Miscellaneous Operators
 
-1)Prefix operator:
-------------------
- It is a general expression used in defining the operators which are applied on the operands (are constants or variables that can be numeric or character) which follow the expression, 
- the activity associated with the operators is applied immediately on the variable.
+Arithmetic operators
+----------------------
+Arithmetic operators are used to perform arithmetic operations between two operands.
 
-ex:
--y
--cos(x)
-+(x*y)
+Operator			Description
++ (Addition)			Adds two vectors	
+- (Subtraction)			Subtracts second vector from the first	  
+/ (divide)			Divide the first vector with the second	
+* (Multiplication)		Multiplies both vectors	
+%% (Modules remind)		It returns the reminder after dividing the first operand by the second operand. 
+^ (Exponent)			The first vector raised to the exponent of second vector	
+%/%				it The result of division of first vector with second (quotient)	
 
-data _null_;
-	x=6;
-	y=3;
-	var3=-(x*y);
-	put var3;
-run;
 
-2)Infix Operators:They are referred to those operators acting upon both the sides of the operators, these operators have generally involved in arithmetic as well as the logical operations.
- Subcategories of Infix operators are as follows.
-Arithmetic Operators
+a <- c(3,5.5,6)
+b <- c(22,7,6)
+
+sum <- a+b
+sum #addition operator
+
+sub <- a-b
+sub #subraction operator
+
+div <- a/b
+div #division operator
+
+mul <- a*b
+mul #multiplication operator
+
+mod <- a%%b
+mod #modulus operator
+
+car <- a ^3
+car #Export operator
+
+ex <- a%/%b
+ex
+
+Relational operators
+----------------------
+-A relational operator is a symbol which defines some kind of relation between two entities
+
+Operator		Description
+<				If the first operand is less than the second operand, then the condition becomes true.
+>				If the first operand is greater than the second operand, then the condition becomes true.
+<=				If the first operand is less than or equal to the second operand, then the condition becomes true.
+>=				If the first operand is greater than or equal to the second operand, then the condition becomes true.
+==				If the value of two operands is equal, then the condition becomes true.
+!=				If the value of two operands is not equal, then the condition becomes true.
+
+
+a <- c(3,5.5,6)
+b <- c(22,7,6)
+
+go <- a >b
+go #greater operator
+
+lo <- a<b
+lo #lesser operator
+
+leo <- a<=b
+leo #less then equal operator
+
+geo <- a>=b
+geo #greater then equal operator
+
+eo <- a==b
+eo #equal to operator
+
+neo <- a!=b
+neo #not equal to operator
+
+
 Logical Operators
-Comparison Operators
-Minimum/Maximum Operators
-Concatenation Operator
+-------------------
+The logical operators are used primarily in the expression evaluation to make a decision. Python supports the following logical operators.
 
-Arithmetic Operators
+Operator		Description
+&(and)			This operator is known as the Element-wise Logical AND operator. This operator takes the first element of both the vector and returns TRUE if both the elements are TRUE.	 
+|(or)			This operator is called the Element-wiseLogical OR operator. This operator takes the first element of both the vector and returns TRUE if one of them is TRUE.	 
+!(not)			This operator is known as Element-wise Logical NOT operator. This operator takes the first element of the vector and gives the opposite logical value as a result.	
+&&			called as Logical AND operator.This operator takes the first element of both the vector and gives TRUE as a result, only if both are TRUE.		
+|| 			called Logical OR operator.This operator takes the first element of both the vector and gives the result TRUE, if one of them is true.	
+
+a <- c(3,0,TRUE,2+2i)
+b <- c(2,4,TRUE,2+3i)
+
+print(a&b) # OR operator
+print(a|b)  #And operator
+print(!a) #Not operator
+print(a&&b) 
+print(a||b)
+
+
+
+Assignment Operators
+----------------------
+-An assignment operator is used to assign a new value to a variable. In R, these operators are used to assign values to vectors.
+
+Operator		Description
+<- or = or <<-		These operators are known as left assignment operators.	
+-> or ->>		These operators are known as right assignment operators.	
+
+
+
+
+a <- c(3,0,TRUE,2+2i)
+b <- c(2,4,TRUE,2+3i)
+
+#left assignment operator
+a<- b
+a #if there is one complex type all the elements will of complex type
+a = b
+a
+a <<- b
+a
+
+#right assignment operator
+a -> b
+a
+a ->>b
+a
+
+Miscellenaous Operators
 --------------------
-Operator	Description	
-+		Addition	
--		Subtraction	
-*		Multiplication	
-/		Division	
-**		Exponentiation	
+Miscellaneous operators are used for a special and specific purpose
 
-Example
+Operator	 Description
+:(colon)	 The colon operator is used to create the series of numbers in sequence for a vector.	
+%in%             This is used when we want to identify if an element belongs to a vector.	
+%*%		 It is used to multiply a matrix with its transpose.	
 
-data arthematic_str;
-	input @1 col1 4.2 @7 col2 3.1;
-	add_result = col1+col2;
-	sub_result=col1-col2;
-	mult_result=col1*col2;
-	div_result=col1/col2;
-	exp_result=col1**col2;
-	datalines;
-	11.1 4.2
-	1.2 23
-	;
-run;
+v <- c(4:10) #colon operator
+v 
 
-Comparison Operators
---------------------
--The below table describes the details of the comparison operators
--These operators compare the values of the variables and the result is a truth value presented by 1 for TRUE and 0 for False.
+v1 <- 9
+v2 <- 4
+h <- c(1:8)
+print(v1%in%h) 
+print(v2%in%h)
 
-Operator				-Mnemonic Equivalent- Description
-=						(EQ)				  The EQUAL Operator. If both data values are equal then the result is 1 else it is 0
-^= or ~= or ¬= or <>	(NE)				 The NOT EQUAL Operator. If both data values are unequal then the result is 1 else it is 0
-< 						(LT)				 The LESS THAN Operator.
-<=						<LE)				 The LESS THAN or EQUAL TO Operator.
->						(GT)				 The GREATER THAN Operator.
->=						(GE)				 The GREATER THAN or EQUAL TO Operator.	
-			 
-Example:
-data _null_;
- col1=4.2;
- col2=3.1;
- EQ_= (col1 =4.2);
- LT_= (col1 < 5);
- GT_= (col1 > 5);
- LE_= (col1 <= 5);
- GE_= (col1 >= 5);
- NE_= (col1 ^= 5);
- put EQ_ LT_ GT_ LE_ GE_ NE_;
-run;
+M <- matrix(c(1,2,3,4,5,6),nrow=2,ncol=3,byrow = TRUE)
+M
+t(M) #transpose the matrix
+tran <- M%*%t(M)
+tran
 
-data comparison_op;
-	input @1 col1 4.2 @7 col2 3.1; 
-	EQ_= (col1 =4.2);
-	LT_= (col1 < 5);
-	GT_= (col1 > 5);
-	LE_= (col1 <= 5);
-	GE_= (col1 >= 5);
-	NE_= (col1 ^= 5);
-	datalines;
-	11.1 4.2
-	1.2 23
-	;
-run;
-			 
-Logical Operators
---------------------
--The below table describes the details of the logical operators
--These operators evaluate the Truth value of an expression
 
-Operator-Mnemonic 	 Equivalent- Description
-&		(AND)		 The AND Operator. If both data values evaluate to true then the result is 1 else it is 0.
-| ¦ !	(OR)		 The OR Operator. If any one of the data values evaluate to true then the result is 1 else it is 0
-~		(NOT)		 The NOT Operator. The result of NOT operator in form of an expression whose value is FALSE or a missing value is 1 else it is 0.
+Operator Overloading and Overriding
+-----------------------------------
+-genearlly few languages supports operator overloading and overriding.
 
-data _null_;
- col1=4.2;
- col2=3.1;
- AND_= (col1 > 4.2 & col1 < 7.2); 
- OR_= (col1 > 4.2 | col1 < 7.2);
- NOT_= ~(col1 > 4.2);
- put AND_ OR_ NOT_;
-run;
+#using number
+a <- 3
+b <- 3
+a+b #its overides
 
-data logical_op;
-	input @1 col1 4.2 @7 col2 3.1; 
-	AND_= (col1 > 4.2 & col1 < 7.2); 
-	OR_= (col1 > 4.2 | col1 < 7.2);
-	NOT_= ~(col1 > 4.2);
-	datalines;
-	11.1 4.2
-	1.2 23
-	;
-run;
+#using string
+a <-"ganesh"
+b <- "babu"
+a|b #it does not allow overloads as it allows only numeric not string where it other languages it overloads
 
-Minimum/Maximum Operators
---------------------
--The below table describes the details of the Minimum/Maximum operators
-Operator	Description	Example
-MIN			-The MIN Operator. It returns the minimum value form the list of values in the row.
-MAX			-The MAX Operator. It returns the maximum value form the list of values in the row.
+#using list
+l1 <- list(1,2,3,4,5)
+l2 <- list(6,7,8,9,10)
+l1+l2 # it does not allow overloads as it allows only numeric not string where it other languages it overloadsprint(s1)
 
-Example:
-data logical_op;
-	input @1 col1 4.2 @5 col2 3.1 @9 col3 4; 
-	MIN_= MIN(col1,col2,col3); 
-	MAX_= MAx(col1,col2,col3); 
-	datalines;
-	2.1 4.2 43
-	1.2 5.2 42
-	;
-run;
-
-Concatenation Operator
---------------------
--The below table describes the details of the Concatenation operator.
--This operator concatenates two or more string values. A single character value is returned.
+operator precendence and associativity
+=====================================
+The precedence of the operators is essential to find out since it enables us to know which operator should be evaluated first. 
+The precedence table of the operators in Python is given below.
 
 Operator	Description
-||			The concatenate Operator. It returns the concatenation of two or more values.
+^		Exponent(Right to left)
+-x, +x		Unary minus, Unary plus(left to right)
+%%		Moduls(left to right)
+*, /		multiplication, division(left to right)
++,-		addtion subractions(left to right)
+<, >, <=, 	comparison(left to right)
+>=, ==, !=			
+!		logical not(left to right).
+&, &&		Logical AND(left to right)	
+|, ||		Logical OR(left to right)	
+->, ->>		Rightward assignment(left to right)	
+<-, <<-		Leftward assignment(Right to left)	
+=		Leftward assignment(Right to left)	
 
-data logical_op;
-	input col1 $ col2 $ col3 $;
-	col4 = col1 || col2 || col3;
-	datalines;
-	g ganesh babu
-	t tesla karo
-	;
-run;
+In the above table, you can confirm that some of the groups have many operators. 
+It means that all operators in a group are at the same precedence level.
+And whenever two or more operators have the same precedence, then associativity defines the order of operations.
+The associativity is the order in which it evaluates an expression containing multiple operators of the same precedence. 
+Almost all operators except the exponent (**) support the left-to-right associativity
 
-data _null_;
- col1='g';
- col2='ganesh';
- col3 ='babu';
- col4 = col1 || col2 || col3; 
- put col4;
-run;
+# Testing Left-right associativity
+print(4 * 7%%3) #i,e 4 * (7%%3)=4
+# Testing left-right associativity
+print(2*3^2) #i,e 2 * (3^2)
+# Checking right-left associativity of ^ exponent operator
+print(4^2+2) # (4^2)+2
+# Checking the right-left associativity
+print((3^2)*2)
 
-Conditional operator
--------------------
-The IN Operator. If the value of the variable is equal to any one of the values in a given list of values, then it returns 1 else it returns 0.
--This operators are to search for values in multiple way.
-data test;
-	input x ;
-	if x in (6,3,4); 
-	datalines;
-	1
-	3
-	4
-	5
-	6
-	7
-	;
-run;
+R does have some operators such as assignment operators and comparison operators which don’t support associativity. Instead, there are special rules for the ordering of this type of operator which can’t be managed via associativity.
 
-Operators Precedence
---------------------
-The operator precedence indicates the order of evaluation of the multiple operators present in complex expression. 
-The below table describes the order of precedence with in a group of operators.
+For example, 
+the expression 5 < 7 < 9 does not mean (5 < 7) < 9 or 5 < (7 < 9), it means evaulated as it does not understand
 
-Group		Order			Symbols
-Group I		Right to Left	** +(postfix) -(infix) NOT MIN MAX
-Group II	Left to Right	* /
-Group III	Left to Right	+ -
-Group IV	Left to Right	||
-Group V		Left to Right	< <= = >= >
+Quiz:
+=====
 
-data _null_;
-a=5;
-b=4;
-c=10;
-d=5;
-e=0;
-f=(a+b)*c/d;
-g=((a+b)*c)/d;
-h=(a+b)*(c/d);
-i=a+(b*c)/d;
-j=a+b*c;
-k=(a**b**c);
-l=(a+b)/d+(b+c/2)
-put f g h i j k l;
-run;
+Assignment:
+===========
+
+Resources:
+=========
+https://www.tutorialspoint.com/r/r_operators.htm
+https://www.w3adda.com/r-tutorial/r-operator-precedence

@@ -1,173 +1,194 @@
-Variables
-Types of variables
-	How to store the value into a variables
-	How the conditional expression are evaulated
-Rules of the names.
-Missing Values
+Intro 
+Declarations of variables
+Assigning values to variable
+Rules and Naming Convention for Variables
+Variable Scope  
+Quiz
+Assignment
+Resources
 
 Intro
 =====
-In general variables in SAS represent the column names of the data tables it is analysing
+A variable provides us with named storage that our programs can manipulate
+A variable in R can store an atomic vector, group of atomic vectors or a combination of many Robjects
 
-Types of variables
-==================
-There are two types of variables
-1) Numeric
-2)Character
+Declarations of variables
+========================
+-In R, a variable itself is not declared of any data type, rather it gets the data type of the R - object assigned to it
+-So R is called a dynamically typed language, which means that we can change a variable’s data type of the same variable again and again when using it in a program
 
+a <- 2
+b <-2.8
+c <-"ganesh"
+d <- "3"
+e <- 1+2i
 
-How to store the value into a variables
----------------------------------------
--There are two ways generally either the number or a string(text)
--We use the assignment operator for storing (==)
+To know which type of variable
+------------------------------
+#typeof() function in R Language is used to return the types of data used as the arguments.
+### the type represents how the object is stored in the memory
+typeof(a)
+typeof(b)
+typeof(c)
+typeof(d)
+typeof(e)
 
--for numbers
-data _null_;
-	var =1; 
-run;
+#class() function in R Language is used to return the class of data used as the arguments.
+#the class represents the abstract type of the object
+class(a)
+class(b)
+class(c)
+class(d)
+class(e)
 
--for text (strings = is always closed with single quotes), Double quotes is optional.
+finding variables
+-----------------
+print(ls()) #To know all the variables currently available in the workspace we use the ls() function
+print(ls(pattern = "var")) ## List the variables starting with the pattern "var".
+print(ls(all.name = TRUE)) #The variables starting with dot(.) are hidden, they can be listed using "all.names = TRUE" argument to ls() function.
 
-data _null_;
-	var ='ganesh babu'; 
-run;
+Checking the variables using exists functions
+---------------------------------------------
+a <- 6 
+exists("a")
 
+Deleting/removing Variables
+---------------------------
+rm(var.3) #Variables can be deleted by using the rm() function.
+print(var.3)
+rm(x)
+rm(y, z)#more then one variable
+rm(list = ls()) #All the variables can be deleted by using the rm() and ls() function together.
+rm(list=ls()) ### to remove all the variables
 
-How the conditional expression are evaulated
---------------------------------------------
--it is based on the statment
-like IF statement.
+Pros and Cons of Dynamic Typing
+-------------------------------
+Pros of Dynamic Typing
+-very easy to work with
+-faster development time
 
-SAS Numeric Variable
---------------------
--The numeric variable stores numeric values i.e., numbers. 
--This variable is used to perform arithmetic calculations like addition, subtraction, multiplication, division, and all other types of calculations. Besides, this, numeric variable is also used to store date and time
--Missing values for a numeric variable are displayed by period (.).
+Cons of Dynamic Typing
+-may result in unexpected bugs!
+-you need to be aware of `typeof()`
 
-Syntax:
-INPUT var1 var2;   
+Assigning values to variable
+============================
+*The variables can be assigned values using leftward, rightward and equal to operator.
+*the values of the variables can be printed using print() or cat() function. The cat() function combines multiple items into a continuous print output.
 
-Example
-INPUT id, salary, incentive;  
+# Assignment using equal operator.
+var1 = c(0,1,2,3)           
 
+# Assignment using leftward operator.
+var2 <- c("I am ","Ganesh")   
 
-SAS Character Variables
-----------------------
--The character variable is used to store text. 
--This variable is also known as a string variable. 
--These variables are defined by putting a dollar sign ($) at the end of the variable name.
--They can contain special characters (such as &, %, (), $), letters, and even numbers.
--Missing values for a text variable are displayed by blank ("").
+# Assignment using rightward operator.   
+c(TRUE,1) -> var3      #C(TRUE,1) is a mixed types     
 
-Syntax
-INPUT var1 $ var2 $ var3 $;  
+print(var1)
+cat ("var1 is ", var1 ,"\n")
+cat ("var2 is ", var2 ,"\n")
+cat ("var3 is ", var3 ,"\n")
 
-Example
-INPUT name $ companyname $ address $;  
+Multiple Assignment
+-------------------
+-Rallows us to assign a value to multiple variables in a single statement which is also known as multiple assignment.
 
+1. Assigning single value to multiple variables
+x=y=z=5
+print(x)
+print(y)
+print(z)
 
-Create a New Variable in New Data Set
-====================================
-there are two ways
-1)Create a new variable in a new data set
-2)Add variable into the existing data set
+2.Assigning multiple values to multiple variables is not allowed in R like
 
-Create a New Variable in New Data Set
--------------------------------------
+a,b,c = 3,4,5
+print(a)
+print(b)
+print(c)
 
-data staff;
-input id age salary;
-datalines;
-1 40 3700
-2 32 4343
-3 23 3232
-;
-run;
+Rules and name conventions
+==========================
+Rules
+-----
+*Has letters, numbers, dot and underscore 
+var_name2.	
+*Does not have the character '%'. Only dot(.) and underscore allowed.
+var_name%	
+*Does not start with a number
+2var_name	
+*Can start with a dot(.) but the dot(.)should not be followed by a number.
+.var_name,
+var.name
+*The starting dot is followed by a number making it invalid.
+.2var_name	
+*Starts with _ which is not valid
+_var_name
 
+conventions
+-----------
+*this are suggestion ways
+myVariable	#camel case
+myVaraible_  #for tempervory case
 
-2)Add variable into the existing data set
------------------------------------------
-data staff;
-input id age salary;
-bonus = salary+3200;
-datalines;
-1 40 3700
-2 32 4343
-3 23 3232
-;
-run;
-
-SAS Names Rules
-===============
--It can be maximum 32 characters long
--It can not include blanks.
--It must start with the letters A through Z (not case sensitive) or an underscore (_)
--Should not contain any special characters
--Can include numbers but not as the first character.
--Variable names are case insensitive.
--When you create a macro variable, do not use names that begin with SYS
-
-# Valid Variable Names
-REVENUE_YEAR
-MaxVal
-_Length
-
-# Invalid variable Names
-Miles Per Liter 	#contains Space.
-RainfFall%      # contains apecial character other than underscore.
-90_high		# Starts with a number.
-
-The similar applicalbe to all to SAS names represents one of the following SAS language elements
-data set,format,informat,procedure,option,statement label,libref or fileref,catalog entry,array,macro or macro variable,component object
-
-https://v8doc.sas.com/sashtml/lgref/z1031056.htm
-https://documentation.sas.com/?docsetId=lrcon&docsetTarget=p18cdcs4v5wd2dn1q0x296d3qek6.htm&docsetVersion=9.4&locale=en  - new version
-
-Missing Values
+Variable Scope
 ==============
-Missing value that indicates that no data value is stored for the variable in the current observation. 
-numeric
-character
-special numeric
+In programming languages, variables need to be defined before using them
+These variables can only be accessed in their area where they are defined, this is called scope.
 
-By default, SAS prints a missing numeric value as a single period (.) and a missing character value as a blank space
+Type of scope
+1)Global Variables
+2)Local Variables
 
-Representing a missing value
-----------------------------
-Missing Values
+Global Variables
+-------------
+*As the name suggests, Global Variables can be accessed from any part of the program.
+*They are available throughout the lifetime of a program.
+*They are declared anywhere in the program outside all of the functions or blocks.
+*Declaring global variables: Global variables are usually declared outside of all of the functions and blocks. They can be accessed from any portion of the program.
 
-Representation in Data
+a <- 7 # global variables
 
-Numeric-. (a single decimal point)
-Character -' ' (a blank enclosed in quotation marks)
-Special- .letter (a decimal point followed by a letter, for example, .B)
-Special- ._(a decimal point followed by an underscore)
+#creating a functions
+display <- function(){
+  print(a) #accessing the global variable
+}
 
-Ex:
-data test;
-  x=.;
-  y=5; 
-  z='ganesh';  
-  e='';
-  f=.b;
-  g=._;
-  put x= y= z= e= f= g=;
-run;
+display() #calling the function
 
-order by of missing value
--------------------------
-Numeric Variables
-._ 		- underscore
-.		- period
-.A-.Z 	-special missing values A (smallest) through Z (largest)
--n 		-negative numbers
-0		-zero
-largest - +n -positive numbers
+#changing the value of global variable
+a <- 10
+print(a)
 
-Character Variables
--Missing values of character variables are smaller than any printable character value.
--Therefore, when you sort a data set by a character variable, observations with missing (blank) values of the BY variable 
-always appear before observations in which values of the BY variable contain only printable characters
+2)Local Varaibles
+------------------
+*Variables defined within a function or block are said to be local to those functions.
+*Local variables do not exist outside the block in which they are declared, i.e. they can not be accessed or used outside that block.
+*Declaring local variables: Local variables are declared inside a block.
 
+a <- 7
 
-https://documentation.sas.com/?docsetId=lrcon&docsetTarget=p0scp8gshsuwx9n1etoje5bnizi7.htm&docsetVersion=9.4&locale=en
+#creating a functions
+display <- function(){
+  print(a) #accessing the global variable
+  b <- 6 #assing a local variable
+  print(b) #accessign the local variable
+}
+
+display() #calling the function
+
+#changing the value of global variable
+a <- 10
+print(a)
+print(b) #accessing the local variable
+b <-3 #cannot change the local variable and it assuems it a new varible
+print(b)
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+Resources:
+=========

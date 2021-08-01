@@ -1,6 +1,9 @@
 Oops Introductions
 Class and Object
 create a class
+Quiz
+Assignment
+Resources
 
 Introductions
 =============

@@ -7,6 +7,9 @@ trace() functions
 Recover Function
 Debugging Installed Packages
 Error Handling and Recovery
+Quiz
+Assignment
+Resources
 
 what is debuging
 ===============

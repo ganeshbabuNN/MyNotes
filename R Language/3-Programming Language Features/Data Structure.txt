@@ -5,6 +5,9 @@ Arrays
 Factors
 DataFrame
 Apply Family Functions
+Quiz
+Assignment
+Resources
 
 Data structure(or Sequence Type)
 ================================
