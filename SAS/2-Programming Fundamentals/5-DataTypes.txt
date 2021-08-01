@@ -316,19 +316,19 @@ run;
 it is associated with the informat statement
 
 -mixing of number, date and string
-data acctinatt2;
+data acctinatt3;
 input acctnum date1 date2 date3 amount test $;
-informat acctnum 4. date1 mmddyy10. date2 mmddyy8. date3 mmddyy6. amount dollar9. test $5.;
-attrib date1-date3 format=date11.;
+informat acctnum 4. amount dollar9. test $5.;
+attrib date1-date3 informat=mmddyy10.;
 datalines;
-1221 01/15/1960 09-11-12 090921 $1,003.59 test1
-1234 01/17/1960 10-11-12 101012 $672.05 test2
-4222 01/19/1960 11-11-12 110113 $702.77 test3
-6552 01/22/1987 12-11-12 110919 $1,209.61 test4
+1221 01/15/1960 01/16/1960 04/15/1960 $1,003.59 test1
+1234 01/17/1960 01/16/1960 03/15/1960 $672.05 test2
+4222 01/19/1960 01/16/1960 04/15/1960 $702.77 test3
+6552 01/22/1987 01/16/1960 01/15/1960 $1,209.61 test4
 ;
 run;
 
--date
+-other way
 data staffdate;
 input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
 attrib date1-date5 format=date11.;
@@ -428,15 +428,20 @@ datalines;
 ;
 run;
 
-3)Using attrib statment.
-data staffdate;
-input @1 date1 date9. @11 date2 ddmmyy10. @22 date3 ddmmyy6. @29 date4 date11. @41 date5 ANYDTDTE12.; 
-attrib date1-date5 format=date11.;
+3)Using attrib statment
+
+data acctinatt2;
+input acctnum date1 date2 date3 amount test $;
+informat acctnum 4. date1 mmddyy10. date2 mmddyy8. date3 mmddyy6. amount dollar9. test $5.;
+attrib date1-date3 format=date11.;
 datalines;
-12mar2019 12-03-2020 031220 14/mar/2020 june 13 1983
-12mar2020 03-03-2020 031222 14-jun-2020 july 13 1983
+1221 01/15/1960 09-11-12 090921 $1,003.59 test1
+1234 01/17/1960 10-11-12 101012 $672.05 test2
+4222 01/19/1960 11-11-12 110113 $702.77 test3
+6552 01/22/1987 12-11-12 110919 $1,209.61 test4
 ;
 run;
+
 
 User-Defined Formats
 *------------------*
