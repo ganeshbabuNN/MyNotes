@@ -34,6 +34,7 @@ datalines;
 run;
 
 -for structure datalines
+- the @ symbol contals the positions of the characters
 data charstr;
 input a $ b $ c $ d $ ;
 datalines;
@@ -92,15 +93,18 @@ informats
 An informat is a type of SAS language element that applies a pattern to or executes instructions for a data value to be read as input.
 
 syntax:
-input var1 var ;
+input var1 <informat> var<informat> ;
 
 example:
-input @15 style $3. @21 price 5.2
+input num1 6.3 num2 5.2; # numeric informat 
+input char1 $3. char2 $1-4; # character informat
+input date1 date11. date2 mmddyy10.; # date informat
 
-some formats are:
-inFormat-Use
-n. -Maximum "n" number of columns with no decimal point.
-n.p -Maximum "n" number of columns with "p" decimal points.
+-Always the informations followup by w.p
+where w = width i,e -Maximum "w" number of columns with no decimal point.
+p is precision  i,e n.p -Maximum "w" number of columns with "p" decimal points.
+
+-for comm informat type
 COMMAn.p- Maximum "n" number of columns with "p" decimal places which removes any comma or dollar signs.
 
 Numeric formats
@@ -108,6 +112,7 @@ Numeric formats
 (32.2,3821.23,9494.23)=(4.1,7.2,10.2)
 
 String 
+(ganeshbabu,rudres,naveen)=$10.
 
 date informats:
 (12032011,12-03-2011,12/03/11)-(mmddyy8.,mmddyy10.,mmddyy8.)
