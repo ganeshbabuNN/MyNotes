@@ -82,7 +82,10 @@ https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a
 
 controlling the input and output values
 =======================================
-Generally in SAS, output values are controlling using SAS formats and inputs values by informats;
+Generally there are two formats and informats
+
+informats <- it is tells the sas to read/stored the input
+formats <- it is tells the sas to write/display the output.
 
 informats
 ---------
