@@ -1,0 +1,96 @@
+Strings
+Declaring String Variables
+String functions
+Escape Sequences
+
+Strings
+=======
+-Strings in SAS are the values which are enclosed with in a pair of single quotes
+-Also the string variables are declared by adding a space and $ sign at the end of the variable declaration
+
+
+Declaring String Variables
+==========================
+-We can declare the string variables and their values as shown below. In the code below we declare two character variables of lengths 6 and 5.
+-The LENGTH keyword is used for declaring variables without creating multiple observations.
+
+data string_ex;
+ length str1 $6 str2 $6;
+ str1='Hello ';
+ str2 = 'World';
+ join_str= str1 || str2;
+ put join_str;
+run;
+
+String Functions
+================
+STRIP -
+-This function removes the leading and trailing spaces i.e spaces that occur before and after any character
+
+data _null_;
+   var1= "        GANESH    ";
+   put COMPBL var1;
+run;
+
+COMPRESS
+-This function removes some specified characters that we wish to remove from the string instead of removing blanks
+syntax
+ COMPRESS(char,character)
+ 
+ data _null_;
+	 var1= "GANESH BABU3293283BANGALORE";
+	  var2=COMPRESS(var1,'3293283');
+	  put var2;
+run;
+
+LEFT 
+-This function aligns the text or the string to the left instead of removing leading blanks
+
+data _null_;
+   var1= "GANESH            ";
+   var2=TRIM(var1);
+   put var2;
+run;
+
+CAT
+-These functions are used to concatenate two strings
+data _null_;
+   var1= 'GANESH';
+   var2='BABU';
+   var3=cat(var1,var2);
+   put var3;
+run;
+
+CATS
+-strips both leading and trailing blanks, and does not insert separators
+
+CATX
+-trips both leading and trailing blanks, and inserts separators
+
+TRIM 
+-This function is used for removing trailing blanks exclusively
+
+SUBSTR 
+-This function extracts a part of a string.
+data _null_;
+   var1= 'GANESH'; 
+   var2=SUBStr(var1,4,2);
+   put var2;
+run;
+
+length
+-length of the give string
+data _null_;
+   var1= 'GANESH'; 
+   var2=LENGTH(var1);
+   put var2;
+run;
+
+LOWER,UPPER,PROPCASE
+data _null_;
+   var1= 'GANESH'; 
+   var2= lowcase(var1);  //lowcase , propcase
+   put var2;
+run;
+
+https://documentation.sas.com/?docsetId=lefunctionsref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
