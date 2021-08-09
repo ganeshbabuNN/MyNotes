@@ -9,8 +9,17 @@ Intro
 The operator can be defined as a symbol which is responsible for a particular operation between two operands.
 Operators are the pillars of a program on which the logic is built in a specific programming language. 
 Python provides a variety of operators, which are described as follows.
-Operators are used to perform operations on variables and values.
+Operators are used to perform operations on variables and valu
 
+python is context sensitive program language and case sensitive
+#ex case sensitive
+x=1
+print(X)
+
+#ex for context sensitive language
+x=-2 #it understand
+y=5-3 #it understand
+z=2-
 
 Type of operators
 ==================
