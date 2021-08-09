@@ -27,6 +27,10 @@ list of keywords:
 Following is the List of Python Keywords.
 True,False,None,and,as,asset,def,class,continue,break,else,finally,elif,del	,except,global,for,if,from,import,raise	,try,or,return,pass,nonloca,in,not,is,lambda
 
+#
+import keyword
+print(keyword.kwlist)
+
 Identifiers
 -------------
 -Each program elements in a program are given a name called identifiers.
