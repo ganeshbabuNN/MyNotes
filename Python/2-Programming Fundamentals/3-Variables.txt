@@ -12,12 +12,20 @@ Introduction
 -In Python, we don't need to specify the type of variable because Python is a type infer language and smart enough to get variable type.
 -It is recomended to use lowercase letters for variable name
 
+
 Delecration of variables
 ========================
 -Python does not bound us to declare variable before using in the application
 -It allows us to create variable at required time
 -We don't need to declare explicitly variable in Python, its a dynamic typing language.
 -Python uses dynamic typing, meaning you can reassign variables to different data types. This makes Python very flexible in assigning data types; it differs from other languages that are statically typed.
+
+#lets understand the internal of python of how the variable is declared and stored.
+x=1
+id(x) #internal memory presentations
+type(x) #type of an object
+print(x) #print the variable value
+
 
 Pros and Cons of Dynamic Typing
 -------------------------------
@@ -118,12 +126,12 @@ print(a ," outside the func")
 
 Enclosing Scope
 ---------------
-A scope that isnít local or global comes under enclosing scope.
+A scope that isn‚Äôt local or global comes under enclosing scope.
 
 def vehicle():
-  fun= ìStartî
+  fun= ‚ÄúStart‚Äù
   def car():
-    model= ìToyotaî
+    model= ‚ÄúToyota‚Äù
     print(fun)
     print(model)
 	car()
@@ -133,7 +141,7 @@ the variable fun is used inside the car() function. In that case, it is neither 
 
 Builtin Scope
 -------------
-When the Python doesnít find an identifier in itís local, enclosing or global scope, it then looks in the built-in scope to see if itís defined there
+When the Python doesn‚Äôt find an identifier in it‚Äôs local, enclosing or global scope, it then looks in the built-in scope to see if it‚Äôs defined there
 
 a = 5.5
 int(a)
