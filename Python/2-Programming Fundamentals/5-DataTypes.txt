@@ -1,7 +1,7 @@
 Data Types
 Default value of Types
-Convert one data type to another
 To know the type of variable used in Python
+Mutable, immutable and object reusablity.
 Strings
 data structures(collections) in python
 
@@ -87,6 +87,36 @@ ex:
 print(Type(23.2))     -> <type 'float'>
 print(Type(23))       -> <type 'Int'>
 print(type("Ganesh")) -><type 'str'>
+
+Mutable, immutable and object reusablity.
+========================================
+Every variable in python holds an instance of an object. 
+There are two types of objects in python i.e. Mutable and Immutable objects. 
+Whenever an object is instantiated, it is assigned a unique object id. 
+The type of the object is defined at the runtime and it can’t be changed afterwards. However, it’s state can be changed if it is a mutable object
+
+Immutable Objects : These are of in-built types like int, float, bool, string, unicode, tuple. In simple words, an immutable object can’t be changed after it is created
+
+x=10
+print(x)
+print(id(x)) #140713990005424
+x=11
+print(x)
+print(id(x)) #140713990005456
+
+Mutable Objects : These are of type list, dict, set . Custom classes are generally mutable.
+
+Object reusablity:String is the best example of the object reuablity. it is always memory efficient technique
+s1='python'
+s2='python'
+
+id(s1)
+1407442661616
+id(s2)
+1407442661616
+Both the ID is same and it is refering to the same object.
+
+#check for other objects like int,ext
 
 String
 ======
