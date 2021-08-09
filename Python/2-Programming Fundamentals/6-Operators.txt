@@ -19,7 +19,7 @@ print(X)
 #ex for context sensitive language
 x=-2 #it understand
 y=5-3 #it understand
-z=2-
+z=2-  #it does not understand it is looking for operand
 
 Type of operators
 ==================
