@@ -1,0 +1,8 @@
+plotty and dash tutorials
+https://www.youtube.com/channel/UCqBFsuAz41sqWcFjZkqmJqQ/playlists
+
+graphs in python
+https://mode.com/blog/python-data-visualization-libraries/#:~:text=matplotlib,-Two%20histograms%20(matplotlib&text=matplotlib%20is%20the%20O.G.%20of,language%20developed%20in%20the%201980s.
+
+bokeh example
+https://towardsdatascience.com/data-visualization-with-bokeh-in-python-part-iii-a-complete-dashboard-dc6a86aa6e23

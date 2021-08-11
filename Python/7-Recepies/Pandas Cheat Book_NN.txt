@@ -1,0 +1,372 @@
+#notes
+#using [] in dataframe to filter columns
+#using subsetting using () for multiple conditions 
+pd.show_versions(as_json=False) # get the version of all packages
+from IPython.display import display, HTML
+display(HTML(dmie1.to_html(index=False)))#hide the index in the python output
+
+#library
+#Setting the directory
+import os
+os.chdir('C:\GBAG_Back\pyworkspace\datasets\BRGA Reports')
+os.getcwd() ' get the currend working directory
+
+#importing the dataset
+hrdata=pd.read_csv(r'C:\pyworkspace\datasets\HR DataSets\HRDataset_v13.csv') #importing csv
+hrdata=pd.read_excel(r'C:\pyworkspace\datasets\HR DataSets\EmploymentStatus.xslx') #importing excel
+df = pd.concat(pd.read_excel(workbook_url, sheet_name=None), ignore_index=True) #return a single pandas dataframe that combines the data in each Excel worksheet if only all the columns are same
+
+#exporting
+hrdata.to_excel("ds.xlsx",index=False)  #exporting and removing the index.
+#exporting the dataframe into sheets 
+writer = pd.ExcelWriter('pandas_multiple.xlsx', engine='xlsxwriter')
+df1.to_excel(report_1, sheet_name='Sheet1',index=False)
+df2.to_excel(report_1, sheet_name='Sheet1',index=False)
+
+#dataframe common operations
+prodstaff.columns  #description the columns
+prodstaff.info()   #detail information of the variable with observations.
+prodstaff.head()  #top 10 observations
+prodstaff.head(20)  #top 20 observations
+prodstaff.tail()  #last 10 observations
+prodstaff.tail(20)  #last 20 observations
+
+#casting data type
+hrdata['purchase'].astype(str).astype(int) # converting from object to other data type like int
+hrcore['Employee Number']=hrcore['Employee Number'].astype(float) # converting from object to float
+hrcore['Employee Number']=hrcore['Employee Number'].astype(int)	  # converting from object to int
+
+#pandas options
+pd.set_option('max_rows',10) #Maxium rows displayed in this session
+pd.set_option('max_columns',1111)   #Maxium Columns displayed in this session
+pd.set_option('max_colwidth',3)   #Maxium Columns with displayed in this session
+pd.set_option('precision',3)   # decimal for more options  https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html#available-options
+
+#data retriving 
+prodstaff  #viewing all the columns in datasets
+hrdata.Employee_Name # displaying one column
+hrdata['Employee_Name'] # displaying one column
+hrdata[['Employee_Name','Sex','ManagerName','EmploymentStatus']] # display more then one columnn using brackets
+
+#Filtering or subsetting WHERE Caluse
+
+hrdata[hrdata.Department=='Sales'] # fiter based on one conditions
+hrdata[hrdata.Department=='Sales'].Employee_Name # fiter only one conditions using brackets
+hrdata[(hrdata.Department=='Sales') & (hrdata.EmploymentStatus == 'Active')] # fiter more than one conditons using paratheses
+hrdata[hrdata['Department']=='Sales'].Employee_Name # another way of above
+hrdata[(hrdata.Department=='Sales') & (hrdata.EmploymentStatus == 'Active')][['Employee_Name','Sex']]#return  based on two conditions and display two columns
+hrcore_1=hrcore[hrcore['Employee Name'].str.startswith(r'Ga')].copy(deep=True) #pattern matching for starting value
+hrcore_1=hrcore[hrcore['Employee Name'].str.startswith(r'Ga',na=False)]) #ignore Nan..
+hrcore_1=hrcore[hrcore['Employee Name'].str.contains(r'gan|fen', case=False, na=False)] #pattern matching on containing value
+df3['Trial_no']=df3['cs-uri-stem'].str.split('/',expand=True)[1].copy(deep=True)  #split and expand the column
+
+a=(titanic_train['Fare']== min(titanic_train['Fare'])) & (titanic_train['Age']== min(titanic_train['Age']))
+titanic_train.iloc[np.where(a)]
+
+#IN
+df[df['A'].isin([3, 6])]
+#NOT IN
+df[-df["A"].isin([3, 6])]
+df[~df["A"].isin([3, 6])]
+df[df["A"].isin([3, 6]) == False]
+df[np.logical_not(df["A"].isin([3, 6]))]
+
+#unique
+hrdata['Department'].unique() # unique values for single column
+hrdata.Department.unique() #unique values for single column
+#using dataframe
+column_values = df[["A", "B"]].values.ravel()
+unique_values =  pd.unique(column_values)
+#using numpay
+column_values = df[["A", "B"]].values
+unique_values =  np.unique(column_values)
+lb[['LBCAT','LBSCAT']].drop_duplicates() #remove duplicates
+suppae.drop_duplicates(["QNAM", "QLABEL"]) #remove duplicates by default all records will come with those unique values
+set([x for x in cs_unique_all if cs_unique_all.count(x) > 1]) #to get the repeated values
+
+
+#Filtering or subsetting IN/NOT IN
+hrdata[(hrdata.Department.isin(['Sales','Software Engineering']))][['Employee_Name','Department']] # in operator .isin() function
+hrdata[(~hrdata.Department.isin(['Sales','Software Engineering']))][['Employee_Name','Department']] # not in operator as ~
+
+# sorting the data 
+hrcore_2=hrcore_1.sort_values('Date of Hire',ascending=True) #setting to ascending/descending for one column
+hrcore_2=hrcore_1.sort_values(['Age','Date of Termination'],ascending=[False,True]) #setting to ascending/descending for more than column
+hrcore_1[['Employee Name','Age','Date of Hire']].sort_values(['Date of Hire'],ascending=[False]) #setting to ascending/descending for displaying column
+hrdata[(hrdata.Department=='Sales')].sort_values('Employee_Name') # default by ascending based on conditions
+hrdata[['Employee_Name','EmpID','State','Department','ManagerName','RecruitmentSource']].sort_values(['Department','ManagerName','State'],ascending=[True,False,False]) #sorting more then values with more than one order like ascending, descending
+
+#grouping the datasets
+hrdata.groupby(['Department']).size()#groupby by one column
+hrdata.groupby(['Department','State','Sex']).size()#groupby by more than one column
+
+#to_frame convert to series object to dataframe and reset_index to reset the row number
+hrdata.groupby(['Department','State']).size().to_frame('size').reset_index().sort_values(['Department','State'],ascending=[False,False]) #groupby by more than one column
+
+#having
+hrdata.groupby('Department').filter(lambda g: len(g) < 100).groupby('Department').size().sort_values(ascending=True) 
+
+#top 10 records
+star=hrdata.groupby('count_post').size().to_frame('count_post').reset_index()
+star.nlargest(11,'count_dept')
+star.nlargest(100,'count_post').tail(10)
+
+#aggregate functions
+dar=star['count_post']
+dar.agg({'count_post': ['min', 'max', 'mean', 'median']})
+
+#join
+empjoin_dep=empdetails.merge(departments,left_on='DeptID',right_on='DeptID',how='inner').drop(columns=['DeptID']) # inner join 
+empjoin_gen=empjoin_dep.merge(MaritalStatus,left_on='MaritalStatusID',right_on='MaritalStatusID',how='left').drop(columns=['MaritalStatusID'])  # left join 
+empjoin_gen.merge(EmploymentStatus,left_on='EmpStatusID',right_on='EmpStatusID',how='right').drop(columns=['EmpStatusID'])   # right join 
+[['Employee_Name','Department','MaritalDesc','EmploymentStatus']]
+
+#UNION ALL and UNION
+emp=empdetails[['Employee_Name','EmpID','DateofHire','TermReason','RecruitmentSource']]
+emp1=emp[(emp.RecruitmentSource=='Website Banner Ads')]
+emp2=emp[(emp.RecruitmentSource=='Internet Search')]
+emp_union= pd.concat([emp1,emp2]) #union all
+emp_union= pd.concat([emp1,emp2]).drop_duplicates('RecruitmentSource') #union i,e to remove duplicates
+
+#adding
+import numpy as np
+hrdataset[['Employee_Name','EmpID','GenderID']]
+hrdataset['Sex']= np.where(hrdataset['GenderID']==1, 'Male', 'Female') #use for if conditions else sort of communication
+https://datatofish.com/if-condition-in-pandas-dataframe/   #must refer
+
+#renaming
+rankings_pd.rename(columns = {'test':'TEST'}, inplace = True) # renaming the value
+rankings_pd.rename(columns = {'test':'TEST', 'odi':'ODI', 't20':'T20'}, inplace = True)  # renaming the multi columns
+
+#replace
+hrdata['Sex']=hrdata['GenderID'].replace([0,1],['Male','Female']) # renaming the value of that column
+df.sport.str.replace(r'(^.*ball.*$)', 'ball sport')  #replace string contains
+df['BrandName'] = df['BrandName'].replace(['ABC', 'AB'], 'A')  #replace
+
+#dropping the column
+df.dropna(axis=0) #Dropping any rows with a NaN value
+df.dropna(axis=1) #Dropping any column with a NaN value using inplace parameter for permanet change
+df.dropna(axis=0,thresh=2)#Dropping a row with a minimum 2 NaN value using 'thresh' parameter
+df.drop(['A'], axis = 1)  # Remove or dropping column name 'A' 
+df.drop(['C', 'D'], axis = 1,inplace=True) ## Remove or dropping multiple column name 'A' 
+
+#null handling
+hrcore['Date of Termination'].isnull().sum() #count of null values
+hrcore_1=hrcore.dropna()  #drop all the missing values(NaN, pd.NaT, None) in a datframe
+hrcore1=hrcore.dropna(subset=['Date of Termination']) # drop missing value specfic to that column
+hr.isnull() #isnull() function this function return dataframe of Boolean values which are True for NaN values
+pd.isnull(hr['Date of Termination']) #the above only for specific column
+hrcore_3=hrcore_2[~hrcore_2['Date of Termination'].isnull()] # Filtering the non null value
+hrcore_3=hrcore_2[hrcore_2['Date of Termination'].isnull()] #  Filtering the null value
+hr.notnull() #notnull() function this function return dataframe of Boolean values which are False for NaN values
+pd.notnull(hr['Date of Termination'])
+hr.fillna(0) #fillna()
+dframe['Product'] = dframe['Product'].fillna('') # replace null to blank
+hr.fillna(method ='pad') #fillna() # filling a missing value with  previous ones
+hr.fillna(method ='bfill') #fillna() filling  null value using fillna() function	
+
+#Date handling
+tdate=pd.datetime.now().strftime("%d/%m/%Y") #getting today date
+hrcore['DOB']= pd.to_datetime(hrcore.DOB) # convert the object to date
+hrcore['DOB1']= hrcore['DOB'].dt.strftime('%d-%m-%Y') # convert the yyyy-mm-dd to dd-mm-yyyy
+capsys_1['TO Approval']=pd.to_datetime(capsys_1['TO Approval'],errors='coerce') # this errors helps to convert bad data into
+hrcore['Date of Termination']+ pd.DateOffset(days=4) # adding the days
+pd.to_datetime(hrcore['Date'], utc=False) #remove the time components
+dfST['new_date_column'] = dfST['timestamp'].dt.date  #converting to only date omitting the timestamp
+
+#common erros 
+SettingWithCopyWarning: A value is trying to be set on a copy of a slice from a DataFrame [duplicate]
+https://stackoverflow.com/questions/20625582/how-to-deal-with-settingwithcopywarning-in-pandas
+df1['A'].copy(deep=True)  #option 1
+pd.options.mode.chained_assignment = None  #options 2
+
+#pivoting
+pd.pivot_table(production_staff,index='Department') # using index to transpose the LHS side 
+pd.pivot_table(production_staff,index=['Department','Manager Name']) # using multiple index 
+pd.pivot_table(production_staff,index=['Department','Manager Name'],values=['Abutments/Hour Wk 1']) # using value for aggreations, its default average
+pd.pivot_table(production_staff,index=['Department','Manager Name'],values=['Abutments/Hour Wk 1'],aggfunc=np.sum) # using aggrefun for specifying function.
+pd.pivot_table(production_staff,index=['Department','Manager Name'],values=['Abutments/Hour Wk 1'],aggfunc=[np.mean,len]) # using aggrefun for more than one function
+pd.pivot_table(production_staff,index=['Department','Manager Name'],values=['Abutments/Hour Wk 1'],columns=['Position'],aggfunc=[np.count_nonzero])# using columns options to segament values
+pd.pivot_table(production_staff,index=['Department','Manager Name','Employee Name'],values=['Abutments/Hour Wk 1','Abutments/Hour Wk 2'],columns=['Position'],aggfunc=[np.sum],fill_value=0)# use fill_value options to fille NaN to zero
+pd.pivot_table(production_staff,index=['Department','Manager Name','Employee Name'],values=['Abutments/Hour Wk 1','Abutments/Hour Wk 2'],aggfunc=[np.sum,np.mean],fill_value=0) # remove the column
+pd.pivot_table(production_staff,index=['Department','Manager Name','Employee Name'],values=['Abutments/Hour Wk 1','Abutments/Hour Wk 2'],aggfunc=[np.sum,np.mean],fill_value=0,margins=True) # adding margins. 
+pd.pivot_table(production_staff,index=['Department','Manager Name','Employee Name'],values=['Abutments/Hour Wk 1','Pay',],aggfunc={'Pay':np.sum,'Abutments/Hour Wk 1':np.count_nonzero},fill_value=0) # using values for applying aggre for individual values.
+pd.pivot_table(production_staff,index=['Department','Manager Name','Employee Name'],values=['Abutments/Hour Wk 1','Pay',],aggfunc={'Pay':np.sum,'Abutments/Hour Wk 1':[np.sum,np.count_nonzero]},fill_value=0) # list of aggfunctions to apply to each value too:
+#sorting by values
+df = pd.DataFrame.from_dict([{'Country': 'A', 'Year':2012, 'Value': 20, 'Volume': 1}, {'Country': 'B', 'Year':2012, 'Value': 100, 'Volume': 2}, {'Country': 'C', 'Year':2013, 'Value': 40, 'Volume': 4}])
+df_pivot = pd.pivot_table(df, index=['Country'], columns = ['Year'],values=['Value'], fill_value=0)
+df = df_pivot.reindex(df_pivot['Value'].sort_values(by=2012, ascending=False).index)
+#remove the level and category in pivot table
+df5.columns = df5.columns.droplevel(0) #remove amount
+df5.columns.name = None               #remove categories
+df5 = df5.reset_index()                #index to columns
+---------------------
+
+
+packages info
+Beautifulsoup — A library for pulling data out of html and xml files
+Requests — A library for making HTTP requests in python.
+GeoPandas — A library for working with geospatial data in python.
+PrettyTable — quick and easy to represent tabular data in visually appealing ASCII tables.
+and other regular packages like Pandas, Matplotlib and Seaborn.
+
+
+installing packages in anaconda
+conda install --channel conda-forge geopandas
+conda install -c anaconda beautifulsoup4	
+conda install --channel conda-forge PrettyTable
+conda install pip  #for install pip
+
+
+#iterating the rows and column
+import pandas as pd
+import numpy as np
+
+# https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas?rq=1
+
+df = pd.DataFrame([{'c1':10, 'c2':100}, {'c1':11,'c2':110}, {'c1':12,'c2':120}])
+for index, row in df.iterrows():
+    row['c1'] = row['c1']+100
+    row['c2'] = row['c2']+200
+    print(row['c1'], row['c2']) 
+
+
+#package installations
+
+#function arguments
+def agecheck(vec):
+    ageval = vec[0]
+#     ageval = vec[1]  #increase if you have more then one arguments
+    if ageval <18:
+        agestatus="minor"
+    elif ageval >18 and ageval < 35:
+        agestatus="adult"
+    else:
+        agestatus="elder"
+    return agestatus
+    
+hrcore['cal']=hrcore[['Age']].apply(agecheck, axis=1)
+hrcore[['Age','cal']]
+
+#working on xlsx package
+https://xlsxwriter.readthedocs.io/index.html
+
+from datetime import datetime
+startTime = datetime.now()
+#Python 2: 
+print datetime.now() - startTime 
+#Python 3: 
+print(datetime.now() - startTime)
+
+
+get the file size of the file
+-----------------------------
+#https://www.christopherlovell.co.uk/blog/2016/04/27/h5py-intro.html
+
+import os
+b = os.path.getsize("nn9535_4352_20200925_135008.dat.dat")
+print (b >> 10)  # 5242880 kilobytes (kB) #bit operations
+print (b >> 20 ) # 5120 megabytes (MB)
+print (b >> 30 ) # 5 gigabytes (GB) #bit operations
+c=load_20200407.to_pickle("ganesh")
+print (d >> 20 ) # 5120 megabytes (MB)
+pd.read_pickle('ganesh') #reading the file
+
+#getting last value and first value
+For last value: df.groupby('Column_name').nth(-1),
+For first value: df.groupby('Column_name').nth(0)
+#another approach
+ds3=ds1.groupby('USUBJID').nth(-1)
+ds3.reset_index(level=0, inplace=True)
+ds3[ds3.USUBJID.str.contains(r'101194', case=False, na=False)]
+ec1.index.get_level_values('USUBJID').unique().tolist() #get a unique index
+
+#convert list into series
+import pandas as pd
+
+labels = ['a','b','c']
+my_data = [10,20,30] #list 
+arr = np.array(my_data) #array
+d = {'a':10,'b':20,'c':30} #dictionary
+
+print ("Labels:", labels)
+print("My data:", my_data)
+print("Dictionary:", d)
+pd.Series(my_data, index=labels)
+
+#converting arry,list,dict to series using custom index and auto index
+pd.Series(my_data,index=labels) # converting list into series, using the external labels from list external it works
+pd.Series(my_data,index=['c','d','e']) # using the hardcode the labels it works
+pd.Series(arr,index=labels) # converting array to series
+pd.Series(arr,index=['c1','d1','e1']) # converting list to series  with index custom
+pd.Series(arr,index=['c1','d1','e1']) # converting list to series it works
+pd.Series(d,index=["a","b","c"])
+pd.Series(d,index=labels) #converting dict to series
+pd.Series(d,index=["a","b","c"]) #converting dict to series
+
+d = {'a':"kjhk",'b':20,'c':30}
+type(d)
+#pd.DataFrame(d)  #cannot convert dict to dataframe without a index
+pd.DataFrame(d,index=[0]) # set the default index to 0
+dfdict1=pd.DataFrame.from_dict(ddict1,orient='index') # other approach
+pd.Series(d) # where the series put to veritical
+pd.Series([type,sum,max]) # checking out the type of data
+
+
+*************************************************
+
+#pandas series additions
+ser1 = pd.Series([1,2,3,4],index = ['CA', 'AB', 'NV', 'AZ'])
+ser2 = pd.Series([1,2,5,4],['CA', 'OR', 'NV', 'CA'])
+ser4= ser1 + ser2
+ser4
+
+print("Value for CA in ser1:", ser1[0])
+print("Value for AZ in ser1:", ser1[3])
+print("Value for NV in ser2:", ser2[2])
+
+print ("\nIndexing by a range\n",'-'*25, sep='') #using Repeat operator
+
+#iloc, loc
+#iloc understand always the default row index.
+#loc understand always the named row index.
+
+#generating the random number
+from numpy.random import randn as rn
+#np.random.seed(101)
+matrix_data = rn(5,4)
+row_labels = ['A','B','C','D','E']
+column_headings = ['W','X','Y','Z']
+
+df = pd.DataFrame(matrix_data,row_labels,column_headings)
+#print("\nThe data frame looks like\n",'-'*45, sep='')
+df
+
+#locate the packages installed in your machine.
+import pkg_resources
+installed_packages = dict([(package.project_name, package.version)
+                           for package in pkg_resources.working_set])
+		
+#recover the code
+%history
+
+#previous or preceeding value
+ocv_fda=pd.read_excel("ocv_report_20316-21298.xlsx",sheet_name="Issue Summary",skiprows=13,encoding='utf8')
+ocv_fda['Source'].fillna(method='ffill', inplace=True)  #for specific column
+ocv_fda.fillna(method='ffill', inplace=True)  #for specific column #for all columns in df
+ocv_fda.fillna(method='ffill', inplace=True)  #for specific column #for all columns in df
+
+#to display all rows and columns
+pd.options.display.max_rows = 100
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+#how to create .exe file
+https://nitratine.net/blog/post/convert-py-to-exe/
+https://datatofish.com/executable-pyinstaller/
+
+#rows
+https://hackersandslackers.com/pandas-dataframe-drop/#:~:text=If%20you're%20looking%20to,method%20is%20specifically%20for%20this.&text=Technically%20you%20could%20run%20df,rows%20where%20are%20completely%20empty.
+https://thispointer.com/pandas-drop-rows-from-a-dataframe-with-missing-values-or-nan-in-columns/
