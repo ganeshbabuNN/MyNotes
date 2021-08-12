@@ -2,6 +2,7 @@
 
 #https://github.com/capitalone/datacompy
 
+#https://www.grepsr.com/blog/track-changes-in-your-csv-data-using-python-and-pandas/
 
 
 #for R
