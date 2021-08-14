@@ -21,3 +21,5 @@ https://www.w3schools.in/category/r/
 https://www.rdocumentation.org/
 https://teuder.github.io/rcpp4everyone_en/  -- rcpp for everyone
 https://www.tutorialkart.com/r-tutorial/r-matrix/ -- to the point tutorial
+
+https://www.r-project.org/doc/R-FDA.pdf -FDA Gudiance document:
