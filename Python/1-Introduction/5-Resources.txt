@@ -1,0 +1,11 @@
+Resources
+==========
+https://www.greenteapress.com/thinkpython/thinkCSpy/html/index.html
+https://www.javatpoint.com/python-tutorial
+https://www.programiz.com/python-programming
+https://thispointer.com/learn-python/
+https://codescracker.com/python/program/index.htm  #lot of examples
+
+Videos
+------
+https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU
