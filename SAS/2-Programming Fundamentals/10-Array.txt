@@ -69,6 +69,13 @@ do i=1 to 4;
 end;
 run;
 
+data _null_;
+array y{*} t1 t2 t3 t4 (40 32 30 23); *put * for dynamically allocating memory;
+do i=1 to dim(y);   *use dim function to dynamically count of the indecs in array
+	put y{i};
+end;
+run;
+
 Defining Initial Character Values
 *-------------------------------*
 array test2{*} $ a1 a2 a3 ('a','b','c');
