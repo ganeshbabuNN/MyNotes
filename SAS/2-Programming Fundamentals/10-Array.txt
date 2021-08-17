@@ -87,6 +87,9 @@ One-Dimensional Arrays
 -Once variables are grouped under a single array, you can easily perform the same calculation on all the variables with just a few lines of code.
 -Once variables are grouped under a single array, you can easily perform the same calculation on all the variables with just a few lines of code
 
+proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sakila_stafftime" 
+DBMS = xlsx out = stafftime replace ;
+run;
 
 1A :Performing a Repetitive Calculation on Multiple Variables, Without an Array
 ---------------------------------------------------------------------------
