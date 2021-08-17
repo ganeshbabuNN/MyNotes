@@ -113,7 +113,7 @@ proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sak
 DBMS = xlsx out = stafftime replace ;
 run;
 
-1A :Performing a Repetitive Calculation on Multiple Variables, Without an Array
+Performing a Repetitive Calculation on Multiple Variables, Without an Array
 ---------------------------------------------------------------------------
 -To demonstrate how arrays can simplify your code let’s first look at how this calculation can be done without using arrays
 -Below is the basic Data Step code to complete this task. 
@@ -141,17 +141,15 @@ proc print data =  hour_wkdata (obs=10);
  title "First 10 records of unmodified hour_wkdata dataset";
 run;
 
-1B:Performing a Repetitive Calculation on Multiple Variables, With an Array
+Performing a Repetitive Calculation on Multiple Variables, With an Array
 ------------------------------------------------------------------------
 -now lets write the using arary using the above example.
 -Number of elements: (*) – the asterisks can be used in place of an explicit number which tells SAS to count the number of array elements for you
 
 data  hour_wk_array;
  set work.stafftime;
- 
- array  hour_wk1_cov{*}  hour_wk1- hour_wk17;  *declaring a variable of array ;
- 
- do i = 1 to 17;
+ array  hour_wk1_cov{17}  hour_wk1- hour_wk17;  *declaring a variable of array ;
+  do i = 1 to 17;
    hour_wk1_cov{i} =  hour_wk1_cov{i}*24.25;
  end;
 run;
@@ -166,8 +164,27 @@ proc print data =  hour_wk_array (obs=10);
  title "First 10 records of modifed hour_wkdata dataset";
 run;
 
-2A:Creating a variable using without array;
--------------------------------------------
+--using the dynamical memory allocations using * symbol and Dim keyword
+
+data  hour_wk_array;
+ set work.stafftime;
+ array  hour_wk1_cov{*}  hour_wk1- hour_wk17;  *use * for dynamicall allocated based on the variable count;
+  do i = 1 to dim(hour_wk1_cov);		*use dim(array_name) return the array count ;
+   hour_wk1_cov{i} =  hour_wk1_cov{i}*24.25;	
+ end;
+run;
+
+-- using the _numeric_ keyword to scan all the numeric variable in that dataset
+data  hour_wk_array;
+ set work.stafftime; 
+ array  hour_wk1_cov{*}  _numeric_;  *declaring a variable of array ; 
+ do i = 1 to 17;
+   hour_wk1_cov{i} =  hour_wk1_cov{i}*24.25;
+ end;
+run;
+
+Creating a variable using without array;
+----------------------------------------
 -Normal way we do in data step.
 
 /*payment per hour basis per dollars with new hours.*/
@@ -186,8 +203,8 @@ proc print data=hour_wkdata;
  var hour_wk1-hour_wk7 hour_wkNew1-hour_wkNew7;
 run;
 
-2B:Creating a variable using array:
--------------------------------
+Creating a variable using array:
+--------------------------------
 /*payment per hour basis per dollars.*/
 data  hour_wK_array;
 set work.stafftime;
@@ -216,7 +233,6 @@ data film_text_char;
 run;
 
 -By using _character_ in place of the variables listed for the array elements.
-
 data film_text_char;
 	set work.film_text;
 	array convert_lower{*} _character_;
@@ -230,7 +246,7 @@ Defining Array Bounds
 By default, SAS automatically starts the bounds of an ARRAY at 1.
 
 Using Customized Array Bounds
------------------------------
+*----------------------------*
 -The first array will contain the group of new variables and the second array will contain the original price variables to be used in the calculation
 -To define the custom bounds for the array, the start and end points of the bounds are placed inside the curly brackets ({}) and separated by a colon, as shown below.
 
@@ -250,7 +266,7 @@ proc print data=hour_wK_array;
 run;
 
 DO OVER and Implicit Arrays
----------------------------
+===========================
 -​There are two main types of arrays, implicit and explicit.
 -Explicit arrays are the most common type of arrays and are the only type of arrays that have been discussed thus far in the article.
 -However, implicit arrays are an alternative type of array available in SAS and can also be useful.
@@ -313,6 +329,5 @@ Assignment
 Resources:
 ----------
 https://documentation.sas.com/?docsetId=lestmtsref&docsetTarget=p08do6szetrxe2n136ush727sbuo.htm&docsetVersion=9.4&locale=en#n0apwywsfhhtkyn180agsqcbfbit
-
 https://www.sascrunch.com/sas-arrays.html
 
