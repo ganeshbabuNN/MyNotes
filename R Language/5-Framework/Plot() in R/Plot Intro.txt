@@ -8,8 +8,7 @@ Resources
 
 intro
 =====
-
-
+pricicples behind the graphic visualizations.
 
 Questions to Ask When Deciding Which Type of Chart to Use
 =========================================================
