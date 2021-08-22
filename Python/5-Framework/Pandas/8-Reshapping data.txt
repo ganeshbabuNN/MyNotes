@@ -78,10 +78,6 @@ Product | Height | Width | Weight
 A | 10 | 5 | 2
 B | 20 | 10 | NA
 
-In R,2 functions used from the above pack:
-Melt() - converts wide data to long format.
-Dcast()- converts long to wide.
-
 Tranposing multiple columns into single column
 ==============================================
 -This is like converting Wide to Long Format data.
@@ -128,7 +124,7 @@ https://www.journaldev.com/33398/pandas-melt-unmelt-pivot-function
 Tranposing  single column into multiple columns
 ===============================================
 -This is like Convert Long to Wide Format data.
--This can be achieved using dcast and spread()functions.
+-This can be achieved using pivot.
 
 raw_data = {'patient': [1, 1, 1, 2, 2], 
         'obs': [1, 2, 3, 1, 2], 
