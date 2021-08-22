@@ -27,12 +27,18 @@ nba
 
 Query data from a single column
 ===============================
-#using [] bracket
+using [] bracket
+----------------
 nba.head() #first 5 rows
 nba['Name'] #extracting single column using square bracket
 nba.Name #extracting without the square bracket
 
-#using .iloc method
+using loc method
+-----------------
+da.loc[:,['price']]
+
+using .iloc method
+--------------------
 -Dataframe.iloc[] method is used when the index label of a data frame is something other than numeric series of 0, 1, 2, 3….n or in case the user doesn’t know the index label. 
 -Rows can be extracted using an imaginary index position which isn’t visible in the data frame
 nba.iloc[:,1] #using the column index
@@ -46,6 +52,10 @@ nba[['Name','Team']] #extracting two column using square bracket
 nba[['Name','Team','Number']] #extracting three column using square bracket
 nba[['Name','Team','Number']].head()
 nba[['Name','Team','Number']].tail()
+
+using loc method
+----------------
+da.loc[:,['price','carat']]
 
 using .iloc method
 ------------------
