@@ -1,0 +1,734 @@
+Intro 
+Creating new datasets
+how to add one or more row/columns to an existing table(alter tabled add column)
+how to change the structure of existing tables(Alter the table)
+how to change the definition of existing columns in a table(alter table modify column)
+how to use various statements to drop one or more columns from a table(drop the column)
+how to delete dataframe(Drop the table)
+Renaming a row,dataframe and columns
+
+Intro
+===== 
+Common Dataframe operations are
+*Creating a DataFrame
+*Accessing rows and columns
+*Selecting the subset of the data frame
+*Editing dataframes
+*Adding extra rows and columns to the data frame
+*Add new variables to dataframe based on existing ones
+*Delete rows and columns in a data frame
+
+os.getcwd()#getting the current directly
+os.chdir(r"C:\Users\gbag\Downloads\pratice\Datasets\Datasets Pratice") #change the default directly setting
+os.getcwd() #check again the directly
+
+#import the external file
+emp=pd.read_csv("employees.csv",parse_dates=["Start Date"])
+print(emp.memory_usage().sum())
+emp.info()
+emp.convert_dtypes().dtypes #converts apporriate data types automatically exp category and bool.
+emp["Senior Management"]=emp["Senior Management"].astype("bool")
+emp["Gender"]=emp["Gender"].astype("category")
+emp["Team"]=emp["Team"].astype("category")
+print(emp.memory_usage().sum())
+emp.head()
+emp.info() #info of the dataframe
+emp.shape  #shape of the dataframe
+
+Creating new datasets
+=====================
+The pandas DataFrame() constructor offers many different ways to create and initialize a dataframe.
+
+1)creating a empty dataframe
+-------------------------
+import pandas as pd
+df=pd.DataFrame()
+
+2)Create a blank dataframe
+------------------------
+-Initialize a blank dataframe and keep adding
+df=pd.DataFrame(columns=['year','make','model'])
+
+# Add records to dataframe using the .loc function
+df.loc[0] = [2014,"toyota","corolla"] 
+df.loc[1] = [2018,"honda","civic"] 
+
+3)Using Numpy Array
+-----------------
+-Pass a 2D numpy array - each row is the corresponding row required in the dataframe
+-using numpy array in the DataFrame constructor. Pass a 2D numpy array — each array is the corresponding row in the dataframe
+
+import numpy as np
+# Pass a 2D numpy array - each row is the corresponding row required in the dataframe
+
+data = np.array([[2014,"toyota","corolla"], 
+                 [2018,"honda","civic"], 
+                 [2020,"hyndai","accent"], 
+                 [2017,"nissan","sentra"]]) 
+
+# pass column names in the columns parameter 
+df = pd.DataFrame(data, columns = ['year', 'make','model'])
+
+
+4)using dictionary in the DataFrame constructor
+---------------------------------------------
+-using dictionary in the DataFrame constructor. Dictionary Keys become Column names in the dataframe. Dictionary values become the values of columns. 
+-Column values are combined in a single row according to the order in which they are specified
+
+data = {'year': [2014, 2018,2020,2017], 
+        'make': ["toyota", "honda","hyndai","nissan"],
+        'model':["corolla", "civic","accent","sentra"]
+       }
+
+# pass column names in the columns parameter 
+df = pd.DataFrame(data)
+df
+
+5)using a list of dictionaries in the DataFrame constructor
+--------------------------------------------------------
+-using a list of dictionaries in the DataFrame constructor. Each dictionary is a record. 
+-Dictionary Keys become Column names in the dataframe. Dictionary values become the values of columns
+
+data = [{'year': 2014, 'make': "toyota", 'model':"corolla"}, 
+        {'year': 2018, 'make': "honda", 'model':"civic"}, 
+        {'year': 2020, 'make': "hyndai", 'model':"nissan"}, 
+        {'year': 2017, 'make': "nissan" ,'model':"sentra"}
+       ]
+# pass column names in the columns parameter 
+df = pd.DataFrame(data)
+df
+
+6)using dictionary in the from_dict method.
+-----------------------------------------
+data = {'year': [2014, 2018,2020,2017], 
+        'make': ["toyota", "honda","hyndai","nissan"],
+        'model':["corolla", "civic","accent","sentra"]
+       }
+
+# pass column names in the columns parameter 
+df = pd.DataFrame.from_dict(data)
+df
+
+7)Using pandas library functions — read_csv
+-------------------------------------------
+-From a csv file using read_csv method of pandas library. This is one of the most common ways of dataframe creation for EDA. Delimiter (or separator) , 
+-header and the choice of index column from the csv file is configurable. By default, separator is comma, header is inferred from first line if found, index column is not taken from the file. Here is how the file looks like
+
+pd.read_csv("employees.csv",sep=',',header='infer',index_col=None)
+df
+
+
+8)From a string of csv records using read_csv method of pandas library
+--------------------------------------------------------------------
+-From a string of csv records using read_csv method of pandas library. 
+This is particularly useful when we dont want to create a file but we have record structures handy- all we do is convert a csv record “string” to a file handle using StringIO library function
+
+import io
+data_string = """Letters, Numbers
+                 a, 1
+                 b, 2
+                 c, 3"""
+
+data = io.StringIO(data_string)
+df = pd.read_csv(data, sep=",")
+df
+
+#another example
+import sys
+if sys.version_info[0] < 3: 
+    from StringIO import StringIO
+else:
+    from io import StringIO
+
+import pandas as pd
+
+TESTDATA = StringIO("""col1;col2;col3
+1;4.4;99
+2;4.5;200
+3;4.7;65
+4;3.2;140
+""")
+
+df = pd.read_csv(TESTDATA, sep=";")
+df
+
+
+9)From a json file using read_json method of pandas library
+---------------------------------------------------------
+From a json file using read_json method of pandas library when the json file has a record in each line. Setting lines=True mean Read the file as a json object per line.
+df = pd.read_json('employee.json')
+df
+
+10)From a string of json records using read_json method
+----------------------------------------------------
+-From a string of json records using read_json method of pandas library. This is particularly useful when we dont want to create a file but we have json record structures handy
+
+from io import StringIO
+# f is a file handle created from json like string
+f = StringIO('{"year": "2014", "make": "toyota", "model": "corolla"}\n{"year": "2018", "make": "honda", "model": "civic"}\n{"year": "2020", "make": "hyndai", "model": "accent"}\n{"year": "2017", "make": "nissan", "model": "sentra"}')
+df = pd.read_json(f,lines=True)
+df
+
+11)read tables from an HTML page using the pandas library built in read_html
+------------------------------------------------------------------------
+
+import pandas as pd
+
+tables = pd.read_html('https://en.wikipedia.org/wiki/Python_(programming_language)')
+print('Tables found:', len(tables))
+df1 = tables[0]  # Save first table in variable df1
+print('First Table')
+print(df1.head()) 
+
+ref:
+https://stackabuse.com/reading-and-writing-html-tables-with-pandas/
+
+12)As a copy of another dataframe.
+-----------------------------
+# copy into a new dataframe object
+# make an alias of the dataframe(not creating 
+# a new dataframe, just a pointer)
+df_copy = df.copy()   
+df_copy = df                      
+
+-The two methods shown above are different — the copy() function creates a totally 
+new dataframe object independent of the original one while the variable copy method just creates an alias variable for the original dataframe — no new dataframe object is created. 
+If there is any change to the original dataframe, it is also reflected in the alias as shown below
+
+# as a new object using .copy() method - new dataframe object created independent of old one
+a = pd.DataFrame({'year': [2019],'make': ["Mercedes"],'model':["C-Class"]})
+b = a.copy()
+# change old one
+a['year'] = 2020
+# new copy does not reflect the change
+b
+
+# as variable copy - new variable is just an alias to the old one
+a = pd.DataFrame({'year': [2019],'make': ["Mercedes"],'model':["C-Class"]})
+b = a
+# change old one
+a['year'] = 2020
+# alias reflects the change
+b
+
+13)Vertical concatenation — one on top of the other
+------------------------------------------------
+
+data1 = [{'year': 2014, 'make': "toyota", 'model':"corolla"}, 
+        {'year': 2018, 'make': "honda", 'model':"civic"}, 
+        {'year': 2020, 'make': "hyndai", 'model':"nissan"}, 
+        {'year': 2017, 'make': "nissan" ,'model':"sentra"}
+       ]
+
+df1 = pd.DataFrame(data1)
+data2 = [{'year': 2019, 'make': "bmw", 'model':"x5"}]
+df2 = pd.DataFrame(data2)
+
+# concatenate vertically
+# NOTE: axis = 'index' is same as axis = 0, and is the default 
+# The two statements below mean the same as the one above
+
+df3 = pd.concat([df1,df2], axis = 'index') 
+#OR
+
+df3 = pd.concat([df1,df2], axis = 0)
+
+# OR
+
+df3 = pd.concat([df1,df2])
+df3
+
+#reset the index
+df3 = pd.concat([df1,df2]).reset_index()
+df3 = pd.concat([df1,df2], ignore_index = True)
+df3
+
+14)Horizontal concatenation — append side by side, not joined by any key
+---------------------------------------------------------------------
+data1 = [{'year': 2014, 'make': "toyota", 'model':"corolla"}, 
+        {'year': 2018, 'make': "honda", 'model':"civic"}, 
+        {'year': 2020, 'make': "hyndai", 'model':"nissan"}, 
+        {'year': 2017, 'make': "nissan" ,'model':"sentra"}
+       ]
+
+df1 = pd.DataFrame(data1)
+data2 = [{'year': 2019, 'make': "bmw", 'model':"x5"}]
+df2 = pd.DataFrame(data2)
+df3 = pd.concat([df1,df2], axis = 'columns')
+#OR
+df3 = pd.concat([df1,df2], axis = 1)
+df3
+
+
+
+15)Horizontal concatenation — equivalent of SQL join
+-------------------------------------------------
+
+data1 = [{'year': 2014, 'make': "toyota", 'model':"corolla"}, 
+        {'year': 2018, 'make': "honda", 'model':"civic"}, 
+        {'year': 2020, 'make': "hyndai", 'model':"nissan"}, 
+        {'year': 2017, 'make': "nissan" ,'model':"sentra"}
+       ]
+df1 = pd.DataFrame(data1)
+
+data2 = [{'make': 'honda', 'Monthly Sales': 114117}, 
+        {'make': 'toyota', 'Monthly Sales': 172370}, 
+        {'make': 'hyndai', 'Monthly Sales': 54790}
+       ]
+df2 = pd.DataFrame(data2)
+# inner join on 'make'
+# default is inner join
+df3 = pd.merge(df1,df2,how = 'inner',on = ['make'])
+df3 = pd.merge(df1,df2,on = ['make'])
+df3
+
+
+# for a left join , use how = 'left'
+df3 = pd.merge(df1,df2,how = 'left',on = ['make'])
+df3
+
+16)As a transpose of another dataframe
+-----------------------------------
+# To transpose a dataframe - use .T method
+df4 = df3.T
+# To rename columns to anything else after the transpose
+df4.columns = (['column1','column2','column3','column4'])
+df4
+
+
+17)Conversion to one-hot columns (used for modeling with learning algorithms) using pandas get_dummies function
+------------------------------------------------------------------------------------------------------------
+data1 = [{ 'make': "toyota", 'model':"corolla", 'body':"sedan"}, 
+        {'make': "honda", 'model':"crv", 'body':"suv"}, 
+        {'make': "dodge", 'model':"caravan", 'body':"van"}, 
+        {'make': "ford" ,'model':"f150", 'body':"truck"}
+       ]
+df1 = pd.DataFrame(data1) 
+
+df2 = pd.get_dummies(df1,columns = ['body'])
+df2
+
+Ref:
+https://www.geeksforgeeks.org/different-ways-to-create-pandas-dataframe/
+https://towardsdatascience.com/15-ways-to-create-a-pandas-dataframe-754ecc082c17
+https://www.opentechguides.com/how-to/article/pandas/192/pandas-create-dataframe.html
+
+How to add one or more columns(variables) to an existing table
+==============================================================
+# Define a dictionary containing Students data
+data = {'Name': ['Jai', 'Princi', 'Gaurav', 'Anuj'],
+        'Height': [5.1, 6.2, 5.1, 5.2],
+        'Qualification': ['Msc', 'MA', 'Msc', 'Msc']}
+  
+# Convert the dictionary into DataaFrame
+df = pd.DataFrame(data)
+
+By declaring a new list as a column.
+-----------------------------------
+# Declare a list that is to be converted into a column
+address = ['Delhi', 'Bangalore', 'Chennai', 'Patna']
+df['address']=address
+
+By using DataFrame.insert()
+---------------------------
+-It gives the freedom to add a column at any position we like and not just at the end.
+df.insert(2,"Age",[34,33,32,32],True)
+
+Using Dataframe.assign() method
+-------------------------------
+-This method will create a new dataframe with new column added to the old dataframe
+df.assign(address = ['Delhi', 'Bangalore', 'Chennai', 'Patna'])
+
+By using a dictionary
+---------------------
+# Define a dictionary with key values of an existing column and their respective
+# value pairs as the # values for our new column.
+address = {'Delhi': 'Jai', 'Bangalore': 'Princi',
+           'Patna': 'Gaurav', 'Chennai': 'Anuj'}
+
+df=pd.DataFrame(data)
+
+# Provide 'Address' as the column name
+df["address"]=address
+
+adding multiple columns
+-----------------------
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    'col_1': [0, 1, 2, 3],
+    'col_2': [4, 5, 6, 7]
+})
+
+#1) Three assignments in one, using list unpacking:
+df['col1'],df['col2'],df['col3']=[np.nan,"dog",23]
+
+#2) DataFrame conveniently expands a single row to match the index, so you can do this
+df[['col1','col2','col3']]=pd.DataFrame([[np.nan, 'dogs', 3]], index=df.index)
+
+#3) Make a temporary data frame with new columns, then combine with the original data frame later:
+df = pd.concat(
+    [
+        df,
+        pd.DataFrame(
+            [[np.nan, 'dogs', 3]], 
+            index=df.index, 
+            columns=['col1', 'col2', 'col3']
+        )
+    ], axis=1
+)
+
+#4) Similar to the previous, but using join instead of concat (may be less efficient):
+df = df.join(pd.DataFrame(
+    [[np.nan, 'dogs', 3]], 
+    index=df.index, 
+    columns=['col11', 'col2', 'col13']
+))
+
+
+#5) Using a dict is a more "natural" way to create the new data frame than the previous two, but the new columns will be sorted alphabetically (at least before Python 3.6 or 3.7):
+df = df.join(pd.DataFrame(
+    {
+        'column_new_1': np.nan,
+        'column_new_2': 'dogs',
+        'column_new_3': 3
+    }, index=df.index
+))
+
+#6) Use .assign() with multiple column arguments.
+df = df.assign(column_new_1=np.nan, column_new_2='dogs', column_new_3=3)
+
+#7) This is interesting (based on https://stackoverflow.com/a/44951376/3830997), but I don't know when it would be worth the trouble:
+new_cols = ['column_new_1', 'column_new_2', 'column_new_3']
+new_vals = [np.nan, 'dogs', 3]
+df = df.reindex(columns=df.columns.tolist() + new_cols)   # add empty cols
+df[new_cols] = new_vals  # multi-column assignment works for existing cols
+
+#8) In the end it's hard to beat three separate assignments:
+df['column_new_1'] = np.nan
+df['column_new_2'] = 'dogs'
+df['column_new_3'] = 3
+
+Ref:
+https://www.geeksforgeeks.org/adding-new-column-to-existing-dataframe-in-pandas/
+
+how to change the structure of existing tables
+==============================================
+
+#Copy the contents of a DataFrame to the clipboard.
+df.to_clipboard(sep=',') ## Wrote the following to the system clipboard
+df.to_clipboard(sep=',', index=False) #We can omit the index by passing the keyword index and setting it to false.
+
+#convert from dataframe to dictionary
+df.to_dict()
+
+#convert from dataframe to list
+df.values.tolist()
+
+#convert from dataframe to records
+#Index will be included as the first field of the record array if requested.
+df.to_records()
+
+#convert from dataframe to string
+#Index will be included as the first field of the record array if requested.
+df.to_string()
+
+How to change the definition of existing columns in a table
+===========================================================
+
+df.dtypes #get the data types of the columns.
+df.info() #get the descriptive informations of the table.
+
+overview of datatype
+-------------------
+pandas_dtype	python	      numpy_type 		     	usage
+object		str or mixed- string__,unicode_,mixed_types  	text or mixed numeric and non-numeric values
+int64-int 	int	      int_,int8,int16,int32,int64,uint8	integer numbers
+			      unit16,uint32,uint64
+float64		float	      float_,float16,float32,float64	floating point number
+bool		bool	      bool_				true/false values
+datetime64	NA	      datetime64[ns]			date and times values
+timedelta[ns]	NA	      NA				differences betwen dataframes
+category	NA	      NA				finite list of values	      
+
+
+Change Data Type for one or more columns in Pandas Dataframe
+------------------------------------------------------------
+-We can pass any Python, Numpy or Pandas datatype to change all columns of a dataframe to that type, or 
+-we can pass a dictionary having column names as keys and datatype as values to change type of selected columns
+
+using to_numeric()
+-----------------
+#for series
+pd.to_numeric(df1['Roll_No.'], errors='raise')
+pd.to_numeric(df1['Roll_No.'], errors='coerce') #using coerce for ignore the missing /bad values
+pd.to_numeric(df1['Roll_No.'], errors='ignore') #ingore the conversion
+pd.to_numeric(df1['Roll_No.'], downcast='integer') #Downcasting to 'integer' uses the smallest possible integer that can hold the values:
+pd.to_numeric(df1['Roll_No.'], downcast='float')  #similar to float
+df1['Roll_No.'].astype(np.uint8)
+
+#for dataframes
+df1.apply(pd.to_numeric, errors='ignore').info()
+
+Using asType()
+---------------
+emp['Senior Management']=emp['Senior Management'].astype('Bool')
+emp['First Name']=emp['First Name'].astype('str') #str is also called as object
+emp['First Name']=emp['First Name'].astype('object')#or use object for
+emp['Team']=emp['Team'].astype('category')
+emp['Gender']=emp['Gender'].astype('category')
+emp['Salary']=emp['Salary'].astype('int')
+emp['Salary']=emp['Salary'].astype(np.int64) #using np type
+emp['Bonus %']=emp['Bonus %'].astype('float')
+emp['Start Date']=emp['Start Date'].astype('datetime64')
+
+# using dictionary to convert specific column of another type
+convert_dict = {'Senior Management': 'Bool',
+                'Team': 'category',
+                'Gender': 'category',
+                'Salary':'int',
+                'Bonus %':'float',
+                'Start Date':'datetime64'
+               }
+
+emp=emp.astype(convert_dict)
+emp.info()
+
+Using DataFrame.apply()
+-----------------------
+-We can pass pandas.to_numeric, pandas.to_datetime and pandas.to_timedelta as argument to apply() function to change the datatype of one or more columns to numeric, datetime and timedelta respectively
+
+df[['A', 'C']].apply(pd.to_numeric)
+df.dtypes
+
+DataFrame.infer_objects()
+-------------------------
+This method attempts soft-conversion by inferring data type of ‘object’-type columns. Non-object and unconvertible columns are left unchanged.
+
+df = df.infer_objects()
+print(df.dtypes)
+
+DataFrame..convert_dtypes()
+---------------------------
+-function to convert the default assigned data-types to the best datatype automatically
+
+For Series:
+series_name.convert_dtypes()
+
+For DataFrame:
+dataframe_name.convert_dtypes().dtypes
+
+Converting the datatype of a series:
+*----------------------------------*
+-Now use convert_dtypes() function to automatically convert datatype
+
+# creating a series
+s = pd.Series(['ganesh', 'G', 'ganesh'])
+  
+# printing the series
+print("SERIES")
+print(s)
+  
+print()
+  
+# using convert_dtypes() function
+print("AFTER DATATYPE CONVERSION")
+print(s.convert_dtypes())
+
+
+Converting the datatype of a dataframe:
+*-------------------------------------*
+-The data type of columns are changed accordingly. But the datatype of dataframe will remain object because it contains multiple columns with each column has a different datatype
+
+# creating a dataframe
+df = pd.DataFrame({"Roll_No.": ([1, 2, 3]),
+                   "Name": ["Raj", "Ritu", "Rohan"],
+                   "Result": ["Pass", "Fail", np.nan],
+                   "Promoted": [True, False, np.nan],
+                   "Marks": [90.33, 30.6, np.nan]})
+  
+# printing the dataframe
+print("PRINTING DATAFRAME")
+display(df)
+  
+# checking datatype
+print()
+print("PRINTING DATATYPE")
+print(df.dtypes)
+  
+# converting datatype
+print()
+print("AFTER CONVERTING DATATYPE")
+print(df.convert_dtypes().dtypes)
+
+Creating the Data frame through series and specifying datatype :
+*--------------------------------------------------------------*
+-Convert using convert_dtypes().dtypes function
+
+df = pd.DataFrame({"Column_1": pd.Series([1, 2, 3], dtype=np.dtype("int32")),
+                   # Column_1 datatype is int32
+                     
+                   "Column_2": pd.Series(["Apple", "Ball", "Cat"], 
+                                         dtype=np.dtype("object")),
+                   # Column_2 datatype is 0
+                     
+                   "Column_3": pd.Series([True, False, np.nan], 
+                                         dtype=np.dtype("object")),
+                   # Column_3 datatype is 0
+                     
+                   "Column_4": pd.Series([10, np.nan, 20], 
+                                         dtype=np.dtype("float")),
+                   # Column_4 datatype is float
+                     
+                   "Column_5": pd.Series([np.nan, 100.5, 200],
+                                         dtype=np.dtype("float"))})
+                   # Column_5 datatype is float
+  
+# printing dataframe
+print("PRINTING DATAFRAME")
+display(df)
+  
+# checking datatype
+print()
+print("CHECKING DATATYPE")
+print(df.dtypes)
+  
+# convert datatype
+print()
+print("AFTER DATATYPE CONVERSION")
+print(df.convert_dtypes().dtypes)
+
+
+Ref:
+https://www.geeksforgeeks.org/how-to-convert-to-best-data-types-automatically-in-pandas/
+https://www.geeksforgeeks.org/change-data-type-for-one-or-more-columns-in-pandas-dataframe/
+https://stackoverflow.com/questions/15891038/change-column-type-in-pandas
+https://www.bmc.com/blogs/pandas-data-types/
+
+How to use various statements to drop one or more columns from a table
+======================================================================
+
+Drop Columns from a Dataframe using drop() method.
+--------------------------------------------------
+#Remove specific single column.
+# Remove column name 'A'
+df.drop(['A'], axis = 1)
+
+#Remove specific multiple columns.
+# Remove two columns name is 'C' and 'D'
+df.drop(['C', 'D'], axis = 1)
+
+#Remove columns as based on column index.
+# Remove three columns as index base
+df.drop(df.columns[[0, 4, 2]], axis = 1, inplace = True)
+
+#From version 0.21.0, you can also use the parameter columns as column label.
+nba.drop(columns='Age') #single column
+nba.drop(columns=['Age','Height','Weight'],inplace=True) #Use a list to delete multiple columns at once.
+
+#Specify by column number
+nba.columns[[1,2]]
+nba.drop(nba.columns[[1,2]],axis=1)
+nba.drop(columns=nba.columns[[1, 2]])
+
+Drop Columns from a Dataframe using iloc[] and drop() method.
+------------------------------------------------------------
+#Remove all columns between a specific column to another columns.
+df.drop(df.iloc[:, 1:3], inplace = True, axis = 1) # Remove all columns between column index 1 to 3
+
+Drop Columns from a Dataframe using ix() and drop() method.
+-----------------------------------------------------------
+-Remove all columns between a specific column name to another columns name. this will been removed from this sister pd.__version__ == '1.0.0 
+
+df.drop(df.ix[:, 'B':'D'].columns, axis = 1) # Remove all columns between column name 'B' to 'D'
+
+Drop Columns from a Dataframe using loc[] and drop() method.
+------------------------------------------------------------
+-Remove all columns between a specific column name to another columns name.
+
+df.drop(df.loc[:, 'B':'D'].columns, axis = 1) # Remove all columns between column name 'B' to 'D'
+
+Drop Columns from a Dataframe by iterative way
+----------------------------------------------
+-Remove all columns between a specific column name to another columns name.
+
+# Convert the dictionary into DataFrame 
+df = pd.DataFrame(data)
+for col in df.columns:
+    if 'A' in col:
+        del df[col]
+
+
+#Remove duplicate columns
+df = df.loc[:,~df.columns.duplicated()]
+print(df)
+
+Ref:
+https://www.geeksforgeeks.org/how-to-drop-one-or-multiple-columns-in-pandas-dataframe/
+
+how to delete dataframe
+=======================
+%whos DataFrame #list of dataframe created
+%who_ls DataFrame  #building on previous answers ... this returns a list
+
+#list of datraframe of the current sessions
+import pandas as pd
+sheets=[]    
+for var in dir():
+    if isinstance(locals()[var], pd.core.frame.DataFrame)  and var[0]!='_':
+        sheets.append(var)        
+sheets
+
+del df #remove df1 individual
+del [df1,df2]  #remove multiple using a list
+
+#removing the dataframe dynamically
+##approach 1
+for dataframe in [df1, df2, df3]: 
+    del dataframe
+
+#approach 2
+for var in dir():
+    if isinstance(locals()[var], pd.core.frame.DataFrame) and var[0]!='_':
+        del locals()[var]
+
+Renaming a row,dataframe and columns
+====================================
+
+Renaming the dataframe
+----------------------
+-we can only copy the dataframe cannot rename like in other language.
+# creating sample series
+data = pd.Series(['a', 'b', 'c', 'd'])
+  
+# creating copy of series
+new = data.copy()
+
+Ref:
+https://www.geeksforgeeks.org/python-difference-between-pandas-copy-and-copying-through-variables/
+
+renaming the column
+-------------------
+rankings_pd.rename(columns = {'test':'TEST'}, inplace = True) # renaming single column
+rankings_pd.rename(columns = {'test':'TEST', 'odi':'ODI', 't20':'T20'}, inplace = True)  # renaming the multi columns
+
+renaming the rowname
+---------------------
+# changing index cols with rename()
+data.rename(index = {"Avery Bradley": "NEW NAME",
+                     "Jae Crowder":"NEW NAME 2"},
+                                 inplace = True)
+
+Ref:
+https://www.geeksforgeeks.org/python-pandas-dataframe-rename/
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

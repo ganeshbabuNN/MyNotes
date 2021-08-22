@@ -1,0 +1,555 @@
+Intro
+how to insert a row into a table  -insert
+Insert data into a table from the result of a query --insert
+Insert multiple rows/columns into a table or multiple tables -insert
+How to change the existing values of a table -update
+updating the missing values i,e NA to 0 -update
+Resetting the row index -update
+Writing the conditional statment
+Writing a Custom function
+How to delete one or more row from a table - delete
+Performing a mixture of insertion, update, and deletion using a single statement -mix of all
+
+Intro
+=====
+Modifying the data in the dataframe is a crucial part,suggest to think before you perform the operations
+
+#sales datasets
+sales=pd.read_csv("salesmen.csv",parse_dates=["Date"])
+sales['Salesman']=sales['Salesman'].astype("category")
+sales.info()
+sales.shape
+
+#nba data
+nba = pd.read_csv("nba.csv", index_col ="Name" )
+nba
+
+how to insert a row into a table
+================================
+
+Using df.loc method
+-------------------
+sales.loc[len(sales.index)]=['2021-03-02','ganesh',2653]
+sales.tail()
+
+using df.append() method
+------------------------
+df2={'Date':'2021-03-02',"Salesman":'ganesh',"Revenue":2653}
+sales.append(df2,ignore_index=True)
+
+using df.concat() method
+------------------------
+#do not use the scalar values
+
+dict={'Date':['2021-03-02'],
+      "Salesman":['ganesh'],
+      "Revenue":[2653]}
+df2 = pd.DataFrame(dict)
+
+pd.concat([sales,df2],ignore_index=True)
+
+Ref:
+https://www.geeksforgeeks.org/how-to-add-one-row-in-an-existing-pandas-dataframe/
+https://pythonexamples.org/pandas-dataframe-add-append-row/
+
+Insert data into a table from the result of a query
+===================================================
+res1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+res2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+
+#query inside 
+res2_1=res2[res2['Customer ID']==537] #inserting the query from res1 
+res2_1
+
+#inserting from #restaurant 2 from #restaurant 1 using append()
+res2_1.append(res1[res1['Customer ID']==537]).reset_index()
+
+-we can use the concat, loc method as well.
+
+Insert multiple rows/columns into a table or multiple tables
+============================================================
+
+Multiple rows
+-------------
+#using concat method
+df = pd.DataFrame(data=[['A',1,1],['A',2,3],['A',5,4],['B',3,4],['B',2,6],['B',8,4],['C',9,3],['C',3,7],['C',1,9],['D',5,5],['D',8,3],['D',4,7]], columns=['Group','val1','val2'])
+
+df_new = pd.concat([
+    pd.concat([grp.iloc[[0], :], grp])
+    for key, grp in df.groupby('Group')
+])
+
+print(df_new)
+
+Multiple columns
+---------------
+-this approach can be easily managed by the python objects at any time you want.
+
+import pandas as pd
+import numpy as np
+
+data = np.random.randint(10, size=(5,3))
+columns = ['Score A','Score B','Score C']
+df = pd.DataFrame(data=data,columns=columns)
+print(df)
+
+#add a single new column
+data = np.random.randint(10, size=(5,1))
+df['Score D'] = data
+print(df)
+
+#Add multiple columns
+data = np.random.randint(10, size=(5,2))
+columns = ['Score E','Score F']
+df_add = pd.DataFrame(data=data,columns=columns) #adding to new dataframe
+print(df)
+df = pd.concat([df,df_add], axis=1) #now combing the dataframe of new dataframe
+print(df)
+
+Ref:
+https://moonbooks.org/Articles/How-to-add-multiple-columns-to-a-dataframe-with-pandas-/
+
+How to change the existing values of a table -update
+====================================================
+import pandas as pd 
+info= {"Num":[12,14,13,12,14,13,15], "NAME":['John','Camili','Rheana','Joseph','Amanti','Alexa','Siri']}
+ 
+data = pd.DataFrame(info)
+print("Original Data frame:\n")
+print(data)
+
+df[] method
+-----------
+data['dummy']='test' #updates all the column
+data.loc[1] = "test" #updates the observers of all columns
+
+using .update method
+------------------
+data1=pd.DataFrame({"dummy":[1,3,4,5,6]})
+data.update(data1)
+data
+
+using at() method
+-----------------
+-enables us to update the value of one row at a time with respect to a column.
+data.at[6,'NAME']='ganesh'
+
+using  loc() function 
+----------------------
+-can also be used to update the value of a row with respect to columns by providing the labels of the columns and the index of the rows
+data.loc[1,['Num','NAME']] = [100,'Python']
+data
+data.loc[0:2,['Num','NAME']] = [100,'Python'] #in a range
+
+using replace method
+---------------------
+-we can update or change the value of any string within a data frame. We need not provide the index or label values to it
+data.replace("Siri", "Code", inplace=True)
+data
+
+using iloc method
+-----------------
+-it is possible to change or update the value of a row/column by providing the index values of the same
+data.iloc[[0,1,3,6],[0]] = 100 #range of rows
+data
+
+data.iloc[0,1] ="ganesh" #1st rows and 2 column update #update cell level
+
+updating the missing values
+---------------------------
+data.fillna("") #update blank values
+data.fillna(0) #update all the Nan to zero
+data['First Name'].fill('') #specfic column to blank
+
+Ref:
+https://www.askpython.com/python-modules/pandas/update-the-value-of-a-row-dataframe
+
+updating the missing values
+===========================
+Refer the filter chapter for explanations
+
+#import the external file
+tele= pd.read_csv("telecom.csv") #parse_dates parameter helps to convert to datetime type
+tele.head()
+tele.info() #info of the dataframe
+tele.shape #shape of the dataframe
+
+update the missing value
+-------------------------
+#check the sum of null values
+tele.isnull().sum()
+
+#fill the missing values to 0  or "" row level for entire dataframe
+tele.fillna(0) 
+tele.fillna("")
+hr.fillna(0) #fillna()
+dframe['Product'].fillna('') # replace null to blank
+hr.fillna(method ='pad') #fillna() # filling a missing value with  previous ones
+hr.fillna(method ='bfill') #fillna() filling  null value using fillna() function
+
+#replace the missing values at each column level
+tele["PaymentMethod"].fillna("NK",inplace=True)
+tele["MonthlyCharges"].fillna("0",inplace=True) #for single column
+
+#for multiple columns specificatlly
+tele.fillna({"TotalCharges":0,"MonthlyCharges":"","PaymentMethod":""},inplace=True) #numeric and char variable
+tele.fillna(tele[["TotalCharges","PaymentMethod"]].fillna(""),inplace=False) #Numeric variable
+tele[["MonthlyCharges","TotalCharges"]].fillna("0",inplace=True)
+
+#count of zeros and "" blanks in datafarme
+tele[tele==0].count(axis=0)
+tele[tele==""].count(axis=0)
+
+#Remove from the DataFrame the columns with more than 50% of missing data using drop():
+column_nan=tele.columns[tele.isnull().any()]
+column_nan
+for column in column_nan:
+    if tele[column].isnull().sum()*100.0/tele.shape[0] > 50:
+        tele.drop(column,1, inplace=True)
+
+update and compare the missing values to orginal dataframe
+----------------------------------------------------------
+Step 1 : Make a new dataframe having dropped the missing data (NaN, pd.NaT, None) you can filter out incomplete rows. DataFrame.dropna drops all rows containing at least one field with missing data
+	tele1=tele.dropna()
+	Assume new df as DF_updated and earlier as DF_Original
+
+Step 2 : Now our solution DF will be difference between two DFs. 
+	It can be found by pd.concat([DF_Original,DF_updated]).drop_duplicates(keep=False)
+	pd.concat([tele1,tele]).drop_duplicates(keep=False)
+
+updating the non standard missing values
+-----------------------------------------
+#using na_values parameter during import
+missing_values=['--','na']
+tele= pd.read_csv("telecom.csv",na_values=missing_values)
+
+#using replace functions
+tele.replace({'--':np.nan,'na':np.nan},inplace=True)
+
+Ref:
+https://www.geeksforgeeks.org/working-with-missing-data-in-pandas/
+https://towardsdatascience.com/handling-missing-values-with-pandas-b876bf6f008f
+
+Resetting the row index
+=======================
+bob_op=sales[(sales['Salesman']=='Bob') & (sales['Revenue']> 9600)] #bob ops where revenue > 9600
+oscar_op=sales[(sales['Salesman']=='Oscar') & (sales['Revenue']> 9600)] #oscar ops where revenue > 9600
+
+#using concat method and ignore_index parameter and observe the index
+pd.concat([bob_op,oscar_op],ignore_index=False)
+
+#using reset_index method of dataframe
+op_index=pd.concat([bob_op,oscar_op])
+op_index.reset_index() #observe the index
+
+Writing the conditional statment
+================================
+-we can achieve using the switch statement
+
+df = pd.DataFrame({'Type':list('ABBC'), 'Set':list('ZZXY')})
+df
+
+using list compehension
+-----------------------
+df['color'] = ['red' if x == 'Z' else 'green' for x in df['Set']]
+
+using set.map method
+--------------------
+df.Set.map( lambda x: 'red' if x == 'Z' else 'green')
+
+using np.where
+--------------
+#using single conditions
+df['color'] = np.where(df['Set']=='Z', 'green', 'red')
+
+using np.select
+---------------
+requirement:
+yellow when (df['Set'] == 'Z') & (df['Type'] == 'A')
+otherwise blue when (df['Set'] == 'Z') & (df['Type'] == 'B')
+otherwise purple when (df['Type'] == 'B')
+otherwise black,
+
+#put the conditions
+conditions = [
+    (df['Set'] == 'Z') & (df['Type'] == 'A'),
+    (df['Set'] == 'Z') & (df['Type'] == 'B'),
+    (df['Type'] == 'B')]
+
+#put the conditions response
+choices = ['yellow', 'blue', 'purple']
+
+#using select method
+df['color'] = np.select(conditions, choices, default='black')
+print(df)
+
+#using df.loc[]
+---------------
+df.loc[(df['Set']=="Z")&(df['Type']=="B")|(df['Type']=="C"), 'Color'] = "purple"
+
+using apply method
+------------------
+#generate the data
+arr = pd.DataFrame({'A':list('abc'), 'B':range(3), 'C':range(3,6), 'D':range(6, 9)})
+arr
+
+#if arr.A =='a' then arr.B elif arr.A=='b' then arr.C elif arr.A == 'c' then arr.D else something_else
+arr['E'] = arr.apply(lambda x: x['B'] if x['A']=='a' else(x['C'] if x['A']=='b' else(x['D'] if x['A']=='c' else 1234)), axis=1)
+arr
+
+Writing a Custom function
+=========================
+
+#using a dictionary to map new values onto the keys in the list
+----------------------------------------------------------------
+def map_values(row, values_dict):
+    return values_dict[row]
+
+values_dict = {'A': 1, 'B': 2, 'C': 3, 'D': 4}
+df = pd.DataFrame({'INDICATOR': ['A', 'B', 'C', 'D'], 'VALUE': [10, 9, 8, 7]})
+
+df['NEW_VALUE'] = df['INDICATOR'].apply(map_values, args = (values_dict,))
+
+using custom functions for conditional statements
+-------------------------------------------------
+df = pd.DataFrame({'Type':list('ABBC'), 'Set':list('ZZXY')})
+df
+
+def set_color(row):
+    if row["Set"] == "Z":
+        return "red"
+    elif row["Type"] == "C":
+        return "blue"
+    else:
+        return "green"
+
+df = df.assign(color=df.apply(set_color, axis=1))
+print(df)
+
+Applying user defined function to each row/column 
+-------------------------------------------------
+
+# list of tuples
+matrix = [(1,2,3,4),
+          (5,6,7,8,),
+          (9,10,11,12),
+          (13,14,15,16)
+         ]
+ 
+# Creating a Dataframe object
+df = pd.DataFrame(matrix, columns = list('abcd'))
+
+# function to returns x*x
+def squareData(x):
+    return x * x
+
+# Applying a user defined function to each column that will square the given value
+new_df = df.apply(squareData)
+
+# Applying a user defined function to each row that will square the given value
+new_df = df.apply(squareData, axis = 1)
+
+User defined functions with two arguments
+-----------------------------------------
+# list of tuples
+matrix = [(1,2,3,4),
+          (5,6,7,8,),
+          (9,10,11,12),
+          (13,14,15,16)
+         ]
+ 
+# Creating a Dataframe object
+df = pd.DataFrame(matrix, columns = list('abcd'))
+
+# function to returns x+y
+def addData(x, y):
+    return x + y
+
+# Applying a user defined function to each column which will add value in each column by given number
+new_df = df.apply(addData, args = [1])
+
+# Applying a user defined function to each row which will add value in each row by given number
+new_df = df.apply(addData, axis = 1, args = [3])
+
+User custom function apply for row level
+----------------------------------------
+df = pd.DataFrame({
+    'value1': [1,2,3,4,5],
+    'value2': [5,4,3,2,1],
+    'value3': [10,20,30,40,50],
+    'value4': [99,99,99,99,np.nan],
+})
+
+def sum_all(row):
+    return np.sum(row)
+
+# note that apply was called on the dataframe itself, not on columns
+df['sum_all'] = df.apply(lambda row: sum_all(row), axis=1)
+df
+
+apply custom function to column multiple arguments code example
+---------------------------------------------------------------
+def some_func(row, var1):
+    return '{0}-{1}-{2}'.format(row['A'], row['B'], var1)
+
+df['C'] = df.apply(some_func(row, var1='DOG'), axis=1)
+df
+
+custom functions taking multiple columns as parameters
+------------------------------------------------------
+df = pd.DataFrame({
+    'name': ['alice','bob','charlie','david'],
+    'age': [25,26,27,22],
+})[['name', 'age']]
+df
+
+def concatenate(value_1, value_2):
+    return str(value_1)+ "--" + str(value_2) 
+# note the use of DOUBLE SQUARE BRACKETS!
+df['concatenated'] = df[['name','age']].apply(lambda row: concatenate(row['name'], row['age']) , axis=1)
+df
+
+custom functions return single values
+--------------------------------------
+df = pd.DataFrame({
+    'name': ['alice','bob','charlie','david'],
+    'age': [25,26,27,22],
+})[['name', 'age']]
+df
+
+#custom function
+def first_letter(input_str):
+    return input_str[:1]
+
+# each element of the age column is a string so you can call .upper() on it
+df['first_letter'] = df['name'].apply(first_letter)
+df
+
+custom functions return multiple values
+----------------------------------------
+df = pd.DataFrame({
+    'name': ['alice','bob','charlie','david','edward'],
+    'age': [25,26,27,22,np.nan],
+})[['name', 'age']]
+
+def times_two_times_three(value):
+    value_times_2 = value*2
+    value_times_3 = value*3
+    return pd.Series([value_times_2,value_times_3])
+
+# note that apply was called on age column
+df[['times_2','times_3']]= df['age'].apply(times_two_times_three)
+df
+
+
+Ref:
+https://pythonhealthcare.org/2018/04/04/25-applying-user-defined-functions-to-numpy-and-pandas/
+https://www.geeksforgeeks.org/apply-a-function-to-each-row-or-column-in-dataframe-using-pandas-apply/
+https://queirozf.com/entries/pandas-dataframes-apply-examples
+
+How to delete one or more row/column from a table - delete
+==========================================================
+nba = pd.read_csv("nba.csv", index_col ="Name" )
+nba
+
+Delete by row
+-------------
+# Dropping Rows by index label
+# Specify by row name (row label)
+nba.drop(["Avery Bradley"])# single row
+nba.drop(["Avery Bradley", "John Holland"],axis=0)##multiple rows
+nba.drop(["Avery Bradley", "John Holland", "R.J. Hunter","R.J. Hunter"])#axis can be omitted as it is default
+
+#By default the original DataFrame is not changed, and a new DataFrame is returned.
+nba_new=nba.copy
+nba.drop(["Avery Bradley", "John Holland"],axis=0,inplace=True)
+
+#Dropping Rows by index no
+nba.index[[1,2,3]]
+#You can specify this as the first parameter labels or index of drop().
+nba.drop(nba.index[1]) #first row
+nba.drop(nba.index[[1,2,3]]) #multiple indice
+nba.drop(index=nba.index[[1,2,3]]) #using index parameter
+df.drop([df.index[1], df.index[2]]) #Delete a Multiple Rows by Index Position in DataFrame
+
+#Notes when index is not set
+#If no row name is set, by default index will be a sequence of integers. Be careful if index is a number rather than a string.
+nba_noindex = pd.read_csv("nba.csv")
+nba_noindex.index
+nba_noindex.drop(5,axis=0)
+nba_noindex.drop([1, 3, 5]) #multile index optional axis
+nba_noindex.drop([1, 3, 5],axis=0) #multile indices
+
+nba_noindex.drop(nba_noindex.index[[1, 3, 5]]) 
+nba_noindex.sort_values('College') #sort and delete
+nba_noindex.drop(nba_noindex.index[nba_noindex['Name']=='John Holland'],axis=0) #multile conditions
+
+Delete by data in columnwise
+----------------------------
+emp['Salary']=0 #just set a simple value based on the type
+df[~df.line_race.eq(0)]  #delete the column name based on conditions
+df.query("line_race!=0")
+
+Delete multiple rows and columns at once
+-----------------------------------------
+-From version 0.21.0 and later, it is possible to delete multiple rows and multiple columns simultaneously by specifying the parameterindex and columns.
+nba.drop(index=['Avery Bradley', 'Jae Crowder'],columns=['Age', 'Height','Weight']) #by row and column label
+nba.drop(index=nba.index[[1, 3, 5]],columns=nba.columns[[1, 2]]) #by row and column indices
+nba.drop(index=['Avery Bradley', 'Jae Crowder'], columns=['Age', 'Height','Weight'],inplace=True) #by row and column label
+
+Delete the missing values
+-------------------------
+df.dropna(axis=0) #Dropping any rows with a NaN value
+df.dropna(axis=1) #Dropping any column with a NaN value using inplace parameter for permanet change
+df.dropna(axis=0,thresh=2)#Dropping a row with a minimum 2 NaN value using 'thresh' parameter
+
+#Remove rows with missing data
+index_nan=tele.index[tele.isnull().any(axis=1)] 
+index_nan.shape
+tele.drop(index_nan,0,inplace=True)
+tele.shape
+
+tele.dropna()  #drop all the missing values(NaN, pd.NaT, None) in a datframe
+hrcore.dropna(subset=['Date of Termination']) # drop missing value specfic to that column
+
+Delete all the rows in a dataframe
+----------------------------------
+#approach 1
+names = [x for x in emp.columns] # Extract column names into a list
+names
+df_b = pd.DataFrame(columns=names) # Create empty DataFrame with those column names
+
+#apporach 2
+df_empty = emp[0:0] #df_empty is a DataFrame with zero rows but with the same column structure as df
+
+Delete only the non dates fields
+--------------------------------
+-Use pd.to_datetime with parameter errors='coerce' to make non-dates into NaT null values. Then you can drop those rows
+df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+df = df.dropna(subset=['Date'])
+df
+
+Ref:
+https://note.nkmk.me/en/python-pandas-drop/
+https://www.studytonight.com/pandas/pandas-dataframe-drop-method
+https://www.geeksforgeeks.org/python-delete-rows-columns-from-dataframe-using-pandas-drop/
+
+Performing a mixture of insertion, update, and deletion using a single statement
+================================================================================
+All data are stored in the python objects, this objects are resuable in nature can perform mixed operations
+
+Quiz
+====
+1)Create a new variable called Petal. Area, which multiples Petal.Length by Petal.Width
+2)Create a new variable called Sepal.LW.ratio , which divides Sepal.Length by Sepal.Width
+3)Create a new variable called Petal.Length.Classification , which categorises Petal.Length into small (<2),normal (2 5) and tall (>5)
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.w3resource.com/pandas/dataframe/dataframe-drop.php
+https://note.nkmk.me/en/python-pandas-drop/
+https://www.studytonight.com/pandas/pandas-dataframe-drop-method

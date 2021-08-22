@@ -1,0 +1,418 @@
+Intro
+Handling Text files
+Handling csv files
+Handling excel files
+Handling Binary files
+Handling XML files
+Handling JSON Files
+Handling SAS files
+Handling SPSS files
+Handling STATA files
+Handling web Data
+Connecting to Database
+
+Intro
+=====
+- we can read data from files stored outside the R environment
+-We can also write data into files which will be stored and accessed by the operating system
+-pandas can read and write into various file formats like csv, excel, xml etc.
+
+setting your directory
+----------------------
+import pandas as pd
+import os
+
+#getting the current directly
+os.getcwd()
+
+#change the default directly setting
+os.chdir(r"C:\Users\gbag\Downloads\pratice\Datasets\Datasets Pratice") 
+
+#check again the directly
+os.getcwd() 
+
+Handling Text files
+===================
+-A text file present on your local machine can be read using a slightly modified read.table command
+-Because it’s designed for reading tables, you can set the separator to an empty string ("") to read a text file line by line
+
+using String_IO
+---------------
+import io
+data_string = """Letters, Numbers
+                 a, 1
+                 b, 2
+                 c, 3"""
+
+data = io.StringIO(data_string)
+df = pd.read_csv(data, sep=",")
+df
+
+exporting the tabe limited file
+-------------------------------
+write.table(data_frame, file = "data.txt", sep = "\t")
+
+Handling csv files
+==================
+
+read the csv files
+------------------
+pd.read_csv("employee.csv") #
+pd.read_csv(StringIO(data), dtype={"b": object, "c": np.float64, "d": "Int64"}) #Specifying column data types
+data.decode("utf8").encode("latin-1") #decode and encode the dataframe to other unicdoe type
+pd.read_csv(BytesIO(data), encoding="latin-1") #specifiy unicode data  https://docs.python.org/3/library/codecs.html#standard-encodings
+
+
+pd.read_csv("tmp.csv", sep="|", thousands=",")  #The thousands keyword allows integers to be parsed correctly:
+pd.read_csv("tmp.csv", squeeze=True) #Using the squeeze parameter, the parser will return output with a single column as a Series:
+pd.read_csv(StringIO(data), true_values=["Yes"], false_values=["No"])  #replacing the boolean values for a column
+pd.read_fwf("bar.csv", colspecs=[(0, 6), (8, 20), (21, 33), (34, 43)], header=None, index_col=0)  #Files with fixed width columns
+pd.read_csv("data/mindex_ex.csv", index_col=[0, 1])  #Reading an index with a MultiIndex¶
+
+
+#parse the date
+pd.read_csv("employees.csv",parse_dates=True) 
+pd.read_csv("employees.csv",parse_dates=['Start Date']) #specificy the column
+
+Writing into a CSV File
+-----------------------
+df.to_csv('file_name.csv')
+df.to_csv('file_name.csv', index=False) #If you want to export without the index, simply add index=False;
+df.to_csv('file_name.csv', encoding='utf-8') #If you getUnicodeEncodeError , simply add encoding='utf-8' 
+dt.to_csv('C:/Users/abc/Desktop/file_name.csv') #path_or_buf: A string path to the file or a StringIO 
+dt.to_csv('file_name.csv’) # relative position 
+dt.to_csv('file_name.csv',sep='\t') # Use Tab to seperate data #sep: Specify a custom delimiter for the CSV output, the default is a comma.
+dt.to_csv('file_name.csv',na_rep='Unkown') # missing value save as Unknown #na_rep: A string representation of a missing value like NaN. The default value is ‘’.
+dt.to_csv('file_name.csv',float_format='%.2f') # rounded to two decimals #float_format: Format string for floating-point numbers.
+dt.to_csv('file_name.csv',header=False) #header: Whether to export the column names. The default value is True.
+dt.to_csv('file_name.csv',columns=['name']) #columns: Columns to write. The default value is None, and every column will export to CSV format. If set, only columns will be exported.
+dt.to_csv('file_name.csv',index=False) #index: Whether to write the row index number. The default value is True.
+
+
+Ref:
+https://towardsdatascience.com/how-to-export-pandas-dataframe-to-csv-2038e43d9c03
+
+Handling excel files
+====================
+-Microsoft Excel is the most widely used spreadsheet program which stores data in the .xls or .xlsx format
+-Pandas can read directly from these files using some excel specific packages.
+
+#exporting and removing the index.
+hrdata.to_excel("ds.xlsx",index=False)  
+
+#exporting the dataframe into sheets 
+writer = pd.ExcelWriter('pandas_multiple.xlsx', engine='xlsxwriter')
+df1.to_excel(report_1, sheet_name='Sheet1',index=False)
+df2.to_excel(report_1, sheet_name='Sheet1',index=False)
+
+
+Handling Binary files
+=====================
+-A binary file is a file that contains information stored only in form of bits and bytes.(0’s and 1’s).
+-They are not human readable as the bytes in it translate to characters and symbols which contain many other non-printable characters
+-The binary file has to be read by specific programs to be useable
+
+
+Writing the Binary File
+-----------------------
+
+Reading the Binary File
+-----------------------
+
+Ref:
+https://pymotw.com/2/struct/s
+
+Handling XML files
+==================
+-XML is a file format which shares both the file format and the data on the World Wide Web
+-It stands for Extensible Markup Language (XML). Similar to HTML it contains markup tags. 
+-But unlike HTML where the markup tag describes structure of the page, in xml the markup tags describe the meaning of the data contained into he file
+-You can read a xml file in R using the "XML" package. This package can be installed using following command.
+
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<holidays year="2017">
+    <holiday type="other">
+        <date>Jan 1</date>
+        <name>New Year</name>
+	<title lang="en">Learning XML</title>
+    </holiday>
+    <holiday type="public">
+        <date>Oct 2</date>
+        <name>Gandhi Jayanti</name>
+	<title lang="en">Harry Potter</title>
+    </holiday>
+</holidays>
+
+Get Attributes of Root
+----------------------
+# get all attributes
+attributes = root.attrib
+print(attributes)
+ 
+# extract a particular attribute
+year = attributes.get('year')
+print('year : ',year)
+
+Iterate over child nodes of root
+--------------------------------
+# iterate over all the nodes with tag name - holiday
+for holiday in root.findall('holiday'):
+    print(holiday)
+   
+Iterate over child nodes of root and get their attributes
+---------------------------------------------------------
+# iterate over child nodes
+for holiday in root.findall('holiday'): 
+
+    # get all attributes of a node
+    attributes = holiday.attrib
+    print(attributes) 
+
+    # get a particular attribute
+    type = attributes.get('type')
+    print(type)
+
+
+Finding interesting elements
+----------------------------
+-Element has some useful methods that help iterate recursively over all the sub-tree below it 
+for neighbor in root.iter('title'):
+    print(neighbor.attrib)
+
+    
+Access Elements of a Node
+-------------------------
+# iterate over all nodes
+for holiday in root.findall('holiday'):
+ 
+    # access element - name
+    name = holiday.find('name').text
+    print('name : ', name)
+ 
+    # access element - date
+    date = holiday.find('date').text
+    print('date : ', date)
+
+Access Elements of a Node without knowing their tag names
+---------------------------------------------------------
+for holiday in root.findall('holiday'):
+    # access all elements in node
+    for element in holiday:
+        ele_name = element.tag
+        ele_value = holiday.find(element.tag).text
+        print(ele_name, ' : ', ele_value)
+
+
+
+Data to XML
+-----------
+import pandas as pd
+
+df = pd.DataFrame([[1.3, 1.4, 5.2],
+                   [2.6, 1.4, 4.6],
+                   [2.1, 5.6, 4.6]],
+                  columns=['A', 'B', 'C'],
+                  index=['X', 'Y', 'Z'])
+
+xml_data = ['<root>']
+for column in df.columns:
+    xml_data.append('<{}>'.format(column))  # Opening element tag
+    for field in df.index:
+        # writing sub-elements
+        xml_data.append('<{0}>{1}</{0}>'.format(field, df[column][field]))
+    xml_data.append('</{}>'.format(column))  # Closing element tag
+xml_data.append('</root>')
+
+with open('coordinates.xml', 'w') as f:  # Writing in XML file
+    for line in xml_data:
+        f.write(line)
+
+
+Case 1 :
+import xml.etree.ElementTree as ET
+
+tree = ET.parse('employee.xml')
+root = tree.getroot()
+#get the root 
+root.tag
+
+#empty list
+id_=[]
+name_=[]
+salary_=[]
+startdate_=[]
+dept_=[]
+for employee in root.findall('EMPLOYEE'):
+    # access element - name
+    id1 = employee.find('ID').text
+    name = employee.find('NAME').text
+    salary = employee.find('SALARY').text
+    startdate = employee.find('STARTDATE').text
+    dept = employee.find('DEPT').text
+    id_.append(id1)
+    name_.append(name)
+    salary_.append(salary)
+    startdate_.append(startdate)
+    dept_.append(dept)
+
+#add to a dictionary
+dict1={'id':id_,
+  'name':name_,
+   'salary':salary_,
+   'startdate':startdate_,
+    'dept':dept_}
+
+#creating a dataframe
+df1=pd.DataFrame(dict1)
+df1['id']=df1['id'].astype('int')
+df1['dept']=df1['dept'].astype('category')
+df1['salary']=df1['salary'].astype('float')
+df1['startdate']=df1['startdate'].astype('datetime64')
+df1
+
+
+Ref:
+https://stackabuse.com/reading-and-writing-xml-files-in-python-with-pandas/
+https://stackoverflow.com/questions/52968877/read-xml-file-to-pandas-dataframe
+https://www.datacamp.com/community/tutorials/python-xml-elementtree
+https://www.tutorialkart.com/python/python-xml-parsing/  --nice tutorials
+https://docs.python.org/3/library/xml.etree.elementtree.html
+
+Handling JSON Files
+-------------------
+-JSON file stores data as text in human-readable format.
+-JSON is other form of XML
+-Json stands for JavaScript Object Notation. R can read JSON files using the rjson package
+
+Read the JSON File
+-------------------
+pd.read_json('employee.json')
+
+Convert JSON to a Data Frame
+----------------------------
+df=pd.read_json('employee.json')
+print(df.to_string())
+
+Handling SAS files
+==================
+pip install pyreadstat
+
+import pyreadstat as pyd
+
+Reading the sas datasets
+------------------------
+df, meta = pyd.read_sas7bdat('nba.sas7bdat',metadataonly=False) #reading the sas datasets
+
+
+print(df.head())
+print(meta.column_names)
+print(meta.column_labels)
+print(meta.column_names_to_labels)
+print(meta.number_rows)
+print(meta.number_columns)  #file encoding type
+print(meta.file_label)
+print(meta.file_encoding) #file encoding type
+
+Writing the sas datasets
+------------------------
+
+Ref:
+https://github.com/Roche/pyreadstat
+
+
+Handling SPSS files
+===================
+
+Read the files
+--------------
+df, meta = pyreadstat.read_sav('./SimData/survey_1.sav')
+
+df = pd.read_spss('./SimData/survey_1.sav') #using pandas
+type(df)
+
+Write an SPSS file 
+------------------
+import pyreadstat
+
+pyreadstat.write_sav(df, './SimData/survey_1_copy.sav')
+
+Ref:
+https://www.marsja.se/how-to-read-write-spss-files-in-python-pandas/
+
+Handling STATA files
+====================
+
+import pyreadstat
+
+dtafile = './SimData/FifthDayData.dta'
+df, meta = pyreadstat.read_dta(dtafile)
+
+#using pandas
+dtafile = './SimData/FifthDayData.dta'
+df = pd.read_stata(dtafile)
+df.tail()
+
+url = 'http://www.principlesofeconometrics.com/stata/broiler.dta'
+df = pd.read_stata(url)
+df.head()
+
+
+Ref:
+https://www.marsja.se/how-to-read-stata-files-in-python-with-pandas/
+
+Handling web Data
+=================
+-Many websites provide data for consumption by its users.
+-For example the World Health Organization(WHO) provides reports on health and medical information in the form of CSV, txt and XML files
+-Using python programs, we can programmatically extract specific data from such websites
+
+Refer python\API\Webscraping
+
+Connecting to Database
+======================
+-The data is Relational database systems are stored in a normalized format.
+-So, to carry out statistical computing we will need very advanced and complex Sql queries
+-But R can connect easily to many relational databases like MySql, Oracle, Sql server etc.
+-and fetch records from them as a data frame. Once the data is available in the R environment, it becomes a normal R data set and can be manipulated or analyzed using all the powerful packages and functions
+
+MySQL Package
+--------------
+
+
+Connecting R to MySql
+---------------------
+
+
+Querying the Tables
+-------------------
+
+
+Query with Filter Clause
+------------------------
+
+
+Updating Rows in the Tables
+---------------------------
+
+
+Inserting Data into the Tables
+------------------------------
+
+
+Creating Tables in MySql
+------------------------
+
+
+Dropping Tables in MySql
+------------------------
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

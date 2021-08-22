@@ -1,0 +1,74 @@
+Intro
+Querying data from all columns of a table
+Query data from a single column
+Querying data from multiple columns
+
+Intro
+=====
+-In pandas if you access a single column it is the series, multiple series combines the dataframe.
+
+#load the packages
+import pandas as pd
+import os
+
+os.getcwd()#getting the current directly
+os.chdir(r"C:\Users\gbag\Downloads\pratice\Datasets\Datasets Pratice") #change the default directly setting
+os.getcwd() #check again the directly
+
+#import the external file
+nba= pd.read_csv("nba.csv")
+nba.head()
+nba.info() #info of the dataframe
+nba.shape #shape of the dataframe
+
+Querying data from all columns of a table
+=========================================
+nba
+
+Query data from a single column
+===============================
+#using [] bracket
+nba.head() #first 5 rows
+nba['Name'] #extracting single column using square bracket
+nba.Name #extracting without the square bracket
+
+#using .iloc method
+-Dataframe.iloc[] method is used when the index label of a data frame is something other than numeric series of 0, 1, 2, 3….n or in case the user doesn’t know the index label. 
+-Rows can be extracted using an imaginary index position which isn’t visible in the data frame
+nba.iloc[:,1] #using the column index
+nba.iloc[:,1:2] #using range index
+
+Querying data from multiple columns
+====================================
+#using [] bracket
+nba.head() #first 5 rows
+nba[['Name','Team']] #extracting two column using square bracket
+nba[['Name','Team','Number']] #extracting three column using square bracket
+nba[['Name','Team','Number']].head()
+nba[['Name','Team','Number']].tail()
+
+using .iloc method
+------------------
+nba.iloc[:,1] #using index
+nba.iloc[:,[1,3,4]] #using the muliple column index
+nba.iloc[:,1:5] #using range index
+
+using filter method
+-------------------
+df.filter(["First Name", "Gender", "Salary",'Bonus']) #if any values files it omit from the output
+df.filter(regex ='[aA]') ## Using regular expression to extract all columns which has letter 'a' or 'A' in its name.
+
+display the dataframe in HTML format
+------------------------------------
+from IPython.display import display, HTML
+display(HTML(emp.to_html(index=False)))#hide the index in the python output
+
+Quiz
+====
+
+Assignment
+==========
+
+Resources:
+=========
+

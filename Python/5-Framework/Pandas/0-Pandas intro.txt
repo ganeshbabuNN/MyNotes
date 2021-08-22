@@ -1,0 +1,251 @@
+Intro
+Python Pandas Introduction
+Key Features of Pandas
+Benefits of Pandas
+Python Pandas Data Structure
+Pandas Data Type
+This Module's Dataset + Memory Optimization
+setting options
+
+intro
+=====
+Python Pandas is defined as an open-source library that provides high-performance data manipulation in Python
+
+Python Pandas Introduction
+==========================
+-Pandas is defined as an open-source library that provides high-performance data manipulation in Python
+-The name of Pandas is derived from the word Panel Data, which means an Econometrics from Multidimensional data. It is used for data analysis in Python and developed by Wes McKinney in 2008
+-Data analysis requires lots of processing, such as restructuring, cleaning or merging, etc
+- There are different tools are available for fast data processing, such as Numpy, Scipy, Cython, and Panda. But we prefer Pandas because working with Pandas is fast, simple and more expressive than other tool
+
+import pandas as pd
+pd.__version__ #pandas version
+pd.show_versions(as_json=False) # get the version of all packages
+
+Key Features of Pandas
+======================
+-It has a fast and efficient DataFrame object with the default and customized indexing.
+-Used for reshaping and pivoting of the data sets.
+-Group by data for aggregations and transformations.
+-It is used for data alignment and integration of the missing data.
+-Provide the functionality of Time Series.
+-Handle multiple operations of the data sets such as subsetting, slicing, filtering, groupBy, re-ordering, and re-shaping.
+-It integrates with the other libraries such as SciPy, and scikit-learn.
+-Provides fast performance, and If you want to speed it, even more, you can use the Cython.
+
+Benefits of Pandas
+==================
+-Data Representation: It represents the data in a form that is suited for data analysis through its DataFrame and Series.
+-Clear code: The clear API of the Pandas allows you to focus on the core part of the code. So, it provides clear and concise code for the user.
+
+
+Python Pandas Data Structure
+============================
+The Pandas provides two data structures for processing the data, i.e., Series and DataFrame, which are discussed below:
+
+1) Series
+---------
+-It is defined as a one-dimensional array that is capable of storing various data types
+-The row labels of series are called the index. We can easily convert the list, tuple, and dictionary into series using "series' method.
+-A Series cannot contain multiple columns. It has one parameter
+
+Creating Series from Array:
+import pandas as pd  
+import numpy as np  
+info = np.array(['P','a','n','d','a','s'])  
+a = pd.Series(info)  
+print(a)
+
+
+2)DataFrame
+-----------
+-It is a widely used data structure of pandas and works with a two-dimensional array with labeled axes (rows and columns). 
+-DataFrame is defined as a standard way to store data and has two different indexes
+-Each series forms a dataframe.
+
+#install the packages
+pip install pandas
+
+#load the packages
+import pandas as pd
+
+#Setting the directory
+import os
+os.chdir('C:\GBAG_Back\pyworkspace\datasets\BRGA Reports')
+os.getcwd() ' get the currend working directory
+
+#import the external file
+emp= pd.read_csv("employees.csv")
+emp
+
+#view the data
+emp
+
+# get the type of object
+type(emp)
+
+# get the data frame informations
+emp.info()
+emp.info(verbose=False) #short summary of dataframe excludes columns and dtypes 
+emp.info(verbose=True,null_counts = False) #for excludes the non-null counts
+
+mp.size # get the size of the dataframe
+emp.shape #dataframe shape
+emp.ndim #dataframe ndim
+emp.columns #description the columns
+emp.head()  #top 10 observations
+emp.head(20)  #top 20 observations
+emp.tail()  #last 10 observations
+emp.tail(20)  #last 20 observations
+
+#for series
+emp['First Name'].size
+emp['First Name'].shape
+emp['First Name'].ndim
+
+#overall statistics summary
+emp.describe() #get the descritive statistics summary
+
+#handling missing values
+emp.isna().sum() #This will give number of NaN values in every column.
+emp.isnull().sum(axis = 0) #This will give number of NaN values in every column.
+emp.isnull().sum(axis = 1) #This will give number of NaN values in every column.
+emp.isnull().sum().sort_values(ascending = False) #The below will print all the Nan columns in descending order.
+# emp['First Name'].isnull().sum() #get the missing value for a specific column
+emp[emp==0].count(axis=0) #To count zeroes
+
+#More info
+import numpy as np
+numeric_inputs =df.select_dtypes(include=np.number) # select numeric columns - numpy object
+numeric_inputs.columns # check selected columns with the .columns attribute
+
+numeric_inputs_2 = df.select_dtypes(include='number')# select numeric columns - string
+numeric_inputs_2.columns # check selected columns with the .columns attribute
+
+
+# concise summary of the data frame, including the column names and their data types
+df.info()
+
+# check the data types of the columns
+df.dtypes
+
+
+Pandas Data Type
+=================
+
+pandas_dtype	python	      numpy_type 		     	usage
+object		str or mixed- string__,unicode_,mixed_types  	text or mixed numeric and non-numeric values
+int64-int 	int	      int_,int8,int16,int32,int64,uint8	integer numbers
+			      unit16,uint32,uint64
+float64		float	      float_,float16,float32,float64	floating point number
+bool		bool	      bool_				true/false values
+datetime64	NA	      datetime64[ns]			date and times values
+timedelta[ns]	NA	      NA				differences betwen dataframes
+category	NA	      NA				finite list of values	      
+
+for conversion.
+Ref the data definations chapters.
+
+This Module's Dataset + Memory Optimization
+============================================
+
+we can use info() function
+--------------------------
+-We can use Pandas info() function to find the total memory usage of a dataframe.
+-Pandas info() function is mainly used for information about each of the columns, their data types, and how many values are not null for each variable. 
+-Pandas info() fnction also gives us the memory usage at the end of its report
+
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+df.head()
+
+#To get the full memory usage, we provide memory_usage=”deep” argument to info()
+df.info(memory_usage="deep") 
+
+#We can get each column/variable level memory usage using Pandas memory_usage() function We get memory used by each column/variable in bytes
+df.memory_usage()
+
+#We can get memory usage iuncluding object datatype using the argument deep=True to memory_usage() function
+df.memory_usage(deep=True)
+
+#Since memory_usage() function returns a dataframe of memory usage, we can sum it to get the total memory used
+df.memory_usage(deep=True).sum()
+
+Typically, object variables can have large memory footprint.
+By converting object variable of type string to categorical, one can reduce memory footprint
+
+#lets do a excercise converting into the types variable and check the memory.
+df["Gender"].nunique() #count of duplicates
+df["Gender"].unique() #uniques values 
+df["Gender"]=df["Gender"].astype("category")
+df["Start Date"]=pd.to_datetime(df["Start Date"]) #praise to the dates
+df["Last Login Time"]=pd.to_datetime(df["Last Login Time"])
+df["Senior Management"].unique() ##get the unique value of senior management variable
+df["Senior Management"]=df["Senior Management"].astype("bool")
+df["Team"].unique() #get the unique value of team variable
+df["Team"]=df["Team"].astype("category")
+
+#convert_dtypes() function and convert the to best data types automatically. 
+#Another big advantage of using convert_dtypes() is that it supports Pandas new type for missing values pd.NA
+#generally
+df=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"]) #use parse_date function to convert to the datetime 
+df.convert_dtypes().dtypes
+
+Ref:
+https://cmdlinetips.com/2020/03/memory-usage-of-pandas-dataframe
+
+pandas setting options
+======================
+Note this setting is not affecting the underlying data, it is only affecting the float column display.
+
+import pandas as pd
+
+pd.set_option("display.precision", 3) # Use 3 decimal places in output display
+pd.set_option("display.expand_frame_repr", False) # Don't wrap repr(DataFrame) across additional lines
+
+pd.set_option("display.max_rows", 25) # Set max rows displayed in output to 25
+pd.set_option('max_rows',10) #Maxium rows displayed in this session
+pd.options.display.max_rows = 100
+pd.set_option('max_columns',1111)   #Maxium Columns displayed in this session
+pd.set_option('display.max_columns', None) #Maxium rows displayed in this session
+pd.options.display.max_columns = None
+pd.reset_option('display.max_rows/columns') # To reset
+
+pd.set_option('display.max_colwidth', 500)   #Maxium Columns with displayed in this session
+pd.set_option('display.max_colwidth', None)
+pd.reset_option('display.max_colwidth')
+
+pd.describe_option()  #will print out the description of settings and their current value
+pd.describe_option('rows') #You can also use it to print a specific option
+pd.reset_option('all')  #you can reset all options by running the following statement
+
+pd.set_option('display.max_info_columns', 200)  #When profiling a dataset with 150 features, we can set display.max_info_columns to a value that covers all columns
+pd.set_option('display.max_info_rows', 5) #We can simply set display.max_info_rows to a small value to avoid counting it
+
+pd.set_option('display.float_format', '{:.2f}%'.format) #to format without dollar sign
+pd.set_option('display.float_format', '${:.2f}'.format) #to format with a dollar sign
+pd.set_option('display.float_format',  '{:,.2f}'.format)  #Setting decimal format
+pd.set_option('display.float_format',  '{:,}'.format) #Formatting big numbers with comma
+
+pd.get_option('display.precision') #Setting the precision for float column
+pd.set_option('display.precision', 2)
+pd.reset_option('display.precision')
+
+pd.options.mode.chained_assignment = None #for avoiding SettingWithCopyWarning  
+
+
+Ref:
+https://towardsdatascience.com/8-commonly-used-pandas-display-options-you-should-know-a832365efa95
+https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html#available-options
+https://queirozf.com/entries/pandas-display-options-examples-and-reference
+
+Quiz
+====
+
+Assignment
+==========
+https://github.com/guipsamora/pandas_exercises
+https://github.com/ajcr/100-pandas-puzzles
+
+Resources:
+=========
+https://towardsdatascience.com/top-4-repositories-on-github-to-learn-pandas-1008cb769f77 
