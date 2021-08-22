@@ -1,0 +1,2 @@
+for notebook only
+%config Completer.use_jedi = False
