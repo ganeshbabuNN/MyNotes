@@ -223,6 +223,10 @@ run;
 
 Manipulating Character Variables
 --------------------------------
+proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sakila_film_text" 
+DBMS = xlsx out = film_text replace ;
+run;
+
 -In addition to performing calculations on numeric variables, you can also use one-dimensional arrays to manipulate character variables
 data film_text_char;
 	set work.film_text;
@@ -267,7 +271,7 @@ run;
 
 DO OVER and Implicit Arrays
 ===========================
--​There are two main types of arrays, implicit and explicit.
+-There are two main types of arrays, implicit and explicit.
 -Explicit arrays are the most common type of arrays and are the only type of arrays that have been discussed thus far in the article.
 -However, implicit arrays are an alternative type of array available in SAS and can also be useful.
 -With explicit arrays, the index specification (either an asterisks or number of elements in the array) must be explicitly defined in the array statement 
@@ -282,6 +286,10 @@ Using DO OVER to Perform a Calculation on all Character Variables
 -With an implicit array, we can simplify this code even further. To define an implicit array, 
 we simply omit the array dimension (number of elements) after stating the array name
 -After defining the array name and array elements, we can use the DO OVER LOOP to loop through all values of the array without listing any of them
+
+proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sakila_film" 
+DBMS = xlsx out = film replace ;
+run;
 
 data flim_array(keep=title rating special_features);
 	set work.film;
