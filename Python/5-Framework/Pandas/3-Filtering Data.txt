@@ -6,7 +6,6 @@ Filter data based on a values
 how to get the distinct data
 How to eliminate duplicate rows from the output of a query
 perform matching based on specific patterns
-Check if an expression or values in a column is NULL or not
 Random selecting the rows
 filtering the missing values
 Applying the functions
@@ -281,11 +280,6 @@ emp['Start Date'].min()
 emp['Start Date'].max()
 emp[emp["Start Date"].between("1983-06-13","2000-03-13")].sort_values("Start Date",ascending=False)
 
-filtering the null values
--------------------------
-df[df.Team.notnull()] #filter nonull value based on column
-df[df.Team.isnull()] #filter null value based on column
-
 filtering the values based on range
 -----------------------------------
 df[df['Salary'].between(50000, 51000)] #numeric range
@@ -320,10 +314,6 @@ np.unique(bank[['education','job']].values)
 using duplicated functions to get unique values
 -----------------------------------------------
 bank[~bank[['education','marital']].duplicated()][['education','marital']] #using caret operator
-
-using inof()
-------------
-bank.inof() #find the non null values
 
 benchmarking based on volume of data
 ------------------------------------
@@ -380,17 +370,6 @@ perform matching based on specific patterns
 ===========================================
 --refer regular expression chapter
 
-Check if an expression or values in a column is NULL or not
-=========================================================
-
-using isnull function
----------------------
-emp[pd.isnull(emp["Team"])]
-
-using notnull function
-----------------------
-emp[pd.notnull(emp["Gender"])]
-
 Random selecting the rows
 =========================
 
@@ -420,7 +399,14 @@ filtering the missing values
 -np.nan, None and pd.NaT (for datetime64[ns] types) are standard missing value for Pandas.
 -A new missing data type (<NA>) introduced with Pandas 1.0 which is an integer type missing value representation
 
-#filter the non missing rows
+bank.info() #find the non null values
+
+df[df.Team.notnull()] #filter nonull value based on column
+emp[pd.notnull(emp["Gender"])]
+df[df.Team.isnull()] #filter null value based on column
+emp[pd.isnull(emp["Team"])]
+
+#filter the non missing rows at the dataframe level
 tele[tele.notnull().all(axis=1)] #not a missing values
 
 #filter the missing rows
