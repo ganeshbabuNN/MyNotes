@@ -43,14 +43,15 @@ run;
 
 -for structure datalines
 - the @ symbol contals the positions of the characters
-data charstr;
-input a $ b $ c $ d $ ;
-datalines;
-gani rubn gbag pyks
-abcd qwer thes rfsa
-wete wfee dcee errt
+DATA TEMP;
+INPUT   @1 EMPID $ @4 ENAME $ @13 DEPT $ ;
+DATALINES;
+14 Rick     IT 
+241 Dan      OPS 
+30 Sanvi    IT 
+410 Chanchal OPS 
+52 Piyu     FIN 
 ;
-run;
 
 2)Character Variables
 ----------------------
