@@ -406,10 +406,13 @@ emp[pd.notnull(emp["Gender"])]
 df[df.Team.isnull()] #filter null value based on column
 emp[pd.isnull(emp["Team"])]
 
+#all method :Return whether all elements are True, potentially over an axis.
+#any method :Return whether any element is True, potentially over an axis.
+
 #filter the non missing rows at the dataframe level
 tele[tele.notnull().all(axis=1)] #not a missing values
 
-#filter the missing rows
+#filter the missing rows at dataframe level
 tele[tele.isnull().any(axis=1)] # display rows which contain any missing values
 
 #Get the number of missing data per column
