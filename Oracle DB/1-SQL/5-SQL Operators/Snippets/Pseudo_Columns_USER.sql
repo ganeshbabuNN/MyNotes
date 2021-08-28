@@ -1,0 +1,1 @@
+select USER,first_name from employees;
