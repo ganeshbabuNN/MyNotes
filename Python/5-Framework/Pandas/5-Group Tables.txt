@@ -1,0 +1,293 @@
+intro 
+how to group rows into subgroups and apply an aggregate function for each group
+Filter a group of rows
+how to generate multiple grouping sets in a query
+
+Intro
+=====
+groupby is used for grouping the data according to the categories and apply a function to the categories. It also helps to aggregate data efficiently.
+
+syntax:
+	dataframe.groupby()
+
+Applying function to group
+After splitting a data into a group, we apply a function to each group in order to do that we perform some operation they are:
+
+Aggregation : It is a process in which we compute a summary statistic (or statistics) about each group. 
+	     For Example, Compute group sums ormeans
+Transformation : It is a process in which we perform some group-specific computations and return a like-indexed. 
+		For Example, Filling NAs within groups with a value derived from each group
+Filtration : It is a process in which we discard some groups, according to a group-wise computation that evaluates True or False. 
+	    For Example, Filtering out data based on the group sum or mean
+
+
+fortune=pd.read_csv("fortune1000.csv",index_col='Rank')
+fortune.head(3)
+
+type(fortune)
+
+How to group rows into subgroups and apply an aggregate function for each group
+===============================================================================
+
+pd.groupby object
+-----------------
+
+Grouping by Single Columns
+*-------------------------*
+sectors=fortune.groupby("Sector") #single column
+
+type(fortune)
+type(sectors)
+len(sectors)
+
+#cross check the unique
+fortune['Sector'].unique()
+fortune['Sector'].nunique()
+
+#in groupby object
+sectors.size()
+
+fortune.tail()
+fortune.loc[45]
+
+#using traditional way
+fortune['Sector'].value_counts()
+
+#in groupby object
+sectors.first() #    Computed first of values within each group.
+fortune.tail()
+sectors.last()
+sectors.groups
+
+Retrieve a group from a GroupBy object with the get_group Method
+*--------------------------------------------------------------*
+sectors=fortune.groupby("Sector")
+sectors.first()
+
+sectors.groups["Retailing"] #return the index
+
+sectors.get_group("Chemicals")
+sectors.get_group("Energy")
+sectors.get_group("Retailing")
+sectors.get_group("Retailing") #return the dataframe
+
+#in df
+fortune[fortune['Sector']=='Retailing'] #look out the difference in betwen you want to achieve
+
+Grouping by Multiple Columns
+*--------------------------*
+fortune=pd.read_csv("fortune1000.csv",index_col='Rank')
+sectors=fortune.groupby(["Sector","Industry"]) #multiple column grouping
+fortune.head(3)
+sectors.sum()
+
+sectors['Revenue'].sum()
+sectors['Employees'].mean()
+
+The .agg() Method
+-----------------
+-the few are the agg functions.
+-agg() function in Pandas gives us the flexibility to perform several statistical computations all at once
+
+fortune=pd.read_csv("fortune1000.csv",index_col='Rank')
+sectors=fortune.groupby("Sector")
+fortune.head(3)
+
+sectors["Employees"].mean()
+sectors["Profits"].sum()
+sectors["Revenue"].sum()
+
+#applying multiple functions for single variable
+sectors['Revenue'].agg([np.sum, np.mean, np.std]) 
+
+#combine above using the agg() among the numerical columns
+sectors.agg({"Revenue":"sum",
+             "Profits":"sum",
+             "Employees":"mean"
+})
+
+#combine multiple functions of single variable
+sectors.agg({"Revenue":["sum","mean"], #mutliple aggregate
+             "Profits":"sum",
+             "Employees":"mean"
+})
+
+#this will individuals each numeric variables along with this aggregates
+sectors.agg(["size","sum","mean"])
+
+#calling .agg() method passing list of functions for series
+func_list=[min, max, sorted]
+series=fortune.Revenue
+result1, result2, result3= series.agg(func_list)
+
+#using lamba functions using.
+import numpy as np
+arr=np.random.randn(10)  # creating random arr of 10 elements
+series=pd.Series(arr) # creating series from array
+result=series.agg(lambda num : num + 2)  # calling .agg() method
+print('Array before operation: \n', series,  # display
+      '\n\nArray after operation: \n',result)
+
+
+Iterating through Groups
+------------------------
+fortune=pd.read_csv("fortune1000.csv",index_col='Rank')
+sectors=fortune.groupby("Sector")
+fortune.head(3)
+
+sectors['Profits'].max()
+
+df=pd.DataFrame(columns=fortune.columns)
+df
+
+#classical way using python
+for sector,data in sectors: #tempovary data for group by object sector and the results stored in data variables
+    high_cmpy_grp=data.nlargest(1,"Revenue")
+    df=df.append(high_cmpy_grp)
+
+df
+
+#using groupby
+cities=fortune.groupby("Location")
+for city,data in cities:
+    high_ren=data.nlargest(1,"Revenue")
+    df=df.append(high_ren)
+df
+
+
+Methods used by groupBY objects
+--------------------------------
+some of the functions are
+count() – Number of non-null observations
+sum() – Sum of values
+mean() – Mean of values
+median() – Arithmetic median of values
+min() – Minimum
+max() – Maximum
+mode() – Mode
+std() – Standard deviation
+var() – Variance
+
+#using methods
+sectors.max()
+sectors.min()
+sectors.sum() #only numerical variables are displayed
+sectors.get_group("Apparel")["Profits"].sum() #normal way
+sectors['Revenue'].sum() #other way
+sectors['Employees'].sum()
+sectors["Profits"].max()
+sectors['Profits'].min()
+sectors['Employees'].mean()
+sectors[['Revenue','Profits']].sum()
+sectors[['Revenue','Profits']].max()
+sectors[['Employees','Industry']].count()
+
+#using agg operations
+sectors.get_group("Telecommunications") #filter the group 
+fortune.groupby("Sector")["Company"].count() #count based on the group of value
+fortune.groupby(["Industry","Sector"])["Company"].count() #count based on the group of value
+
+#To more closely emulate the SQL result and push the grouped-on columns back into columns in the result, you an use as_index=False
+fortune.groupby(["Industry","Sector"], as_index=False)["Company"].count()
+#sorting
+fortune.groupby("Sector",sort=True)["Company"].count() #sort=True is ascending
+
+grouping more than one variable
+------------------------------
+sectors.get_group("Telecommunications") #filter the group 
+fortune.groupby("Sector")["Company"].count() #count based on the group of value
+fortune.groupby(["Industry","Sector"])["Company"].count() #count based on the group of value
+
+#To more closely emulate the SQL result and push the grouped-on columns back into columns in the result, you an use as_index=False
+fortune.groupby(["Industry","Sector"], as_index=False)["Company"].count()
+
+#sorting
+fortune.groupby("Sector",sort=True)["Company"].count() #sort=True is ascending
+
+grouping with summary functions
+--------------------------------
+#some of the functions
+count() – Number of non-null observations
+sum() – Sum of values
+mean() – Mean of values
+median() – Arithmetic median of values
+min() – Minimum
+max() – Maximum
+mode() – Mode
+std() – Standard deviation
+var() – Variance
+
+#using methods
+sectors.max()
+sectors.min()
+sectors.sum() #only numerical variables are displayed
+sectors.get_group("Apparel")["Profits"].sum() #normal way
+sectors['Revenue'].sum() #other way
+sectors['Employees'].sum()
+sectors["Profits"].max()
+sectors['Profits'].min()
+sectors['Employees'].mean()
+sectors[['Revenue','Profits']].sum()
+sectors[['Revenue','Profits']].max()
+sectors[['Employees','Industry']].count()
+
+Ref:
+https://www.geeksforgeeks.org/pandas-groupby/ 
+
+using pandas.Grouper method
+---------------------------
+..ctd 
+
+Filter a group of rows
+======================
+fortune=pd.read_csv("fortune1000.csv",index_col='Rank')
+sectors=fortune.groupby("Sector")
+fortune.head(3)
+
+sectors1[sectors1.index=='Aerospace & Defense'] #filtering the index
+sectors1[sectors1.Revenue> 400000]#filtering the column level
+sectors1[(sectors1.Revenue> 500000) & (sectors1.Revenue <= 1904000)]#filtering the multiple conditions
+sectors1[sectors1.Revenue> 400000]['Revenue'] #filtering and display a column
+
+How to generate multiple grouping sets in a query
+=================================================
+
+Using pd.aggregate() functions
+-------------------------------
+Dataframe.aggregate() function is used to apply some aggregation across one or more column. Aggregate using callable, string, dict, or list of string/callables.
+nba = pd.read_csv("nba.csv")
+nba
+
+nba.aggregate({"Number":['sum', 'min'],
+              "Age":['max', 'min'],
+              "Weight":['min', 'sum'], 
+              "Salary":['sum']})
+
+
+Transformation 
+--------------
+Transformation is a process in which we perform some group-specific computations and return a like-indexed. 
+Transform method returns an object that is indexed the same (same size) as the one being grouped
+
+sectors.transform(lambda x: (x - x.mean()) / x.std()*10)
+
+Filtration
+----------
+-Filtration is a process in which we discard some groups, according to a group-wise computation that evaluates True or False.
+
+sectors.filter(lambda x: len(x) >= 2)
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://pandas.pydata.org/docs/user_guide/groupby.html
+https://www.geeksforgeeks.org/python-pandas-dataframe-groupby/
+https://realpython.com/pandas-groupby/
+https://www.analyticsvidhya.com/blog/2020/03/groupby-pandas-aggregating-data-python/
+https://www.geeksforgeeks.org/pandas-groupby/

@@ -1,0 +1,93 @@
+Intro
+Sorting the data Single/multiple columns 
+Sorting the data with NULL values
+Sorting by date
+
+Intro
+=====
+Sorting the data frame
+
+#load the packages
+import pandas as pd
+import os
+
+os.getcwd()#getting the current directly
+os.chdir(r"C:\Users\gbag\Downloads\pratice\Datasets\Datasets Pratice") #change the default directly setting
+os.getcwd() #check again the directly
+
+#import the external file
+emp= pd.read_csv("employees.csv",parse_dates=["Start Date"]) #parse_dates parameter helps to convert to datetime type
+emp.head()
+emp.info() #info of the dataframe
+emp.shape #shape of the dataframe
+
+Convert DataFrame Column Types with the astype Method
+-----------------------------------------------------
+-converting the column type to their respective data type is done throught asType method
+-this helps in performing approriate operations.
+
+emp.convert_dtypes().dtypes  #convert to the approiate types expect category
+emp["Gender"]=emp["Gender"].astype("category") 
+# emp["Salary"]=emp["Salary"].astype("int64")
+# emp["DateOfJoining"]=pd.to_datetime(emp["Start Date"].apply(str)+" " +emp['Last Login Time']) #creating a new columns
+emp["Senior Management"]=emp["Senior Management"].astype("category")
+emp["Team"]=emp["Team"].astype("category")
+
+Sorting the data Single/multiple columns example
+================================================
+
+sorting single column
+----------------------
+#using by clause
+emp[['Start Date']].sort_values(by='Start Date',ascending=False) #for single variable 
+emp['Start Date'].sort_values() #for series
+
+#using ascending arguments if true=Descending and false ascending which is the default one
+emp.sort_values("First Name",ascending=False,inplace=False) #character variables
+emp.sort_values("Salary",ascending=True,inplace=False) #Numeric variables
+emp.sort_values(by="First Name",ascending=True,inplace=False)#using by parameter which is default at 1st argument
+
+#using the inplace =True saves the permantent changes in that dataframe
+emp.sort_values("First Name",ascending="False",inplace=True)
+
+sorting multiple column
+------------------------
+#using by clause
+emp[['First Name','Start Date','Salary']].sort_values(by=['Start Date','Salary'],ascending=[False,True]) #for multiple variable 
+
+#sorting more then one column
+emp.sort_values(["Team","First Name"],ascending=False)
+emp.sort_values(["Start Date","Salary"],ascending=[False,True])
+
+sorting based on the index
+--------------------------
+#sort the based on the index
+emp.sort_index(ascending=False,inplace=False)
+
+#Another way where the sort_index work internally
+emp1=emp.sort_values("First Name",ascending=True) #sorting the First Name 
+emp1.reset_index(inplace=True) #Remove column name 'A' #automatimcally reset the indes and the sorted manner
+emp1.drop(['index'],axis=1) #dropping the index column
+
+Sorting the data with missing values
+===================================
+#sorting based on the missing value
+emp.sort_values("Senior Management",ascending="True",na_position="first") #sort NaN first
+emp.sort_values("Team",ascending="True",na_position="last") #sort NaN last
+
+Sorting by date
+===============
+#sorting based on the missing value
+emp.sort_values("DateOfJoining",ascending=False)
+
+Quiz
+====
+
+Assignment
+==========
+-Sort descending order for Sepal.Length
+-Sort ascending order for Petal.Width
+
+Resources:
+=========
+https://dplyr.tidyverse.org/reference/arrange.html

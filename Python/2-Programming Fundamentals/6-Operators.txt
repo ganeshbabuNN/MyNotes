@@ -51,11 +51,11 @@ b=50
 c=3
 print("Addition operator",a+b)
 print("subtractions operator",a-b)
-print("Division operator",a/b)
+print("Division operator",a/b) #the result return the floating value
 print("Multiplications operator",a*b)
 print("Reminder operator",a%b)
 print("exponent operator",a**c)
-print("Floor operator",a//b)
+print("Floor operator",a//b) #the result return the integer value
 print("Floor operator1 is ",5//2) #floor rounds down a number to its nearest whole value, ceil rounds a number up to its nearest whole value
 print("Floor operator2 is ",-5//2)
 

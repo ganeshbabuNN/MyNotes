@@ -1,0 +1,413 @@
+Intro
+Concatenating datasets
+Intro of Wide -long and long-wide format
+Tranposing multiple columns into single column
+Tranposing single column into multiple columns
+Tranposing rows into column and column into rows
+Cross Tabluted reports
+
+intro
+=====
+In general,We see how to structure our data leading to the four rules defining a tidy dataset:
+
+1)Each variable has its own column
+2)Each observation has its own row
+3)Each value must have its own cell
+4)Each type of observational unit forms a table
+
+#bigmac datasets
+bigmac=pd.read_csv("bigmac.csv")
+bigmac.head()
+bigmac.info()
+
+#sales datasets
+sales=pd.read_csv("salesmen.csv",parse_dates=["Date"])
+sales['Salesman']=sales['Salesman'].astype("category")
+sales.info()
+
+#foods datasets
+foods=pd.read_csv("foods.csv")
+foods.head()
+foods.convert_dtypes().dtypes
+foods.info()
+foods["Frequency"]=foods["Frequency"].astype("category")
+foods["Gender"]=foods["Gender"].astype("category")
+foods["Item"]=foods["Item"].astype("category")
+foods
+
+#worlds datasets
+world=pd.read_csv("worldstats.csv",index_col=["country","year"])
+world
+
+#sales data
+sales=pd.read_csv("quarters.csv")
+sales
+
+Concatenating datasets
+=====================
+At the high level, there are two ways you can merge datasets; you can add information by adding more rows or by adding more columns to your dataset. 
+In general, when you have datasets that have the same set of columns or have the same set of observations,
+you can concatenate them vertically or horizontally, respectively. Let's learn by seeing some examples.
+
+Adding datasets horizontally(Columns)
+-------------------------------------
+Refer the "4-Joining Tables" chapater "Merge rows and columns" sections
+
+Adding datasets vertically(rows)
+-------------------------------
+Refer the "4-Joining Tables" chapater "Merge rows and columns" sections
+
+Intro of Wide -long and long-wide format
+========================================
+Example
+This is a long format:
+-When you think long, think vertical
+-In long vertical format, every row represents an observation belonging to a particular category.
+Product | Attribute | Value
+A | Height | 10
+A | Width | 5
+A | Weight | 2
+B | Height | 20
+B | Width | 10
+
+
+The same data is a wide format would be:
+-When you think ‘wide’, think 'horizontal’
+-In wide format, categorical data is always grouped. You can think of it as a summary of long data. It is easier to read and interpret as compared to long format.
+Product | Height | Width | Weight
+A | 10 | 5 | 2
+B | 20 | 10 | NA
+
+Tranposing multiple columns into single column
+==============================================
+-This is like converting Wide to Long Format data.
+-This can be achieved using melt functions.
+
+Using melt functions
+-------------------
+-is used to change the df format from wide to long
+-it is used to create specific format of the df object where one or more columns work as identifier
+-all the remaining columns are treated as values and unpivoted to the row axis and only two columns -variables and values
+-we can use pivot() functions to unmelt the output datafframe back to orginal dataframe
+
+#multiple columns is quaters to be turned to single columns and their values to be displayed
+pd.melt(sales,id_vars="Salesman",var_name="Quaters",value_name="Revenue")
+
+#another example
+d1 = {"Name": ["ganesh", "vedha", "nishu"], "ID": [1, 2, 3], "Role": ["CEO", "Editor", "Author"]}
+df = pd.DataFrame(d1)
+df
+
+#single column
+pd.melt(df, id_vars=["ID"], value_vars=["Name", "Role"])
+pd.melt(df, id_vars=["ID"], value_vars=["Name", "Role"], var_name="Attribute", value_name="Value")
+
+#Multiple columns
+pd.melt(df, id_vars=["ID", "Name"], value_vars=["Role"])
+# Skipping Columns in melt() Function
+pd.melt(df, id_vars=["Name"], value_vars=["Role"])
+
+Unmelting DataFrame using pivot() function
+-----------------------------------------
+df_melted=pd.melt(df, id_vars=["ID"], value_vars=["Name", "Role"], var_name="Attribute", value_name="Value")
+df_melted
+df_unmelted=df_melted.pivot(index='ID', columns='Attribute')
+df_unmelted
+df_unmelted = df_unmelted['Value'].reset_index()
+df_unmelted
+df_unmelted.columns.name = None
+df_unmelted
+
+ref:
+https://www.journaldev.com/33398/pandas-melt-unmelt-pivot-function
+
+Tranposing  single column into multiple columns
+===============================================
+-This is like Convert Long to Wide Format data.
+-This can be achieved using pivot.
+
+raw_data = {'patient': [1, 1, 1, 2, 2], 
+        'obs': [1, 2, 3, 1, 2], 
+        'treatment': [0, 1, 0, 1, 0],
+        'score': [6252, 24243, 2345, 2342, 23525]} 
+df = pd.DataFrame(raw_data, columns = ['patient', 'obs', 'treatment', 'score'])
+df
+
+-Make a “wide” data
+-Now we will create a “wide” dataframe with the rows by patient number, the columns being by observation number, and the cell values being the score values.
+
+df.pivot(index='patient', columns='obs', values='score')
+
+Ref:
+https://chrisalbon.com/code/python/data_wrangling/pandas_long_to_wide/
+
+Tranposing rows into column and column into rows
+================================================
+-Use the T attribute or the transpose() method to swap (= transpose) the rows and columns of pandas.DataFrame.
+-Neither method changes the original object, but returns a new object with the rows and columns swapped (= transposed object).
+
+rows into columns
+-----------------
+df = pd.DataFrame({"A":[12, 4, 5, None, 1], 
+                   "B":[7, 2, 54, 3, None], 
+                   "C":[20, 16, 11, 3, 8], 
+                   "D":[14, 3, None, 2, 6]})
+# Create the index
+index_ = ['Row_1', 'Row_2', 'Row_3', 'Row_4', 'Row_5']
+  
+# Set the index
+df.index = index_
+
+df
+
+# return the transpose
+result = df.transpose()
+result
+
+columns to rows
+---------------
+players_info = {'Afghanistan': {'Asghar Stanikzai': 809.0,
+  'Mohammad Nabi': 851.0,
+  'Mohammad Shahzad': 1713.0,
+  'Najibullah Zadran': 643.0,
+  'Samiullah Shenwari': 774.0},
+ 'Australia': {'AJ Finch': 1082.0,
+  'CL White': 988.0,
+  'DA Warner': 1691.0,
+  'GJ Maxwell': 822.0,
+  'SR Watson': 1465.0},
+ 'England': {'AD Hales': 1340.0,
+  'EJG Morgan': 1577.0,
+  'JC Buttler': 985.0,
+  'KP Pietersen': 1176.0,
+  'LJ Wright': 759.0}}
+
+df=pd.DataFrame(players_info)
+
+#using stack() functions
+df1 = df.stack().reset_index()
+df1
+df1.columns=['Player', 'Team', 'Score']
+df1
+
+
+Ref:
+https://note.nkmk.me/en/python-pandas-t-transpose/
+https://www.geeksforgeeks.org/python-pandas-dataframe-transpose/
+https://www.w3resource.com/pandas/dataframe/dataframe-transpose.php
+
+Using Multi index type
+======================
+
+Create a MultiIndex on a DataFrame with the set_index Method
+------------------------------------------------------------
+bigmac.nunique() #check the count of each observations
+
+#Set the DataFrame index using existing columns.
+bigmac.set_index(keys=["Date"])
+bigmac.set_index(keys=["Date","Country"])
+bigmac.set_index(keys=["Country","Date"])
+bigmac.set_index(keys=["Date","Country"],inplace=True)
+
+#sorting
+bigmac.sort_index(inplace=True) #for sorting the index
+bigmac.head(3)
+
+#accessing the index
+bigmac.index
+bigmac.index[0] #accessing index using index operator
+bigmac.index[1][0] 
+bigmac.index[3:100:4] #using slicing operator as well
+bigmac.index.names
+type(bigmac.index)
+
+
+Extract Index Level Values with the get_level_values Method
+------------------------------------------------------------
+here you can set the index using index_col parameter in read_csv method.
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"]) #set the level directly using index_col parameter
+bigmac.head(3)
+
+bigmac.head()
+bigmac.index.get_level_values("Date")
+bigmac.index.get_level_values(0)
+bigmac.index.get_level_values("Country")
+bigmac.index.get_level_values(1)
+
+
+Change Index Level Name with the set_names Method
+--------------------------------------------------
+##set_name, it sets the label of the index name not the index name.
+bigmac.index.set_names(names=["Date","Locations"],inplace=True)
+bigmac.index
+bigmac.head(3)
+
+bigmac.index.set_names(names="date",level=0) #still you can access through the index name or label
+bigmac.index.set_names(names="Date",level=1) #if the index is multiindex level must be used. level can be access a index labels or names
+bigmac.index.set_names(names="Date",level="Locations") #access level by name
+bigmac.index.set_names(names="Date",level="Locations",inplace=True)
+
+The sort_index Method on a MultiIndex DataFrame
+-----------------------------------------------
+sort_index method are used to sort the index either by ascending or descending.
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"]) #set the level directly using index_col parameter
+
+#using index
+bigmac.sort_index()
+bigmac.sort_index(ascending=False)
+bigmac.sort_index(ascending=True)
+bigmac.sort_index(ascending=[False,True])
+bigmac.sort_index(ascending=[True,False],inplace=True)
+
+#using levels
+bigmac.head(3)
+bigmac.sort_index(level=0) #using the position of the index
+bigmac.sort_index(level="Date") #using the index name
+bigmac.sort_index(level=1) #observe this
+bigmac.sort_index(level="Country",ascending=False)
+
+Extract Rows from a MultiIndex DataFrame
+--------------------------------------
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"]) #set the level directly using index_col parameter
+
+bigmac.sort_index(inplace=True)
+bigmac.head(3)
+#using loc
+bigmac.loc["2010-01-01",'Argentina']
+bigmac.loc["2010-01-01","Price in US Dollars"] #to access the columns sort the index
+bigmac.loc[("2010-01-01","Argentina"),["Price in US Dollars"]]
+bigmac.loc[("2010-01-01","Argentina"),["Price in US Dollars","Price in US Dollars"]] #observe this
+
+#using iloc
+bigmac.iloc[10]
+bigmac.iloc[[10,20]]
+bigmac.iloc[[10,20,100]]
+
+The transpose Method on a MultiIndex DataFrame
+----------------------------------------------
+Transpose index and columns.
+Reflect the DataFrame over its main diagonal by writing rows as columns and vice-versa. The property T is an accessor to the method transpose().
+
+#nba dataset
+nba.head(3)
+nba1=nba.set_index(["Team","College"])
+nba1.transpose() # this will just to convert row index into column and column index to rows
+
+#bigmac dataset
+bigmac=pd.read_csv("bigmac.csv",parse_dates=["Date"],index_col=["Date","Country"]) #set the level directly using index_col parameter
+
+bigmac1=bigmac.transpose()
+bigmac1
+bigmac1.loc[("Price in US Dollars")]
+bigmac1.loc[("Price in US Dollars",),("2016-01-01")]
+bigmac1.loc[("Price in US Dollars",),("2010-01-01","Argentina")]
+bigmac1.loc[("Price in US Dollars",),("2010-01-01","Argentina"):("2016-01-01",)]
+bigmac1.loc[("Price in US Dollars",),("2010-01-01","Argentina"):("2016-01-01","Taiwan")]
+
+The .swaplevel() Method
+-----------------------
+Swap levels i and j in a MultiIndex.
+
+#we will swap the levels of the indices. Here, we will swap the levels column-wise, but levels can be swapped row-wise in a similar manner. Note that column-wise is the default behaviour. 
+#By not supplying any arguments for i and j, we swap the last and second to last indices.
+bigmac.swaplevel() #all levels is swaped
+bigmac.swaplevel("Date","Country")
+bigmac.swaplevel("Country","Date")
+
+#By supplying one argument, we can choose which index to swap the last index with. We can for example swap the first index with the last one as follow
+bigmac.swaplevel(0)
+
+#We can also define explicitly which indices we want to swap by supplying values for both i and j. Here, we for example swap the first and second indices
+bigmac.swaplevel(1,0)
+bigmac.swaplevel(0,1)
+
+bigmac1=bigmac.swaplevel(0,1)
+bigmac1
+
+The .stack() Method
+====================
+-Stack the prescribed level(s) from columns to index.
+-Return a reshaped DataFrame or Series having a multi-level index with one or more new inner-most levels compared to the current DataFrame. The new inner-most levels are created by pivoting the columns of the current dataframe:
+if the columns have a single level, the output is a Series;
+if the columns have multiple levels, the new index level(s) is (are) taken from the prescribed level(s) and the output is a DataFrame.
+
+world.stack()  #grouped the multiindex based on the level
+world.stack().to_frame()
+
+The .unstack() Method, Part 1
+-----------------------------
+Pivot a level of the (necessarily hierarchical) index labels.
+Returns a DataFrame having a new level of column labels whose inner-most level consists of the pivoted index labels.
+If the index is not a MultiIndex, the output will be a Series (the analogue of stack when the columns are not a MultiIndex).
+
+world.unstack()
+world.unstack().unstack()
+world.unstack().unstack().unstack()
+world.unstack().unstack().unstack().unstack()
+
+world.unstack()
+world.unstack(0)
+world.unstack(1)
+world.unstack(-1)
+world.unstack(2)
+world.unstack(-2)
+world.unstack(-3)
+world.unstack(0)
+world.unstack(["country"])
+world.unstack(["country","year"])
+
+
+world.unstack(level=[1,0])
+world.unstack(level=["country","year"])
+world.unstack("year",fill_value=0) #using fill_value parameter
+
+Cross Tabluted reports
+======================
+
+Using Pivot
+-----------
+Reshape dataframe from long format to wide format.
+Reshape data (produce a "pivot" table) based on column values. 
+Uses unique values from specified `index` / `columns` to form axes of the resulting DataFrame. 
+This function does not support data aggregation, multiple values will result in a MultiIndex in the columns.
+
+sales.pivot(index="Date",columns="Salesman",values="Revenue") 
+
+-Here the index should be unique values
+-There is a cons for it.
+
+Using pivot_table
+-----------------
+The levels in the pivot table will be stored in MultiIndex objects (hierarchical indexes) on the index and columns of the result DataFrame.
+
+#using without aggregations
+foods.pivot_table(index=["Item","Gender","City"],values="Spend")
+foods.pivot_table(index=["Item","Frequency"],values="Spend")
+foods.pivot_table(index=["Item","Frequency"],columns="City",values="Spend")
+foods.pivot_table(index=["Item","Frequency"],columns=["City","Gender"],values="Spend")
+pd.pivot_table(data=foods,index=["Item","Frequency"],columns=["City","Gender"],values="Spend")
+
+#using aggregations
+foods.pivot_table(index="Item",values="Spend",aggfunc="sum")
+foods.pivot_table(index="Frequency",values="Spend",aggfunc="sum")
+foods.pivot_table(index=["Gender","Item"],values="Spend",aggfunc="sum")
+foods.pivot_table(index=["Gender","Item"],values="Spend",columns="City",aggfunc="sum")
+foods.pivot_table(index=["Gender","Item"],values="Spend",columns="City",aggfunc="max")
+foods.pivot_table(index=["Gender","Item"],values="Spend",columns="City",aggfunc="min")
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://pbpython.com/pandas-pivot-table-explained.html
+https://datascience.quantecon.org/pandas/the_index.html
+https://www.geeksforgeeks.org/python-pandas-pivot/
+https://www.analyticsvidhya.com/blog/2020/03/pivot-table-pandas-python/
+https://datagy.io/python-pivot-tables/#pivot-table-columns
+https://chrisalbon.com/#code_python

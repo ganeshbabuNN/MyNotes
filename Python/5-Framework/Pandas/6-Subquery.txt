@@ -1,0 +1,110 @@
+intro 
+How to use the subqueries to perform advanced data selection techniques
+correlated subquery which is a subquery that depends on the values returned by the outer query
+check for the existence of rows returned by a subquery
+compare a value to a list or subquery
+
+Intro 
+=====
+In python, each objects are reuseable on executing each query ,Hence this can be used subquery or cor-related subquery
+
+import os
+os.chdir(r"C:\Users\gbag\Downloads\pratice\Datasets\Datasets Pratice") #change the default directly setting
+os.getcwd() #check again the directly
+
+#emp datasets
+emp=pd.read_csv("employees.csv",parse_dates=["Start Date"])
+print(emp.memory_usage().sum())
+emp.info()
+emp.convert_dtypes().dtypes #converts apporriate data types automatically exp category and bool.
+emp["Senior Management"]=emp["Senior Management"].astype("bool")
+emp["Gender"]=emp["Gender"].astype("category")
+emp["Team"]=emp["Team"].astype("category")
+print(emp.memory_usage().sum())
+emp.head()
+emp.info() #info of the dataframe
+emp.shape #shape of the dataframe
+
+
+#nba datasets
+nba = pd.read_csv("nba.csv")
+nba
+print(nba.memory_usage().sum())
+nba.convert_dtypes().dtypes
+nba.head()
+nba.info() #info of the dataframe
+nba.shape  #shape of the dataframe
+
+#fortune datasets
+fortune=pd.read_csv("fortune1000.csv",index_col='Rank')
+fortune.head()
+
+how to use the subqueries to perform advanced data selection techniques
+=======================================================================
+emp[emp['Salary'] > 50000] #subquery for a salary
+emp[(emp['Salary'] > 50000) & (emp['Senior Management']==True)] #subquery for multiple conditions
+emp[emp['Start Date'] > min(emp['Start Date'])]
+emp_salary[emp_salary['Team'].isin(['Marketing','Finance'])] #adding a subquery to filter those columsn
+
+df1[~df1.index.isin(df2.index)] #df2 is query for others dataframe
+
+correlated subquery which is a subquery that depends on the values returned by the outer query
+===============================================================================================
+emp.groupby('Salary').first()
+emp.groupby('Salary').last()
+emp.groupby('Salary').filter(lambda x: x.Salary.sum()>100000) #like a corelated query 
+emp.groupby('Salary').filter(lambda x: x.Salary.sum()>100000)[['First Name','Team','Senior Management']]
+
+check for the existence of rows returned by a subquery
+======================================================
+s=emp.groupby(['Team','Senior Management']).Salary.transform('min').fillna('')
+emp[emp.Salary==s][['Team','Senior Management','First Name','Salary']]
+
+compare a value to a list or subquery
+=====================================
+#list of values
+team=['Marketing','Finance']
+emp_salary[emp_salary['Team'].isin(team)] # you can create a list and pass to the function
+
+#specified dataset
+selection = ['cat', 'dog']
+df = pd.DataFrame({'molecule': ['a','b','c','d','e'], 'species' : [['dog'], ['horse','pig'],['cat', 'dog'], ['cat','horse','pig'], ['chicken','pig']]})
+
+df[pd.DataFrame(df.species.tolist()).isin(selection).any(1).values]
+
+#Re-create your df then using isin with any should be faster than apply
+mask = df.species.apply(lambda x: any(item for item in selection if item in x))
+df[mask]
+
+#Using numpy intersection,
+import numpy as np
+mask =  df.species.apply(lambda x: np.intersect1d(x, selection).size > 0)
+df[mask]
+
+#A similar solution as above using numpy in1d,
+df[df.species.apply(lambda x: np.any(np.in1d(x, selection)))]
+
+#Interestingly, using pure python set is quite fast here
+df[df.species.apply(lambda x: bool(set(x) & set(selection)))]
+
+#This is an easy and basic approach. You can create a function that checks if the elements in Selection list are present in the pandas column list.
+def check(speciesList):
+    flag = False
+    for animal in selection:
+        if animal in speciesList:
+            flag = True
+    return flag
+
+df['containsCatDog'] = df.species.apply(lambda animals: check(animals))
+df['containsCatDog'] = df.species.apply(check) #another way of above
+df[df.containsCatDog == True]
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+==========

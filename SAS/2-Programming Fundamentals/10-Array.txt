@@ -12,14 +12,22 @@ Resources
 
 intro
 =====
-
-
-Intro
-=====
 -Do you often need to perform the same manipulation on multiple variables?
 -If so, arrays are a great tool to simplify your SAS code and improve your programming efficiency.
 -By using arrays, you can execute complex data manipulation tasks, 
-allowing you to manipulate multiple variables with DO LOOPs and carry out a variety of data transformations with limited lines of code
+allowing you to manipulate multiple variables with DO LOOPs and carry out a variety of data transformations with limited lines of code.
+
+proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sakila_stafftime" 
+DBMS = xlsx out = stafftime replace ;
+run;
+
+proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sakila_film_text" 
+DBMS = xlsx out = film_text replace ;
+run;
+
+proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sakila_film" 
+DBMS = xlsx out = film replace ;
+run;
 
 Declaring a array
 ----------------
@@ -108,10 +116,6 @@ One-Dimensional Arrays
 ​-The simplest form of SAS arrays are a one-dimensional arrays. In one-dimension arrays, a grouping of SAS variables is grouped under a single array. 
 -Once variables are grouped under a single array, you can easily perform the same calculation on all the variables with just a few lines of code.
 -Once variables are grouped under a single array, you can easily perform the same calculation on all the variables with just a few lines of code
-
-proc import datafile = "C:\GBAG_Back\MyTraining\pratice\sakila_datasets-xlsx\sakila_stafftime" 
-DBMS = xlsx out = stafftime replace ;
-run;
 
 Performing a Repetitive Calculation on Multiple Variables, Without an Array
 ---------------------------------------------------------------------------
@@ -267,7 +271,7 @@ run;
 
 DO OVER and Implicit Arrays
 ===========================
--​There are two main types of arrays, implicit and explicit.
+-There are two main types of arrays, implicit and explicit.
 -Explicit arrays are the most common type of arrays and are the only type of arrays that have been discussed thus far in the article.
 -However, implicit arrays are an alternative type of array available in SAS and can also be useful.
 -With explicit arrays, the index specification (either an asterisks or number of elements in the array) must be explicitly defined in the array statement 

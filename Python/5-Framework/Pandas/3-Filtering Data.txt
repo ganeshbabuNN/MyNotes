@@ -1,0 +1,533 @@
+Intro
+Selecting the rows or observations
+selecting the observations based on conditions
+Limitings rows returned by a query
+Filter data based on a values
+how to get the distinct data
+How to eliminate duplicate rows from the output of a query
+perform matching based on specific patterns
+Random selecting the rows
+filtering the missing values
+Applying the functions
+
+Intro
+=====
+
+#load the packages
+import pandas as pd
+import os
+
+os.getcwd()#getting the current directly
+os.chdir(r"C:\Users\gbag\Downloads\pratice\Datasets\Datasets Pratice") #change the default directly setting
+os.getcwd() #check again the directly
+
+#import the external file for employee file
+emp=pd.read_csv("employees.csv",parse_dates=["Start Date","Last Login Time"])
+print(emp.memory_usage().sum())
+emp.info()
+emp.convert_dtypes().dtypes #converts apporriate data types automatically exp category and bool.
+emp["Senior Management"]=emp["Senior Management"].astype("bool")
+emp["Gender"]=emp["Gender"].astype("category")
+emp["Team"]=emp["Team"].astype("category")
+print(emp.memory_usage().sum())
+emp.head()
+emp.info()
+emp
+
+#bond datasets
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+#telecom datasets
+tele= pd.read_csv("telecom.csv") #parse_dates parameter helps to convert to datetime type
+tele.head()
+tele.info() #info of the dataframe
+tele.shape #shape of the dataframe
+tele.convert_dtypes().dtypes
+tele["MonthlyCharges"]=tele["MonthlyCharges"].astype("float")
+# tele["TotalCharges"]=tele["TotalCharges"].astype("float")
+tele["PaymentMethod"]=tele["PaymentMethod"].astype("category")
+tele["Churn"]=tele["Churn"].astype("category")
+tele.info()
+
+Selecting the rows or observations
+==================================
+-there are a lot of ways to pull the elements, rows, and columns from a DataFrame
+-there are some indexing method in Pandas which help in getting an element from a DataFrame
+-these indexing methods appear very similar but behave very differently
+
+Dataframe.[ ] ; This function also known as indexing operator
+Dataframe.loc[ ] : This function is used for labels.
+Dataframe.iloc[ ] : This function is used for positions or integer based
+Dataframe.ix[] : This function is used for both label and integer based
+Note: this will been removed from this sister pd.__version__ == '1.0.0 
+
+#df[]-Indexing operator is used to refer to the square brackets following an object
+nba["Age"] # this will return a series
+nba[["Age", "College", "Salary"]] #this will return a dataframe
+
+#loc -This function selects data by the label of the rows and columns
+bond.loc["GoldenEye"]
+bond.loc["Die Another Day"]
+# bond.loc["sacred bond"]
+bond.loc["Casino Royale"]
+bond.loc[["You Only Live Twice","Never Say Never Again"]] #search of more then one index valuve
+bond.loc[["Goldfinger","Licence to Kill","A View to a Kill"]]
+nba.loc[["Avery Bradley", "R.J. Hunter"]] #In order to select multiple rows, we put all the row labels in a list and pass that to .loc function.
+nba.loc[["Avery Bradley", "R.J. Hunter"],["Team", "Number", "Position"]] #In order to select two rows and three columns, we select a two rows which we want to select and three columns and put it in a separate list like this:
+nba.loc[:, ["Team", "Number", "Position"]] #In order to select all of the rows and some columns, we use single colon [:] to select all of rows and list of some columns which we want to select like this:
+
+#iloc -This function allows us to retrieve rows and columns by position.
+bond.loc[14] # specific index
+bond.loc[12]
+bond.loc[[4,5,11]]
+
+#Passing second arguments to the loc and iloc Accessors
+bond.loc[[4,5]] # lookup the value in list
+bond.loc[1:4] #start and end index
+bond.loc[:6] # end index
+bond.loc[3:] #start index
+
+emp.loc[3:5, :] #rows 3 and 4, all columns and ":" to fill other
+emp.iloc[3:5, :] #rows 3 and 4, all columns
+emp.loc[3:5, :] #rows 3 and 4, all columns
+emp.iloc[:5,] #First 5 rows
+emp.iloc[1:5,] #Second to Fifth row
+emp.iloc[5,0] #Sixth row and 1st column
+emp.iloc[1:5,0] #Second to Fifth row, first column
+emp.iloc[1:5,:5] #Second to Fifth row, first 5 columns
+emp.iloc[2:7,1:3] #Third to Seventh row, 2nd and 3rd column
+nba.iloc[[3, 5, 7]] #In order to select multiple rows, we can pass a list of integer to .iloc[] function.
+nba.iloc[[3, 4], [1, 2]] #In order to select two rows and two columns, we create a list of 2 integer for rows and list of 2 integer for columns then pass to a .iloc[] function.
+nba.iloc[:, [1, 2]] #In order to select all rows and some columns, we use single colon [:] to select all of rows and for columns we make a list of integer then pass to a .iloc[] function.
+
+selecting the observations based on conditions
+==============================================
+selecting on one condition
+---------------------------
+#using d[] method:
+emp["Gender"]=="Male"  #return the series
+emp[emp["Gender"]=="Male"]  #put the datafrae[] to return the dataframe along with other column
+emp[emp["Team"]=="Marketing"]
+emp[emp.Team=="Marketing"] #without emp[]
+emp[emp.Team=="Marketing"][['First Name']] #display only one column
+emp[~(emp["Team"]=="Marketing")] #using NOT operator which will be reverse
+
+#using loc method:
+emp.loc[(emp.Gender=="Male")] #using .loc effective way
+
+selecting on two condition
+---------------------------
+#using d[] method:
+cond1=emp["Gender"]=="Male"
+cond2=emp["Team"]=="Marketing"
+emp[cond1 & cond2] ##using the AND(&) condition if both the condtion are truee it returns the values
+emp[cond1 | cond2] ##using the OR(|) condition if both the condtion are truee it returns the values
+emp[(emp["Gender"]=="Male") & (emp["Team"]=="Marketing")] #combining both conditions.
+emp[(emp.Gender=="Male") & (emp.Team=="Marketing")] #combining both conditions.
+emp[(emp.Gender=="Male") & (emp.Team=="Marketing")][['First Name','Start Date']] #display only required column
+
+#using loc method: effective way
+emp.loc[(emp.Gender=="Male") & (emp.Team=="Marketing")] #using .loc effective way
+
+more then two conditions
+--------------------------
+#using emp[]
+emp[((emp["Gender"]=="Male") & (emp["Team"]=="Marketing") & (emp["Salary"] < 50000))] #more then one conditions using () for conditional evulations
+emp[((emp["Gender"]=="Male") & (emp["Team"]=="Marketing") & ((emp["Salary"] < 50000 ) & (emp["Senior Management"] ==True )))] #more then one conditions using () for conditional evulations
+emp[((emp["Gender"]=="Male") & (emp["Team"]=="Marketing") & ((emp["Salary"] < 50000 ) & (emp["Senior Management"] ==True )))][['First Name']] #display required column
+
+#using np.where method
+a=((emp["Gender"]=="Male") & (emp["Team"]=="Marketing")) & ((emp["Salary"] < 50000 ) & (emp["Senior Management"] ==True ))
+emp.iloc[np.where(a)]
+
+#using loc method
+emp.loc[((emp["Gender"]=="Male") & (emp["Team"]=="Marketing") & (emp["Salary"] < 50000)),:]
+
+filtering using the .query method
+---------------------------------
+emp.query('Gender =="Male" & Team== "Marketing"') #note here the conditions 
+emp.query('(Gender =="Male" & Team== "Marketing") & (Salary < 50000)') #note here the conditions
+
+#example 2
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+bond.query('Actor== "Pierce Brosnan"')
+bond.query('Director=="Martin Campbell"')
+bond.query('Film=="A View to a Kill"')
+# bond.query('"Box Office" >800 ') #does not allow the variable with space betwen
+bond.query('Budget >100')
+# bond.query('Bond Actor Salary <3') 
+# bond.query('(Bond Actor Salary <3 ) | (Bond Actor Salary) > 3**100')
+bond.query('(Budget > 50 ) | ((Budget) > 3**100)')
+bond.query("Actor=='Pierce Brosnan' or Actor=='David Niven'")
+bond.query("Actor in ['Sean Connery','Pierce Brosnam']")
+bond.query("Actor not in ['Sean Connery','Pierce Brosnam']")
+
+filtering using the where method
+--------------------------------
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+#Traidtional way
+mask1=bond["Actor"]=="Sean Connery"
+bond[mask1]
+
+#using where method
+bond.where(mask1).dropna(how="all")
+mask2=bond["Box Office"] > 600
+bond.where(mask2)
+bond.where(mask1 & mask2)
+
+Filtering using row/column index
+--------------------------------
+there are two ways
+-loc: select rows or columns using labels
+-iloc: select rows or columns using indices
+
+#get the index of the dataframe
+emp.index #display the randge index 
+emp.loc[emp.index[0:5],["First Name","Gender"]] #Filter pandas dataframe by rows position and column names
+
+#update using for a specific cell
+will be discuss in the 9-Modifying data chapter
+
+ref:
+https://www.listendata.com/2019/07/how-to-filter-pandas-dataframe.html
+https://towardsdatascience.com/8-ways-to-filter-pandas-dataframes-d34ba585c1b8
+https://towardsdatascience.com/filtering-data-frames-in-pandas-b570b1f834b9
+https://www.sharpsightlabs.com/blog/pandas-query/
+
+Limitings rows returned by a query
+==================================
+
+first and last rows
+-------------------
+emp.head() #top 5 rows
+emp.tail() #last 5 rows
+emp.head(50) #specify the last 
+emp['First Name'].head()
+
+largest and smallest 
+--------------------
+emp.nlargest(3,'Salary') #top 3 salary
+emp.nsmallest(3,'Salary') #low 3 salary
+
+bond = pd.read_csv("jamesbond.csv", index_col = "Film")
+bond.sort_index(inplace = True)
+bond.head(3)
+
+bond.sort_values("Box Office",ascending=False,inplace=True)
+bond.head(4)
+
+bond.nlargest(3,columns="Box Office")
+bond.nlargest(n=3,columns="Bond Actor Salary") #without sorting this is happening
+bond.nsmallest(4,columns="Box Office")
+bond.nsmallest(n=4,columns="Budget")
+bond["Box Office"].nlargest(3) #calling from dataframe
+bond["Budget"].nsmallest(3)
+
+limit during import using read_csv
+----------------------------------
+pd.read_csv("employees.csv",nrows=10) #using nrow parameter
+
+filter data based on a values
+=============================
+
+Filtering the data using .isin method searching for multiple values
+-------------------------------------------------------------------
+-The isin method is another way of applying multiple condition for filtering. 
+-For instance, we can filter the names that exist in a given list.
+
+#IN approrach
+emp[emp.Team.isin(['Client Services','Engineering','Distribution'])]  #input the list of values if any  values not found return false
+emp[emp.Team.isin(['Client Services','Engineering','Distribution'])][['First Name','Salary']]  #restricting the columns
+emp[emp['Team'].isin(['Client Services','Engineering','Distribution'])][['First Name','Salary']]  #restricting the columns
+
+#Not in approach
+emp[~emp['Team'].isin(['Client Services'])] # using ~ operator
+emp[~emp.Team.isin(['Marketing','Finance'])][['First Name','Salary']]  #not in
+emp[emp['Team'].isin(['Client Services'])==False] # using false operator
+emp[np.logical_not(emp['Team'].isin(['Client Services']))] #using numpy logical_not functions
+
+Filtering the data using .str accessor
+--------------------------------------
+-Pandas is a highly efficient library on textual data as well. 
+-The functions and methods under the str accessor provide flexible ways to filter rows based on strings.
+
+emp['First Name']=emp['First Name'].fillna("")
+emp[emp['First Name'].str.startswith('J')]
+emp[emp['First Name'].str[0] == 'A'] #Select rows having values starting from letter 'A'
+emp[emp['First Name'].str.len()>3] #Filter rows having string length greater than 3
+emp[emp['First Name'].str.contains('A|B')] #Select string containing letters A or B
+
+filtering the date values
+-------------------------
+#traditional way
+start_date = "1983-06-13"
+end_date = "2000-03-13"
+after_start_date = df['Start Date'] >= start_date
+before_end_date = df['Start Date'] <= end_date
+between_two_dates = after_start_date & before_end_date
+filtered_dates = df.loc[between_two_dates]
+
+#using between functions
+emp['Start Date'].min()
+emp['Start Date'].max()
+emp[emp["Start Date"].between("1983-06-13","2000-03-13")].sort_values("Start Date",ascending=False)
+
+filtering the values based on range
+-----------------------------------
+df[df['Salary'].between(50000, 51000)] #numeric range
+df[df['Salary'].between(50000, 51000,inclusive=False)] #To exclude them, we have to pass the argument inclusive=False
+df[(df['Salary']>=50000) & (df['Salary']<=51000)] #the above is equivalent to using boolean expression 
+
+how to get the distinct data
+============================
+bank=pd.read_csv("bank-marketing.csv",sep=";")
+
+using unique() function
+-----------------------
+bank['job'].unique()  #series level
+bank.job.unique()
+pd.unique(bank['job']) #using pd.unqique funcitons
+# Get number of unique values in column 
+bank.job.nunique(dropna=True) 
+bank[['job','marital']].nunique(dropna=True) #unique counts for
+
+multiple variables using values.ravels() funtions
+------------------------------------------------
+column_values=bank[['education','job']].values.ravel()
+column_values=bank[['education','job']].values.ravel('K') #The argument 'K' tells the method to flatten the array in the order the elements are stored in the memory
+pd.unique(column_values)
+
+using numpy approach for single/multiple variable
+--------------------------------------------------
+##this as a effective performances compared to other methods
+import numpy as np
+np.unique(bank[['education','job']].values)
+
+using duplicated functions to get unique values
+-----------------------------------------------
+bank[~bank[['education','marital']].duplicated()][['education','marital']] #using caret operator
+
+benchmarking based on volume of data
+------------------------------------
+#creating a new empty dataframe
+df=pd.DataFrame(columns=[['Col1', 'Col2']]) 
+
+#performance benchmark using numpy
+df1 = pd.concat([df]*100000, ignore_index=True) # DataFrame with 500000 rows
+%timeit np.unique(df1[['Col1', 'Col2']].values)
+
+#using the values.ravel functions
+%timeit pd.unique(df1[['Col1', 'Col2']].values.ravel('K'))
+%timeit pd.unique(df1[['Col1', 'Col2']].values.ravel()) # ravel using C order
+
+Ref:
+https://stackoverflow.com/questions/26977076/pandas-unique-values-multiple-columns
+
+How to eliminate and see duplicate rows from the output of a query
+==========================================================
+bank=pd.read_csv("bank-marketing.csv",sep=";")
+
+using drop duplicates() functions to remove duplciates
+-------------------------------------------------------
+#for achieving the distinc value for dataframe for multiple values use 
+bank[['education']].drop_duplicates() #for achieving duplicates
+bank[['education','job']].sort_values(['education']).drop_duplicates()  #for mulitple varaibles 
+bank.drop_duplicates(['education','job']).sort_values(['education','job']) #remove duplicates by default all records will come with those unique values
+
+seeing duplicated rows using duplicated functions
+-------------------------------------------------
+# List of Tuples
+students = [('jack', 34, 'Sydeny'),
+            ('Riti', 30, 'Delhi'),
+            ('Aadi', 16, 'New York'),
+            ('Riti', 30, 'Delhi'),
+            ('Riti', 30, 'Delhi'),
+            ('Riti', 30, 'Mumbai'),
+            ('Aadi', 40, 'London'),
+            ('Sachin', 30, 'Delhi')
+            ]
+# Create a DataFrame object
+dfObj = pd.DataFrame(students, columns=['Name', 'Age', 'City'])
+dfObj[~dfObj.duplicated(['Age', 'City'])] #getting unique using duplicated functions
+dfObj[dfObj.duplicated()] # Select duplicate rows except first occurrence based on all columns
+dfObj[dfObj.duplicated(keep='last')] # Select duplicate rows except last occurrence based on all columns
+dfObj[dfObj.duplicated(keep=False)] # Select all duplicate rows based on all columns
+dfObj[dfObj.duplicated(['Name'])] # Select all duplicate rows based on one column
+dfObj[~dfObj.duplicated(['Age', 'City'])] # Select all duplicate rows based on multiple column names in list
+
+Ref:
+https://thispointer.com/pandas-find-duplicate-rows-in-a-dataframe-based-on-all-or-selected-columns-using-dataframe-duplicated-in-python/
+
+perform matching based on specific patterns
+===========================================
+--refer regular expression chapter
+
+Random selecting the rows
+=========================
+
+Using sample function
+--------------------
+emp.sample() #Select one row randomaly using sample() without give any parameters
+emp.sample(4) #using Nth parameter
+emp.sample(n=4) #using Nth parameter
+emp.sample(frac=0.5) # here you get .50 % of the rows using frac 
+emp.sample(n=4,replace=False) # Allow or disallow sampling of the same row more than once replace=False
+emp.sample(n=4,replace=True)# Select more than rows with using replace=True
+#emp.sample(n = 3, weights = [0.2, 0.2, 0.2, 0.4])  #weighting averge need to check
+emp.sample(axis=0) #for random rows
+emp.sample(axis=1) #for random columns
+emp.sample(n=2,random_state = 4) #the sample will always fetch same rows.
+emp.sample(n=2,random_state = None) #. If random_state is None or np.random, then a randomly-initialized RandomState object is returned.
+
+Using NumPy approach
+--------------------
+chosen_idx = np.random.choice(4, replace = True, size = 6)
+print(chosen_idx)
+emp = emp.iloc[chosen_idx]
+emp
+
+filtering the missing values
+============================
+-np.nan, None and pd.NaT (for datetime64[ns] types) are standard missing value for Pandas.
+-A new missing data type (<NA>) introduced with Pandas 1.0 which is an integer type missing value representation
+
+bank.info() #find the non null values
+
+df[df.Team.notnull()] #filter nonull value based on column
+emp[pd.notnull(emp["Gender"])]
+df[df.Team.isnull()] #filter null value based on column
+emp[pd.isnull(emp["Team"])]
+
+#all method :Return whether all elements are True, potentially over an axis.
+#any method :Return whether any element is True, potentially over an axis.
+
+#filter the non missing rows at the dataframe level
+tele[tele.notnull().all(axis=1)] #not a missing values
+
+#filter the missing rows at dataframe level
+tele[tele.isnull().any(axis=1)] # display rows which contain any missing values
+
+#Get the number of missing data per column
+tele.isna().sum() #This will give number of NaN values in every column.
+tele.isnull().sum(axis = 0) #This will give number of NaN values in every column.
+tele.isnull().sum(axis = 1) #This will give number of NaN values in every rows.
+tele.isnull().sum().sort_values(ascending = False) #The below will print all the Nan columns in descending order.
+tele['PaymentMethod'].isnull().sum() #get the missing value for a specific column
+
+#Get a list of columns with missing data using .isnull().any() at dataframe level
+tele.isnull().any()
+tele.isnull().any(axis=0) #by default row wise
+tele['PaymentMethod'].isnull().any() #individual column level
+
+#Get a list of columns with missing data
+tele.columns[tele.isnull().any()]
+
+#traditional way #get the sum of the each null value
+column_nan=tele.columns[tele.isnull().any()]
+column_nan
+for column in column_nan: 
+    print(column, tele[column].isnull().sum())
+
+#Get a list of rows with missing data using .isnull().any() By default row wise
+tele.isnull().any(axis=1) #Find rows with missing data
+tele.isnull().sum(axis=1) #Get the number of missing data per row
+tele.isnull().sum(axis=1).nlargest(1)## top 1 largest
+tele.isnull().sum(axis=1).nlargest(3)## top 3 largest
+tele.iloc[40:].isnull().sum(axis=1)#Get the number of missing data for a given row using iloc functions
+tele.index[tele.isnull().any(axis=1)] #Get a list of rows with missing data using index functions
+
+#To facilitate this convention, there are several useful functions for detecting, removing, and replacing null values in Pandas DataFrame :
+isnull()
+notnull()
+dropna()
+fillna()
+replace()
+interpolate()
+
+Ref:
+https://towardsdatascience.com/handling-missing-values-with-pandas-b876bf6f008f
+https://towardsdatascience.com/data-cleaning-with-python-and-pandas-detecting-missing-values-3e9c6ebcf78b
+https://www.geeksforgeeks.org/working-with-missing-data-in-pandas/
+
+Applying the functions
+=======================
+
+Applying lambda function to each row/column.
+-------------------------------------------
+matrix = [(1,2,3,4),
+          (5,6,7,8,),
+          (9,10,11,12),
+          (13,14,15,16)
+         ]
+ 
+# Create a Dataframe object
+df = pd.DataFrame(matrix, columns = list('abcd'))
+ 
+# Applying a lambda function to each column which will add 10 to the value
+new_df = df.apply(lambda x : x + 10)
+
+# Applying a lambda function to each row which will add 5 to the value
+new_df = df.apply(lambda x: x + 5, axis = 1)
+
+Applying numpy function to each row/column 
+------------------------------------------
+matrix = [(1,2,3,4),
+          (5,6,7,8,),
+          (9,10,11,12),
+          (13,14,15,16)
+         ]
+ 
+# Create a Dataframe object
+df = pd.DataFrame(matrix, columns = list('abcd'))
+ 
+
+# Applying a numpy function to each column by squaring each value
+new_df = df.apply(np.square)
+
+# Apply a numpy function to each rowto find square root of each value
+new_df = df.apply(np.sqrt, axis = 1)
+
+Applying a Reducing function to each row/column 
+-----------------------------------------------
+-A Reducing function will take row or column as series and returns either a series of same size as that of input row/column or it will return a single variable depending upon the function we use.
+
+# Applying a numpy function to get the sum of all values in each column
+new_df = df.apply(np.sum)
+
+# Applying a numpy function to get t he sum of all values in each row
+new_df = df.apply(np.sum, axis = 1)
+
+apply lamba functions to column
+------------------------------
+df = pd.DataFrame({
+    'name': ['alice','bob','charlie','david'],
+    'age': [25,26,27,22],
+})[['name', 'age']]
+df
+
+# each element of the age column is a string so you can call .upper() on it
+df['name_uppercase'] = df['name'].apply(lambda element: element.upper())
+df
+
+Ref:
+https://www.geeksforgeeks.org/apply-a-function-to-each-row-or-column-in-dataframe-using-pandas-apply/
+
+Quiz
+====
+
+Assignment
+==========
+1)Filter iris for petal length less than 1.6
+2)Filter iris for sepal length greater than 5.0 and sepal width greater than 3.0
+3)Filter iris for petal width being either 0.2, 0.3 or 1.4, and species is virginica
+
+Resources:
+=========

@@ -1,0 +1,78 @@
+Intro 
+how to combine the results of two queries into a single result
+how to make an intersection of the results of two independent queries
+how to check the difference if first datasets is not there in second
+
+Intro
+======
+Analytical problems often require the examination of multiple distinct sets of data. In the search for answers, it's often useful to compare or combine distinct sets of data to create one, new set of data.
+
+UNION: Returns the resulting rows from both query statements being compared. By default, UNION will not return duplicate rows if identical rows exist in the result sets of both SQL statements. 
+	You can supply the UNION set operator with an optional ALL keyword if you'd like to return duplicate rows.
+INTERSECT: Returns rows that exist in the result sets of both query query statements being compared.
+EXCEPT (or MINUS): Returns rows that exist in one, but not both result sets of the query statements being compared.
+
+
+## 1.1 Python students
+P = pd.DataFrame ({"name":["Elizabeth","Darcy"],"email":["bennet@xyz.com","darcy@acmecorpus.com"]})
+
+#SQL students
+S = pd.DataFrame ({"name":["Bingley","Elizabeth"],"email": ["bingley@xyz.com","bennet@xyz.com"]})
+
+
+how to combine the results of two queries into a single result
+==============================================================
+-To perform the union operation, we applied two methods: concat() followed by drop_duplicates(). 
+-The first accomplishes the concatenation of data, which means to place the rows from one DataFrame below the rows of another DataFrame
+
+Union
+-----
+-Only keeps unique records, non duplicates
+The union of two sets is everything in the two sets taken together, but counting elements only once that are common to both sets.
+These functions override the set functions provided in base to make them generic so that efficient versions for data frames and other tables can be provided.
+
+#using concat method
+pd.concat([P,S]).drop_duplicates()
+
+union_all
+---------
+-includes duplicates
+
+#using concat method
+pd.concat([finance, marketing]) 
+
+how to make an intersection of the results of two independent queries
+=====================================================================
+-The intersection of two sets is the material that they have in common:
+-The versatile merge() method was employed to execute the intersection operation. 
+-This method can be used to combine or join DataFrames in different ways. However, when used without the specification of any parameter in an operation involving two compatible DataFrames, it yields their intersection:
+
+#intersection
+sql_and_python = P.merge(S)
+sql_and_python
+
+how to check the difference if first datasets is not there in second
+====================================================================
+
+-The difference operation has a slightly more complicated code. As we know, the difference between two sets P and S is the operation that aims to determine the elements of P that are not part of S. 
+-In pandas, we can implement this operation using the isin() method in tandem with boolean indexing:
+
+#difference
+python_only = P[P.email.isin(S.email) == False]
+sql_only = S[S.email.isin(P.email) == False]
+sql_only
+python_only
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.geeksforgeeks.org/python-set-operations-union-intersection-difference-symmetric-difference/ 
+https://mode.com/blog/set-operations-python-sql/
+https://gist.github.com/edubd/c8fa4647938b7383aa3cec0905ef2078
+https://www.kdnuggets.com/2019/11/set-operations-applied-pandas-dataframes.html

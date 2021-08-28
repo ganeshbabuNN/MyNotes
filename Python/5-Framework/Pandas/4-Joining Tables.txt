@@ -1,0 +1,346 @@
+Intro and type of join
+Merging the dataframe
+Merge rows and columns
+Merge more than two dataframes
+
+intro
+=====
+Pandas provides a single function, merge, as the entry point for all standard database join operations between DataFrame objects −
+
+pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,
+left_index=False, right_index=False, sort=True)
+
+-Dataframes can also be taught as mattresses where each column of a matrix can be of the different data types. Dataframe is made up of three principal components, the data, rows, and columns
+merge() for combining data on common columns or indices
+.join() for combining data on a key column or an index
+concat() for combining DataFrames across rows or columns
+
+Refer inner_join.jpg
+
+Merging the dataframe
+=====================
+
+using merge() method
+--------------------
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+
+week1.head()
+week2.head() 
+week1.shape
+week2.shape
+
+Natural Join or Inner Join
+*------------------------*
+-Inner join is used to keep only those rows that are matched from the dataframes
+
+#using single key
+week1.merge(week2,how='inner',on="Customer ID")
+week1.merge(week2,how='inner',on="Customer ID").head(4)
+
+#verify the log
+week1[week1["Customer ID"]==155]
+week2[week2["Customer ID"]==155]
+
+#suffix parameter to remain the default created during merging
+week1.merge(week2,how='inner',on="Customer ID",suffixes=['_Week1','_Week2']).head(4)
+week1.merge(week2,how='inner',on="Customer ID",suffixes=['_A','_B']).head(4)
+
+##using multiple key
+week1.merge(week2,how='inner',on=['Customer ID',"Food ID"])
+week1[week1['Customer ID']==21]
+week2[week2['Customer ID']==21]
+
+outer join
+*--------*
+-An outer join is used to return results by combining rows from two or more tables. But unlike an inner join, the outer join will return every row from one specified table, even if the join condition fails.
+week1.merge(week2,how='outer',on='Customer ID',suffixes=['_Week1',"_Week2"])
+
+#using indicator parameter show the which dataframe which came through
+week1.merge(week2,how='outer',on='Customer ID',suffixes=['_Week1','_Week2'],indicator=True)
+
+merge['_merge'].value_counts()
+merge[merge["_merge"].isin(['left_only','right_only'])]
+
+Left Outer Join
+*-------------*
+-Left Outer Join is basically to include all the rows of your dataframe x and only those from y that match.
+-If we try to understand this using a basic set theory then we can say here we are actually displaying complete set x.
+
+#how='left'
+week1.merge(week2,how='left',on='Food ID',sort=True)
+
+#using left_on and right_on Parameters
+week2.merge(customers,how='left',left_on='Food ID',right_on='ID').drop('ID',axis=1)
+
+#Merging by Indexes with the left_index and right_index Parameters
+sales=week1.merge(customers,how='left',left_on='Customer ID',right_index=True)
+sales
+sales.merge(foods,how='left',left_on='Food ID',right_index=True)
+
+#using both index as common
+week1.merge(week2,how='left',left_index=True,right_index=True,suffixes=["_week1","_week2"])
+
+Right Outer Join
+*-------------*
+-Right, Outer Join is basically to include all the rows of your dataframe y and only those from x that match.
+-If we try to understand this using a basic set theory then we can say here we are actually displaying a complete .
+
+#how='right', if both the dataframe as common column name
+week1.merge(week2,how='right',on='Food ID',sort=True)
+
+#using left_on and right_on Parameters if both the dataframe as different column name
+week2.merge(customers,how='right',left_on='Food ID',right_on='ID').drop('ID',axis=1)
+
+#Merging by Indexes with the left_index and right_index Parameters
+sales=week1.merge(customers,how='right',right_on='ID',left_index=True)
+sales
+sales.merge(foods,how='right',right_on='Food ID',left_index=True)
+
+Full Outer Join
+*-------------*
+-Outer Join is basically used to keep all rows from both dataframes.
+-If we try to understand this using a basic set theory then we can say here we are actually performing the union option
+
+week2.merge(customers,how='outer',left_on='Food ID',right_on='ID')
+
+Cross Join
+*---------*
+-A Cross Join also known as cartesian join results in every row of one dataframe is being joined to every other row of another dataframe.
+- In set theory, this type of joins is known as the cartesian product between two sets. Now let us try to understand this using R program
+
+#method 1
+data1 = {'A': [1, 2]}  ## Define a dictionary with column A
+data2 = {'B': ['a', 'b', 'c']}  # Define another dictionary with column B
+df = pd.DataFrame(data1, index =[0, 1]) # Convert the dictionary into DataFrame  
+df1 = pd.DataFrame(data2, index =[2, 3, 4])  # Convert the dictionary into DataFrame 
+df['key'] = 1 #Now to perform cross join, we will create 
+df1['key'] = 1 #a key column in both the DataFrames to 
+result = pd.merge(df, df1, on ='key').drop("key", 1) # to obtain the cross join we will merge on the key and drop it.
+result
+
+#method2
+data1 = {'Name': ["Rebecca", "Maryam", "Anita"],'UserID': [1, 2, 3]} # Define a dictionary containing user ID
+data2 = {'ProductID': ['P1', 'P2', 'P3', 'P4']} # Define a dictionary containing product ID 
+df = pd.DataFrame(data1, index =[0, 1, 2])    # Convert the dictionary into DataFrame  
+df1 = pd.DataFrame(data2, index =[2, 3, 6, 7])  # Convert the dictionary into DataFrame    
+df['key'] = 1 # Now to perform cross join, we will create a key column in both the DataFrames to  merge on that key.
+df1['key'] = 1
+
+# to obtain the cross join we will merge on 
+# the key and drop it.
+result = pd.merge(df, df1, on ='key').drop("key", 1)
+result
+
+#method3
+data1 = {'col 1': [0, 1],'col 2': [2, 3]}  # Define a dictionary with two columns     
+data2 = {'col 3': [5, 6],'col 4': [7, 8]}  # Define another dictionary  
+df = pd.DataFrame(data1, index =[0, 1]) # Convert the dictionary into DataFrame  
+df1 = pd.DataFrame(data2, index =[2, 3])    # Convert the dictionary into DataFrame    
+df['key'] = 1 # Now to perform cross join, we will create a key column in both the DataFrames to merge on that key.
+df1['key'] = 1
+result = pd.merge(df, df1, on ='key').drop("key", 1) # to obtain the cross join we will merge on the key and drop it.  
+result
+
+semi_join
+*-------*
+This join is somewhat like inner join, with only the left dataframe columns and values are selected.
+
+df1 = pd.DataFrame({'grp':[1,1,2], 'x':[6,4,2], 'y':[7,8,9]})
+print(df1,sep='\n')
+df2 = pd.DataFrame({'grp':[1], 'x':[6], 'z':[3]})
+print(df2,sep='\n')
+
+df1[df1[['grp','x']].agg(tuple,1).isin(df2[['grp','x']].agg(tuple,1))]
+
+Anti Join
+*--------*
+-In terms of set theory, we can say anti-join as set difference operation, 
+-for example, A = (1, 2, 3, 4) B = (2, 3, 5) then the output of A-B will be set (1, 4). 
+-This join is somewhat like df1 – df2, as it basically selects all rows from df1 that are actually not present in df2.
+-An anti join returns the rows of the first table where it cannot find a match in the second table.
+
+#option1
+df1 = pd.DataFrame(data = {'label1': ['A', 'A', 'B', 'C'], 'label2': ['a', 'b', 'c', 'd'], 'value': [1,2,3,4]})
+df2 = pd.DataFrame(data = {'label1': ['A', 'A', 'D', 'E'], 'label2': ['a', 'd', 'c','e'], 'value2': [10,12,23,14]})
+print(df1,sep='\n')
+print(df2,sep='\n')
+df1[~df1[['label1','label2']].apply(tuple,1).isin(df2[['label1','label2']].apply(tuple,1))]
+
+#option2
+df1.drop(df1.merge(df2).index) #Simply perform an inner join and remove the intersecting rows from df1.
+mer = df1.merge(df2, how='left')
+mer[mer['value2'].isnull()].drop(['value2'], 1) #You need to do a left join and see how many of the rows shows up as null for the column from df2.
+
+
+using join() method
+-------------------
+#the main differences between merge and join method is join looks by default the index where the merge method to be specified expliclity .
+
+week1=pd.read_csv("Restaurant - Week 1 Sales.csv")
+week2=pd.read_csv("Restaurant - Week 2 Sales.csv")
+customers=pd.read_csv("Restaurant - Customers.csv")
+foods=pd.read_csv("Restaurant - Foods.csv")
+satisfactions=pd.read_csv("Restaurant - Week 1 Satisfaction.csv")
+
+week1
+satisfactions
+
+using pd.merge() method
+*---------------------*
+#using pd.merge functions
+pd.merge(week1,week2,on='Customer ID') #using on clause
+pd.merge(week1,week2,on='Customer ID',how='inner')
+pd.merge(week1,week2,on='Customer ID',how='left')
+pd.merge(week1,week2,on='Customer ID',how='right')
+pd.merge(week1,week2,on='Customer ID',how='outer')
+
+#here we use both the index from both the datasets which is specificied explictly
+week1.merge(satisfactions,how="left",left_index=True,right_index=True)
+week1.merge(satisfactions,how="right",left_index=True,right_index=True)
+week1.merge(satisfactions,how="outer",left_index=True,right_index=True)
+
+using pd.join() method
+*---------------------*
+#join method will look by index 
+week1.join(satisfactions)
+
+vlookup techniques in pandas
+----------------------------
+
+#using the apply and lambdas:
+#a dictionary
+dict1 = {113:'a',
+         122:'b',
+         123:'b',
+         301:'c'}
+
+#dataframe
+df = pd.DataFrame([['1', 113],
+                   ['2', 113],
+                   ['3', 301],
+                   ['4', 122],
+                   ['5', 113]], columns=['num', 'num_letter'])
+
+#using the apply apply and lamda as follows
+df['letter']=df['num_letter'].apply(lambda x:dict1[x])
+
+using the map method
+---------------------
+pandas.map() is used to map values from two series having one column same. 
+For mapping two series, the last column of the first series should be same as index column of the second series, also the values should be unique
+
+pokemon_names=pd.read_csv("pokemon.csv",usecols=["Pokemon"],squeeze=True)
+pokemon_types=pd.read_csv("pokemon.csv",index_col=["Pokemon"],squeeze=True) 
+
+#using map method
+pokemon_names.map(pokemon_types)
+
+#This function works only with Series. Passing a data frame would give an Attribute error. Passing series with different length will give the output series of length same as the caller
+
+Ref:
+https://www.geeksforgeeks.org/different-types-of-joins-in-pandas/
+https://www.analyticsvidhya.com/blog/2020/02/joins-in-pandas-master-the-different-types-of-joins-in-python/
+
+Merge rows and columns
+======================
+-The pandas concat() function is used to concatenate multiple dataframes into one. The following is its syntax:
+	pd.concat(objs, axis=0)
+-You pass the sequence of dataframes objects (objs) you want to concatenate and tell the axis (0 for rows and 1 for columns) along which the concatenation is to be done and it returns the concatenated dataframe. The default for axis is 0
+
+Concat DataFrames with same fields (Vertically-rows)
+------------------------------------------------
+# Create two dataframes with same columns
+df1 = pd.DataFrame({'Name': ['ganesh', 'veersh'], 'Age': [37, 28]})
+df2 = pd.DataFrame({'Name': ['rahul', 'rudresh'], 'Age': [31, 28]})
+print(df1,"\n\n",df2)
+
+#Concat DataFrames with same fields (Vertically)
+pd.concat([df1,df2])
+pd.concat([df1,df2],axis=0)#default parmeter with argument
+
+#Concatenating DataFrame using .append()
+-the above can be return by using append 
+df1.append(df2)
+
+#Concatenating DataFrame with group keys :
+-In order to concat dataframe with group keys, we override the column names with the use of the keys argument
+pd.concat([df1,df2],keys=['x','y'])
+
+#Concatenating DataFrame by ignoring indexes :
+-In order to concat a dataframe by ignoring indexes, we ignore index which don’t have a meaningful meaning, you may wish to append them and ignore the fact that they
+
+df1 = pd.DataFrame({'Name': ['ganesh', 'veersh'], 'Age': [37, 28]})
+df2 = pd.DataFrame({'Name': ['rahul', 'rudresh'], 'Age': [31, 28]},index=[2,3])
+print(df1,"\n\n",df2)
+
+res = pd.concat([df1, df1], ignore_index=True) #ignore the index
+res
+
+res = pd.concat([df1, df1], ignore_index=False) #reset the index
+res
+
+Concat DataFrames with rows referring to the same records (Horizontally-columns)
+-------------------------------------------------------------------------
+# Create two dataframes with same columns
+df1 = pd.DataFrame({'Name': ['ganesh', 'veersh'], 'Age': [37, 28]})
+df2 = pd.DataFrame({'Math': [63, 34], 'Science': [34, 54]})
+print(df1,"\n\n",df2)
+
+#Concat DataFrames with rows referring to the same records (Horizontally)
+pd.concat([df1,df2],axis=1)#default parmeter with argument  #even df2 can be a series objects also
+
+#Concatenating DataFrame by setting logic on axes :# applying concat with axes join = 'inner
+res2 = pd.concat([df1, df2], axis=1, join='inner')
+res2
+
+# using a .concat for union of dataframe
+res2 = pd.concat([df1, df2], axis=1, sort=True) 
+res2
+
+ref:
+https://datascienceparichay.com/article/concat-dataframes-in-pandas/
+https://www.geeksforgeeks.org/python-pandas-merging-joining-and-concatenating/
+
+Merge more than two dataframes
+==============================
+It is worth to mention that you can iteratively merge data frames in R, concatenating the merge function
+
+# Create two dataframes with same columns
+df1 = pd.DataFrame({'col1': ['data1', 'data2','data3','data4','data5'], 'col2': [3,4,5,6,7],'col3':[7,8,5,3,5]})
+df2 = pd.DataFrame({'col1': ['data1', 'data2','data3'], 'col4': [7,5,8],'col5':[9,6,4]})
+df3 = pd.DataFrame({'col1': ['data2', 'data3','data5'], 'col6': [8,5,4],'col7':[8,5,3]})
+print(df1,"\n\n",df2,"\n\n",df3)
+
+#using concat
+df1.set_index('Col1',inplace=True)
+df2.set_index('Col1',inplace=True)
+df3.set_index('Col1',inplace=True)
+df = pd.concat([df1,df2,df3],axis=1,sort=False).reset_index()
+df.rename(columns = {'index':'Col1'})
+
+#using nested merge
+df1.merge(df2, how='left', left_on='Col1', right_on='Col1').merge(df3, how='left', left_on='Col1', right_on='Col1')
+
+#using reduce and merge functions
+from functools import reduce
+reduce(lambda x,y: pd.merge(x,y, on='Col1', how='outer'), [df1, df2, df3])
+
+ref:
+https://stackoverflow.com/questions/52223045/merge-multiple-dataframes-based-on-a-common-column
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.tutorialspoint.com/python_pandas/python_pandas_merging_joining.htm
+https://realpython.com/pandas-merge-join-and-concat/
+https://pandas.pydata.org/docs/user_guide/merging.html
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.append.html
