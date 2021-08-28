@@ -93,4 +93,10 @@ data _null_;
    put var2;
 run;
 
+data _null_;
+   var1= 'GANESH babu'; 
+   var2=SCAN(var1,2,'');
+   put var2;
+run;
+
 https://documentation.sas.com/?docsetId=lefunctionsref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
