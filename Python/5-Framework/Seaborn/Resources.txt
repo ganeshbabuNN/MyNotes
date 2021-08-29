@@ -1,3 +1,7 @@
 https://www.geeksforgeeks.org/python-seaborn-tutorial/
 https://www.journaldev.com/18583/python-seaborn-tutorial
 https://www.askpython.com/python-modules/python-seaborn-tutorial
+https://www.kaggle.com/kanncaa1/seaborn-tutorial-for-beginners
+
+Rare
+https://www.kaggle.com/kanncaa1/rare-visualization-tools
