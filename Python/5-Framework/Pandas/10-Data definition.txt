@@ -1,5 +1,5 @@
 Intro 
-Creating new datasets
+Creating new datasets (create)
 how to add one or more row/columns to an existing table(alter tabled add column)
 how to change the structure of existing tables(Alter the table)
 how to change the definition of existing columns in a table(alter table modify column)
