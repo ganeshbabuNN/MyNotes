@@ -1,1 +1,2 @@
 https://www.geeksforgeeks.org/python-plotly-tutorial/
+https://www.kaggle.com/kanncaa1/plotly-tutorial-for-beginners
