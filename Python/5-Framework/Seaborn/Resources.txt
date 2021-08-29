@@ -1,2 +1,3 @@
 https://www.geeksforgeeks.org/python-seaborn-tutorial/
 https://www.journaldev.com/18583/python-seaborn-tutorial
+https://www.askpython.com/python-modules/python-seaborn-tutorial
