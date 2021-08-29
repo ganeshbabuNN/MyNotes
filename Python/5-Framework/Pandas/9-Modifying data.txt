@@ -120,8 +120,8 @@ print(data)
 
 df[] method
 -----------
-data['dummy']='test' #updates all the column
-data.loc[1] = "test" #updates the observers of all columns
+data['dummy']='test' #updates specific column
+data.loc[1] = "test" #updates the values of all columns of that observations
 
 using .update method
 ------------------
