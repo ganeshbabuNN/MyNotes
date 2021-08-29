@@ -1,0 +1,2 @@
+https://www.w3schools.com/python/numpy/numpy_getting_started.asp
+https://www.geeksforgeeks.org/python-numpy/
