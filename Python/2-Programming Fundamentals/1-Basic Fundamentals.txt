@@ -1,9 +1,9 @@
 Tokens
 Comments
 Not basic element
-	statements
-	indentations
-	Expression
+statements
+indentations
+Expression
 Syntax
 
 Tokens
