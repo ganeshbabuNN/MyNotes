@@ -612,25 +612,21 @@ how to drop one or more columns from a table(drop the column)
 Drop Columns from a Dataframe using drop() method.
 --------------------------------------------------
 #Remove specific single column.
-# Remove column name 'A'
 df.drop(['A'], axis = 1)
 
 #Remove specific multiple columns.
-# Remove two columns name is 'C' and 'D'
 df.drop(['C', 'D'], axis = 1)
 
 #Remove columns as based on column index.
-# Remove three columns as index base
-df.drop(df.columns[[0, 4, 2]], axis = 1, inplace = True)
-
-#From version 0.21.0, you can also use the parameter columns as column label.
-nba.drop(columns='Age') #single column
-nba.drop(columns=['Age','Height','Weight'],inplace=True) #Use a list to delete multiple columns at once.
-
-#Specify by column number
 nba.columns[[1,2]]
 nba.drop(nba.columns[[1,2]],axis=1)
 nba.drop(columns=nba.columns[[1, 2]])
+df.drop(df.columns[[0, 4, 2]], axis = 1, inplace = True)
+
+#From version 0.21.0, you can also use the parameter columns as column label.
+product_dup.drop(labels=['Category','Seller_City'],axis=1)  #using label parameter require to specify axis paraemter
+nba.drop(columns='Age') #single column #for new version the columns paraemter do not require axis parameter
+nba.drop(columns=['Age','Height','Weight'],inplace=True)
 
 Drop Columns from a Dataframe using iloc[] and drop() method.
 ------------------------------------------------------------
@@ -640,7 +636,6 @@ df.drop(df.iloc[:, 1:3], inplace = True, axis = 1) # Remove all columns between 
 Drop Columns from a Dataframe using ix() and drop() method.
 -----------------------------------------------------------
 -Remove all columns between a specific column name to another columns name. this will been removed from this sister pd.__version__ == '1.0.0 
-
 df.drop(df.ix[:, 'B':'D'].columns, axis = 1) # Remove all columns between column name 'B' to 'D'
 
 Drop Columns from a Dataframe using loc[] and drop() method.
