@@ -11,8 +11,7 @@ import pandas as pd
 from pandas_datareader import data
 import matplotlib.pyplot as plt
 
-%matplotlib inline
-
+%matplotlib inline #It is a magic function that renders the figure in a notebook (instead of displaying a dump of the figure object).
 
 Use the plot Method to Render a Line Chart
 ==========================================
