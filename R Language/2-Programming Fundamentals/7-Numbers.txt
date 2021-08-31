@@ -89,7 +89,6 @@ abs(-394)
 
 #ceiling value
 It returns the smallest integer which is larger than or equal to x.	
-
 ceiling(4.323)
 
 #floor value
@@ -102,10 +101,8 @@ log10(3.32)
 It returns natural logarithm of input x.	
 lg(3.32)
 
-
 #truncating the decimal
 It returns the truncate value of input x.	
-
 trunc(5.99)
 
 #round
@@ -120,14 +117,12 @@ signif(2.323,digit=4)
 
 #exponentia
 It returns exponent.	
-
 exp(32)
 
 #sin cos  tan
 sin(3)
 cos(3)
 tan(32)
-
 
 #calculating percentage
 mystu <- data.frame(name=c('a','b','c','d','e','f','g'),
@@ -147,20 +142,16 @@ mystu
 sapply(names(mystu)[-1], function(x) {
   mystu[paste0(x, "_pct")] <<- mystu[x] / sum(mystu[x])
 })
-
 mystu
 
 #Solution 2: with a for() loop 
 for(col in names(mystu)[-1]) {
   mystu[paste0(col, "_pct")] = mystu[col] / sum(mystu[col])
 }
-
 mystu
-
 
 From Math functon
 ----------------
-
 #sqrt value
 It returns the square root of input x.	
 sqrt(4)
@@ -169,17 +160,15 @@ sqrt(4)
 x <-c(1.234,2.342,-4.562,5.671,12.345,-14.567)
 max(x)
 min(x)
-#data with  NA
+##data with  NA
 x <-c(1.234,2.342,-4.562,5.671,12.345,-14.567,NA)
 max(x, na.rm=TRUE)
 min(x, na.rm=TRUE)
-
-#data with character vector
+##data with character vector
 y<-c("d","e","a","x")
 max(y)
 min(y)
-
-#data with dataframe
+##data with dataframe
 mystu <- data.frame(name=c('a','b','c','d','e','f','g'),
                     marks=c(43,45,67,32,56,23,54))
 mystu
@@ -215,7 +204,6 @@ a<-c(0:10, 40)
 xm<-diff(a)
 print(xm)
 
-
 #Column center or standardize a matrix.	
 syntax:
   scale(x, center=TRUE, scale=TRUE)
@@ -226,8 +214,7 @@ scale(x)
 statistical functions
 ---------------------
 #It is used to find the height of the probability distribution at each point to a given mean and standard deviation
-syntax:
-  dnorm(x, m=0, sd=1, log=False)
+syntax: dnorm(x, m=0, sd=1, log=False)
 a <- seq(-7, 7, by=0.1)
 a         
 b <- dnorm(a, mean=2.5, sd=0.5)
@@ -237,8 +224,7 @@ plot(x,y)
 dev.off()
 
 #it is used to find the probability of a normally distributed random numbers which are less than the value of a given number.
-syntax:
-  pnorm(q, m=0, sd=1, lower.tail=TRUE, log.p=FALSE)
+syntax: pnorm(q, m=0, sd=1, lower.tail=TRUE, log.p=FALSE)
 a <- seq(-7, 7, by=0.2)
 a
 b <- dnorm(a, mean=2.5, sd=2)
@@ -248,9 +234,7 @@ plot(x,y)
 dev.off()
 
 #It is used to find a number whose cumulative value matches with the probability value.
-syntax:
-  qnorm(p, m=0, sd=1)
-
+syntax:  qnorm(p, m=0, sd=1)
 a <- seq(1, 2, by=002)
 a
 b <- qnorm(a, mean=2.5, sd=0.5)
@@ -260,8 +244,7 @@ plot(x,y)
 dev.off()
 
 #It is used to generate random numbers whose distribution is normal.
-syntax:
-  rnorm(n, m=0, sd=1)
+syntax:  rnorm(n, m=0, sd=1)
 y <- rnorm(40)
 y
 png(file="rnorm.png")
@@ -269,9 +252,7 @@ hist(y, main="Normal Distribution")
 dev.off()
 
 #It is used to find the probability density distribution at each point.	
-syntax:
-  dbinom(x, size, prob)	
-
+syntax:  dbinom(x, size, prob)	
 a<-seq(0, 40, by=1)
 a
 b<- dbinom(a, 40, 0.5)
@@ -281,94 +262,68 @@ plot(x,y)
 dev.off()
 
 #It is used to find the cumulative probability (a single value representing the probability) of an event.	
-syntax:
-  pbinom(q, size, prob)	
+syntax:  pbinom(q, size, prob)	
 a <- pbinom(25, 40,0.5)
 print(a)
 
 #It is used to find a number whose cumulative value matches the probability value.	
-sytnax:
-  qbinom(p, size, prob)	
-
+sytnax:  qbinom(p, size, prob)
 a <- qbinom(0.25, 40,01/2)
 a
 
 #It is used to generate required number of random values of a given probability from a given sample.	
-syntax:
-  rbinom(n, size, prob)
-
+syntax:  rbinom(n, size, prob)
 a <- rbinom(6, 140,0.4)
 a
 
 #it is the probability of x successes in a period when the expected number of events is lambda (λ)	
-syntax:
-  dpois(x, lamba)
-
+syntax:  dpois(x, lamba)
 dpois(a=2, lambda=3)+dpois(a=3, lambda=3)+dpois(z=4, labda=4)
 
-
 #It is a cumulative probability of less than or equal to q successes.	
-syntax:
-  ppois(q, lamba)
+syntax:  ppois(q, lamba)
 ppois(q=4, lambda=3, lower.tail=TRUE)-ppois(q=1, lambda=3, lower.tail=TRUE)
 
 #It is used to generate random numbers from the poisson distribution.	
-syntax:
-  rpois(n, lamba)
+syntax:  rpois(n, lamba)
 rpois(10, 10)
 
 #This function provide information about the uniform distribution on the interval from min to max. It gives the density.	
-syntax:
-  dunif(x, min=0, max=1)
+syntax:  dunif(x, min=0, max=1)
 dunif(x, min=0, max=1, log=FALSE)
 
 #It gives the distributed function	
-syntax:
-  punif(q, min=0, max=1)
+syntax:  punif(q, min=0, max=1)
 punif(q, min=0, max=1, lower.tail=TRUE, log.p=FALSE)
 
 #It gives the quantile function.	
-sytnax:
-  qunif(p, min=0, max=1)	
+sytnax:  qunif(p, min=0, max=1)	
 qunif(p, min=0, max=1, lower.tail=TRUE, log.p=FALSE)
 
-
 #It generates random deviates.	
-syntax:
-  runif(x, min=0, max=1)	
+syntax:  runif(x, min=0, max=1)	
 runif(x, min=0, max=1)
 
 #It is used to find the mean for x object	
-syntax:
-  mean(x, trim=0, na.rm=FALSE)
+syntax: mean(x, trim=0, na.rm=FALSE)
 a<-c(0:10, 40)
 xm<-mean(a)
 print(xm)
 
 #It returns standard deviation of an object.	
-syntax:
-  sd(x)
-
 a<-c(0:10, 40)
 xm<-sd(a)
 print(xm)
 
-
-#It returns median.	
-sytnax:
-  median(x)	
-
+# median.	
 a<-c(0:10, 40)
 xm<-meadian(a)
 print(xm)
 
 #It returns quantile where x is the numeric vector whose quantiles are desired and probs is a numeric vector with probabilities in [0, 1]	
-syntax:
-  quantilie(x, probs)	
-
+syntax:  quantilie(x, probs)	
 #It returns range.	
-syntax:
-  range(x)	
+syntax:  range(x)	
 a<-c(0:10, 40)
 xm<-range(a)
 print(xm)
@@ -410,7 +365,6 @@ Range Function
 Range function in R, returns a vector containing the minimum and maximum of all the given arguments
 
 # R Range function - for a numeric vector
-
 x <- c(2,7,1,-17,Inf,35,21,7)
 x
 
@@ -423,9 +377,7 @@ x<-c("a","h","x","i","j")
 range(x)
 
 #range() function in R of the dataframe column
-mystu <- data.frame(name=c('a','b','c','d','e','f','g'),
-                    marks=c(43,45,67,32,56,23,54))
-
+mystu <- data.frame(name=c('a','b','c','d','e','f','g'), marks=c(43,45,67,32,56,23,54))
 range(mystu$marks)
 
 summary
@@ -474,7 +426,6 @@ V <- c(0xa373, 0x115c6, 0xa373, 0x115c6, 0x176b3)
 sprintf("%d", V)
 -WW345RFV 
 
-
 Octal  Type
 -----------
 on <- as.octmode(c(16, 32, 127:129))
@@ -497,14 +448,12 @@ a
 b = FALSE + 10
 b
 
-
 #We can use None as a placeholder for an object that we don't want to reassign yet:
 #None placeholder
  b = None
 #Show
 print(b)
 None
-
 
 Number System
 *------------*
@@ -522,7 +471,6 @@ print(hex(a) ,"hex system")
 Ref
 https://www.quora.com/What-is-the-use-of-number-system-in-computer
 https://www.tutorialspoint.com/computer_logical_organization/number_system_conversion.htm
-
 
 Know ASCII , unicode and Numbers systems
 ----------------------------------------
