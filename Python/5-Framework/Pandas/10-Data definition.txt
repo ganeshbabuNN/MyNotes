@@ -3,7 +3,7 @@ Creating new datasets (create)
 how to add one or more row/columns to an existing table(alter tabled add column)
 how to change the structure of existing tables(Alter the table)
 how to change the definition of existing columns in a table(alter table modify column)
-how to use various statements to drop one or more columns from a table(drop the column)
+how to drop one or more columns from a table(drop the column)
 how to delete dataframe(Drop the table)
 Renaming a row,dataframe and columns
 
@@ -606,8 +606,8 @@ https://www.geeksforgeeks.org/change-data-type-for-one-or-more-columns-in-pandas
 https://stackoverflow.com/questions/15891038/change-column-type-in-pandas
 https://www.bmc.com/blogs/pandas-data-types/
 
-How to use various statements to drop one or more columns from a table
-======================================================================
+how to drop one or more columns from a table(drop the column)
+=============================================================
 
 Drop Columns from a Dataframe using drop() method.
 --------------------------------------------------
