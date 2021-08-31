@@ -460,6 +460,39 @@ https://www.geeksforgeeks.org/working-with-missing-data-in-pandas/
 Applying the functions
 =======================
 
+Intro
+-----
+the summary of the apply family functions.
+
+          DataFrame  Series 
+apply    |   V     |   V
+applymap |   V     |   -
+map      |   -     |   V
+
+
+apply()
+In case of a DataFrame Apply() apply a function along an axis (row-wise and column-wise). The function must accept as its parameter a Series.
+In case of a Series Apply() apply a function to each element (element-wise). The function must accept as its parameter an element.
+
+applymap()
+applymap() is used to apply a function to each element across the whole DataFrame. The function must accept as its parameter an element. 
+applymap() is optimized for this work and usually do such operations faster than apply(), but in case of regularly performed heavy operation it is good to compare them.
+
+map()
+map() is used on a Series to substitute each value with another value. map() can use a function (that accept an element), a dict, or another Series. 
+Values that are not found in the dict are converted to NaN, unless the dict has a default value (e.g. defaultdict).
+
+In short :
+for DataFrame:
+apply() is used when you want to apply a function along the row or column.
+applymap() is used for element-wise operation across the whole DataFrame.
+
+for Series:
+apply() is used when you want to apply a function on the values of Series.
+map() is used to substitute each value with another value.
+
+These methods have similar functionality. In the usual case it is better to choose map() since it is more optimized for work with a Series and allows simple transformation via dict and another Series
+
 Applying lambda function to each row/column.
 -------------------------------------------
 matrix = [(1,2,3,4),
