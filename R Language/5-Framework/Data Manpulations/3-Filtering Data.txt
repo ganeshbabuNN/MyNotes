@@ -6,7 +6,6 @@ Filter data based on a values
 how to get the distinct data
 How to eliminate duplicate rows from the output of a query
 perform matching based on specific patterns
-Check if an expression or values in a column is NULL or not
 Random selecting the rows
 Hanlding the missing values
 
@@ -288,32 +287,6 @@ perform matching based on specific patterns
 ===========================================
 --refer regular expression chapter
 
-Check if an expression or values in a column is NULL or not
-=========================================================
-base R
-------
-#checking data frame 
-health$name <- NULL
-is.null(health$name)
-health <- NULL
-is.null(health)
-!is.null(health) #is not null
-
-#checking in vecotr
-x1 <- c(3,4,5,6,7,8)
-is.null(x1)
-x2 <- NULL
-is.null(x)
-!is.null(x) #check if object not null
-
-#checking in vector
-mylist <- list()
-mylist[[1]]<-x1
-mylist[[2]] <- health[1:3,3:5]
-mylist
-is.null(mylist) #checking null
-mylist <- NULL
-is.null(mylist)
 
 Random selecting the rows
 =========================
@@ -410,12 +383,37 @@ telecom %>% summarise(n = n_distinct(MonthlyCharges),
 -Basically this means if we apply a mutate to some of the data with just a pipe operator, it will show us a modified view of the data, but it won’t be a permanent modification.
 -To permanently modify the data, we need to assign the mutate to the original data using the assignment operator <-.
 
-
 #replace the missing values to the other whatever you prefare here in this case put the median value
 telecom_1 <-telecom %>% mutate(MonthlyCharges=replace(MonthlyCharges,is.na(MonthlyCharges),median(MonthlyCharges, na.rm = TRUE)))
 
 -Now if we take another look at the data, it should be modified.
 telecom_1
+
+Check if an expression or values in a column is NULL or not
+------------------------------------------------------------
+#base R
+#checking data frame 
+health$name <- NULL
+is.null(health$name)
+health <- NULL
+is.null(health)
+!is.null(health) #is not null
+
+#checking in vecotr
+x1 <- c(3,4,5,6,7,8)
+is.null(x1)
+x2 <- NULL
+is.null(x)
+!is.null(x) #check if object not null
+
+#checking in vector
+mylist <- list()
+mylist[[1]]<-x1
+mylist[[2]] <- health[1:3,3:5]
+mylist
+is.null(mylist) #checking null
+mylist <- NULL
+is.null(mylist)
 
 Non standard missing values handling
 ------------------------------------
