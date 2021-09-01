@@ -32,26 +32,6 @@ the INPUT statement shows the declaration of numeric variables
 Syntax: 
 INPUT VAR1 VAR2 VAR3; 		#Define numeric variables in the data set.
 
-Example:
-data testnum;
-input num1 num2;
-datalines;
-12212 3454234232
-12334 3244222123
-;
-run;
-
--for structure datalines
-- the @ symbol contals the positions of the characters
-DATA TEMP;
-INPUT   @1 EMPID $ @4 ENAME $ @13 DEPT $ ;
-DATALINES;
-14 Rick     IT 
-241 Dan      OPS 
-30 Sanvi    IT 
-410 Chanchal OPS 
-52 Piyu     FIN 
-;
 
 2)Character Variables
 ----------------------
@@ -62,15 +42,6 @@ DATALINES;
 Syntax
 INPUT VAR1 $ VAR2 $ VAR3 $; 	#Define character variables in the data set.
 
-Example
-data testchar;
-input name $ sex $ ;
-datalines;
-ganeshbabu m
-rudr m
-pkys m
-;
-run;
 
 3)Date Variables
 --------------
@@ -80,20 +51,11 @@ Syntax
 INPUT VAR1 DATE11. VAR2 MMDDYY10. ; #Define date variables in the data set.
 In the above syntax, the INPUT statement shows the declaration of date variables.
 
-Example
-data test;
-INPUT DOB DATE11. START_DATE MMDDYY10. ;
-datalines;
-12sep2021 12082020
-;
-run;
-
 https://documentation.sas.com/?docsetId=leforinforref&docsetTarget=p1wj0wt2ebe2a0n1lv4lem9hdc0v.htm&docsetVersion=9.4&locale=en
-
 
 Converstion one datatype of other
 ==================================
-input function
+Input function
 --------------
 -INPUT Function is used to convert character variable to numeric.
 	syntax: new_num=input(character-variable, 4.);
@@ -140,7 +102,7 @@ input date1 date11. date2 mmddyy10.; # date informat
 where w = width i,e -Maximum "w" number of columns with no decimal point.
 p is precision  i,e n.p -Maximum "w" number of columns with "p" decimal points.
 
--for comm informat type
+-for comma informat type
 COMMAn.p- Maximum "n" number of columns with "p" decimal places which removes any comma or dollar signs.
 
 Numeric formats
