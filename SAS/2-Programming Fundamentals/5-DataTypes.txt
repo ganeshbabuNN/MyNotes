@@ -42,6 +42,7 @@ INPUT VAR1 VAR2 VAR3; 		#Define numeric variables in the data set.
 Syntax
 INPUT VAR1 $ VAR2 $ VAR3 $; 	#Define character variables in the data set.
 
+-The difference between numeric and character is if the variable is followed $ which indicate the character or else its a number
 
 3)Date Variables
 --------------
