@@ -362,6 +362,7 @@ https://youtu.be/61Bs7-ycL64
 https://realpython.com/python-encodings-guide/
 https://byjus.com/maths/number-system/
 https://byjus.com/maths/hexadecimal-number-system/
+https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/  --BEST article
 
 Note:
 ASCII, stands for American Standard Code for Information Interchange. 
