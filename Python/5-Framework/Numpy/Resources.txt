@@ -2,5 +2,5 @@ https://www.w3schools.com/python/numpy/numpy_getting_started.asp
 https://www.geeksforgeeks.org/python-numpy/
 
 
-10 importent functions:
+10 important functions:
 https://towardsdatascience.com/10-numpy-functions-you-should-know-1dc4863764c5 
