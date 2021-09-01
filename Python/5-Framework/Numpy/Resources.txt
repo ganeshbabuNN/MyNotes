@@ -6,3 +6,6 @@ https://www.geeksforgeeks.org/python-numpy/
 https://towardsdatascience.com/10-numpy-functions-you-should-know-1dc4863764c5
 https://towardsdatascience.com/12-amazing-pandas-numpy-functions-22e5671a45b8
 https://www.dataquest.io/blog/numpy-cheat-sheet/
+
+python.
+https://www.dataquest.io/blog/8-rarely-used-python-libraries-how-to-use-them/
