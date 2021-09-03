@@ -69,14 +69,14 @@ Comparison Operators
 -These operators compare the values of the variables and the result is a truth value presented by 1 for TRUE and 0 for False.
 
 Operator-Mnemonic Equivalent- Description
-=(EQ)		 The EQUAL Operator. If both data values are equal then the result is 1 else it is 0
-^= ~=(NE)	 The NOT EQUAL Operator. If both data values are unequal then the result is 1 else it is 0
-< (LT)		 The LESS THAN Operator.
-<=<LE)		 The LESS THAN or EQUAL TO Operator.
->(GT)		 The GREATER THAN Operator.
->=(GE)		 The GREATER THAN or EQUAL TO Operator.	
-IN		     The IN Operator. If the value of the variable is equal to any one of the values in a given list of values, 
-			 then it returns 1 else it returns 0.
+=	 (EQ)		      The EQUAL Operator. If both data values are equal then the result is 1 else it is 0
+^=,~=	 (NE)	              The NOT EQUAL Operator. If both data values are unequal then the result is 1 else it is 0
+< 	 (LT)	              The LESS THAN Operator.
+<=<	 (LE)	              The LESS THAN or EQUAL TO Operator.
+>	 (GT)		      The GREATER THAN Operator.
+>=	 (GE)	              The GREATER THAN or EQUAL TO Operator.	
+IN	                      The IN Operator. If the value of the variable is equal to any one of the values in a given list of values, 
+			      then it returns 1 else it returns 0.
 			 
 Example:
 data _null_;
@@ -111,9 +111,9 @@ Logical Operators
 -These operators evaluate the Truth value of an expression
 
 Operator-Mnemonic Equivalent- Description
-&(AND)		 The AND Operator. If both data values evaluate to true then the result is 1 else it is 0.
-|,¦,!(OR)		 The OR Operator. If any one of the data values evaluate to true then the result is 1 else it is 0
-~(NOT)	 The NOT Operator. The result of NOT operator in form of an expression whose value is FALSE or a missing value is 1 else it is 0.
+&	 (AND)		     The AND Operator. If both data values evaluate to true then the result is 1 else it is 0.
+|,¦,!	(OR)	             The OR Operator. If any one of the data values evaluate to true then the result is 1 else it is 0
+~	(NOT)	 	     The NOT Operator. The result of NOT operator in form of an expression whose value is FALSE or a missing value is 1 else it is 0.
 
 data _null_;
  col1=4.2;
@@ -138,9 +138,9 @@ run;
 Minimum/Maximum Operators
 --------------------
 -The below table describes the details of the Minimum/Maximum operators
-Operator	Description	Example
-MIN			-The MIN Operator. It returns the minimum value form the list of values in the row.
-MAX			-The MAX Operator. It returns the maximum value form the list of values in the row.
+Operator	Description	
+MIN		-The MIN Operator. It returns the minimum value form the list of values in the row.
+MAX		-The MAX Operator. It returns the maximum value form the list of values in the row.
 
 Example:
 data logical_op;
