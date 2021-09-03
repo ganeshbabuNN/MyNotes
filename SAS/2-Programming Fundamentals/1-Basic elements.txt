@@ -17,7 +17,9 @@ Resources
 
 Intro
 =====
-
+In any of the languages there are two internal engine where the language is controlled and execute.
+compiler --> it checks the grammers, syntax of the program what you write where the sas engine handovers to compiler, if any error which is reported by the compiler are showsin the log windows
+intrepreter --> once compilers completes the checking the syntax without any error, then intrepreter executes the program i,e code and shows in result/datasets/log windows
 
 Algorithms
 ==========
