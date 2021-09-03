@@ -104,6 +104,21 @@ data comparison_op;
 	1.2 23
 	;
 run;
+
+IN Operators:
+-This operators are to search for values in multiple way.
+data test;
+	input x ;
+	if x in (6,3,4); 
+	datalines;
+	1
+	3
+	4
+	5
+	6
+	7
+	;
+run;
 			 
 Logical Operators
 --------------------
@@ -176,22 +191,6 @@ data _null_;
  col3 ='babu';
  col4 = col1 || col2 || col3; 
  put col4;
-run;
-
-IN operator
------------
--This operators are to search for values in multiple way.
-data test;
-	input x ;
-	if x in (6,3,4); 
-	datalines;
-	1
-	3
-	4
-	5
-	6
-	7
-	;
 run;
 
 Operators Precedence
