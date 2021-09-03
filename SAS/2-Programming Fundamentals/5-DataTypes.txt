@@ -119,8 +119,8 @@ date informats:
 (14-mar-2011,12032011)-(anydtdte15.,anydtdte8.,)
 (March 23,2021)-(wordate20.)
 
-There are Fours way to execute
-*----------------------------*
+There are few appraoch
+*--------------------*
 1)using input functions
 2)Using input statement
 3)using the informat statement
@@ -327,10 +327,10 @@ input date - informat
 December 11, 2012-worddate20.
 14mar2011-date9.
 14-mar-2011-date11.
-14-mar-2011	-anydtdte15.
+14-mar-2011-anydtdte15.
 
-There are Fours way to execute
-*----------------------------*
+There are few appraoch
+*---------------------*
 1)using put functions
 2)using the format statement
 3)using the Attrib statement
