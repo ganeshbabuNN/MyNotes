@@ -26,3 +26,6 @@ https://medium.com/datadriveninvestor/10-python-automatic-eda-libraries-which-ma
 https://www.youtube.com/watch?v=HVBk2Ge_Q98
 
 
+Websites:
+========
+https://lazyprogrammer.me/deep-learning-courses/  - CBT courses
