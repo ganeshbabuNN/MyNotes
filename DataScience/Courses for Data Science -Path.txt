@@ -1,19 +1,24 @@
 Python:
+~~~~~~~
 https://www.udemy.com/course/complete-python-bootcamp/
 
-
 Data analysis
-
+~~~~~~~~~~~~~~
+https://www.udemy.com/course/data-analysis-with-pandas/ - pandas
+https://www.udemy.com/course/the-pandas-bootcamp/  - Complete Pandas - Statistics
+https://www.udemy.com/course/oracle-database-12c-sql-certified-associate-1z0-071/   - Oracle SQL
+https://www.udemy.com/course/oracle-plsql-is-my-game-exam-1z0-144/  - Oracle PLSQL -Options
+https://www.udemy.com/course/sql-beginner-to-guru-mysql-edition/ - mySQL
 
 Data Visualizations
-
+~~~~~~~~~~~~~~~~~~~~
 
 
 Machine Learning
-
+~~~~~~~~~~~~~~~~~
 
 
 Deep learning
-
+~~~~~~~~~~~~~
 
 
