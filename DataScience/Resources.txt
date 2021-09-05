@@ -29,3 +29,5 @@ https://www.youtube.com/watch?v=HVBk2Ge_Q98
 Websites:
 ========
 https://lazyprogrammer.me/deep-learning-courses/  - CBT courses
+https://lazyprogrammer.me/machine-learning-data-science/   -- ML and DL courses
+https://deeplearningcourses.com/course_order  -- Course Order
