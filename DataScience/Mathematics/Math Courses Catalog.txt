@@ -1,4 +1,4 @@
-1) Fundamentals
+1) Fundamentals- (for DS required)
 https://www.udemy.com/course/fundamentals-of-math/
 
 2) Algebra
@@ -10,17 +10,26 @@ https://www.udemy.com/course/geometry-basics/
 4) Trigonometry
 https://www.udemy.com/course/trig-by-krista-king/
 
-op) Probablility /Stats
+op) Probablility /Stats (for DS required)
 https://www.udemy.com/course/statistics-probability/
+https://www.udemy.com/course/statshelp/
 
-5) Calculus 1
+5) Calculus 1  (for DS required)
 https://www.udemy.com/course/calculus1/
 
-6) Calculus 2
+6) Calculus 2  (for DS required)
 https://www.udemy.com/course/calculus-2/
 
-7) Calculus 3
+7) Calculus 3  (for DS required)
 https://www.udemy.com/course/calculus-3/
 
-8) Linear Algebra
+8) Linear Algebra  (for DS required)
 https://www.udemy.com/course/linear-algebra-course/
+https://www.udemy.com/course/linear-algebra-an-introduction/ -Richard Han
+https://www.udemy.com/course/linear-algebra-for-beginners-open-doors-to-great-careers-2/-Richard Han
+https://www.udemy.com/course/linear-algebra-theory-and-implementation/- optional
+
+
+Python for ML  (for DS required)
+-------------
+https://www.udemy.com/course/the-python-mega-course/
