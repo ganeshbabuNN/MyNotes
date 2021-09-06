@@ -71,12 +71,30 @@ run;
 
 CATS
 -strips both leading and trailing blanks, and does not insert separators
+data _null_;
+   var1= ' GANESH';
+   var2='BABU ';
+   var3=cats(var1,var2);
+   put var3;
+run;
 
 CATX
 -trips both leading and trailing blanks, and inserts separators
+data _null_;
+   var1= ' GANESH';
+   var2='BABU ';
+   var3=catx("",var1,var2);
+   put var3;
+run;
 
 TRIM 
 -This function is used for removing trailing blanks exclusively
+data _null_;
+   var1= 'GANESH';
+   var2='BABU  ';
+   var3=trim("",var1,var2);
+   put var3;
+run;
 
 SUBSTR 
 -This function extracts a part of a string.
