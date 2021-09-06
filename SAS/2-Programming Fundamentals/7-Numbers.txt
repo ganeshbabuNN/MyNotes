@@ -1,102 +1,380 @@
-Strings
-Declaring String Variables
-String functions
-Escape Sequences
+Intro
+Numeric Data Type
+Number Type Conversion or Datatype casting
+Number system Conversion
+Built in functions
 
-Strings
-=======
--Strings in SAS are the values which are enclosed with in a pair of single quotes
--Also the string variables are declared by adding a space and $ sign at the end of the variable declaration
+Intro
+=====
 
 
-Declaring String Variables
-==========================
--We can declare the string variables and their values as shown below. In the code below we declare two character variables of lengths 6 and 5.
--The LENGTH keyword is used for declaring variables without creating multiple observations.
-
-data string_ex;
- length str1 $6 str2 $6;
- str1='Hello ';
- str2 = 'World';
- join_str= str1 || str2;
- put join_str;
-run;
-
-String Functions
+Numeric Data Type
 ================
-STRIP -
--This function removes the leading and trailing spaces i.e spaces that occur before and after any character
+This is the default variable type. These variables are used in mathematical expressions.
+the INPUT statement shows the declaration of numeric variables
+-default lenght will be 8 characters
 
-data _null_;
-   var1= "        GANESH    ";
-   put COMPBL var1;
+Syntax: 
+INPUT VAR1 VAR2 VAR3; 		#Define numeric variables in the data set.
+
+
+Number Type Conversion or Datatype casting
+===========================================
+-INPUT Function is used to convert character variable to numeric.
+	syntax: new_num=input(character-variable, 4.);
+
+data temp;
+x = '12345';
+new_x = input(x,5.);
 run;
 
-COMPRESS
--This function removes some specified characters that we wish to remove from the string instead of removing blanks
-syntax
- COMPRESS(char,character)
- 
- data _null_;
-	 var1= "GANESH BABU3293283BANGALORE";
-	  var2=COMPRESS(var1,'3293283');
-	  put var2;
+-the variable x is a character variable as it is defined in quotes '12345'. The newly created variable new_x is in numeric format
+
+using informat and format 
+-------------------------
+Generally there are two formats and informats
+
+informats <- it is tells the sas to read/stored the input
+formats <- it is tells the sas to write/display the output
+
+Ex:
+DATA MYDATA1;
+input x 6.; /*maximuum width of the data*/
+format x 6.3;
+datalines;
+8722
+93.2
+.1122
+15.116
+PROC PRINT DATA = MYDATA1;
+RUN;
+
+# MYDATA1
+Obs     x
+1       8722.0 # Display 6 columns with zero appended after a decimal.
+2       93.200 # Display 6 columns with zero appended after a decimal.
+3       0.112  # No integers before a decimal, so display 3 available digits after a decimal.
+4       15.116 # Display 6 columns with 3 available digits after a decimal.
+
+Ex:
+DATA MYDATA2;
+input x 6.; /*maximum width of the data*/
+format x 5.2;
+datalines;
+8722
+93.2
+.1122
+15.116
+PROC PRINT DATA=MYDATA2;
+RUN;
+
+# MYDATA2
+Obs     x
+1       8722  # Display 5 columns. Only 4 are available.
+2       93.20 # Display 5 columns with zero appended after a decimal.
+3       0.11  # Display 5 columns with 2 places after a decimal.
+4       15.12 # Display 5 columns with 2 places after a decimal.
+
+DATA MYDATA3;
+input x 6.; /*maximum width of the data*/
+format x DOLLAR10.2;
+datalines;
+8722
+93.2
+.1122
+15.116
+PROC PRINT DATA=MYDATA3;
+RUN;
+
+# MYDATA3
+Obs     x
+1       $8,722.00 # Display 10 columns with leading $ sign, a comma at a thousandth place and zeros appended after the decimal.
+2       $93.20    # Only 2 integers available before decimal and one available after the decimal.
+3       $0.11     # No integers available before decimal and two available after the decimal.
+4       $15.12    # Only 2 integers available before decimal and two available after a decimal
+
+
+Number system Conversiona
+=========================
+---TBD
+
+Built in functions
+==================
+
+numeric Function:
+-----------------
+
+COALESCE:
+--------
+The COALESCE function can be used to return the first non-missing value and the second argument to the function would replace the missing value to 0.
+
+data test;
+input a b c;
+miss_ = COALESCE(a,b);
+datalines;
+. 1 .
+2 . 2
+4 5 .
+. . 2
+1 4 2
+;
 run;
 
-LEFT 
--This function aligns the text or the string to the left instead of removing leading blanks
-
-data _null_;
-   var1= "GANESH            ";
-   var2=TRIM(var1);
-   put var2;
+ROUND:
+-----
+ROUND is used to round numbers to the nearest integer or to other place values. If a place value is not provided, a default value of 1 is used and the argument is rounded to the nearest integer.
+data test;
+x1=round(1234.56789, 100); 
+x2=round(1234.56789, 10) ; 
+x3=round(1234.56789, 1)  ; 
+x4=round(1234.56789, .1) ;
+x5=round(1234.56789, .01); 
+x6=round(1234.56789, .001);  
+x7=round(1234.56789, .0001); 
+x8=round(1234.56789, .00001);
+x9=round(1234.56789, .1111); 
+x10 = round(1234.56789, .11111); 
+put x1= x2= x3= x4= x5= x6= x7= x8= x9=  x10= ;
 run;
 
-CAT
--These functions are used to concatenate two strings
-data _null_;
-   var1= 'GANESH';
-   var2='BABU';
-   var3=cat(var1,var2);
-   put var3;
+INT, FLOOR, and CEIL function:
+-----------------------------
+-INT the function returns the integer part of a numeric value.
+-The FLOOR integer value respectively
+-The CEIL  integer value respectively
+
+data values;
+x1=int(23.45);
+x2=int(-23.45);
+x3=ceil(23.45);
+x4=floor(-23.45);
+x5=floor(23.45);
+put x1= x2= x3= x4= x5=;
 run;
 
-CATS
--strips both leading and trailing blanks, and does not insert separators
 
-CATX
--trips both leading and trailing blanks, and inserts separators
+MISSING:
+--------
+You can use the MISSING function to determine missing values for both numeric and character. 
+This function returns a value of true or 1 if its argument is a missing value else it returns false or 0.
 
-TRIM 
--This function is used for removing trailing blanks exclusively
-
-SUBSTR 
--This function extracts a part of a string.
-data _null_;
-   var1= 'GANESH'; 
-   var2=SUBStr(var1,4,2);
-   put var2;
+data test;
+input a b c;
+a_miss_ = MISSING(a);
+b_miss_ = MISSING(b);
+c_miss_ = MISSING(c);
+datalines;
+. 1 .
+2 . 2
+4 5 .
+. . 2
+1 4 2
+;
 run;
 
-length
--length of the give string
-data _null_;
-   var1= 'GANESH'; 
-   var2=LENGTH(var1);
-   put var2;
+The N function
+--------------
+N function returns the number of non-missing numeric values among its arguments.
+
+data test;
+input a b c;
+miss_= n(a,b,c);
+datalines;
+. 1 .
+2 . 2
+4 5 .
+. . 2
+1 4 2
+;
 run;
 
-LOWER,UPPER,PROPCASE
-data _null_;
-   var1= 'GANESH'; 
-   var2= lowcase(var1);  //lowcase , propcase
-   put var2;
+NMISS function:
+---------------
+-The NMISS function returns the number of missing values in the list.
+-NMISS requires arguments to be numeric values, whereas CMISS will work both for numeric and character values.
+
+data test;
+input a b c;
+miss_= nmiss(a,b,c);
+datalines;
+. 1 .
+2 . 2
+4 5 .
+. . 2
+1 4 2
+;
 run;
 
-data _null_;
-   var1= 'GANESH babu'; 
-   var2=SCAN(var1,2,'');
-   put var2;
+
+mean function
+-------------
+The MEAN function computes the mean of its arguments.
+
+data test;
+input a b c;
+mean_= mean(a,b,c);
+datalines;
+. 1 .
+2 . 2
+3 4 3
+6 7 8
+3 5 7
+4 6 4
+;
 run;
 
-https://documentation.sas.com/?docsetId=lefunctionsref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
+
+MEDIUM function
+-------------
+The Medium function computes the median of its arguments.
+
+data test;
+input a b c;
+median_= median(a,b,c);
+datalines;
+. 1 .
+2 . 2
+3 4 3
+6 7 8
+3 5 7
+4 6 4
+;
+run;
+
+
+MATH FUNCTIONS
+~~~~~~~~~~~~~~
+
+MAX and MIN functions
+---------------------
+MAX and MIN are the two SAS numeric functions that can be used to return the largest and smallest value of its arguments.
+
+data test;
+input a b c;
+min_= min(a,b,c);
+max_= max(a,b,c);
+datalines;
+. 1 .
+2 . 2
+3 4 3
+6 7 8
+3 5 7
+4 6 4
+;
+run;
+
+SUM FUNCTIONS
+---------------
+data test;
+input a1 a2 a3;
+sum_= sum(a1,a2,a3);
+sum1_= sum(of a1-a3);
+datalines;
+. 1 .
+2 . 2
+3 4 3
+6 7 8
+3 5 7
+4 6 4
+;
+run;
+
+
+ABS Functions
+-------------
+-ABS function is a straightforward function that is used to find the absolute value of any integer. In other words, it removes the negative sign from the value.
+
+data test;
+input a1 a2 a3;
+abs_=abs(a1);
+datalines;
+-3 4 3
+6 7 8
+3 5 7
+4 6 4
+;
+run;
+
+
+SQRT FUnctions
+-------------
+As the name suggests, the SQRT function will return the square root of its arguments.
+
+data test;
+input a1 a2 a3;
+sqrt_=SQRT(a1);
+datalines;
+-3 4 3
+6 7 8
+3 5 7
+4 6 4
+16 35 32
+9 4 2
+;
+run;
+
+
+LOG FUNCTION
+------------
+The LOG function takes the natural logarithm of its argument. You can use the LOG10 function to return a base 10 log.
+
+data test;
+input a1 a2 a3;
+log_=log(a1);
+datalines;
+-3 4 3
+6 7 8
+3 5 7
+4 6 4
+16 35 32
+9 4 2
+;
+run;
+
+EXP functions
+-------------
+-The EXP function raises e (the base of natural logarithms) to the value provided in its argument.
+
+data test;
+input a1 a2 a3;
+exp_=exp(a1);
+datalines;
+-3 4 3
+6 7 8
+3 5 7
+4 6 4
+16 35 32
+9 4 2
+;
+run;
+
+CONSTANT Function
+-----------------
+-The CONSTANT function returns values of commonly used mathematical constants such as pi and e.
+
+
+
+Ref: https://support.sas.com/documentation/cdl/en/lefunctionsref/63354/HTML/default/viewer.htm#p0l7s11dwvzfq5n1wnw997dye8fx.htm
+
+RANDOM FUNCTION
+---------------
+This function generates random numbers ranging between 0 and 1.
+
+This function generates random numbers ranging between 0 and 1.
+
+data test;
+x=rand("Integer", 1, 10);
+run;
+
+
+Quiz:
+=====
+
+Assignment:
+===========
+
+
+Resources:
+=========
+https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/lefunctionsref/n1ig09qs4g2k9yn1tgxbi8eta35y.htm
+https://www.9to5sas.com/sas-numeric-functions/
