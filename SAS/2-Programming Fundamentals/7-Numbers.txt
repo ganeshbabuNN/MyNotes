@@ -352,7 +352,14 @@ CONSTANT Function
 -----------------
 -The CONSTANT function returns values of commonly used mathematical constants such as pi and e.
 
-
+data test;
+/*for pi*/
+x=constant('pi');
+/*for the natural base e*/
+y=constant('e');
+/* for the Euler constant*/
+z=constant('euler');
+run;
 
 Ref: https://support.sas.com/documentation/cdl/en/lefunctionsref/63354/HTML/default/viewer.htm#p0l7s11dwvzfq5n1wnw997dye8fx.htm
 
