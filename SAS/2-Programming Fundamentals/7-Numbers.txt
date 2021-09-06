@@ -385,3 +385,4 @@ Resources:
 =========
 https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/lefunctionsref/n1ig09qs4g2k9yn1tgxbi8eta35y.htm
 https://www.9to5sas.com/sas-numeric-functions/
+https://data-flair.training/blogs/sas-numeric-format/
