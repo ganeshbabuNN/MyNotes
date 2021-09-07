@@ -1,0 +1,5 @@
+https://www.kaggle.com/datasets  -- all codes and datasets
+
+EDA:
+====
+https://github.com/kishan0725/Google-Stock-Price-Prediction
