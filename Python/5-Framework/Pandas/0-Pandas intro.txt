@@ -232,6 +232,13 @@ pd.reset_option('display.precision')
 
 pd.options.mode.chained_assignment = None #for avoiding SettingWithCopyWarning  
 
+#changing the font size of the output in jupyter
+-------------------------------------------------
+heading_properties = [('font-size', '10px')]
+cell_properties = [('font-size', '09px')]
+dfstyle = [dict(selector="th", props=heading_properties),dict(selector="td", props=cell_properties)]
+df.style.set_table_styles(dfstyle) #specify the dataframe name to control the font size
+
 
 Ref:
 https://towardsdatascience.com/8-commonly-used-pandas-display-options-you-should-know-a832365efa95
