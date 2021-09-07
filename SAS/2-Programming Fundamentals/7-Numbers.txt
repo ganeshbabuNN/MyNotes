@@ -3,6 +3,8 @@ Numeric Data Type
 Number Type Conversion or Datatype casting
 Number system Conversion
 Built in functions
+Data Time Functions
+
 
 Intro
 =====
@@ -373,6 +375,27 @@ data test;
 x=rand("Integer", 1, 10);
 run;
 
+Data Time Functions
+=====================
+
+data abc;
+input @1 a date9. @11 y date9. @21 b date9.;
+format a y b date11.;
+year_ = INTCK('YEAR',a,y);
+month_ = INTCK('MONTH',a,y);
+week_ = INTCK('WEEK',a,y);
+qtr_ = INTCK('qtr',a,y);
+weekday_ = WEEKDAY(a);
+today_ = TODAY();
+time_= TIME();
+datalines;
+30oct2021 14dec2023 12jun2020
+22sep2023 14feb2021 13jan2020
+;
+run;
+
+Ref:
+https://www.sfu.ca/sasdoc/sashtml/ets/chap3/sect13.htm
 
 Quiz:
 =====
@@ -385,4 +408,3 @@ Resources:
 =========
 https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/lefunctionsref/n1ig09qs4g2k9yn1tgxbi8eta35y.htm
 https://www.9to5sas.com/sas-numeric-functions/
-https://data-flair.training/blogs/sas-numeric-format/

@@ -1,21 +1,12 @@
-
-Intro
 Strings
 Declaring String Variables
+Escape Sequences
 String functions
-Quiz
-assignment
-Resources
-
-intro
-=====
-
 
 Strings
 =======
 -Strings in SAS are the values which are enclosed with in a pair of single quotes
 -Also the string variables are declared by adding a space and $ sign at the end of the variable declaration
-
 
 Declaring String Variables
 ==========================
@@ -30,9 +21,53 @@ data string_ex;
  put join_str;
 run;
 
+Controlling the input and output values
+---------------------------------------
+Generally there are two formats and informats
+
+informats <- it is tells the sas to read/stored the input
+formats <- it is tells the sas to write/display the output.
+
+informats 
+----------
+An informat is a type of SAS language element that applies a pattern to or executes instructions for a data value to be read as input.
+
+syntax:
+input var1 <informatw.p> var<informat w.p>;
+
+there are different ways to use the string, some are
+1)input function
+2)input statement
+
+
+Using Input function
+data test;
+var1='ganeshbabug';
+var2=input(var1,$7.);
+var3=input(var1,$10.);
+run;
+
+
+Using input statement
+data staffname;
+input name $1-4;
+cards;
+ganeshbabu
+giriredddy
+manjunathswami
+karthik
+gani
+;
+run;
+
+Escape Sequences
+=================
+...TBD
+
 String Functions
 ================
-STRIP -
+STRIP
+------
 -This function removes the leading and trailing spaces i.e spaces that occur before and after any character
 
 data _null_;
@@ -41,17 +76,57 @@ data _null_;
 run;
 
 COMPRESS
+------
 -This function removes some specified characters that we wish to remove from the string instead of removing blanks
+-Default - It removes leading, between and trailing spaces
+
 syntax
  COMPRESS(char,character)
  
- data _null_;
-	 var1= "GANESH BABU3293283BANGALORE";
+      data test;
+	 var1= "GANESH BABU329!3283BANGALORE";
 	  var2=COMPRESS(var1,'3293283');
 	  put var2;
+	run;
+
+
+In SAS 9.1.3, the additional parameter called MODIFIER was added to the function.
+
+The following keywords can be used as modifiers-
+a – Remove all upper and lower case characters from String.
+ak - Keep only alphabets from String.
+kd - Keeps only numeric values
+d – Remove numerical values from String.
+i – Remove specified characters both upper and lower case from String.
+k – keeps the specified characters in the string instead of removing them.
+l – Remove lowercase characters from String.
+p – Remove Punctuation characters from String.
+s – Remove spaces from String. This is default.
+u – Remove uppercase characters from String.
+
+data test;
+x='ABCDEF-!1.234';
+x1_=compress(x,'','!4');
+x2_=compress(x,'','ak');
+x3_=compress(x,'','kd');
+x4_=compress(x,'','p');
+x5_=compress(x,'0123456789.','k');
+put x1_= x2_= x3_= x4_= x5_=;
 run;
 
+COMPBL Function:
+---------------
+-It compresses multiple blanks to a single blank.
+
+data test;
+   var1= "GANESH    BABU ";
+   var2=COMPBL(var1);
+   put var2;
+run;
+
+
 LEFT 
+------
 -This function aligns the text or the string to the left instead of removing leading blanks
 
 data _null_;
@@ -61,6 +136,7 @@ data _null_;
 run;
 
 CAT
+------
 -These functions are used to concatenate two strings
 data _null_;
    var1= 'GANESH';
@@ -70,6 +146,7 @@ data _null_;
 run;
 
 CATS
+------
 -strips both leading and trailing blanks, and does not insert separators
 data _null_;
    var1= ' GANESH';
@@ -79,6 +156,7 @@ data _null_;
 run;
 
 CATX
+------
 -trips both leading and trailing blanks, and inserts separators
 data _null_;
    var1= ' GANESH';
@@ -88,6 +166,7 @@ data _null_;
 run;
 
 TRIM 
+------
 -This function is used for removing trailing blanks exclusively
 data _null_;
    var1= 'GANESH';
@@ -96,7 +175,10 @@ data _null_;
    put var3;
 run;
 
+--also you can use  TRIM(LEFT(string)) which is equivalent to STRIP functions.
+
 SUBSTR 
+------
 -This function extracts a part of a string.
 data _null_;
    var1= 'GANESH'; 
@@ -104,7 +186,78 @@ data _null_;
    put var2;
 run;
 
-length
+INDEX Function
+--------------
+It finds characters or words in a character variable
+data _null_;
+ string='Hi,How are you doing?';
+x = index(string, "How");
+put x=;
+run;
+
+-if index(name,'ian') > 0;
+-if name =: 'H';
+
+FIND Function
+-------------
+-To locate a substring within a string
+
+data test;
+    string='Hi,How are you doing?';
+	x = FIND(string, "How"); 
+run;
+
+TRANWRD Function
+----------------
+-TRANWRD is used to replace one or more words with a replacement word.
+
+TRANWRD(character-value, find-string,replace-with)
+
+data _null_;
+	x = TRANWRD("Now is the time","is","is not"); 
+	put x=; 
+run;
+
+TRANSLATE Function
+------------------
+-Translate is used to replace one character value with another.
+TRANSLATE(character-value, replace-with,find-string)
+
+data _null_;
+	x = TRANSLATE("12X45", "ABCDE","12345"); 
+	y = TRANSLATE("Y","10","YN");
+	put x= y=; 
+run;
+
+-The TRANSLATE function converts every occurrence of a user-supplied character to another character. 
+TRANSLATE can scan for more than one character in a single call. 
+In doing this, however, TRANSLATE searches for every occurrence of any of the individual characters within a string. 
+That is, if any letter (or character) in the target string is found in the source string, it is replaced with the corresponding letter (or character) in the replacement string. 
+
+The TRANWRD function differs from TRANSLATE in that it scans for words (or patterns of characters) and replaces those words with a second word (or pattern of characters).
+
+COUNT, COUNTC ,COUNTW 
+---------------------
+CONT This character function number of times a given substring appears in a string. The case can be ignored by using modifiers. If no occurrences of the substring are found, the function returns a 0.
+	COUNT(character-value, find-string <,’modifiers’>)
+
+COUNTC is used to count the number of individual characters that appear or do not appear in a string
+	COUNTC(character-value, characters <,’modifiers’>)
+
+COUNTW It counts the number of words in a character string.
+
+
+data _null_;
+	x1=COUNT("ding and dong","g ");
+	x2=COUNTC("ABCDEabcde","BCD","VI");
+	x3 = countw("Trait Jhonson",' ')
+	put x1= x2=;  
+/*for x2=4 (A, E, a, and e)*/
+run;
+
+
+length function
+----------------
 -length of the give string
 data _null_;
    var1= 'GANESH'; 
@@ -112,14 +265,174 @@ data _null_;
    put var2;
 run;
 
-LOWER,UPPER,PROPCASE
+LOWER,UPPER,REVERSE,PROPCASE:
+--------------------
 data _null_;
-   var1= 'GANESH'; 
-   var2= lowcase(var1);  //lowcase , propcase
+   var1= 'GANESH BABU'; 
+   low_=LOWCASE(var1);
+   upcase_=UPCASE(var1);
+   reverse_=REVERSE(var1);
+   propcase_=PROPCASE(a);
    put var2;
+run;r2;
 run;
 
-https://documentation.sas.com/?docsetId=lefunctionsref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
+SCAN FUNCTIONS
+--------------
+-The SCAN function in SAS provides a simple and convenient way to parse out words from character strings.
+-The SCAN function can be used to select individual words from text or variables which contain text and then store those words in new variables.
+
+data test; 
+ text = "I am a SAS Programming Expert";
+ text1 = "I,am,a,SAS,Programming,Expert"; 
+ text2 = "I+am+a+SAS+Programming+Expert"; 
+
+/*Selecting the Nth Word in a Character String*/
+  first_word = scan(text,1);
+  second_word = scan(text,2);
+  third_word = scan(text,3);
+  fourth_word = scan(text,4);
+/*Selecting the Last Word in a Character String*/
+  last_word = scan(text,-1);
+  last_word1 = scan(text,1," ","b");
+/*Handling Different Word Delimiters*/
+  fourth_word = scan(text1,4);
+  fifth_word = scan(text2,5,"+");
+  put first_word= second_word= third_word= fourth_word= last_word= fourth_word= fifth_word=;
+run;
+
+Ref:
+https://sascrunch.com/scan-function/
+
+
+QUOTE and DEQUOTE
+-----------------
+-The QUOTE function inserts double quotation marks to a string.If double quotation marks are already found within the argument, they are doubled in the output.
+-The DEQUOTE functions remove quotes from a string. The DEQUOTE, COMPRESS, and TRANSTRN functions can each be used to remove quotes.
+
+data _null_;
+str1="hello world";
+str2=quote(str1);
+str3=dequote(str2);
+put str1 str2 str3;
+run;
+
+WHICHC
+-----
+-The WHICHC function is used to search through a given list of arguments and return the index of the first one that matches the given list.
+-The count starts with the second argument. 
+-If the second argument matches the first argument it returns 1 if it matches with the third argument it returns 3. 
+-If no match is found in the list, it returns 0. If multiple matches are found, it returns the index of 1st matched argument.
+
+data _null_;
+Fruits=whichc('apple','orange','pear','apple','apple','fig');
+put Fruits=;
+run;
+
+CHOOSEC
+-------
+-The CHOOSEC function returns the value of the index provided in the first argument. If a negative index is given, the function counts backwards in the list and return that value.
+
+data _null_;
+Fruit=choosec(2,'apple','orange','pear','fig');
+put Fruit=;
+run;
+
+COALESCEC
+---------
+-The COALESCEC accepts one or more character arguments and then returns the first non-missing value from a list of character arguments. 
+-This function may be useful if you have a long list of values but may require finding the first non-missing value.
+
+data _null_;
+y = COALESCEC ('','Hello', 'World');
+put y;
+run;
+
+RANK
+----
+-The RANK function is used to obtain the relative position(ASCII) of the characters.
+-This can be useful if you want to associate each character with a number so that an ARRAY subscript can point to a specific character.
+
+data _null_;
+A_=RANK("A");
+a1_=RANK("a");
+B_=RANK("B");
+alc_=RANK("1");
+put A_= a1_= B_= alc_=;
+run;
+
+REPEAT
+------
+-The REPEAT function is used to make multiple copies of a string.
+
+data _null_;
+a_=REPEAT("HELLO ",3);
+put a_=;
+run;
+
+REVERSE FUnction
+-----------------
+REVERSE function is used to reverse the order of text of a character value.
+
+data _null_;
+a_=REVERSE("ABCDE");
+put a_=;
+run;
+
+PRXMATCH
+---------
+It can be used for the following cases :
+When you want to identify if there is alphanumeric (has any letter from A to Z) in a variable.
+If you need to search a character variable for multiple different substrings.
+
+PRXMATCH (perl-regular-expression, source);
+
+Perl Regular Expression
+^ - start with 
+$ - end with 
+\D - any non digits 
+\d - digits 
+? - may or may not have? 
+| - or 
+* - repeating 
+( i:) - turns ON the case insensitive search
+(-i:) - turn OFF the case insensitive search
+
+
+1. Check alphanumeric value:
+Note : prxmatch("/[a-zA-Z]/",string) checks first character.
+
+DATA test;
+INPUT string $ 1-8;
+prxmatch=prxmatch("/[a-zA-Z]/",string);
+CARDS;
+ACBED
+11
+12
+zx
+11 2c
+abc123
+;
+run; 
+
+2. Replace multiple words with a new word
+if prxmatch('/Luthir|Luthr|Luther/',name) then name='Luthra' ;
+
+INPUT and PUT Function
+-----------------------
+INPUT Function is used to convert character variable to numeric.
+
+data temp;
+x = '12345';
+new_x = input(x,5.);
+run;
+
+PUT Function is used to convert numeric variable to character.
+data temp;
+x = 12345;
+new_x = put(x,5.);
+run;
+
 
 Quiz
 ====
@@ -130,3 +443,8 @@ Assignment
 
 Resources:
 =========
+https://www.listendata.com/2014/12/sas-character-functions.html
+https://documentation.sas.com/?docsetId=lefunctionsref&docsetTarget=titlepage.htm&docsetVersion=9.4&locale=en
+https://data-flair.training/blogs/sas-string-functions/
+https://www.9to5sas.com/character-function-in-sas/
+https://sascrunch.com/scan-function/
