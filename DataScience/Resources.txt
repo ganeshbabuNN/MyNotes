@@ -30,4 +30,5 @@ https://lazyprogrammer.me/machine-learning-data-science/   -- ML and DL courses
 https://deeplearningcourses.com/course_order  -- Course Order
 
 EDA:
+====
 https://github.com/kishan0725/Google-Stock-Price-Prediction
