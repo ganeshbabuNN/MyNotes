@@ -85,3 +85,4 @@ Assignment:
 Resources
 =========
 https://docs.python.org/3/library/timeit.html
+https://www.kaggle.com/eneszvo/how-to-optimize-python-and-pandas-code - nice code
