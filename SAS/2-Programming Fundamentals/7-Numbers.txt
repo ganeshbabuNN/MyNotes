@@ -369,8 +369,6 @@ RANDOM FUNCTION
 ---------------
 This function generates random numbers ranging between 0 and 1.
 
-This function generates random numbers ranging between 0 and 1.
-
 data test;
 x=rand("Integer", 1, 10);
 run;
