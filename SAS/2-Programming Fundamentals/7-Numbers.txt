@@ -126,6 +126,7 @@ ROUND:
 -----
 ROUND is used to round numbers to the nearest integer or to other place values. If a place value is not provided, a default value of 1 is used and the argument is rounded to the nearest integer.
 data test;
+a1=round(1234.56789); 
 x1=round(1234.56789, 100); 
 x2=round(1234.56789, 10) ; 
 x3=round(1234.56789, 1)  ; 
