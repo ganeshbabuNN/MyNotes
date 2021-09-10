@@ -2,34 +2,45 @@ General
 ~~~~~~~
 https://www.codespeedy.com/
 https://slaystudy.com/
+https://www.includehelp.com
+
 
 C Programs
 ~~~~~~~~~~~
+https://www.includehelp.com/c-programming-examples-solved-c-programs.aspx
 https://code4coding.com/c/program/
 https://www.tutorialgateway.org/c-programming-examples/
 https://www.programmingsimplified.com/c-games-and-projects
 https://www.studytonight.com/c/programs/
 https://techstudy.org/home/codes
+https://www.codezclub.com/c-solved-programs-examples-solutions/
 
 Interveiw questions
 --------------------
 https://thispointer.com//c-interview-questions/
+https://www.includehelp.com/icp/
 
 C++ Programs
 ~~~~~~~~~~~~
+https://www.includehelp.com/cpp-programming-examples-solved-cpp-programs.aspx
 https://code4coding.com/c-2/program/
 https://www.tutorialgateway.org/cpp-programs/
 https://techstudy.org/home/codes
+https://www.thecrazyprogrammer.com/cpp-programs
+https://www.codezclub.com/cpp-solved-programs-problems-solutions/
 
 Python Programs
 ~~~~~~~~~~~~~~~
+https://www.includehelp.com/python/programs.aspx
 https://code4coding.com/python/program/
 https://techstudy.org/home/codes
 
 Java Programs
 ~~~~~~~~~~~~~
-https://javatutoring.com/c-programs/
+https://www.includehelp.com/java-language-solved-programs.aspx
+https://javatutoring.com/category/beginners-programs/
 https://www.tutorialgateway.org/learn-java-programs/
 https://code4coding.com/java/java-programs/
 https://www.studytonight.com/java-examples/java-localdate-atstartofday-method-with-examples
+https://www.codezclub.com/java-solved-programs-problems-solutions/
 https://www.tutorialgateway.org/python-programming-examples/
