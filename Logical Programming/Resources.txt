@@ -14,6 +14,7 @@ https://www.programmingsimplified.com/c-games-and-projects
 https://www.studytonight.com/c/programs/
 https://techstudy.org/home/codes
 https://www.codezclub.com/c-solved-programs-examples-solutions/
+https://www.programiz.com/c-programming/examples
 
 Interveiw questions
 --------------------
@@ -28,12 +29,15 @@ https://www.tutorialgateway.org/cpp-programs/
 https://techstudy.org/home/codes
 https://www.thecrazyprogrammer.com/cpp-programs
 https://www.codezclub.com/cpp-solved-programs-problems-solutions/
+https://www.programiz.com/cpp-programming/examples
 
 Python Programs
 ~~~~~~~~~~~~~~~
 https://www.includehelp.com/python/programs.aspx
 https://code4coding.com/python/program/
 https://techstudy.org/home/codes
+https://www.programiz.com/python-programming/examples
+
 
 Java Programs
 ~~~~~~~~~~~~~
@@ -44,3 +48,13 @@ https://code4coding.com/java/java-programs/
 https://www.studytonight.com/java-examples/java-localdate-atstartofday-method-with-examples
 https://www.codezclub.com/java-solved-programs-problems-solutions/
 https://www.tutorialgateway.org/python-programming-examples/
+https://www.programiz.com/java-programming/examples
+
+
+data structure 
+~~~~~~~~~~~~~~~~
+https://www.programiz.com/dsa
+
+
+
+
