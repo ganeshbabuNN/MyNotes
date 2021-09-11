@@ -75,6 +75,10 @@ health %>% group_by(gender) %>% slice_tail(n=10) #last return n rows of the grou
 #Between function:
 health %>% filter(between(row_number(),5,n())) #between range
 
+#using row index label
+mtcar1 <- rownames_to_column(mtcars, var = "car") %>% as_tibble()
+slice(mtcar1,"Mazda RX4") #nee dto be tested
+
 Selecting the observations based on conditions
 ==============================================
 base R
