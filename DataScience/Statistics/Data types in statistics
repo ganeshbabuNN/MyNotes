@@ -87,7 +87,7 @@ Interval Data
 -Interval data when we have a variable that contains numeric values that are ordered and where we know the exact differences between the values.
 
 ex:
--Temperature : -10,3,49,34,54,23,56,23,45
+-Temperature : -10,-5,0,5,10,15
 
 -The problem with interval values data is that they don’t have a "true zero".
 -That means in regards to our example, that there is no such thing as no temperature. With interval data, we can add and subtract, 
