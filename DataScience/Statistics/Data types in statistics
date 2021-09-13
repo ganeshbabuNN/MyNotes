@@ -101,6 +101,26 @@ Ratio Data
 ex:
 length: 0,10,15,20
 
+The difference between interval and ratio scales
+--------------------------------------------------
+The difference between interval and ratio scales comes from their ability to dip below zero. 
+Interval scales hold no true zero and can represent values below zero. 
+For example, you can measure temperature below 0 degrees Celsius, such as -10 degrees.
+
+Ratio variables, on the other hand, never fall below zero. 
+Height and weight measure from 0 and above, but never fall below it.
+
+An interval scale allows you to measure all quantitative attributes. 
+Any measurement of interval scale can be ranked, counted, subtracted, or added, and equal intervals separate each number on the scale. 
+However, these measurements don’t provide any sense of ratio between one another.
+
+A ratio scale has the same properties as interval scales. 
+You can use it to add, subtract, or count measurements. 
+Ratio scales differ by having a character of origin, which is the starting or zero-point of the scale.
+
+ref
+https://www.questionpro.com/blog/ratio-scale-vs-interval-scale/
+
 Why Data Types are important
 ============================
 -Datatypes are an important concept because statistical methods can only be used with certain data types
