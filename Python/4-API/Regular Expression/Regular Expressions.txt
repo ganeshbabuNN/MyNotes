@@ -575,3 +575,4 @@ Resources
 https://docs.python.org/3/howto/regex.html
 https://www.w3schools.com/python/python_regex.asp
 https://pymotw.com/3/re/index.html
+https://www.geeksforgeeks.org/write-regular-expressions/
