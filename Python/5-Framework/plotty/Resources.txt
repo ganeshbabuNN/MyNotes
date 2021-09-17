@@ -3,3 +3,7 @@ https://www.kaggle.com/kanncaa1/plotly-tutorial-for-beginners
 https://neptune.ai/blog/plotly-python-tutorial-for-machine-learning-specialists
 https://www.tutorialspoint.com/plotly/index.htm
 https://www.askpython.com/python-modules/python-plotly-tutorial
+
+
+https://plotly.com/python/plotly-express/
+https://plotly.com/graphing-libraries/      ------ Graphical users.
