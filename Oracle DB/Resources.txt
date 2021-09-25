@@ -3,7 +3,7 @@ Well Known Authors for Oracle DB
 ================================
 
 Lewis R Cunningham
-****
+~~~~~~~~~~~~~~~~~~
 Email: lewisc@databasewisdom.com
 Home Site:  http://databasewisdom.com
 Oracle Blog: http://it.toolbox.com/blogs/oracle-guide
@@ -11,7 +11,7 @@ Twitter: TheRealLewisC
 LinkedIn: http://www.linkedin.com/in/lewiscunningham
 
 Laurent Schneider
-***
+~~~~~~~~~~~~~~~~~
 site:http://laurentschneider.com/
 Blog:laurentschneider.blogspot.com
 
@@ -31,48 +31,14 @@ https://education.oracle.com/pls/eval-eddap-dcd/ocp_interface.home
 Certificaiton path 
 http://education.oracle.com/pls/web_prod-plq-dad/db_pages.getpage?page_id=39
 
-Oracle Overview
-===============
+Tutorials
+========
+DB Resrouces
+https://www.mongodbtutorial.org/mongodb-crud/
+https://www.sqlservertutorial.net/
+https://www.oracletutorial.com/oracle-basics/
+https://www.postgresqltutorial.com/
+https://www.mariadbtutorial.com/
 
-Products Overview
------------------
--Oracle Cloud
--Oracle Mobile
--Oracle Application
--Oracle Database
--Oracle Java
--Developer Tools
--Operating Systems
--Business Analytics
--Middleware
--Enterprise Management
--Engeering Systems
--Servers
--Storage and Tape
--Networking and data center Fabric Products
--Content Storage Management
--Enterprise Communication
--Virtualizaition
-
---**OTHERS
--Services
-
--Oracle Customer Program
--Customer and Partner Sucess
--Product price list
-https://www.oracle.com/products/index.html
-
-Solutions Overview
-------------------
--Cloud solutions
--Mobile solutions
--Technology Solutions
--Business SOlutions
--Industry Solutions
-
---**OTHERS
--Customer experience Solutions
--Oracle Customer program
--Customer and Partner Sucess
--Partner Solutions
-https://www.oracle.com/solutions/index.html
+excel VBA resource
+https://www.excel-easy.com/
