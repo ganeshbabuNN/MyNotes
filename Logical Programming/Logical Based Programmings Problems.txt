@@ -1,0 +1,1100 @@
+LBP1
+~~~~~
+problem statement:
+
+Program to check whether the given number is even or odd number.
+
+inputs ----------> a number from the user
+output  ---------> even or odd or invalid
+constraint ------> n>=0
+
+LBP2
+~~~~~
+Problem:
+Given an integer n, perform the following conditional actions,
+if n is odd, print weird,
+if n is even and in the inclusive range of 2 to 5, print Not Weird.
+if n is even and in the inclusive range of 6 to 20, print Weird.
+if n is even and greater than 20, print Not Weird.
+
+input-----> a number from the user
+contraint-> 1<=n<=100
+output----> Weird or Not Weird
+
+LBP3
+~~~~
+To check whether the given year is leap year or not.
+
+input------> year from the user
+constraint-> no constraint
+output-----> leap year or not leap year
+
+hint: for century year if it is divisble by 400 then only it is leap year
+
+LBP4
+~~~~
+The e-commerce company Bookshelf wishes to analyse its monthly sales data between minimum range 30 to max range 100. The company has categorized these book sales into four groups depending on the number of sales with the help of these groups the company will know which stock they should increase or decrease in their inventory for the next month. the groups are as follows
+
+sales range		groups
+30-50 ------------------> D
+51-60 ------------------> C
+61-80 ------------------> B
+81-100 -----------------> A
+
+write an alg to find the group for the given book sale count.
+
+input--------> an integer salesCount represent total sales of a book
+output-------> a character representing the group of given sale count
+constraint---> 30<=saleCount<=100
+
+LBP5
+~~~~
+Return the Next Number from the Integer Passed (IBM 2020)
+implement a program that takes a number as an argument, increments the number by +1 and returns the result
+
+input ----------> a number from the user
+constraints-----> no constraints
+output ---------> an incremented value
+
+LBP6
+~~~~
+Free Coffee Cups
+For each of the 6 coffee cups I buy, I get a 7th cup free. In total, I get 7 cups. 
+Implement a program that takes n cups bought and print as an integer the total number of cups I would get.
+
+input -------------> n number of cups from user
+constraints -------> n>0
+output ------------> number of cups present have
+
+LBP7
+~~~~~
+Extract Digits from the number
+
+Implement a program to extract digits from the given number
+
+input -------------> a number from the user
+constraint --------> n>0
+output ------------> print digits in line sep by space
+
+LBP8
+~~~~
+Sum of Digits 
+
+Implement a program to calculate sum of digits present in the given number
+
+input -------------> a number from the user
+constraint --------> n>0
+output ------------> print sum of digits
+
+
+LBP9
+~~~~
+Sum of even Digits 
+
+Implement a program to calculate sum of even digits present in the given number
+
+input -------------> a number from the user
+constraint --------> n>0
+output ------------> print sum of even digits
+
+LBP10
+~~~~~~
+Sum of odd Digits 
+
+Implement a program to calculate sum of odd digits present in the given number
+
+input -------------> a number from the user
+constraint --------> n>0
+output ------------> print sum of odd digits
+
+LBP11
+~~~~~
+Sum of prime Digits 
+
+Implement a program to calculate sum of prime digits present in the given number
+
+input -------------> a number from the user
+constraint --------> n>0
+output ------------> print sum of prime digits
+
+LBP12
+~~~~~~
+Sum of Digits  divisible by 3
+
+Implement a program to calculate sum of digits that are divisible by 3 in the given number
+
+input -------------> a number from the user
+constraint --------> n>0
+output ------------> print sum of digits that are divisible by 3
+
+LBP13
+~~~~~
+Number of digits
+
+Implement a program to calculate number of digits in the given number
+
+input -------------> a number from the user
+constraint --------> n>0
+output ------------> print number of digits in the number
+
+					LBP14
+==============================================================================================
+Reverse Integer
+
+Given an integer x, return x with its digits reversed. 
+
+input---------> a number from user
+constraint ---> n>=0
+output -------> reverse of the given number
+
+					LBP15
+==============================================================================================
+LBP15
+
+Duck Number
+
+Program to read a number and check whether it is duck number or not.
+
+A duck number is a number which has zeros present in it, but no zero present in the begining of the number.
+
+input-------> a number from the user
+contraint --> n>=0
+output------> Yes or No
+
+
+					LBP16
+==============================================================================================
+LBP16
+
+Number of Occurrences
+
+Program to find number of occurences of the given digit in the number n
+
+input ------> two numbers n and d
+constraints-> no constraints
+output -----> number of occurrences
+
+
+LBP17 ----> Paliandrome Number
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Program to check whether the given number is paliandrome or not
+
+A number is said to paliandrome if it is equal to the original number.
+
+input -----> a number from the user
+constraint-> n>0
+output ----> Yes or No
+
+
+LBP18 (IBM)
+~~~~~~~~~~~~
+Check BirthDay
+
+Lisa always forgets her birthday which is on 5th July. 
+So develop a function/method which will be helpful to remember her birthday.
+
+The function/method checkBirthday return an integer 1, if it is her birthday else return 0. 
+the function/method checkBirthday accepts two arguments.
+Month, a string representing the month of her birth and 
+day, an integer representing the date of her birthday.
+
+input -----------> month & day 
+constraints -----> no
+output ----------> 1 or 0
+
+LBP19
+~~~~~~
+Decimal to Binary
+
+A network protocol specifies how data is exchanged via transmission media. 
+The protocol converts each message into a stream of 1's and 0's. 
+Given a decimal number, write an algorithm to convert the number into a binary form.
+
+input ---------> a number
+constraint ----> n>=0
+output --------> binary number
+
+
+LBP20
+~~~~~~
+Lucky Customer
+
+An e-commerce website wishes to find the lucky customer who will be eligible for full value cash back. 
+For this purpose,a number N is fed to the system. 
+It will return another number that is calculated by an algorithm. 
+In the algorithm, a sequence is generated, in which each number n the sum of the preceding numbers. initially the sequence will have two 1's in it. 
+1,1,2,3,5,8......
+The System will return the Nth number from the generated sequence which is treated as the order ID. The lucky customer will be one who has placed that order. 
+Write an alorithm to help the website find the lucky customer.
+
+input --------> a number
+constraint ---> n>0
+output -------> a number
+
+
+LBP21
+~~~~~~
+Christmas offer
+
+An e-commerce company plans to give their customers a special discount for the Christmas, they are planning to offer a flat discount. The discount value is calculated as the sum of all prime digits in the total bill amount.
+
+Write an algorithm to find the discount value for the given total bill amount.
+
+input ----> the input consists of an integer order value representing the total bill amount
+condition-> no conditions
+output ---> print an integer representing discount value for the given total bill amount.
+
+
+LBP22
+~~~~~
+Niven Number
+
+Write a program to accept a number and check and display whether it is a Niven Number or not.
+Niven Number is that a number which is divisible by its sum of digits.
+
+input -----> a number
+constraint-> n>0
+output ----> Niven Number or Not
+
+
+LBP23
+~~~~~
+A Special two digit number
+A special two digit number is a number such that when the sum of its digits is added to the product of its digits, the result should be equal to the original two-digit number.
+
+Implement a program to accept a two digit number and check whether it is a special two digit number or not.
+
+input -----> a two digit number
+constraint-> 10<=n<=99
+output ----> special two digit number or not
+
+LBP24
+~~~~~
+Sum of even numbers
+Implement a program to find sum of even number between x and y both are inclusive.
+
+input -----> two int values
+constraint-> no
+output ----> sum of even numbers between x and y
+
+LBP25:
+~~~~~~~
+Celsius to Fahrenheit
+Create a function/method ti convert celsius to fahrenheit
+
+input ------> celsiusconstrint --> no
+output -----> Fahrenheit
+
+F = (C*9/5)+32
+
+LBP26
+~~~~~~
+Fahrenheit to Celsius
+
+Program to convert fahrenheit to celsius.
+
+input -------> fahrenheit
+constraint --> no
+output ------> celsius
+
+formula: (F-32)*5/9
+
+LBP27
+~~~~~
+Find The Sequence Sum
+
+Given three integers i,j & k, 
+a sequence sum to be the value of i+(i+1)+(i+2)..+j+(j-1)+(j-2)+..+k
+(increment from i until it equals to j, then decrement from j until equals k). 
+Given values i,j,k. 
+caluclate the sequence sum as described.
+
+int getSequenceSum(int,int,int);
+
+input -------> Three int values
+constraints--> no
+output ------> sum based on given constraints
+
+LBP28
+~~~~~
+You are climbing a stair case. It takes n steps to reach to the top.
+
+Each time you can either climb 1 or 2 steps. 
+In how many distinct ways can you climb to the top?
+
+Note: Given n will be a positive integer.
+
+input --------> a number from the user
+constriants --> no
+output -------> number of ways
+
+1----> 1
+2 ---> 2
+3 ---> 3
+4 ---> 5
+.
+.
+.
+
+1 ----> 1
+2 ----> 2
+3 ----> 3
+4 ----> 5
+.
+.
+
+LBP29
+~~~~~
+Prime Number or Not
+
+Write a program to check whether the given number is prime number or not. A number is said to prime if it is having only two factors. i.e. 1 and number itself.
+
+input ------> a number from the user
+constraint--> n>1
+output -----> true or false
+
+
+LBP30
+~~~~~~
+Valid Palindrome
+
+Given a string, determine if it is a Palindrome string or not. 
+A String is Palindrome if it is equal to reverse of the original string.
+
+input ------> A String from the user
+constriant--> Non-empty String
+output -----> Palindrome or not
+
+
+abc -----> Not Pali
+aba -----> Pali
+nayan ---> Pali
+madam ---> pali
+anna ----> pali
+nitin ---> pali
+radar ---> pali
+level ---> pali
+vobov ---> pali
+malayalam -> pali
+
+LBP31
+~~~~~
+Create PIN using Three given numbers
+
+"Secure Assets Private Ltd", a small company that deals with lockers has recently started manufacturing digital locks which can be locked and unlocked using PINs (passwords). You have been asked to work on the module that is expected to generate PINs using three input numbers.
+
+The three given input numbers will always consist of three digits each 
+i.e. each of them will be in the range >=100 and <=999.
+
+Bellow are the rules for generating the PIN.
+
+1. The PIN should made up of 4 digits.
+2. The unit (ones) position of the PIN should be the least of the units position of the three numbers.
+3. The tens position of the PIN should be the least of the tens position of the three input numbers.
+4. The hundreds position of the PIN should be least of the hundreds position of the three numbers.
+5. The thousands position of the PIN should be the max of all digits in the three input numbers.
+
+input ----------> three numbers
+constraints ----> all the numbers must be in the range of >=100 and <=999
+output ---------> PIN value
+
+LBP32
+~~~~~
+Program to count number of special characters and white spaces in a given string.
+
+input --------> A string from the user
+constraint ---> non-empty string
+output -------> number of special characters
+
+
+
+LBP33
+~~~~~
+An e-commerce company plans to give their customers a discount for the newyears holiday. 
+The discount will be calcualted on the basis of the bill amount of the order placed. 
+The discount amount is the sum of all the odd digits in the customers total bill amount. 
+if no odd digits is present in the bill amount, then discount will be zero.
+
+input-> the input consists of an integer bill amount, representing the customers total bill amount.
+output --> print an integer representing the discount for the given total bill amount.
+constraint ---> n>0
+
+
+LPB34
+~~~~~~
+Email validation
+
+Email name should be starts with alphabet and should follw by number or underscore. 
+It should contains either numbers or underscore finally ends with gmail.com only.
+Then given email id is true otherwise false.
+
+input ------> email id
+constraint -> lowercase alphabet [a-z] followed by underscore or digit and gmail.com
+output -----> true or false
+
+abc@gmail.com --------> false
+abc1@gmail.com -------> true
+abc_@gmail.com -------> true
+abc1_@gmail.com ------> false
+abc__@gmail.com ------> false
+abc34@gmail.com ------> false
+abc8@gmail.com -------> true
+abc@facebook.com -----> false
+
+
+LBP35
+~~~~~
+The IT company "Soft ComInfo" has decided to transfer its messages through the N/W using new encryption technique. 
+The company has decided to encrypt the data using the non-prime number concept. 
+The message is in the form of a number and the sum of non-prime digits present in the message is used as the encryption key.
+Write an algorithm to determine the encryption key.
+input ------> The input consists of an integer numMsg representing the numeric form of the message.
+output ------> print an integer representing the encryption key.
+
+note: Digit 1 and 0 are considered as a prime number.
+
+prime digits -----> 0,1,2,3,5,7
+non-prime --------> 4,6,8,9
+
+
+LBP36
+~~~~~
+Implement a program to return First capital letter in a String
+input -------> A string from the user
+constraint --> non-empty string
+output ------> First Capital letter
+
+
+LBP37
+~~~~~~
+Implement a program to calculate toggle case of each characters of a string
+
+input -------> A String from user
+constriant --> non-empty String
+output ------> toggle case string
+
+HeLlO ---> hElLo
+
+
+LBP38
+~~~~~
+A company launched a new text editor that allows users to enter english letters, numbers and white spaces only. If a user attempts to enter any other type of characters, it is counted as miss.
+Given a String text, write an algorithm to help the developer detect the number of misses by a given user in the given input.
+
+input --------> String
+constraint ---> non-empty string
+output -------> number of misses
+
+Good@morning! -----> 2
+
+
+LBP39
+~~~~~~
+Implement the following function
+	nt BlackJack(int n1,int n2);
+
+the function accepts two +ve integers n1 and n2 as its arguments.
+Implement the function on given two vlaues to return an int value as follows
+
+return whichever value is nearest to 21 without going over. Return if they go both go over.
+
+input --------> two int values n1 and n2
+constraint ---> no
+output -------> 0 or n1 or n2
+
+
+LBP40
+~~~~~
+A company wishes to transmit data to another server. 
+The data consists of numbers only. 
+To secure the data during transmission, they plan to reverse the data during transmission,
+they plan to reverse the data first.
+Write an algorithm to reverse the data first
+
+input -----> an integer data, representing the data to be transmitted
+output ----> print an integer representing the given data in reverse form
+
+
+LBP41
+~~~~~
+One Time Password
+A company wishes to devise an order confirmation procedure. 
+They plan to require an extra confirmation instead of simply auto-confirming the order at the time it is placed. 
+for this purpose, 
+the system will generate one time password to be shared with the customer.
+The customer who is placing the order has to enter the OTP to confirm the order.
+The OTP generated for the requested order ID, as the product of the digits in orderID. 
+
+Write an algorithm to find the OTP for the OrderID.
+
+input -----> an intger representing order id
+output ----> an integer representing OTP
+
+
+LBP42
+~~~~~
+Jackson, a math student, is developing an application on prime numbers.
+for the given two integers on the display of the application, 
+the user has to identify all the prime numbers within the given range 
+(including the given values). 
+afterwards the application will sum all those prime numbers. 
+Jackson has to write an algorithm to find the sum of all the prime numbers of the given range.
+Write an algorithm to find the sum of all the prime numbers of the given range.
+
+input -----> two space sepearted integers RL and RR.
+output ----> sum of the prime numbers between RL and RR.
+
+Logic:
+1------------> read x and y
+2 -----------> check each number inbetween x and y
+3 -----------> if it is a prime then add it into sum
+4 -----------> print sum
+
+LBP43
+~~~~~
+An e-Commerce company plans to give thier customers a discount for the newyears holiday. 
+The discount will be calcualted on the basis of the bill amount of the order place. 
+The discount amount is the product of the sum of all odd digits and the sum of all even digits of the customers total bill amount.
+
+input ----> an integer bill amount, representing the total bill amount of the customer.
+output ---> print an integer representing the discount amount for the given total bill.
+
+
+LBP44
+~~~~~
+War of Numbers
+
+There is a great war between the even and odd numbers. 
+Many numbers already lost thier life in this war and its your task to end this. 
+You have to determine which group sums larger. 
+the even, or the odd, the larger group wins.
+
+Create a function that takes an array of integers , sums the even and odd numbers seperately, then return the difference between sum of even and odd numbers.
+
+Note: if result is -ve convert it into +ve.
+
+input --------> number and array elements
+constraint ---> no
+output -------> difference between sum of even and odd numbers
+
+
+LBP45
+~~~~~
+Perfect Number
+
+Create a function that tests whether or not an integer is a perfect number. 
+A perfect number is a number that can be written as sum of its factors. (equal to sum of its proper divisors) excluding the number itself.
+
+input ------> a number from the user
+constraint -> n>0
+output -----> true or false
+
+Eg:
+
+6 =======> 1,2,3,6 ====> 1+2+3=6
+8 =======> 1,2,4,8 ====> 1+2+4=7
+
+
+
+LBP46
+~~~~~~
+Magic Date
+
+Program to read date, month and year from the user and check whether it is magic date or not. Here are the rules for magic date.
+
+dd-mm-yyyy
+dd/mm/yyyy
+dd mm yyyy ----> C lang
+
+1) mm*dd is a 1-digit number that matches the last digit in YYYY
+2) mm*dd is a 2-digit number that matches the last two digits in YYYY
+3) mm*dd is a 3-digit number that matches the last three digits in YYYY
+
+1-1-2001 ===> 1*1=1
+1-1-2002 ===> 1*1=1
+5-2-2010 ===> 5*2=10
+
+input --------> three int values
+constraint----> no
+output -------> true or false
+
+
+LBP47
+~~~~~
+Oddish or Evenish
+
+Create a function that determines whether a number is Oddish or Evenish. 
+A number is Oddish if the sum of all of its digits is Odd, 
+and number is Evenish if the sum of all of its digits is even, 
+if a number is Oddish return Oddish else return Evenish.
+
+input ----------> a number
+constraint -----> n>0
+output ---------> Oddish or Evenish
+
+
+LBP48
+~~~~~~
+video length in seconds
+
+Accept video length in minutes the format is mm:ss in String format, create a function that takes video length and return it in seconds.
+
+input --------> video length in mm:ss
+constraint----> no
+output -------> length in seconds
+
+01:00 ====> 60
+02:02 ====> 122 
+02:01 ====> 121
+
+LBP49
+~~~~~~
+Next Prime
+
+Given an integer, create a function that returns the next prime. If the number is prime, return the number itself.
+
+input ----------> a number
+constraint -----> prime number
+output ---------> prime number
+
+10---->11
+11---->11
+14---->17 etc
+
+LBP50
+~~~~~
+Sum of digits between two numbers
+
+Create a function that sums the total number of digits between two numbers inclusive. for example, if the numbers are 19 and 22, then (1+9)+(2+0)+(2+1)+(2+2)=19.
+
+input ----------> two numbers from the user
+constraints ----> no
+output ---------> sum of digits between n1 and n2
+
+LBP51
+~~~~~~
+Defanging an IP address
+Given a valid IP address, return a defanged version of that IP address. A defanged IP address replaces every period '.' with "[.]".
+input ----------> A string
+constraint -----> non-empty String
+output ---------> replacement String
+
+1.1.1.1  ====> 1[.]1[.]1[.]1
+
+LBP52
+~~~~~~
+Jewels and Stones
+
+You are given Strings jewels representing the types of stones that are jewels, and stones representing the stones you have.
+Each character in stones is a type of stone you have 
+you want to know how many of the stones you have are also jewels.
+
+Letter are case sensitive. so "a" is considered as a different type of stone from "A".
+
+input ------> A string
+constriant -> no
+output -----> how many of the stones
+
+J="aA"
+S="aAAbbbb"
+1+2=3
+
+LBP53
+~~~~~
+Shuffle String
+
+Given a string s, and an integer array indices of the same length. 
+The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string, 
+return shuffled string.
+
+input ---------> a string and an array
+constraint ----> no
+output --------> a string
+
+
+s=art
+  012
+a=102
+  012
+
+ts=0=>r 1=>a 2=>t
+
+LBP53
+~~~~~
+Shuffle String
+
+Given a string s, and an integer array indices of the same length. 
+The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string, 
+return shuffled string.
+
+input ---------> a string and an array
+constraint ----> no
+output --------> a string
+
+
+s=art
+  012
+a=102
+  012
+
+ts=0=>r 1=>a 2=>t
+
+LBP55
+~~~~~
+Check if String ending matches second String
+
+Create a function/method that takes two Strings and returns true of the first string ends with second string, otherwise return false.
+
+Input:  two strings
+Constraints: No 
+Output: true or false
+
+abc, bc -----> true
+kalyan, an --> true
+kalyan, a ---> false
+
+LBP56
+~~~~~
+Shuffle the Name
+
+Create a function/method that accepts a string (of person’s first and last name) and returns a string with in first and last name swapped).
+
+Input:  two space separated strings
+Constraints: No 
+Output: return last name followed by first name
+
+Prakash Babu -----> Babu Prakash
+
+LBP57
+~~~~~
+Reverse the order of a String
+
+create a method/function that takes a string as its argument and returns the string in reversed order.
+
+input ---------> a string 
+constraint ----> no
+output --------> reversed string
+
+Hello ----------> olleH
+Hello World ----> dlroW olleH
+
+LBP58
+~~~~~
+Re-form the word
+
+A word has been split into a left part and right part. Re-form the word by adding both halves together changing the first character to an uppercase letter.
+
+input ---------> two strings from the user
+constraint ----> no
+output --------> concatenated string with caps in first character
+
+prakash babu ----> Prakashbabu
+
+LBP59
+~~~~~
+Anagrams
+
+Two strings a and b are called anagrams, if they contain all the same characters in the same frequencies.
+
+input --------> two strings a and b
+constraint ---> no
+output -------> true or false
+
+abcd,dabc -----> anagrams
+abcd,dabb -----> not anagrams
+listen,silent -> anagrams
+
+LBP60
+~~~~~
+Max Occurring Character
+Given a string, implement a program to find max occurring character in the given string
+
+input -------> A string from the user.
+constraints--> No
+output ------> max occurring character
+
+welcome ----> e 
+java -------> a
+
+LBP61
+~~~~~
+You are given coordinates, a string that represents the coordinates of a square of the chess board. bellow is the chess board for your reference.
+
+Return True if the saquare is in white, and false if the square is in Black.
+
+The coordinates will always represent a valid chess board square. The coordinates will always have the letter first, and the number second.
+
+input ----------> a string
+constraint -----> length of the string is 2, a<=c[0]<=h and 1<=c[1]<=8
+output ---------> true or false
+
+LBP62
+~~~~~~
+Find the Bomb
+Write a function that finds the word "bomb" in the given string (not case sensitive) return "DUCK!" if found, else return "Relax there's no bomb."
+
+input ---------> a string
+constraint ----> no
+output --------> "DUCK!" or "Relax, There's no bomb."
+
+LBP63
+~~~~~
+How many vowels
+Create a function that takes a string and returns the number of vowels contained within it.
+
+input -----------> a string
+constraint ------> no
+output ----------> number of vowels
+
+LBP63
+~~~~~
+How many vowels
+
+Create a function that takes a string and returns the number of vowels contained within it.
+
+input -----------> a string
+constraint ------> no
+output ----------> number of vowels
+
+
+LBP65
+~~~~~
+Stuttering Function
+
+write a function that shutters a word as if someone is struggling to read it. 
+The first two letters are repeated twice with an ellipsis ... , and then the word is pronounced with a question mark?
+
+input ------------> a string
+contraint --------> no
+output -----------> xx... xx... ~~~~~~~?
+
+
+abc =====> ab...ab...abc?
+
+s=abc
+r=ab...ab...abc?
+
+LBP66
+~~~~~
+Repeating Letters
+
+Create a method that takes a string and returns a string in which each character is repeated once.
+
+input ---------------> String from the user
+constraint ----------> No
+output --------------> String
+
+String ------> SSttrriinngg
+
+LBP67
+~~~~~
+Double Letters
+
+Create a function that takes a word and returns true if the word has two consecutive identical letters.
+
+input ---------> A string
+constraint-----> No
+output --------> true or false
+
+abbc -----> true
+abcd -----> false
+abab -----> false
+
+LBP68
+~~~~~
+Andy, Ben and Charlotte are playing a board game. 
+The three of them decided to come up with a new scoring system. 
+A player's first initial ("A","B" & "C") denotes that players scoring a single point.
+Given a string of capital letters. returns an array of the player's scores.
+
+input --------------> A String
+constraint ---------> No
+output -------------> score
+
+A ---------------> 1 0 0
+AB --------------> 1 1 0
+ABC -------------> 1 1 1
+AABBC -----------> 2 2 1
+
+LBP69
+~~~~~
+Remove Every vowel from a String
+
+Create a function that takes a string and returns a new string with all vowels removed. 
+
+input -------------> a string 
+constraints -------> No
+output ------------> a string
+
+welcome ------> wlcm
+prakash ------> prksh
+
+Note: Search, Replacement, Removal --------> Regular Expression
+
+LBP70
+~~~~~
+Space between each character
+
+Create a function that takes a string and returns a string with spaces in between all of the characters.
+
+input ------------> a string
+constraints-------> No
+output -----------> string
+
+java -----> j a v a
+prakash --> p r a k a s h
+python ---> p y t h o n
+
+LBP71
+~~~~~
+VOWEL REPLACER
+
+Create a function that replaces all the vowels in a string with a specified character,
+
+input -----------> A string from the user and a character
+cons ------------> no
+output ----------> A string
+
+welcome,% ----> w%lc%m%
+
+LBP72
+~~~~~
+Say "Hello" Say "Bye"
+
+Write a function that takes a string name and number num (either 1 or 0) and 
+return "Hello"+name if number is 1, 
+otherwise "Bye"+name.
+
+input ------> a string from the user
+constraint -> no
+output -----> a string
+
+prakash,1 -----> Hello prakash
+java,0 --------> Bye java
+python,1 ------> Hello python
+
+LBP73
+~~~~~~
+VALID ZIP CODE
+
+zipcodes consists of 5 consecutive digits. 
+Given a string, write a function to determine whether the input is a valid zip code. 
+a valid zipcode is as follows
+
+1. must contain only numbers.
+2. it should not contain any spaces.
+3. length should be only 5.
+
+input ------> A string
+constraint -> no
+output -----> true or false
+
+11111 ----> true
+4564 -----> false
+123 4-----> false
+
+LBP74
+~~~~~
+Returns the middle character of a string
+
+create a function that takes a string and returns, the middle character(s). 
+if the word's length is odd return the midlle character.
+if the word's length is even, return the middle two characters.
+
+input -----> a string from the user
+constraint-> no
+output ----> middle character(s)
+
+abc -----> 3 -> Odd ====> b
+xyz -----> 3 -> Odd ====> y
+abcde ---> 5 -> Odd ====> c
+abcd ----> 4 -> Even ===> bc 
+middle --> 6 -> Even ===> dd
+012345
+
+LBP75
+~~~~~
+Index of first vowel
+
+create a function that returns the index of first vowel in a string
+
+input ------> a string
+con --------> no
+output -----> an int value
+
+test ------> e(1) -------------> 1
+welcome ---> e(1),o(4),e(6) ---> 1
+python ----> o(4) -------------> 4
+012345
+
+LBP76
+~~~~~
+Longest Word
+Write a function that finds the longest word in a sentence.
+If two or more words are found, return the first longest word. 
+Characters such as apostophe, comma, period (and the like) count as part of the word 
+(e.g. O'Connor is 8 characters long).
+
+input ------> a string from the user
+con --------> no
+output------> longest word 
+
+C C++ JAVA AND PYTHON =====> PYTHON
+1  3    4   3    6
+
+case1:
+
+prakash sir classes are very good ====> prakash
+   7     3      7   3    4    4
+
+case2:
+
+prakash sir classes are very good ====> classes (based on asc value)
+   7     3      7   3    4    4
+
+LBP77
+~~~~~
+Print all permutations of a string
+
+Given a string str, the task is to print all the permutations of str.
+A permutation is an arrangement of all or part of a set of objects, with regard to the order of the arrangement. 
+For instance, the words ‘bat’ and ‘tab’ represents two distinct permutation (or arrangements) of a similar three letter word.
+
+input ----> string from the user
+con ------> no
+output ---> all permutations of the string
+
+A (1!=1)  ----> A
+AB(2!=2)   ---> AB BA
+ABC(3!=6)  ---> ABC ACB BAC BCA CAB CBA
+ABCDE (5!=120) --> 120 
+
+back tracking ----> 
+
+LBP78
+~~~~~
+Removing Duplicate Characters from a string
+Given a string S, the task is to remove all the duplicates in the given string. 
+
+input --------> a string from the user
+con ----------> remove all duplicates
+output -------> a string without duplicates
+
+
+hello -----> helo
+program ---> progam
+
+LBP79
+~~~~~
+Swap corner words and reverse middle characters
+
+Write a Java program to take an input string and exchange the first and last word and reverse the middle word.
+
+input -------> a string
+con ---------> no
+output ------> a string
+
+Hello welcome to Java ------> Java ot emoclew Hello
+
+fs = Hello
+ls = avaJ
