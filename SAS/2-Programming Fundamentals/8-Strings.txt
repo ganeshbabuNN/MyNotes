@@ -418,6 +418,9 @@ run;
 2. Replace multiple words with a new word
 if prxmatch('/Luthir|Luthr|Luther/',name) then name='Luthra' ;
 
+Ref:
+https://support.sas.com/resources/papers/proceedings/proceedings/forum2007/223-2007.pdf
+
 INPUT and PUT Function
 -----------------------
 INPUT Function is used to convert character variable to numeric.
