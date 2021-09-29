@@ -420,6 +420,7 @@ if prxmatch('/Luthir|Luthr|Luther/',name) then name='Luthra' ;
 
 Ref:
 https://support.sas.com/resources/papers/proceedings/proceedings/forum2007/223-2007.pdf
+https://www.lexjansen.com/nesug/nesug11/cc/cc15.pdf - simple
 
 INPUT and PUT Function
 -----------------------
