@@ -101,9 +101,11 @@ Handling excel files
 hrdata.to_excel("ds.xlsx",index=False)  
 
 #exporting the dataframe into sheets 
-writer = pd.ExcelWriter('pandas_multiple.xlsx', engine='xlsxwriter')
-df1.to_excel(report_1, sheet_name='Sheet1',index=False)
-df2.to_excel(report_1, sheet_name='Sheet1',index=False)
+writer = pd.ExcelWriter('template_comp.xlsx', engine='xlsxwriter')
+df_tab1_.to_excel(writer, sheet_name='Table_MisMatch',index=False)
+df_col1_.to_excel(writer, sheet_name='Column_MisMatch',index=False)
+df_colfr1_.to_excel(writer, sheet_name='Length_MisMatch',index=False)
+writer.save()
 
 
 Handling Binary files
