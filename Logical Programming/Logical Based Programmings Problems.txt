@@ -1098,3 +1098,23 @@ Hello welcome to Java ------> Java ot emoclew Hello
 
 fs = Hello
 ls = avaJ
+
+LBP80
+~~~~~~
+Valid Hex Code
+Create a function that determines whether a string is a valid hex code.
+A hex code must begin with a pound key # and is exactly 6 characters in length. 
+Each character must be a digit from 0-9 or an alphabetic character from A-F. 
+All alphabetic characters may be uppercase or lowercase.
+
+input -----> a string from the user
+con -------> no
+output ----> true or false
+
+#ABCDFE ----> invalid
+#123456 ----> valid
+#A1B2C3 ----> valid
+
+0-9A-F
+
+#[0-9a-fA-F]{6}
