@@ -1103,6 +1103,7 @@ LBP80
 ~~~~~~
 Valid Hex Code
 Create a function that determines whether a string is a valid hex code.
+
 A hex code must begin with a pound key # and is exactly 6 characters in length. 
 Each character must be a digit from 0-9 or an alphabetic character from A-F. 
 All alphabetic characters may be uppercase or lowercase.
@@ -1116,5 +1117,279 @@ output ----> true or false
 #A1B2C3 ----> valid
 
 0-9A-F
-
 #[0-9a-fA-F]{6}
+
+LBP81
+~~~~~~
+Even Length Words
+Write a program to print even length words in a string?
+
+input -----> a string from the user
+con -------> no
+output ----> list of strings with even length
+
+hello welcome to java ----> welcome java
+a ab abc abcd abcde abcdef --> ab abcd abcdef
+
+LBP82
+~~~~~
+Change Every Letter to the Next Letter
+
+Write a function that changes every letter to the next letter:
+
+"a" becomes "b"
+"b" becomes "c"
+"d" becomes "e"
+and so on ...
+'x' becomes 'y'
+'y' becomes 'z'
+'z' becomes ''
+
+note: there is no z's in test cases, be happy.
+
+input ------> a string from the user
+cons -------> no
+output -----> modified string
+
+LBP83
+~~~~~
+First N Vowels
+
+Write a function that returns the first n vowels of a string.
+
+input ------> a string from the user and an integer value
+cons -------> Return "invalid" if the n exceeds the number of vowels in a string.
+output -----> return first n vowels in the string
+
+welcome to java, 1 -----> e
+welcome to java, 2 -----> eo
+welcome to java, 3 -----> eoe
+welcome to java, 6 -----> eoeoaa 
+welcome to java, 7 -----> invalid
+
+LBP84
+~~~~~
+Is the String in Order?
+
+Create a function that takes a string and returns true or false, depending on whether the characters are in order or not.
+
+input -------> a string from the user
+cons --------> for non-empty string print invalid
+output ------> true or false
+
+abc ------> true
+prakash --> false
+
+LBP85
+~~~~~
+Integer to English Words
+Convert a non-negative integer num to its English words representation.
+
+input ------> a number from the user
+con --------> n>0
+output -----> number in English words
+
+
+123 ===> one hundred twenty three
+9999 ==> Nine Thousand Nine Hundred Ninty Nine
+
+LBP86
+~~~~~~
+C*ns*r*d Str*ngs
+Someone has attempted to censor my strings by replacing every vowel with a *, l*k* th*s. Luckily, I've been able to find the vowels that were removed.
+Given a censored string and a string of the censored vowels, return the original uncensored string.
+
+input --------> original & replacement strings
+con ----------> no
+output -------> updated string after replacement
+
+w*lc*m*,eoe ====> welcome
+
+LBP87
+~~~~~
+parentheses balance
+
+Given a string S of '(' and ')' parentheses, we add the minimum number of parentheses ( '(' or ')', and in any positions ) so that the resulting parentheses string is valid.
+Formally, a parentheses string is valid if and only if:
+It is the empty string, or It can be written as AB (A concatenated with B), where A and B are
+valid strings, or It can be written as (A), where A is a valid string. 
+Given a parentheses string, return the minimum number of parentheses we must add to make the resulting string valid.
+
+input --------> a string from the user
+con ----------> no
+output -------> number of parentheses to be added
+
+() -------> 0
+()( ------> 1
+()()() ---> 0
+(((( -----> 4
+
+LBP88
+~~~~~
+American keyboard
+Given a string, return the true if that can be typed using letters of alphabet on only
+one row's of American keyboard like the image below.
+In the American keyboard:
+
+the first row consists of the characters "qwertyuiop",
+the second row consists of the characters "asdfghjkl", and
+the third row consists of the characters "zxcvbnm".
+
+Note: 
+1. You may use one character in the keyboard more than once. 
+2. You may assume the input string will only contain letters of alphabet.
+
+input -------> a string from the user
+cons  -------> no
+output ------> true or false
+
+LBP89
+~~~~~
+Rotate String 
+
+We are given two strings, A and B. A shift on A consists of taking string A and moving the leftmost character to the rightmost position. 
+For example, if A = 'abcde', then it will be 'bcdea' after one shift on A. 
+Return True if and only if A can become B after some number of shifts on A.
+
+input ------> two strings from the user
+con --------> non-empty strings
+output -----> true or false
+
+LBP90
+~~~~~
+Missing Letters
+
+Given a string containing unique letters, return a sorted string with the letters that don't appear in the string.
+
+input ---------> a string from the user
+con -----------> no
+output --------> return missing characters
+
+abc -----> defghijklmnopqrstuvwxyz
+
+LBP91
+~~~~~
+Replace Letters With Position In Alphabet.
+Create a function that takes a string and replaces each letter with its appropriate position in the alphabet.
+"a" is 1, "b" is 2, "c" is 3, etc, etc.
+
+Note: If any character in the string isn't a letter, ignore it.
+
+input -----------> a string from the user
+constriant ------> non-empty string
+output ----------> position of characters seperated by space
+
+abc -----> 1 2 3
+
+LBP92
+~~~~~
+Replace character with it's occurrence
+
+Implement a Program to replace a character with it's occurrence in given string.
+
+input ---------> a string and a character from the user.
+con -----------> non-empty string
+output --------> replaced string
+
+LBP93
+~~~~~
+first non-repeated character
+
+Program to find first non-repeated character
+
+input----> a non-empty string from the user
+con -----> no
+output --> non-repeated character
+
+india ----> n
+indian ---> d
+
+LBP94
+~~~~~
+Pangrams
+
+Implement a program to check whether the given string pangram or not. 
+A pangram is a string that contains all the letters of the English alphabet. 
+An example of a pangram is "The quick brown fox jumps over the lazy dog"
+
+input ----> a string from the user
+con ------> non-empty string
+output ---> Yes or No
+
+LBP95
+~~~~~
+Print First Letter of each Word
+
+Implement a function/Method to return first character in each word from the given input string.
+
+input-----> a string
+con-------> no
+output ---> first character in each string
+
+LBP96
+~~~~~
+Number of vowels
+
+Implement a program to return number of vowels present in the given string
+
+input ---------> a string from the user
+con -----------> non-empty string
+output --------> return number of vowels
+
+LBP97
+~~~~~
+Number of consonants
+
+Implement a program to return number of consonants present in the given string
+
+input ---------> a string from the user
+con -----------> non-empty string
+output --------> return number of consonants
+
+LBP98
+~~~~~
+Check only digits
+
+Implement a program to check if a string contains only digits.
+
+input ----> a string from the user
+con ------> no
+output ---> Yes or No
+
+LBP99
+~~~~~
+Capitalize Every word first character
+
+Implement a program to capitalize first letter of each word in a string.
+
+input ----> a string from the user
+con ------> non-empty string
+output ---> a string with capitalization
+
+welcome to programming -----> Welcome To Programming
+
+LBP100
+~~~~~~
+Student Rewarded
+
+You are given a string representing an attendance record for a student. The record only contains the following three characters: 
+'A' : Absent. 
+'L' : Late. 
+'P' : Present. 
+
+A student could be rewarded if his attendance record doesn't contain more than one 'A' (absent) or more than two continuous 'L' (late).
+
+You need to return whether the student could be rewarded according to his attendance record.
+
+input ------> a string from the user
+con --------> non empty string
+output -----> Yes or No
+
+PPP ---> Yes
+PAP ---> Yes
+PAA ---> No
+APA ---> No
+PPL ---> Yes
+PLL ---> Yes
+LLL ---> No
+LPAPLPPLL --> Yes
