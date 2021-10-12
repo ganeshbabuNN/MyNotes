@@ -39,6 +39,12 @@ https://www.includehelp.com/python/programs.aspx
 https://code4coding.com/python/program/
 https://techstudy.org/home/codes
 https://www.programiz.com/python-programming/examples
+https://pynative.com/python-exercises-with-solutions/
+https://www.javatpoint.com/python-programs
+https://www.geeksforgeeks.org/python-programming-examples/
+https://www.tutorialgateway.org/python-programming-examples/
+https://www.w3resource.com/python-exercises/
+https://skillcrush.com/blog/python-programming-examples/
 
 
 Java Programs
