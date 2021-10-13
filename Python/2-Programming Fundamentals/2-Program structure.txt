@@ -54,6 +54,7 @@ Help info
 1)https://docs.python.org/3/library/index.html # official documents
 2)help(list.append)
 3)In jypter notebook press Shift+Tab for help or Tab for info on functions
+4)type list.append?
 
 Quiz:
 =====
