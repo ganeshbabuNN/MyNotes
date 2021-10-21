@@ -1,4 +1,5 @@
 Intro
+Handling the R Datasts
 Handling Text files
 Handling csv files
 Handling excel files
@@ -27,6 +28,16 @@ setwd("C:/Users/gbag/Downloads/pratice/pandas-Datasets/pandas-Datasets")
 
 # Get and print current working directory.
 print(getwd())
+
+Handling the R Datasts
+====================
+If you have the .rda file (XXX.rda) in your directory and then use load() command to load in your envrionment 
+
+# Set current working directory.
+setwd("C:\\GBAG_Back\\MyTraining\\Pratice")
+
+# Load the 
+load(file="title_foot.Rda")
 
 Handling Text files
 ===================
