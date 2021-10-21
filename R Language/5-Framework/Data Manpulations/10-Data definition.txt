@@ -223,13 +223,17 @@ df$Age <- as.character(df$Age)
 
 how to drop one or more columns from a table(drop the column)
 =============================================================
+#using 
 df
 df[,-3] #column name
 
 df[c("Age")] <- list(NULL) #using null
 df
 
-health[c("name","gender")] <- NULL
+directly using dataframe
+------------------------
+title_foot["foot_len"] <- NULL #for single variable
+health[c("name","gender")] <- NULL #for multiple variable
 health
 
 how to delete dataframe
