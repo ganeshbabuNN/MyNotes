@@ -219,6 +219,8 @@ health
 
 Writing a Custom function in R
 ==============================
+Using apply function
+--------------------
 celebrities=data.frame(name=c("Andrew","matt","Dany","Philip","John","bing","Monica"),
                        age=c(28,23,49,29,38,23,29),
                        income=c(25.2,10.5,11,21.9,44,11.5,45))
@@ -239,6 +241,45 @@ celebrities$newcol <- with(celebrities, age + income) #appraoch 3
 celebrities$newcol <- apply(celebrities[-1], function(x) sum(x) ) #appraoch 4
 apply(celebrities[c("age","income")], 1, sum) #appraoch 5
 
+Using dplyr
+-----------
+library(tidyverse)
+#create a new dataframe
+data.frame(
+  A = c(1,1,2,2),
+  B = c(1,2,1,2),
+  str = c('1, 2, 5', NA, NA, '1, 3')
+) -> df
+df
+
+#create a custom functions
+getCounts <- function(str, x, y){
+  if (is.na(str)){
+    return(as.integer(0))
+  }
+  vec <- as.integer(unlist(strsplit(str, ',')))
+  count <- 0
+  for (i in vec) {
+    if (i >= x & i <= y){
+      count <- count + 1
+    }
+  }
+  return(as.integer(count))
+}
+
+
+#calling the custom functions
+#using rowwise
+df %>%
+  rowwise() %>%
+  mutate(res = getCounts(str, 0, 2)) %>%
+  ungroup()
+
+#Vectorize
+df %>%mutate(res = Vectorize(getCounts)(str, 0, 2))
+
+#using sapply
+df %>%  mutate(res = sapply(str, getCounts, x = 0, y = 2))
 
 How to delete one or more row/column from a table - delete
 ==========================================================
