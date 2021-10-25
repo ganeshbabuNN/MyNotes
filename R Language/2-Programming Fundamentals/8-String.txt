@@ -582,6 +582,9 @@ substr(x,i,i+1)
 #using grep and strsplit function
 grep("[gb]", strsplit(x, split="")[[1]])
 
+dQuote and noquote
+------------------
+dquote adds the quote in a string and where the noquote removes the extra in the string.
 
 Quiz:
 =====
