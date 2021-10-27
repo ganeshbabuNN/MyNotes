@@ -351,6 +351,64 @@ builtins.abs(-15)
 3)dir()
 4)vars()
 
+1)Globals()
+- globals() is a built-in function that returns a reference to the current global scope or namespace dictionary.
+
+globals() #list all the objects which are available in global
+my_var = 100 #storing the global variable
+globals() #check if this available the my_var
+globals()['__doc__'] = """Docstring for __main__."""  #store int the global 
+globals()
+__doc__
+
+2)locals()
+-Another function related to Python scope and namespaces is locals().
+-This function updates and returns a dictionary that holds a copy of the current state of the local Python scope or namespace.
+
+def func(arg):
+    var=100
+    print(locals())
+    locals()['var2'] = 200 #storing in locals
+    var3=200
+
+func(43)
+
+3)dir()
+-You can use dir() without arguments to get the list of names in the current Python scope
+-If you call dir() with an argument, then the function attempts to return a list of valid attributes for that object
+
+dir()  # With no arguments
+dir(zip)  # With a function object
+import sys
+dir(sys)  # With a module object
+var = 100
+dir(var)  # With an integer variable
+
+#scenario
+def func():
+    var = 100
+    print(dir())
+    another = 200  # Is defined after calling dir()
+    
+func()
+
+4)vars()
+vars() is a Python built-in function that returns the .__dict__ attribute of a module, class, instance, or any other object which has a dictionary attribute
+
+import sys
+vars(sys)
+len(vars(sys))
+sys.__dict__
+vars(sys) is sys.__dict__ # is a special dictionary that Python uses to implement namespaces
+
+class MyClass:
+    def __init__(self, var):
+        self.var = var
+        
+obj = MyClass(100)
+vars(obj)  # With a user-defined object
+vars(MyClass)  # With a class
+
 Combining All
 -------------
 #combing all
