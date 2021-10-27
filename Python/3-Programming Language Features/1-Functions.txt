@@ -268,10 +268,48 @@ Globals functions:
 ------------------
 -If you want to assign a value to a name defined at the top level of the program (i.e. not inside any kind of scope such as functions or classes), then you have to tell Python that the name is not local, but it is global. We do this using the global statement. 
 -It is impossible to assign a value to a variable defined outside a function without the global statement
+
+__name__ #access global
+dir() #access global
+var=100
+dir() # you get the list of names available in your main global Python scope
+
+#scenario1
+def func():
+    return var  # You can access var from inside func()
+
+func()
+var  # Remains unchanged
+
+#scenario2
+var = 100  # A global variable
+def increment():
+    var = var + 1  # Try to update a global variable
+    
+increment() #UnboundLocalError: local variable 'var' referenced before assignment
+
+#scenario3
+var = 100  # A global variable
+def func():
+    print(var)  # Reference the global variable, var
+    var = 200   # Define a new local variable using the same name, var
+
+func() #UnboundLocalError: local variable 'var' referenced before assignment
+
+#combing all
+number = 100
+def outer_func():
+    # This block is the local scope of outer_func()
+    # It's also the enclosing scope of inner_func()
+    def inner_func():
+        # This block is the local scope of inner_func()
+        print(number)
+    inner_func()
+
+outer_func()
+
 -use the globals() functions followed by the variable name
-
 a=421 #global variables
-
 #function  that return the value
 def display():
     a=32    #local variables
@@ -307,6 +345,26 @@ abs(-15)  # Restore the original abs()
 import builtins
 builtins.abs(-15)
 
+#some of the scope related Built-In Functions
+1)Globals()
+2)locals()
+3)dir()
+4)vars()
+
+Combining All
+-------------
+#combing all
+number = 100
+def outer_func():
+    # This block is the local scope of outer_func()
+    # It's also the enclosing scope of inner_func()
+    def inner_func():
+        # This block is the local scope of inner_func()
+        print(number)
+    inner_func()
+
+outer_func()
+
 Ref: 
 https://realpython.com/python-scope-legb-rule/
 
@@ -332,7 +390,6 @@ z()
 
 function inside another function
 ================================
-
 ex:
 def display(name):
     def message(): #inner functions
