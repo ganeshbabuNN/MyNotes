@@ -5,6 +5,7 @@ Returning a multiple values
 Function overriding and overloading
 local and global variables
 Nested Statements and Scope
+LEGB Rule
 assigning function to a variable
 function inside another function
 function as paramter to an other 
@@ -214,7 +215,7 @@ print(x)
 print(printer())
 
 LEGB Rule
----------
+=========
 This idea of scope in your code is very important to understand in order to properly assign and call variable names.
 In simple terms, the idea of scope can be described by 3 general rules:
 -Name assignments will create or change local names by default.
@@ -226,7 +227,7 @@ In simple terms, the idea of scope can be described by 3 general rules:
 -Names declared in global and nonlocal statements map assigned names to enclosing module and function scopes.
 
 Local Rule
-*--------*
+----------
 =When you declare variables inside a function definition, 
 -They are not related in any way to other variables with the same names used outside the function - i.e. variable names are local to the function. 
 -This is called the scope of the variable. 
@@ -241,7 +242,7 @@ result  # Isn't accessible from outside square()
 base  # Isn't accessible from outside square()
 
 Enclosing function locals
-*------------------------*
+-------------------------
 -special scope that only exists for nested functions
 -if the local scope is an inner or nested function, then the enclosing scope is the scope of the outer or enclosing function.
 -This scope contains the names that you define in the enclosing function
@@ -264,7 +265,7 @@ outer_func() NameError: free variable 'another_var' referenced before assignment
  scope
 
 Globals functions:
-*----------------*
+------------------
 -If you want to assign a value to a name defined at the top level of the program (i.e. not inside any kind of scope such as functions or classes), then you have to tell Python that the name is not local, but it is global. We do this using the global statement. 
 -It is impossible to assign a value to a variable defined outside a function without the global statement
 -use the globals() functions followed by the variable name
@@ -281,7 +282,7 @@ def display():
 display()
 
 Built-in locals
-*--------------*
+---------------
 -It is special Python scope that’s created or loaded whenever you run a script or open an interactive session
 -This scope contains names such as keywords, functions, exceptions, and other attributes that are built into Python.
 -Names in this Python scope are also available from everywhere in your code.
