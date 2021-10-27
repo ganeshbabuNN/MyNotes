@@ -213,9 +213,10 @@ def printer():
 print(x)
 print(printer())
 
+LEGB Rule
+---------
 This idea of scope in your code is very important to understand in order to properly assign and call variable names.
 In simple terms, the idea of scope can be described by 3 general rules:
-
 -Name assignments will create or change local names by default.
 -Name references search (at most) four scopes, these are:
 *local
@@ -224,44 +225,48 @@ In simple terms, the idea of scope can be described by 3 general rules:
 *built-in
 -Names declared in global and nonlocal statements map assigned names to enclosing module and function scopes.
 
-Local
------
-When you declare variables inside a function definition, they are not related in any way to other variables with the same names used outside the function - i.e. variable names are local to the function. This is called the scope of the variable. 
-All variables have the scope of the block they are declared in starting from the point of definition of the name.
+Local Rule
+*--------*
+=When you declare variables inside a function definition, 
+-They are not related in any way to other variables with the same names used outside the function - i.e. variable names are local to the function. 
+-This is called the scope of the variable. 
+-All variables have the scope of the block they are declared in starting from the point of definition of the name.
 
-x = 50
-
-def func(x):
-    print('x is', x)
-    x = 2
-    print('Changed local x to', x)
-
-func(x)
-print('x is still', x)
-
-Built-in
---------
-len
+def square(base):
+    result = base ** 2
+    print(f'The square of {base} is: {result}')
+    
+square(10) #calling 
+result  # Isn't accessible from outside square()
+base  # Isn't accessible from outside square()
 
 Enclosing function locals
--------------------------
-name = 'This is a global name'
+*------------------------*
+-special scope that only exists for nested functions
+-if the local scope is an inner or nested function, then the enclosing scope is the scope of the outer or enclosing function.
+-This scope contains the names that you define in the enclosing function
+-The names in the enclosing scope are visible from the code of the inner and enclosing functions
 
-def greet():
-    # Enclosing function
-    name = 'Sammy'
-    print(name)
-    def hello():
-        print('Hello '+name)
+def outer_func():
+    var = 100  # This block is the Local scope of outer_func()
+    def inner_func(): # It's also the enclosing scope of inner_func()
+        print(f"Printing var from inner_func(): {var}") # This block is the Local scope of inner_func()
+        #print(f"Printing another_var from inner_func(): {another_var}")
+    inner_func() #NameError:name 'inner_func' is not defined
+    #another_var = 200  # This is defined after calling inner_func()
+    print(f"Printing var from outer_func(): {var}")
     
-    hello()
+outer_func()
+inner_func() #NameError: name 'inner_func' is not defined
 
-greet()
+#enable another_var
+outer_func() NameError: free variable 'another_var' referenced before assignment in enclosing
+ scope
 
 Globals functions:
-------------------
-If you want to assign a value to a name defined at the top level of the program (i.e. not inside any kind of scope such as functions or classes), then you have to tell Python that the name is not local, but it is global. We do this using the global statement. 
-It is impossible to assign a value to a variable defined outside a function without the global statemen
+*----------------*
+-If you want to assign a value to a name defined at the top level of the program (i.e. not inside any kind of scope such as functions or classes), then you have to tell Python that the name is not local, but it is global. We do this using the global statement. 
+-It is impossible to assign a value to a variable defined outside a function without the global statement
 -use the globals() functions followed by the variable name
 
 a=421 #global variables
@@ -273,11 +278,39 @@ def display():
     print(globals()['a']) #accessing global variables
 
 #invoking the functions
-print display()
+display()
 
-assigning function to a variable
+Built-in locals
+*--------------*
+-It is special Python scope that’s created or loaded whenever you run a script or open an interactive session
+-This scope contains names such as keywords, functions, exceptions, and other attributes that are built into Python.
+-Names in this Python scope are also available from everywhere in your code.
+-It’s automatically loaded by Python when you run a program or script
+
+dir() #to veiw the objects
+dir(__builtins__) #list of Python built-in names
+len(dir(__builtins__)) #length 
+import builtins  # Import builtins as a regular module
+dir(builtins)
+builtins.sum([1, 2, 3, 4, 5])
+builtins.max([1, 5, 8, 7, 3])
+builtins.sorted([1, 5, 8, 7, 3])
+builtins.pow(10, 2)
+abs(-15)  # Standard use of a built-in function
+abs = 20  # Redefine a built-in name in the global scope
+abs(-15)  #TypeError: 'int' object is not callable
+del abs  # Remove the redefined abs from your global scope
+abs(-15)  # Restore the original abs()
+
+#you can explicitly import builtins and then use fully-qualified names
+import builtins
+builtins.abs(-15)
+
+Ref: 
+https://realpython.com/python-scope-legb-rule/
+
+Assigning function to a variable
 ==================================
-
 a=421 #global variables
 
 #function  that return the value
