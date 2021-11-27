@@ -1359,7 +1359,6 @@ output ---> Yes or No
 LBP99
 ~~~~~
 Capitalize Every word first character
-
 Implement a program to capitalize first letter of each word in a string.
 
 input ----> a string from the user
@@ -1371,14 +1370,11 @@ welcome to programming -----> Welcome To Programming
 LBP100
 ~~~~~~
 Student Rewarded
-
 You are given a string representing an attendance record for a student. The record only contains the following three characters: 
 'A' : Absent. 
 'L' : Late. 
 'P' : Present. 
-
 A student could be rewarded if his attendance record doesn't contain more than one 'A' (absent) or more than two continuous 'L' (late).
-
 You need to return whether the student could be rewarded according to his attendance record.
 
 input ------> a string from the user
@@ -1393,3 +1389,107 @@ PPL ---> Yes
 PLL ---> Yes
 LLL ---> No
 LPAPLPPLL --> Yes
+
+LBP101
+~~~~~~~
+reading and writing an array
+Implement a program to read an array elements and write on the screen.
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> the given array
+
+5
+7 5 3 1 9
+7 5 3 1 9
+
+array: it is a collection of similar type of data elements (int)
+array index starts from 0 to size-1
+n
+for(i=0;i<n;i++)
+for(i=1;i<=n;i++)
+
+LBP102
+~~~~~~
+sum of all elements in array
+Implement a program to read an array elements and print sum of all its elements.
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> sum of all elements
+
+LBP103
+~~~~~~
+sum of even numbers in an array
+Implement a program to read an array elements and print sum of all even elements.
+
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> sum of all even elements
+
+
+LBP104
+~~~~~~
+sum of odd numbers in an array
+Implement a program to read an array elements and print sum of all odd elements.
+
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> sum of all odd elements
+
+
+LBP105
+~~~~~~~
+sum of prime numbers in an array
+Implement a program to read an array elements and print sum of all prime elements.
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> sum of all prime elements
+
+LBP106 
+~~~~~~
+sum of palindrome numbers in an array
+Implement a program to read an array elements and print sum of all palindrome numbers in array.
+
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> sum of all palindrome numbers
+
+
+LBP107
+~~~~~~~
+sum of strong numbers in an array
+Implement a program to read an array elements and print sum of all strong numbers in array.
+
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> sum of all strong numbers
+
+145 = 1!+4!+5!=1+24+120=145 ----> strong number
+
+LBP108
+~~~~~~
+sum of elements in an array ending with 3
+Implement a program to read an array elements and print sum of elements ending with 3 in array.
+
+input -------> size of the array and array elements 
+con ---------> size<100 
+output ------> sum of elements ending with 3
+
+LBP109
+~~~~~~
+search for an element in an array
+Implement a program to search for an element in an array.
+
+input -------> size, array elements and element to search
+con ---------> size<100
+output ------> search for the given element and return index
+
+5
+1 2 3 5 4
+
+1 ----> 0
+2 ----> 1
+3 ----> 2
+5 ----> 3
+4 ----> 4
+6 ----> -1
+
