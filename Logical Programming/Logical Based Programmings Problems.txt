@@ -2078,3 +2078,75 @@ input --------------> an array size and array
 con ----------------> no
 output -------------> true or false
 
+LBP159
+~~~~~~
+Check if All Values Are True
+Write a function that returns true if all parameters are truthy, and false otherwise
+
+input --------------> an array size and array
+con ----------------> no
+output -------------> true or false
+
+LBP160
+~~~~~~
+Shared Digits
+Create a function that returns true if each pair of adjacent numbers in an array shares at least one digit and false otherwise.
+
+input --------> array size and array elements
+con ----------> no
+output -------> true or false
+
+LBP161
+~~~~~~~
+Combined Consecutive Sequence
+Write a function that returns true if two arrays, when combined, form a consecutive sequence. 
+A consecutive sequence is a sequence without any gaps in the integers, 
+e.g. 1, 2, 3, 4, 5 is a consecutive sequence, but 1, 2, 4, 5 is not.
+
+
+input --------> two array sizes and array elements
+con ----------> no
+output -------> true or false
+
+LBP162
+~~~~~~
+Count 5s And Win
+Arun is obsessed with primes, especially five. 
+He considers a number to be luckiest if it has the highest number of five in it. 
+If two numbers have the same frequency of five, Arun considers the last occurence of them to be luckiest, 
+and if there is no five in any number, the first given number is considered luckiest. 
+Help him choose the luckiest number.
+
+input -----------> array size and elements
+con -------------> no
+output ----------> return luckiest number
+
+LBP163
+~~~~~~
+Find the Single Number
+Write a function that accepts an array of numbers (where each number appears three times except for one which appears only once) and finds that unique number in the array and returns it.
+
+input -----------> array size and elements
+con -------------> no
+output ----------> return non-repeated number
+
+LBP164
+~~~~~~~
+Update Every Element
+Implement a progra to update every array element with multiplication of previous and next numbers in array.
+
+input -----> size and array elements
+con--------> no
+output ----> updated array
+
+
+LBP165
+~~~~~~
+Maximum Energy in Science Lab
+In a science research lab, combining two nuclear chemicals produces a maximum energy that is the product of  the product of the energy of two chemicals. the energy values of the chemicals can be negative or positive. the scientist wishes to calculate the sum of the maximized energies of the two elements when the reaction happens.
+
+Write an algorithm to find the total energy produced by the chemicals when the reaction happens.
+
+input ------> size and array elements
+con --------> no
+output -----> max energy
