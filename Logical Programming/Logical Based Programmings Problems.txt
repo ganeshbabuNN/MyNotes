@@ -1493,3 +1493,588 @@ output ------> search for the given element and return index
 4 ----> 4
 6 ----> -1
 
+LBP110
+~~~~~~
+sort the elements in an array ASC
+Implement a program to sort the given array elements in ASC order.
+
+input -----> size and array elements
+con -------> size<100
+output ----> sorted array in ASC
+
+LBP111
+~~~~~~
+sort the elements in an array DESC
+Implement a program to sort the given array elements in DESC order.
+
+input -----> size and array elements
+con -------> size<100
+output ----> sorted array in DESC
+
+LBP112
+~~~~~~
+binary search
+Implement a program to search for an element in an array.
+
+input -------> size, array elements and element to search
+con ---------> size<100
+output ------> search for the given element
+
+LBP113
+~~~~~~
+max element in an array
+Implement a program to read array elements and find the max element in an array.
+input -------> size and array elements.
+con ---------> size<100
+output ------> return max element
+
+5
+4 2 5 1 3 ===> 1 2 3 4 5
+
+a[n-1]====>1st max element
+a[n-2]====>2nd max element
+a[n-3]====>3rd max element
+.
+.
+.
+a[3-1] =====>3rd min element
+a[2-1] =====>2nd min element
+a[1-1] =====>1st min element
+
+LBP114
+~~~~~~
+min element in an array
+Implement a program to read array elements and find the min element in an array.
+
+input -------> size and array elements.
+con ---------> size<100
+output ------> return min element
+
+LBP115
+~~~~~~
+diff between largest and smallest element in array
+Implement a program to read array elements and find the difference between max and min element in an array.
+
+input -------> size and array elements.
+con ---------> size<100
+output ------> return difference between max and min element.
+
+Logic=====> a[n-1]-a[1-1]
+
+LBP116
+~~~~~~~
+second largest element in an array
+Implement a program to read array elements and find the second max element in an array.
+
+input -------> size and array elements.
+con ---------> size<100
+output ------> return second max element in array
+
+LBP117
+~~~~~~
+second smallest element in an array
+Implement a program to read array elements and find the second min element in an array.
+
+input -------> size and array elements.
+con ---------> size<100
+output ------> return second min element in array
+
+LBP118
+~~~~~~~
+number of occurrences of an element
+Implement a program to find the number of occurrences of the given element.
+
+input -------> size,array element and key element
+con ---------> size<100
+output ------> return number of occurrences
+
+LBP119
+~~~~~~
+inserting element at first position in an array
+Implement a program to insert an element into an array at the first position
+
+input -------> size,array elements and element to be inserted
+con ---------> size<100
+output ------> return array after insertion
+
+LBP120
+~~~~~~
+inserting element at last position in an array
+Implement a program to insert an element into an array at the last position
+
+input -------> size,array elements and element to be inserted
+con ---------> size<100
+output ------> return array after insertion
+
+LBP121
+~~~~~~
+delete an element from first location in an array
+Implement a program to delete an element from an array at the first position
+
+input -------> size,array elements 
+con ---------> size<100
+output ------> return array after deleting from first location
+
+5
+1 2 3 4 5
+
+2 3 4 5
+
+LBP122
+~~~~~~
+delete an element from last location in an array.
+Implement a program to delete an element from an array at the last position
+
+input -------> size,array elements 
+con ---------> size<100
+output ------> return array after deleting from last location
+
+LBP123
+~~~~~~
+delete an element from an array at the given location
+Implement a program to delete an element from an array at the position
+
+input -------> size,array elements and position
+con ---------> size<100
+output ------> return array after deleting from the location
+
+LBP124
+~~~~~~
+delete an element from an array
+Implement a program to delete the given element from an array 
+
+input -------> size,array elements and element
+con ---------> size<100
+output ------> return array after deleting
+
+LBP125
+~~~~~~~
+update an element in an array
+Implement a program to update an element in the given array
+
+input ------> size,array elements and element to be updated (old element & new element)
+con---------> size<100
+output -----> return array after updating
+
+Eg:
+5
+1 2 3 4 5
+3
+9
+output: 1 2 9 4 5
+
+LBP126
+~~~~~~~
+update an element in an array
+Implement a program to update an element in the given array based on position
+
+input ------> size,array elements and element to be updated and location
+con---------> size<100
+output -----> return array after updating
+
+Eg:
+5
+11 22 77 88 10
+1
+99
+
+output: 11 99 77 88 10
+
+LBP127
+~~~~~~
+array reverse
+Write a program to reverse the elements present in an array
+
+input ------> size, array elements 
+con --------> size<100
+output -----> return array in reverse
+
+Eg:
+5
+1 2 3 4 5
+output: 5 4 3 2 1
+
+LBP128
+~~~~~~~
+increment every element in an array by one unit.
+Implement a program to increment every element by one unit in array.
+
+input ------> size, array elements 
+con --------> size<100
+output -----> increment each element by one unit
+
+LBP129
+~~~~~~
+number of duplicate elements in array
+Implement a program to find the number of duplicate elements present in the given array.
+
+input ------> size, array elements 
+con --------> size<100
+output -----> number of duplicate elements in the array
+
+5
+12 13 14 12 13
+count = 2
+
+LBP130
+~~~~~~
+print unique elements in array
+Implement a program to find the unique elements present in the given array.
+
+input ------> size, array elements 
+con --------> size<100
+output -----> print unique elements present in the array
+
+n=5, 1 1 2 3 4 ====> 1 2 3 4
+n=5, 1 1 1 2 2 ====> 1 2
+
+LBP131
+~~~~~~
+sort an array of 0s, 1s and 2s.
+Implement a program to read an array and sort array elements with 0s, 1s and 2s.
+
+input ------> size, array elements 
+con --------> size<100
+output -----> print sorted elements
+
+LBP132
+~~~~~~
+replace every element with the greatest element on its right side
+Implement a program to read an array and replace every element with the greatest element on its right side.
+
+input ------> size, array elements 
+con --------> size<100
+output -----> print updated array elements
+
+3
+7 8 6 ===> 8 8 6
+
+5
+2 4 3 1 0 ===> 4 4 3 1 0
+
+LBP133
+~~~~~~
+sum of two arrays.
+Implement a program to find the sum of two arrays and display the result array
+
+input -------> size and array elements
+con ---------> no
+output ------> print resultent array
+
+4
+1 2 3 4
+4 3 2 1
+
+5 5 5 5 
+
+LBP134
+~~~~~~
+sum of elements available at even index
+Implement a program to find the sum of elements avaiable at even index locations in an array.
+
+input ----> size and array elements
+con ------> no
+output ---> print sum value
+
+5
+1 2 3 4 5
+0 1 2 3 4 ====> 0,2,4 ===> 1+3+5=9
+
+LBP135
+~~~~~~
+sum of elements available at odd index
+Implement a program to find the sum of elements avaiable at odd index locations in an array.
+
+input ----> size and array elements
+con ------> no
+output ---> print sum value
+
+5
+1 2 3 4 5
+0 1 2 3 4 ===> 1,3 ===> 2+4=6
+
+LBP136
+~~~~~~
+sum of first and last, second and second last and so on
+Implement a program to find the sum of first and last, second and second last and so on in an array.
+
+input -----> size and array elements
+con -------> no
+output ----> print sum of first and last, second and second last and so on
+
+1,2,3,4,5
+6,6,6
+
+1,2,3,4,5,6
+7,7,7
+
+LBP137 
+~~~~~~
+print reverse of each number in an array
+Implement a program to print reverse of each element in an array
+
+input -----> size and array elements
+con -------> no
+output ----> print reverse of each element in an array
+
+LBP138
+~~~~~~
+number of even and odd elements
+Implement a program to find number of even and odd elements in the given array
+
+input -------> size and array elements
+con ---------> no
+output ------> print number of even and odd elements line by line
+
+LBP139
+~~~~~~
+Reverse only First half of the elements.
+Implement a program to reverse only first half of the array and keep remaining elements as original.
+
+input ------> size and array elements
+con --------> no
+output -----> reverse only first half of the array
+
+LBP140
+~~~~~~
+Difference between two arrays.
+Implement a program to find the difference between two arrays
+
+input -------> size and array elements
+con ---------> no
+output ------> print difference between two arrays as third array
+
+LBP141
+~~~~~~
+rearrange an array in such an order that– smallest, largest, 2nd smallest, 2nd largest and on
+Implement a program to rearrange an array in such an order that- smallest,largest,2nd smallest, 2nd largest and so on.
+
+input ------> size and array elements
+con --------> no
+output -----> print the elements smallest,largest,2nd smallest,2nd largest and so on.
+
+n=4
+[1,2,3,4] ====> 1,4,2,3
+
+n=5
+[1,2,3,4,5] ==> 1,5,2,4,3,3
+
+n=6
+[1,2,3,4,5,6] => 1,6,2,5,3,4
+
+LBP142
+~~~~~~
+Array of multiples
+Implement a program to create an array with n elements by taking multiples of m.
+
+input -----> m and n 
+con--------> size of the array must be n
+output ----> return an array with n elements which contains multiples of m.
+
+LBP143
+~~~~~~
+Inclusive Array Ranges
+Write a function that, given the start startNum and end endNum values, return an array containing all the numbers inclusive to that range. 
+Note:
+The numbers in the array are sorted in ascending order.
+If startNum is greater than endNum, return an array with the higher value. 
+
+input -----> n and m values
+con -------> no
+output ----> return an array with elements from n to m.
+
+LBP144
+~~~~~~
+Find the Average of the Letters
+Create a function that returns the average of an array composed of letters. First, find the number of the letter in the alphabet in order to find the average of the array.
+
+A = 1
+B = 2
+C = 3
+D = 4
+E = 5
+
+average = total sum of all numbers / number of item in the set
+Return the result rounded to two decimal points.
+
+input -----> an array as string
+con -------> no
+output ----> Return the result rounded to two decimal points.
+
+LBP145
+~~~~~~~
+Eliminate Odd Numbers within an Array
+Create a function that takes an array of numbers and returns only the even values.
+
+Note:
+Return all even numbers in the order they were given.
+All test cases contain valid numbers ranging from 1 to 3000.
+
+input -----> size and an array
+con -------> no
+output ----> remove all odd numbers and print
+
+LBP146
+~~~~~~
+Positive Count / Negative Sum
+Create a function that takes an array of positive and negative numbers. Return an array where the first element is the count of positive numbers and the second element is the sum of negative numbers.
+
+input -------> size and an array
+con ---------> If given an empty array, return an empty array and 0 is not positive.
+output ------> two space seperated int values.
+
+
+LBP147
+~~~~~~
+Return the Sum of the Two Smallest Numbers.
+Create a function that takes an array of numbers and returns the sum of the two lowest positive numbers.
+
+input -------> size and an array
+con ---------> Dn't count negative numbers
+output ------> sum of two smallest positive numbers
+
+LBP148
+~~~~~~
+Retrieve the Last N Elements
+Write a function that retrieves the last n elements from an array.
+
+input -------> size, an array and N value
+con ---------> return 0 if n exceeds size of the array
+output ------> last N elements
+
+LBP149
+~~~~~~
+Mini Peaks
+Write a function that returns all the elements in an array that are strictly greater than their adjacent left and right neighbors.
+
+input ------> size, an array
+con---------> Do not count boundary numbers, since they only have one left/right neighbor.
+output -----> an array
+
+7
+4 5 2 1 4 7 2
+0 1 2 3 4 5 6
+5 7
+
+LBP150
+~~~~~~
+All Numbers In Array Are Prime
+Create a function thats takes an array of integers and returns true if every number is prime. Otherwise, return false.
+
+input -------> size and an array
+con ---------> 1 is not a prime number.
+output ------> true or false
+
+LBP151
+~~~~~
+Sum of adjacent Distances.
+Write a program to calculate and return sum of distances between the adjacent numbers in an array of +ve integers.
+
+input -------> size and array elements
+con ---------> no
+output ------> an int value
+
+5
+10 11 7 12 14 -----> 12
+1+4+5+2=12
+a[i]-a[i+1]
+
+LBP152
+~~~~~~
+Odd Even Online Game
+You are playing an online game. In the game, a list of N numbers is given. The player has to arrange the numbers so that all the odd numbers of the list come after even numbers. Write an algorithm to arrange the given list such that all the odd numbers of the list come after the even numbers.
+
+input -------> size and array elements
+con ---------> no
+output ------> all even numbers and odd numbers.
+
+LBP153
+~~~~~~~
+GARMENTS COMPANY APPAREL
+The garments company apparel wishes to open outlets at various locations. The company shortlisted several plots in these locations and wishes to select only plots that are square shaped. Write an algorithm to help Apparel find the number of plots that it can select for its outlets.
+
+input -----> the first line of i/p consists of an integer N, and A1,A2,...AN representing areas of outlets.
+output ----> print an integer representing the number of plots that will be selected for outlets.
+
+8
+79 77 54 81 48 34 25 16 ---> 3
+
+81, 25, 16 ----> 3
+
+LBP154
+~~~~~~~
+POOLED CAB SERVICE
+A compnay wishes to provide can service for their N employees. The employees have distance ranging from 0 to N-1. The company has calculated the total distance from an employee's residence to the company, considering the path to be followed by the cab is a straight path. The distance of the company from it self is 0. The distance for the employees who live to the left side of the company is represented with a negative sign. The distance for the employees who live to the right side of the company is represented with a positive sign. the cab will be allotted a range of distance. The company wishes to find the distance for the employees who live within the particular distance range.
+write a alogrithm to find the distance for the employees who live within the distance range.
+
+input ----> size of the list N ,SD,ED and an array of distance
+output ---> distance within the range else -1
+con ------> con
+
+6
+30 50
+29 38 12 48 39 55
+
+t=a[i];
+if(t<0)	t=-t;
+
+if t>=30 and t<=50:
+	print a[i]
+
+LBP155
+~~~~~~~
+Kth SHORTEST PROCESSING QUEUE
+A company wishes to modify the technique by which tasks in the processing queue are executed. 
+There are N processes with unique ID's from 0 to N-1. 
+Each of these tasks has its own execution time.
+The company wishes to implement a new algorithm for processing tasks. 
+for this purpose they have identified a value K by the new algorithm, 
+the processor will first process the task that has the Kth shortest execution time.
+
+Write an algorithm to find the Kth shortest execution time.
+
+input ----> array size, k value and array
+output ---> kth shortest execution time.
+
+Logic:
+1. read an array.
+2. sort the array in ASC.
+3. read k value.
+4. print a[k-1].
+
+LBP156
+~~~~~~
+INDEX FILTERNING
+Create a function that takes two inputs: idx (an array of integers) and str (a string). 
+The function should return another string with the letters of str at each index in idx in order.
+
+input ----------> a string followed by size and an array
+constraint -----> output must be in lower case but input many not be.
+output ---------> a string contained in the specified locations given in the array.
+
+Ex:
+welcome
+0123456
+4
+3 0 2 1
+cwle
+
+LBP157
+~~~~~~
+SEVEN BOOM!
+Create a function that takes an array of numbers and return "Boom!" if the digit 7 appears in the array.
+Otherwise, return "there is no 7 in the array".
+
+input ---------> an array from the user
+constraint ----> no
+output --------> Boom! or "there is no 7 in the array".
+
+LBP158
+~~~~~~
+Positives and Negatives
+Create a function which validates whether a given array alternates between positive and negative numbers.
+
+input --------------> an array size and array
+con ----------------> no
+output -------------> true or false
+
