@@ -3588,6 +3588,516 @@ input -----> a binary value
 con--------> no
 output ----> decimal value
 
+LBP272
+------
+Item id
+A company wishes to bucketize their item id's for better search operations. 
+The bucket for the item ID is chosen on the basis of the maximum value of the digit in the item ID. 
+Write an algorithm to find the bucket to which the item ID will be assigned.
+
+input -----> ItemId
+con -------> no
+output ----> bucket ID
+
+LBP273
+------
+Next Letter
+Implement the following function
+def NextLetter(ch1,ch2);
+
+The function accepts two characters ch1 and ch2 as arguments, ch1 and ch2 are alphabetical letters. 
+Implement the function to find and return the next letter so that distance between ch2 and the next letter is the same as the distance between ch1 and ch2. 
+While counting distance if you exceed thhe letter 'z' then, 
+count the remaining distance starting from the letter 'a'.
+
+Distance between two letters is the number of letters between them.
+
+input ------> char ch1 and char ch2
+con --------> no
+output -----> char ch
+
+LBP274
+------
+Sum of All Integers
+Implement a program to find sum of all integers between two integer numbers taken as input and are divisible by 7.
+
+input ------> an integer value
+con --------> no
+output -----> sum value
+
+s=0;
+for(int i=N1;i<=N2;i++)
+{
+	if(i%7==0)
+		s=s+i;
+}
+print s
+
+LBP275
+-------
+Country Visa Center
+The country visa center generates the token number for its applicants from their application ID. 
+the application ID is numberic value. 
+The token number is generated  in a specific form. 
+the even digits in the applicant's ID are replaced by the digit one greater than the even digit 
+and the odd digits in the applicant's ID are replaced by the digit one lesser than the odd digit. 
+The numeric value thus generated represents the token number of applicant.
+
+Write an algorithm togenerate the token number from the applicant ID.
+
+input -----> application ID
+con -------> no
+output ----> token id
+
+12345 ===> 03254
+rev ---> logic
+
+LBP276
+------
+Neon Number
+Rahul's teacher gave an assignment to all the student that when they show up tomorrow they should find a special type of number and report her. He thought very carefully and came up with an idea to have neon numbers. 
+A neon number is a number where the square of the sum of each digit of the number results in the given number.
+Given an integer  N, 
+Write a program to find whether the number N is a Neon number. 
+If it's not a Neon number, print the sqaure of the sum of digits of the number.
+
+input -------> a number
+con ---------> no
+output ------> true or false
+
+81=> 8+1=9^2=81 ---> neon
+
+LBP277
+------
+super market pricing
+
+A super market maintains a pricing format for all its products. 
+A value N is printed on each product. 
+When the scanner reads the value N on the item, 
+the product of all the digits in the value N is the price of the item. 
+the task here is to design the software such that given the code of any item N the product (multiplication) of all the digits of value should be computed (price).
+
+input ----> an integer value
+con ------> no
+output ---> price
+
+123 ===> Rs. 1*2*3=6/-
+
+LBP278
+------
+Number Container
+Given two positive numbers N and K. 
+The task is to find the nunber N containers exactly K digit or not. 
+If contains then print 
+True<space>digit_count otherwise False<space>digit_count.
+
+input ----> Value of N and K
+con ------> con
+output ---> True|False<space>Digit_Count
+
+LBP279
+------
+pronic number
+A pronic number is a number which is a product of two consecutive integers, that is, 
+a number of the form n(n + 1). 
+Create a function that determines whether a number is pronic or not.
+
+input------> a number from the user
+con -------> no
+output ----> true or false
+
+LBP280
+------
+Validate ATM PIN
+Implement a program that will test if a string is a valid PIN or not via a regular expression.
+A valid PIN has:
+
+Exactly 4 characters.
+Only numeric characters (0-9).
+No whitespace.
+
+input ----> an input from the user
+con ------> con
+output ---> true or false
+
+
+LBP281
+------
+The Actual Memory Size of Your USB Flash Drive
+Implement a program that takes the memory size as an argument and returns the actual memory size.
+Note: The actual storage loss on a USB device is 7% of the overall memory size!
+
+input -----> memory size in GB
+con -------> no
+output ----> actual memory size, round your result to two decimal places.
+
+1GB ===> 0.93GB
+
+LBP282
+------
+Happy Number
+The happy number can be defined as a number which will yield 1 when it is replaced by the sum of the square of its digits repeatedly. 
+If this process results in an endless cycle of numbers containing 4, then the number is called an unhappy number.
+
+Write a program that accepts a number and determines whether the number is a happy number or not. Return true if so, false otherwise.
+
+input -----> a number from the user
+con -------> no
+output ----> true or false
+
+32=9+4=13=1+9=10=1+0=1
+16=1+36=37=9+49=58=25+64=89=....4
+
+LBP283
+------
+Calculate the Mean
+Implement a function that takes an array of numbers and returns the mean (average) of all those numbers.
+
+input ----> an array size and elements
+con ------> no
+output ---> print mean value and round to two decimal places.
+
+avg = sum of elements / number of elements
+
+LBP284
+------
+Factorize a Number
+Implement a program to that takes a number as its argument and returns an array of all its factors
+input -----> a number
+con -------> no
+output ----> list of factors
+
+LBP285
+------
+Next 5 characters
+Implement a program to display next 5 characters after input character.
+
+input -----> a character from the user
+con -------> no
+output ----> next 5 characters exluding input
+
+LBP286
+------
+Composite Number
+Implement a program to check whether the given number is composite number or not.
+input ----> a number from the user
+con ------> no
+output ---> true or false
+
+Hint: if we have more than 2 factors (not prime)
+
+LBP287
+------
+Hot and Cold Numbers
+
+Immplement a program, it reads integers from the input device(until it gets -ve number) and put them into array. We define a hot number as any number whose last digit is 2, and cold number as any number that is less than 50. You have to modify the program such that
+
+if it is hot number replace by -1
+if it is cold number replace by -5
+if it is both hot and cold replace by -6
+else keep old number
+
+input -----> a sequence of int values
+con -------> no
+output ----> a sequence of int values
+
+LBP288
+-------
+Not Having Alphabet 'a'
+
+Write a program to check whether a string not having alphabet 'a'?
+
+input --------> string from the user
+con ----------> con
+output -------> true or false
+
+LBP289
+------
+MathAtTip
+The online math course provider 'MathAtTip' has designed a course for children called Learning Number Recognition and Coutning. The assessment part of the course has a question where the student is given a number and a digit. The student needs to find out the total count of the digits present in the number excluding the given digit.
+
+input ------> two space seperated int values
+con --------> no
+output -----> count of total digits excluding k
+
+LBP290
+------
+TodaysApparel
+The e-commerce company "TodaysApparel" has a list of sales values of N days. Some days the company made a profit, represented as a positive value. Other days the company incurred a loss, represented as a negative sales value. The company wishes to know the number of profitable days in the list.
+Write an algorithm to help the company know the number of profitable days in the list.
+
+input -------> array size and elements
+con ---------> no
+output ------> count number of +ve values
+
+LBP291
+------
+BucketId
+A data company wishes to store its data files on the server. They N files. Each file has a particular size. the server stores the files in bucket list. The bucket ID is calculated as the sum of the digits of its file size. The server.. the bucket ID for every file request where the file is stored.
+
+Write an algorithm to find the bucketIDs where the files are stored.
+
+input -----> an array size and elements
+con -------> no
+output ----> bucketIds
+
+LBP292
+------
+Decimal to Octal
+Implement a program to convert the given decimal value into octal
+
+input ------> decimal value
+con --------> no
+output -----> octal number
+
+LBP293
+------
+sum of adjacent elements.
+Implement a program to find sum of adjacent elements in the array.
+
+input ----> an array size and elements
+con ------> no
+output ---> array with sum of adjacent elements
+
+LBP294
+------
+Vaccination Drive List Preparator
+Currently government is taking lot of measures to control the spread of Coronavirus. As we have vaccine now, many campaigns are done to vaccination.
+Health dept is identifying the people in each area and recommended/vaccination of them. They are planning three stages
+
+stage1: above 60 years
+stage2: between 18 and 60
+stage3: below 18 years
+
+Implement a program to read date of birth of the person and decide he belong to which stage.
+
+input -----> date of birth 
+con -------> no
+output ----> 1 or 2 or 3
+
+LBP295
+------
+Area of the circle
+Implement a program to find the area of the circle
+input -----> radius value
+con -------> no
+output ----> area of the circle (round to two decimals)
+
+
+LBP296
+------
+Divisible by 5 or 7
+Implement a program to print the list of integers which are divisible by 5 or 7.
+
+input ----> a number from the user
+con ------> no
+output ---> seq of int values which are divisible by 5 or 7
+
+LBP297
+------
+ending 3
+Implement a program to print the list of integers which are ending with 3 in the given range.
+
+input -----> n1 and n2 values
+con -------> no
+output ----> list of int values
+
+LBP298
+------
+Min and Max
+Implement a program to find absolute diff between sum of max digits and sum of min digits present in three integers n1,n2 and n3
+
+input -----> n1,n2 and n3
+con -------> no
+output ----> int value
+
+LBP299
+------
+Lucky String
+Write a program to find whether the given string is lucky or not, 
+A string is said to be lucky if the sum of ascii values of the characters in the string is even.
+
+input ------> a string
+con --------> non empty string
+output -----> true or false
+
+LBP300
+------
+Last three digits
+Implement a program to find sum of last three digits in the given number.
+
+input ------> an int value
+con --------> must be three digit number
+output -----> int value
+
+LBP301
+------
+Reverse and Replace
+Given String/Sentence need to be reversed and the vowels need to be replaced with numbers from 1-9 in the reversed string replaced number should be appears in desending order from left to right. 
+If there are more than 9 vowels, numbering should restart from 1.
+
+input -------> a string from the user
+output ------> reversed string
+constraint---> length of string should be <50 otherwise display invalid input.
+
+LBP302
+-----
+party
+A party has been organized on cruise.The party is organized for a limited time(T). The number of guests entering E[i] and leaving L[i] the party at every hour is represented as elements of the array. the task is to find the total number of guests present on the curise at the end.
+
+input -------> size and two arrays
+con ---------> no
+output ------> an int value
+
+LBP303
+------
+Airport Security
+
+Airport Security officials have confiscated several items of the passenger at the security checkpoint. 
+All the items have been dumped into a huge box(array). 
+Each item possessed a certain amount of risk(0,1,2). 
+Here is the risk severity of the item representing an array[] of N number of integer values. 
+The risk here is to sort the item based on thier level of risk values range from 0 to 2.
+
+input ------> size and elements
+con --------> no
+output -----> sorted array
+
+LBP304
+------
+chocolate factory
+A chocolate factory is packing chocolates into the packets. 
+The chocolate packets here represent an array arr of n number of integer values. 
+The task is to find the empty packets(0) of chocolate and push it to the end of the conveyor belt(array).
+
+input------> size and array elements
+con -------> no
+output ----> rearranged array
+
+LBP305
+------
+digital logic
+Joseph is learning digital logic subject which will be for his next semester. 
+He usually tries to solve unit assignment problems before the lecture.
+Today he got one tricky question.
+The problem statement is "A positive integer has been given as an input.
+Convert decimal value to binary representation. 
+Toggle all bits of it after the most significant bit including the most significant bit. 
+Print the positive integer value after toggle all bits.
+
+input -----> an int value
+con -------> no
+output ----> another dec value
+
+10 ===> 1010 ===> 0101 ===>5
+
+LBP306
+------
+Security Key
+
+A company is transmitting data to another server. The data is in the form of numbers. To secure the data during transmission, they plan to obtain a security key that will be sent along with the data. The security key is identified as the count of the repeating digits in the data. Write a algorithm to find the security key for the data.
+
+input -------> The input consists of an integer data, representing the data to be transmitted.
+output ------> print an integer representing the security key for the given data. if no data is repeated it should display -1
+con ---------> no
+
+LBP307
+------
+Data Encode
+
+A company wishes to encodes its data. the data is in the form of a number. They wish to encode the data with respect to a specific digit. They wish to count the number of times the specific digit reoccurs in the given data so that they can encode the data accordingly. Write an algorithm to find the count of the specific digit in the given data.
+
+input -----> the input consists of two space seperated integers -data and digit, representing the data to be encoded and the digit to be counted in the data.
+con -------> no
+output ----> print an integer representing the count of the specific digit.
+
+LBP308
+------
+One Time Password
+
+An e-commerce site wishes to enhance its ordering process. 
+They plan to implement a new scheme of OTP generation for order confimations. 
+The OTP can be any number of digits. for OTP generation, 
+the user will be asked for two random numbers where first number is always smaller than second number. 
+The OTP is calculated as the sum of the maximum and minimum prime values in the range of the user-entered numbers. Write a program to generate OTP.
+
+input----> two int values
+con------> fn<sn
+output --> sum of max and min prime numbers.
+
+n1 and n2
+n1--->nextPrime() ---> min
+n2--->beforePrime() --> max
+
+LBP309
+------
+Nearest paliandrome
+
+Write a program to find nearest greater paliandrome 
+
+input -----> an int value
+con -------> no
+output ----> an int value
+
+LBP310
+------
+FizzBuzz
+Given a number n, for each integer i in the range from 1 to n inclusive, print one value per line as follows.
+
+=> if i is a multiple of both 3 and 5 print FizzBuzz
+=> if i is a multiple of 3 (but not 5), print Fizz
+=> if i is a multiple of 5 (but not 3), print Buzz
+=> if i is not a multiple of 3 or 5 print the value of i.
+
+implement a program to read number n print the output as described above.
+
+input ------> a number n
+con --------> no
+output -----> print n string as per the above rules.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
