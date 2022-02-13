@@ -1,0 +1,7 @@
+
+
+
+
+https://medium.com/analytics-vidhya/comparison-of-two-data-sets-using-python-a24a6d8beb13
+https://www.geeksforgeeks.org/how-to-compare-two-dataframes-with-pandas-compare/
+https://towardsdatascience.com/how-to-quickly-compare-data-sets-76a694f6868a?gi=547e02f17772

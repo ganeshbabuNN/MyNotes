@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/40559024/deleting-windows-temp-files-using-python-script
