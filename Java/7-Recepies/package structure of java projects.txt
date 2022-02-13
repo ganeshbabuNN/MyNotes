@@ -1,0 +1,115 @@
+
+
+https://stackoverflow.com/questions/40902280/what-is-the-recommended-project-structure-for-spring-boot-rest-projects
+
+#Sample projects
+https://github.com/bigzidane/springboot-rest-h2-swagger -- sample projects
+
+https://medium.com/the-resonant-web/spring-boot-2-0-project-structure-and-best-practices-part-2-7137bdcba7d3
+
+If you are using maven, it's best to follow the standard maven project layout. You can get maven to generate this structure for you by doing,
+
+mvn archetype:generate 
+
+and select spring-mvc-jpa-archetype from the list of choices
+
+
+This will give you a package structure like,
+
+ ├── pom.xml
+  └── src
+      ├── main
+      │   ├── java
+      │   │   └── mygroup
+      │   │       ├── controller
+      │   │       │   ├── HomeController.java
+      │   │       │   └── PersonController.java
+      │   │       ├── dao
+      │   │       │   └── PersonDao.java
+      │   │       └── model
+      │   │           └── Person.java
+      │   ├── resources
+      │   │   ├── db.properties
+      │   │   ├── log4j.xml
+      │   │   └── META-INF
+      │   │       └── persistence.xml
+      │   └── webapp
+      │       ├── index.html
+      │       ├── META-INF
+      │       │   ├── context.xml
+      │       │   └── MANIFEST.MF
+      │       ├── resources
+      │       │   └── css
+      │       │       └── screen.css
+      │       └── WEB-INF
+      │           ├── spring
+      │           │   ├── app
+      │           │   │   ├── controllers.xml
+      │           │   │   └── servlet-context.xml
+      │           │   ├── db.xml
+      │           │   └── root-context.xml
+      │           ├── views
+      │           │   ├── edit.jsp
+      │           │   ├── home.jsp
+      │           │   └── list.jsp
+      │           └── web.xml
+      └── test
+          ├── java
+          │   └── mygroup
+          │       ├── controller
+          │       │   ├── DataInitializer.java
+          │       │   ├── HomeControllerTest.java
+          │       │   └── PersonControllerTest.java
+          │       └── dao
+          │           └── PersonDaoTest.java
+          └── resources
+              ├── db.properties
+              ├── log4j.xml
+              ├── test-context.xml
+              └── test-db.xml
+
+ 
+A common, more complete Java package structure for a MVCSR (Model, View, Controller, Service, Repository) web application goes something like:
+
+java
+└── com
+    └── youdomain
+        |
+        ├── base   // broadly used app-wide base and abstract classes)
+        |
+        ├── core   // broadly, scattered use helpers, utilities, app health/stats
+        |          // tracking, logging, etc
+        |
+        ├── controller // Fields Http/CGI requests and drives/initiates request 
+        |          // comprehension, validation, security checks, requesting 
+        |          // operations by the Service module and invoking the View to 
+        |          // generate a response.
+        |
+        ├── data   // This is the lower level data infrastructure, with several
+        |          //packages under it for mappers, schema tables/enums, helpers,
+        |          // record location, id management, etc
+        |
+        ├── domain // app-wide exposed classes, managers, and interfaces to
+        |          // each persisted (usually DB) domain 'object'. Each
+        |          // object often correlates to one table row in you DB.
+        |          // Domain objects are mostly considered data, but have some fundamental
+        |          // record construction, validation, elaboration, and ancillary information
+        |          // functionality which is opaque to the rest of the application. 
+        |          // For example: Customer, Account, Purchase, Inventory, 
+        |          // Product, Sale, Return, SpecialOffer, FeedbackComment...
+        |
+        ├── repository // more complicated persisted objects, often structured
+        |       // to address certain efficiency or traversal needs, often each
+        |       // repository is underpinned by several records, tables, 
+        |       // and even cross-DB structures. Example: 
+        |       //  -- OrderHistory, 
+        |       //  -- ProductsGlobalSearchIndex, 
+        |       //  -- CustomerSpecificProductMarketingSuggestionCorrelates
+        |
+        ├── service // The smarts of the whole application, performs macro, holoistic 
+        |       //  operations involving multiple DB tables and operations. Such as:
+        |       //  -- account.UserAccountLifecycle, 
+        |       //  -- order.CustomerOrder, 
+        |       //  -- order.CustomerOrderShipment
+        |
+        └── view // Intefaces with your jsp, freemarker, tapestry etc.
