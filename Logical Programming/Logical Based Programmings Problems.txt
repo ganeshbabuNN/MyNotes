@@ -2150,3 +2150,412 @@ Write an algorithm to find the total energy produced by the chemicals when the r
 input ------> size and array elements
 con --------> no
 output -----> max energy
+
+sort the array
+
+1st min: a[1-1] 1st max: a[n-1]
+2nd min: a[2-1] 2nd max: a[n-2]
+3rd min: a[3-1] 3rd max: a[n-3] and so on
+formula: a[n-3]+a[2-1]
+
+LBP166
+------
+Sales Report
+
+a company has a sales record of N products for M days. 
+The company wishes to know the maximum revenue received from a given product of the N products each day. 
+Write an algorithm to find the higest revenue received each day.
+
+input -----> space seperated integers N and M.
+con -------> no
+output ----> M space seperated integers representing the maximum received each day.
+
+LBP167
+------
+Online Game
+
+You are playing an online game. 
+In the game, a numbers is displayed on the screen. 
+In order to win the game, you have to count the trailing zeros in the factorial value of the given number. 
+Write an algorithm to count the trailing zeros in the factorial value of the given number.
+
+input ------> an integer num, representing the number displayed on the screen.
+con---------> no
+output -----> the count of trailing zeros in the factorial of the given number.
+
+5!=120 -----> 1
+6!=720 -----> 1
+7!=5040 ----> 1
+10!=3628800-> 2
+
+LBP168
+------
+Array pliandrome
+
+Implement a program to check whether an array is paliandrome or not.
+
+input -----> Array size N and Array Elements
+con -------> no
+output ----> true or false
+
+1 2 3 2 1 ===> true
+1 2 3 4 5 ===> false
+
+LBP169
+-------
+Array to Matrix
+
+Implement a program to convert an array into matrix.
+
+input -----> array size and elements
+con -------> element count should be 1,4,9,16,25 and so on
+output ----> matrix
+
+
+LBP170
+------
+Matrix to Array
+Implement a program to convert the given matrix into array
+
+input -----> matrix of size mxn and elements
+con -------> one D array is required
+output ----> one-D array should be printed on screen
+
+
+LBP171
+------
+Word Key
+
+One programming language has the following keywords that cannot be used as identifiers. 
+break,case,continue,default,defer,else,for,func,goto,if,map,range,return,struct,type,var
+
+write a program to find if the given word is a keyword or not.
+
+input ------> string from the user
+con --------> no
+output -----> true or false
+
+LBP172
+------
+Oddly Even
+Given a maximum of 100 digit numbers as input, find the difference between the sum of odd and even position digits.
+
+input ------> a number from the user
+con --------> no
+output -----> an integer
+
+LBP173
+------
+Sweet Seventeen
+Given a maximum of four digit to the base 17(10=>A,11=>B,12=>C,13=>D,14=>E,15=>F,16=>G) as input, output its decimal value.
+
+input -------> a string value
+con----------> no
+output ------> an integer value
+
+LBP174
+
+BeautifyMe
+----------
+The cosmetic company "BeauityMe" wishes to know the alphabetic product code from the product barcode. 
+The barcode of the product is a numeric value and the alphabeitc product is a string value tagged 'a-j'. 
+The alphabetic range 'a-j' represents the numeric range '0-9'. 
+To produce the alphabetic product code. 
+each digit in the numeric barcode is replace by the corresponding matching letters.
+
+Write an algorithm to display the alphabetic product code from the numeric barcodes.
+
+input ------> an integer value
+con --------> no
+output -----> a character 
+
+LBP175
+------
+Print Prime Numbers
+Implement a program to read a number and print prime numbers upto n seperated by commas.
+
+input ----> a number from the user
+con ------> no
+output ---> comma seperated prime numbers
+
+LBP176
+------
+GCD of two numbers
+
+Implement a program to read two integers values and return GCD of two numbers.
+
+input -----> two space seperated integers.
+con -------> no
+output ----> GCD of two numbers.
+
+min common factor of two numbers
+
+2 3 ===> 1 ====> 1
+2 4 ===> 1,2 ==> 2
+2 10 ==> 1,2 ==> 2
+
+LBP177
+------
+secret information
+
+A spy wants to send some secret information to the government. 
+As the data is very important, he encrypts the message by encoding by adding some extra characters. 
+the original message has only upper case letters and numbers, 
+while the extra characters are madeup of lowercase letters and special characters. 
+Can you help the receiver in designing a program that accepts the message and returns the secret information.
+
+input ------> a string from the user
+con --------> no
+output -----> original message
+
+extract only upper case letter and digits
+
+LBP178
+------
+flight
+amir is travelling to mumbai, but this time he is taking flight. 
+His brother has already told him about luggage weight limits but forgot it.
+Now he is taking with him 3 trolly bags.
+As per the current airlines which amir will fly. has below weight limits.
+There can be at max 2 check-in and 1 cabin luggage. Check-in has total limit of L1 and Cabin has limit of L2.
+
+Now, amir has 3 luggage has weights as W1 and W2 and W3 respectively. Now he should be smart enough to make sure that he can travel with all the 3 luggage without paying extra charge.
+
+Find out whether amir can take all of his luggage without any extra charges or not. If all good and no extra changes were paid, output "Yes" otherwise "No".
+
+input ------> integers W1,W2,W3 and L1,L2
+con --------> no
+output -----> Yes or No
+
+W1+W2+W3 <= L1+L2 Yes else No
+
+LBP179
+------
+arrangement
+
+given an array of size n, 
+write a function to rearrange the numbers of the array in such that even and odd numbers are arranged alternatively in increasing order.
+
+input -----> array size n and elements
+con -------> no
+output ----> updated array
+
+LBP180
+------
+parity bits
+Michael wants to check the parity of the given number. To find the parity, follow below steps.
+1. convert decimal number into binary number.
+2. count the number of 1's and 0's in the binary representation.
+if it contains odd number of 1-bits, then it is "odd parity" and 
+if contains even number of 1-bits then "even parity" 
+Write a program to validate the given number belongs to odd parity or even parity.
+
+input -------> a number from the user.
+con ---------> no
+output ------> odd parity or even parity.
+
+5 ----> 0101 ---> 2 ---> even parity
+8 ----> 1000 ---> 1 ---> odd parity
+
+LBP181
+-----
+second non-repeating character
+
+sofia loved to play with the programs unfortunately she got stuck in one of the questions. 
+she tought to take help of james. 
+james asked her the problem statement. 
+The problem statement was.
+
+"for the given string S of length N consist of stream of character not in predefined order. 
+Write a program to find second non-repeating character in a string S. 
+Write a program to help sofia and james for the given problem statements.
+
+input ------> string from the user
+con --------> no
+outptu -----> single character
+
+demo ---> e
+welcome ---> l
+
+LBP182
+------
+absolute difference between prime numbers
+
+You are given an array of integers, N of size array length. 
+Find the absolute difference (i.e. diff>=0) between the largest and smallest prime numbers.
+
+Note:
+	1. if there are 1 or fewer prime numbers in array return 0.
+	2. the array may contain +ve and -ve numbers, ignore -ve numbers.
+	3. 1 and 0 are not prime.
+
+input ------> array size and array elements
+con --------> no
+output -----> absolute diff
+
+LBP183
+------
+product with successor
+
+Given an integer N and integer array A as the input, 
+where N denotes the length of A 
+write a program to find an integer the sum of all these product with successors.
+
+input ----> array size and elements
+con-------> no
+output ---> an int value
+
+LBP184
+------
+pre-sorted integers in array
+
+You are given an array of integers, a of size n, 
+Your task is to find the number of elements whose positions will remain unchanged after sorted in ascending order.
+
+input ----> array size and elements
+con ------> no
+output ---> unchanged count
+
+LBP185
+------
+savings
+
+There are 3 friends named Ronaldo,Messi,Rooney who worked at a compnay. 
+Given thier monthly salaries and monthly expendictures, returns the highest saving amoung them.
+
+input ------> single line with 6 space seperated integers.
+con --------> no
+output -----> highest saving amoung the 3 of them
+
+10 6 10 8 15 5
+
+4
+2
+10
+
+LBP186
+------
+half ascending and half descending
+
+You are given a list of integers of size N, 
+write an algorithm to sort the first half elements of the list in ascending order 
+and the remaining elements in descending order.
+
+input -----> an arry size and elements
+con -------> no
+output ----> updated array
+
+LBP187
+------
+last and second-last
+Given a string, create a new string made up of its last two letters, reversed and seperated by comma.
+
+input ------> a string from the user
+con --------> no
+output -----> comma seperated last and second-last character
+
+LBP188
+------
+digital root
+Write a program to find the digital root of a given number. 
+Digital root is the recursive sum of digits in the given number (until single digit is arrived)
+
+input ----> a number from the user
+con ------> no
+output ---> single digit number
+
+129 = 1+2+9 = 12
+    = 1+2 = 3
+
+LBP189
+------
+absolute difference
+Write a program to find the absolute difference between the original number and its reversed number.
+
+input -----> a number from the user
+con -------> no
+output ----> absolute difference
+
+123-321=?
+
+LBP190
+------
+lucky draw
+A person went to an exhibition. 
+A lucky draw is going on, where one should buy a ticket. 
+And if they ticket number appear on the screen, that ticket will be considered as jackpot winner.
+
+He knows the secret of picking up the ticket number, which will be considered for the jackpot.
+1. sort the ticket number in the increasing order.
+2. Now, the difference between the adjacent digits should not be more than 2.
+
+If his ticket follows the above condition, then there are more chances to win the jackpot.
+
+Given a ticket number, find whether the ticket is eligible to be part of jackpot or not. 
+Print "Yes/No" based on the result.
+
+input -----> ticket number
+con -------> no
+output ----> Yes or No
+
+171 ---> 117 ---> 0,6 ----> No
+123 ---> 123 ---> 1,1 ----> Yes
+
+LBP191
+------
+test paper set
+
+In an online exam, the test paper set is categorized by the letters A-Z. 
+The students enrolled in the exam have been assigned a numeric value called application ID. 
+To assign the test set to the student, firstly the sum of all digits in the application ID is calculated. 
+If the sum is within the numeric range 1-26 the corresponding alphanetic set code is assigned to the student, else the sum of the digits are calcualted again and so on unitil the sum falls within the 1-26 range.
+
+input ------> application id as int
+con --------> no
+output -----> set number
+
+123=1+2+3=6 ---> F
+A-1
+B-2
+C-3
+D-4
+E-5
+F-6
+
+>=1 && <=26
+
+LBP192
+-----
+digits raised to the third power
+
+Cristina appeared for a corporate Hackathon. 
+She cleared first round of this and would like to take next challenge which is coding round. 
+The problem statement comes to her is
+
+Write a program to find numbers which are in between integer 2 and integer N and such that the sum of its digits raised to the third power is equal to the number with the input given.
+
+input ----> integer N
+con ------> no
+output ---> an integer value
+
+amstrong number -----> 153 ---> 1^3+5^3+3^3 = 1+125+27 = 153
+
+LBP193
+-------
+Grocery Shop
+There was a grocery shop. 
+Shopkeeper would like to keep trasactions as simple as he can. .
+Hence, he used to take money as whole number. 
+To optimize trasactions, he decided if someone buys groceries from his shop, 
+he will round money to the nearest whole number having zeros as last digit. 
+Write a program to help shopkeeper to make trasactions much simple.
+
+input -----> a number
+con -------> no
+output ----> nearest int value which ending with 0
+
+45 ---> 50
+51 ---> 60
+80 ---> 80
+
+
