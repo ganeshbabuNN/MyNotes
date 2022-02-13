@@ -137,8 +137,8 @@ input -------------> a number from the user
 constraint --------> n>0
 output ------------> print number of digits in the number
 
-					LBP14
-==============================================================================================
+LBP14
+-----
 Reverse Integer
 
 Given an integer x, return x with its digits reversed. 
@@ -147,10 +147,8 @@ input---------> a number from user
 constraint ---> n>=0
 output -------> reverse of the given number
 
-					LBP15
-==============================================================================================
 LBP15
-
+-----
 Duck Number
 
 Program to read a number and check whether it is duck number or not.
@@ -161,11 +159,8 @@ input-------> a number from the user
 contraint --> n>=0
 output------> Yes or No
 
-
-					LBP16
-==============================================================================================
 LBP16
-
+----
 Number of Occurrences
 
 Program to find number of occurences of the given digit in the number n
@@ -175,8 +170,9 @@ constraints-> no constraints
 output -----> number of occurrences
 
 
-LBP17 ----> Paliandrome Number
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LBP17 
+-----
+Paliandrome Number
 Program to check whether the given number is paliandrome or not
 
 A number is said to paliandrome if it is equal to the original number.
@@ -2557,5 +2553,1065 @@ output ----> nearest int value which ending with 0
 45 ---> 50
 51 ---> 60
 80 ---> 80
+
+LBP194
+------
+Password change
+Prakash a technical person wants to update his password for every 15 days, to create a new password, 
+he is converting all lower case letters to upper case and upper case letters to lower case, 
+help prakash to update password. 
+
+input ------> a string from the user old password
+con --------> no
+output -----> updated password
+
+LBP195
+------
+Video share
+Video share is an online video sharing platform. 
+The company has decided to rate its users channels based on the sum total of the number of views received online and the subscribers. 
+This sum total is referred to as user points. 
+The rating will be given according to the below charts.
+
+User points	rating
+30-50		Average
+51-60		Good
+61-80		Excellent
+81-100		Outstanding
+
+input ------> points value
+con --------> points>=30 and points<=100
+output -----> rating
+
+LBP196
+------
+modular exponentiation
+
+
+Given three numbers b,e, and m. 
+fill in a function that takes these three positive integer values and outputs 
+
+b^e mod m.
+
+input ------> b,e and m values
+con --------> no
+output -----> b^e mod m
+
+LBP197
+-----
+Backspace String Compare
+Two strings are said to the same if they are of the same length and have the same character at each index. Backspacing in a string removes the previous character in the string.
+
+Given two strings containing lowercase english letters and the character '#' which represents a backspace key. determine if the two final strings are equal or not. Return 1 if they are equal else 0.
+
+input -----> two strings s1 and s2
+con -------> no
+output ----> 1 or 0
+
+Ex:
+
+ab#c ----> ac
+acr# ----> ac
+
+1
+
+LBP198
+------
+token number
+
+Write an algorithm to generate the token number from the application ID by doing this modifications.
+
+R1. If the digit is even add 1 to it.
+R2. If the digit is odd sub 1 from it.
+
+
+input -----> a number from the user
+con--------> no
+output ----> token number
+
+12345
+03254
+
+LBP199
+------
+score of the player
+
+a game developing company has developed a math game for kids called "Brain Fun". 
+The game is for smartphone users and the player is given list of N positive numbers and a random number K. 
+the player need to divide all the numbers in the list with random number k and then need to add all the quotients received in each division. the sum of all the quotients is the score of the player.
+
+Write an algorithm to generate the score of the player.
+
+input -----> array size, elements and random number k
+con -------> no
+output ----> an int value
+
+LBP200
+------
+Perfect Math
+
+Perfect math is an online math program. In once of the assignments the system displays a list of N number and a value K, and students need to calculate the sum of remainders after dividing all the numbers from the list of N numbers by K. The system need to develop a program to calcualte the correct answer for the assignment.
+
+Write an algorithm to calcualte the correct answer for the assignment.
+
+LBP201
+-----
+read and write matrix elements
+Write a program to read matrix and display on the console.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> a 3x3 matrix
+
+Logic:
+
+for(i=0;i<r;i++){
+	for(j=0;j<c;j++)
+	{
+		read
+	}
+}
+for(i=0;i<r;i++){
+	for(j=0;j<c;j++)
+	{
+		logic
+	}
+}
+for(i=0;i<r;i++){
+	for(j=0;j<c;j++)
+	{
+		write
+	}
+}
+
+print res
+
+LBP202
+------
+sum of all matrix elements
+
+Write a program to find sum of all elements in the matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of all elements
+
+LBP203
+------
+sum of all even elements
+Write a program to find sum of all even elements in the matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of all even elements
+
+LBP204
+------
+sum of all odd elements
+Write a program to find sum of all odd elements in the matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of all odd elements
+
+LBP205
+------
+sum of all prime elements
+
+Write a program to find sum of all prime elements in the matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of all prime elements
+
+LBP206
+------
+row wise sum in matrix
+Write a program to find row wise sum in the matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of each row
+
+LBP207
+------
+column wise sum in matrix
+Write a program to find column wise sum in the matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of each column
+
+LBP208
+------
+sum of diagonal elements in matrix
+Write a program to find sum of diagonal elements in matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of diagonal elements
+
+i==j
+
+LBP209
+------
+sum of opposite diagonal elements in matrix
+
+Write a program to find sum of opposite diagonal elements in matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of opposite diagonal elements
+
+LBP210
+------
+sum of first and last element in the matrix
+
+Write a program to find sum of first and last element in a matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> sum of first and last element in matrix
+
+LBP211
+------
+find the product of diagonal matrix
+Write a program to find the product of diagonal matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> find the product of diagonal matrix
+
+
+LBP212
+------
+find the product of opposite diagonal matrix
+
+Write a program to find the product of opposite diagonal matrix.
+
+input --------> a 3x3 matrix
+constriants --> no
+output -------> find the product of opposite diagonal matrix
+
+
+LBP213
+------
+max element in matrix
+
+Implement a program to print max element in an matrix
+
+input -----> a 3x3 matrix
+constraint-> no
+output ----> max element in matrix
+
+LBP214
+------
+min element in matrix
+Implement a program to print min element in an matrix
+
+input -----> a 3x3 matrix
+constraint-> no
+output ----> min element in matrix
+
+LBP215
+------
+max element in each row of a matrix
+Implement a program to print max element in each row of a matrix
+
+input -----> a 3x3 matrix
+constraint-> no
+output ----> print max element in each row of a matrix
+
+LBP216
+------
+min element in each row of a matrix
+Implement a program to print min element in each row of a matrix
+
+input -----> a 3x3 matrix
+constraint-> no
+output ----> print min element in each row of a matrix
+
+LBP218
+------
+trace of the given matrix
+Implement a program to find trace(sum of diagonal elements) of the given matrix.
+input -----> a 3x3 matrix
+constraint-> no
+output ----> print trace of the matrix
+
+if i==j
+s=s+a[i][j]
+print s
+
+
+LBP217
+------
+to be check
+
+
+LBP218
+------
+trace of the given matrix
+Implement a program to find trace(sum of diagonal elements) of the given matrix.
+
+input -----> a 3x3 matrix
+constraint-> no
+output ----> print trace of the matrix
+
+LBP219
+------
+find the frequency of odd and even
+Write a program to find frequency of odd and even elements in the matrix excluding 0.
+
+input ------> a 3x3 matrix
+constraint -> no
+output -----> odd elements and even elements count
+
+LBP220
+------
+identity matrix
+Implement a program to check whether the given matrix is identity matrix or not
+
+input -------> a 3x3 matrix
+constraint --> no
+output ------> Yes or No
+
+1 0 0
+0 1 0    ----> Yes
+0 0 1
+
+1 2 3
+4 1 5   ----> NO
+6 7 1
+
+for(i=0;i<3;i++){
+	for(j=0;j<3;j++){
+		if(i==j && a[i][j]!=1)
+			flag=0;
+			break;
+		if(i!=j && a[i][j]!=0)
+			flag=0;
+			break;
+	}
+}
+
+if flag==1 then print Yes else print No
+
+LBP221
+------
+two matrices are equal or not
+Implement a program to check whether the given matrices are equal or not
+
+input -------> a 3x3 matrix
+constraint --> no
+output ------> Yes or No
+
+Ex1:
+1 2 3
+4 5 6
+7 8 9
+
+1 2 3
+4 5 6
+7 8 9
+
+Yes
+
+Ex2:
+1 2 3
+4 5 6
+7 8 9
+
+1 2 3
+4 5 6
+7 8 1
+
+No
+
+9 elements
+
+flag=1;
+for(i=0;i<3;i++){
+	for(j=0;j<3;j++){
+		if(a[i][j]!=b[i][j]){
+			flag=0;
+			break;
+		}
+	}
+}
+if flag==1 then Yes else No
+
+LBP222
+------
+addition of two matrices
+Write a program to perform addition operation on two matrices
+input --------> two 3x3 matrices
+constraint----> no
+output -------> resultent matrix
+
+c[i][j]=a[i][j]+b[i][j]
+
+LBP223
+------
+subtraction of two matrices
+Write a program to perform subtraction operation on two matrices
+
+input --------> two 3x3 matrices
+constraint----> no
+output -------> resultent matrix
+
+c[i][j]=a[i][j]-b[i][j]
+
+LBP224 
+------
+multiplication of two matrices
+
+Write a program to perform multiplication operation on two matrices
+
+input --------> two 3x3 matrices
+constraint----> no
+output -------> resultent matrix
+
+for(i=0;i<2;i++){
+	for(j=0;j<2;j++){
+		c[i][j]=0;
+		for(k=0;k<2;k++){
+			c[i][j]=c[i][j]+(a[i][k]*b[k][j]);
+		}
+	}
+}
+
+LBP225
+------
+sort all the elements in a matrix in asc order
+
+Implement a program to sort all the elements in asc order in the matrix
+
+input -------> a matrix
+cons---------> no
+output ------> result matrix
+
+
+LBP226
+------
+sort all the elements in a matrix in desc order
+
+Implement a program to sort all the elements in desc in the matrix
+
+input -------> a matrix
+cons---------> no
+output ------> result matrix
+
+LBP227
+------
+sort all the elements in a row in asc order
+Implement a program to sort all the rowwise elements in asc order
+input -------> a matrix
+cons---------> no
+output ------> result matrix
+
+LBP228
+------
+sort all the elements in a row in desc order
+Implement a program to sort all the row wise elements in desc order
+
+input -------> a matrix
+cons---------> no
+output ------> result matrix
+
+LBP229
+------
+sort all the elements in a column in asc order
+Implement a program to sort all the column values in asc order
+
+input -------> a matrix
+cons---------> no
+output ------> result matrix
+
+LBP230
+------
+sort all the elements in a column in desc order
+Implement a program to sort the all the column values in desc order
+
+input -------> a matrix
+cons---------> no
+output ------> result matrix
+
+LBP231
+------
+sparse matrix
+Implement a program to check whether the given matrix is sparse matrix or not.
+Note: a sparse matrix is a matrix with the majority of its elements equal to zero.
+
+input---------> a matrix
+con ----------> no
+output -------> Yes or No
+
+3X3 ===> 9 ELEMENTS ----> 9/2 ---> number of zeros>=5
+
+logic:
+
+counter=0;
+------
+------
+------
+if counter>=5 then Yes else No
+
+LBP232
+------
+swaping of two rows
+Implement a program to swap two given rows.
+input -------> matrix and m and n values
+con ---------> no
+output ------> modified matrix
+
+11 22 33 
+44 55 66
+77 88 99
+m=1
+n=2
+
+LBP233
+------
+swaping of two columns
+Implement a program to swap two given columns
+
+input -------> matrix and m and n values
+con ---------> no
+output ------> modified matrix
+
+LBP234
+------
+interchange the diagonals
+Program to accept a matrix of order 3x3 & interchange the diagonals.
+
+input -------> a 3x3 matrix 
+con ---------> no
+output ------> modified matrix
+
+1 5 9
+1 2 3
+4 5 6
+
+9 5 1
+1 2 3
+6 5 4
+
+44 55 66
+11 22 33
+77 88 99
+
+for i=0,i<3;i++
+
+t=a[m-1][i]
+a[m-1][i]=a[n-1][i]
+a[n-1][i]=t
+
+LBP235
+------
+upper triangular matrix
+Program to accept a matrix and check whether it is upper triangular matrix or not
+input -------> a 3x3 matrix 
+con ---------> no
+output ------> Yes or No
+
+1 2 3
+4 5 6   ----> No
+7 8 9
+
+1 2 3
+0 5 6
+0 0 9
+
+LBP236
+------
+lower triangular matrix
+Program to accept a matrix and check whether it is lower triangular matrix or not
+
+input -------> a 3x3 matrix 
+con ---------> no
+output ------> Yes or No
+
+LBP237
+------
+Scalar matrix multiplication
+Implement a program to read a matrix and multiplier and return scalar matrix multiplication.
+
+input -------> a 3x3 matrix and multiplier
+con ---------> no
+output ------> resultent matrix
+
+LBP238
+------
+Symmetric matrix
+
+Implement a program to read a matrix and check whether the given matrix is symmertric matrix or not
+
+input -------> a 3x3 matrix 
+con ---------> no
+output ------> Yes or No
+
+LBP239
+------
+print diagonal elements
+Implement a program to read a matrix and display only diagonal elements.
+
+input -------> a 3x3 matrix 
+con ---------> no
+output ------> print only diagonal elements
+
+LBP240
+------
+Square of Each Element of Matrix
+Implement a program to find square of each element present in a matrix.
+
+input -------> a 3x3 matrix 
+con ---------> no
+output ------> resultent matrix
+
+LBP241	
+------
+Sum of even indexed rows in matrix
+Implement a program to find sum of even indexed rows in the given matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> sum as an int
+
+0===> ----
+1===> xxxx
+2===> ----
+
+for(i=0;i<3;i++){
+	for(j=0;j<3;j++){
+		if(i%2==0){
+			s=s+a[i][j];
+		}
+	}
+}
+
+LBP242	
+------
+Sum of odd indexed rows in matrix
+Implement a program to find sum of odd indexed rows in the given matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> sum as an int
+
+LBP243	
+------
+Sum of even indexed cols in matrix
+Implement a program to find sum of even indexed cols in the given matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> sum as an int
+
+LBP244	
+------
+Sum of odd indexed cols in matrix
+Implement a program to find sum of odd indexed cols in the given matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> sum as an int
+
+LBP245	
+------
+Sum of elements whose sum of row index and col index is even
+Implement a program to find sum of row index and col index is even in the given matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> sum as an int
+
+(i+j)%2==0
+
+LBP246	
+------
+Sum of elements whose sum of row index and col index is odd
+Implement a program to find sum of row index and col index is odd in the given matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> sum as an int
+
+LBP247	
+------
+Sum of elements whose sum of row and col is prime
+
+Implement a program to find sum of row index and col index is prime in the given matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> sum as an int
+
+LBP248	
+------
+Count of prime digits in the given matrix
+Implement a program to count number of prime digits present in the matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> prime digits count
+
+LBP249	
+------
+Reverse of each element in matrix
+Implement a program to reverse each element in the matrix.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> result matrix
+
+LBP250	
+------
+Keep paliandrome number and replace remaining with 0's.
+Implement a program to keep all paliandrome numbers as it is and replace remaining with 0.
+
+input ------> a 3x3 matrix
+con --------> no
+output -----> result matrix
+
+LBP251	
+------
+multiples of 10
+Given an array A of N integer  numbers. 
+The task is to rewrite the array by putting all multiples of 10 at the end of the given array.
+
+Note: The order of the numbers which are not multiples of 10 should remain unaltered, and similarly. 
+the order of all multiples of 10 should be unaltered.
+
+input ------> N and Array Elements
+con --------> no
+output -----> updated array
+
+
+LBP252	
+------
+Employee's Rating Point
+In a company, an employee's rating point (ERP) is calculated as the sum of the rating points given by the employee's manager and HR. The employee rating grade (ERG) is calculated according to the ERP ranges given below.
+
+ERP	ERG
+30-50	D
+51-60	C
+61-80	B
+81-100	A
+
+Write an algorithm to find the ERG character for a given employee's ERP.
+
+input -------> an integer value 
+con ---------> con
+output ------> employee rating grade
+
+LBP253
+------
+encrypted digits
+A company trasfers an encrypted code to one of its clients. 
+The code needed to be decrypted so that it can be used for accessing all the required information. 
+The code can be decrypted by interchanging each consecutive digit and once if the digit got interchanged then it cannot be used again. 
+If at a certain point there is no digits to be interchanged with, then that single digit must be left as it is.
+
+Write an algorithm to decrypt the code so that it can be used to access the required information.
+
+input ------> a number from the user
+con --------> no
+output -----> an integer value
+
+LBP254
+------
+Easy Shopping
+The e-commerce company 'Easy Shopping' displays some specific products for its premium customers on its user interface. 
+The company shortlisted a list of N products. 
+The list contains the price of each product. 
+The company will select random products for display. 
+The selection criteria states that only those products whose price is a perfect cube number will be selected for display. 
+The selection process is automated and is done by the company's system.
+The company wishes to know the total count of the products selected for display.
+
+Write an algorithm to find the count of products that will be displayed.
+
+input ----> an array size and elements
+con ------> no
+output ---> perfect cube elements
+
+LBP255
+------
+player's score
+
+In a game, organizers has given a number to the player. 
+The player has to find out the differnece between the number and the reverse of the number. 
+The difference between two numbers is the player's score. 
+The number given to the player and the player's score can be a negative or positive number.
+
+Write an algorithm to find the player's score.
+
+input ------> an integer 
+con --------> no
+output -----> player's score
+
+n-rev(n)
+
+LBP256
+-------
+GlobalAdd
+
+The media compnay "GlobalAdd" has received a batch of advertisements from different product brands. 
+The batch of advertisements is a numeric value where each digit represnets the number of advertisements 
+the media company has received from different product brands. 
+Since the company banners permit only even numbers of advertisements to be displayed, 
+the media company needs to know the totoal number of advertisements it will be able to display from the given batch.
+
+Write an algorithm to calculate the total number of advertisements that will be displayed from the batch.
+
+input -----> an integer
+con -------> no
+output ----> count of advertisements
+
+12345 ===> 2,4 ===> 2
+
+LBP257
+------
+FunGames
+
+The games development company "FunGames" has developed a ballon shooter games. 
+The ballons are arranged in a linear sequence and each ballon has a number associated with it. 
+The numbers on the ballons are fibonacci series. (0,1,1,2,3,5,8,....)
+In the game the player shoots 'k' ballons. 
+The player's score is the sum of numbers on k ballons.
+
+Write an algorithm to generate the player's score.
+
+input ----> an integer vlaue n
+con ------> no
+output ---> sum value
+
+n=1 ---> 0
+n=2 ---> 0+1=1
+n=5 ---> 0+1+1+2+3=7
+
+LBP258
+------
+The Past Book
+
+To create a profile on a scocial media account "ThePastBook". 
+The user needs to enter a string value in the form of user name. 
+The username should consist of only characters tagged a-z. 
+if  the user enters an incorrect string containing digits the system automcatically identifies the number of digits in the string and removes them.
+
+Write an alogorithm to help the system identify the count of digits present in the username.
+
+input -----> A string from the user.
+con -------> no
+output ----> count of digits
+
+count number of digits in the given string.
+
+LBP259
+------
+Morning Prayer
+Student of a school are assembled in a straight line for the morning prayer. 
+To uplift the sprit of the students, an exercise is conducted. 
+THe initial letter of all the student's names is noted down(str). 
+The task here is to substitute the intitial letters in the list with consonants such that if the initial letter of the student is a vowel, retain the student in the same position.
+
+If the initial letter of the student is a consonant, swap with the next immediate consonants from the english alphabet sequence (a-z). 
+Say, initial letter of a student starts with b swap with c, next immediate consonant. 
+If the initial letter is 'z' swap with 'b'.
+
+input -----> a string from the user
+con -------> no
+output ----> updated string
+
+abcde ---> acdfe
+prakash ----> qsalatj
+qsalatj
+
+LBP260
+------
+factorial game
+Mikes likes to play with numbers. 
+His friends are also good with numbers and often plays mathematical games. 
+they made a small game where they will spell the last digit of a factorial of a number other than 0.
+
+Let say the given number is 5, 
+so 5! will be 120, Here 0 is the last digit. 
+But we dn't want 0, we want a number other than 0. 
+Then last digit is 2.
+
+input ----> an integer value
+con ------> no
+output ---> an integer vlaue
+
+LBP261
+------
+Speed Maths
+Jack was in 9th standard. 
+He appeared for a speed maths competivie exam. 
+Jack is taking longer time to solve one of the problems. 
+Count the number of 1's in the binary representation of an integer. 
+Help him to solve the below problem and write a code for the same.
+
+input ------> an integer value
+con --------> no
+output -----> an int value
+
+int ----> binary number ----> count 1's
+
+LBP262
+------
+puzzle
+
+Dennis was solving a puzle. 
+the puzzle was to verify a number whose cube ends with the number itself. 
+Help Dennis to find the solution of the puzzle and write the code accordingly.
+
+input --------> integer value to verified
+con ----------> no
+output -------> boolean value True or False
+
+LBP263
+------
+mathematics class
+In a mathematics class, number system is being taught to students, 
+before teaching them 10's and 100's place, they will be taught the number positions. 
+The positions will be starting from sequence number 1 and the direction will be from left to right.
+
+So if i want to find second position of a digit in the number 90876, it will be 0. 
+if the kth digit exceeds the number position return -1.
+
+write a program to find the kth digit in a given number.
+
+input -----> integer value and kth digit
+con -------> no
+output ----> an integer number
+
+LBP264
+------
+power function
+In a mathematics class, the students are beign taught power function. 
+So "a" raised to the power of "b" is shown as a^b and the calculatation goes as a*a*a...b times. 
+Now there is slight twist to the problem, the students have to find out the last digit of the resultant a^b. 
+
+input -----> an integer value as base and power
+con -------> no
+output ----> last digit of a^b
+
+a^b xyz print z
+
+LBP265
+------
+mathematical tricks
+Aryan is studying in the 5th standard. 
+He is very interested in mathematical tricks and always wanted to play with numbers. 
+Aryan would like to replace existing numbers with some other numbers. 
+Today he decided to replace all digits of the number (which is greater than or equal to 2 digits) by its squares and print it in reverse order. 
+Write a program to help him to replace numbers accordingly.
+
+input -----> a number
+con -------> no
+output ----> replaced all digits by its squares and revered number
+
+LBP266
+-------
+coding standards
+Tom has joined a new company and he is assigned a program to code. 
+But before starting to code, he needs to know the coding standards. 
+He need to make sure that the variable name should meet the below standards, 
+
+=> contains only english letter
+=> and/or digits
+=> and/or underscore (_)
+=> should not start with digits
+
+The program should return True/False based on the above conditions
+
+input ----> a string from the user
+con ------> no
+output ---> true or false
+
+LBP267
+------
+party quiz
+
+While sitting in party, 
+Tom came up with an idea of a quiz. 
+and the quiz is, Tom will spell out a number, and a person has to tell a number which is next to it. 
+But this number has to be perfect square.
+
+input -----> a number from the user
+con -------> no
+output ----> the perfect square after N
+
+LBP268
+------
+Be Positive 
+Write a program to get two inputs from the user and find the absolute difference between the sum of two numbers and the product of two numbers.
+
+input ------> two numbers from the user
+con --------> no
+output -----> absolute difference 
+
+LBP269
+------
+Prime Number Busses
+James wants to travel by bus to reach his friend John's home. 
+John gave a hint that all busses from Jame's location will reach his home if the bus number is prime number.
+Write a program to help James find the bus that reaches John's home.
+
+input -----> a number from the user
+con -------> no
+output ----> yes or no
+
+LBP270
+------
+sentence making
+
+The teacher in a school has started to teach the very basics rule for a sentence is that 
+it should start with a capital letter and ends with a full stop. 
+If the sentence fails any of the above mentioned criteria, it will be an incorrect sentence.
+Make a program to validate whether a given statement is a correct sentence or not. 
+The program should return True/False based on the validity.
+
+input -----> a string from the user
+con -------> no
+output ----> true or false
+
+LBP271 
+------
+Single Binary Value
+Geetha Singh is trying to create a system to convert binary number to its decimal eqivalent. 
+Help her to automate the process.
+
+input -----> a binary value
+con--------> no
+output ----> decimal value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
