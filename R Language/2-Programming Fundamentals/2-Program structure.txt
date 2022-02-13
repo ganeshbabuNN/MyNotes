@@ -73,7 +73,7 @@ RSiteSearch("logistic regression") #findFn in sos wraps RSiteSearch returning th
 View(available.packages()) #available.packages tells you all the packages that are available in the repositories that you set via setRepositories.
 View(installed.packages()) # installed.packages tells you all the packages that you have installed in all the libraries specified in .libPaths
 library() # library (without any arguments) is similar, returning the names and tag-line of installed packages
-.libPaths()
+.libPaths() #.libPaths gets/sets the library trees within which packages are looked for.
 
 data() #data with no arguments tells you which datasets are available on your machine.
 search()#search tells you which packages have been loaded.
@@ -83,7 +83,8 @@ ls() #ls lists the variables in an global environment
 ls(all.names = TRUE) # including names beginning with '.'
 ls("package:broom")     # everything for the sp package
 str(a) #Most variables can be inspected using str or summary.
-summary(a)
+summary(a) #it is used for the dataframe to summarize the descriptive statistics
+glimpse(a) #its is similar to summary 
 
 #directorys
 getwd() # print the current working directory - cwd
