@@ -1,0 +1,16 @@
+
+
+# pip install imdbpy
+from imdb import IMDb
+
+
+# create an instance of the IMDb class
+ia = IMDb()
+# get a movie
+ia.get_movie_infoset()
+ia.get_person_infoset()
+ia.get_company_infoset()
+
+Ref:
+https://imdbpy.readthedocs.io/en/latest/index.html
+https://imdbpy.readthedocs.io/en/latest/usage/data-interface.html
