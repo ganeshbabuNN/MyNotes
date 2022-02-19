@@ -5,6 +5,7 @@ Limitings rows returned by a query
 Filter data based on a values
 how to get the distinct data
 How to eliminate duplicate rows from the output of a query
+How to see the duplicated data
 perform matching based on specific patterns
 Random selecting the rows
 filtering the missing values
@@ -365,6 +366,25 @@ dfObj[~dfObj.duplicated(['Age', 'City'])] # Select all duplicate rows based on m
 
 Ref:
 https://thispointer.com/pandas-find-duplicate-rows-in-a-dataframe-based-on-all-or-selected-columns-using-dataframe-duplicated-in-python/
+
+How to see the duplicated data
+==============================
+
+using pd.duplicated
+-------------------
+
+vs[vs.duplicated(subset=['USUBJID','VSTESTCD','VSCAT','VSLOC','VISITNUM','VISITDY','VSDTC','VSDY'],keep=False)
+
+#for single column and shows all duplicated values
+data["First Name"].duplicated() 
+
+#for single column and shows all uniques values of that duplicated values
+data["First Name"].duplicated(keep = False)
+
+#for keep parameters.
+If 'first', it considers first value as unique and rest of the same values as duplicate. 
+If 'last', it considers last value as unique and rest of the same values as duplicate. 
+If False, it consider all of the same values as duplicates
 
 perform matching based on specific patterns
 ===========================================
