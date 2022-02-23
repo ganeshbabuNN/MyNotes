@@ -1,0 +1,224 @@
+Intro 
+How to use the subqueries to perform advanced data selection techniques
+correlated subquery which is a subquery that depends on the values returned by the outer query
+check for the existence of rows returned by a subquery
+compare a value to a list using subquery
+
+Intro
+=====
+One of powerful features in the SAS SQL procedure is its subquery, which allow a SELECT statement to be nested inside the clauses of another SELECT, or inside an INSERT, UPDATE or DELETE statement, even or inside another subquery. Depending on the
+clause that contains it, a subquery can select a single value or multiple values from related tables. If more than one subquery is used in a queryexpression, the innermost query is evaluated first, then the next innermost query, and so on. 
+PROC SQL allows a subquery (contained in parentheses) to be used at any point in a query expression, but user must understand when and where to use uncorrelated/correlated subqueries, non-scalar and scalar subqueries, or the combinations. 
+
+This subquery can be used in any of the below Clause
+· Subquery in Where clause
+· Subquery in Having clause
+· Subquery in From clause
+· Subquery in Select clause
+· Subquery in SET clause
+· Subquery and JOINs
+
+
+How to use the subqueries to perform advanced data selection techniques
+=======================================================================
+
+Using Subqueries to Select Data
+--------------------------------
+-A table join combines multiple tables into a new table. A subquery (enclosed in parentheses) selects rows from one table based on values in another table. A subquery, or inner query, is a query expression that is nested as part of another query expression. 
+Depending on the clause that contains it, a subquery can return a single value or multiple values. Subqueries are most often used in the WHERE and the HAVING expressions.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys1'
+dbms=xlsx out=survey1 REPLACE ; 
+run;
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_staffs'
+dbms=xlsx out=staff REPLACE ; 
+run;
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_payments'
+dbms=xlsx out=payment REPLACE ; 
+run;
+
+data survey1_av(keep=staff_id employee_name depid suv1_mean);
+	set survey1;
+	suv1_mean=mean(survey1,survey2,survey3,survey4);
+run; 
+
+proc sql;
+	title "latest average of the each department";
+	create table sur_average as
+	select distinct depid,
+		   mean(survey1,survey2,survey3,survey4) as sur_aver
+	from survey
+	group by depid;
+
+	create table sur_average1 as
+	 select depid,
+	 	    mean(sur_aver) as sur1_mean
+	 from sur_average
+	 group by depid;
+run;
+
+Single-Value Subqueries
+------------------------
+A single-value subquery returns a single row and column. It can be used in a WHERE or HAVING clause with a comparison operator. The subquery must return only one value, or else the query fails and an error message is printed to the log;
+
+proc sql;
+title "from old survey getting the average of the latest survey";
+select *,mean(survey1,survey2,survey3,survey4) as sur_mean
+from survey 
+where calculated sur_mean >= (select sur1_mean from sur_average1
+	where depid=7);
+quit;
+
+Multiple-Value Subqueries:
+--------------------------
+A multiple-value subquery can return more than one value from one column. It is used in 
+a WHERE or HAVING expression that contains IN or a comparison operator that is modified 
+by ANY or ALL.
+
+proc sql;
+title "old to the latest survey mean analysis";
+select * , mean(survey1,survey2,survey3,survey4) as sur_mean
+from survey 
+where depid in (select depid from sur_average1);
+quit;
+
+correlated subquery which is a subquery that depends on the values returned by the outer query
+===============================================================================================
+The previous subqueries have been simple subqueries that are self-contained and that execute independently of the outer query. A correlated subquery requires a value or values to be passed to it by the outer query. After the subquery runs, it passes the 
+results back to the outer query. Correlated subqueries can return single or multiple values.
+
+proc sql;
+title "from survey check the average of survey from survey1 of mean ";
+	select * , 
+		mean(survey1,survey2,survey3,survey4) as sur_mean
+	from survey s1
+where calculated sur_mean >= (select mean(sur_aver) from sur_average as s2 where s2.depid=s1.depid);
+ /*the outer query passes stu.class to the subquery to obtain the correct sur_average*/
+quit;
+
+-the below example of Combining a Join with a Subquery.You can combine joins and subqueries in a single query
+proc sql;
+title "Combing the join along with sub query";
+select  s2.staff_id,
+	    s2.employee_name,
+		s2.email,
+	    mean(survey1,survey2,survey3,survey4) as sur_mean 
+from survey s1,
+	 staff s2
+where s1.staff_id=s2.staff_id  
+	  and calculated sur_mean IN (select sur_aver from sur_average as s2 where 
+s2.depid=s1.depid );
+quit;
+
+-using the actual EXISTS and NON-EXISTS operator
+proc sql;
+select * 
+from survey  s1
+where exists (select depid from sur_average where depid=s1.depid and depid=6);
+quit;
+
+proc sql;
+select * 
+from survey  s1
+where not exists (select depid from sur_average where depid=s1.depid and depid=6);
+quit;
+
+check for the existence of rows returned by a subquery
+======================================================
+The EXISTS condition tests for the existence of a set of values. An EXISTS condition  is true if any rows are produced by the subquery, and it is false if no rows are produced. 
+Conversely, the NOT EXISTS condition is true when a subquery produces an empty table.
+
+proc sql;
+title "finding any of the department exists of latest";
+select * 
+from survey  s1
+where exists /* dept in */ (select depid from sur_average);
+quit;
+
+proc sql;
+title "finding any of the department not exists of latest";
+select * 
+from survey  s1
+where not exists /* dept in */(select depid from sur_average where depid=10);
+quit;
+
+Subqueries can be nested so that the innermost subquery returns a value or values to be used by 
+the next outer query. Then, that subquery's value or values are used by the next outer query, 
+and so on. Evaluation always begins with the innermost subquery and works outward
+
+proc sql;
+title "complex sub query";
+select s1.staff_id,
+	   s1.employee_name,
+	   s1.email,
+	   s1.managerid,
+	   s1.depid,
+	   mean(survey1,survey2,survey3,survey4) as sur_mean
+from staff s1,survey s2
+where s1.staff_id=s2.staff_id
+and calculated sur_mean < (select mean(sur_aver) from sur_average as s3 
+							where s3.depid=s2.depid 
+						     and s3.depid <= (select DeptID from departments 
+										    where Department='Sales'));
+
+Compare a value to a list using subquery
+=====================================
+-The ANY and ALL operators are Proc SQL operators which can be used to compare the result of a query expression against either ANY or ALL of the results returned from another.
+
+The ANY operator
+-----------------
+-returns a boolean value as a result
+-returns TRUE if ANY of the subquery values meet the condition
+-ANY means that the condition will be true if the operation is true for any of the values in the range.
+
+proc sql;
+  title "list of the poistion id ";
+select distinct positionid from position where Position IN ("Data Architect","Software Engineer","Sr. DBA","Tester");
+quit; /* instead writing a independent query , merge using the subquery*/
+
+proc sql;
+	title "Using ANY Clause of wring the above query";
+	select employee_name,
+		   positionid
+	from staff
+	where positionid eq ANY (select positionid from position where Position IN ("Data Architect","Software Engineer","Sr. DBA","Tester"))
+	order by positionid;
+quit;
+
+The ALL operator
+----------------
+-returns a boolean value as a result
+-returns TRUE if ALL of the subquery values meet the condition is used with SELECT, WHERE and HAVING statements
+-ALL means that the condition will be true only if the operation is true for all values in the range. 
+
+proc sql;
+  title "list of the poistion id ";
+select distinct positionid from position where Position IN ("Data Architect","Software Engineer","Sr. DBA","Tester");
+quit;
+
+proc sql;
+	title "Using ANY Clause of wring the above query";
+	select employee_name,
+		   positionid
+	from staff
+	where positionid eq ANY (select positionid from position where Position IN ("Data Architect","Software Engineer","Sr. DBA","Tester"))
+	order by positionid;
+quit;
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.lexjansen.com/nesug/nesug98/dbas/p005.pdf
+https://amadeus.co.uk/tips/using-the-any-and-all-operators-in-proc-sql/

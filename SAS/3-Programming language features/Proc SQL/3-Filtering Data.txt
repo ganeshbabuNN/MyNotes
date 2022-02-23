@@ -1,0 +1,539 @@
+Intro
+Selecting the rows or observations
+selecting the observations based on conditions
+Limitings rows returned by a query
+Filter data based on a values
+how to get the distinct data
+How to eliminate duplicate rows from the output of a query
+perform matching based on specific patterns
+Random selecting the rows
+filtering the missing values
+Applying the functions
+
+
+Intro
+=====
+
+
+Syntax:
+
+syntax:
+PROC SQL;
+ SELECT column(s)
+ FROM table(s) | view(s)
+ WHERE expression
+ GROUP BY column(s)
+ HAVING expression
+ ORDER BY column(s);
+QUIT;
+
+The WHERE clause enables you to retrieve only rows from a table that satisfy a condition. WHERE clauses can contain any of the columns in a table, including columns that are not selected.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_staffs'
+dbms=xlsx out=staffs REPLACE ;
+run;
+
+-To avoid any execution at all, use the noexec option
+proc sql noexec;
+	select * 
+	from staffs;
+quit;
+
+
+Selecting the rows or observations
+==================================
+
+Using outobs options:
+--------------------
+you can specify the number of observations that will be written to the output set
+
+proc sql outobs=5;
+	create table first_5obs as
+	select * from staffs;
+quit;
+
+
+Using inbos options;
+--------------------
+OUTOBS=-options limits the number of observations in the output dataset, you can use the INOBS=-option to specify the number of observations that will be read from the input dataset(s)
+
+proc sql inobs=5;
+	create table first_5obs as
+	select * from staffs;
+quit;
+
+
+Using FirstOBS and OBS options:
+-------------------------------
+- If you combine the FIRSTOBS= and OBS=-options, you are able to select a range of observations
+
+proc sql;
+	select * from staffs(FIRSTOBS = 2 OBS = 5);
+quit;
+
+
+Using monotonic() function:
+--------------------------
+In PROC SQL, we can use MONOTONIC() function to generate row numbers. It is an alternative to _N_ in data step.
+
+proc sql ;
+	select * 
+	from staffs
+where monotonic() between 10 and 20;
+quit;
+
+
+Ref:
+https://www.listendata.com/2015/07/alternative-to-n-in-proc-sql.html
+https://sasexamplecode.com/how-to-select-the-first-n-rows-in-sas/ 
+
+selecting the observations based on conditions
+==============================================
+-The WHERE clause enables you to retrieve only rows from a table that satisfy a condition. 
+-WHERE clauses can contain any of the columns in a table, including columns that are not selected.
+
+Using Comparison operators
+-----------------------
+You can use comparison operators in a WHERE clause to select different subsets of data
+
+proc sql;
+	title 'list of employee who pay rate is more then 30';
+	select employee_name,dob,hiredate,payrate 
+	from staffs
+	where payrate >30;
+run;
+
+Using logical operators
+-----------------------
+-You can use logical operators to construct a WHERE clause that contains two or more expressions.
+-You can use parentheses to improve the readability of WHERE clauses that contain multiple expressions.
+
+proc sql;
+	title 'list of employee who pay rate is between 30 and 40';
+	select employee_name,dob,hiredate,payrate 
+	from staffs
+	where payrate >30  and payrate <40
+	order by payrate;
+run;
+
+Limitings rows returned by a query
+==================================
+using outobs options
+--------------------
+proc sql outobs=7;
+	select * 
+	from stafftime;
+quit;
+
+
+Using OBS options
+-----------------
+To restrict the obs from a specific dataset, you can use the data set obs option, e.g.
+proc sql ;
+	title 'selecting only the first 5 rows';
+	select employee_name,dob,hiredate,payrate 
+	from staffs(obs=5);
+run;
+
+
+Note:The OUTOBS= option limits the number of rows (observations) in the output. OUTOBS= is similar to the OBS= data set option.
+
+Note:
+In SAS there is no such head and tail method in SAS. but in Bases you can acehive
+
+Ref:
+https://sasexamplecode.com/how-to-select-the-first-n-rows-in-sas/ for base sas
+
+Filter data based on a values
+=============================
+
+Using Other Conditional Operators
+---------------------------------
+-Note:  All of these operators can be prefixed with the NOT operator to form a negative condition.
+*/Using the IN Operator, The IN operator enables you to include values within a list that you supply. */
+
+proc sql ;
+	title 'selecting the positions who are 4,6 and 8';
+	select employee_name,dob,hiredate,positionid 
+	from staffs
+	where positionid in (4,6,8);
+quit;
+
+Using the BETWEEN-AND Operators
+-------------------------------
+To select rows based on a range of values, you can use the BETWEEN-AND operators.
+Because the BETWEEN-AND operators are inclusive, the values that you specify in the BETWEEN-AND expression are included in the results.
+
+proc sql ;
+	title 'selecting the positions between 10 and 20';
+	select employee_name,dob,hiredate,positionid 
+	from staffs
+	where positionid between 10 and 20
+order by positionid;
+quit;
+
+Using the LIKE Operator
+-----------------------
+-The LIKE condition selects rows by comparing character strings with a pattern-matching specification
+-It resolves to true and displays the matched strings if the left operand matches the pattern specified by the right operand
+underscore (_) - matches any single character.
+percent sign (%) -matches any sequence of zero or more characters.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_film_texts'
+dbms=xlsx out=filmtexts REPLACE ;
+run;
+
+-Using the Single characters:
+proc sql;
+	title 'filter the pattern of moves starting letter with _ON';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where  title like '_ON___ %';
+quit;
+
+-Using the matching the sequence:
+proc sql;
+	title 'filter the pattern of moves which are related with student';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where calculated desp like '%student%';
+quit;
+
+proc sql;
+	title 'filter the pattern of moves starting letter with _ON';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where  title like '_ON___ %' and calculated desp like '%student%';
+quit;
+
+https://documentation.sas.com/?docsetId=sqlproc&docsetTarget=n1ege2983n6h0vn1s1uj1459phr9.htm&docsetVersion=9.4&locale=en
+
+Using Truncated String Comparison Operators
+-------------------------------------------
+-Truncated string comparison operators are used to compare two strings. 
+-PROC SQL truncates the longer string to be the same length as the shorter string.
+
+Truncated String Comparison Operators:
+Symbol		Definition
+EQT		equal to truncated strings
+GTT		greater than truncated strings
+LTT		less than truncated strings
+GET		greater than or equal to truncated strings
+LET		less than or equal to truncated strings
+NET		not equal to truncated strings
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_film_texts'
+dbms=xlsx out=filmtexts REPLACE ;
+run;
+
+proc sql;
+	title 'find the movie which are starts with DON and greater then';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where title EQT 'DON';
+quit;
+
+
+proc sql;
+	title 'find the movie which are Less then DON';
+	select film_id,
+		   title,
+		   lower(description) as desp
+	from filmtexts
+	where title LTT 'DON';
+quit;
+
+https://documentation.sas.com/?docsetId=sqlproc&docsetTarget=p020urejdmvi7vn1t9avbvazqapu.htm&docsetVersion=9.4&locale=en#n0tcl9lmusfteon1entll2ua55r1
+
+How to get the distinct data
+============================
+In some cases, you might want to find only the unique values in a column. 
+You can eliminate the duplicate rows from the results by using the DISTINCT keyword in the SELECT clause.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_employee_details'
+dbms=xlsx out=emp REPLACE ;
+run;
+
+for single column
+-----------------
+proc sql;
+	title 'get the distinct departments';
+	select distinct
+		   dep
+	from emp;
+quit;
+
+
+This program produces a single row of output for each gender value.
+
+When you specify all of a table's columns in a SELECT clause with the DISTINCT keyword, 
+PROC SQL eliminates duplicate rows, or rows in which the values in all of the columns match, from the results.
+
+for multiple columns
+--------------------
+proc sql;
+	title 'get the distinct for dep,status,position,store wise';
+	select distinct
+		   dep,emp_status,position,store
+	from emp;
+quit;
+
+dsitinct from one and other column
+----------------------------------
+proc sql;
+	title 'get the distinct for dep and remaing column (exlude if required)';
+	select distinct
+		   dep,*
+	from emp(drop= staff_id address_id);
+quit;
+
+How to eliminate duplicate rows from the output of a query
+==========================================================
+
+data readin;
+input ID Name $ Score;
+cards;
+1     David   45
+1     David   74
+2     Sam     45
+2     Ram     54
+3     Bane    87
+3     Mary    92
+3     Bane    87
+4     Dane    23
+5     Jenny   87
+5     Ken     87
+6     Simran  63
+8     Priya   72
+;
+run;
+
+proc sql;
+select *, monotonic() as row_num
+from readin
+group by name
+having row_num = min(row_num)
+order by ID;
+quit;
+
+Ref:
+https://www.listendata.com/2016/03/nodupkey-with-proc-sql.html
+
+Perform matching based on specific patterns
+===========================================
+
+proc sql;
+select *
+from emp
+where prxmatch('/^(h|m|j).*y\s*$/i', employee_name);
+quit;
+
+syntax Description:
+^ asserts position at start of a line
+1st Capturing Group (h|m|j)
+	1st Alternative h -  h matches the character h literally (case insensitive)
+	2nd Alternative m  - m matches the character m literally (case insensitive)
+	3rd Alternative j  - j matches the character j literally (case insensitive)
+.* matches any character
+	* Quantifier — Matches between zero and unlimited times, as many times as possible, 
+	giving back as needed (greedy)		
+y matches the character y literally (case insensitive)
+	\s* matches any whitespace character 
+	* Quantifier — Matches between zero and unlimited times, as many times as possible, 
+	giving back as needed (greedy)
+$ asserts position at the end of a line
+i modifier: case insensitive match (ignores case of [a-zA-Z]
+	
+ref:
+https://www.lexjansen.com/sesug/2019/SESUG2019_Paper-241_Final_PDF.pdf
+https://support.sas.com/resources/papers/proceedings/proceedings/sugi29/265-29.pdf  - SAS official
+
+Random selecting the rows
+=========================
+-can be done in Base SAS not in PROC SQL or any functions
+data temp_; 
+  if 0 then set emp nobs=NOBS;
+  do I=1 to 10;
+    N=rand('uniform',1,NOBS); 
+    OBS=N;
+    set emp point=N;
+    output; 
+  end ;
+  stop  ;
+run;
+
+Statistically in random sampling is a concept they would use
+https://sasexamplecode.com/3-ways-to-easily-create-a-random-sample-in-sas/
+
+Filtering the missing values
+============================
+
+Using the IS MISSING (IS NULL) Operator
+---------------------------------------
+-The IS MISSING operator enables you to identify rows that contain columns with missing values.
+
+proc sql;
+	title 'where the employee name are missing';
+	select *
+	from staffs
+	where employee_name is missing;
+quit;
+
+
+Using the IS not MISSING (IS NULL) Operator
+---------------------------------------
+-you can use the not operators to reverse the result
+
+proc sql;
+	title 'where the employee name are not missing';
+	select *
+	from staffs
+	where employee_name is not missing;
+quit;
+
+Using a WHERE Clause with Missing Values
+-----------------------------------------
+-If a column that you specify in a WHERE clause contains missing values, then a query might provide unexpected results.
+
+proc sql;
+	title "calculating the mean of the survey result for 5 week ";
+	select employee_name,survey1,survey2,survey3,survey4,survey5,
+	       mean(survey1,survey2,survey3,survey4,survey5) as mean_survey
+	from survey3
+where calculated mean_survey <=2;
+quit;
+
+
+-to get it corrected either replace the missing with default value or remove it from the query using not missing operator
+proc sql;
+	title "calculating the mean of the survey result for 5 week ";
+	select employee_name,survey1,survey2,survey3,survey4,survey5,
+	       mean(survey1,survey2,survey3,survey4,survey5) as mean_survey
+	from survey3
+where calculated mean_survey <=2 and survey1 is not missing and survey3 is not missing and survey4 is not missing;
+quit;
+
+Applying the functions
+======================
+-Overview of Summarizing Data
+-You can use an aggregate function (or summary function) to produce a statistical summary of data in a table. 
+-The aggregate function instructs PROC SQL in how to combine data in one or 
+more columns. 
+-when you use an aggregate function, PROC SQL applies the function to the entire table, 
+unless you use a GROUP BY clause. You can use aggregate functions in the SELECT or HAVING clauses.
+
+You can use aggregate, or summary functions, by using a WHERE clause. 
+
+Function			Definition
+AVG, MEAN			mean or average of values
+COUNT, FREQ, N		        number of nonmissing values
+CSS				corrected sum of squares
+Cv				coefficient of variation (percent)
+MAX				largest value
+MIN				smallest value
+NMISS				number of missing values
+PRT				probability of a greater absolute value of Student's t
+RANGE				range of values
+STD				standard deviation
+STDERR				standard error of the mean
+SUM				sum of values
+SUMWGT				sum of the WEIGHT variable values
+T				Student's t value for testing the hypothesis that the population mean is zero
+USS				uncorrected sum of squares
+vAR				variance
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+Using the MEAN Function with a WHERE Clause
+-------------------------------------------
+PROC SQL;
+	title 'mean of the survey for each employee';
+	SELECT *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+	from survey1;
+QUIT;
+
+Displaying Sums
+--------------
+The SUM function produces a single row of output for the requested sum
+because no non-aggregate value appears in the SELECT clause.
+--- an example of PROC SQL combined information from multiple rows of data 
+into a single row of output.
+
+PROC SQL;
+	title 'count of gender';
+	SELECT sum(survey1) as survey1_sum
+	from survey1;
+QUIT;
+
+
+Remerging Summary Statistics
+----------------------------
+Aggregate functions, such as the MAX function, can cause the same calculation to 
+repeat for every row. This occurs whenever PROC SQL remerges data
+
+PROC SQL;
+	title 'remerging the summary statistics';
+	SELECT *,
+		   mean(survey1,survey2,survey3,survey4) as survey_mean,
+		   max(calculated survey_mean) as survey_max
+	from survey1
+	order by survey_mean;
+QUIT;
+
+Using Aggregate Functions with Unique Values
+---------------------------------------------
+-Counting Unique Values
+-You can use DISTINCT with an aggregate function to cause the function to use only unique 
+values from a column.
+
+PROC SQL;
+	title 'mean of the survey for each employee';
+	SELECT count(distinct depid)
+	from survey1;
+QUIT;
+
+
+Counting Nonmissing Values
+--------------------------
+-all nonmissing values are counted including duplicated values 
+-Compare the previous example with the following query, which does not use 
+-the DISTINCT keyword 
+
+	PROC SQL;
+		title 'count of gender';
+		SELECT count( gender)
+		from survey1;
+	QUIT;
+
+Counting All Rows
+----------------
+-In the previous two examples, the missing values are ignored by the COUNT function. 
+-To obtain a count of all rows in the table
+
+PROC SQL;
+	title 'count of gender';
+	SELECT count(*)
+	from survey1;
+QUIT;
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

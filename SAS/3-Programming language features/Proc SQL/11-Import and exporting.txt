@@ -1,0 +1,28 @@
+Intro
+Handling Text files
+Handling csv files
+Handling excel files
+Handling Binary files
+Handling XML files
+Handling JSON Files
+Handling SAS files
+Handling SPSS files
+Handling STATA files
+Handling web Data
+Connecting to Database
+
+
+Intro
+=====
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

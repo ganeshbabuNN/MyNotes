@@ -1,0 +1,88 @@
+Intro
+Querying data from all columns of a table
+Query data from a single column
+Querying data from multiple columns
+
+Intro
+=====
+-people form the SQL background can easyily learn the SAS using procSQL
+
+syntax:
+PROC SQL;
+ SELECT column(s)
+ FROM table(s) | view(s)
+ WHERE expression
+ GROUP BY column(s)
+ HAVING expression
+ ORDER BY column(s);
+QUIT;
+
+
+Examples
+PROC SQL: calls the SQL procedure
+SELECT: specifies the column(s) (variables) to be selected
+FROM: specifies the table(s) (data sets) to be queried
+WHERE: subsets the data based on a condition
+GROUP BY: classifies the data into groups based on the specified column(s)
+ORDER BY: sorts the resulting rows (observations) by the specified column(s)
+QUIT: ends the PROC SQL procedure
+
+The SELECT statement is the primary tool of PROC SQL. You can use it to retrieve data from a table. You can use several optional clauses within the SELECT statement to place restrictions on a query.
+
+SELECT and FROM Clauses The SELECT statement must contain a SELECT clause and a FROM clause, both of which are requiredin a PROC SQL query. 
+
+For example:
+/*display the title,release_year, rental_year from flim table*/
+ select title from flim;
+
+This SELECT statement contains the following: A SELECT clause that lists the column ‘title ’,FROM clause that lists the table 'flim',
+which contains the ‘title’ column.
+
+proc import datafile = "C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_staffs" 
+DBMS = xlsx out = staff replace ;
+run; 
+
+Querying data from all columns of a table
+=========================================
+-Selecting Columns in a Table When you retrieve data from a table, you can select one or more columns by using variations of the basic SELECT statement.
+-Use an asterisk in the SELECT clause to select all columns in a table.
+
+proc sql;
+select * 
+from staff;
+run;
+
+Query data from a single column
+===============================
+-If you want to select more than one column, then you must separate the names of the columns with commas
+
+proc sql;
+select first_name 
+from staff;
+run;
+
+Querying data from multiple columns
+===================================
+
+proc sql;
+select first_name,last_name,DOB,hiredate
+from staff;
+run;
+
+using keep statement 
+--------------------
+-This statement can be used as a paraemter with or a datasets
+proc sql;
+select *
+from staff(keep=first_name last_name DOB hiredate);
+run;
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

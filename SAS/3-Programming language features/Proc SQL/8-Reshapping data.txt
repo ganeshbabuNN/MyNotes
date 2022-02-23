@@ -1,0 +1,27 @@
+Intro
+Concatenating datasets
+Intro of Wide -long and long-wide format
+Tranposing multiple columns into single column
+Tranposing single column into multiple columns
+Tranposing rows into column and column into rows
+Cross Tabluted reports
+
+intro
+=====
+
+
+
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://stats.idre.ucla.edu/sas/modules/how-to-reshape-data-long-to-wide-using-proc-transpose/
+https://www.lexjansen.com/nesug/nesug12/ff/ff01.pdf
+https://www.lexjansen.com/nesug/nesug06/hw/hw09.pdf
+https://www.datasciencemadesimple.com/proc-transpose-reshape-table-long-to-wide-wide-to-long/

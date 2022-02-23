@@ -1,0 +1,229 @@
+Intro 
+how to combine the results of two queries into a single result
+how to make an intersection of the results of two independent queries
+how to check the difference if first datasets is not there in second
+
+Intro
+=====
+whereas join operations combine tables horizontally, set operations combine tables vertically.
+
+Working with Two or More Query Results:
+PROC SQL can combine the results of two or more queries in various ways 
+by using the following set operators:
+UNION :produces all unique rows from both queries.
+EXCEPT :produces rows that are part of the first query only.
+INTERSECT:produces rows that are common to both query results.
+OUTER UNION:concatenates the query results
+
+
+The operator is used between the two queries, for example:
+
+select columns from table
+set-operator
+select columns from table;
+
+-Place a semicolon after the last SELECT statement only. 
+-Set operators combine columns from two queries based on their position in the referenced tables without regard to the individual column names. 
+-Columns in the same relative position in the two queries must have the same data types. 
+-The column names of the tables in the first query become the column names of the output table.
+
+The following optional keywords give you more control over set operations:
+1)ALL :does not suppress duplicate rows. When the keyword ALL is specified, PROC SQL does not make a second pass through the data to eliminate duplicate rows. Thus, using ALL is more efficient than not using it.ALL is not allowed with the OUTER UNION operator.
+2)CORRESPONDING (CORR): overlays columns that have the same name in both tables. When used with EXCEPT, INTERSECT, and UNION, CORR suppresses columns that are not in both tables.
+
+data sets to be used
+--------------------
+proc import datafile='C:\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc import datafile='C:\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys1'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+how to combine the results of two queries into a single result
+===============================================================
+-The UNION operator combines two query results. It produces all the unique rows that result from both queries. That is, it returns a row if it occurs in the first table, the second, or both. UNION does not return duplicate rows. 
+-If a row occurs more than once, then only one occurrence is returned
+
+Using all column
+----------------
+proc sql;
+title "union for all columns";
+	select * from survey
+	union 
+	select * from survey3;
+quit;
+
+using Single column
+--------------------
+proc sql;
+title "union for one columns";
+	select depid from survey
+	union 
+	select depid from survey3;
+quit;
+
+using Two  column
+------------------
+proc sql;
+title "union for two columns";
+	select staff_id,employee_name from survey
+	union 
+	select staff_id,employee_name from survey3;
+quit;
+
+-You can use the ALL keyword to request that duplicate rows remain in the output.
+proc sql;
+title "union all";
+	select * from survey
+	union all 
+	select * from survey3;
+quit;
+
+OUTER UNION: Concatenate the query results
+------------------------------------------
+-The OUTER UNION operator concatenates the results of the queries
+
+data surv_mean;
+	set survey;
+	sur_mean=mean(survey1,survey2,survey3,survey4);
+run;
+
+data surv1_mean;
+	set survey1;
+	sur1_mean=mean(survey1,survey2,survey3,survey4);
+run;
+
+proc sql;
+title "outer union ";
+select * from surv_mean
+outer union 
+select * from surv1_mean;
+quit;
+
+-Notice that OUTER UNION does not overlay columns from the two tables. To overlay columns 
+in the same position, use the CORR keyword
+
+proc sql;
+title "outer union corr keyword ";
+select * from surv_mean
+outer union corr
+select * from surv1_mean;
+quit;
+
+EXCLUSIVE UNION: Produce Rows from the First or Second Query
+------------------------------------------------------------
+-Producing Rows from the First Query or the Second Query
+-There is no keyword in PROC SQL that returns unique rows from the first or second table, but not rows that occur in both. Here is one way that you can simulate this operation:
+
+(query1 except query2)
+union
+(query2 except query1)
+
+-The first EXCEPT returns unique rows from the first table (table math) only. 
+-The second EXCEPT returns unique rows from the second table (table read) only. 
+-The middle UNION combines the two results. 
+-Thus, this query returns the rows from the first table that is not in the second table, as well as the rows from the second table that is not in the first table.
+
+proc sql;
+title "combine note ";
+(select * from survey
+  except
+  select * from survey1)
+  union
+ (select * from survey2
+  except
+  select * from survey1);
+quit;
+
+
+How to make an intersection of the results of two independent queries
+=====================================================================
+-The INTERSECT operator returns rows from the first query that also occur in the second.
+
+proc print data=survey;run;
+proc print data=survey1;run;
+
+proc sql;
+title "intersect ";
+select * from survey
+intersect 
+select * from survey1;
+quit;
+
+proc sql;
+title "intersect for one column";
+select staff_id from survey
+intersect 
+select staff_id from survey1;
+quit;
+
+proc sql;
+title "intersect for two column";
+select staff_id,employee_name from survey
+intersect 
+select staff_id,employee_name from survey1;
+quit;
+
+-The output of an INTERSECT ALL operation contains the rows produced by the first query that are matched one-to-one with a row produced by the second query, so the output of INTERSECT 
+-ALL is the same as INTERSECT.
+
+proc sql;
+title "intersect for two column";
+select staff_id,employee_name from survey
+intersect all
+select staff_id,employee_name from survey1;
+quit;
+
+
+How to check the difference if first datasets is not there in second
+====================================================================
+-The EXCEPT operator returns rows that result from the first query but not from the second query. */
+
+proc print data=survey1;run;
+proc print data=survey2;run;
+
+proc sql;
+title "except ";
+select * from survey1
+except
+select * from survey2;
+quit;
+
+proc sql;
+title "except for one column ";
+select staff_id from survey1
+except
+select staff_id from survey2;
+quit;
+
+proc sql;
+title "except for two column ";
+select staff_id,employee_name from survey1
+except
+select staff_id,employee_name  from survey2;
+quit;
+
+-Note that the duplicated row in Table Math does not appear in the output. 
+-EXCEPT does not return duplicate rows that are unmatched by rows in the second query. 
+-Adding ALL keeps any duplicate rows that do not occur in the second query
+-You can use the ALL keyword to request that duplicate rows remain in the output.*/
+
+proc sql;
+title "except all";
+select * from survey1
+except all
+select * from survey2;
+quit;
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.9to5sas.com/sql-set-operators/

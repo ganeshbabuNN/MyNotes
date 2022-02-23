@@ -1,0 +1,311 @@
+Intro
+how to insert a row into a table  -insert
+Insert data into a table from the result of a query --insert
+Insert multiple rows/columns into a table or multiple tables -insert
+How to change the existing values of a table -update
+updating the missing values i,e NA to 0 -update
+Writing the conditional statment
+Writing a Custom function
+How to delete one or more row from a table - delete
+Performing a mixture of insertion, update, and deletion using a single statement -mix of all
+
+Intro
+=====
+
+how to insert a row into a table  -insert
+==========================================
+Inserting Rows into Tables
+Use the INSERT statement to insert data values into tables.
+
+The INSERT statement first adds a new row to an existing table, 
+and then inserts the values that you specify into the row. 
+You specify values by using a SET clause or VALUES clause. 
+You can also insert the rows resulting from a query
+
+Under most conditions, you can insert data into tables through PROC SQL and SAS/ACCESS views.*/
+
+Insert Rows into Tables using Insert Statement with the SET Clause
+------------------------------------------------------------------
+With the SET clause, you assign values to columns by name. The columns can appear 
+in any order in the SET clause
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+-Create the new_score_data empty table LIKE the input table
+proc sql;
+   create table new_survey
+      like survey;
+
+	describe table new_survey;
+quit;
+
+In the following example, Insert 2 new rows with SET clauses in the new_score_data table. 
+Then print the table. 
+
+Note the following features of SET clauses:
+1)As with other SQL clauses, use commas to separate columns. In addition, you must use a semicolon 
+after the last SET clause only.
+2)If you omit data for a column, then the value in that column is a missing value.
+3)To specify that a value is missing, use a blank in single quotation marks for character values 
+and a period for numeric values
+proc sql;
+   insert into new_survey    /*Insert 2 new rows with SET clause*/
+      set staff_id=98,
+          employee_name = 'ganesh',
+          depid=3,
+		  survey1=2,
+		  survey2=3,
+		  survey3=4,
+		  survey4=3,
+		  gender='Female'
+	set staff_id=99,
+          employee_name = 'ganesh1',
+          depid=2,
+		  survey1=2.2,
+		  survey2=3.2,
+		  survey3=4.0,
+		  survey4=3.2,
+		  gender='Male';
+		  
+	select * from new_survey;    /*Print the table */
+ quit;
+
+Insert Rows into Tables using Insert Statement with the VALUE Clause
+--------------------------------------------------------------------
+Inserting Rows with the VALUES Clause
+With the VALUES clause, you assign values to a column by position.
+
+Note the following features of VALUES clauses:
+1)As with other SQL clauses, use commas to separate columns. In addition, you must use a semicolon 
+after the last VALUES clause only.
+2)If you omit data for a column without indicating a missing value, then you receive an error message 
+and the row is not inserted.
+3)To specify that a value is missing, use a space in single quotation marks for character values and 
+a period for numeric values.
+
+
+proc sql;
+   create table new_survey /* Create the new_score_data empty table. */
+      like survey; 
+quit;
+
+proc sql;
+	insert into new_survey
+		values(43,'Manjappa',2,3,2,3,2,'Male',20092019)
+		values(22,'Manjappas',2,3,2,3,2,'Male',20092019)
+		values(23,'Manjappass',2,3,2,3,2,'Male',20092019);
+	select staff_id,employee_name, depid,survey1,survey2,gender,surlogdate format=date9. from new_survey;
+quit;
+
+Insert data into a table from the result of a query --insert
+============================================================
+You can insert the rows from a query result into a table
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc sql;
+   create table new_survey /* Create the new_score_data empty table. */
+      like survey; 
+quit;
+
+proc sql;
+	insert into new_survey
+	select * from survey;
+	title '';
+	select * from new_survey;
+quit;
+
+To insert rows by using a query for a subset of columns from the source table: 
+**specify all column names in a comma-separated list, enclosed in parentheses, in the INSERT statement. 
+**In the SELECT clause, specify column names that correspond to the columns of the INSERT statement. 
+**The order and number of columns must match in the INSERT statement and in the SELECT clause. 
+
+An error occurs if the query selects more columns than what exists for column names 
+in the table that is specified in the INSERT statement
+
+proc sql;
+   create table new_survey /* Create the new_score_data empty table. */
+      like survey; 
+quit;
+
+proc sql;
+ 	insert into new_survey(staff_id,employee_name,depid,survey1,survey2,gender)
+	select staff_id,employee_name,depid,survey1,survey2,gender from survey;
+
+	select * from new_survey;
+quit;
+
+Insert multiple rows/columns into a table or multiple tables -insert
+====================================================================
+
+
+
+
+How to change the existing values of a table -update
+====================================================
+Updating Data Values in a Table
+You can use the UPDATE statement to modify data values in tables 
+The UPDATE statement updates data in existing columns; it does not create new columns
+
+Updating All Rows in a Column with the Same Expression
+------------------------------------------------------
+The following UPDATE statement increases all score1 < 85 by 10%
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc sql;
+	 create table new_survey /* Create the new_score_data empty table. */
+      like survey; 
+	insert into new_survey
+	select * from survey where gender='female';
+	title '';
+	select * from new_survey;
+quit;
+
+proc sql;
+	update new_survey
+		set survey1=2
+		where survey1=1;
+
+	title "Updated Score1 Values "; /*print updated score1*/
+	select staff_id,
+		   employee_name,
+		   gender,
+		   survey1
+	 from new_survey;
+
+	title "Updated orginal Values "; /*print updated score1*/
+	select staff_id,
+		   employee_name,
+		   gender,
+		   survey1,
+		   surlogdate format=date11.
+	 from survey
+	 where  gender='female';
+quit;
+
+Update All Rows with Different Expressions using Update Statement
+-----------------------------------------------------------------
+Updating Rows in a Column with Different Expressions
+To update some, but not all, of a column's values, use a WHERE expression in the UPDATE 
+statement. You can use multiple UPDATE statements, each of which can contain a different 
+WHERE expression. Each UPDATE statement can have only one WHERE expression.
+
+/*You can accomplish the same result with a CASE expression:*/
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc sql;
+   create table new_survey /* Create the new_score_data empty table. */
+    like survey; 
+	insert into new_survey
+	select * from survey where gender='female';
+	title '';
+	select * from new_survey;
+quit;
+
+Make sure that you specify the ELSE clause. If you omit the ELSE clause, 
+then each row that is not described in one of the WHEN clauses receives a missing value 
+for the column that you are updating. 
+This happens because the CASE expression supplies a missing value to the SET clause, 
+and the column is multiplied by a missing value, which produces a missing value
+
+proc sql;
+	update new_survey
+		set survey1= 
+			case when survey1=1 then 2 
+				 else survey1
+			end;
+
+	title "Updated Score1 Values "; /*print updated score1*/
+	select staff_id,
+		   employee_name,
+		   gender,
+		   survey1
+	 from new_survey;
+
+	title "Updated orginal Values "; /*print updated score1*/
+	select staff_id,
+		   employee_name,
+		   gender,
+		   survey1,
+		   surlogdate format=date11.
+	 from survey
+	 where  gender='female';
+quit;
+
+
+
+Deleting a Column
+-----------------
+The DROP clause deletes columns from tables
+
+proc sql;
+   alter table new_survey
+	drop surlogdate; 
+quit;
+ 
+
+updating the missing values i,e NA to 0 -update
+===============================================
+
+
+
+Writing the conditional statment
+================================
+
+
+
+
+
+Writing a Custom function
+=========================
+
+
+How to delete one or more row from a table - delete
+===================================================
+The DELETE statement deletes one or more rows in a table.
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+proc sql;
+   create table new_survey /* Create the new_score_data empty table. */
+    like survey; 
+	insert into new_survey
+	select * from survey;
+	title '';
+	select * from new_survey;
+quit;
+
+-A note in the SAS log tells you how many rows were deleted.
+-Note If you omit a WHERE clause, then the DELETE statement deletes all the rows from the specified table or the table that is described by a view.
+
+proc sql;
+	delete from new_survey
+	where gender ='male';
+
+	select * from new_survey;
+quit;
+
+Performing a mixture of insertion, update, and deletion using a single statement -mix of all
+============================================================================================
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

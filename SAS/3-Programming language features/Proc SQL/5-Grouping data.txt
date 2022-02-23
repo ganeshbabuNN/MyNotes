@@ -1,0 +1,210 @@
+Intro 
+how to group rows into subgroups and apply an aggregate function for each group
+Filter a group of rows
+how to generate multiple grouping sets in a query
+
+Intro
+=====
+-Without the ORDER BY clause, the SQL procedure automatically sorts the results from a GROUP BY query in the same order as specified in the GROUP BY clause.
+-When both the ORDER BY and GROUP BY are specified for the same column, no additional processing occurs to satisfy the request.
+-The Group BY clause first sorts the result in the grouping column and then aggregates the rows of the query by the same grouping column.
+-If the columns specified in the ORDER BY and GROUP BY are not the same, additional processing may be required which involves remerging summary statistics with the original data
+
+syntax:
+PROC SQL;
+ SELECT column(s)
+ FROM table(s) | view(s)
+ WHERE expression
+ GROUP BY column(s)
+ HAVING expression
+ ORDER BY column(s);
+QUIT;
+
+
+how to group rows into subgroups and apply an aggregate function for each group
+===============================================================================
+
+GROUP BY Clause: Group Data
+---------------------------
+-The GROUP BY clause groups data by a specified column or columns. When you use a GROUP BY clause, 
+-you also use an aggregate function in the SELECT clause or in a HAVING clause to 
+-instruct PROC SQL in how to summarize the data for each group. 
+-PROC SQL calculates the aggregate function separately for each group
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey1 REPLACE ;
+run;
+
+Grouping by One Column
+----------------------
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+         ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean
+		  from survey
+		  where calculated survey_mean is not missing
+	group by gender;
+quit;
+
+Grouping without Summarizing
+-----------------------------
+-When you use a GROUP BY clause without an aggregate function,PROC SQL treats the GROUP BY clause as if it were an ORDER BY clause and displays a message in the log that informs you that this has happened
+-Log WARNING: A GROUP BY clause has been transformed into an ORDER BY clause because neither the SELECT clause nor the optional HAVING 
+clause of the associated table-expression referenced a summary function
+
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+/*		  ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean*/
+		  from survey
+		  where calculated survey_mean is not missing
+	group by gender;
+quit;
+
+Grouping by Multiple Columns
+----------------------------
+-To group by multiple columns, separate the column names with commas within the GROUP BY clause. 
+-You can use aggregate functions with any of the columns that you select
+
+
+-one group is formed by the values of gender first then the values of class ,each group has same max_ mean and min_mean
+
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+		  ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean
+		  from survey
+		  where calculated survey_mean is not missing
+	group by depid,gender;
+quit;
+
+
+Grouping and sorting
+-------------------
+-You can order grouped results with an ORDER BY clause
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+		  ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean
+		  from survey
+		  where calculated survey_mean is not missing
+		 group by depid,gender
+	 order by depid, gender;
+quit;
+
+
+Grouping with Missing Values
+----------------------------
+-When a column contains missing values, PROC SQL treats the missing values as a single group. 
+-This can sometimes provide unexpected results.
+-When a column contains missing values, PROC SQL treats the missing values as a single group. 
+-This can sometimes provide unexpected results
+
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+		  ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean
+		  from survey
+		  group by depid,gender
+	 order by gender;
+quit; /*unexpected results */
+
+
+-To correct the query from the previous example, you can write a WHERE clause to exclude the missing values from the results.
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+		  ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean
+		  from survey
+		  where calculated survey_mean is not missing
+		  group by depid,gender
+	 order by gender;
+quit;
+
+Filter a group of rows
+======================
+-we can call use Overview of Filtering Grouped Data
+-You can use a HAVING clause with a GROUP BY clause to filter grouped data. 
+-The HAVING clause affects groups in a way that is similar to how a WHERE clause affects individual rows. When you use a HAVING clause, 
+-PROC SQL displays only the groups that satisfy the HAVING expression
+
+proc import datafile='C:\GBAG_Back\pyworkspace\datasets\sakila_datasets-xlsx\sakila_surveys'
+dbms=xlsx out=survey REPLACE ;
+run;
+
+Using a Simple HAVING Clause
+----------------------------
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+		  ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean
+		  from survey
+		  where calculated survey_mean is not missing 
+		  group by depid,gender
+		  having gender is not missing
+	 order by gender;
+quit;
+
+Choosing between HAVING and WHERE
+----------------------------------
+-A HAVING clause is like a WHERE clause for groups
+-Note:  If you use a HAVING clause without a GROUP BY clause and if the query references at least one aggregate function,
+PROC SQL treats the input data as if it all comes from a single group of data.
+
+-HAVING clause attributes
+(1) is typically used to specify conditions for including or excluding groups of rows 
+from a table.
+(2) must follow the GROUP BY clause in a query, if used with a GROUP BY clause.
+(3) is affected by a GROUP BY clause, when there is no GROUP BY clause, 
+the HAVING clause is treated like a WHERE clause.
+(4) is processed after the GROUP BY clause and any aggregate functions.
+
+-WHERE clause attributes
+(1) is used to specify conditions for including or excluding individual rows from a table.
+(2) must precede the GROUP BY clause in a query, if used with a GROUP BY clause.
+(3) is not affected by a GROUP BY clause.
+(4) is processed before a GROUP BY clause, if there is one, and before any aggregate functions.
+
+Using HAVING with Aggregate Functions.
+-------------------------------------
+proc sql;
+	select *,
+		  mean(survey1,survey2,survey3,survey4) as survey_mean
+		  ,max(calculated survey_mean) as max_mean,min(calculated survey_mean) as min_mean
+		  from survey
+		  where calculated survey_mean is not missing 
+		  group by depid,gender
+		  having gender is not missing and calculated survey_mean > 2.25
+	 order by gender;
+quit;
+
+how to generate multiple grouping sets in a query
+=================================================
+
+proc sql;
+	title "get the summary of the dep,genender,matrial_status wise based on the emp count and the payrate statistics like total,mean,min,max";
+select dep,
+	   gender,
+	   matrial_status,
+	   count(*) as count_emp,
+	   sum(payrate) as tot_pay,
+	   mean(payrate) as mean_pay,
+	   min(payrate) as min_pay,
+	   max(payrate) as max_pay
+from emp
+group by dep,gender,matrial_status;
+quit;
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://tekslate.com/sql-aggregations-datasetrow-colummn-operations-sas
+https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/sqlproc/p0xwc73ekemkapn1byhceqrwrisb.htm
+https://www.listendata.com/2014/04/proc-sql-select-statement.html
+https://www.9to5sas.com/intermediate-proc-sql-tutorial/#Summarizing_Data_Down_Rows
