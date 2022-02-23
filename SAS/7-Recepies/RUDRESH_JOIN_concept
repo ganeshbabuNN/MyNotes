@@ -91,3 +91,46 @@ DATA rightJOIN;
 MERGE A(IN=X) B(IN=Y);
 BY ID;
 RUN;
+
+/* first and last obs*/
+Data C;
+Input ID Name$ Height;
+cards;
+1 A 1
+3 B 2
+5 A 2
+7 B 2
+9 C 2
+;
+run;
+
+proc sort data=C;
+by name;
+run;
+
+DATA DUMMY;
+SET C;
+BY Name;
+IF FIRST.Name;
+RUN;
+
+PROC PRINT ;
+RUN;
+
+
+
+DATA DUMMY;
+SET C;
+BY Name;
+IF LAST.Name;
+RUN;
+
+PROC PRINT ;
+RUN;
+
+
+proc sql;
+select name, count(*)
+from c
+group by name;
+quit;
