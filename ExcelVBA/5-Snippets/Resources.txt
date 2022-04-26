@@ -1,0 +1,3 @@
+http://dmcritchie.mvps.org/excel/delempty.htm
+
+https://www.thespreadsheetguru.com/blog/2015/4/9/repeat-tasks-with-vba-code-by-looping
