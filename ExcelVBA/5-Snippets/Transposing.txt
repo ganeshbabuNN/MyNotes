@@ -1,0 +1,26 @@
+Tranposing the Array
+====================
+-if you found the array is vertical aligned, then you transpose function columns into rows From application.transpose.
+
+Sub PreserveResizeArray()
+    Dim employees() As Variant
+    Dim loopCounter, empCounter As Integer
+    Sheet1.Activate
+    For Each r In Range("A2", Range("A1").End(xlDown))
+    'Debug.Print r.Address
+        Sheet1.Activate
+        If LCase(r.Offset(0, 6).Value) = "ad_vp" Then
+              empCounter = empCounter + 1
+              ReDim Preserve employees(1 To 7, 1 To empCounter)
+              For loopCounter = LBound(employees, 2) To UBound(employees, 1)
+                 employees(loopCounter, empCounter) = r.Offset(0, loopCounter - 1).Value
+              Next loopCounter
+               End If
+    Next r
+    Sheet43.Activate
+    Range(ActiveCell, ActiveCell.Offset(UBound(employees, 2) - 1, UBound(employees, 1) - 1)).Value = Application.Transpose_(employees)
+    Erase employees
+End Sub
+
+
+https://bettersolutions.com/vba/arrays/transposing.htm

@@ -1,0 +1,31 @@
+
+--Using the Dictionary has a logic
+Function vbalookup(lookupRange As Range, refRange As Range, dataCol As Long) As Variant
+  Dim dict As New Scripting.Dictionary
+  Dim myRow As Range
+  Dim I As Long, J As Long
+  Dim vResults() As Variant
+ ' Create the dictionary
+   Dim dict As Object 
+   Set dict = CreateObject("Scripting.Dictionary") 
+    
+
+  ' 1. Build a dictionnary
+  For Each myRow In refRange.Columns(1).Cells
+    ' Append A : B to dictionnary
+    dict.Add myRow.Value, myRow.Offset(0, dataCol - 1).Value
+  Next myRow
+
+  ' 2. Use it over all lookup data
+  ReDim vResults(1 To lookupRange.Rows.Count, 1 To lookupRange.Columns.Count) As Variant
+  For I = 1 To lookupRange.Rows.Count
+    For J = 1 To lookupRange.Columns.Count
+      If dict.Exists(lookupRange.Cells(I, J).Value) Then
+        vResults(I, J) = dict(lookupRange.Cells(I, J).Value)
+      End If
+    Next J
+  Next I
+
+  vbalookup = vResults
+End Function
+

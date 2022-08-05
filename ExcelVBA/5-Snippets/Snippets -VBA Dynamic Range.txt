@@ -1,0 +1,116 @@
+Method 1: UsedRange
+-------------------
+
+The UsedRange method creates a range that includes every cell that contains data in it on the spreadsheet. It is vital that you refresh (recalculate) the UsedRange before using it as the method will pick up ghost cells (cells that had values in them and you used the Delete key to remove the values). Manually you can do this by saving your spreadsheet or you can use the command shown in the below code to refresh with VBA
+
+
+Sub DynamicRange()
+'Best used when only your target data is on the worksheet
+
+'Refresh UsedRange (get rid of "Ghost" cells)
+  Worksheets("Sheet1").UsedRange
+
+'Select UsedRange
+  Worksheets("Sheet1").UsedRange.Select
+
+End Sub
+
+
+Method 2: Ctrl + Shift + Right Arrow/Down Arrow
+------------------------------------------------
+
+This code simulates the range that would show up if you were to use the keyboard shortcut Ctrl + Shift + Right Arrow and then Ctrl + Shift + Down Arrow. If the last cell in the first row or the last cell in the first column are empty, this code will not calculate properly
+
+Sub DynamicRange()
+'Best used when first column has value on last row and first row has a value in the last column
+
+Dim sht As Worksheet
+Dim LastRow As Long
+Dim LastColumn As Long
+Dim StartCell As Range
+
+Set sht = Worksheets("Sheet1")
+Set StartCell = Range("D9")
+
+'Find Last Row and Column
+  LastRow = sht.Cells(sht.Rows.Count, StartCell.Column).End(xlUp).Row
+  LastColumn = sht.Cells(StartCell.Row, sht.Columns.Count).End(xlToLeft).Column
+
+'Select Range
+  sht.Range(StartCell, sht.Cells(LastRow, LastColumn)).Select
+
+End Sub
+
+
+Method 3: SpecialCells - LastCell
+----------------------------------
+
+This code uses the SpecialCells method (the non-VBA terminology is called Go To Cells) to search for the last cell containing data on the spreadsheet. Once this cell is found, the code can use the cell reference of the "last cell" to determine the last row and column.
+Sub DynamicRange()
+'Best used when you want to include all data stored on the spreadsheet
+
+Dim sht As Worksheet
+Dim LastRow As Long
+Dim LastColumn As Long
+Dim StartCell As Range
+
+Set sht = Worksheets("Sheet1")
+Set StartCell = Range("D9")
+
+'Refresh UsedRange
+  Worksheets("Sheet1").UsedRange
+
+'Find Last Row and Column
+  LastRow = StartCell.SpecialCells(xlCellTypeLastCell).Row
+  LastColumn = StartCell.SpecialCells(xlCellTypeLastCell).Column
+
+'Select Range
+  sht.Range(StartCell, sht.Cells(LastRow, LastColumn)).Select
+  
+End Sub
+
+Method 4: CurrentRegion
+------------------------
+
+This example uses the CurrentRegion method. CurrentRegion tries to calculate the range associated with a cell reference by analyzing the surrounding cells. If there is a completely blank row or blank column, CurrentRegion stops looking and assumes that you were only wanting the data that was connected with your starting point. Make sure there are no chances of your data having a completely blank row or column before using this method.
+Sub DynamicRange()
+'Best used when your data does not have any entirely blank rows or columns
+
+Dim sht As Worksheet
+Dim StartCell As Range
+
+Set sht = Worksheets("Sheet1")
+Set StartCell = Range("D9")
+
+'Select Range
+  StartCell.CurrentRegion.Select
+
+End Sub
+
+Method 5: Static Columns
+------------------------
+
+I've experienced lots of situations where the column length never changed and the VBA code just needed to dynamically adjust for row length. In cases like this, you may not want to write lines to look for the last column. The below code shows you how to adjust a ranges row length dynamically.
+
+Note: You could also use the LastRow calculation used in Method 2 instead of the Find calculation shown below.
+Sub DynamicRange()
+'Best used when column length is static
+
+Dim sht As Worksheet
+Dim LastRow As Long
+Dim LastColumn As Long
+Dim StartCell As Range
+
+Set sht = Worksheets("Sheet1")
+Set StartCell = Range("D9")
+
+'Refresh UsedRange
+  Worksheets("Sheet1").UsedRange
+
+'Find Last Row
+  LastRow = sht.Cells.Find("*", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).Row
+
+'Select Range
+  sht.Range("D9:M" & LastRow).Select
+
+End Sub

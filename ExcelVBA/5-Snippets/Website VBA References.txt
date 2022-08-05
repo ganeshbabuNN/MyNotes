@@ -1,0 +1,25 @@
+VBA Outlook VBA
+===============
+https://www.slipstick.com/developer/create-appointments-spreadsheet-data/
+https://stackoverflow.com/questions/19595434/how-do-i-set-recipients-property-in-outlook-appointmentitem
+https://www.slipstick.com/developer/create-appointments-spreadsheet-data/- BEST
+
+vlookup 
+-------
+https://stackoverflow.com/questions/20739717/vba-vlookup-reference-in-different-sheet
+
+Apply border
+----------
+https://stackoverflow.com/questions/29862241/apply-borders-in-a-used-cell-range-vba
+
+Expert blogs
+============
+https://chandoo.org/
+http://www.contextures.com/
+http://www.datapigtechnologies.com/
+http://dailydoseofexcel.com/
+https://www.excelguru.ca/
+http://www.mrexcel.com/
+http://www.excelfunctions.net/
+https://bettersolutions.com/
+https://usefulgyaan.wordpress.com/index/vba/

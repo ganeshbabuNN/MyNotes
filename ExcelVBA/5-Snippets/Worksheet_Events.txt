@@ -1,0 +1,17 @@
+Worksheet_change 
+================
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Dim intResponse As Integer
+    
+    intResponse = MsgBox("This is a automatic generated event, Do you like to change the value? ", vbOKCancel)
+    
+    If intResponse = 1 Then
+        MsgBox "Value has been changed"
+    Else
+        Application.EnableEvents = False
+        Application.Undo
+        MsgBox "Value has not been changed"
+        Application.EnableEvents = True
+    End If
+End Sub

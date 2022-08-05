@@ -1,7 +1,58 @@
 Resources
 ==========
 
+Office 2010 Official DOcumenations
+https://msdn.microsoft.com/en-us/library/ee658205(v=office.14).aspx
 
-Videos
-------
+Office Excel VBA Reference Offical Documenations
+https://msdn.microsoft.com/en-us/library/office/ee861528.aspx
 
+Office Developer Offical Documenations _ HLD
+https://msdn.microsoft.com/en-us/library/office/dn467914.aspx
+
+github - office Dev
+https://github.com/OfficeDev/VBA-content
+
+**Office Client Development -- Office Package ALl Offical Documenations
+https://msdn.microsoft.com/en-us/library/office/jj162978.aspx
+
+
+Excel VBA Resources
+---------------
+https://excelchamps.com
+https://analysistabs.com
+http://www.mrexcel.com/archive/index.html
+http://excelmacromastery.com/
+http://www.excel-easy.com/vba/examples/byref-byval.html
+
+
+Few online courses
+-------------------
+http://blog.cometdocs.com/the-best-places-to-learn-vba-online
+
+
+Forums
+======
+Reddit
+https://www.reddit.com/r/vba/ 
+
+VBA Outlook VBA
+===============
+https://www.slipstick.com/developer/create-appointments-spreadsheet-data/
+https://stackoverflow.com/questions/19595434/how-do-i-set-recipients-property-in-outlook-appointmentitem
+https://www.slipstick.com/developer/create-appointments-spreadsheet-data/- BEST
+
+vlookup 
+-------
+https://stackoverflow.com/questions/20739717/vba-vlookup-reference-in-different-sheet
+
+Apply border
+----------
+https://stackoverflow.com/questions/29862241/apply-borders-in-a-used-cell-range-vba
+
+
+
+Excel VBA Examples
+------------------
+https://analysistabs.com/excel-vba/codes-examples-macros-how-tos-most-useful-basics-advanced/
+https://excelchamps.com/blog/useful-macro-codes-for-vba-newcomers/

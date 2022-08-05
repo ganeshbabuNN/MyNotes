@@ -1,0 +1,46 @@
+'Simple Lookup
+Sub Department_lookup()
+Dim wb As Workbook
+Dim ws As Worksheet
+Dim i, j As Integer
+Dim rowCount As Integer
+Dim aRowCount As Integer
+Dim list() As Variant
+Set wb = ThisWorkbook
+Set ws = wb.Worksheets("departmentidInfo")
+rowCount = ws.Cells(Rows.Count, 1).End(xlUp).Row
+ReDim list(rowCount, 1 To 2) 'if more then one column resize the array
+For i = 1 To rowCount
+    'if more then one column using if loop
+    For j = 1 To 2
+        If j = 1 Then
+            list(i, j) = ws.Cells(i, 1)
+        Else
+            list(i, j) = ws.Cells(i, 2)
+        End If
+    Next j
+Next i
+
+Sheet1.Activate
+aRowCount = Sheets("Sheet1").Cells(Rows.Count, 1).End(xlUp).Row
+For i = 2 To aRowCount
+    Sheets("Sheet1").Cells(i, 12).Value = Isfound(list, Sheets("Sheet1").Cells(i, 11).Value)
+Next i
+
+Set ws = Nothing
+Set wb = Nothing
+Erase list
+
+End Sub
+
+' function for getting the value.
+Function Isfound(arr As Variant, valueToFind As Variant) As String
+    Dim i As Long
+    For i = LBound(arr) To UBound(arr)
+        If StrComp(arr(i, 1), valueToFind) = 0 Then
+            Isfound = arr(i, 2)
+            Exit For
+        End If
+    Next i
+End Function
+

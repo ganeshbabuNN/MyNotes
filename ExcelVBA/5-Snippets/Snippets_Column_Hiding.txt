@@ -1,0 +1,14 @@
+Sub HideColumn()
+Dim wb As Workbook
+Dim sh1 As Worksheet
+
+Set wb = ThisWorkbook
+Set sh1 = wb.ActiveSheet
+'column hidding
+sh1.Range("q:q,r:r").EntireColumn.Hidden = True
+
+'With Range("q:q,r:r")
+'  .EntireColumn.Hidden '= Not .EntireColumn.Hidden
+'End With
+
+End Sub

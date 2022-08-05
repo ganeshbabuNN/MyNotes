@@ -1,0 +1,210 @@
+Sorting
+=======
+There are a number of different ways you can sort an array.
+
+Excel Sort
+----------
+Excel's sorting is by far the fastest.
+
+Sub WorksheetSort()
+'   Sorts an array by transferring it to
+'   A worksheet and using Excel's sorting command
+    
+    Dim First As Integer, Last As Long
+    Dim i As Long
+    Dim FirstCell As Range, LastCell As Range
+    Dim CurrCell As Range, FillRange As Range
+    Dim list As Variant
+    
+    Sheet4.Activate
+    list = Range("A1", Range("A1").End(xlDown))
+    
+    First = LBound(list, 1)
+    Last = UBound(list, 1)
+    Set FirstCell = ActiveSheet.Cells(1, 1)
+    Set LastCell = ActiveSheet.Cells(Last, 1)
+    Set FillRange = Range(FirstCell, LastCell)
+    Application.ScreenUpdating = False
+    
+'   Transfer the array to worksheet
+    FillRange.Value = list
+    
+'   Sort the worksheet range
+    FirstCell.CurrentRegion.Sort Key1:=FirstCell, Order1:=xlAscending, Orientation:=xlTopToBottom
+       
+'   Transfer range back to the array and clear range
+    For i = First To Last
+        list(i, 1) = FirstCell.Offset(i - 1, 0)
+    Next i
+    'populating into a new column
+    Range("B1", Range("B1").Offset(Last, 0)).Value = list
+    Application.ScreenUpdating = True
+End Sub
+
+
+Bubble Sort
+-----------
+The Bubble sort is reasonably fast with small arrays but for larger arrays (> 5,000) forget it !!
+
+Sub BubbleSort()
+'   Sorts an array using bubble sort algorithm
+    Dim First As Integer, Last As Long
+    Dim i As Long, j As Long
+    Dim Temp As Long
+    Dim list As Variant
+      
+    Sheet4.Activate
+    list = Range("A1", Range("A1").End(xlDown))
+    First = LBound(list)
+    Last = UBound(list)
+    For i = First To Last - 1
+        For j = i + 1 To Last
+            If list(i, 1) > list(j, 1) Then
+                Temp = list(j, 1)
+                list(j, 1) = list(i, 1)
+                list(i, 1) = Temp
+            End If
+        Next j
+    Next i    
+    Range("B1", Range("B1").Offset(Last - 1, 0)).Value = list
+End Sub
+
+Counting Sort
+-------------
+Sub Countingsort()
+    Dim counts() As Long
+    Dim i As Long
+    Dim j As Long
+    Dim next_index As Long
+    Dim min, max
+    Dim min_value As Variant, max_value As Variant
+    
+    list = Range("A1", Range("A1").End(xlDown))
+'   Allocate the counts array. VBA automatically
+'   initialises all entries to 0.
+
+    min_value = Minimum(list)
+    max_value = Maximum(list)
+    
+    min = LBound(list)
+    max = UBound(list)
+    
+    ReDim counts(min_value To max_value)
+    
+    ' Count the values.
+    For i = min To max
+        counts(list(i, 1)) = counts(list(i, 1)) + 1
+    Next i
+
+    ' Write the items back into the list array.
+    next_index = min
+    For i = min_value To max_value
+        For j = 1 To counts(i)
+            list(next_index, 1) = i
+            next_index = next_index + 1
+        Next j
+    Next i
+    
+    Range("B1", Range("B1").Offset(max - 1, 0)).Value = list
+End Sub
+
+Private Function Maximum(l)
+    Dim s1, s2
+    Dim i
+    s1 = LBound(l)
+    s2 = UBound(l)
+    Maximum = l(s1, 1)
+    For i = s1 To s2
+        If l(i, 1) > Maximum Then Maximum = l(i, 1)
+    Next i
+End Function
+
+Private Function Minimum(l)
+    Dim s1, s2
+    Dim i
+    s1 = LBound(l)
+    s2 = UBound(l)
+    Minimum = l(s1, 1)
+    For i = s1 To s2
+        If l(i, 1) < Minimum Then Minimum = l(i, 1)
+    Next i
+End Function
+
+
+Quick Sort
+----------
+The Quick Sort is good but if the array is almost sorted then forget it.
+
+Sub QuickSort(arr As Variant, first As Long, last As Long)
+  
+  Dim vCentreVal As Variant, vTemp As Variant
+  
+  Dim lTempLow As Long
+  Dim lTempHi As Long
+  lTempLow = first
+  lTempHi = last
+  
+  vCentreVal = arr((first + last) \ 2)
+  Do While lTempLow <= lTempHi
+  
+    Do While arr(lTempLow) < vCentreVal And lTempLow < last
+      lTempLow = lTempLow + 1
+    Loop
+    
+    Do While vCentreVal < arr(lTempHi) And lTempHi > first
+      lTempHi = lTempHi - 1
+    Loop
+    
+    If lTempLow <= lTempHi Then
+    
+        ' Swap values
+        vTemp = arr(lTempLow)
+
+        arr(lTempLow) = arr(lTempHi)
+        arr(lTempHi) = vTemp
+      
+        ' Move to next positions
+        lTempLow = lTempLow + 1
+        lTempHi = lTempHi - 1
+      
+    End If
+    
+  Loop
+  
+  If first < lTempHi Then QuickSort arr, first, lTempHi
+  If lTempLow < last Then QuickSort arr, lTempLow, last
+  
+End Sub
+
+You can use this function like this:
+
+Sub TestSort()
+
+    ' Create temp array
+    Dim arr() As Variant
+    arr = Array("Banana", "Melon", "Peach", "Plum", "Apple")  
+    ' Sort array
+
+    QuickSort arr, LBound(arr), UBound(arr)
+
+    ' Print arr to Immediate Window(Ctrl + G)
+    Dim i As Long
+    For i = LBound(arr) To UBound(arr)
+        Debug.Print arr(i)
+    Next i
+
+End Sub
+
+
+https://excelmacromastery.com/excel-vba-array/#Sorting_an_Array
+
+Word Sort
+--------
+You can use the following line to sort an array in Microsoft Word
+
+WordBasic.SortArray (arArrayName)
+
+
+
+https://bettersolutions.com/vba/arrays/sorting.htm
+
