@@ -13,6 +13,15 @@ Introduction
 ============
 *In programming languages, we need to use various variables to store various information. Variables are the reserved memory location to store values. As we create a variable in our program, some space is reserved in memory
 *In R, there are several data types such as integer, string, etc. The operating system allocates memory based on the data type of the variable and decides what can be stored in the reserved memory
+
+R objects can be composed of different kinds of data according to the type and number of "atomic" values they contain:
+
+*Scalar items are single values;
+*Vectors are ordered sequences of scalars, they must all have the same "data type" (e.g. numeric, logical, character ...);
+*Matrices are vectors for which one or more "dimension(s)" have been defined; 
+*"Data frames"" are spreadsheet-like objects, their columns are like vectors and all columns must have the same length, but within one data frame, columns can have different data types. They are the most commonly used type of object to hold data;
+*Lists are the most general collection of data items, the can contain items of any type and kind, including matrices, functions, data frames, and other lists
+
 *In R, there are 6 data types
 1)Numeric 
 2)Integer
