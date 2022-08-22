@@ -34,7 +34,6 @@ DataTypes
 =========
 we shall understand the different type of data type
 
-
 Logical
 ------
 *It is a special data type for data with only two possible values which can be construed as true/false.
