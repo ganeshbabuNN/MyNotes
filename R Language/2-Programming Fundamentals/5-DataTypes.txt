@@ -305,3 +305,4 @@ Resources:
 =========
 https://www.tutorialspoint.com/r/r_data_types.htm
 https://www.r-bloggers.com/2021/04/handling-missing-values-in-r/
+https://bcb420-2022.github.io/R_basics/r-scalars.html#r-data-types   #scalara types
