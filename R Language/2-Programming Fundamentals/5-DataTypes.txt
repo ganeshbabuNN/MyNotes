@@ -215,8 +215,8 @@ class(names1)
 
 matrices
 --------
--A matrix is a two-dimensional rectangular data set.
--It can be created using a vector input to the matrix function
+-a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. 
+-Since you are only working with rows and columns, a matrix is called two-dimensional.
 
 syntax:
 matrix(data, nrow, ncol, byrow, dim_name)  
