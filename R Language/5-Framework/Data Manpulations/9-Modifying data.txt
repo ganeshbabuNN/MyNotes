@@ -9,6 +9,7 @@ Writing the conditional statment in R
 Writing a Custom function in R
 How to delete one or more row from a table - delete
 Performing a mixture of insertion, update, and deletion using a single statement -mix of all
+how to concat the two columns- concat
 
 Intro
 =====
@@ -320,9 +321,51 @@ Quiz
 2)Create a new variable called Sepal.LW.ratio , which divides Sepal.Length by Sepal.Width
 3)Create a new variable called Petal.Length.Classification , which categorises Petal.Length into small (<2),normal (2 5) and tall (>5)
 
+
+How to concat the two columns- concat
+====================================
+
+Concatenate Two Columns in R
+----------------------------
+dataf$MY <- paste(dataf$Month, dataf$Year)
+
+#to add a separateor 
+dataf$MY <- paste(dataf$Month, "-", dataf$Year)
+#use a sep parameter
+dataf$MY <- paste(dataf$Month, dataf$Year, sep= "-")
+
+Combine Multiple Columns in R
+-----------------------------
+dataf$DMY <- paste(dataf$Date, dataf$Month, dataf$Year)
+
+Concatenate Two Columns in R with the str_c() Function (stringr)
+---------------------------------------------------------------
+library(tidyverse) # or library(tidyr)
+
+#simple method
+-First, we used a new operator (i.e., %>%). Among a lot of things, this enables us to use unite() without the $ operator to select the columns.
+-we name the new column we want to add (“DM”)
+-second we select all the columns from “Date” to “Month” and combine them into the new column
+dataf <- dataf %>%
+  	unite("DM", Date:Month)
+
+#using REMOVE parameter
+-If we want to keep the original columns after we have concatenated them we can set the remove parameter to FALSE
+dataf <- dataf %>%
+  unite("DM", Date:Month, 
+        remove = FALSE)
+
+#using the SEP parameter
+unite() function together with the sep parameter to change the separator to “-” (hyphen):
+dataf <- dataf %>%
+  unite("DM", Date:Month, sep= "-", 
+        remove = FALSE)
+
+
 Assignment
 ==========
 
 
 Resources:
 =========
+https://www.marsja.se/how-to-concatenate-two-columns-or-more-in-r-stringr-tidyr/
