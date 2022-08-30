@@ -30,6 +30,25 @@ For setup in Jupyter using online version & offline version
 ===========================================================
 --https://jupyter.org/ --> go to try in browser --> click on R .. it takes take to setup.
 
+#for offline version
+Step 1: Open the Anaconda Prompt
+Step 2: Add R to Jupyter
+Next, type/copy the following command in order to add R to Jupyter:
+conda install -c r r-irkernel
+Next, type ‘y‘ and then press ENTER to proceed:
+Step 3: Launch Jupyter Notebook
+To launch Jupyter Notebook, first open the Anaconda Navigator. Then, click on the button to launch Jupyter.
+Step 4: Create a new Notebook
+To create a new Notebook for R:
+First, click on ‘New‘ on the top right-hand-side of your screen
+Finally, select ‘R‘ from the drop-down list
+Step 5: Run your Code
+You can now run your desired R code.
+
+
+resources
+https://datatofish.com/r-jupyter-notebook/
+
 version of R
 =============
 -When is bootted , first screen shows the R version in base R
