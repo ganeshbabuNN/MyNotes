@@ -288,6 +288,10 @@ rm(list=setdiff(ls(), ""))
 rm(list=setdiff(ls(), "x"))
 'x is the object
 
+#removing specific objects from workspace
+rm(list=c('EX')) #single
+rm(list=c('EX','DM')) #multiple
+
 Quiz
 ====
 
