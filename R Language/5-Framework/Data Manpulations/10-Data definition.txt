@@ -7,7 +7,7 @@ how to drop one or more columns from a table(drop the column)
 how to delete dataframe(Drop the table)
 delete all data from a table faster and more efficiently(delete the the data )
 process of renaming a dataframe and columns(rename the column)
-removing all the objects in the R workspace
+
 
 Intro
 ===== 
@@ -276,21 +276,6 @@ renaming the rowname
 ---------------------
 row.names(df)[rownames(df)==1] <-"mynamerow"
 df
-
-
-removing all the objects in the R workspace
-===========================================
-
-#removing all the objects in workspace
-rm(list=setdiff(ls(), ""))
-
-#removing all the objects in workspace one object
-rm(list=setdiff(ls(), "x"))
-'x is the object
-
-#removing specific objects from workspace
-rm(list=c('EX')) #single
-rm(list=c('EX','DM')) #multiple
 
 Quiz
 ====
