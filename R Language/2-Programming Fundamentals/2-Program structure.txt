@@ -122,12 +122,12 @@ load("myfile.RData")
 
 q() # quit R. You will be prompted to save the workspace.
 
-#removing all the objects in workspace
-rm(list=setdiff(ls(), ""))
-rm(list=setdiff(ls(), "x")) #removing all the objects in workspace one object
-'x is the object
+#removing the objects
+rm(EX1) #remove the specific objects
+rm(list=ls()) #remove all the objects
 rm(list=c('EX')) #removing specific objects from workspace single objects
 rm(list=c('EX','DM'))#removing specific objects from workspace for multiple objects
+rm(list=setdiff(ls(), "x")) #removing all the objects in workspace expect one object; 'x 'is the object
 
 Note Handling files in R
 -------------------
