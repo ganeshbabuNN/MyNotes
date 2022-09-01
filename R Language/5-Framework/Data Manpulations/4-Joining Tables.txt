@@ -77,7 +77,7 @@ using dplyr
 library(dplyr)
 library(magrittr)
 
-inner_join(df1,df2, by = c("StudentId","id name")) #assume if there different key 
+inner_join(df1,df2, by = c("StudentId"="id name")) #assume if the there different key
 df <- inner_join(df1,df2,by="StudentId")
 
 #using forward operator
@@ -101,7 +101,8 @@ using dplyr
 library(dplyr)
 library(magrittr)
 
-df <- left_join(df1,df2,by="StudentId")
+df <- left_join(df1,df2,by="StudentId") #for single variable
+df <- left_join(df1,df2,by=c("StudentId"="id name")) #for multiple key
 
 #forward pip operator
 df= df1 %>% left_join(df2,by="StudentId")
@@ -124,7 +125,8 @@ dplyr
 library(dplyr)
 library(magrittr)
 
-df <- right_join(df1,df2,by="StudentId")
+df <- right_join(df1,df2,by="StudentId") #for common key
+df <- right_join(df1,df2,by=c("StudentId"="id name"))  #for multiple key
 
 #forward pip operator
 df= df1 %>% right_join(df2,by="StudentId")
@@ -150,6 +152,7 @@ library(magrittr)
 
 
 df <- full_join(df1,df2,by="StudentId")
+df <- full_join(df1,df2,by=c("StudentId"="id name")) #for multiple key
 
 #forward pip operator
 df= df1 %>% full_join(df2,by="StudentId")
@@ -192,6 +195,7 @@ dplyr
 *----*
 library(dplyr)
 df <- anti_join(df1,df2,by="StudentId")
+df <- anti_join(df1,df2,by=c("StudentId"="id name")) #for multiple keys
 df = df1 %>% anti_join(df2, by = "StudentId")
 df
 
