@@ -220,6 +220,23 @@ health
 
 Writing a Custom function in R
 ==============================
+traditional way 
+---------------
+#sample dataset
+dat <- data.frame(
+  a = letters[1:3],
+  b = LETTERS[4:6],
+  c = 7:9
+)
+
+#create a custom functions note data is dataframe and col is a column
+my.function <- function(data, col){
+  data[, col]
+}
+
+#adding a new column
+dat$res <- my.function(dat, "b" )
+
 Using apply function
 --------------------
 celebrities=data.frame(name=c("Andrew","matt","Dany","Philip","John","bing","Monica"),
@@ -242,8 +259,8 @@ celebrities$newcol <- with(celebrities, age + income) #appraoch 3
 celebrities$newcol <- apply(celebrities[-1], function(x) sum(x) ) #appraoch 4
 apply(celebrities[c("age","income")], 1, sum) #appraoch 5
 
-Using dplyr
------------
+Using dplyr package
+-------------------
 library(tidyverse)
 #create a new dataframe
 data.frame(
