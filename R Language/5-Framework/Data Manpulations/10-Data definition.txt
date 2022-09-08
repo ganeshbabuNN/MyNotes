@@ -6,7 +6,8 @@ how to change the definition of existing columns in a table(alter table modify c
 how to drop one or more columns from a table(drop the column)
 how to delete dataframe(Drop the table)
 delete all data from a table faster and more efficiently(delete the the data )
-process of renaming a dataframe and columns(rename the column)
+how to renaming a dataframe and columns(rename the column)
+how to modify the labes in a variable of the dataframe(modify the labels)
 
 
 Intro
@@ -276,6 +277,45 @@ renaming the rowname
 ---------------------
 row.names(df)[rownames(df)==1] <-"mynamerow"
 df
+
+how to modify the labes in a variable of the dataframe(modify the labels)
+=========================================================================
+library(Hmisc)
+
+#update the labels this requires the Hmisc package, either the any other label .
+var.labels <- c(STUDYID<-"", 
+                DOMAIN<-"", 
+                USUBJID<-"",
+                MHSEQ<-"", 
+                MHSPID<-"", 
+                MHTERM<-"", 
+                MHMODIFY<-"",
+                MHLLT<-"", 
+                MHLLTCD<-"",
+                MHDECOD<-"", 
+                MHPTCD<-"", 
+                MHHLT<-"", 
+                MHHLTCD<-"", 
+                MHHLGT<-"", 
+                MHHLGTCD<-"", 
+                MHCAT<-"", 
+                MHSCAT<-"", 
+                MHBODSYS<-"", 
+                MHBDSYCD<-"", 
+                MHSOC<-"", 
+                MHSOCCD<-"", 
+                VISITNUM<-"",
+                VISIT<-"",
+                EPOCH<-"",
+                MHENRTPT<-"", 
+                MHENTPT<-"",
+                MEDDRAV<-"")
+
+#update the variables of that dataframe
+label(MH) = as.list(var.labels[match(names(MH), names(var.labels))])
+
+#check the labels
+label(MH)
 
 Quiz
 ====
