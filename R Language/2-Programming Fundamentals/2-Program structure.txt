@@ -128,6 +128,8 @@ rm(list=ls()) #remove all the objects
 rm(list=c('EX')) #removing specific objects from workspace single objects
 rm(list=c('EX','DM'))#removing specific objects from workspace for multiple objects
 rm(list=setdiff(ls(), "x")) #removing all the objects in workspace expect one object; 'x 'is the object
+rm(list=ls(pattern="^IE_")) # removing all the objects starting(^ symbols denotes starting with) with letter pattern
+rm(list=setdiff(ls(pattern = "^edc_"), lsf.str()))# ^removing all the objects expect starting(^ symbols denotes starting with) with letter
 
 Note Handling files in R
 -------------------
