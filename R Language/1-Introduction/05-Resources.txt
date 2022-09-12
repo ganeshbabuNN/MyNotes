@@ -22,5 +22,6 @@ https://www.rdocumentation.org/
 https://teuder.github.io/rcpp4everyone_en/  -- rcpp for everyone
 https://www.tutorialkart.com/r-tutorial/r-matrix/ -- to the point tutorial
 https://datatofish.com/
+http://mercury.webster.edu/aleshunas/R_learning_infrastructure/R_Learning_Infrastructure_Home.html
 
 https://www.r-project.org/doc/R-FDA.pdf -FDA Gudiance document:
