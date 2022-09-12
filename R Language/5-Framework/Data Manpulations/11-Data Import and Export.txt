@@ -31,13 +31,23 @@ print(getwd())
 
 Handling the R Datasts
 ====================
-If you have the .rda file (XXX.rda) in your directory and then use load() command to load in your envrionment 
+-R saves your data to the working folder on your computer disk in a binary file
+-This storage method is efficient and the only drawback is that, because it is stored in an R binary format, you can only open it in R 
 
-# Set current working directory.
-setwd("C:\\GBAG_Back\\MyTraining\\Pratice")
+#You can save the data frame df  using this command:
+-While the save( ) command can have several arguments, this example uses only two
+-The first argument is the name of your R data object, df in this example
+-The second argument assigns a name to the RData file, df.RData
+save(df, file = "df.RData")
 
-# Load the 
-load(file="title_foot.Rda")
+# load the file into the R workspace
+load(file="df.Rda")
+
+#view the datasets
+view(df)
+
+Resources:
+http://mercury.webster.edu/aleshunas/R_learning_infrastructure/Saving%20an%20R%20data%20file.html
 
 Handling Text files
 ===================
@@ -641,3 +651,4 @@ Resources:
 https://www.tutorialspoint.com/r/r_web_data.htm
 https://statistics.berkeley.edu/computing/faqs/reading-web-pages-r
 https://www.sitepoint.com/how-to-import-data-and-export-results-in-r/
+
