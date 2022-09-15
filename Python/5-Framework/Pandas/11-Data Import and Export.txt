@@ -8,6 +8,8 @@ Handling JSON Files
 Handling SAS files
 Handling SPSS files
 Handling STATA files
+Handling Pickle files
+Handling HDF5 files
 Handling web Data
 Connecting to Database
 
@@ -362,6 +364,56 @@ df.head()
 
 Ref:
 https://www.marsja.se/how-to-read-stata-files-in-python-with-pandas/
+
+Handling Pickle files
+=====================
+-Often you may want to save a pandas DataFrame for later use without the hassle of importing the data again from a CSV file
+-The easiest way to do this is by using to_pickle() to save the DataFrame as a pickle file:
+
+df.to_pickle("my_data.pkl")
+
+-This will save the DataFrame in your current working environment.
+-You can then use read_pickle() to quickly read the DataFrame from the pickle file
+
+df = pd.read_pickle("my_data.pkl")
+
+
+Example
+-------
+import pandas as pd
+#create DataFrame
+df = pd.DataFrame({'team': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+                   'points': [18, 22, 19, 14, 14, 11, 20, 28],
+                   'assists': [5, 7, 7, 9, 12, 9, 9, 4],
+                   'rebounds': [11, 8, 10, 6, 6, 5, 9, 12]})
+
+#view DataFrame
+print(df)
+
+#view DataFrame info
+print(df.info())
+
+#save DataFrame to pickle file with a .pkl extension
+df.to_pickle("my_data.pkl")
+
+#read DataFrame from pickle file
+df= pd.read_pickle("my_data.pkl")
+
+#view DataFrame
+print(df)
+
+#view DataFrame info
+print(df.info())
+
+-The benefit of using pickle files is that the data type of each column is retained when we save and load the DataFrame
+
+Ref:
+https://www.statology.org/pandas-save-dataframe/
+
+Handling HDF5 files
+==================
+
+
 
 Handling web Data
 =================
