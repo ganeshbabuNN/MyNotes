@@ -268,10 +268,26 @@ df
 
 using dplyr:
 library(dplyr)
-df
-df %>% rename("Programing.Language" =Language,
-               "Full.Name"=Name) #its revierse
 
+#rename single column
+df %>% rename("c1" = "id") ##Change the column name - id to c1
+
+# Rename multiple columns
+df <- df %>% 
+           rename("c2" = "pages",
+           "c5" = "price")
+
+## Rename column by index
+df <- df %>% 
+       rename(c1 = 1, c3 = 3)
+       
+# rename all columns
+-In the below example let’s use this to convert all column names to upper case
+my_dataframe <- my_dataframe %>%
+  rename_with(toupper)  # Rename using rename_with()
+  
+Ref:
+https://sparkbyexamples.com/r-programming/dplyr-rename-column
 
 renaming the rowname
 ---------------------
