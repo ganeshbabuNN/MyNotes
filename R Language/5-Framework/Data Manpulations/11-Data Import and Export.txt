@@ -9,6 +9,8 @@ Handling JSON Files
 Handling SAS files
 Handling SPSS files
 Handling STATA files
+Handling xpt files(SAS Xport)
+Handling Parquet files
 Handling web Data
 Connecting to Database
 
@@ -113,6 +115,8 @@ Handling excel files
 -Microsoft Excel is the most widely used spreadsheet program which stores data in the .xls or .xlsx format
 -R can read directly from these files using some excel specific packages.
 
+using xlsx package
+-------------------
 Install.packages("xlsx")
 # Verify the package is installed.
 any(grepl("xlsx",installed.packages()))
@@ -134,11 +138,14 @@ for (i in 1:noctry) {
                 col.names=FALSE, row.names=FALSE, append = T)  
 }
 
+using openxlsx package
+----------------------
 #write into multiple sheets
 library(openxlsx)
 #create a named list of your dataframes. The list names will be the worksheet names.
 xl_lst <- list('df1_name' = iris, 'df2_name' = mtcars)
 write.xlsx(xl_lst, file = "xl_with_2_worksheets.xlsx")
+read.xlsx("ec.xlsx") #reading
 
 Handling Binary files
 =====================
@@ -442,13 +449,6 @@ print(result)
 
 Convert JSON to a Data Frame
 ----------------------------
-# Load the package required to read JSON files.
-library("rjson")
-
-## Give the input file name to the function.
-result <- fromJSON(file = "employee.json")
-result
-
 # Convert JSON file to a data frame.
 json_data_frame <- as.data.frame(result)
 json_data_frame
@@ -491,10 +491,7 @@ Writing the sas datasets
 -this is under experimental
 
 write_sas(emp,"emp.sas7bdat")
-
 Ref:https://haven.tidyverse.org/
-
-
 
 Handling SPSS files
 ===================1
@@ -524,6 +521,36 @@ nba<- read_csv("nba.csv")
 read_dta("nba.dta")
 write_dta(nba,"nba.dta")
 
+Handling xpt files(SAS Xport)
+=============================
+library(haven)
+
+read_xpt("ec.xpt")
+
+tmp =tempfile(fileext = ".xpt")
+write_xpt(EC, tmp)
+or
+write_xpt(EC,"ec.xpt")
+
+Ref: https://www.rdocumentation.org/packages/haven/versions/2.5.1/topics/read_xpt
+
+Handling Parquet files
+======================
+library(arrow)
+
+# install.packages("arrow")
+library("arrow")
+packageVersion("arrow")
+
+data(penguins, package = "palmerpenguins") # Use the penguins data set
+parquet = tempfile(fileext = ".parquet") # Create a temporary file for the output
+write_parquet(penguins, sink = parquet) 
+or
+write_parquet(penguins, "penguins.parquet") 
+
+read_parquet("penguins.parquet") #reading
+
+Ref: https://www.r-bloggers.com/2021/09/understanding-the-parquet-file-format/
 
 Handling web Data
 =================
