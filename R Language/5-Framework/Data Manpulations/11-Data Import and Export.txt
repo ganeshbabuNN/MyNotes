@@ -11,6 +11,8 @@ Handling SPSS files
 Handling STATA files
 Handling xpt files(SAS Xport)
 Handling Parquet files
+Handling feather files
+Handling avro files
 Handling web Data
 Connecting to Database
 
@@ -572,6 +574,33 @@ write_feather(penguins, "penguins.feather")
 To read a feather file, we use
 read_feather()
 read_feather("penguins.feather") 
+
+
+Handling avro files
+=================
+Load Avro Files into 'Apache Spark' using 'sparklyr'. This allows to read files from 'Apache Avro
+library(sparklyr)
+
+reading the avro
+----------------
+Reads a Avro file into Apache Spark using sparklyr.
+
+sc <- spark_connect(master = "local")
+df <- spark_read_avro(
+sc,
+"twitter",
+system.file("extdata/twitter.avro", package = "sparkavro"),
+repartition = FALSE,
+memory = FALSE,
+overwrite = FALSE
+)
+spark_disconnect(sc)
+
+Writing the avro files
+-----------------------
+Serialize a Spark DataFrame to the Parquet forma
+
+spark_write_avro(x, path, mode = NULL, options = list())
 
 Handling web Data
 =================
