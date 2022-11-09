@@ -536,6 +536,13 @@ Ref: https://www.rdocumentation.org/packages/haven/versions/2.5.1/topics/read_xp
 
 Handling Parquet files
 ======================
+Parquet is a columnar storage file format, used to efficiently store large data sets and has the extension .parquet
+Key features:
+it’s cross platform, ie language independent
+it’s a recognised file format used by many systems and has a binary representation
+it stores data in a column layout
+it stores metadata
+
 library(arrow)
 
 # install.packages("arrow")
@@ -551,6 +558,20 @@ write_parquet(penguins, "penguins.parquet")
 read_parquet("penguins.parquet") #reading
 
 Ref: https://www.r-bloggers.com/2021/09/understanding-the-parquet-file-format/
+
+Handling feather format files
+==============================
+Feather is file format designed for efficient on-disk serialisation of data frames that can be shared across programming languages (eg Python and R).
+# install.packages("feather")
+library(feather)
+
+To create a feather file, we use
+write_feather()
+write_feather(penguins, "penguins.feather") 
+
+To read a feather file, we use
+read_feather()
+read_feather("penguins.feather") 
 
 Handling web Data
 =================
