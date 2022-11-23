@@ -503,6 +503,9 @@ df.dropna(axis=0) #Dropping any rows with a NaN value
 df.dropna(axis=1) #Dropping any column with a NaN value using inplace parameter for permanet change
 df.dropna(axis=0,thresh=2)#Dropping a row with a minimum 2 NaN value using 'thresh' parameter
 
+#delete the missing values of the specific freq
+marks.drop(marks[marks.isnull().sum(axis=1)==5].index,axis=0,inplace=True)
+
 #Remove rows with missing data
 index_nan=tele.index[tele.isnull().any(axis=1)] 
 index_nan.shape
