@@ -1,0 +1,69 @@
+pwd #Find out what directory you are in
+
+cd /reduction/myname #Naviagte to you the disk space you have been assigned
+
+ls -lh #List what is in the current directory (-l for extra info/-h for readable filesizes)
+ls -a #List all files including normally hidden system ones
+ls *.log #List only files ending in .log
+ls /sma/data/*/mir_data*/??11* #List all SMA files from the month of November
+ls /sma/data/{flux,baseline}/mir_data*/??11* #List only flux and baseline SMA files from the month of November
+
+mkdir project1 #Make a new directory there called project1
+
+cd project1 #Move into that directory
+
+cd .. #Move back up the tree out of the data directory
+cd ../.. #Move back up 2 levels
+cd #You can always shortcut to your home directory by doing cd on its own
+
+mv file1 file2 #Rename file1 to file2
+cp file1 file1.bak #Make a copy of file1 called file1.bak
+mv file1 project1 #Move file1 into the proejct1 directory
+
+rm file1 #Remove a file (warning - this is very permenant!)
+
+rm -r data #Remove a directory
+
+cat file1 #Print a text file to the screen
+
+less file1 (q to exit out of less) #Print a text file to the screen so it is scrollable
+or
+more file1
+
+hostname #Check which machine you are on
+
+ssh rtdc10 #Log on to a different machine on the RTDC network
+
+top (q to exit out of top) #Check what processes are running
+
+history #List previous commands you've used
+
+man mkdir #Look up the manual entry for the mkdir command
+
+yppasswd #Change your password (on the server)
+
+echo $0 #Check which shell you are using (default is tcsh)
+
+bash #Switch to a bash shell
+
+echo Hello #Print Hello in the terminal window
+
+echo Hello > greeting.txt #Print Hello into a file
+
+ls *txt > list.txt #Redirect the output of a command (ls here) to a file
+
+ls project1/*log >> list.txt #Append an existing file with the output of a command
+
+display file.png #View a png file
+
+evince file.pdf #View a pdf file
+
+grep -s '2.0 Jy' * #Search for the phrase 2.0 Jy in all files in the current directory
+
+tar -cvf backup.tar directory #Tar compress a file or directory. Great for directories as it becomes a single file.
+
+tar -xvf backup.tar #Untar a tar file
+
+Ref
+https://www.geeksforgeeks.org/basic-shell-commands-in-linux/
+https://lweb.cfa.harvard.edu/rtdc/shell_cmds/basic/
