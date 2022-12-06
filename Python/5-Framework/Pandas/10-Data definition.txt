@@ -1,6 +1,6 @@
 Intro 
 Creating new datasets (create)
-how to add one or more row/columns to an existing table(alter tabled add column)
+how to add one or more row/columns to an existing table(alter table add column)
 how to change the structure of existing tables(Alter the table)
 how to change the definition of existing columns in a table(alter table modify column)
 how to drop one or more columns from a table(drop the column)
@@ -184,7 +184,7 @@ ref:
 https://stackabuse.com/reading-and-writing-html-tables-with-pandas/
 
 12)As a copy of another dataframe.
------------------------------
+---------------------------------
 # copy into a new dataframe object
 # make an alias of the dataframe(not creating 
 # a new dataframe, just a pointer)
@@ -452,6 +452,16 @@ datetime64	NA	      datetime64[ns]			date and times values
 timedelta[ns]	NA	      NA				differences betwen dataframes
 category	NA	      NA				finite list of values	      
 
+How to Determine numeric and categorical data
+--------------------------------------------
+numerical_types = loan_df.dtypes[loan_df.dtypes != "object"].index
+print("# of Numerical features: ", len(numerical_types))
+
+categorical_types = loan_df.dtypes[loan_df.dtypes == "object"].index
+print("# of Categorical features: ", len(categorical_types))
+
+print("categorical_feats",categorical_types)
+print("numerical_feats",numerical_types)
 
 Change Data Type for one or more columns in Pandas Dataframe
 ------------------------------------------------------------
