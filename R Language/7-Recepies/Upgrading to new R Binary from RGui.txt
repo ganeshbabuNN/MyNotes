@@ -1,0 +1,33 @@
+#Note: using the basis R console to do this process
+# Install the *installr* package
+install.packages("installr")
+# Load the package
+library("installr")
+
+# The below command will check your 
+# installed version against the latest 
+# version available and will show you 
+# an information dialogue box
+installr::updateR()
+
+#Navigate through all the installation procedures as shown below:
+#Step-1 for the popu up "Do you wish to see a news regarding the new versoin "
+#If you like to keep yourself spam-free, then press No
+
+#Step-2: "do you wish to install latesh version of R", Click Yes
+
+#Step-3: "Do you wish to copy your packages from the older version of R in the near of R" 
+#click NO to start the installation mode(GUI)
+#Unless you have a new and clean installation, definitely click on Yes
+
+#Step-4:"Once your package are copied to new R,do you wish to KEEP the packages from library in the OLD R installations
+#If you weren’t working on production-grade projects at the time, then press No.
+
+#Step 5: "Do you wish to copy your 'Rprofile.site' from the OLDER version ....' 
+#This is related to RShiny. Click on Yes
+
+#Step 6 : "do you wish to update your packages in the newly installed  R"
+# althrough the packages should have backward compatiblity , still click on Yes.
+
+#Step 5: After all the installation is done, close your RGui and head back to RStudio and again run the command version 
+#to check whether your R installation has been updated or not. 
