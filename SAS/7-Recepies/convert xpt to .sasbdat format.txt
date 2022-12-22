@@ -1,0 +1,32 @@
+/******************************************************************************************
+     READ MULTIPLE XPT FILE IN ONE DIRECTORY AND SAVE INTO EXCEL FILES
+*****************************************************************************************/                    
+/* PATH TO ADDRESS XPT FILE-ALL XPT FILES ARE STORE IN XPTFILE(---ONLY XPT FILES IN THIS DESIGNATED FOLDER---) */
+%let path_in= \\Temporary\New folder\New folder;
+/* PATH TO STORE SAS DATASET-NEED CREATE THE FOLDER-OUTFOLDER */
+%let path_out= \\Temporary\New folder\New folder;
+
+ 
+
+/*TRANSFORM MUL XPT FILES INTO A SAS DATAASETS*/
+/*CREATE A LIBNAME FOR OUTPUT FOLDER SAS DATASET*/
+libname out v9 "&path_out";
+
+ 
+
+data _null_;
+/*OPEN EACH XPT FILE AND GET THE TOTAL NUMBER OF XPT FILES -&DID*/
+        rc=filename('x',"&path_in");
+        did=dopen('x');
+
+ 
+
+/*USE CALL EXECUTE  AND DO LOOP TO READ IN XPT FILES */
+        do i=1 to dnum(did);
+          memname=dread(did,i);
+          call execute(cat("libname tranfile xport '&path_in\",strip(memname),"';proc copy in=tranfile out=out ;run;"));
+        end;
+
+ 
+
+run;
