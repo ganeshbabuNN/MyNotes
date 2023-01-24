@@ -292,7 +292,26 @@ Handling missing values
 =======================
 *Handling missing values in R, one of the common tasks in data analysis is handling missing values.
 *In R, missing values are often represented by the symbol NA (not available) or some other value that represents missing values (i.e. 99).
-*Impossible values (e.g., dividing by zero) are represented by the symbol NaN (not a number)
+*Impossible values (e.g., dividing by zero) are represented by the symbol inf (not a number)
+
+id <- c(101,102,103,104,105)
+name <- c("vaib","rudra","gan","veer","rep")
+salary <- c(32000,45000,83722,34000,45666)
+
+employ <- data.frame(id,name,salary)
+employ
+#NA is a logical constant of length 1 which contains a missing value indicator
+employ <- rbind(employ,c(106,NA,NA))
+#use is.na() to test the missing values
+is.na(employ$name[7])
+is.na(employ$salary[7])
+
+#null values represent the object empty.
+a<-list(2,3,3,4)
+typeof(a)
+is.list(a)
+a <- NULL 
+is.null(a)
 
 Quiz:
 =====
