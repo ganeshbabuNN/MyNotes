@@ -595,3 +595,4 @@ Resources
 =========
 https://www.oreilly.com/library/view/the-art-of/9781593273842/ch02s05.html
 https://www.datamentor.io/r-programming/return-function/
+https://www.dataquest.io/blog/write-functions-in-r/
