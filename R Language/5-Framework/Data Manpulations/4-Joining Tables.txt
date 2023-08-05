@@ -101,8 +101,10 @@ using dplyr
 library(dplyr)
 library(magrittr)
 
-df <- left_join(df1,df2,by="StudentId") #for single variable
-df <- left_join(df1,df2,by=c("StudentId"="id name")) #for multiple key
+df <- left_join(df1,df2,by="StudentId") #for single variable have same key.
+df <- left_join(df1,df2,by="StudentId",id name") #more then one key.
+df <- left_join(df1,df2,by=c("StudentId"="id name")) #for different key 
+df <- left_join(df1,df2,by=c("x1"="a1","y1=b1")) #for multiple key
 
 #forward pip operator
 df= df1 %>% left_join(df2,by="StudentId")
