@@ -1,0 +1,4 @@
+https://python.plainenglish.io/101-advanced-everyday-python-for-data-scientists-669c9b417707
+
+
+https://blog.stackademic.com/optimizing-python-performance-tips-and-tricks-for-faster-data-processing-38992cf57dcd
