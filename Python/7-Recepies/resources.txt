@@ -1,0 +1,6 @@
+https://towardsdatascience.com/bring-your-jupyter-notebook-to-life-with-interactive-widgets-bc12e03f0916
+
+
+https://www.dataoptimal.com/data-cleaning-with-python-2018/
+
+https://python.plainenglish.io/a-comprehensive-guide-to-python-automation-streamlining-tasks-and-boosting-productivity-fad00c5b62c5
