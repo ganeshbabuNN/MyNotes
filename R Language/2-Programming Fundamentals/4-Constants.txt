@@ -25,7 +25,7 @@ typeof("ganesh")
 
 Delecration of variables
 =========================
--In really there is no such called constants in python, but in case if we want to use
+-In really there is no such called constants in python or R, but in case if we want to use
 
 Assigning values to variable
 =============================
