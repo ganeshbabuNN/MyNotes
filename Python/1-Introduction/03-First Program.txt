@@ -11,7 +11,7 @@ First program
 using print
 -----------
 print "hello world" #this is supported in python 2.0
-print("hello world" #this is supported in python 3x onwards
+print("hello world") #this is supported in python 3x onwards
 
 using functions
 ---------------
