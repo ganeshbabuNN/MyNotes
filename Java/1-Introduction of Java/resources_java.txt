@@ -1,0 +1,45 @@
+
+Over all java
+--------------
+https://docs.oracle.com/javase/tutorial/ --- offical 
+https://www.tutorialspoint.com/java/index.htm
+https://www.javatpoint.com/java-tutorial    -- java 
+https://www.rameshfadatare.com/learn-java-programming/ 
+https://www.w3schools.com/java/
+https://www.programiz.com/java-programming
+https://www.geeksforgeeks.org/java-tutorial/
+https://www.guru99.com/java-tutorial.html
+https://dev.java/learn/
+https://howtodoinjava.com/java/basics/java-tutorial/
+https://jenkov.com/tutorials/java/index.html
+https://beginnersbook.com/java-tutorial-for-beginners-with-examples/
+https://dotnettutorials.net/course/java-tutorials-for-beginners-and-professionals/
+https://www.studytonight.com/java/
+https://howtodoinjava.com/
+https://www.baeldung.com/java-tutorial
+https://www.codecademy.com/learn/learn-java
+https://www.edureka.co/blog/java-tutorial/
+https://www.programiz.com/java-programming/getting-started
+https://java2blog.com/core-java-tutorial-for-beginners-experienced/
+https://www.codecademy.com/learn/java-introduction
+https://www.toolsqa.com/java/java-tutorial/
+https://javatutorial.net/
+https://www.codechef.com/learn/course/java
+https://www.digitalocean.com/community/tutorials/core-java-tutorial
+https://prepinsta.com/java/
+
+
+
+
+blogs
+-----
+https://medium.com/@waledcoder/20-java-practices-to-make-you-seem-experienced-c2c1f3250721  
+https://www.geeksforgeeks.org/12-tips-to-optimize-java-code-performance/
+https://www.javatpoint.com/12-tips-to-improve-java-code-performance
+https://stackify.com/java-performance-tuning/
+https://medium.com/@rabinarayandev/10-java-performance-tips-i-wish-id-known-sooner-e4913cc6f606
+https://www.tutorialspoint.com/12-tips-to-optimize-java-code-performance
+https://www.bairesdev.com/blog/java-performance-tuning-tips/
+https://www.cogentuniversity.com/post/performance-tuning-in-java-tips-and-techniques
+https://medium.com/@AlexanderObregon/java-performance-tuning-profiling-benchmarking-and-optimization-techniques-d71e26e9845b
+https://raygun.com/blog/java-performance-optimization-tips/
