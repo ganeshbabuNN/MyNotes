@@ -184,6 +184,14 @@ df["Senior Management"]=df["Senior Management"].astype("bool")
 df["Team"].unique() #get the unique value of team variable
 df["Team"]=df["Team"].astype("category")
 
+#converting multiple columns for different datatypes at one statement
+emp=emp.astype({
+    'Gender':"category",
+    'Start Date':"datetime64[ns]",
+    'Senior Management':'bool' 
+}   
+)
+
 #convert_dtypes() function and convert the to best data types automatically. 
 #Another big advantage of using convert_dtypes() is that it supports Pandas new type for missing values pd.NA
 #generally
