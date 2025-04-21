@@ -90,8 +90,8 @@ emp.info(verbose=False) #short summary of dataframe excludes columns and dtypes
 emp.info(verbose=True,null_counts = False) #for excludes the non-null counts
 
 mp.size # get the size of the dataframe
-emp.shape #dataframe shape
-emp.ndim #dataframe ndim
+emp.shape #no of columns and rows
+emp.ndim #dimension of the table like row , column is two dimension
 emp.columns #description the columns
 emp.head()  #top 10 observations
 emp.head(20)  #top 20 observations
