@@ -123,9 +123,13 @@ pd.read_csv("pokemon.csv",usecols=["Pokemon"])
 #squeez :    If the parsed data only contains one column then return a Series.
 pokemon=pd.read_csv("pokemon.csv",usecols=["Pokemon"],squeeze=True)
 pokemon
+#squeeze parameter is deprecated, now use a function instead.
+pokemon.squeeze()
 
 google=pd.read_csv("google_stock_price.csv",squeeze=True)
 google
+
+
 
 Use the head and tail Methods to Return Rows from Beginning and End of Dataset
 ==============================================================================
