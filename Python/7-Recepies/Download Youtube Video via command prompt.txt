@@ -1,9 +1,8 @@
-### 🔧 Step 1: Install `youtube-dl`
+### 🔧 Step 1: Install `youtube-dl` or `yt-dlp`
 #### Option A: Standalone Executable (Recommended for Simplicity)
-1. **Download youtube-dl.exe**
-   Go to the official site: [https://youtube-dl.org/](https://youtube-dl.org/) (or use this direct link):
-   👉 [https://yt-dl.org/downloads/latest/youtube-dl.exe](https://yt-dl.org/downloads/latest/youtube-dl.exe)
-   Save it somewhere easy to find, e.g., `C:\youtube-dl\`.
+1. **Download youtube-dl.exe** or `yt-dlp`
+   Go to the official site:  https://github.com/ytdl-org/youtube-dl or  https://github.com/yt-dlp/yt-dlp
+   Save it somewhere easy to find, e.g., `C:\youtube-dl\` or  `C:\yt-dlp\` 
 2. **(Optional) Add youtube-dl to PATH**
    * Right-click on “This PC” → Properties → Advanced system settings → Environment Variables.
    * Under *System variables*, find `Path`, click Edit → New → Add the path where `youtube-dl.exe` is stored (`C:\youtube-dl\`).
@@ -12,6 +11,7 @@
 ### 🧪 Step 2: Open Command Prompt
 * Press `Win + R`, type `cmd`, press Enter.
 ---
+
 ### 🎯 Step 3: Use youtube-dl to Download a Video
 ```bash
 youtube-dl https://www.youtube.com/watch?v=VIDEO_ID
@@ -19,14 +19,17 @@ youtube-dl https://www.youtube.com/watch?v=VIDEO_ID
 **Example:**
 ```bash
 youtube-dl https://www.youtube.com/watch?v=dQw4w9WgXcQ
+yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```---
 ### ✅ Step 4: (Optional) Download Audio Only
 ```bash
 youtube-dl -f bestaudio --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=VIDEO_ID
+
 ```---
 ### 🔄 Update youtube-dl (if installed this way)
 ```bash
 youtube-dl -U
+yt-dlp -U
 ```---
 ### ⚠️ Alternative (Actively Maintained Fork): `yt-dlp`
 The original `youtube-dl` is not actively updated. You may prefer to use [yt-dlp](https://github.com/yt-dlp/yt-dlp), a more maintained fork.
