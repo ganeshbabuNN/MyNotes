@@ -97,18 +97,64 @@ df
 
 using dplyr
 *--------*
-#load the dplyr package
+##load the dplyr package
 library(dplyr)
 library(magrittr)
 
+##Simple Two-Table Join (Base Pattern)
 df <- left_join(df1,df2,by="StudentId") #for single variable have same key.
 df <- left_join(df1,df2,by="StudentId",id name") #more then one key.
 df <- left_join(df1,df2,by=c("StudentId"="id name")) #for different key 
 df <- left_join(df1,df2,by=c("x1"="a1","y1=b1")) #for multiple key
 
-#forward pip operator
+##Mimicking SAS “BY” Merge Behavior (Sorted by Keys)
+EC <- EC %>% arrange(STUDYID, USUBJID)
+DM <- DM %>% arrange(STUDYID, USUBJID)
+merged <- EC %>%
+  left_join(DM, by = c("STUDYID", "USUBJID"))
+
+##If Some Datasets Have Different Join Keys
+datasets <- list(
+  EC = EC,
+  DM = DM,
+  SUPPEC = SUPPEC
+)
+join_keys <- list(
+  EC = c("STUDYID", "USUBJID"),
+  DM = c("STUDYID", "USUBJID"),
+  SUPPEC = c("STUDYID", "USUBJID", "ECLNKID")
+)
+#Merge with custom keys
+merged <- Reduce(function(x, y_name) {
+  y <- datasets[[y_name]]
+  by_vars <- intersect(names(x), names(y))
+  left_join(x, y, by = by_vars)
+}, names(datasets)[-1], init = datasets[[1]])
+
+##Multiple Joins Step-by-Step
+merged <- EC %>%
+  left_join(DM,     by = c("STUDYID", "USUBJID")) %>%
+  left_join(SUPPEC, by = c("STUDYID", "USUBJID")) %>%
+  left_join(AE,     by = c("STUDYID", "USUBJID"))
+
+##Left Join Dynamically (Many Datasets at Once) ,If you have many datasets stored in a list (e.g. 10+ domains):
+library(purrr)
+# Example list of datasets,This automatically left-joins all datasets one after another
+datasets <- list(EC = EC, DM = DM, SUPPEC = SUPPEC, AE = AE)
+# Common join keys
+join_keys <- c("STUDYID", "USUBJID")
+# Reduce with left_join
+merged <- reduce(datasets, left_join, by = join_keys)
+
+##forward pip operator
 df= df1 %>% left_join(df2,by="StudentId")
 df
+
+##if you want to know how many rows didn’t match (like SAS IN= flags):
+merged <- EC %>%
+  left_join(DM, by = c("STUDYID", "USUBJID"), keep = TRUE) %>%
+  mutate(match_flag = ifelse(!is.na(DM$USUBJID), "Matched", "Unmatched"))
+
 
 Right Outer Join
 ----------------
@@ -245,3 +291,4 @@ https://www.datasciencemadesimple.com/join-in-r-merge-in-r/
 https://hollyemblem.medium.com/joining-data-with-dplyr-in-r-874698eb8898
 https://www.programmingr.com/examples/r-dataframe/rbind-in-r-row-bind/
 https://www.datacamp.com/community/tutorials/merging-datasets-r?
+
