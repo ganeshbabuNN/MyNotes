@@ -55,18 +55,16 @@ Using S3
 #Use unique function names to avoid any conflicts
 ##S3 Class -Function changes based on object type
 ##You call a function, and R decides which method to use based on the object’s class.
+
 # Generic function
 say_msg <- function(obj) UseMethod("say_msg")
-
 # Method for class "demo_class"
 say_msg.demo_class <- function(obj) {
   paste("Hello", obj$value)
 }
-
 # Create object
 x <- list(value = "World")
 class(x) <- "demo_class"
-
 # Call
 say_msg(x)
 
