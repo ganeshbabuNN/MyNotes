@@ -50,6 +50,61 @@ studentDetails #call
 #studentdetails is a identifier
 #name,age,contact,grade are the identifier as well and act as a argument for list
 
+Using S3
+==========
+#Use unique function names to avoid any conflicts
+##S3 Class -Function changes based on object type
+##You call a function, and R decides which method to use based on the object’s class.
+hello_s3 <- function(x) UseMethod("hello_s3")
+hello_s3.person <- function(x) {
+  paste("Hello", x$name)
+}
+##Create S3 object
+p_s3 <- list(name = "World")
+class(p_s3) <- "person"
+##Call function
+hello_s3(p_s3)
+
+Using S4
+========
+#S4 Class -Strict class with formal method
+##You call a function, and R decides which method to use based on the object’s class.
+##Define class
+setClass("Person",
+         slots = list(name = "character"))
+##Create object
+p_s4 <- new("Person", name = "World")
+##Define generic
+setGeneric("hello", function(object) standardGeneric("hello"))
+##Define method
+setMethod("hello", "Person", function(object) {
+  paste("Hello", object@name)
+})
+##Call
+hello(p_s4)
+
+Using R6
+========
+#R6-Object owns its behavior (Java-style)
+##The object itself has methods. You call them with $.
+library(R6)
+## Define class
+Person <- R6Class("Person",
+                  public = list(
+                    name = NULL,
+                    initialize = function(name) {
+                      self$name <- name
+                    },
+                    hello = function() {
+                      paste("Hello", self$name)
+                    }
+                  )
+)
+##Create object
+p_r6 <- Person$new("World")
+##Call method
+p_r6$hello()
+
 Help info
 =========
 help(print) #Getting help on a function that you know the name of ? or help
