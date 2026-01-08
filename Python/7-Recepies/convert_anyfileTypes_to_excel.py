@@ -8,13 +8,14 @@
 ###
 ### Ouput:        NA
 ###
-### Purpose:      Convert any files types to excel in the new directly without affecting the old files.
+### Purpose:      Convert any files types to excel in the new directly without affecting the old files
+###               and create a excel file 
 ###               example : ae.csv to ae.xlsx...etc
 ### Comment:          
 ###
-### Software:     VSCODE  1.107.0
+### Software:     VSCODE  1.107.0+
 ###               Python 3.142+
-###               library os,pandas.
+###               library os,pandas 2.3.3.
 ###
 ### Modification: 
 ###
