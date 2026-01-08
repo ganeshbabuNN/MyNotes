@@ -12,7 +12,7 @@
 ###
 ### Comment:      I used githubdeskstop where i was not able download the my repo to my local desktop hence i develop this problem.
 ###
-### Software:     python 3.13+, requests,pandas,os,re, VSCode 1.107
+### Software:     python 3.13+, requests,pandas,os,re, VSCode 1.107+
 ###
 ### Modification: 
 ###
