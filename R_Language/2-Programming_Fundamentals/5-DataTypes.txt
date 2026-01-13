@@ -2,9 +2,9 @@ Introduction
 Data Types
 Default value of Types
 To know the type of variable
+Handling missing values
 Strings
 data structures
-Handling missing values
 Quiz
 Assignment
 Resources
@@ -308,6 +308,60 @@ class() tells you how it behaves (date arithmetic)
 typeof() tells you how it is stored
 str() confirms structure for validation
 
+Handling missing values
+=======================
+*Handling missing values in R, one of the common tasks in data analysis is handling missing values.
+*In R, missing values are often represented by the symbol NA (not available) or some other value that represents missing values (i.e. 99).
+*Impossible values (e.g., dividing by zero) are represented by the symbol inf (not a number)
+*NA means missing value (“not available”).
+*But R is strongly typed: every value has a data type.
+*So R actually has different kinds of NA, one for each type.
+*They all mean “value is missing”, but they preserve the data type.
+
+#logical --> NA (missing value (default logical))
+x<- NA
+typeof(x)
+
+#integer --> NA_Integer_(missing integer)
+c(3L,NA_integer_)
+c(1L, NA_character_) #not like this coz it changes its behavior
+
+#numeric --> NA_real_ (missing numeric (double))
+c(3.3,NA_real_)
+c(3.3,NA_character_) #not like this
+
+#character -->NA_character_ (missing character)
+y<-NA_character_
+typeof(y)
+c("ganesh",NA_character_)
+name <- c("Ravi", "Sita", NA_character_)
+typeof(name)
+
+#complex --> NA_Complex (missing complex)
+c(3+2i,NA_complex_)
+#raw ---> NA
+c(charToRaw("ganes"),NA)
+
+#example
+x <- c(1,2,NA)
+ifelse(x>1,"High",NA_character_)
+ifelse(x>1,"High",NA)
+
+employ <- data.frame(id,name,salary)
+employ
+#NA is a logical constant of length 1 which contains a missing value indicator
+employ <- rbind(employ,c(106,NA,NA))
+#use is.na() to test the missing values
+is.na(employ$name[7])
+is.na(employ$salary[7])
+
+#null values represent the object empty.
+a<-list(2,3,3,4)
+typeof(a)
+is.list(a)
+a <- NULL 
+is.null(a)
+
 String
 ======
 *Strings are a group of characters written inside a single or double-quotes
@@ -448,60 +502,6 @@ class(stu.data)
 typeof(stu.data)
 print(stu.data)
 
-
-Handling missing values
-=======================
-*Handling missing values in R, one of the common tasks in data analysis is handling missing values.
-*In R, missing values are often represented by the symbol NA (not available) or some other value that represents missing values (i.e. 99).
-*Impossible values (e.g., dividing by zero) are represented by the symbol inf (not a number)
-*NA means missing value (“not available”).
-*But R is strongly typed: every value has a data type.
-*So R actually has different kinds of NA, one for each type.
-*They all mean “value is missing”, but they preserve the data type.
-
-#logical --> NA (missing value (default logical))
-x<- NA
-typeof(x)
-
-#integer --> NA_Integer_(missing integer)
-c(3L,NA_integer_)
-c(1L, NA_character_) #not like this coz it changes its behavior
-
-#numeric --> NA_real_ (missing numeric (double))
-c(3.3,NA_real_)
-c(3.3,NA_character_) #not like this
-
-#character -->NA_character_ (missing character)
-y<-NA_character_
-typeof(y)
-c("ganesh",NA_character_)
-name <- c("Ravi", "Sita", NA_character_)
-typeof(name)
-
-#complex --> NA_Complex (missing complex)
-c(3+2i,NA_complex_)
-#raw ---> NA
-c(charToRaw("ganes"),NA)
-
-#example
-x <- c(1,2,NA)
-ifelse(x>1,"High",NA_character_)
-ifelse(x>1,"High",NA)
-
-employ <- data.frame(id,name,salary)
-employ
-#NA is a logical constant of length 1 which contains a missing value indicator
-employ <- rbind(employ,c(106,NA,NA))
-#use is.na() to test the missing values
-is.na(employ$name[7])
-is.na(employ$salary[7])
-
-#null values represent the object empty.
-a<-list(2,3,3,4)
-typeof(a)
-is.list(a)
-a <- NULL 
-is.null(a)
 
 Quiz:
 =====
