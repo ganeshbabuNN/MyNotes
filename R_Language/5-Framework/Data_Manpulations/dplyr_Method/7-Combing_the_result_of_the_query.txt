@@ -1,0 +1,81 @@
+Intro 
+how to combine the results of two queries into a single result
+how to make an intersection of the results of two independent queries
+
+Intro
+======
+this is possible at the vector level not at the dataframe level.
+
+first <- mtcars[1:20, ]
+second <- mtcars[10:32,]
+mtcars$model <- rownames(mtcars)
+mtcars
+
+how to combine the results of two queries into a single result
+==============================================================
+
+Union
+-----
+-only keeps unique records, non duplicates
+The union of two sets is everything in the two sets taken together, but counting elements only once that are common to both sets.
+These functions override the set functions provided in base to make them generic so that efficient versions for data frames and other tables can be provided.
+
+union(first,second)
+
+union_all
+---------
+-inclues, non duplicates
+
+union_all(first,second)
+
+how to make an intersection of the results of two independent queries
+=====================================================================
+The intersection of two sets is the material that they have in common:
+
+intersect(first, second)
+
+setdiff generally checks if first datasets is not there in second
+-----------------------------------------------------------------
+setdiff(first, second)
+setdiff(second,first)
+
+Short example
+=============
+using dataframe
+---------------
+a <- data.frame(column = c(1:10, 10))
+b <- data.frame(column = c(1:5, 5))
+a
+b
+
+union(a,b) #combines all, but unique
+union_all(a,b), combine all 
+intersect(a,b) #which are common in both
+setdiff(a,b) #displays values from a are not there in B
+setdiff(b,a) #displays values from b are not there in A
+
+using vector
+------------
+setA<-c("a", "b", "c", "d", "e")
+setB<-c("d", "e", "f", "g")
+
+union(setA,setB)
+intersect(setA,setB)
+setdiff(setA,setB)
+setdiff(setB,setA)
+all(c(setdiff(setA,setB),intersect(setA,setB),setdiff(setB,setA))== union(setA,setB))
+setequal(c(setdiff(setA,setB),intersect(setA,setB),setdiff(setB,setA)),union(setA,setB))
+setA %in% setB
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.oreilly.com/library/view/the-r-book/9780470510247/ch002-sec073.html
+https://stat.ethz.ch/R-manual/R-patched/library/base/html/sets.html
+https://dplyr.tidyverse.org/reference/setops.html

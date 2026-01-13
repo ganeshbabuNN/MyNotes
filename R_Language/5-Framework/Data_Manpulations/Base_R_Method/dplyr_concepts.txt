@@ -1,0 +1,82 @@
+Intro
+Magrittr Forward Pipe %>%
+intro to Tibbles
+
+Intro
+=====
+
+Magrittr Forward Pipe %>%
+=========================
+-Often we want to perform multiple functions to our data (e.g. filter, then group, then summarise)
+-We can do this by nesting our functions within one another, but the code quickly becomes confusing and difficult to follow (we can also use assignments but that’s even more wasteful)
+		functionCfunctionB functionA (data)))
+
+-%>% enables a stepwise, methodical code where the previous step is transferred or “piped” into the next step, so that we no longer need to consider it
+-Think of %>% as saying “now do”
+	functionB %>% functionA %>% functionC %>%  data
+
+-For example, in the health data set we might want to calculate average height of the different gender groups for people younger than 50
+-Without %>% we get a confusing nested function code, which is difficult to follow
+	summarise(group_by(filter(health, age < 50), gender), avg_height = mean(height))
+-%>% we get a more methodical code that is far more understandable
+	health %>%
+	filter(age < 50) %>%
+	group_by(gender) %>%
+	summarise(avg_height = mean(height))
+
+
+#Answers to example questions for %>%
+health %>% mutate(bmi = weight/(height/100)^2)
+health %>% filter(gender == "M" & age >30) %>% summarise(av_weight = mean(weight))
+health %>% arrange(desc(age)) %>% slice(n())
+
+
+intro to Tibbles
+================
+-A tibble, or tbl_df, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not
+-Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist)
+-tibble() does much less than data.frame(): 
+it never changes the type of the inputs (e.g. it never converts strings to factors!), 
+it never changes the names of variables, 
+it only recycles inputs of length 1, and it never creates row.names(). 
+You can read more about these features in vignette("tibble")
+-The tibble print method draws inspiration from data.table, and frame. Like data.table::data.table(), 
+tibble() doesn’t coerce strings to factors by default, doesn’t change column names, and doesn’t use rownames.
+installations
+-------------
+install.packages("tibble")
+
+which contain all the packages
+install.packages("tidyverse")
+
+Create tibble from dataframe
+----------------------------
+library(tibble)
+as_tibble(iris)
+
+Create tibble from vector
+-------------------------
+tibble(x = 1:5, y = 1, z = x ^ 2 + y)
+
+define a tibble row-by-row with tribble()
+-----------------------------------------
+tribble(
+  ~x, ~y,  ~z,
+  "a", 2,  3.6,
+  "b", 1,  8.5
+)
+
+...ctd
+
+ref:https://r4ds.had.co.nz/tibbles.html
+ref:https://www.datacamp.com/community/tutorials/pipe-r-tutorial
+
+Quiz
+====
+
+Assignment
+==========
+
+
+Resources:
+=========

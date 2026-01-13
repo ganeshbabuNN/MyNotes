@@ -65,7 +65,6 @@ myinteger <- 322L #prefix if it is integer
 cat("myinteger",myinteger,"\n")
 class(myinteger)
 
-
 Complex
 -------
 *A complex value in R is defined as the pure imaginary value i.
@@ -98,11 +97,40 @@ class(myraw)
 
 Default value of Types
 ======================
-for number
-a=0
+#Default value = what R fills when you create an empty vector.
+#0 is a real value
+#NA means value not available
 
-for string
-a=''
+#numeric(double)  -> 0
+numeric(2)
+
+#integer --> 0L
+integer(4)
+
+#logical --> FALSE
+logical(1)
+
+#charcter --> ""
+character(1)
+
+#complex -> 0+0i
+complex(1)
+
+#raw --> 00
+raw(1)
+
+#list --> NULL
+vector("list",1)
+
+#factor --> NA
+factor(character(1))
+
+#date ---> NA
+as.Date(character(1))
+
+#POSIXct/POSIXlt --> NA
+as.POSIXct(character(1))
+as.POSIXlt(character(1))
 
 To know the type of variable used
 =================================
@@ -293,6 +321,35 @@ Handling missing values
 *Handling missing values in R, one of the common tasks in data analysis is handling missing values.
 *In R, missing values are often represented by the symbol NA (not available) or some other value that represents missing values (i.e. 99).
 *Impossible values (e.g., dividing by zero) are represented by the symbol inf (not a number)
+*NA means missing value (“not available”).
+*But R is strongly typed: every value has a data type.
+*So R actually has different kinds of NA, one for each type.
+*They all mean “value is missing”, but they preserve the data type.
+
+#logical --> NA (missing value (default logical))
+x<- NA
+typeof(x)
+#integer --> NA_Integer_(missing integer)
+a<-c(3L,NA_integer_)
+a
+typeof(a[1])
+#numeric --> NA_real_ (missing numeric (double))
+c(3.3,NA_real_)
+#character -->NA_character_ (missing character)
+y<-NA_character_
+typeof(y)
+c("ganesh",NA_character_)
+name <- c("Ravi", "Sita", NA_character_)
+typeof(name)
+#complex --> NA_Complex (missing complex)
+c(3+2i,NA_complex_)
+#raw ---> NA
+c(charToRaw("ganes"),NA)
+
+#example
+x <- c(1,2,NA)
+ifelse(x>1,"High",NA_character_)
+ifelse(x>1,"High",NA)
 
 id <- c(101,102,103,104,105)
 name <- c("vaib","rudra","gan","veer","rep")

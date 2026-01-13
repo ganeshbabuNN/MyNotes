@@ -1,0 +1,820 @@
+Intro
+how to insert a row into a table  -insert
+Insert data into a table from the result of a query --insert
+Insert multiple rows/columns into a table or multiple tables -insert
+How to change the existing values of a table -update
+updating the missing values i,e NA to 0 -update
+Resetting the row index -update
+Writing the conditional statment in R
+Writing a Custom function in R
+How to delete one or more row from a table - delete
+Performing a mixture of insertion, update, and deletion using a single statement -mix of all
+how to concat the two columns- concat
+
+Intro
+=====
+in this you will learn how to modify the data like insert, update,delete
+
+#data
+name <- c("vyvan","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
+gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
+age <- c(29,67,40,23,26,34,55,42,18,73,18)
+weight <- c(52,65,80,57,71,90,67,78,85,50,85)
+height <- c(165,171,183,154,173,167,169,180,190,145,190)
+maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
+dob <- as.Date(c("1988-01-20","1983-01-22","1983-03-18","1978-01-11","1968-01-14","1999-03-24","1988-03-22","1955-01-19","1986-03-21","1968-04-26","1987-02-23"))
+
+health <- tibble(name,gender,age, weight, height,maristatus,dob) #tibble create the dataframe
+
+using new dplyr
+---------------
+-Mutate() is used to add new variables, often from performing calculations on the original variables (e.g.calculate body mass index ( bmi ) from weight / (height/ 2))
+-Important arguments in the function are (i) data source, (ii) new variable name and (iii) new variable function
+	mutate(data source, new variable name = function to create new variable, …)
+-For example, using the health data set, we can create the bmi variable from a simple arithmetic function of weight/(height/100)^2
+	mutate(health, bmi = weight/(height/100)^2)
+
+health2 <- mutate(health, bmi = weight/(height/100)^2)
+
+#the cut() function can be used to create a categorical variable from a continuous variable using defined cut-off limits
+mutate(health2, bmi_classification = cut(bmi, breaks = c(0, 18.5, 24.9, Inf),
+                                         labels = c("Underweight", "Normal", "Overweight")))
+
+how to insert a row into a table
+================================
+# A vector which is a character vector
+Name = c("Ganesh", "Vedha", "Ashu")
+
+# A vector which is a character vector
+Language = c("R", "Python", "Java")
+
+# A vector which is a numeric vector
+Age = c(22, 25, 45)
+
+# To create dataframe use data.frame command and
+df = data.frame(Name, Language, Age)
+new_df=data.frame(Name="nishu",Language="Perl",Age=23)
+rbind(df,new_df)
+
+insert data into a table from the result of a query
+===================================================
+R is a resuble objects which can be treated as a query.
+
+Insert multiple rows/columns into a table or multiple tables
+============================================================
+Multiple rows
+-------------
+This code should be used when each element in the list is supposed to hold a row in the dataframe
+
+listHolder <- list(
+  row1 = list(name = "foo", surname = "bar", age = 90),
+  row2 = list(name = "foo", surname = "foo", age = 29),
+  row3 = list(name = "bar", surname = "foo", age = 45),
+  row4 = list(name = "bar", surname = "bar", age = 10)
+)
+
+listHolder
+
+# A simple rbind won't work (each column is still a list)
+data1 <- do.call(rbind, listHolder)
+data1
+str(data1)
+
+# General Approach
+data2 <- do.call(rbind, lapply(listHolder, data.frame))
+data2
+str(data2)
+
+This works when each element in listHolder contains a column of the dataframe
+df <- data.frame(lapply(listHolder, function(x) Reduce(c, x)))
+
+Multiple columns
+---------------
+listHolder <- list(
+  A = rep(list(1, 2), 80),
+  B = rep(c(3, 4), 80),
+  C = rep(c("a", "b"), 80),
+  D = rep(list("c", "d"), 80),
+  E = rep(as.POSIXct(10485849600, origin = "1582-10-14", tz = "GMT"), 160)
+)
+
+listHolder
+
+#1st approach
+data1  <-  as.data.frame(matrix(unlist(listHolder), nrow=length(unlist(listHolder[1]))))
+data1 
+str(data1) #(mess up with types)
+
+#2st approach
+data2 <- data.frame(do.call(cbind, listHolder))
+data2
+str(data2) #(each column becomes a list)
+
+#general approach
+data3 <- data.frame(lapply(listHolder, function(x) Reduce(c, x)))
+data3
+str(data3)
+
+This works when each element in listHolder contains a row of the dataframe
+df <- do.call(rbind, lapply(listHolder, data.frame))
+
+using cbind functions
+---------------------
+car = c("Audi","Toyota","Bugati","Audi","Agera R","Bugati","Audi")
+gender=c("M","M","M","M","M","M","F")
+#multiple columns
+cbind(celebrities,"cars"=car,"Gender"=gender)
+
+====================================================
+How to change the existing values of a table -update
+====================================================
+df[1,3] <- 37 # affect the all columns
+df
+
+df[1,] <- 0 # affect the all rows
+df
+
+df[,3] <- 0 # affect the all columns
+df
+
+df[1,3] <- 0 # affect the specific row and column
+df
+
+=======================================
+#updating the missing values i,e NA to 0
+=======================================
+What is 'NA' in R?
+'NA' means a value is **missing/unknown**. Most operations will return `NA` unless you explicitly handle it.
+
+##Detect Missing Values
+-----------------------
+### Check for NA
+is.na(x)
+
+### Filter rows with missing values
+df %>% filter(is.na(score))
+
+### Keep only non-missing rows
+df %>% filter(!is.na(score))
+
+##Replace Missing Values
+--------------------------
+###coalesce()-> Replace NA with fallback
+df <- df %>%
+  mutate(score = coalesce(score, 0))
+-If `score` is `NA`, use `0`
+
+### if_else() → Conditional replacement
+df <- df %>%
+  mutate(score = if_else(is.na(score), 0, score))
+###Replace with statistics (mean/median)
+
+df <- df %>%
+  mutate(salary = coalesce(salary, median(salary, na.rm = TRUE)))
+
+###Replace across multiple columns
+
+df <- df %>%
+  mutate(across(c(score1, score2, score3), ~ coalesce(.x, 0)))
+
+##Remove Missing Values
+-----------------------
+### Remove rows with any NA (via **tidyr**)
+library(tidyr)
+df_clean <- df %>% drop_na()
+
+### Remove rows with NA in specific columns
+df_clean <- df %>% drop_na(score, age)
+
+## Create Flags for Missing Data
+--------------------------------
+df <- df %>%
+  mutate(score_missing = if_else(is.na(score), "YES", "NO"))
+
+## Summaries that Ignore NA
+---------------------------
+Always use na.rm = TRUE
+df %>%
+  summarise(
+    avg = mean(score, na.rm = TRUE),
+    total = sum(score, na.rm = TRUE)
+  )
+## Conditional Logic with NA (case_when())
+-------------------------------------
+-Always test is.na() first
+
+df <- df %>%
+  mutate(category = case_when(
+    is.na(score) ~ "Missing",
+    score >= 75  ~ "High",
+    score >= 50  ~ "Medium",
+    TRUE         ~ "Low"
+  ))
+##Convert Certain Values into NA
+----------------------------------
+### na_if() -> Turn a value into NA
+
+df <- df %>%
+  mutate(score = na_if(score, 0))
+
+##Count Missing Values
+--------------------------
+### Per column
+df %>%
+  summarise(across(everything(), ~ sum(is.na(.x))))
+
+### Per row
+df <- df %>%
+  mutate(missing_count = rowSums(is.na(across(everything()))))
+
+##Filtering with NA-Aware Rules
+-------------------------------
+df %>%
+  filter(case_when(
+    is.na(score) ~ FALSE,        # drop missing
+    dept == "IT" ~ score > 60,
+    TRUE         ~ score > 50
+  ))
+
+##Replace NA Differently by Group
+---------------------------------
+df <- df %>%
+  group_by(dept) %>%
+  mutate(score = coalesce(score, mean(score, na.rm = TRUE))) %>%
+  ungroup()
+
+#Common Mistakes
+-Using score == NA (always wrong) ->use is.na(score)
+-Forgetting na.rm = TRUE in summaries
+-Not handling NA in case_when() -> results stay NA
+-Blindly replacing NA without business/domain rules
+
+
+#When to Use What
+------------------
+| Task           | Use                       |
+| -------------- | ------------------------- |
+| Detect NA      | `is.na()`                 |
+| Replace NA     | `coalesce()`, `if_else()` |
+| Remove rows    | `drop_na()`               |
+| Flag missing   | `if_else(is.na())`        |
+| Ignore in math | `na.rm = TRUE`            |
+| Mark as NA     | `na_if()`                 |
+| Bulk replace   | `across()`                |
+
+
+##Key Takeaway
+--------------
+In `dplyr`, **missing values must be handled explicitly**:
+-Decide whether to **replace**, **remove**, **flag**, or **ignore**
+-Always handle NA **before** summarizing or categorizing
+
+##missing values represented by different language
+-------------------------------------------------
+##in R, it represented by 'NA'(Not available-generic missing) and other typed version are NA_integer,NA_real_,NA_character_,NA_complex.
+x <- c(10, NA, 30)
+is.na(x)
+
+Notes:
+-Mathematical operations with NA return NA
+-Use na.rm = TRUE to ignore missing values
+
+##in python(Pandas/Numpy), it represented by 'None'(general python object),'NaN(not a number used in Numpy and pandas) and other typed version are NA_integer,NA_real_,NA_character_,NA_complex.
+import pandas as pd
+x = pd.Series([10, None, 30])
+x.isna()
+
+Notes:
+-NaN is a float value
+-None is a Python object
+-Pandas treats both as missing
+
+##SAS, it represented as '.'(dot-numeric missing), " "(blankspace-charactermising) 
+data test;
+  input age salary;
+  datalines;
+  25 50000
+  . 60000
+  30 .
+;
+run;
+Notes:
+-SAS also has special missing values: .A to .Z
+-Used to represent different reasons for missing data
+
+##SQL its is represented as NULL(no value/unknown/not applicable. its not equal to anything, even another nULL.
+SELECT * FROM employees WHERE salary IS NULL;
+
+##Julia represent missing.
+x = [10, missing, 30]
+ismissing.(x)
+Notes:
+-Julia uses a strict missing type
+-You must explicitly handle missing values using skipmissing() or coalesce()
+
+##java represent null(for object), special value of primitives Double.Nan for loating-point numbers.
+
+Integer x = null;
+double y = Double.NaN;
+
+Notes:
+-null can cause NullPointerException if not checked
+-No built-in universal missing value system
+
+##SPSS Representation .(dot), user-defined missing: specifc value like -99,999.
+MISSING VALUES age (-99).
+
+Notes:
+System-missing is automatic
+User-defined missing values must be declared
+
+##Important Concept (Across All Languages)
+1)Missing values are not zero and not empty strings. They mean:
+-Data was not collected
+-Data is unknown
+-Data is not applicable
+-Data was lost or corrupted
+2)Treating missing values incorrectly can:
+-bias analysis
+-break models
+-cause regulatory issues in clinical data
+
+##Clinical / SDTM / ADaM Note (For You)
+SDTM: Missing values are usually left blank, not coded as NA or .
+SAS to SDTM: SAS . becomes blank in SDTM datasets
+ADaM: Missing values must be handled consistently with derivation rules
+
+Resetting the row index
+=======================
+listHolder <- list(
+  row1 = list(name = "foo", surname = "bar", age = 90),
+  row2 = list(name = "foo", surname = "foo", age = 29),
+  row3 = list(name = "bar", surname = "foo", age = 45),
+  row4 = list(name = "bar", surname = "bar", age = 10)
+)
+
+listHolder
+
+# General Approach
+data2 <- do.call(rbind, lapply(listHolder, data.frame))
+data2
+str(data2)
+
+#resting the rows index
+rownames(data2)= seq(length=nrow(data2))
+data2
+
+======================================
+Writing the conditional statment in R
+======================================
+-we can achieve using the switch statement
+
+name <- c("sasi","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
+gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
+age <- c(29,67,40,23,26,34,55,42,18,73,18)
+weight <- c(52,65,80,57,71,90,67,78,85,50,85)
+height <- c(165,171,183,154,173,167,169,180,190,145,190)
+maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
+dob <- as.Date(c("1988-01-20","1983-01-22","1983-03-18","1978-01-11","1968-01-14","1999-03-24","1988-03-22","1955-01-19","1986-03-21","1968-04-26","1987-02-23"))
+
+health <- tibble(name,gender,age, weight, height,maristatus,dob) #tibble create the dataframe
+health
+view(health)
+
+#if_else() → Vectorized IF / ELSE
+--------------------------------
+-Use when you have one condition with two outcomes.
+
+df <- df %>%
+  mutate(flag = if_else(score >= 50, "Pass", "Fail"))
+  
+-Vectorized (works on entire column)
+-Type-safe (both outputs must be same type)
+
+
+#Using Case when statement-Multiple Conditions (SQL CASE WHEN)
+------------------------------------------------------------
+-You use it inside `mutate()` to create or transform columns.
+
+## Basic multiple conditions
+df <- df %>%
+  mutate(grade = case_when(
+    score >= 90 ~ "Excellent",
+    score >= 75 ~ "Good",
+    score >= 50 ~ "Average",
+    TRUE        ~ "Poor"
+  ))
+-Evaluated **top to bottom**
+-First matching condition is used
+-'TRUE ~' acts like `ELSE`
+
+## Using AND / OR conditions
+df <- df %>%
+  mutate(status = case_when(
+    age >= 18 & country == "India"  ~ "Eligible",
+    age >= 18 & country != "India"  ~ "Check Rules",
+    TRUE                            ~ "Not Eligible"
+  ))
+-Use '&' for AND
+-#Use '|' for OR
+
+##Multiple columns in conditions
+df <- df %>%
+  mutate(category = case_when(
+    gender == "M" & salary > 50000 ~ "High Paid Male",
+    gender == "F" & salary > 50000 ~ "High Paid Female",
+    salary >= 30000 & salary <= 50000 ~ "Mid Salary",
+    TRUE ~ "Low Salary"
+  ))
+  
+##Nested logic (CASE inside CASE)
+df <- df %>%
+  mutate(emp_type = case_when(
+    department == "IT" & experience >= 10 ~ "Senior IT",
+    department == "IT" & experience < 10  ~ "Junior IT",
+    department == "HR"                   ~ "HR Staff",
+    TRUE                                 ~ "Other"
+  ))
+-Usually you do not need actual nesting—just combine conditions.
+
+##Handling `NA` values
+df <- df %>%
+  mutate(salary_group = case_when(
+    is.na(salary)       ~ "Not Available",
+    salary < 30000      ~ "Low",
+    salary >= 30000     ~ "High"
+  ))
+-If you do not handle `NA`, result will be `NA`.
+
+##Conditional transformation of existing values
+df <- df %>%
+  mutate(adjusted_salary = case_when(
+    department == "IT" ~ salary * 1.20,
+    department == "HR" ~ salary * 1.10,
+    TRUE               ~ salary
+  ))
+
+##Equivalent of CASE in WHERE (filtering)
+df %>%
+  filter(case_when(
+    department == "IT" ~ salary > 40000,
+    department == "HR" ~ salary > 30000,
+    TRUE               ~ salary > 20000
+  ))
+-Applies **different filter rules** per group
+
+## Multiple outputs based on ranges
+df <- df %>%
+  mutate(risk = case_when(
+    value < 10                    ~ "Low",
+    value >= 10 & value < 20      ~ "Medium",
+    value >= 20                  ~ "High",
+    TRUE                         ~ NA_character_
+  ))
+
+###common Mistakes
+-Using `=` instead of `==`
+-Forgetting `TRUE ~`
+-Mismatched output types (all results must be same type)
+
+#Using recode function  --> Replace Specific Values
+----------------------------------------------------
+-recode() is used to **replace specific values** in a vector or column with new values. 
+-It is ideal for **simple value-to-value mapping**.
+
+Syntax
+recode(x, old1 = "new1", old2 = "new2", .default = "other")
+
+## Basic example: Replace values
+df <- df %>%
+  mutate(gender = recode(gender,
+                         "M" = "Male",
+                         "F" = "Female"))
+						 
+Replaces only specified values
+Others remain unchanged
+
+##Numeric recoding
+df <- df %>%
+  mutate(status = recode(status,
+                          `1` = "Active",
+                          `0` = "Inactive"))
+
+For numbers, wrap keys in backticks: `` `1` ``
+
+##Multiple values to one value
+-Use `recode()` with `.default` or use `case_when()` if complex.
+df <- df %>%
+  mutate(region = recode(region,
+                          "TN" = "South",
+                          "KA" = "South",
+                          "MH" = "West",
+                          .default = "Other"))
+						  
+##Handling missing (`NA`) values
+df <- df %>%
+  mutate(result = recode(result,
+                          "P" = "Pass",
+                          "F" = "Fail",
+                          .missing = "Unknown"))
+-.missing` replaces 'NA'
+-.default` replaces unmatched values
+
+##Recode factors safely
+df <- df %>%
+  mutate(status = recode_factor(status,
+                                 "A" = "Active",
+                                 "I" = "Inactive",
+                                 "S" = "Suspended"))
+-Keeps factor type
+-Updates levels automatically
+
+##Conditional recoding (when `recode()` is not enough)
+-If you need **ranges or logical conditions**, use `case_when()` instead:
+df <- df %>%
+  mutate(category = case_when(
+    score >= 90 ~ "Excellent",
+    score >= 75 ~ "Good",
+    TRUE        ~ "Average"
+  ))
+-recode() = value mapping
+-case_when()= condition-based logic
+
+## Recode multiple columns
+df <- df %>%
+  mutate(across(c(gender, status),
+                ~ recode(.x, "M" = "Male", "F" = "Female")))
+
+### recode() vs case_when()
+| Task                      | Use               |
+| ------------------------- | ----------------- |
+| Replace exact values      | `recode()`        |
+| Apply ranges / conditions | `case_when()`     |
+| Preserve factor levels    | `recode_factor()` |
+| Handle unmatched values   | `.default`        |
+| Handle missing values     | `.missing`        |
+
+### Common mistakes
+*Forgetting backticks for numbers
+*Expecting `recode()` to handle ranges
+*Mixing output types (all outputs must be same type)
+
+##Example (Clinical / SDTM-style)
+df <- df %>%
+  mutate(AESEV = recode(AESEV,
+                        "MILD" = "1",
+                        "MODERATE" = "2",
+                        "SEVERE" = "3",
+                        .missing = "9"))
+						
+						
+##Use Coalesce() function -IF value is NA, use another
+-Use to handle missing values conditionally.
+
+df <- df %>%
+  mutate(final_score = coalesce(score, 0))
+
+-Replaces NA with fallback value
+
+##between() → Range Conditions
+-Use to simplify numeric range checks.
+
+df <- df %>%
+  mutate(level = if_else(between(score, 50, 75), "Medium", "Other"))
+
+-More readable than score >= 50 & score <= 75
+
+##%in% → Multiple Value Matching
+-Use to check if value belongs to a set.
+
+df <- df %>%
+  mutate(region = if_else(state %in% c("TN", "KA", "AP"),
+                           "South", "Other"))
+
+##if_any() / if_all() → Conditional Across Multiple Columns
+-Use when condition depends on several columns.
+df <- df %>%
+  mutate(any_missing = if_any(c(col1, col2, col3), is.na))
+
+df <- df %>%
+  mutate(all_positive = if_all(c(x1, x2, x3), ~ .x > 0))
+
+
+##Common Mistakes
+-Using base if() instead of if_else() on vectors
+-Forgetting TRUE ~ in case_when()
+-Mixing data types in outputs
+-Not handling NA explicitly
+
+Writing a Custom function in R
+==============================
+#A function is a reusable block of code that:
+-Takes **inputs (arguments)**
+- Performs operations
+-Returns an **output**
+
+#Basic structure:
+my_function <- function(arg1, arg2) {
+  result <- arg1 + arg2
+  return(result)
+}
+
+#Using built-in functions on dataframes
+Example dataframe:
+df <- data.frame(
+  id = 1:5,
+  score = c(45, 67, 89, 34, 76),
+  group = c("A", "B", "A", "B", "A")
+)
+
+#Common dataframe functions
+nrow(df)        # number of rows
+ncol(df)        # number of columns
+names(df)       # column names
+summary(df)     # summary statistics
+
+#Column-wise operations
+mean(df$score)
+sum(df$score)
+
+#Apply a function to a column
+df$score_sq <- sqrt(df$score)
+
+#Or with `dplyr`
+
+df <- df %>%
+  mutate(score_sq = sqrt(score))
+
+#Creating a custom function for a dataframe
+Example: Categorize scores
+
+score_category <- function(x) {
+  ifelse(x >= 75, "High",
+         ifelse(x >= 50, "Medium", "Low"))
+}
+
+Apply it:
+df$category <- score_category(df$score)
+-Works on the whole column because R is **vectorized**
+
+#Custom function with multiple columns
+Example: Business rule using two variables
+risk_flag <- function(score, group) {
+  ifelse(score < 50 & group == "B", "High Risk", "Normal")
+}
+
+df$risk <- risk_flag(df$score, df$group)
+
+Custom function inside `dplyr::mutate()`
+df <- df %>%
+  mutate(risk = risk_flag(score, group))
+  
+## Custom function returning multiple values
+Example: Return both grade and pass/fail
+grade_result <- function(score) {
+  grade <- ifelse(score >= 75, "A",
+           ifelse(score >= 50, "B", "C"))
+  pass  <- ifelse(score >= 50, "Pass", "Fail")
+  data.frame(grade = grade, result = pass)
+}
+
+Use it
+df <- cbind(df, grade_result(df$score))
+
+## Custom function to modify entire dataframe
+Example: Convert all character columns to uppercase
+to_upper_df <- function(data) {
+  data[] <- lapply(data, function(x) {
+    if (is.character(x)) toupper(x) else x
+  })
+  return(data)
+}
+
+df <- to_upper_df(df)
+
+#Row-wise custom function (when logic depends on multiple columns)
+
+df <- df %>%
+  rowwise() %>%
+  mutate(flag = ifelse(score < 50 & group == "B", "YES", "NO")) %>%
+  ungroup()
+Or using a function:
+row_rule <- function(score, group) {
+  if (score < 50 & group == "B") "YES" else "NO"
+}
+
+df <- df %>%
+  mutate(flag = row_rule(score, group))
+
+##Function vs Custom Function (Dataframe Context)
+| Feature     | Built-in Function                | Custom Function         |
+| ----------- | -------------------------------- | ----------------------- |
+| Purpose     | Standard tasks (mean, sum, nrow) | Business / domain logic |
+| Reusability | General                          | Reuse your own rules    |
+| Flexibility | Limited to design                | Fully customizable      |
+| Readability | Simple                           | Makes pipelines cleaner |
+
+##Common mistakes
+-Using `if` instead of `ifelse` for vectors
+-Forgetting to return a dataframe when modifying one
+-Writing loops when vectorization works faster
+-Not handling `NA` values
+
+Example with `NA` handling:
+safe_mean <- function(x) {
+  mean(x, na.rm = TRUE)
+}
+
+##When should you create a custom function?
+*When the same logic is used in many places
+*When code becomes long inside `mutate()`
+*When you want readable business rules
+*When building reusable pipelines
+
+How to delete one or more row/column from a table - delete
+==========================================================
+In R we cannot actually delete a row, but you can access a data frame without some rows specified by negative index. This process is also called subsetting in R language.
+
+Celebrities = data.frame(name = c("Andrew", "Mathew", "Dany", "Philip", "John", "Bing", "Monica"),
+                         age = c(28, 23, 49, 29, 38, 23, 29),
+                         income = c(25.2, 10.5, 11, 21.9, 44, 11.5, 45))
+
+Delete by row
+-------------
+celebrities
+#assume we need to delete a first row
+celebrities[-1,] #remove 1st row but not from the dataframe
+celebrities[-c(1,4),] #remove multiple rows
+celebrities[-c(3:5),] #remove multiple range of rows
+
+Delete by Column
+-----------------
+To delete a column from R Data Frame, you may select the columns you want to keep using extract columns of data frame and overwrite the existing data frame
+celebrities <- data.frame(celebrities$name,celebrities$income) #assume you want to delete the age column
+celebrities
+
+#using NULL keyworkd
+celebrities$age <- NULL
+
+celebrities[,-2] #remove 2st column
+
+Ref:https://www.tutorialkart.com/r-tutorial/r-dataframe-delete-row/
+
+Performing a mixture of insertion, update, and deletion using a single statement
+================================================================================
+All data are stored in the R objects, this objects are resuable in nature can perform mixed operations
+
+Quiz
+====
+1)Create a new variable called Petal. Area, which multiples Petal.Length by Petal.Width
+2)Create a new variable called Sepal.LW.ratio , which divides Sepal.Length by Sepal.Width
+3)Create a new variable called Petal.Length.Classification , which categorises Petal.Length into small (<2),normal (2 5) and tall (>5)
+
+
+How to concat the two columns- concat
+====================================
+
+Concatenate Two Columns in R
+----------------------------
+dataf$MY <- paste(dataf$Month, dataf$Year)
+
+#to add a separateor 
+dataf$MY <- paste(dataf$Month, "-", dataf$Year)
+#use a sep parameter
+dataf$MY <- paste(dataf$Month, dataf$Year, sep= "-")
+
+Combine Multiple Columns in R
+-----------------------------
+dataf$DMY <- paste(dataf$Date, dataf$Month, dataf$Year)
+
+Concatenate Two Columns in R with the str_c() Function (stringr)
+---------------------------------------------------------------
+library(tidyverse) # or library(tidyr)
+
+#simple method
+-First, we used a new operator (i.e., %>%). Among a lot of things, this enables us to use unite() without the $ operator to select the columns.
+-we name the new column we want to add (“DM”)
+-second we select all the columns from “Date” to “Month” and combine them into the new column
+dataf <- dataf %>%
+  	unite("DM", Date:Month)
+
+#using REMOVE parameter
+-If we want to keep the original columns after we have concatenated them we can set the remove parameter to FALSE
+dataf <- dataf %>%
+  unite("DM", Date:Month, 
+        remove = FALSE)
+
+#using the SEP parameter
+unite() function together with the sep parameter to change the separator to “-” (hyphen):
+dataf <- dataf %>%
+  unite("DM", Date:Month, sep= "-", 
+        remove = FALSE)
+
+
+Assignment
+==========
+
+
+Resources:
+=========
+https://www.marsja.se/how-to-concatenate-two-columns-or-more-in-r-stringr-tidyr/

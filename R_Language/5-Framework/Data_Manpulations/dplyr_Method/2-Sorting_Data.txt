@@ -1,0 +1,78 @@
+Intro
+Sorting the data Single/multiple columns 
+Sorting the data with NULL values
+Sorting by date
+
+Intro
+=====
+Sorting the data frame
+
+#install and load the tidyverse package
+library(tidyverse)
+
+#data
+name <- c("sasi","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
+gender <- c("M", "F", "M", "F", "M", "M", "M", NA, "M", "F", "M")
+age <- c(29,67,40,23,26,34,55,42,18,73,18)
+weight <- c(52,65,80,57,71,90,67,78,85,50,85)
+height <- c(165,171,183,154,173,167,169,NA,NA,145,190)
+maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
+dob <- as.Date(c("1988-01-20","1983-01-22","1983-03-18","1978-01-11","1968-01-14","1999-03-24","1988-03-22","1955-01-19","1986-03-21","1968-04-26","1987-02-23"))
+
+health <- tibble(name,gender,age, weight, height,maristatus,dob) #tibble create the dataframe
+health
+view(health)
+
+class(health)
+typeof(health)
+str(health)
+### get data frame dimensions
+dim(health)
+nrow(health)
+ncol(health)
+
+Sorting the data Single/multiple columns example
+================================================
+-Arrange() can sort rows according to a variable (e.g. sort age in ascending order)
+-Important arguments in the function are (i) data source and (ii) variable to be sorted. The default is to sort in
+ascending order, but we can use desc() to sort in descending order
+
+sytnax:
+	arrange(data source, variable, …)
+	arrange(data source, desc(variable), …)
+
+#sorting single column
+library(dplyr)
+arrange(health,name) #ascending
+arrange(health,desc(name)) #descending
+
+#sorting multiple column
+arrange(health,name,age,desc(weight),desc(height)) #weight and height descending
+arrange(health,name,age,desc(weight),desc(dob))#weight and date descending
+arrange(health,maristatus,desc(age),desc(dob))#sorting using index
+
+Sorting the data with missing values
+===================================
+-in R missing are generally the value as NA
+
+library(dplyr)
+arrange(health,desc(height)) #always treated at the end of the value
+arrange(health,height) #always treated at the end of the value.
+
+Sorting by date
+===============
+library(dplyr)
+arrange(health,desc(dob)) #descending
+arrange(health,dob) #ascending
+
+Quiz
+====
+
+Assignment
+==========
+-Sort descending order for Sepal.Length
+-Sort ascending order for Petal.Width
+
+Resources:
+=========
+https://dplyr.tidyverse.org/reference/arrange.html

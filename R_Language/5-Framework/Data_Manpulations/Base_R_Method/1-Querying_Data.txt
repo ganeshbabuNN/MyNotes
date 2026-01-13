@@ -1,0 +1,134 @@
+Intro
+Querying data from all columns of a table
+Query data from a single column
+Querying data from multiple columns
+
+Intro
+=====
+-Generally in any data manipulations data frame is must frequently used data structure in R.
+-A data frame is a two-dimensional array-like structure or a table in which a column contains values of one variable, and rows contains one set of values from each column
+-A data frame is used to store data table and the vectors which are present in the form of a list in a data frame, are of equal length
+
+#install and load the tidyverse package
+library(tidyverse)
+
+#data
+name <- c("vyvan","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
+gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
+age <- c(29,67,40,23,26,34,55,42,18,73,18)
+weight <- c(52,65,80,57,71,90,67,78,85,50,85)
+height <- c(165,171,183,154,173,167,169,180,190,145,190)
+maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
+dob <- as.Date(c("1988-01-20","1983-01-22","1983-03-18","1978-01-11","1968-01-14","1999-03-24","1988-03-22","1955-01-19","1986-03-21","1968-04-26","1987-02-23"))
+
+health <- tibble(name,gender,age, weight, height,maristatus,dob) #tibble create the dataframe
+
+health
+
+#view the data in data grid
+view(health)
+### get object class and type
+class(health) 
+typeof(health)
+### get the data frame structure
+str(health)
+### get data frame dimensions
+dim(health)
+nrow(health)
+ncol(health)
+
+Querying data from all columns of a table
+=========================================
+base R
+------
+health
+view(health) 
+
+Using dplyr
+-----------
+-using select function
+
+sytnax:
+	select(data source, variables to select, …)
+
+select(health)
+
+Query data from a single column
+===============================
+
+base R
+------
+health[,1] #using column index
+
+id1=stu.data$student_id # just a list
+class(id1)
+typeof(id1)
+
+id <- data.frame(stu.data$student_id) #using a dataframe
+class(id)
+typeof(id)
+
+myvars <- c("name")
+health[myvars] #using the variable
+health["gender"] #directly in to the 
+health[c(1)] #indexing
+
+Using dplyr
+-----------
+select(health,name)#using variable name
+select(health,1:1) #using the range index
+select(health,2) #using the index
+
+Querying data from multiple columns
+====================================
+
+base R
+------
+health[,c(1,2),] #using multiple column index
+health[,c(4:3),] #using multiple range column index
+
+id <- data.frame(stu.data$student_id,stu.data$student_age) #using a dataframe
+id
+View(id)
+class(id)
+typeof(id)
+
+names(health) #get the names of the column
+myvars <- names(health) %in% c("name","age","weight","doj")
+health[!myvars] #dropping the column
+health[!c("name","age","weight")] #does not work
+health[c(-1:-3)] #drop 1 and 3rd index
+health$name <- health$age <- NULL  #remove 1st and 2nd variable
+health
+
+Using dplyr
+-----------
+library(dplyr)
+library(magrittr)
+-Used to select or de select columns (e.g. select gender and weight)
+-Important arguments in the function are (i) data source and (ii) the variables you wish to select
+	syntax: select(data source, variables to select, …)
+
+select(health,name,gender,weight)#using variable name
+select(health,1:3) #using the range index
+select(health,c(1,2,3)) #using the index
+select(health,-3) #remove the 3rd variable
+select(health,c(-3,-4)) #remove the 3rd and 4rd variable
+
+#using everything() functions
+-If we only care about age being first, we can use everything() to ensure all other variables are included
+health %>% select(age, everything())
+
+Quiz
+====
+
+Assignment
+==========
+using iris dataset
+1)Select the species variable
+2)Select the 1 st , 2 nd and 3 rd variables
+3)Remove the 1 st and 3 rd variables
+
+Resources:
+=========
+https://dplyr.tidyverse.org/reference/select.html
