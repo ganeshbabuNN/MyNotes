@@ -412,6 +412,36 @@ xmldataframe <- xmlToDataFrame("employee.xml")
 xmldataframe
 print(xmldataframe)
 
+Using xml2 package
+------------------
+library(xml2)
+--# Read the XML file
+doc <- read_xml("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/pandas-Datasets/student.xml")
+doc
+#Extract Data
+##Get all student nodes
+students <- xml_find_all(doc, ".//student")
+students
+##Extract values (name, age, course, score)
+names  <- xml_text(xml_find_all(doc, ".//name"))
+ages   <- xml_text(xml_find_all(doc, ".//age"))
+course <- xml_text(xml_find_all(doc, ".//course"))
+score  <- xml_text(xml_find_all(doc, ".//score"))
+
+tibble(names, ages, course, score)
+#Extract attributes (student id)
+ids <- xml_attr(xml_find_all(doc, ".//student"), "id")
+ids
+#Convert XML Directly to a Data Frame
+students_df <- data.frame(
+  id     = xml_attr(xml_find_all(doc, ".//student"), "id"),
+  name   = xml_text(xml_find_all(doc, ".//name")),
+  age    = as.integer(xml_text(xml_find_all(doc, ".//age"))),
+  course = xml_text(xml_find_all(doc, ".//course")),
+  score  = as.integer(xml_text(xml_find_all(doc, ".//score")))
+)
+
+students_df
 
 Handling JSON Files
 -------------------

@@ -220,7 +220,7 @@ t + hms(1,0,0)
 #Handles time without dates.
 
 #11. feather – Fast Exchange with Python
-#------------------------------
+#--------------------------------------
 library(feather)
 write_feather(mtcars, "cars.feather")
 read_feather("cars.feather")
@@ -238,18 +238,18 @@ content(res)
 #R can talk directly to web services.
 
 #14. jsonlite – JSON
-#------------------------------
+#-------------------
 library(jsonlite)
 fromJSON('{"name":"Arun","score":90}')
 
 #15. readxl – Excel Files
-#------------------------------
+#------------------------
 library(readxl)
 read_excel("student.xlsx", sheet = 1)
 #No Java, no Excel required.
 
 #16. rvest – Web Scraping
-#------------------------------
+#------------------------
 library(rvest)
 
 url <- "https://en.wikipedia.org/wiki/List_of_countries_by_population"
@@ -261,10 +261,20 @@ page %>%
 #Extract tables directly from websites.
 
 #17. xml2 – XML Files
-#------------------------------
+#--------------------
+#Read XML from a String (No File Needed)
 library(xml2)
-
-doc <- read_xml("<person><name>Arun</name></person>")
+xml_text_data <- '
+<students>
+  <student id="S101">
+    <name>Kiran</name>
+    <age>21</age>
+    <course>AI</course>
+    <score>90</score>
+  </student>
+</students>
+'
+doc <- read_xml(xml_text_data)
 xml_text(xml_find_all(doc, ".//name"))
 
 #18. modelr
