@@ -161,6 +161,6 @@ LB<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads
 ##18.1Are all date variables present?
 ##18.2Are all sequence variables present?
 
-Resources:
-=========
+#Resources:
+#=========
 https://dplyr.tidyverse.org/reference/select.html
