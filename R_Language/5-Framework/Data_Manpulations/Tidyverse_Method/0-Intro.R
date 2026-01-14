@@ -57,10 +57,30 @@ tidyverse_update() #update the packaes
 #1. ggplot2 – Data Visualization -Grammar of Graphics: build plots layer by layer
 #---------------------------------------------------
 #before in R use 
-plot(x, y)
-lines(x, y2)
-legend(...)
+# Convert cyl to factor (for grouping)
+cyl_factor <- factor(mtcars$cyl)
+# Create scatter plot
+plot(mtcars$wt, mtcars$mpg,
+     col = cyl_factor,
+     pch = 19,
+     cex = 1.2,
+     xlab = "Weight",
+     ylab = "Miles per Gallon",
+     main = "Fuel Efficiency vs Weight")
+# Add regression line
+model <- lm(mpg ~ wt, data = mtcars)
+abline(model, lwd = 2)
+# Add legend
+legend("topright",
+       legend = levels(cyl_factor),
+       col = 1:length(levels(cyl_factor)),
+       pch = 19,
+       title = "Cylinders")
 
+#plot(x, y)
+#lines(x, y2)
+#legend(...)
+#using ggplot2
 library(ggplot2)
 mtcars
 factor(mtcars$cyl)
