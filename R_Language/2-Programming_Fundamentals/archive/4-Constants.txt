@@ -1,0 +1,54 @@
+#Introduction
+#Delecration of Constants
+#Assigning values to Constants
+#Rules and Naming Convention for Constants
+#Quiz
+#Assignment
+#Resources
+
+#Introduction
+#============
+#-Constants are entities within a program whose value can't be changed
+#-There are 2 basic types of constant. These are numeric constants and character constants.
+
+#Numeric Constants
+#----------------
+#All the numbers you will be using within a program fall under this category. There are sub types like integer, double or complex, which is checked usng typeof() function. Example:
+typeof (6)
+typeof (4L)
+
+#characters constants
+#-------------------
+#These can be signified by means of either single quotes (') or using double quotes (") as delimiters.
+#'ganesh'
+#typeof("ganesh")
+
+#Delecration of variables
+=========================
+#-In really there is no such called constants in python or R, but in case if we want to use
+
+#Assigning values to variable
+#=============================
+#- You can denote the constant in UPPER Case. this is just a suggestions
+
+constants.R
+	PI=31.42
+	SQRTA= 32.
+
+testconstants.R
+	import constants
+	print(constants.PI)
+	print(constants.SQRTA)
+	
+#Rules and Naming Convention for Constants
+#========================================
+#similar as Variables
+
+#Quiz:
+#=====
+
+#Assignment:
+#===========
+
+#Resources:
+#=========
