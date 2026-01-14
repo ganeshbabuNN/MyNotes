@@ -37,64 +37,59 @@
 #Logical
 ------
 #*It is a special data type for data with only two possible values which can be construed as true/false.
-mylogical <- TRUE
-mylogical2 <-FALSE
-cat("mylogical",mylogical,"\n") #printing the output
-cat("mylogical2",mylogical2)
-class(mylogical) #type of the variable
+a <-TRUE
+typeof(a)
+class(a) 
+b <- "FALSE"
+typeof(b)
+class(b) 
 
 #Numeric
 -------
 #*Decimal value is called numeric in R, and it is the default computational data type.
 
 #using normal
-mynumeric <- 323
-cat("mynumeric",mynumeric,"\n")
-class(mynumeric)
+a <- 323
+typeof(a)
+class(a)
 
 #decimal
-mynumeric <- 3.2 #for decimal
-cat("mynumeric",mynumeric,"\n")
-class(mynumeric)
+a <- 3.6
+typeof(a)
+class(a)
 
-#Interger
+#Integer
 #--------
 #*Here, L tells R to store the value as an integer,
 
-myinteger <- 322L #prefix if it is integer
-cat("myinteger",myinteger,"\n")
-class(myinteger)
+a <- 323L
+typeof(a)
+class(a)
 
-a<-as.intger(3)
+a<-as.integer(3)
 
 #Complex
 -------
 #*A complex value in R is defined as the pure imaginary value i.
 
-mycomplex <- 3+2i
-cat(mycomplex)
-class(mycomplex)
+c <- 3+2i
+typeof(c)
+class(c)
 
 #Character
 ---------
-#*In R programming, a character is used to represent string values. We convert objects into character values with the help ofas.character() function.
+#*In R programming, a character is used to represent string values. We convert objects into character values with the help of as.character() function.
 
 #using double quotes
-mychar <- "R is a Super Programming language"
-cat(mychar,"\n")
-class(mychar)
-
-#use single quotes also
-mychar <- 'R is a Super Programming language'
-cat(mychar,"\n")
-class(mychar)
+c <- "R is a Super Programming language"
+typeof(c)
+class(c)
 
 #Raw
 ---
 #*A raw data type is used to holds raw bytes.
-
 myraw <- charToRaw("R is a Super Programming language")
-cat(myraw,"\n")
+typeof(myraw)
 class(myraw)
 
 #Date
@@ -107,16 +102,20 @@ typeof(d)
 class(d)
 # "Date"
 d <- as.Date(("2026-01-13 10:30:00")) #if want to print the time this will not be possible.
-d
-
+typeof(d)
+class(d)
 
 #POSIXct / POSIXlt (Date-Time)
 ---------------------------
-#Stores date + time.
-t <- as.POSIXct("2026-01-13 10:30:00")
+##Stores date + time.
+t <- as.POSIXct("2026-01-13 10:30:00") #portable operating system interface(POSI) calender time(ct) local time
+typeof(t)
 class(t)
-# "POSIXct" "POSIXt"
-
+##"POSIXct" is faster 
+dt4 <-as.POSIXlt("2025-03-11 01:30:50") #portable operating system interface(POSI) local time(lt)
+typeof(dt4)
+class(dt4)
+## "POSIXt" is heavy
 
 #NULL
 #-----
@@ -125,9 +124,13 @@ x <- NULL
 
 #NA (Missing Values)
 --------------------
-#Represents missing data. In details which see different type of missing value later.
-
+##Represents missing data. In details which see different type of missing value later.
+##nothing is different missing is different but both are not same.
 x <- c(10, NA, 30)
+NA==NULL 
+NULL==""
+1==1
+NA=" "
 
 #String
 #======
@@ -142,14 +145,16 @@ s2<-"Hello world"
 #String = character type in R
 
 #using double quotes
-mychar <- "R is a Super Programming language"
-cat(mychar,"\n")
-class(mychar)
+##use single quotes also
+s1 <- 'my name is baba'
+s1
+typeof(s1)
+class(s1)
 
-#use single quotes also
-mychar <- 'R is a Super Programming language'
-cat(mychar,"\n")
-class(mychar)
+##s1 <- "my name is baba"
+s1 <- "my name is baba"
+typeof(s1)
+class(s1)
 
 #*we shall learn more on the string chapter using function in next chapters
 
@@ -173,11 +178,32 @@ class(mychar)
 #-You should use c() function which means to combine the elements into a vector
 
 #create a vector
-names <- c("Ganesh","babu","Kumar","Veeresh")
-names
-class(names)
+a <- c("Ganesh","babu","Kumar","Veeresh")
+a
+typeof(a)
+class(a)
 
-#*Note even numeric, logical, character and vecotr of different types can also be created . this is expalined in detail in data structure chapter.
+a <- c(3,2,3,4,5) #numeric
+a
+typeof(a)
+class(a)
+
+a <- c("1","4","5","1",3,TRUE)
+a
+typeof(a)
+class(a)
+
+##validate
+a <- c(3,2,3,4,5,"a")
+a
+typeof(a)
+class(a)
+
+a <- c("1","4","5","1",3)
+a
+typeof(a)
+class(a)
+##*Note even numeric, logical, character and vector of different types can also be created . this is expalined in detail in data structure chapter.
 
 #list
 #----
@@ -187,14 +213,10 @@ class(names)
 	list()
 
 #create a list using list() function
-names <- list("Ganesh","babu","Kumar","Veeresh",12,TRUE,12L)
-names
-class(names)
-
-#addding a vector into a list
-names1 <- list(c(34,23,45,32),names)
-names1
-class(names1)
+a <- list(1,"Ganesh",TRUE,3.3,5L,0+3i,as.Date("2025-01-01"),NULL,NA,c(3,2,4,3),stu.data)
+a
+typeof(a)
+class(a)
 
 #matrices
 #--------
@@ -204,10 +226,17 @@ class(names1)
 #syntax:
 matrix(data, nrow, ncol, byrow, dim_name)  
 
-#create a matrices
-names <- matrix(c("Ganesh","babu","Kumar","Veeresh"),nrow=2,ncol=2,byrow = TRUE)
-names
-class(names)
+a<-matrix(c(1,2,3,4,5,6),nrow = 2,ncol = 3,byrow = TRUE)
+a
+typeof(a)
+class(a) 
+
+b<- matrix(c(7,8,9,10,11,12),nrow = 3,ncol = 2,byrow = TRUE)
+b
+typeof(a)
+class(a) 
+
+a %*% b #dot product
 
 #arrays
 #------

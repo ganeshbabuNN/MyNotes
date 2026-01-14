@@ -13,33 +13,45 @@ pak::pkg_system_requirements("tidyverse") #If you’re compiling from source, yo
 library(tidyverse) #will load the core tidyverse packages:
 tidyverse_packages() #to know what are the packages
   
-#ggplot2,for data visualisation.
-#dplyr, for data manipulation.
-#tidyr, for data tidying.
-#readr, for data import.
-#purrr, for functional programming.
-#tibble, for tibbles, a modern re-imagining of data frames.
-#stringr, for strings.
-#forcats, for factors.
-#lubridate, for date/times.
+#ggplot2,for data visualisation. https://ggplot2.tidyverse.org/
+#dplyr, for data manipulation.   https://dplyr.tidyverse.org/
+##dbplyr...dplyr backend         https://dbplyr.tidyverse.org/
+##dtplyr ... provides data.table backend for dplyr  https://dtplyr.tidyverse.org/
+##duckplyr ... larger in memory datasets    https://duckplyr.tidyverse.org/
+#tidyr, for data tidying.        https://readr.tidyverse.org/
+#readr, for data import.         https://readr.tidyverse.org/
+#purrr, for functional programming. https://purrr.tidyverse.org/
+#tibble, for tibbles, a modern re-imagining of data frames. https://tibble.tidyverse.org/
+#stringr, for strings.           https://github.com/tidyverse/stringr
+#forcats, for factors.           https://github.com/tidyverse/forcats
+#lubridate, for date/times.      https://github.com/tidyverse/lubridate
+
+#other subj pacakages
+#Working with specific types of vectors:
+##hms, for times.           https://hms.tidyverse.org/
+##bob S3 framework          https://blob.tidyverse.org/
+##magrittr                  https://magrittr.tidyverse.org/
+##glue.. fasten strign literals https://glue.tidyverse.org/
+#Tidymodels for modeling and ML learning https://www.tidymodels.org/
+
+
+#Importing other types of data:
+##feather, for sharing with Python and other languages. https://github.com/wesm/feather
+##haven, for SPSS, SAS and Stata files.                 https://github.com/tidyverse/haven
+##httr, for web apis.                                   https://github.com/r-lib/httr
+##jsonlite for JSON.                                    https://github.com/jeroen/jsonlite
+##readxl, for .xls and .xlsx files.                     https://readxl.tidyverse.org/index.html
+##googlesheet4                                          https://googlesheets4.tidyverse.org/  
+##googledrive                                           https://googledrive.tidyverse.org/
+##rvest, for web scraping.                              https://rvest.tidyverse.org/
+##xml2, for XML.                                        https://xml2.r-lib.org/
+
+#Tidyselect  https://tidyselect.r-lib.org/reference/index.html
 
 detach("package:tidyverse", unload = TRUE) #if you want to deactivate the package
 tidyverse_conflicts() #You can see conflicts created later
 library(MASS) #you get a message that is it linked to dplyr
 tidyverse_update() #update the packaes
-
-#other subj pacakages
-#Working with specific types of vectors:
-##hms, for times.
-
-#Importing other types of data:
-##feather, for sharing with Python and other languages.
-##haven, for SPSS, SAS and Stata files.
-##httr, for web apis.
-##jsonlite for JSON.
-##readxl, for .xls and .xlsx files.
-##rvest, for web scraping.
-##xml2, for XML.
 
 #Modelling
 ##modelr, for modelling within a pipeline
@@ -318,3 +330,7 @@ glance(model)
 augment(model)
 tidyverse_packages()
 #Model results become data frames for plotting and reporting.
+
+
+#Resources
+#---------
