@@ -1,32 +1,32 @@
-ommand Prompt
-Using Function
-Using Class
-Help info
-Quiz
-Assignment
-Resources
+#Command Prompt
+#Using Function
+#Using Class
+#Help info
+#Quiz
+#Assignment
+#Resources
 
-Introduction
-============
-In R we have 
+#Introduction
+#============
 
-Command Prompt
-==============
--# We can use the print() function
+
+#Command Prompt
+#==============
+# We can use the print() function
 print("Hello World!")
 
-## Quotes can be suppressed in the output
+# Quotes can be suppressed in the output
 print("Hello World!", quote = FALSE)
 
-## If there are more than 1 item, we can concatenate using paste()
+# If there are more than 1 item, we can concatenate using paste()
 print(paste("How","are","you?"))
 
 #print is a statement
 #Hello world! is a string literals
 #paste is functions and statement
 
-Using Function
-==============
+#Using Function
+#==============
 
 hello <- function() {
   print("hello world")
@@ -39,8 +39,8 @@ hello()
 #print is a statement
 #function has its syntax
 
-Using Class
-===========
+#Using Class
+#===========
 studentDetails <- list(name="ganesh",age=43,contact="india",grade=12) #studentdetails contains the list of elements passing a list
 class(studentDetails)<-"studentinfo" 
 studentDetails #call
@@ -50,7 +50,7 @@ studentDetails #call
 #studentdetails is a identifier
 #name,age,contact,grade are the identifier as well and act as a argument for list
 
-Using S3
+#Using S3
 ==========
 #Use unique function names to avoid any conflicts
 ##S3 Class -Function changes based on object type
@@ -69,10 +69,11 @@ class(x) <- "demo_class"
 say_msg(x)
 
 
-Using S4
+#Using S4
 ========
 #S4 Class -Strict class with formal method
 ##You call a function, and R decides which method to use based on the object’s class.
+
 ##Define class
 setClass("Person",
          slots = list(name = "character"))
@@ -87,10 +88,11 @@ setMethod("hello", "Person", function(object) {
 ##Call
 hello(p_s4)
 
-Using R6
+#Using R6
 ========
 #R6-Object owns its behavior (Java-style)
-##The object itself has methods. You call them with $.
+#The object itself has methods. You call them with $.
+
 library(R6)
 ## Define class
 Person <- R6Class("Person",
@@ -109,9 +111,9 @@ p_r6 <- Person$new("World")
 ##Call method
 p_r6$hello()
 
-Help info
-=========
-help(print) #Getting help on a function that you know the name of ? or help
+#Help info
+#=========
+#help(print) #Getting help on a function that you know the name of ? or help
 ?print
 example(paste) #Use the example function to see examples of how to use it.
 example(`for`)
@@ -143,7 +145,7 @@ ls(all.names = TRUE) # including names beginning with '.'
 ls("package:broom")     # everything for the sp package
 str(a) #Most variables can be inspected using str or summary.
 summary(a) #it is used for the dataframe to summarize the descriptive statistics
-glimpse(a) #its is similar to summary 
+glimpse(a) #its is similar to summary .this package is from dplyr 
 
 #directorys
 getwd() # print the current working directory - cwd
@@ -173,7 +175,7 @@ save.image()
 
 # save specific objects to a file
 # if you don't specify the path, the cwd is assumed
-save(object list,file="myfile.RData")
+save(object,list,file="myfile.RData")
 
 # load a workspace into the current session
 # if you don't specify the path, the cwd is assumed
@@ -191,21 +193,21 @@ rm(list=setdiff(ls(), "x")) #removing all the objects in workspace expect one ob
 rm(list=setdiff(ls(), c("x","y"))) #same above but multiple objects
 rm(list=setdiff(ls(pattern = "^edc_"), lsf.str()))# ^removing all the objects expect starting(^ symbols denotes starting with) with letter
 
-Note Handling files in R
--------------------
-R gets confused if you use a path in your code like:
-c:\mydocuments\myfile.txt
+#Note Handling files in R
+#-------------------
+#R gets confused if you use a path in your code like:
+#c:\mydocuments\myfile.txt
 
-This is because R sees "\" as an escape character. Instead, use:
-c:\\my documents\\myfile.txt
-c:/mydocuments/myfile.txt
+#This is because R sees "\" as an escape character. Instead, use:
+#c:\\my documents\\myfile.txt
+#c:/mydocuments/myfile.txt
 
-Quiz:
-=====
+#Quiz:
+#=====
 
-Assignment:
-===========
+#Assignment:
+#===========
 
-Resources:
-=========
-https://www.statmethods.net/interface/workspace.html
+#Resources:
+#=========
+#https://www.statmethods.net/interface/workspace.html
