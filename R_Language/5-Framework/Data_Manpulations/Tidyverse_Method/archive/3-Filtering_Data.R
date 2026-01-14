@@ -7,7 +7,7 @@ library(tidyverse) #install and load the tidyverse package
 
 name <- c("vyvan","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
 gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
-age <- c(29,67,40,23,26,34,55,42,18,73,18)
+age <- c(73,35,30,23,30,34,40,42,18,75,18)
 weight <- c(52,65,80,57,71,90,67,78,85,50,85)
 height <- c(165,171,183,154,173,167,169,180,190,145,190)
 maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
@@ -19,7 +19,7 @@ english <- c(65,26,34,75,72,89,74,58,57,71,52)
 region <- c("north","north","north","south","south","south","east","east","east","west","west")
 #sample(10:99, 11)
 health <- tibble(name,gender,age, weight, height,maristatus,dob,math,science,history,english,region) #tibble create the dataframe
-health
+
 
 #view the data in data grid
 view(health)
@@ -113,22 +113,51 @@ health %>% filter(age > mean(age))
 
 #Filtering by First / Last Within Groups
 health %>%
-  group_by(gender) %>%
-  filter(row_number() == 1)      # First row per group
+  group_by(region) %>%
+  filter(row_number() == 1) %>%    # First row per group
+  select(region,name,gender)
 
 health %>%
-  group_by(gender) %>%
-  filter(row_number() == n())    # Last row per group
+  group_by(region) %>%
+  filter(row_number() == n()) %>%    # Last row per group
+  select(region,name,gender)
 
 #Filtering by Rank / Dense Rank
-health %>%
-  group_by(region) %>%
-  filter(row_number() == 1)      # First row per group
+ht<-health %>%
+      mutate(
+        rank_gap = min_rank(desc(height)),          # 1st place is tallest
+        rank_dense = dense_rank(desc(height)))      # No gaps in ranking
+ht
+##min_rank()(Standard Ranking)-This is the "Olympic" style of ranking. If two people tie for 1st place, they both get 1, 
+##and the next person gets 3rd place. There is a gap because the 2nd position was "used up" by the tie.
+##Behavior: Skips numbers after a tie. Result for c(10, 10, 20): 1,1,3
+  ht %>%  
+    filter(rank_gap < 2)
+  
+##dense_rank() (Continuous Ranking):This creates a "dense" sequence with no gaps. If two people tie for 1st place, they both get 1, but the next person still gets 2nd place.
+##Behavior: Never skips numbers. Result for c(10, 10, 20):1,1,2
+  ht %>%  
+    filter(rank_dense <=2)
 
-health %>%
-  group_by(region) %>%
-  filter(row_number() == n())    # Last row per group
+#Filtering Using Window Functions##TBD
+##Keeps rows where age increased compared to previous row.
+health %>% filter(age > lag(age, default = 0)) 
+##Keeps only new maximum values over time.
+health %>% filter(age == cummax(age))
 
+#Conditional Filtering Using case_when()
+health %>%
+  filter(
+    case_when(
+      gender == "F" ~ age > 50,
+      gender == "M" ~ age > 70,
+      TRUE ~ FALSE
+    )
+  )
+
+#Filtering Using Multiple Columns at Once (Row-wise Logic)
+# Keep rows where row sum > 80
+health %>% filter(rowSums(across(math:science)) <100)
 
 #Quiz
 #====
