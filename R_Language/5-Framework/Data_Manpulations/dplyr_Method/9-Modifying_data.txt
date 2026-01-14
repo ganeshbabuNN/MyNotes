@@ -173,7 +173,6 @@ df <- df %>%
   mutate(salary = coalesce(salary, median(salary, na.rm = TRUE)))
 
 ###Replace across multiple columns
-
 df <- df %>%
   mutate(across(c(score1, score2, score3), ~ coalesce(.x, 0)))
 
@@ -210,6 +209,7 @@ df <- df %>%
     score >= 50  ~ "Medium",
     TRUE         ~ "Low"
   ))
+
 ##Convert Certain Values into NA
 ----------------------------------
 ### na_if() -> Turn a value into NA
@@ -243,7 +243,8 @@ df <- df %>%
   mutate(score = coalesce(score, mean(score, na.rm = TRUE))) %>%
   ungroup()
 
-#Common Mistakes
+##Common Mistakes
+-----------------
 -Using score == NA (always wrong) ->use is.na(score)
 -Forgetting na.rm = TRUE in summaries
 -Not handling NA in case_when() -> results stay NA
