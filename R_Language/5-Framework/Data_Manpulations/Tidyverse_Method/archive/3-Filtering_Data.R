@@ -16,9 +16,13 @@ math <- c(52,55,83,22,50,51,15,30,32,42,48)
 science <- c(23,52,71,58,90,25,66,39,88,76,70)
 history <- c(30,NA,35,NA,33,40,66," ",22,NA,66)
 english <- c(65,26,34,75,72,89,74,58,57,71,52)
+score_survey <- c(3.8,6,1.5,1.4,1.4,8,2.2,9.23,3.2,9.5,10.2)
+fed_survey1 <- c(55,75,13,56,99,62,89,34,25,81,79)
+fed_survey2 <- c(51,60,23,47,85,58,97,39,14,16,38)
 region <- c("north","north","north","south","south","south","east","east","east","west","west")
 #sample(10:99, 11)
-health <- tibble(name,gender,age, weight, height,maristatus,dob,math,science,history,english,region) #tibble create the dataframe
+#round(runif(11, 1.1, 10.9),2) #only for decimal use runif
+health <- tibble(name,gender,age, weight, height,maristatus,dob,math,science,history,english,score_survey,fed_survey1,fed_survey2,region) #tibble create the dataframe
 
 
 #view the data in data grid
@@ -102,10 +106,23 @@ health %>%
 ##the slice() family of functions is used to select rows based on their integer position
 health %>% slice_max(age, n = 1)
 health %>% slice_min(age, n = 1)
-##Filtering Using Row Numbers
+#slice other methods
+health %>% slice(2L) #similar to head()
+health %>% slice(n()) #similar to tail()
+health %>% slice(5:n()) #last 5 rows similar to tail()
+health %>% slice(-(1:4)) #Rows can be dropped with negative indices i,e the first 4 rows are dropped
+health %>% slice_head(n=5) #first obs - First and last rows based on existing order
+health %>% slice_tail(n=5) #last obs - First and last rows based on existing order
+health %>% slice_min(age,n=5) # min 5 record rows- Rows with minimum and maximum values of a variable
+health %>% slice_max(age,n=5) # max 5 record rows- Rows with minimum and maximum values of a variable
+health %>% slice_sample(n=5) #slice_sample() allows you to random select with or without replacement
+
+
+#Filtering Using Row Numbers
 health %>% filter(row_number() <= 3)     # First 3 rows
 health %>% filter(row_number() %% 2 == 0)  # Even rows : observer the row number compared to health dataset
-##Filtering with Dynamic Column Names (Programming)
+
+#Filtering with Dynamic Column Names (Programming)
 col_name <- "math"
 health %>% filter(.data[[col_name]] > 25)
 
@@ -128,7 +145,7 @@ health %>%
   filter(row_number() == n()) %>%    # Last row per group
   select(region,name,gender)
 
-#Filtering by Rank / Dense Rank
+#Filtering by Rank/Dense Rank
 ht<-health %>%
       mutate(
         rank_gap = min_rank(desc(height)),          # 1st place is tallest
@@ -164,9 +181,11 @@ health %>%
 #Filtering Using Multiple Columns at Once (Row-wise Logic)
 ##Keep rows where row sum > 80
 health %>% filter(rowSums(across(math:science)) > 150)
-##Filtering on Count of Conditions Met -~.x > 50 is a formula that checks if the value in each cell is greater than 50
+
+#Filtering on Count of Conditions Met -~.x > 50 is a formula that checks if the value in each cell is greater than 50
 health %>% filter(rowSums(across(math:science,~.x > 80))>=1)
-##Filtering with Nested Data
+
+#Filtering with Nested Data
 nested <- tibble(
   group = c("A","B"),
   data = list(
@@ -179,6 +198,7 @@ nested$group
 nested$data[2]
 nested$data[1] #This "maps" a function over every element in the data column and ensures the result is a logical value (TRUE or FAL
 nested %>%filter(map_lgl(data, ~ any(.x$x > 8)))
+
 ##Filtering Based on Frequency (Rare / Common Values)
 health %>%
   add_count(age) %>%
@@ -204,11 +224,10 @@ health %>%
 health %>%
   group_by(region) %>%
   filter(!any(age < 20)) #Removes entire groups if any row violates condition
-##c(FALSE,FALSE,FALSE)_north
-##c(FALSE,FALSE,FALSE)_south
-##c(FALSE,FALSE,TRUE)_east
-##c(FALSE,TRUE)_west
-
+          ##c(FALSE,FALSE,FALSE)_north
+          ##c(FALSE,FALSE,FALSE)_south
+          ##c(FALSE,FALSE,TRUE)_east
+          ##c(FALSE,TRUE)_west
 ##all()|logic:AND -Every single value is TRUE.There is at least one FALSE.
 ##Returns TRUE if...:Every single value is TRUE.
 ##Returns FALSE if :There is at least one FALSE.
@@ -216,46 +235,105 @@ health %>%
   group_by(region) %>%
   filter(!all(age < 40)) %>% 
   select(name,gender,age,region) #Removes entire groups if any row violates condition
-##c(FALSE,TRUE,TRUE)_north
-##c(TRUE,TRUE,TRUE)_south
-##c(FALSE,FALSE,TRUE)_east
-##c(FALSE,FALSE)_west
+        ##c(FALSE,TRUE,TRUE)_north
+        ##c(TRUE,TRUE,TRUE)_south
+        ##c(FALSE,FALSE,TRUE)_east
+        ##c(FALSE,FALSE)_west
 
 #Filtering Using Lead/Lag for Change Detection
 health %>% filter(age != lag(age))  #Keeps rows where value changed from previous record.
-###Experiment A:see how the entire east and west or dropped
+##Experiment A:see how the entire east and west or dropped
 ht<-health %>%
     group_by(region) %>%
     filter(!any(age < 20)) %>% 
     select(region,name,gender,age)
-###Experiment B:See how it only keeps the row where Alex turned 26.
+##Experiment B:See how it only keeps the row where Alex turned 26.
 ht %>%
   group_by(region) %>%
   filter(age != lag(age))%>% 
   select(region,name,gender,age)
-###lets check whats happening internally
+##lets check whats happening internally
 health %>%
   group_by(region) %>%
   mutate(
     previous_age = lag(age),
     did_age_change = (age != lag(age))
   ) %>%  filter(!any(age < 20)) %>% select(region,name,gender,age,previous_age,did_age_change)
-###similarly for lead
-##Filtering Using coalesce() for Fallback Logic
-health %>% filter(coalesce(as.integer(history), 0) > 60)
+##similarly for lead
 
-health %>% select(name,age,gender,history) %>% 
-          mutate(
-            history=as.integer(history)
-          )
+#Filtering Using coalesce() for Fallback Logic
+health %>% filter(coalesce(as.integer(history), 0) > 60) #Treats missing values/Blank string/NA as 0 before filtering.
 
+#filtering Using near() for Floating Point Comparisons
+## near() health %>% filter(near(score_survey, 9.2))
+health %>% filter(near(score_survey, 9.2))
+health %>% filter(near(score_survey, 8.0)) #this goes with precision but in data it is 8.0
 
+#Filtering Using cur_data()(legacy) (Inside Groups)
+##everything() grabs every single column 
+##The pick() function is a tool that grabs a subset of columns from your current data. It treats those columns like a mini-data frame that you can pass into other functions. its just faster
+health %>% group_by(region) %>%
+            filter(nrow(pick(everything())) <= 2)
+##explore pick() function
 
+#Filtering with across() + Column Name Patterns
+health %>% filter(if_any(starts_with("fed"),~.x>90))
 
+#Filtering with External Lookup Tables- hear we are not using the filters
+valid_age <- tibble(age = c(35,48,35))
+health %>% semi_join(valid_ids, by = "age")
+
+#Filtering Using Joins (Relational Filtering)
+health1 <- tibble(
+        name=c("vedha","arun","monica","tyagu"),
+        age=c(35,42,75,54),
+        fed_surey=c(56,32,88,76)
+)
+##Keep only matching rows (semi_join)
+health1 %>% semi_join(health, by = "name") #semi_join(x, y): Keeps all rows in x that have a match in y.
+##Remove matching rows (anti_join)
+health1 %>% anti_join(health, by = "name") #anti_join(x, y): Keeps all rows in x that do NOT have a match in y.
+
+#Filtering Rows That Are Duplicates
+##duplicated() function is a tool used to identify repeated values in a vector or repeated rows in a data frame
+health %>% filter(duplicated(age))
+health %>% filter(!duplicated(age))
+
+#Filtering for Outliers (IQR Method)
+#This code is the standard mathematical way to detect outliers (extreme values) using the Interquartile Range (IQR) Method
+Q1 <- quantile(health$age, 0.25)
+Q1
+Q3 <- quantile(health$age, 0.75)
+Q3
+IQR_val <- IQR(health$age)
+IQR_val
+
+health %>% filter(age < Q1 - 1.5 * IQR_val | age > Q3 + 1.5 * IQR_val)
 
 
 #Quiz
 #====
+#Single condition-filter(col > 10)
+#Multiple (AND)-&
+#Multiple (OR)- '	`
+#In list-%in%()
+#Missing values-is.na()
+#Ranges-between()
+#Pattern match-str_detect()
+#Group logic-group_by() + filter()
+#Any / All columns-if_any(), if_all()
+#Top / Bottom	slice_max(), slice_min()
+#Dynamic-column	.data[[col]]
+#Aggregate filters-Above mean, thresholds
+#Group filters-Top N, first/last
+#Window filters-Changes, trends
+#Relational filters-semi_join, anti_join
+#Row-wise logic-Multiple column conditions
+#requency filters-Rare vs common
+#Regex filters-Pattern-based
+#Temporal filters-Time windows
+#Validation filters-Duplicates, mismatches
+#Outlier filters-Statistical detection
 
 #Assignment
 #==========
@@ -271,4 +349,3 @@ health %>% select(name,age,gender,history) %>%
 #https://www.datasciencemadesimple.com/remove-duplicate-rows-r-using-dplyr-distinct-function/
 #https://www.datasciencemadesimple.com/filter-subsetting-rows-r-using-dplyr/
 #https://statisticsglobe.com/r-is-null-function/
-
