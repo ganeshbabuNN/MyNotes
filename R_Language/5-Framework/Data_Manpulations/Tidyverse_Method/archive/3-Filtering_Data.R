@@ -7,7 +7,7 @@ library(tidyverse) #install and load the tidyverse package
 
 name <- c("vyvan","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
 gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
-age <- c(73,35,30,23,30,34,40,42,18,75,18)
+age <- c(73,35,30,23,30,35,40,42,18,75,18)
 weight <- c(52,65,80,57,71,90,67,78,85,50,85)
 height <- c(165,171,183,154,173,167,169,180,190,145,190)
 maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
@@ -87,9 +87,15 @@ health %>% filter(if_all(c(math,english), ~ .x > 50))
 #library(tidyverse)
 #library(MASS)
 #library(dplyr)
+#max
 health %>% 
   group_by(gender) %>%
   filter(age == max(age)) %>%
+  select(gender,age,name)  
+##min
+health %>% 
+  group_by(gender) %>%
+  filter(age == min(age)) %>%
   select(gender,age,name)  
 
 #Filtering with slice_*() Helpers
@@ -156,8 +162,97 @@ health %>%
   )
 
 #Filtering Using Multiple Columns at Once (Row-wise Logic)
-# Keep rows where row sum > 80
-health %>% filter(rowSums(across(math:science)) <100)
+##Keep rows where row sum > 80
+health %>% filter(rowSums(across(math:science)) > 150)
+##Filtering on Count of Conditions Met -~.x > 50 is a formula that checks if the value in each cell is greater than 50
+health %>% filter(rowSums(across(math:science,~.x > 80))>=1)
+##Filtering with Nested Data
+nested <- tibble(
+  group = c("A","B"),
+  data = list(
+    tibble(x = c(1,5,10)),
+    tibble(x = c(2,3))
+  )
+)
+
+nested$group
+nested$data[2]
+nested$data[1] #This "maps" a function over every element in the data column and ensures the result is a logical value (TRUE or FAL
+nested %>%filter(map_lgl(data, ~ any(.x$x > 8)))
+##Filtering Based on Frequency (Rare / Common Values)
+health %>%
+  add_count(age) %>%
+  filter(n >=2) #Keeps only frequent categories
+
+#Filtering Using Regular Expressions
+health %>% filter(str_detect(name, "^v"))     # Starts with A
+health %>% filter(str_detect(name, "dha$"))   # Ends with dha
+
+#Filtering on Multiple Date Windows
+health %>% filter(dob == min(dob, na.rm = TRUE)) #min of that
+health %>% filter(dob == max(dob, na.rm = TRUE)) #max of that
+health %>%
+  filter(
+    dob >= as.Date("1955-01-01") &
+      dob <= as.Date("1980-01-12")
+  )
+
+#Conditional Group Exclusion
+##any()|logic:OR 
+##Returns TRUE if...:There is at least one TRUE.
+##Returns FALSE if :All values are FALSE.
+health %>%
+  group_by(region) %>%
+  filter(!any(age < 20)) #Removes entire groups if any row violates condition
+##c(FALSE,FALSE,FALSE)_north
+##c(FALSE,FALSE,FALSE)_south
+##c(FALSE,FALSE,TRUE)_east
+##c(FALSE,TRUE)_west
+
+##all()|logic:AND -Every single value is TRUE.There is at least one FALSE.
+##Returns TRUE if...:Every single value is TRUE.
+##Returns FALSE if :There is at least one FALSE.
+health %>%
+  group_by(region) %>%
+  filter(!all(age < 40)) %>% 
+  select(name,gender,age,region) #Removes entire groups if any row violates condition
+##c(FALSE,TRUE,TRUE)_north
+##c(TRUE,TRUE,TRUE)_south
+##c(FALSE,FALSE,TRUE)_east
+##c(FALSE,FALSE)_west
+
+#Filtering Using Lead/Lag for Change Detection
+health %>% filter(age != lag(age))  #Keeps rows where value changed from previous record.
+###Experiment A:see how the entire east and west or dropped
+ht<-health %>%
+    group_by(region) %>%
+    filter(!any(age < 20)) %>% 
+    select(region,name,gender,age)
+###Experiment B:See how it only keeps the row where Alex turned 26.
+ht %>%
+  group_by(region) %>%
+  filter(age != lag(age))%>% 
+  select(region,name,gender,age)
+###lets check whats happening internally
+health %>%
+  group_by(region) %>%
+  mutate(
+    previous_age = lag(age),
+    did_age_change = (age != lag(age))
+  ) %>%  filter(!any(age < 20)) %>% select(region,name,gender,age,previous_age,did_age_change)
+###similarly for lead
+##Filtering Using coalesce() for Fallback Logic
+health %>% filter(coalesce(as.integer(history), 0) > 60)
+
+health %>% select(name,age,gender,history) %>% 
+          mutate(
+            history=as.integer(history)
+          )
+
+
+
+
+
 
 #Quiz
 #====
@@ -176,3 +271,4 @@ health %>% filter(rowSums(across(math:science)) <100)
 #https://www.datasciencemadesimple.com/remove-duplicate-rows-r-using-dplyr-distinct-function/
 #https://www.datasciencemadesimple.com/filter-subsetting-rows-r-using-dplyr/
 #https://statisticsglobe.com/r-is-null-function/
+

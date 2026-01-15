@@ -132,6 +132,10 @@ NULL==""
 1==1
 NA=" "
 
+x <- c(10, NA, 30,"",NULL) #added a blank
+x #observe
+x<- as.integer(x)
+x #observe the "" i,e string is repalced with NA which is missing.
 #String
 #======
 #*Strings are a group of characters written inside a single or double-quotes
