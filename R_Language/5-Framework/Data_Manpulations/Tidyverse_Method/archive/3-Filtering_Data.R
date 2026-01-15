@@ -94,8 +94,7 @@ health %>% filter(if_all(c(math,english), ~ .x > 50))
 #max
 health %>% 
   group_by(gender) %>%
-  filter(age == max(age)) %>%
-  select(gender,age,name)  
+  filter(age == max(age)) %>%select(gender,age,name)  
 ##min
 health %>% 
   group_by(gender) %>%

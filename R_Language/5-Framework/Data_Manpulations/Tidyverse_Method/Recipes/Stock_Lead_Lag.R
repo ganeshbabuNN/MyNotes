@@ -1,3 +1,31 @@
+####################################################################################################
+###
+### Program:      derive_orres_vs_vsstresn 
+### Programmer:   Ganesh Babu G
+### Date Created: 15JAN2026
+###
+### Input:        
+###
+### Ouput:        
+###               
+###
+### Purpose:      
+###
+### Comment:      Demostration the lead and lag function using 
+###
+### Software:     Higher + 
+###               RStudio 2025.09.1 Builder401
+###               R version 4.5.1
+###               tidyverse 2.0.0
+###               tidyquant 1.0.11
+###
+### Modification: 
+###
+### Date        Programmer      Description
+### ----        ----------      -----------
+### 15JAN2026   Ganesh Babu     initiated
+###
+#######################################################################################################
 # 1. Install and load the package
 install.packages("tidyquant")
 library(tidyquant)

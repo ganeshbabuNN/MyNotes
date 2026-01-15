@@ -113,6 +113,7 @@ typeof(t)
 class(t)
 ##"POSIXct" is faster 
 dt4 <-as.POSIXlt("2025-03-11 01:30:50") #portable operating system interface(POSI) local time(lt)
+dt4
 typeof(dt4)
 class(dt4)
 ## "POSIXt" is heavy
@@ -370,7 +371,7 @@ typeof(y)
 #*Conceptually class() gives the object-oriented class.
 #*object<->class its idealogy is object , class is a keyword.
 #*It controls how functions behave on the object (methods).
-#Think like“What category of object is this for R functions?”
+#Think like “What category of object is this for R functions?”
 
 #Example: Date
 d <- as.Date("2026-01-13")
@@ -406,11 +407,22 @@ typeof(x)
 mode(x)
 #"numeric"
 
-f <- factor(c("A","B"))
+f <- factor(c("A","B","A"))
+f
 typeof(f)
 #"integer"
 mode(f)
 #"numeric"
+
+d <- as.Date("2026-01-13")
+typeof(d)
+#"double"
+mode(d)
+
+d <- "ganesh"
+typeof(d)
+#"double"
+mode(d)
 
 #So:
 #mode() hides details
@@ -470,8 +482,8 @@ str(x)      # structure of object
 #use is methods
 
 is.numeric(23.2)
-is.integer(32)
-is.charcter('2')
+is.integer(32L)
+is.character('A')
 is.vector(4)
 is.matrix(x)
 is.data.frame(df)
