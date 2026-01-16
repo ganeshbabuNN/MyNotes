@@ -559,6 +559,7 @@ is.na(employ$salary[7])
 a<-list(2,3,3,4)
 typeof(a)
 is.list(a)
+
 a <- NULL 
 is.null(a)
 
