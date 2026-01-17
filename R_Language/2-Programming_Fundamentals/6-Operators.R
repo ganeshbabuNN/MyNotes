@@ -252,6 +252,36 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
 ##Higher priority operators are evaluated first.
 
 #Parentheses () – Highest Priority
+------------------------------------
+#Anything inside parentheses is executed first.
+(5 + 2) * 3
+#Without parentheses:
+5 + 2 * 3 #Always use parentheses when logic must be explicit
+
+#Exponentiation
+---------------
+#Power is evaluated before multiplication and addition.
+2 + 3^2
+#the above equivalent to Equivalent to:
+2 + (3^2)
+#But
+(2 + 3)^2
+
+#Multiplication / Division vs Addition / Subtraction
+----------------------------------------------------
+10 + 6 / 3
+
+#Step-by-step:
+#6 / 3 = 2
+#10 + 2 = 12
+
+#Another
+20 - 4 * 3
+#4*3=12
+#20-12=8
+
+
+
 
 
 

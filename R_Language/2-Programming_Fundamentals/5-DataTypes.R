@@ -521,7 +521,7 @@ class(RFSTDTC)   # "Date"
 
 #logical --> NA (missing value (default logical))
 x<- NA
-typeof(x)
+typeof(x) #In R, NA (Not Available) is technically a logical constant by default based on the data type hierarchy or Coercion Hierarchy. 
 
 #integer --> NA_Integer_(missing integer)
 c(3L,NA_integer_)
@@ -709,7 +709,7 @@ typeof(m) #Matrices must have one data type.
 lst <- list(1, "A", TRUE) #Lists can store mixed types (no coercion).
 
 #Coercion During Operations
-#The Coercion HierarchyWhen R performs an operation, it looks at the types involved and moves "up" this chain:
+#The Coercion Hierarchy When R performs an operation, it looks at the types involved and moves "up" this chain:
 #logical-->integer-->numeric(double)-->character
 #Logical is the "lowest" (least complex).
 #Character is the "highest" (most complex) because any number or boolean can be represented as text, but not all text can be a number.
