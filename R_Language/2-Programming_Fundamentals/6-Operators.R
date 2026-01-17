@@ -34,6 +34,7 @@
 # * (Multiplication)
 # / (Division)
 # ^ or ** (Power)
+# +/- uniary addition/subraction
 # %% MOdulus(Reminder)
 # %/% Integer Division
 
@@ -47,6 +48,11 @@
 5/2
 # ^ or ** (Power)
 2^3
+# +/- uniary addition/subraction
+x <- c(1,-2,3)
+-x #unary - The unary minus is used to negate a value
++x #unary + The unary plus is less commonly used because it does not change the value of its operand. In R, it exists primarily for mathematical symmetry and completeness
+
 # %% MOdulus(Reminder)
 5%%2
 # %/% Integer Division
@@ -230,7 +236,7 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
 
 #General Precedence Rules (High → Low)
 #====================================
-#() -- Parenthese
+#() -- Parentheses
 #^,** --exponentiation
 #+,-(unary) -sign
 #*,/,%%,%/%--- multiple,divide,modulus
