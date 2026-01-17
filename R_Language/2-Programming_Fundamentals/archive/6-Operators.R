@@ -1,0 +1,229 @@
+# Intro
+# Type of operators
+# Operator Overloading and Overriding
+# operator precedence and associativity
+# Quiz
+# Assignment
+# Resources
+
+# Intro
+# =====
+# -The operator can be defined as a symbol which is responsible for a particular operation between two operands.
+# -An operator is a symbol which tells the compiler to perform specific logical or mathematical manipulations
+# -R programming is very rich in built-in operators
+# Operators are used to perform operations on variables and values.
+
+# Type of operators
+# ==================
+# There are Type of Operators.
+# 1)Arithmetic operators
+# 2)Relational operators
+# 3)Logical Operators
+# 4)Assignment Operators
+# 5)Miscellaneous Operators
+
+# Arithmetic operators
+# ----------------------
+# Arithmetic operators are used to perform arithmetic operations between two operands.
+# + ( addition) 
+# - (Subractions)
+# * (Multiplication)
+# / (Division)
+# ^ or ** (Power)
+# %% MOdulus(Reminder)
+# %/% Integer Division
+
+# + ( addition) 
+5+3
+# - (Subractions)
+5-3
+# * (Multiplication)
+5*3
+# / (Division)
+5/2
+# ^ or ** (Power)
+2^3
+# %% MOdulus(Reminder)
+5%%2
+# %/% Integer Division
+##The integer division operator (%/%) %/% is the integer division operator. 
+##It divides the first number by the second and returns only the whole number (the quotient), discarding any remainder or decimal parts..
+5%/%2
+##what happend when we Division & Modules ?
+ 
+# Relational operators
+# ----------------------
+# -A relational operator is a symbol which defines some kind of relation between two entities
+
+# == (equal to)
+#!= (not equal)
+#> (Greater than) 
+#< (Less than)
+#>= (Greater or equal)
+#<=(less or equal)
+# a <- c(3,5.5,6)
+# b <- c(22,7,6)
+# 
+# go <- a >b
+# go #greater operator
+# 
+# lo <- a<b
+# lo #lesser operator
+# 
+# leo <- a<=b
+# leo #less then equal operator
+# 
+# geo <- a>=b
+# geo #greater then equal operator
+# 
+# eo <- a==b
+# eo #equal to operator
+# 
+# neo <- a!=b
+# neo #not equal to operator
+# 
+# 
+# Logical Operators
+# -------------------
+# The logical operators are used primarily in the expression evaluation to make a decision. Python supports the following logical operators.
+# 
+# Operator		Description
+# &(and)			This operator is known as the Element-wise Logical AND operator. This operator takes the first element of both the vector and returns TRUE if both the elements are TRUE.	 
+# |(or)			This operator is called the Element-wiseLogical OR operator. This operator takes the first element of both the vector and returns TRUE if one of them is TRUE.	 
+# !(not)			This operator is known as Element-wise Logical NOT operator. This operator takes the first element of the vector and gives the opposite logical value as a result.	
+# &&			called as Logical AND operator.This operator takes the first element of both the vector and gives TRUE as a result, only if both are TRUE.		
+# || 			called Logical OR operator.This operator takes the first element of both the vector and gives the result TRUE, if one of them is true.	
+# 
+# a <- c(3,0,TRUE,2+2i)
+# b <- c(2,4,TRUE,2+3i)
+# 
+# print(a&b) # OR operator
+# print(a|b)  #And operator
+# print(!a) #Not operator
+# print(a&&b) 
+# print(a||b)
+# 
+# 
+# 
+# Assignment Operators
+# ----------------------
+# -An assignment operator is used to assign a new value to a variable. In R, these operators are used to assign values to vectors.
+# 
+# Operator		Description
+# <- or = or <<-		These operators are known as left assignment operators.	
+# -> or ->>		These operators are known as right assignment operators.	
+# 
+# 
+# 
+# 
+# a <- c(3,0,TRUE,2+2i)
+# b <- c(2,4,TRUE,2+3i)
+# 
+# #left assignment operator
+# a<- b
+# a #if there is one complex type all the elements will of complex type
+# a = b
+# a
+# a <<- b
+# a
+# 
+# #right assignment operator
+# a -> b
+# a
+# a ->>b
+# a
+# 
+# Miscellenaous Operators
+# --------------------
+# Miscellaneous operators are used for a special and specific purpose
+# 
+# Operator	 Description
+# :(colon)	 The colon operator is used to create the series of numbers in sequence for a vector.	
+# %in%             This is used when we want to identify if an element belongs to a vector.	
+# %*%		 It is used to multiply a matrix with its transpose.	
+# 
+# v <- c(4:10) #colon operator
+# v 
+# 
+# v1 <- 9
+# v2 <- 4
+# h <- c(1:8)
+# print(v1%in%h) 
+# print(v2%in%h)
+# 
+# M <- matrix(c(1,2,3,4,5,6),nrow=2,ncol=3,byrow = TRUE)
+# M
+# t(M) #transpose the matrix
+# tran <- M%*%t(M)
+# tran
+# 
+# 
+# Operator Overloading and Overriding
+# -----------------------------------
+# -genearlly few languages supports operator overloading and overriding.
+# 
+# #using number
+# a <- 3
+# b <- 3
+# a+b #its overides
+# 
+# #using string
+# a <-"ganesh"
+# b <- "babu"
+# a|b #it does not allow overloads as it allows only numeric not string where it other languages it overloads
+# 
+# #using list
+# l1 <- list(1,2,3,4,5)
+# l2 <- list(6,7,8,9,10)
+# l1+l2 # it does not allow overloads as it allows only numeric not string where it other languages it overloadsprint(s1)
+# 
+# operator precendence and associativity
+# =====================================
+# The precedence of the operators is essential to find out since it enables us to know which operator should be evaluated first. 
+# The precedence table of the operators in Python is given below.
+# 
+# Operator	Description
+# ^		Exponent(Right to left)
+# -x, +x		Unary minus, Unary plus(left to right)
+# %%		Moduls(left to right)
+# *, /		multiplication, division(left to right)
+# +,-		addtion subractions(left to right)
+# <, >, <=, 	comparison(left to right)
+# >=, ==, !=			
+# !		logical not(left to right).
+# &, &&		Logical AND(left to right)	
+# |, ||		Logical OR(left to right)	
+# ->, ->>		Rightward assignment(left to right)	
+# <-, <<-		Leftward assignment(Right to left)	
+# =		Leftward assignment(Right to left)	
+# 
+# In the above table, you can confirm that some of the groups have many operators. 
+# It means that all operators in a group are at the same precedence level.
+# And whenever two or more operators have the same precedence, then associativity defines the order of operations.
+# The associativity is the order in which it evaluates an expression containing multiple operators of the same precedence. 
+# Almost all operators except the exponent (**) support the left-to-right associativity
+# 
+# # Testing Left-right associativity
+# print(4 * 7%%3) #i,e 4 * (7%%3)=4
+# # Testing left-right associativity
+# print(2*3^2) #i,e 2 * (3^2)
+# # Checking right-left associativity of ^ exponent operator
+# print(4^2+2) # (4^2)+2
+# # Checking the right-left associativity
+# print((3^2)*2)
+# 
+# R does have some operators such as assignment operators and comparison operators which don’t support associativity. Instead, there are special rules for the ordering of this type of operator which can’t be managed via associativity.
+# 
+# For example, 
+# the expression 5 < 7 < 9 does not mean (5 < 7) < 9 or 5 < (7 < 9), it means evaulated as it does not understand
+# 
+# Quiz:
+# =====
+# 
+# Assignment:
+# ===========
+# 
+# Resources:
+# =========
+# https://www.tutorialspoint.com/r/r_operators.htm
+# https://www.w3adda.com/r-tutorial/r-operator-precedence

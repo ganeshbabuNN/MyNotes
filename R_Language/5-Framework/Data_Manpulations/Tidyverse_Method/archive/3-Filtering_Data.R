@@ -1,4 +1,40 @@
-#Intro
+#Intro 
+####################--Basic Learning --------####################
+#Basic Row Filtering (Single Condition)
+#Multiple Conditions (AND)
+#Multiple Conditions (OR)
+#Filtering Using Character Matching
+#Filtering Missing and Non-Missing Values
+#Range Filtering
+#Filtering Dates
+####################--Advance Learning --------####################
+#Conditional Filtering Using if_any() and if_all()
+#Group-wise Filtering (Top/Min/Max per Group)
+#Filtering with slice_*() Helpers
+#Filtering Using Row Numbers
+#Filtering with Dynamic Column Names (Programming)
+#Filtering Based on Computed Conditions
+#Filtering Using Aggregates (Without Explicit group_by)
+#Filtering by First / Last Within Groups
+#Filtering by Rank/Dense Rank
+#Filtering Using Window Functions##TBD
+#Conditional Filtering Using case_when()
+#Filtering Using Multiple Columns at Once (Row-wise Logic)
+#Filtering on Count of Conditions Met
+#Filtering with Nested Data
+##Filtering Based on Frequency (Rare/CommonValues)
+#Filtering Using Regular Expressions
+#Filtering on Multiple Date Windows
+#Conditional Group Exclusion
+#Filtering Using Lead/Lag for Change Detection
+#Filtering Using coalesce() for Fallback Logic
+#filtering Using near() for Floating Point Comparisons
+#Filtering Using cur_data()(legacy) (Inside Groups)
+#Filtering with across() + Column Name Patterns
+#Filtering with External Lookup Tables- hear we are not using the filters
+#Filtering Using Joins (Relational Filtering)
+#Filtering Rows That Are Duplicates
+#Filtering for Outliers (IQR Method)
 
 
 #Intro
@@ -336,9 +372,121 @@ health %>% filter(age < Q1 - 1.5 * IQR_val | age > Q3 + 1.5 * IQR_val)
 
 #Assignment
 #==========
-#1)Filter iris for petal length less than 1.6
-#2)Filter iris for sepal length greater than 5.0 and sepal width greater than 3.0
-#3)Filter iris for petal width being either 0.2, 0.3 or 1.4, and species is virginica
+AE<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ae.csv")
+DM<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/dm.csv")
+VS<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/vs.csv")
+EX<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ex.csv")
+LB<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/lb.csv")
+
+#AE
+#---
+##Ongoing AEs at Database Lock 
+##Treatment-Emergent AEs Using Study Day Only 
+##Serious OR Fatal AEs
+##AEs Leading to Discontinuation
+#AEs of Special Interest (AESI)
+#First AE per Subject
+#Subjects with ≥ 3 AEs
+#AEs with Date Logic Errors
+#Severity-Based Filtering
+#Dose-Related AEs
+#Treatment-Emergent by Study Day Window
+#Late-Onset AEs
+#Recurrent Events (Same Term Reappears)
+#Events with Missing Severity but Serious
+#AEs with Concomitant Action Required
+#Long-Duration AEs
+#Fatal or Life-Threatening Only
+#AEs Missing Start Date
+#Multiple Serious AEs in Same SOC
+#AEs with Partial Dates (Imputation Candidates)
+
+
+#LB DOMAIN (Laboratory)
+#-----------------------
+#Baseline Labs Only
+#Post-Baseline Labs Only
+#Out-of-Range Values
+#High-Risk Subjects (≥2 Abnormal Results)
+#Worst Value per Subject
+#Change Over Time (Increasing Trend)
+#Last Value per Subject
+#Labs with Missing Units
+#Clinically Significant Abnormal (CS Flag) -TBD
+#Subjects with No Post-Baseline Labs
+#Lab Values Decreasing Over Time
+#Extreme Lab Values (Top 1%)
+#Inconsistent Units for Same Test
+#Subjects with Lab Value Crossing Threshold
+#Last Non-Missing Lab per Subject
+#Subjects with ≥3 High Values of Same Test
+
+
+#VS DOMAIN (Vitals)
+-------------------
+#Hypertension Screening
+#Subjects with Multiple High BP Readings
+#Abnormal HR Values
+#Hypotension Detection
+#Clinically Significant Change from Baseline -TBD
+#Vitals Measured Outside Clinic Hours -TBD
+
+#EX DOMAIN (Exposure)
+#--------------------
+#Subjects with Dose Changes
+#Missed Doses
+#High-Dose Administration
+#Subjects with ≥5 Doses
+#Exposure Duration > 30 Days
+#First Dose Only
+#Last Dose Only
+#Dose Escalation
+#Dose Reduction
+#Gaps in Dosing
+#Exposure Without Dose
+
+
+#DM DOMAIN (Demographics)
+#-------------------------
+#Screen Failures
+#Subjects Who Discontinued
+#Elderly Population
+#Pediatric Population
+#Missing Key Demographics
+#Early Termination
+#Completed Subjects
+#Subjects with Missing Reference Dates
+#Subjects Outside Age Range
+#Duplicate Subjects
+#Subjects with Partial Dates
+
+
+#SV DOMAIN (Subject Visits)
+#--------------------------
+#Unscheduled Visits
+#Missed Visits
+#Visits Outside Visit Window
+#First Visit Only
+#Last Visit Only
+#Subjects with ≥2 Unscheduled Visits -TBD
+#Visits with Missing Visit Name
+
+
+#CM DOMAIN (Concomitant Medications)
+#------------------------------------
+#Prohibited Medications
+#Ongoing Medications at Study End
+#Medications with High Dose
+#Medications Started After Baseline (Using Study Day)
+#Chronic Medications (Long Duration)
+#Polypharmacy (≥5 Medications)
+#Medications Missing Indication
+
+#DS (Disposition)
+----------------
+#Early Withdrawal 
+#Screen Failure Only
+#Protocol Violation as Reason
 
 #Resources:
 #=========
@@ -347,4 +495,4 @@ health %>% filter(age < Q1 - 1.5 * IQR_val | age > Q3 + 1.5 * IQR_val)
 #https://jangorecki.gitlab.io/data.cube/library/data.table/html/duplicated.html
 #https://www.datasciencemadesimple.com/remove-duplicate-rows-r-using-dplyr-distinct-function/
 #https://www.datasciencemadesimple.com/filter-subsetting-rows-r-using-dplyr/
-#https://statisticsglobe.com/r-is-null-function/
+#https://statisticsglobe.com/r-is-null-function

@@ -1,17 +1,26 @@
 #Intro
+####################--Basic Learning --------####################
 #Select All Columns
-##using the pipe operator -- going further we shall use this method.
 #Select Specific Columns
 #Select Using Column Ranges by Name
 #Drop/exclue column
 #Reorder Columns -Changes column order.
 #Select by Position
 #Select with Logical Vectors
+####################--Advance Learning --------####################
 #Rename While Selecting
 #Helper Functions (Very Important)
 #Select with Negation + Helpers
 #Combine Multiple Select Rules
 #Reorder Using everything()
+#select Numeric/character column
+#Select Columns by Multiple Conditions-using numeric and logical col
+#exclude by type-character
+#Select Columns That Satisfy a Function
+#Tidyselect with any_of() and all_of()
+#Remove Duplicated Column Names
+#Select Last / First Columns
+#Real-World Example
 
 #Intro
 #=====
@@ -23,23 +32,31 @@ library(tidyverse) #install and load the tidyverse package
 
 name <- c("vyvan","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
 gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
-age <- c(29,67,40,23,26,34,55,42,18,73,18)
+age <- c(73,35,30,23,30,35,40,42,18,75,18)
 weight <- c(52,65,80,57,71,90,67,78,85,50,85)
 height <- c(165,171,183,154,173,167,169,180,190,145,190)
 maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
 dob <- as.Date(c("1988-01-20","1983-01-22","1983-03-18","1978-01-11","1968-01-14","1999-03-24","1988-03-22","1955-01-19","1986-03-21","1968-04-26","1987-02-23"))
+math <- c(52,55,83,22,50,51,15,30,32,42,48)
+science <- c(23,52,71,58,90,25,66,39,88,76,70)
+history <- c(30,NA,35,NA,33,40,66," ",22,NA,66)
+english <- c(65,26,34,75,72,89,74,58,57,71,52)
+score_survey <- c(3.8,6,1.5,1.4,1.4,8,2.2,9.23,3.2,9.5,10.2)
+fed_survey1 <- c(55,75,13,56,99,62,89,34,25,81,79)
+fed_survey2 <- c(51,60,23,47,85,58,97,39,14,16,38)
+region <- c("north","north","north","south","south","south","east","east","east","west","west")
+#sample(10:99, 11)
+#round(runif(11, 1.1, 10.9),2) #only for decimal use runif
+health <- tibble(name,gender,age, weight, height,maristatus,dob,math,science,history,english,score_survey,fed_survey1,fed_survey2,region) #tibble create the dataframe
 
-health <- tibble(name,gender,age, weight, height,maristatus,dob) #tibble create the dataframe
-health
-
-#view the data in data grid
+##view the data in data grid
 view(health)
-# get object class and type
+##get object class and type
 class(health) 
 typeof(health)
-# get the data frame structure
+##get the data frame structure
 str(health)
-# get data frame dimensions
+##get data frame dimensions
 dim(health)
 nrow(health)
 ncol(health)
@@ -94,26 +111,52 @@ health %>% select(name,starts_with("we"),ends_with("ht"))
 
 #Reorder Using everything()
 health %>%  select(dob,everything()) #first name column and then everything
-##select Numeric/character column
+
+#select Numeric/character column
 health %>% select(where(is.numeric))
 health %>% select(where(is.character))
 health %>% select(where(is.numeric),everything()) #pull all character columns and then other
-##Select Columns by Multiple Conditions                 
+#Select Columns by Multiple Conditions                 
 health %>% select(where(is.numeric),where(is.logical))
 health %>% select(where(is.character),where(is.logical))
-##exclude by type
+#exclude by type
 health %>% select(-where(is.character))
-##Select Columns That Satisfy a Function using any_of and all_of from tidyselect When column names come from a vector.
+
+#Select Columns That Satisfy a Function 
+health %>% select(where(~ mean(.x, na.rm = TRUE) > 50)) #Keeps columns whose mean is > 50.
+
+#Tidyselect with any_of() and all_of()
 ##all_of() Select all specified columns — and ERROR if any are missing,Works only if all three columns exist,If even one column is missing, you get an error
 ##any_of() Select only the columns that exist — silently ignore missing ones,Output contains only the columns that exist No error is thrown
 cols <- c("name","age","emp_status")
 health %>% select(all_of(cols))   # must exist
 health %>% select(any_of(cols))   # this is called safer version Because it does not break your pipeline when columns are missing.
-##Remove Duplicated Column Names
+##Use all_of() when:
+###Columns are mandatory
+###You want the code to fail fast
+###You are doing QC or validation
+##Use any_of() when:
+###Columns are optional
+###Datasets may differ across studies/vendors
+###You want robust, reusable pipelines
+###You want to avoid runtime errors
+
+#Remove Duplicated Column Names
 health %>% select(!duplicated(names(.))) #no example
-##Select Last / First Columns
+
+#Select Last / First Columns
 health %>% select(last_col())
 health %>% select(last_col(2))
+
+#Real-World Example
+health %>%
+  select(
+    employee = name,
+    region,
+    starts_with("score"),
+    -age
+  )
+
 
 #Quiz
 #====
@@ -137,30 +180,46 @@ AE<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads
 DM<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/dm.csv")
 VS<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/vs.csv")
 EX<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ex.csv")
-LB<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/lb.csv")
+LB<-readr::read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/master/clinical_datasets/sdtm/daibetes/csv/lb.csv")
+SV<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/sv.csv")
+CM<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/cm.csv")
+DS<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ds.csv")
 
-#1.Select Core Identifiers from Any Domain
-#2.Select All AE Variables from AE 
-#3.Select All Date Variables
-#4.Select Only Weight and Height from VS
-##4.1By test name pattern
-#5.Select All Result Columns from LB LBORRES,LBSTRESN,LBSTRESC,LBORRESU
-#6.Select All Character Columns (Metadata Review)
-#7.Select All Numeric Result Variables
-#8.Select All Variables for Exposure (EX)
-#9.Select All Timing Variables i,e DTC,DY
-#10.Select All Qualifiers in a Domain ,Only AE-specific columns
-#11.Reorder: Put Keys First STUDYID, DOMAIN, USUBJID, AESEQ
-#12.Select All "Standardized" Variables like LBSTRESC,LBSTRESN,LBSTRESU
-#13.Select All Test Codes like VSTESTCD,VSTEST
-#14.Select All Numeric Measurements + Subject ID
-#15.Select Variables Using Regex (Advanced) using RES,RESN,RESC
-#16.Programmatic SDTM Selection putting a vector c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AEENDTC")
-#17.Select Only Domain-Specific Columns
-#18.Typical SDTM Validation Check
-##18.1Are all date variables present?
-##18.2Are all sequence variables present?
+#if the above URL does not work... test if the URL is reachable 
+url <- "https://raw.githubusercontent.com/ganeshbabuNN/datasets/master/clinical_datasets/sdtm/daibetes/csv/lb.csv"
+readLines(url, n = 5)
+#If you still get an error (Corporate proxy / SSL)
+LB <- readr::read_csv(curl::curl(url))
+LB <- readr::read_csv(
+  url,
+  locale = readr::locale(encoding = "UTF-8")
+)
+
+#Select Core Identifiers from Any Domain
+#Select All AE Variables from AE 
+#Select All Date Variables
+#Select Only Weight and Height from VS
+##By test name pattern
+#Select All Result Columns from LB 'LBOR','LBST'
+#Select All Result Columns from LB 'DY','DTC'
+#Select All Character Columns (Metadata Review)
+#Select All Numeric Result Variables
+#Select All Variables for Exposure (EX)
+#Select All Timing Variables i,e DTC,DY
+#Select All Qualifiers in a Domain ,Only AE-specific columns
+#Reorder: Put Keys First STUDYID, DOMAIN, USUBJID, AESEQ
+#Select All "Standardized" Variables like LBSTRESC,LBSTRESN,LBSTRESU
+#Select All Test Codes like VSTESTCD,VSTEST
+#Select All Numeric Measurements + Subject ID
+#Select Variables Using Regex (Advanced) using RES,RESN,RESC
+#Programmatic SDTM Selection putting a vector c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AEENDTC")
+#Select Only Domain-Specific Columns
+#Typical SDTM Validation Check 
+##Are all date variables present?
+##Are all sequence variables present?
+##Are all date variables present?
+##Are all sequence variables present?
 
 #Resources:
 #=========
-https://dplyr.tidyverse.org/reference/select.html
+#https://dplyr.tidyverse.org/reference/select.html
