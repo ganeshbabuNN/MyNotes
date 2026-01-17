@@ -5,6 +5,7 @@
 #data structures
 #To know the type of variable
 #Handling missing values
+#Data Type Conversion in R
 #Quiz
 #Assignment
 #Resources
@@ -613,6 +614,181 @@ is.na(x)
 #-bias analysis
 #-break models
 #-cause regulatory issues in clinical data
+
+#Data Type Conversion in R
+#==========================
+#There are two broad types of conversion:
+##Implicit (Automatic) Type Conversion
+## Explicit (Manual) Type Conversion
+
+#Implicit (Automatic) Type Conversion
+#------------------------------------
+##R automatically converts data types without you asking, based on a fixed hierarchy.
+##Type Hierarchy (Lowest → Highest)
+##logical → integer → numeric → character
+
+##Example- Mixed Vector
+x <- c(TRUE, 10, 3.5, "A")
+x  #Everything becomes character.
+
+##Example- Logical to Numeric
+x<-TRUE + 5   
+x #TRUE -> 1 #FALSE -> 0
+
+#Example: Integer to Numeric
+x <- c(1L, 2.5)
+typeof(x)
+
+#Example: Arithmetic Coercion
+5 + "2" #non-numeric argument to binary operator
+
+##Explicit (Manual) Type Conversion
+#----------------------------------
+#You explicitly tell R to convert a value using as.*() functions.
+
+#Numeric Conversions
+##as.numeric()
+as.numeric("10")
+##Non-numeric text:
+as.numeric("A") #NA Warning: NAs introduced by coercion
+
+#as.integer()
+##Same as numeric.
+as.double(10)
+
+#Character Conversions
+as.character(100)
+
+#Numeric -> Character
+as.character(3.14)
+
+#Logical Conversions
+##as.logical()
+as.logical(1)
+as.logical(0)
+##Character logical
+as.logical("TRUE")
+as.logical("FALSE")
+
+#Factor Conversions (Very Important)
+##Factor → Character (Always do this first)
+f <- factor(c("A", "B", "C"))
+as.character(f)
+#Factor → Numeric (Wrong Way)
+as.numeric(f) #(these are level codes)
+#Correct Way
+as.numeric(as.character(f))
+
+#Date & Time Conversions
+##Character → Date
+as.Date("2025-01-16")
+##With Format
+as.Date("16-01-2025", format="%d-%m-%Y")
+#POSIXct / POSIXlt
+as.POSIXct("2025-01-16 10:30:00")
+#Date -> Character
+as.character(Sys.Date())
+
+
+#Conversion Inside Data Structures
+##Data Frame Column Conversion
+df <- data.frame(
+  id = c("1", "2", "3"),
+  age = c("25", "30", "40"),
+  stringsAsFactors = FALSE
+)
+str(df)
+
+df$age <- as.numeric(df$age)
+df
+str(df)
+##Matrix Conversion
+m <- matrix(c(1, "A", 3), nrow=3)
+typeof(m) #Matrices must have one data type.
+##List Conversion
+lst <- list(1, "A", TRUE) #Lists can store mixed types (no coercion).
+
+#Coercion During Operations
+#The Coercion HierarchyWhen R performs an operation, it looks at the types involved and moves "up" this chain:
+#logical-->integer-->numeric(double)-->character
+#Logical is the "lowest" (least complex).
+#Character is the "highest" (most complex) because any number or boolean can be represented as text, but not all text can be a number.
+
+##A. Logical to Numeric (The most useful coercion)
+###When you use a logical value (TRUE/FALSE) in a mathematical operation, R treats TRUE as 1 and FALSE as 0.
+TRUE + 5       # Result: 6 (TRUE becomes 1)
+sum(c(T, F, T)) # Result: 2 (Count of TRUEs)
+mean(c(T, F))   # Result: 0.5 (Proportion of TRUEs)
+TRUE + TRUE ##Arithmetic
+
+##B.Numeric to Character
+##If you combine numbers and text (e.g., in a vector or a comparison), the numbers are coerced into strings.
+c(1, 2, "three") # Result: "1" "2" "three" (The numbers become text)
+5 == "5" # Result: TRUE (The number 5 is coerced to "5" for comparison)
+"10" == 10 ##Comparison
+
+#C.Numeric to Logical
+#In conditional statements (like an if block), R can coerce numbers to logicals. Zero becomes FALSE, and any other number becomes TRUE.
+as.logical(0)  # FALSE
+as.logical(42) # TRUE
+##Logical Operations
+1 & 0
+
+
+#Safe Conversion Techniques
+##Suppress Warnings
+as.numeric("A")
+suppressWarnings(as.numeric("A"))
+##Check Before Converting
+is.numeric(x)
+is.character(x)
+##Convert Multiple Columns
+df[] <- lapply(df, as.character)
+df
+str(df)
+
+#Type Testing Functions
+#function - purpose
+#class()-object clse
+#typeof()-storage mode
+#mode()- old-style type
+#is.numeric()-Numeric check
+#is.integer() -integer check
+#is.character()- character check
+#is.factor()-factor check
+#str()-structure
+
+x <- 10L
+class(x)
+typeof(x)
+
+#Common Conversion Pitfalls
+##Factor Trap
+f <- factor(c("10", "20"))
+as.numeric(f)   # wrong
+as.numeric(as.character(f))#Correct
+##NA Introduction
+as.numeric(c("10", "A")) #The Failure: The string "A" has no logical numeric value but 10 it understood a number equivalent
+as.numeric(c(10, "A"))
+#Logical Misinterpretation
+as.logical("Yes")   # NA
+
+#aspect --> implicit-->explicit
+#who controls-->R --> you
+#Warning shown?-->rare often
+#safe?-->risky-->safer
+#usercase --> quickops --> date cleaning
+
+#conversaion cheat sheett
+#character-->numeric =as.numeric()
+#numeric-->character= as.character()
+#Numeric--> Integer= as.integer()
+#Logical-->Numeric= Automatic
+#Character-->Logical= as.logical()
+#Factor-->Character= as.character()
+#Factor-->Numeric= as.numeric(as.character())
+#Character-->Date= as.Date()
+#Character-->POSIXct= as.POSIXct()
 
 #Quiz:
 #=====
