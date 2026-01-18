@@ -1,5 +1,7 @@
 #Command Prompt
+#####################Basic ##########################
 #Using Function
+#####################Advanced ##########################
 #Using S3 method
 #Using s4 Method
 #using R6 Method
@@ -11,7 +13,7 @@
 
 #Introduction
 #============
-
+#this are the different way of executing the program from R.
 
 #Command Prompt
 #==============
@@ -46,10 +48,8 @@ hello("hello world")
 #hello is a function name which is an identifier
 #function is a keyword
 #print is a statement to print output.
-
-
-
 #function has its syntax
+
 #Procedure with code
 --------------------
 #1)Decide function name
@@ -196,6 +196,8 @@ obj$hello()
 #S3 --> UseMethod()
 #S4 --> setClass(), setMethod()
 #R6 --> R6Class(), $new()
+
+##We shall go in details in the advanced programming
 
 #Help info
 #=========
