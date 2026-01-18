@@ -51,7 +51,7 @@ hello("hello world")
 #function has its syntax
 
 #Procedure with code
---------------------
+#--------------------
 #1)Decide function name
 ## hello <- 
 #2)Declare function using function()
