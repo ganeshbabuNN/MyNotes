@@ -1,6 +1,6 @@
 # Intro
 # Type of operators
-#Operator Precedence and assocativatity (Order of Execution)
+# Operator Precedence and assocativatity (Order of Execution)
 # Operator Overloading and Overriding
 # Quiz
 # Assignment
