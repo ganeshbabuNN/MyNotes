@@ -235,12 +235,12 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
 5 + (2 * 3) #So multiplication happens before addition.
 
 #General Precedence Rules (High → Low)
-#====================================
+#-------------------------------------
 #() -- Parentheses
-#^,** --exponentiation
+#^,** --exponentiation 
 #+,-(unary) -sign
 #*,/,%%,%/%--- multiple,divide,modulus
-#+,- --- add, subtract
+#+,- --- additions, subtraction
 #: --- sequence
 #<,<=,>,==,!= ------relational
 #! --- logical NOT
@@ -251,8 +251,186 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
 #~ ---- formula
 ##Higher priority operators are evaluated first.
 
+#Operator Associativity in R
+#-----------------------------
+#Operator associativity defines the direction in which operators of the same precedence are evaluated when they appear together without parentheses.
+#In simple words ,When two or more operators have the same priority, associativity decides whether evaluation happens left-to-right or right-to-left.
+  
+#Operator Precedence vs Associativity (Important Difference)
+#-----------------------------------------------------
+#Concept	Decides
+#Precedence=	Which operator is evaluated first
+#Associativity=Direction of evaluation when precedence is the same
+
+#Main Associativity Rules in R
+------------------------------
+#R operators follow two associativity directions:
+##Left-to-Right Associativity
+##Right-to-Left Associativity
+
+#Left-to-Right Associativity (Most Operators)
+#---------------------------------------------
+#If operators are left-associative, R evaluates them from left to right.
+#Common Left-Associative Operators
+#Operator Type	Operators
+#Arithmetic--> + - * / %% %/%
+#Relational-->	< <= > >= == !=
+#Logical--> `&
+#Sequence-->	:
+#Pipe--> %>%
+#Indexing--> [
+
+#Example 1: Arithmetic
+10 - 5 - 2
+#Evaluation:
+# (10 - 5) - 2
+#= 5 - 2
+#= 3
+
+#Example 2: Division
+#20 / 5 / 2
+
+#Evaluation:
+  
+#(20 / 5) / 2
+#= 4 / 2
+#= 2
+
+#Example 3: Logical
+TRUE & FALSE & TRUE
+
+#Evaluation:
+#(TRUE & FALSE) & TRUE
+#= FALSE & TRUE
+#= FALSE
+
+#Example 4: Relational
+5 < 10 < 20
+
+#Evaluation:
+#(5 < 10) < 20
+TRUE < 20
+1 < 20
+TRUE
+#Logical mistake
+#This does not mean “5 is less than 10 and 10 is less than 20”.
+#Correct way:
+#5 < 10 & 10 < 20
+
+#Right-to-Left Associativity (Special Operators)
+-----------------------------
+#If operators are right-associative, R evaluates them from right to left.
+#Common Right-Associative Operators
+#Operator Type	Operators
+#Exponentiation--> 	^
+#Assignment-->	<- -> = <<-
+#Unary-->	+ - !
+#Formula-->	~
+  
+#Exponentiation ^ (Right-Associative)
+2 ^ 3 ^ 2
+#Evaluation:
+#2 ^ (3 ^ 2)
+#= 2 ^ 9
+#= 512
+
+#If it were left-associative:
+#(2 ^ 3) ^ 2 = 64
+#But R gives 512.
+
+#Assignment Operators (Right-to-Left)
+a <- b <- c <- 10
+#Evaluation: 
+c <- 10
+b <- c
+a <- b
+#Result:
+a
+b
+c
+# all are 10
+
+#Mixed Assignment
+10 -> x -> y
+#Evaluation:
+#y <- (x <- 10)
+
+#Unary Operators (Right-Associative)
+! ! TRUE
+#Evaluation:
+#!(!TRUE)
+#= !FALSE
+#= TRUE
+#- - 5
+#Evaluation:
+# -(-5)
+#= 5
+
+#Sequence Operator : (Left-Associative but Tricky)
+1:3:5
+
+#Evaluation:
+#(1:3):5
+
+#But:
+#1:3 --> c(1,2,3)
+#This becomes invalid and causes confusion.
+#Always use parentheses:
+1:(3:5)
+
+#Associativity with Operator Precedence Together
+5 + 2^3^2
+
+#Step-by-step:
+#^ has higher precedence
+#^ is right-associative
+2^(3^2) = 2^9 = 512
+5 + 512 = 517
+
+#Associativity in Logical Expressions
+TRUE | FALSE & FALSE
+
+#& has higher precedence
+#& is left-associative
+
+TRUE | (FALSE & FALSE)
+TRUE | FALSE
+TRUE
+
+#Associativity in Comparisons (Very Important Trap)
+10 > 5 == 1
+
+#Evaluation:
+(10 > 5) == 1
+TRUE == 1
+TRUE
+#Correct logic:
+(10 > 5) & (5 == 1)
+
+#Best Practices (Very Important)
+#Never rely on associativity for clarity
+#Always use parentheses for:
+##Comparisons
+##Logical expressions
+##Exponentiation chains
+##Sequence creation
+
+#One-Line Memory Rule
+#Same precedence → associativity decides direction
+#Most operators are left-associative
+#Exponent (^) and assignment (<-) are right-associative
+
+#Final Takeway
+#Associativity controls evaluation direction, not priority
+#R mostly evaluates left to right
+#^ and assignments go right to left
+#Comparison chains can produce logical bugs
+#Parentheses remove ambiguity and improve readability
+
+#Now lets geting into eah operator precedence remember the assocativatity
+#------------------------------------
 #Parentheses () – Highest Priority
-------------------------------------
+
 #Anything inside parentheses is executed first.
 (5 + 2) * 3
 #Without parentheses:
@@ -280,9 +458,106 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
 #4*3=12
 #20-12=8
 
+#Sequence Operator
+#-----------------
+#The : operator has lower precedence than arithmetic, but higher than comparisons.
+1:5 + 1
+#Interpreted as:
+(1:5) + 1
+#But
+1:(5 + 1) #Many beginners make mistakes here. Use parentheses for clarity.
 
+#Relational Operators (> < == != <= >=)
+---------------------------------------
+#Evaluated after arithmetic but before logical operators.
+5 + 2 > 6
+#Step-by-step:
+#5 + 2 = 7
+#7 > 6 = TRUE
 
+#Logical Operators: !, &, |, &&, ||
+-----------------------------------
+##a) Logical NOT !  
+##Highest among logical operators.
+!TRUE == FALSE
+##Interpreted as:
+(!TRUE) == FALSE
 
+##b) & vs | (Vectorized)
+TRUE | FALSE & FALSE #Precedence: & before |
+Step-by-step:
+FALSE & FALSE = FALSE
+TRUE | FALSE = TRUE
+
+#Assignment <- Happens Late
+x <- 5 + 3 * 2
+x
+##Step-by-step:
+##3 * 2 = 6
+##5 + 6 = 11
+##x <- 11
+
+#Combined Expression Walkthrough
+-------------------------------
+result <- 5 + 2^3 * 4 > 20 & !FALSE
+
+#Step-by-step execution order:
+#Exponent: 2^3 = 8
+#Multiplication: 8 * 4 = 32
+#Addition: 5 + 32 = 37
+#Relational: 37 > 20 = TRUE
+#Logical NOT: !FALSE = TRUE
+#Logical AND: TRUE & TRUE = TRUE
+#Assignment: result <- TRUE
+
+#Precedence in Data Filtering (Real Example)
+--------------------------------------------
+df <- data.frame(
+    age = c(18, 22, 30, 15),
+    salary = c(20000, 30000, 50000, 15000)
+)
+df$age >= 18 & df$salary > 25000
+#Execution:
+#Comparisons first:
+#df$age >= 18 → TRUE TRUE TRUE FALSE
+#df$salary > 25000 → FALSE TRUE TRUE FALSE
+#Logical AND:
+#TRUE & FALSE = FALSE
+#TRUE & TRUE = TRUE
+#TRUE & TRUE = TRUE
+#FALSE & FALSE = FALSE
+
+#Common Mistakes
+---------------
+#Mistake 1: Forgetting parentheses
+1:3*2
+#Interpreted as:
+#1:(3*2) -> 1:6
+#Correct
+(1:3)*2
+
+#Mistake 2: Logical order confusion
+TRUE | FALSE & FALSE
+#Not left-to-right. It becomes:
+TRUE | (FALSE & FALSE)
+
+#Best Practice
+--------------
+#Always use parentheses when:
+#Writing complex expressions
+#Combining arithmetic + logical
+#Creating sequences
+(df$age >= 18) & (df$salary > 25000)
+
+#One-Line Summary
+----------------
+# () -> ^ -> * / -> + -  -> : -> comparisons -> !-> & -> | -> && -> || -> assignment
+  
+
+5+3+4^2*3
+5+3+16*3
+5+3+48
+56
 
 
 # Operator Overloading and Overriding
@@ -322,7 +597,7 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
 # |, ||		Logical OR(left to right)	
 # ->, ->>		Rightward assignment(left to right)	
 # <-, <<-		Leftward assignment(Right to left)	
-# =		Leftward assignment(Right to left)	
+# =	Leftward assignment(Right to left)	
  
 # In the above table, you can confirm that some of the groups have many operators. 
 # It means that all operators in a group are at the same precedence level.
@@ -346,10 +621,224 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
  
 # Quiz:
 # =====
- 
+
+
+#Quiz
+#=====
+
 # Assignment:
 # ===========
-# 
+#ASSIGNMENTS ON OPERATORS IN R
+#ASSIGNMENT 1: Arithmetic Operators
+#Q1
+#Predict the output:
+10 + 4 * 2
+#Q2
+(10 + 4) * 2
+#Q3
+25 / 5 + 3^2
+#Q4
+17 %% 5
+#Q5
+17 %/% 5
+#ASSIGNMENT 2: Relational (Comparison) Operators
+#Q6
+5 > 3
+#Q7
+5 == "5"
+#Q8
+10 != 8
+#Q9
+3 <= 2
+#Q10
+"R" < "r"
+#ASSIGNMENT 3: Logical Operators
+#Q11
+TRUE & FALSE
+#Q12
+TRUE | FALSE
+#Q13
+!TRUE
+#Q14
+TRUE | FALSE & FALSE
+#Q15
+c(TRUE, FALSE) & c(FALSE, TRUE)
+#ASSIGNMENT 4: Logical (& vs &&, | vs ||)
+#Q16
+c(TRUE, FALSE) && c(TRUE, TRUE)
+#Q17
+c(TRUE, FALSE) & c(TRUE, TRUE)
+#Q18
+FALSE || TRUE
+#ASSIGNMENT 5: Assignment Operators
+#Q19
+x <- 5 + 2 * 3
+x
+#Q20
+10 -> y
+y
+#Q21
+z = 5
+z
+#ASSIGNMENT 6: Special Operators
+Q22
+1:5 + 1
+#Q23
+1:(5 + 1)
+#Q24
+5 %in% c(1, 3, 5, 7)
+#Q25
+c(2, 4, 6) %/% 4
+#ASSIGNMENT 7: Vectorized Operators
+#Q26
+x <- c(10, 20, 30)
+x + 5
+#Q27
+x * 2
+#Q28
+x > 15
+#ASSIGNMENT 8: Operator Precedence
+#Q29
+5 + 2^3 * 4
+#Q30
+(5 + 2)^3 * 4
+#Q31
+TRUE | TRUE & FALSE
+#Q32
+!TRUE == FALSE
+#ASSIGNMENT 9: Type Coercion + Operators
+#Q33
+TRUE + TRUE
+#Q34
+"10" + 5
+#Q35
+"10" == 10
+#ASSIGNMENT 10: Data Frame + Operators (Real-World)
+df <- data.frame(
+  age = c(16, 22, 30, 15),
+  salary = c(20000, 30000, 50000, 15000)
+)
+#Q36
+df$age >= 18
+#Q37
+df$salary > 25000
+#Q38
+df$age >= 18 & df$salary > 25000
+#ASSIGNMENT 11: Tricky / Interview-Level
+#Q39
+1:3 * 2 + 1
+#Q40
+(1:3) * (2 + 1)
+#Q41
+5 > 4 == 1
+#Q42
+FALSE | TRUE & TRUE | FALSE
+#OPTIONAL TASKS (Write Code)
+#Q43
+#Write code to check if a number is even or odd using operators only.
+#Q44
+#Create a vector and use operators to:
+#Identify values greater than 50
+#Replace them with "High" and others with "Low"
+#Q45
+#Using operators, calculate BMI:
+#BMI = weight / (height^2)
+
+#predence
+#---------
+#Assignment 1: Basic Arithmetic Precedence
+#Q1
+5 + 2 * 3
+#Q2
+(5 + 2) * 3
+#Q3
+10 - 4 / 2
+#Q4
+2^3 + 4
+#Q5
+2^(3 + 4)
+#Assignment 2: Sequence : vs Arithmetic
+#Q6
+1:5 + 2
+#Q7
+1:(5 + 2)
+#Q8
+(1:5) * 2
+#Q9
+1:3 * 2
+#Q10
+(1:3) * (2 + 1)
+#Assignment 3: Relational vs Arithmetic
+#Q11
+5 + 3 > 7
+#Q12
+5 + (3 > 7)
+#Q13
+10 - 5 == 5
+#Q14
+10 - (5 == 5)
+#Q15
+8 / 4 >= 2
+#Assignment 4: Logical Operator Precedence
+#Q16
+TRUE | FALSE & FALSE
+#Q17
+(TRUE | FALSE) & FALSE
+#Q18
+!TRUE == FALSE
+#Q19
+! (TRUE == FALSE)
+#Q20
+TRUE && FALSE | TRUE
+# Assignment 5: Assignment with Precedence
+#Q21
+x <- 5 + 2 * 3
+x
+#Q22
+y <- (5 + 2) * 3
+y
+#Q23
+z <- 10 > 5 + 2
+z
+#Q24
+a <- 10 > (5 + 2)
+a
+#Assignment 6: Vector & Data Examples
+#Q25
+x <- c(2, 4, 6)
+x + 2 * 3
+#Q26
+x <- c(2, 4, 6)
+(x + 2) * 3
+#Q27
+x <- c(10, 20, 30)
+x > 15 & x < 30
+#Q28
+x <- c(10, 20, 30)
+x > (15 & x < 30)
+#Assignment 7: Tricky / Interview Level
+#Q29
+1:3 + 1:3 * 2
+#Q30
+(1:3 + 1:3) * 2
+#Q31
+5 > 4 == 1
+#Q32
+(5 > 4) == 1
+#Q33
+TRUE | TRUE & FALSE & FALSE
+
+#Associativity
+#---------
+#Q1
+2 ^ 3 ^ 2
+#Q2
+10 - 3 - 2
+#Q3
+5<6<7
+#Q4
+a <- b <- 5
+
 # Resources:
 # =========
 # https://www.tutorialspoint.com/r/r_operators.htm

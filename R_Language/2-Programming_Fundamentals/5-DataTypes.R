@@ -3,7 +3,8 @@
 #Default value of Types
 #Strings
 #data structures
-#To know the type of variable
+#Default value of Types
+#To know the type of variable used
 #Handling missing values
 #Data Type Conversion in R
 #Quiz
@@ -617,6 +618,7 @@ is.na(x)
 
 #Data Type Conversion in R
 #==========================
+#In another language it is called as type casting for primitive type and for objects its boxing/unboxing.
 #There are two broad types of conversion:
 ##Implicit (Automatic) Type Conversion
 ## Explicit (Manual) Type Conversion
