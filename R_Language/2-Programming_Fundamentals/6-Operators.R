@@ -1,7 +1,7 @@
 # Intro
 # Type of operators
+#Operator Precedence and assocativatity (Order of Execution)
 # Operator Overloading and Overriding
-# operator precedence and associativity
 # Quiz
 # Assignment
 # Resources
@@ -579,46 +579,7 @@ TRUE | (FALSE & FALSE)
 # l2 <- list(6,7,8,9,10)
 # l1+l2 # it does not allow overloads as it allows only numeric not string where it other languages it overloadsprint(s1)
  
-# operator precendence and associativity
-# =====================================
-# The precedence of the operators is essential to find out since it enables us to know which operator should be evaluated first. 
-# The precedence table of the operators in Python is given below.
 
-# Operator	Description
-# ^		Exponent(Right to left)
-# -x, +x		Unary minus, Unary plus(left to right)
-# %%		Moduls(left to right)
-# *, /		multiplication, division(left to right)
-# +,-		addtion subractions(left to right)
-# <, >, <=, 	comparison(left to right)
-# >=, ==, !=			
-# !		logical not(left to right).
-# &, &&		Logical AND(left to right)	
-# |, ||		Logical OR(left to right)	
-# ->, ->>		Rightward assignment(left to right)	
-# <-, <<-		Leftward assignment(Right to left)	
-# =	Leftward assignment(Right to left)	
- 
-# In the above table, you can confirm that some of the groups have many operators. 
-# It means that all operators in a group are at the same precedence level.
-# And whenever two or more operators have the same precedence, then associativity defines the order of operations.
-# The associativity is the order in which it evaluates an expression containing multiple operators of the same precedence. 
-# Almost all operators except the exponent (**) support the left-to-right associativity
- 
-# # Testing Left-right associativity
-# print(4 * 7%%3) #i,e 4 * (7%%3)=4
-# # Testing left-right associativity
-# print(2*3^2) #i,e 2 * (3^2)
-# # Checking right-left associativity of ^ exponent operator
-# print(4^2+2) # (4^2)+2
-# # Checking the right-left associativity
-# print((3^2)*2)
-
-# R does have some operators such as assignment operators and comparison operators which don’t support associativity. Instead, there are special rules for the ordering of this type of operator which can’t be managed via associativity.
- 
-# For example, 
-# the expression 5 < 7 < 9 does not mean (5 < 7) < 9 or 5 < (7 < 9), it means evaulated as it does not understand
- 
 # Quiz:
 # =====
 

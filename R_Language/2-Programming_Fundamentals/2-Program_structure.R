@@ -1,6 +1,9 @@
 #Command Prompt
 #Using Function
-#Using Class
+#Using S3 method
+#Using s4 Method
+#using R6 Method
+#Note Handling files in R
 #Help info
 #Quiz
 #Assignment
@@ -31,85 +34,168 @@ print(paste("How","are","you?"))
 hello <- function() {
   print("hello world")
 }
-
 hello()
 
-#hellow is a function name which is an identifier
+#if dynamically
+hello <- function(a) {
+  result<- a
+  return(a)
+}
+hello("hello world") 
+
+#hello is a function name which is an identifier
 #function is a keyword
-#print is a statement
+#print is a statement to print output.
+
+
+
 #function has its syntax
-
-#Using Class
-#===========
-studentDetails <- list(name="ganesh",age=43,contact="india",grade=12) #studentdetails contains the list of elements passing a list
-class(studentDetails)<-"studentinfo" 
-studentDetails #call
-
-# studentinfo and studentDetails new created class
-#class is a keyword
-#studentdetails is a identifier
-#name,age,contact,grade are the identifier as well and act as a argument for list
+#Procedure with code
+--------------------
+#1)Decide function name
+## hello <- 
+#2)Declare function using function()
+## hello <- function() {}
+#3)Add input arguments or leave it blank
+## hello <- function(a) {body}
+#4)Write function body
+##   hello <- function() {
+## result<- a
+## return(a)
+##   }
+#5)Return output (optional)
+##return(a)
+#7)Call the function
+# hello("hello world")  or hello()
 
 #Using S3
-==========
-#Use unique function names to avoid any conflicts
+#=========
+##S3 is informal, class-based, and generic-function driven.
 ##S3 Class -Function changes based on object type
 ##You call a function, and R decides which method to use based on the object’s class.
 
-# Generic function
-say_msg <- function(obj) UseMethod("say_msg")
-# Method for class "demo_class"
-say_msg.demo_class <- function(obj) {
-  paste("Hello", obj$value)
+obj <- list()
+class(obj) <- "helloworld"
+hello <- function(x, ...) {
+  UseMethod("hello")
 }
-# Create object
-x <- list(value = "World")
-class(x) <- "demo_class"
-# Call
-say_msg(x)
+hello.helloworld <- function(x, ...) {
+  print("Hello, World!")
+}
+hello(obj)
 
+#Procedure with code
+--------------------
+## Step 1: Create base object
+obj <- list()
+## Step 2: Assign S3 class
+class(obj) <- "helloworld"
+## Step 3: Define generic function
+hello <- function(x, ...) {
+  UseMethod("hello")
+}
+## Step 4: Define class-specific method
+hello.helloworld <- function(x, ...) {
+  print("Hello, World!")
+}
+## Step 5: Call generic function
+hello(obj)
+## Step 6: Check available methods(optional)
+methods(hello)
+
+
+#A Hello World program using the S3 object system, where method dispatch is based on the object’s class
+#S3 Hello World = class(obj) + UseMethod() + hello.class
+
+#Another way
+studentDetails <- list(
+  name = "ganesh",
+  age = 43,
+  contact = "india",
+  grade = 12
+)
+class(studentDetails) <- "studentinfo"
+studentDetails
 
 #Using S4
-========
+#========
 #S4 Class -Strict class with formal method
 ##You call a function, and R decides which method to use based on the object’s class.
 
-##Define class
-setClass("Person",
-         slots = list(name = "character"))
-##Create object
-p_s4 <- new("Person", name = "World")
-##Define generic
-setGeneric("hello", function(object) standardGeneric("hello"))
-##Define method
-setMethod("hello", "Person", function(object) {
-  paste("Hello", object@name)
-})
-##Call
-hello(p_s4)
+setClass("HelloWorld",slots = list(dummy = "logical"))
+obj <- new("HelloWorld", dummy = TRUE)
+setGeneric("hello",function(x) standardGeneric("hello"))
+setMethod("hello",signature(x = "HelloWorld"),
+          function(x) {
+            print("Hello, World!")
+          }
+)
+hello(obj)
+
+#Procedure with code
+--------------------
+## Step 1: Define S4 class
+###Add at least one slot (even a dummy slot). if you do not have the slot , you shall get the error.
+setClass("HelloWorld",slots = list(dummy = "logical"))
+###Now the class is concrete, not virtual.
+## Step 2: Create S4 object
+obj <- new("HelloWorld", dummy = TRUE)
+## Step 3: Define generic function
+setGeneric("hello",function(x) standardGeneric("hello"))
+## Step 4: Define method for class
+setMethod("hello",signature(x = "HelloWorld"),
+  function(x) {
+    print("Hello, World!")
+  }
+)
+## Step 5: Call generic function
+hello(obj)
+##4)Inspect class structure(optional)
+slotNames("HelloWorld")
+
 
 #Using R6
-========
+#========
 #R6-Object owns its behavior (Java-style)
 #The object itself has methods. You call them with $.
 
 library(R6)
-## Define class
-Person <- R6Class("Person",
-                  public = list(
-                    name = NULL,
-                    initialize = function(name) {
-                      self$name <- name
-                    },
-                    hello = function() {
-                      paste("Hello", self$name)
-                    }
-                  )
+HelloWorld <- R6Class(
+  "HelloWorld",
+  public = list(
+    hello = function() {
+      print("Hello, World!")
+    }
+  )
 )
-##Create object
-p_r6 <- Person$new("World")
-##Call method
-p_r6$hello()
+obj <- HelloWorld$new()
+obj$hello()
+
+#Procedure with code
+--------------------
+## Step 1: Load R6 package
+library(R6)
+## Step 2: Define R6 class
+HelloWorld <- R6Class(
+  "HelloWorld",
+  public = list(
+    hello = function() {
+      print("Hello, World!")
+    }
+  )
+)
+## Step 3: Create R6 object
+obj <- HelloWorld$new()
+## Step 4: Call method
+obj$hello()
+
+
+#Memory-Friendly Summary (Code Hooks)
+#-----------------------------------
+#Function --> function()
+#S3 --> UseMethod()
+#S4 --> setClass(), setMethod()
+#R6 --> R6Class(), $new()
 
 #Help info
 #=========
@@ -152,7 +238,7 @@ getwd() # print the current working directory - cwd
 ls()    # list the objects in the current workspace
 
 setwd(mydirectory)      # change to mydirectory
-setwd("c:/docs/mydir")  # note / instead of \ in windows
+setwd("c:/docs/mydir")  # note / instead of / in windows
 setwd("/usr/rob/mydir") # on linux
 
 # view and set options for the session
@@ -194,7 +280,7 @@ rm(list=setdiff(ls(), c("x","y"))) #same above but multiple objects
 rm(list=setdiff(ls(pattern = "^edc_"), lsf.str()))# ^removing all the objects expect starting(^ symbols denotes starting with) with letter
 
 #Note Handling files in R
-#-------------------
+#========================
 #R gets confused if you use a path in your code like:
 #c:\mydocuments\myfile.txt
 
@@ -202,11 +288,32 @@ rm(list=setdiff(ls(pattern = "^edc_"), lsf.str()))# ^removing all the objects ex
 #c:\\my documents\\myfile.txt
 #c:/mydocuments/myfile.txt
 
+#Storing in RScript file and calling the script
+#===============================================
+#Step 1: Create an R Script
+##FileName as add_numbers.R
+add_numbers <- function(a, b) {
+  a + b
+}
+print(add_numbers(10, 20))
+#Step 2: Run the script with source file.
+setwd("C:\\Users\\ganes\\Documents\\Kriyababa\\GitHub\\MyNotes\\R_Language\\2-Programming_Fundamentals\\script")
+add_numbers(10, 20) #Run Lines Interactively (Why It Worked Before)
+source("add_numbers.R") # Run via source()
+#Rscript add_number.R #Running via terminal _not working
+system("Rscript add_number.R") #advanced method 
+source("run_add_number.R") ## Caller script way , edit the script file 
+
 #Quiz:
 #=====
 
 #Assignment:
 #===========
+#1) Write a regular function for adding the two number passing the value dynamically as a arguments
+#2) Write a regular S3 Method for adding the two number passing the value dynamically as a arguments
+#3) Write a regular S4 Method for adding the two number passing the value dynamically as a arguments
+#4) Write a regular S4 Method for adding the two number passing the value dynamically as a arguments
+#5) Wrap all the above code in add_all_methods.R and create a callerScript filename run_addition.R and run using code.
 
 #Resources:
 #=========
