@@ -630,16 +630,19 @@ is.na(x)
 ##Type Hierarchy (Lowest → Highest)
 ##logical → integer → numeric → character
 
-##Example- Mixed Vector
-x <- c(TRUE, 10, 3.5, "A")
-x  #Everything becomes character.
+#logical to integer
+x <- c(TRUE,FALSE,5L)
+x
+typeof(x)
 
-##Example- Logical to Numeric
-x<-TRUE + 5   
-x #TRUE -> 1 #FALSE -> 0
+#integer --> numeric
+x <- (1L+2)
+x
+typeof(x)
 
-#Example: Integer to Numeric
-x <- c(1L, 2.5)
+#numeric --> character
+x <-c(10.5,"hello")
+x
 typeof(x)
 
 #Example: Arithmetic Coercion
@@ -649,29 +652,122 @@ typeof(x)
 #----------------------------------
 #You explicitly tell R to convert a value using as.*() functions.
 
-#Numeric Conversions
+#character to number
 ##as.numeric()
-as.numeric("10")
+a<-as.numeric("10")
+a
+typeof(a)
+##decimal
+a<-as.numeric("10.3")
+a
+typeof(a)
 ##Non-numeric text:
-as.numeric("A") #NA Warning: NAs introduced by coercion
+a<-as.numeric("A") #NA Warning: NAs introduced by coercion
+a
+typeof(a)
 
+#exp NULL or NA
+#When you call as.numeric(NULL), you aren't creating a "missing value"—you are creating an empty vector.
+#NULL represents the absence of an object.When forced into a numeric type, it becomes a numeric vector with a length of 0.
+#typeof() looks at the storage mode of that vector. Since you asked for it to be numeric, R stores it as a double (the default numeric type in R)
+a<-as.numeric(NULL) #NULL is like an empty box. If you say "give me an empty box for numbers," typeof tells you it's a box meant for double numbers, even if it's empty
+typeof(a) #double
+
+#NA is a logical constant by default, but R has several "flavors" of NA to ensure type consistency within vectors.
+#When you run as.numeric(NA), R converts the logical NA into NA_real_
+#The typeof() for NA_real_ is double. Remember represent NA as NA_integer_,NA_real_,NA_logical and NA_character.
+a<-as.numeric(NA)#NA is like a box with a "Missing" sign inside. To keep the box's type consistent, R uses a specific version of that "Missing" sign that matches the numeric (double) type
+typeof(a) #NA
+
+#numeric to integer
 #as.integer()
-##Same as numeric.
-as.double(10)
+a<-as.integer(10)
+a
+typeof(a)
+#non-numeric
+a<-as.integer("A")
+a
+typeof(a) #NA
+#exp NULL or NA
+a<-as.integer(NULL)
+typeof(a) #NA
+a<-as.integer(NA)
+typeof(a) #NA
 
+#integer to logical
+z<-1L
+z
+typeof(z)
+z<-as.logical(z)
+z
+typeof(z)
+#exp NULL or NA
+a<-as.logical(NULL)
+typeof(a) #NA
+a<-as.logical(NA)
+typeof(a) #NA
+#exp on non-zero
+# logical understand two non-zero and zero, when you have non-zero its its 1 and zero is 0 i,e TRUE and FALSE
+z <- 3#positive number i,e non-zero
+typeof(z)
+z<-as.logical(z)
+z
+z <- -32 #negative number i,e non-zero
+typeof(z)
+z<-as.logical(z)
+z
+
+#OTHER WAY AROUND
 #Character Conversions
-as.character(100)
+#numeric to character
+a<-as.character(100)#numeric
+typeof(a)
+a<-as.character(3.14)#decimal
+typeof(a)
+a<-as.character(1L)#integer
+typeof(a)
+a<-as.character(TRUE)#logical
+typeof(a)
+a<-as.character(NULL)#NULL
+typeof(a) #NA
+a<-as.character(NA) #NA
+typeof(a) #NA
 
-#Numeric -> Character
-as.character(3.14)
+#numeric conversation
+a<-as.numeric("A") #character
+a 
+typeof(a) #NAs introduced by coercion see the above concept
+a<-as.numeric(1L) #integer
+a 
+typeof(a)
+a<-as.numeric(TRUE) #logical
+a 
+typeof(a)
+y <- "Apple"
+
+#integer conversation
+a<-as.integer("A") #character
+a 
+typeof(a) #NAs introduced by coercion see the above concept
+a<-as.numeric(12) #numeric
+a 
+typeof(a)
+a<-as.numeric(TRUE) #logical
+a 
+typeof(a)
 
 #Logical Conversions
-##as.logical()
-as.logical(1)
-as.logical(0)
-##Character logical
-as.logical("TRUE")
-as.logical("FALSE")
+a<-as.logical(1) #numeric
+typeof(a)
+as.logical(1L) #integer
+a
+typeof(a)
+as.logical("A") #character
+#It creates a "slot" in memory reserved for logical values (TRUE, FALSE, or NA).
+#Because "A" cannot be interpreted as true or false, R fills that slot with NA
+#Since the "box" was made to hold logicals, typeof(a) will always be logical.
+a
+typeof(a)
 
 #Factor Conversions (Very Important)
 ##Factor → Character (Always do this first)
@@ -691,7 +787,6 @@ as.Date("16-01-2025", format="%d-%m-%Y")
 as.POSIXct("2025-01-16 10:30:00")
 #Date -> Character
 as.character(Sys.Date())
-
 
 #Conversion Inside Data Structures
 ##Data Frame Column Conversion

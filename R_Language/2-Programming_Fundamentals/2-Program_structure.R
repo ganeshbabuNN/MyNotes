@@ -300,11 +300,11 @@ add_numbers <- function(a, b) {
 print(add_numbers(10, 20))
 #Step 2: Run the script with source file.
 setwd("C:\\Users\\ganes\\Documents\\Kriyababa\\GitHub\\MyNotes\\R_Language\\2-Programming_Fundamentals\\script")
-add_numbers(10, 20) #Run Lines Interactively (Why It Worked Before)
+#add_numbers(10, 20) #Run Lines Interactively (Why It Worked Before)
 source("add_numbers.R") # Run via source()
-#Rscript add_number.R #Running via terminal _not working
-system("Rscript add_number.R") #advanced method 
-source("run_add_number.R") ## Caller script way , edit the script file 
+#Rscript add_numbers.R #Running via terminal _not working
+system("Rscript add_numbers.R") #advanced method 
+#source("run_add_number.R") ## Caller script way , edit the script file 
 
 #Quiz:
 #=====
