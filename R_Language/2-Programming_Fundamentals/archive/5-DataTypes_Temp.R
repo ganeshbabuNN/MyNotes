@@ -1,3 +1,33 @@
+#Introduction
+
+
+#Introduction
+#============
+#In programming languages, we need to use various variables to store various information. Variables are the reserved memory location to store values. As we create a variable in our program, some space is reserved in memory
+#In R, there are several data types such as integer, string, etc. The operating system allocates memory based on the data type of the variable and decides what can be stored in the reserved memory
+
+#R objects can be composed of different kinds of data according to the type and number of "atomic" values they contain:
+
+#*Scalar items are single values;
+#*Vectors are ordered sequences of scalars, they must all have the same "data type" (e.g. numeric, logical, character ...);
+#*Matrices are vectors for which one or more "dimension(s)" have been defined; 
+#*"Data frames"" are spreadsheet-like objects, their columns are like vectors and all columns must have the same length, but within one data frame, columns can have different data types. They are the most commonly used type of object to hold data;
+#*Lists are the most general collection of data items, the can contain items of any type and kind, including matrices, functions, data frames, and other lists
+
+
+#Data Types
+#==========
+#In R, there are 6 data types
+#1. Atomic (Basic) Data Types in R
+#2. Special Values (VERY Important)
+#3. Data Structures (Built on Atomic Types)
+#4. Categorical Data
+#8. Memory Perspective (Advanced)
+#5. Date and Time Types
+#6. Type Inspection Functions (CORE CONCEPT)
+#7. Type Coercion Rules 
+#8. Memory Perspective (Advanced)
+
 #1. Atomic (Basic) Data Types in R
 #---------------------------------
 #Atomic vectors store one type of data only.
@@ -72,7 +102,7 @@ x <- charToRaw("A")
 x   # 41 (hex)
 
 #2. Special Values (VERY Important)
-#---------------------------------
+#----------------------------------
 #2.1 NA (Missing Value)
 #Typed missing values exist.
 
@@ -112,7 +142,7 @@ c(1, "a", TRUE)  # all become character
 #3.2 Matrix
 #Concept
 #2D, homogeneous.
-Vector with dim attribute.
+#Vector with dim attribute.
 m <- matrix(1:6, nrow = 2)
 
 #3.3 Array
@@ -189,7 +219,7 @@ class(x)   # "factor"
 #7. Type Coercion Rules 
 #-----------------------
 #Order of coercion:
-  logical → integer → double → complex → character
+#  logical --> integer --> double -->complex ---> character
 Example:
 c(TRUE, 1, 2.5, "A")
 
@@ -209,11 +239,11 @@ c(TRUE, 1, 2.5, "A")
 #Comparing NA using ==
 #Assuming factor is character
 #Forgetting coercion in vectors
-
 #Correct way:
 is.na(x)
 
 #10. Summary Classification
+#---------------------------
 #Atomic Types :logical, integer, double, complex, character, raw
 #Special Values :NA, NaN, Inf, NULL
 #Data Structures :vector, matrix, array, list, data.frame

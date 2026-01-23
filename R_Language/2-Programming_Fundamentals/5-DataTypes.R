@@ -3,7 +3,6 @@
 #Default value of Types
 #Strings
 #Data structures
-#Default value of Types
 #To know the type of variable used
 #To test the type data type
 #Handling missing values
