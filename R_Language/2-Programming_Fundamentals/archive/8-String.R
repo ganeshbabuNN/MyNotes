@@ -253,44 +253,6 @@ print("positive\\negative") #backslash (\)
 print("\'positive\'") #Single quote (')
 print("\"positive\"") #Double quote (")
 
-#String Regular expressions
-#==========================
-#Regex allows powerful pattern matching.
-#Pattern-->	Meaning	Example
-#[A-Z]-->Uppercase letters-->"ABC"
-#[0-9]-->Digits-->"123"
-#^-->Start of string-->^ID
-#$-->End of string-->txt$
-#.-->Any character-->A.
-#+-->One or more-->a+
-#*-->Zero or more-->a*
-
-#Regular Expressions (Regex) with Strings
-#----------------------------------------
-#Extract Digits
-stringr::str_extract("ID_2025_A", "[0-9]+")
-#Remove Non-Digits
-gsub("[^A-Z]", "", "ID_2025_A")
-?gsub
-
-#Extracting Specific Patterns
-#-----------------------------
-#regexpr() / regmatches() - extract ABC123
-text <- "Subject ID: ABC123"
-m <- regexpr("[A-Z]+[0-9]+", text)
-regmatches(text, m)
-#str_extract()
-stringr::str_extract(text, "[A-Z]+[0-9]+")
-
-#String Comparison
-# == – Exact Match
-"abc" == "ABC"
-"ABC" == "ABC"
-#identical() – Strict Comparison
-identical("abc", "abc")
-identical("abc", "ABC")
-#str_to_lower() + Compare (Case-Insensitive)
-
 
 #String Functions
 #================
@@ -375,6 +337,187 @@ stringr::str_squish("hello    world   today")
 #gregexpr() – Find All Matches
 gregexpr("a", "banana")
 #str_count() (stringr)
+stringr::str_count("banana", "a")
+
+
+#Regular Expressions (Regex) with Strings
+#========================================
+#Regex allows powerful pattern matching.
+#Pattern-->	Meaning	Example
+#[A-Z]-->Uppercase letters-->"ABC"
+#[0-9]-->Digits-->"123"
+#^-->Start of string-->^ID
+#$-->End of string-->txt$
+#.-->Any character-->A.
+#+-->One or more-->a+
+#*-->Zero or more-->a*
+
+#Extract Digits
+stringr::str_extract("ID_2025_A", "[0-9]+")
+#Remove Non-Digits
+gsub("[^A-Z]", "", "ID_2025_A")
+?gsub
+
+#Extracting Specific Patterns
+#-----------------------------
+#regexpr() / regmatches() - extract ABC123
+text <- "Subject ID: ABC123"
+m <- regexpr("[A-Z]+[0-9]+", text)
+regmatches(text, m)
+#str_extract()
+stringr::str_extract(text, "[A-Z]+[0-9]+")
+
+#String Comparison
+#-----------------
+# == – Exact Match
+"abc" == "ABC"
+"ABC" == "ABC"
+#identical() – Strict Comparison
+identical("abc", "abc")
+identical("abc", "ABC")
+#str_to_lower() + Compare (Case-Insensitive)
+library(stringr)
+str_to_lower("ABC") == str_to_lower("abc")
+
+#Repeating & Padding
+#-------------------
+#trrep() – Repeat String
+strrep("A", 5)
+#sprintf() for Padding
+sprintf("%05d", 23)
+#str_pad() (stringr)
+str_pad("23", width = 5, side = "left", pad = "0")
+
+#Sorting & Ordering Strings
+#--------------------------
+#sort()
+sort(c("Banana", "Apple", "Mango"))
+#order()
+x <- c("Banana", "Apple", "Mango")
+x[order(x)]
+#Case-Insensitive Sorting
+x[order(tolower(x))]
+
+#Vectorized String Operations
+#----------------------------
+#Most string functions in R work on entire vectors.
+names <- c("Ganesh", "Ravi", "Anita")
+toupper(names)
+
+#Common Real-World Examples
+#--------------------------
+#Example 1: Clean Subject IDs
+ids <- c(" SUB_001 ", "SUB-002", "sub_003")
+ids_clean <- toupper(trimws(gsub("-", "_", ids)))
+ids_clean
+
+#Example 2: Extract Visit Number from Label
+visit <- c("Visit 1", "Visit 2", "Visit 10")
+as.numeric(str_extract(visit, "[0-9]+"))
+
+#Example 3: Split First and Last Name
+name <- "Ganesh Babu"
+parts <- strsplit(name, " ")[[1]]
+first <- parts[1]
+last <- parts[2]
+
+#Example 4: Validate Email
+email <- "test@example.com"
+grepl("^A-Za[-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", email)
+
+#Example 5: File Name Generation
+subject <- "ABC123"
+date <- "20250116"
+paste0("Report_", subject, "_", date, ".csv")
+
+#Common Pitfalls
+#Using == for Pattern Matching
+"Data" == "ClinicalData"   # FALSE
+#Use:
+grepl("Data", "ClinicalData")
+#Forgetting Vectorization
+for (i in 1:length(x)) {
+  x[i] <- toupper(x[i])
+}
+#Better
+toupper(x)
+#Regex Special Characters Not Escaped
+gsub(".", "", "A.B")   # removes everything
+#Correct
+gsub("\\.", "", "A.B")
+
+#Summary: Most Frequently Used String Functions
+#----------------------------------------------
+# | Category | Functions                           |
+# | -------- | ----------------------------------- |
+# | Combine  | `paste`, `paste0`, `sprintf`        |
+# | Case     | `toupper`, `tolower`, `toTitleCase` |
+# | Length   | `nchar`                             |
+# | Extract  | `substr`, `substring`, `str_sub`    |
+# | Search   | `grepl`, `grep`, `str_detect`       |
+# | Replace  | `sub`, `gsub`, `str_replace`        |
+# | Split    | `strsplit`, `str_split`             |
+# | Trim     | `trimws`, `str_trim`, `str_squish`  |
+# | Count    | `str_count`, `gregexpr`             |
+# | Regex    | `gsub`, `str_extract`, `regexpr`    |
+# | Format   | `sprintf`, `str_pad`                |
+# | Sort     | `sort`, `order`                     |
+
+#Text Normalization (Standardizing Strings)
+#-----------------------------------------
+#Remove Accents / Diacritics
+x <- c("café", "naïve", "résumé")
+stri_trans_general(x, "Latin-ASCII")
+
+#Unicode Normalization (NFC / NFD)
+stri_trans_nfc("e\u0301")  # "é"
+
+#Collapse Multiple Spaces / Punctuation
+x <- "Hello,,,   world!!"
+x <- gsub("[[:punct:]]+", " ", x)
+x <- str_squish(x)
+x
+
+library(tidyverse)
+#Locale & Case Folding (Language-Aware)
+#--------------------------------------
+stri_trans_tolower("I", locale = "tr")   # Turkish locale
+
+#Advanced Regex: Lookarounds, Groups, Backreferences
+#---------------------------------------------------
+#Lookahead / Lookbehind
+text <- "OrderID=12345; RefID=67890"
+str_extract_all(text, "(?<=ID=)[0-9]+")
+
+#Capture Groups
+##Extracts country code, prefix, and number.
+phone <- "starof war (+91) 98765-43210"
+str_match(phone, "\\(\\+([0-9]+)\\)\\s([0-9]+)-([0-9]+)")
+
+#Backreferences
+gsub("(\\b\\w+)\\s+\\1", "\\1", "hello hello world")
+
+#Tokenization & Text Splitting
+#-----------------------------
+#Split into Words
+text <- "Text mining with R is powerful"
+words <- str_split(text, "\\s+")[[1]]
+#Sentence Tokenization
+sentences <- str_split("Hello world. Welcome to R!", "\\.")
+#Character-Level Tokenization
+str_split("DATA", "")
+
+#Counting, Frequencies & Text Metrics
+#------------------------------------
+#Word Count
+text <- "R is fast and R is flexible"
+length(str_split(text, "\\s+")[[1]])
+#Character Count (Excluding Spaces)
+nchar(gsub("\\s+", "", text))
+#N-gram (Bigrams)
+words <- str_split(text, "\\s+")[[1]]
+bigrams <- paste(words[-length(words)], words[-1])
+bigrams
 
 
 
