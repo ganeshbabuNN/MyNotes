@@ -2,7 +2,7 @@
 #Data Types
 #Default value of Types
 #Strings
-#Data structures
+#data structures
 #Default value of Types
 #To know the type of variable used
 #To test the type data type
@@ -107,7 +107,6 @@ class(d)
 d <- as.Date(("2026-01-13 10:30:00")) #if want to print the time this will not be possible.
 typeof(d)
 class(d)
-#Stored as number of days since 1970-01-01.
 
 #POSIXct / POSIXlt (Date-Time)
 ---------------------------
@@ -121,7 +120,7 @@ dt4
 typeof(dt4)
 class(dt4)
 ## "POSIXt" is heavy
-#the main difference apart from POSIXct we can extract data parts like date,hour,second,...etc.
+#the main difference is here we can extract data parts like date,hour,second,...etc.
 lt <- as.POSIXlt(Sys.time())
 lt
 lt$sec
@@ -145,16 +144,15 @@ x <- NULL
 ##Represents missing data. In details which see different type of missing value later.
 ##nothing is different missing is different but both are not same.
 x <- c(10, NA, 30)
-#NA==NULL 
-#NULL==""
-#1==1
-#NA=" "
+NA==NULL 
+NULL==""
+1==1
+NA=" "
 
 x <- c(10, NA, 30,"",NULL) #added a blank
 x #observe
 x<- as.integer(x)
 x #observe the "" i,e string is repalced with NA which is missing.
-
 #String
 #======
 #*Strings are a group of characters written inside a single or double-quotes
