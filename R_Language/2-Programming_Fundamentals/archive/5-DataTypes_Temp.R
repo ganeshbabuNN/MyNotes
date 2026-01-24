@@ -1,4 +1,5 @@
 #Introduction
+#Data Types
 
 
 #Introduction
@@ -14,10 +15,9 @@
 #*"Data frames"" are spreadsheet-like objects, their columns are like vectors and all columns must have the same length, but within one data frame, columns can have different data types. They are the most commonly used type of object to hold data;
 #*Lists are the most general collection of data items, the can contain items of any type and kind, including matrices, functions, data frames, and other lists
 
-
 #Data Types
-#==========
-#In R, there are 6 data types
+#===========
+#The below are the different type of types with different concept
 #1. Atomic (Basic) Data Types in R
 #2. Special Values (VERY Important)
 #3. Data Structures (Built on Atomic Types)
@@ -242,9 +242,11 @@ c(TRUE, 1, 2.5, "A")
 #Correct way:
 is.na(x)
 
-#10. Summary Classification
+#Summary Classification
 #---------------------------
 #Atomic Types :logical, integer, double, complex, character, raw
 #Special Values :NA, NaN, Inf, NULL
 #Data Structures :vector, matrix, array, list, data.frame
 #Categorical: factor,Date-Time,Date, POSIXct, POSIXlt
+
+

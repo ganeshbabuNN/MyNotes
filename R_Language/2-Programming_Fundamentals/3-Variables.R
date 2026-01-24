@@ -54,6 +54,7 @@ x <<- 10 #Global assignment
 
 #*The variables can be assigned values using leftward, rightward and equal to operator.
 #*the values of the variables can be printed using print() or cat() function. The cat() function combines multiple items into a continuous print output.
+
 #Single variable assignment
 #--------------------------
 # Assignment using equal operator.

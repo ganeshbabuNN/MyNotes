@@ -1,0 +1,118 @@
+##only for concepts
+Act as an expert instructor and industry practitioner.
+
+Topic: <SPECIFIC TOPIC NAME>  
+Level: Beginner → Intermediate → Advanced  
+Audience: Learners who want strong conceptual clarity and real-world application  
+
+Objective:
+Provide a complete learning module for <SPECIFIC TOPIC NAME>.
+
+TASKS:
+
+1️.CONCEPT COVERAGE
+- Identify and list **ALL important concepts** related to <SPECIFIC TOPIC NAME>
+- Organize them logically:
+  - Beginner
+  - Intermediate
+  - Advanced
+- Do NOT skip any commonly used real-world concept
+
+2️.CONCEPT EXPLANATION (For EACH concept)
+Include:
+a. Definition (simple and clear)
+b. Purpose / Why it is used
+c. Syntax or structure (if applicable)
+d. One **basic example**
+e. One **real-world / practical example**
+f. Common mistakes
+g. Best practices
+h. When to use vs when NOT to use
+
+3️.REAL-WORLD MAPPING
+- Provide a table mapping:
+  Concept | Real-world use case | Industry example
+
+4️.PRACTICAL INSIGHTS
+- Performance considerations (if applicable)
+- Common pitfalls seen in real projects
+- Scalability or maintainability notes (if relevant)
+
+5️.FINAL SUMMARY
+- Key takeaways
+- Learning roadmap (what to study next)
+- Recommended practice strategy
+
+FORMATTING RULES:
+- Use clear headings and subheadings
+- Use bullet points for explanations
+- Use code blocks where needed
+- Keep explanations concise but complete
+
+=====================================================================
+## for assignment
+Act as an expert instructor and problem designer.
+
+Topic: <SPECIFIC TOPIC NAME>  
+Level: Beginner → Intermediate → Advanced  
+Audience: Learners practicing concepts through real-world scenarios  
+
+Objective:
+Create concept-wise assignments for <SPECIFIC TOPIC NAME>.
+
+TASKS:
+
+1️.CONCEPT IDENTIFICATION
+- Identify and list **ALL important concepts** related to <SPECIFIC TOPIC NAME>
+- Organize them logically:
+  - Beginner
+  - Intermediate
+  - Advanced
+- Do NOT skip any commonly used real-world concept
+
+2️.ASSIGNMENT CREATION (For EACH concept)
+For every concept, create **1–2 real-world problem statements**.
+
+Each assignment MUST strictly follow this structure:
+
+**Problem Title**  
+(A short, descriptive real-world title)
+
+**Input**  
+- Clearly specify:
+  - Input variables
+  - Data types
+  - Constraints (if any)
+
+**Scenario**  
+- Describe the real-world situation step by step
+- Clearly mention:
+  - Initial values
+  - Conditions
+  - Rules or logic to be applied
+- Avoid giving code
+- Keep the logic explicit and unambiguous
+
+**Output**  
+- Clearly specify:
+  - What should be printed or returned
+  - Format of the output
+  - Expected result description
+
+3.DIFFICULTY PROGRESSION
+- Beginner: Simple logic, minimal conditions
+- Intermediate: Multiple conditions, combinations, calculations
+- Advanced: Edge cases, validations, performance or scalability considerations
+
+4️.RULES
+- Do NOT provide solutions or code
+- Do NOT include quizzes or theory
+- Keep problems practical and relatable (billing, login systems, sensors, reports, workflows, etc.)
+- Each problem should map clearly to ONE core concept
+
+FORMATTING RULES:
+- Use clear headings
+- Follow the exact structure: Title → Input → Scenario → Output
+- Keep language simple and precise
+
+===================================================================

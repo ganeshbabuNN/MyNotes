@@ -467,58 +467,37 @@ Quiz:
 
 Assignment:
 ===========
-#1. The Office Door Badge You are programming a smart door for a tech office. The door should only open if the
-#user provides the correct "Access Code."
-#Input: User enters a 4-digit code.
-#Scenario: If the code is 1234 , print "Access Granted. Door Unlocked." Otherwise, print "Access Denied.
-#Security Alerted."
-
-#2. The Weekend Grocery Trip A person is deciding whether to go to the supermarket.
-#Input: User enters how many eggs are left in the fridge (integer).
-#Scenario: If the number of eggs is less than 3, print "Time to go to the market!" Else, print "You have
-#enough for breakfast today."
-
-#3. The Smart Home "Leaving for Work" Checklist When you leave your house, a smart assistant checks multiple
-#independent things. These are not mutually exclusive.
-#Input: Three separate inputs (Yes/No) for: "Is the AC on?", "Is the Coffee Maker on?", "Is the Front Door
-#unlocked?"
-#Scenario:
-#If AC is on Print "Turning off AC to save energy."
-#If Coffee Maker is on Print "Warning: Coffee Maker is still hot!"
-#If Door is unlocked Print "Locking the front door now." (Note: All three messages could potentially print.)
-
-#4. The Pizza Topping Calculator A customer is choosing toppings. Each topping adds a specific cost regardless of
-#the other toppings chosen.
-#Input: Three boolean (True/False) inputs for: extra_cheese , pepperoni , and olives .
-#Scenario: Initialize a total_bill = 10 .
-#If extra_cheese  is True add 2 to bill.
-#If pepperoni  is True add 3 to bill.
-#If olives  is True add 1 to bill.
-#Output: Print the final total bill.
-
-#5. The Traffic Light Sensor A self-driving car needs to interpret a single traffic light color.
-#Input: User enters "Red", "Yellow", or "Green".
-#Scenario: * If "Red" "Full Stop."
-#If "Yellow" "Slow down and prepare to stop."
-#If "Green" "Proceed with caution."
-#Anything else "Error: Signal Malfunction!"
-
-#6. Movie Theater Ticket Pricing A theater charges based on the age of the customer.
-#Input: User enters their age.
-#Scenario:
-#Age < 5 "Ticket is Free."
-#Age 5 to 17 "Child Ticket: $10."
-#Age 18 to 60 "Adult Ticket: $18."
-#Age > 60 "Senior Ticket: $12."
-
-#7. The 7-Day Steps Tracker A fitness app wants to show your activity for the week.
-#Data: A list of steps: [4000, 7500, 10000, 2000, 8000, 12000, 5000] .
-#Scenario: Loop through the list and for each day, print: "Day [X]: You walked [Steps] steps."
-
-8. The Email "Bcc" System A marketing manager has a list of 5 client names.
-Input: A list containing 5 names.
-Scenario: Use a loop to "send" an email to each person by printing: "Sending personalized promo code to
-[Name]..."
+A1)how to check if a greater then b
+A2)how to check if the given value is a number or not
+A3)how to check if the given value is a odd or not
+A4)how to check if the given value is a even or not
+A5)how to check is given year is a leap year or not
+A6)how to check is given value is a even or not
+A7)how to check if the given value is a string or number.
+A8)how to check the given value is available in the given string("Life","is","Beautiful") or not
+A9)how to check if given value is less, show if it is a even or odd and same for value is greater then 20 , show if it even or odd
+A10)how to check given character is vowel or constant?
+A11)how to check if the given age is child(<18) or a old guy(>30) or a adult
+A12)how to check if the marks given is first class(>75), second class(>65) and third class(>35) and fail(<35)
+A13)Build a calculator for options addition,subraction,multiplications and divisions.
+A14)how to find which is the largest of given 4 numbers
+A15)Print the table of the given number
+A16)Print the below Star
+*
+**
+***
+****
+*****
+A17)Print the cumulative sum of that given number
+A18)Print the number from 1 to 20 , skip the odd numbers
+A19)Print the number from 1 to 20 ,but add first print odd sequence like 3
+A20)Print the cube of the number of the given number in cumulative way.
+A21)Program to find the sum of the digits of the number
+A22)Program to check a number is palindrome or not
+A23)program to find the frequency of a digit in the number
+A24)Program to check a number is Armstrong or not 
+A25)How to check the number is a prime number or not
+A26)Print the sum of all positive numbers in array c(10L,-11L,12L,-13L,14L,-15L,16L,-17L,18L) 
 
 Resources
 =========

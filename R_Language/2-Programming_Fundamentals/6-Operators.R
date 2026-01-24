@@ -110,7 +110,7 @@ FALSE & TRUE
 FALSE & FALSE
 
 #'(')
-`c(TRUE,FALSE)
+c(TRUE,FALSE)
 #!(NOT)
 !TRUE
 #&&(AND(first value only))
