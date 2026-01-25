@@ -1,14 +1,17 @@
-Data Types
-Default value of Types
-To know the type of variable used in Python
-Mutable, immutable and object reusablity.
-Strings
-data structures(collections) in python
+#Data Types
+#Type Hinting
+#Default value of Types
+#To know the type of variable used in Python
+#Mutable, immutable and object reusablity.
+#Strings
+#data structures(collections) in python
 
 DataTypes
 ===========
 -Every value in Python has a datatype. 
 -Since everything is an object in Python programming, data types are actually classes and variables are instance (object) of these classes.
+#In Python, variables are dynamically typed, which means you don't have to explicitly declare a data type (like int or string) when you create one. 
+#The type is determined automatically based on the value you assign to it.
 
 In Python, the data types are Organised in five types:
 1)None Type - An object that does not contain any value
@@ -68,6 +71,30 @@ print(3+5j)
 complex(2,3)
 complex(10,1)
 complex('12+2j') #We can also pass strings:
+
+#Type Hinting
+#============
+#While Python doesn't force you to define types, modern Python (3.5+) supports Type Hinting. 
+#This is incredibly helpful for readability and catching bugs in larger projects, 
+#though Python will still allow you to change the type at runtime
+#<variable_Name>: <primtive type> 
+
+a: int 
+user_no: bytes =2
+user_id: int =32
+loan: float = 32.2
+is_running: bool =True
+userName: str="Alice"
+
+#getting value and type
+print(a,type(a)) # value need to be initialized
+a=10
+print(a,type(a))
+print(user_no,type(user_no))
+print(int,type(user_id))
+print(loan,type(loan))
+print(is_running,type(is_running))
+print(userName,type(userName))
 
 Default value of Types
 ======================

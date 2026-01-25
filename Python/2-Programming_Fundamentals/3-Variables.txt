@@ -19,6 +19,7 @@ Delecration of variables
 -It allows us to create variable at required time
 -We don't need to declare explicitly variable in Python, its a dynamic typing language.
 -Python uses dynamic typing, meaning you can reassign variables to different data types. This makes Python very flexible in assigning data types; it differs from other languages that are statically typed.
+#In Python, variables are dynamically typed, which means you don't have to explicitly declare a data type (like int or string) when you create one. The type is determined automatically ##based on the value you assign to it.While Python doesn't force you to define types, modern Python (3.5+) supports Type Hinting. 
 
 #lets understand the internal of python of how the variable is declared and stored.
 x=1
