@@ -1,29 +1,29 @@
 #Introduction
-#Data Types(Atomic Data Types)
-##Special Values
-##Advance Data Types
-#Strings
-#Data Structures (Built from Data Types)
+#Data Types
 #Default value of Types
-#Type Checking
-#Missingness Semantics
+#Strings
+#Data structures
+#To know the type of variable used
+#To test the type data type
+#Handling missing values
 #Data Type Conversion in R
-#Mutable and immutable Objects # TBD
 #Quiz
 #Assignment
 #Resources
 
 #Introduction
 #============
-#In programming languages, we need to use various variables to store various information. 
-#Variables are the reserved memory location to store values. As we create a variable in our program, some space is reserved in memory.
+#In programming languages, we need to use various variables to store various information. Variables are the reserved memory location to store values. As we create a variable in our program, some space is reserved in memory
 #In R, there are several data types such as integer, string, etc. The operating system allocates memory based on the data type of the variable and decides what can be stored in the reserved memory
-#R objects can be composed of different kinds of data according to the type and number of "atomic" values they contain:
-#Scalar items are single values;
-#Vectors are ordered sequences of scalars, they must all have the same "data type" (e.g. numeric, logical, character ...)
 
-#Data Types(Atomic Data Types)
-#=============================
+#R objects can be composed of different kinds of data according to the type and number of "atomic" values they contain:
+
+#*Scalar items are single values;
+#*Vectors are ordered sequences of scalars, they must all have the same "data type" (e.g. numeric, logical, character ...);
+#*Matrices are vectors for which one or more "dimension(s)" have been defined; 
+#*"Data frames"" are spreadsheet-like objects, their columns are like vectors and all columns must have the same length, but within one data frame, columns can have different data types. They are the most commonly used type of object to hold data;
+#*Lists are the most general collection of data items, the can contain items of any type and kind, including matrices, functions, data frames, and other lists
+
 #*In R, there are 6 data types
 #1)Numeric 
 #2)Integer
@@ -36,46 +36,33 @@
 #=========
 #we shall understand the different type of data type
 
+#Logical
+------
+#*It is a special data type for data with only two possible values which can be construed as true/false.
+a <-TRUE
+typeof(a)
+class(a) 
+b <- "FALSE"
+typeof(b)
+class(b) 
+
 #Numeric
 -------
-#Definition :Stores real numbers with decimals.
-#Purpose: Used for measurements, calculations, analytics.
-  
-#decimal
-price <- 99.99
-typeof(price)
-class(price)
+#*Decimal value is called numeric in R, and it is the default computational data type.
 
 #using normal
-b <- 323
-typeof(b)
-class(b)
+a <- 323
+typeof(a)
+class(a)
 
-#Real-World Example:
-temperature <- c(36.5, 37.2, 38.1)
-
-
-#Common Mistakes:
-##Assuming integers are numeric by default
-##Precision issues in comparisons
-
-#Best Practices:
-##Use all.equal() for comparisons
-c<-323
-all.equal(a,c)
-all.equal(b,c)
-##Avoid floating-point equality checks
-
-#Use When:
-##Continuous values are required
-
-#Do NOT Use When:
-##Exact counting is needed (use Integer)
+#decimal
+a <- 3.6
+typeof(a)
+class(a)
 
 #Integer
 #--------
-#Definition : Whole numbers ending with L.
-#purpose : Memory efficiency and exact counts.
+#*Here, L tells R to store the value as an integer,
 
 a <- 323L
 typeof(a)
@@ -83,184 +70,34 @@ class(a)
 
 a<-as.integer(3)
 
-#Real-World Example:
-number_of_orders <- 1200L
+#Complex
+-------
+#*A complex value in R is defined as the pure imaginary value i.
 
-#Common Mistakes:
-##Forgetting L
-##Mixing numeric and integer unintentionally
-
-#Best Practices:
-##Explicitly define integers in loops
-
-#Use When:
-##Counting items or indexing
-
-#Do NOT Use When:
-##Fractions are needed
-
-#Logical
-------
-#It is a special data type for data with only two possible values which can be construed as true/false.
-#Definition :Boolean values: TRUE, FALSE.
-#Decision making and filtering.
-
-flag <- TRUE
-typeof(flag)
-class(flag) 
-
-#Not valid
-flag1 <- "FALSE"
-typeof(b)
-class(b) 
-
-#Real-World Example:
-is_active <- FALSE
-employees$eligible <- employees$age >= 60
-
-#Common Mistakes:
-##Using "TRUE" instead of TRUE
-##NA logical propagation
-
-#Best Practices:
-##Handle NA explicitly
-
-#Use When:
-##Conditions and flags
-
-#Do NOT Use When:
-##More than two states are needed
+c <- 3+2i
+typeof(c)
+class(c)
 
 #Character
-#--------
-#*In R programming, a character is used to represent string values. 
-#Definition: Text strings
-#Purpose: Labels, names, categories.
+---------
+#*In R programming, a character is used to represent string values. We convert objects into character values with the help of as.character() function.
 
-#using double or single are the same quotes
-name <- "R Programming"
-name
-typeof(name)
-class(name)
-name <- 'R Programming'
-city <- "Chennai"
-
-#Real-World Example:
-customer_id <- "CUST_1023"
-
-#Common Mistakes:
-##Forgetting quotes
-##Treating characters as numbers
-
-#Best Practices:
-##Trim and clean text early
-
-#Use When:
-##Data is textual
-
-#Do NOT Use When:
-##Mathematical operations are required
-
-
-#Complex
-#------
-#A complex value in R is defined as the pure imaginary value i.
-#Definition:Numbers with imaginary part.
-#Purpose: Scientific and signal processing.
-
-z <- 2 + 3i
-typeof(z)
-class(z)
-
-#Real-World Example:
-##Electrical engineering calculations
-
-#Common Mistakes:
-##Unexpected coercion
-
-#Best Practices:
-##Isolate from regular numeric data
-
-#Use When:
-##Imaginary numbers exist
-
-#Do NOT Use When:
-##Business analytics
+#using double quotes
+c <- "R is a Super Programming language"
+typeof(c)
+class(c)
 
 #Raw
-#---
-#A raw data type is used to holds raw bytes.
-#Definition:Binary data.
-#Purpose: Low-level data handling.
+---
+#*A raw data type is used to holds raw bytes.
 myraw <- charToRaw("R is a Super Programming language")
 typeof(myraw)
 class(myraw)
-readBin("file.pdf", "raw", n = 1e6)
 
-#Real-World Example:
-##File hashing
-##Binary communication
-##You are reading PDF files, images, encrypted files, APIs.
-
-#Use When:
-##Byte-level manipulation
-
-
-##Special Values
-#--------------
-#NULL
-##Represents no value / no object.
-x <- NULL
-
-#NA (Missing Values)
-##Represents missing data. In details which see different type of missing value later.
-##nothing is different missing is different but both are not same.
-x <- c(10, NA, 30)
-#NA==NULL 
-#NULL==""
-#1==1
-#NA=" "
-
-x <- c(10, NA, 30,"",NULL) #added a blank
-x #observe
-x<- as.integer(x)
-x #observe the "" i,e string is repalced with NA which is missing.
-
-#NaN
-##Undefined numeric result
-x <-0/0
-x
-typeof(x)
-class(x)
-
-#Inf / -Inf
-##Infinity
-x<-1/0    # Inf
-x<--1/0   # -Inf
-typeof(x)
-class(x)
-
-#NULL
-##Absence of object.
-#Absence of a value.
-#Length = 0.
-#Not a data type; it removes objects.
-x <- NULL
-length(x)  # 0
-typeof(x)
-class(x)
-x<-c("1","2","3",NULL)#NULL will be removed during output operations 
-x
-
-#Common Mistake:
-#Confusing NA with NULL
-
-##Advance Data Types
-#-------------------
 #Date
 ----
-  #Stores dates only not time.
-  d <- as.Date("2026-01-13")
+#Stores dates only not time.
+d <- as.Date("2026-01-13")
 d
 typeof(d)
 # "double"
@@ -273,18 +110,16 @@ class(d)
 
 #POSIXct / POSIXlt (Date-Time)
 ---------------------------
-#"POSIXct" is faster 
 ##Stores date + time.
-t <- as.POSIXct("2026-01-13 10:30:00") #portable operating system interface(POSI) calender time(ct) 
+t <- as.POSIXct("2026-01-13 10:30:00") #portable operating system interface(POSI) calender time(ct) local time
 typeof(t)
 class(t)
-
-#"POSIXlt" is heavy 
+##"POSIXct" is faster 
 dt4 <-as.POSIXlt("2025-03-11 01:30:50") #portable operating system interface(POSI) local time(lt)
 dt4
 typeof(dt4)
 class(dt4)
-
+## "POSIXt" is heavy
 #the main difference apart from POSIXct we can extract data parts like date,hour,second,...etc.
 lt <- as.POSIXlt(Sys.time())
 lt
@@ -299,12 +134,25 @@ lt$isdst
 lt$zone
 lt$gmtoff
 
-#Ordered Factor – Ranking Systems
-#--------------------------------
-severity <- ordered(c("Mild","Moderate","Severe"))
-severity
+#NULL
+#-----
+#Represents no value / no object.
+x <- NULL
 
-#there are other types like S3,R6..etc which are discussed in upcoming chapter.
+#NA (Missing Values)
+--------------------
+##Represents missing data. In details which see different type of missing value later.
+##nothing is different missing is different but both are not same.
+x <- c(10, NA, 30)
+#NA==NULL 
+#NULL==""
+#1==1
+#NA=" "
+
+x <- c(10, NA, 30,"",NULL) #added a blank
+x #observe
+x<- as.integer(x)
+x #observe the "" i,e string is repalced with NA which is missing.
 
 #String
 #======
@@ -332,11 +180,10 @@ class(s1)
 
 #*we shall learn more on the string chapter using function in next chapters
 
-#Data Structures (Built from Data Types)
+#Data structure(or Sequence Type)
 #================================
-#In computer science, a data structure is a data organization, management, and storage format that enables efficient access and modification
-#More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
-#Its is also called as sequential data types
+#*In computer science, a data structure is a data organization, management, and storage format that enables efficient access and modification
+#* More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
 
 #There are different types of R objects
 #1)Vectors
@@ -348,38 +195,22 @@ class(s1)
 
 #Vectors
 #--------
-#The very basic data types are the R-objects called vectors which hold elements of different classes as shown above
-#When you want to create vector with more than one element
-#You should use c() function which means to combine the elements into a vector
-#Homogeneous collection of atomic values.
+#-The very basic data types are the R-objects called vectors which hold elements of different classes as shown above
+#-When you want to create vector with more than one element
+#-You should use c() function which means to combine the elements into a vector
 
 #create a vector
-##character vector
 a <- c("Ganesh","babu","Kumar","Veeresh")
 a
 typeof(a)
 class(a)
 
-##numreic vector
 a <- c(3,2,3,4,5) #numeric
 a
 typeof(a)
 class(a)
 
-##integer vector
-a <- c(3L,2L,3L,4L,5L) #numeric
-a
-typeof(a)
-class(a)
-
-#logical vector
-a <- c(TRUE,FALSE,TRUE) 
-a
-typeof(a)
-class(a)
-
-#observe
-a <- c("1","4","5","1",3,TRUE) #Coercion Hierarchy we shall understand later
+a <- c("1","4","5","1",3,TRUE)
 a
 typeof(a)
 class(a)
@@ -394,19 +225,11 @@ a <- c("1","4","5","1",3)
 a
 typeof(a)
 class(a)
-##*Note even numeric, logical, character and vector of different types can also be created . 
-##this is expalined in detail in data structure chapter.
-
-#Real-World Example:
-daily_sales <- c(100, 120, 90)
-
-#Mistake
-##Mixing types unintentionally
+##*Note even numeric, logical, character and vector of different types can also be created . this is expalined in detail in data structure chapter.
 
 #list
 #----
-#Heterogeneous container.
-#A list is an R-object which can contain many different types of elements inside it like vectors, functions and even another list inside it
+#-A list is an R-object which can contain many different types of elements inside it like vectors, functions and even another list inside it
 
 #syntax:
 	list()
@@ -417,18 +240,10 @@ a
 typeof(a)
 class(a)
 
-#Real-World Example:
-employee <- list(id=1, name="Asha", salary=50000,age=20)
-employee
-
-#Use When:
-##Nested or complex data
-
-#Matrix
+#matrices
 #--------
-#its a 2D homogeneous structure.
-#a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. 
-#Since you are only working with rows and columns, a matrix is called two-dimensional.
+#-a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. 
+#-Since you are only working with rows and columns, a matrix is called two-dimensional.
 
 #syntax:
 matrix(data, nrow, ncol, byrow, dim_name)  
@@ -455,14 +270,10 @@ a+b
 a/b
 a%%b #modulus
 
-#Real-World Example:
-##Survey response grids
-
 #arrays
 #------
-#Multi-dimensional matrix.
-#While matrices are confined to two dimensions, arrays can be of any number of dimensions
-#The array function takes a dim attribute which creates the required number of dimension.
+#-While matrices are confined to two dimensions, arrays can be of any number of dimensions
+#-The array function takes a dim attribute which creates the required number of dimension.
 
 #syntax:
 	array_name <- array(data,dim(row_size,col_size,dim_names))
@@ -472,83 +283,52 @@ names <- array(c("Ganesh","babu","Kumar","Veeresh"),dim=c(2,2,2))
 names
 class(names)
 
-#Real-World Example:
-#Time-series across regions and years
-
 #Factors
 #-------
-#Categorical variable with levels.
-#Factors are the r-objects which are created using a vector
-#It stores the vector along with the distinct values of the elements in the vector as labels
-#The labels are always character irrespective of whether it is numeric or character or Boolean etc. in the input vector.
+#-Factors are the r-objects which are created using a vector
+#-It stores the vector along with the distinct values of the elements in the vector as labels
+#-The labels are always character irrespective of whether it is numeric or character or Boolean etc. in the input vector.
 
 #syntax:
 	factor()
 
-#Real-World Example:
-gender <- factor(c("Male","Female","Male","Female"))
-gender
+#creating vector as input
+names <- c("ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata","ganesh","Vedha","kumar","nishu","Ashirata")
+names
 
 #test it is a factor
-is.factor((gender))
+is.factor((names))
 
-#Common Mistake:
-##Treating factor as character
+#apply a factor function
+factor_data <- factor(names)
+class(factor_data)
+
+#print the factor
+factor_data
 
 #DataFrame
 #----------
-#Definition :Tabular data with mixed types.
-#Unlike a matrix in data frame each column can contain different modes of data
-#It is a list of vectors of equal length.
+#-Data frames are tabular data objects
+#-Unlike a matrix in data frame each column can contain different modes of data
+#-It is a list of vectors of equal length.
 
 #syntax:
 	data.frame()
 
-#creating a dataframe
-student_data <- data.frame(
+#creating a dataframew
+stu.data <- data.frame(
   student_id = c(14:19),
-  student_name=c("ganesh","roopa","hari","swati","rudresh","vani"),
-  student_gender=c("M","F","M","F","M","F"),
+  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
   student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE",NA,"MSC"),
+  student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
   student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
   stringsAsFactors = FALSE
 )
 
-student_data
-student_data$student_gender #checking making stringsAsFactors = TRUE
+stu.data
 class(stu.data)
 typeof(stu.data)
 print(stu.data)
-
-#Real-World Example:
-##CSV, Excel data
-
-#Tibble
-#------
-#Modern data frame.
-#Does not auto-convert strings to factors.
-library(tibble)
-student_tdata<-tibble( student_id = c(14:19),
-                    student_name=c("ganesh","roopa","hari","swati","rudresh","vani"),
-                    student_gender=c("M","F","M","F","M","F"),
-                    student_age =c(32,44,34,56,34,23),
-                    student_class= c("MCA","BCA","BTECH","BE","MTECH","MSC"),
-                    student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24"))
-                   )
-student_tdata
-# Tibble: returns another tibble
-class(student_tdata[, 1])
-
-
-#Feature-->Data Frame (Base R)-->Tibble (library(tibble))
-#----------------------------------------------------------
-#Printing-->Large, messy output-->Concise, 10-row summary
-#Data Types-->Hidden-->Displayed in the header
-#Strings-->Historically converted to Factors-->Always kept as Characters
-#Partial Matching-->Yes (e.g., $a finds $apple)-->No (Lazy matching is disabled)
-#Subsetting[ , ]-->May return a vector-->Always returns a tibble
-
 
 #Default value of Types
 #======================
@@ -563,7 +343,7 @@ numeric(2) #this print the empty value of an vector
 integer(4)
 
 #logical --> FALSE
-logical(2)
+logical(1)
 
 #charcter --> ""
 character(1)
@@ -587,15 +367,9 @@ as.Date(character(1))
 as.POSIXct(character(1))
 as.POSIXlt(character(1))
 
-#Type Checking
-#=============
-#there are mostly 4 types in general
-#1)typeof()->Internal storage
-#2)class()->Object behavior
-#3)mode()->Legacy (avoid)
-#4)str()->Structure
-
-#typeof()->How R stores it internally
+#To know the type of variable used
+#=================================
+#typeof() → How R stores it internally
 #--------------------------------------
 #typeof() tells you the low-level storage type used by R’s C engine.
 #Think: “In memory, what kind of object is this?”
@@ -695,25 +469,8 @@ df <- data.frame(
 )
 str(df)
 
-#Checking Data Types
-#-------------------
-typeof(x)   # low-level type
-class(x)    # high-level class
-str(x)      # structure of object
-
-#To test the type data type
-#--------------------------
-#use is methods
-is.numeric(23.2)
-is.integer(32L)
-is.character('A')
-is.vector(4)
-is.matrix(x)
-is.data.frame(df)
-is.logical(0)
-
 #Concept with One Object
-#------------------------
+------------------------
 x <- as.Date("2026-01-13")
 
 typeof(x)
@@ -725,11 +482,29 @@ mode(x)
 str(x)
 #Date[1:1], format: "2026-01-13"
 
-#Interpretation on above
+#Interpretation:
 #Stored as double
 #Treated as Date
 #Broad type: numeric
 #Structure: 1 element Date with formatting
+
+#Checking Data Types
+-------------------
+typeof(x)   # low-level type
+class(x)    # high-level class
+str(x)      # structure of object
+
+#To test the type data type
+--------------------------
+#use is methods
+
+is.numeric(23.2)
+is.integer(32L)
+is.character('A')
+is.vector(4)
+is.matrix(x)
+is.data.frame(df)
+is.logical(0)
 
 #Why This Matters ?
 #Example: Character Date Column
@@ -750,71 +525,65 @@ class(RFSTDTC)   # "Date"
 #Ref: object<->class
 #https://youtu.be/m_MQYyJpIjg //layman understanding of a Oops
 
-#Missingness Semantics
+#Handling missing values
 #=======================
-#Missingness Semantics or Handling missing values in R, one of the common tasks in data analysis is handling missing values.
+#*Handling missing values in R, one of the common tasks in data analysis is handling missing values.
+#*In R, missing values are often represented by the symbol NA (not available) or some other value that represents missing values (i.e. 99).
+#*Impossible values (e.g., dividing by zero) are represented by the symbol inf (not a number)
+#*NA means missing value (“not available”).
+#*But R is strongly typed: every value has a data type.
+#*So R actually has different kinds of NA, one for each type.
+#*They all mean “value is missing”, but they preserve the data type.
 
-#NA- Not Available
-#-------------------
-#NA represents missing data in a place where a value should exist. It is a logical placeholder for a value that is unknown
-#its like A "Reserved" sign on a chair; someone should be there.
 #logical --> NA (missing value (default logical))
-x<- NA #In R, NA (Not Available) is technically a logical constant by default based on the Coercion Hierarchy. 
-typeof(x) 
-class(x)
+x<- NA
+typeof(x) #In R, NA (Not Available) is technically a logical constant by default based on the data type hierarchy or Coercion Hierarchy. 
 
+#integer --> NA_Integer_(missing integer)
+c(3L,NA_integer_)
+c(1L, NA_character_) #not like this coz it changes its behavior
 
-#So R actually has different kinds of NA, one for each type.
-#They all mean “value is missing”, but they preserve the data type.
-x<- NA_integer_
-typeof(x) 
-class(x)
-x<- NA_real_ #(for decimals)
-typeof(x) 
-class(x)
-x<- NA_character_
-typeof(x) 
-class(x)
-x<- NA_complex_
-typeof(x) 
-class(x)
-
-#observe
-c(3L,NA_integer_) #integer missing but the output is NA
-c(1L, NA_character_) #character missing
+#numeric --> NA_real_ (missing numeric (double))
 c(3.3,NA_real_)
-c(3.3,NA_character_)
+c(3.3,NA_character_) #not like this
+
+#character -->NA_character_ (missing character)
+y<-NA_character_
+typeof(y)
+c("ganesh",NA_character_)
 name <- c("Ravi", "Sita", NA_character_)
 typeof(name)
-c(3+2i,NA_complex_) #complex missing
+
+#complex --> NA_Complex (missing complex)
+c(3+2i,NA_complex_)
 #raw ---> NA
 c(charToRaw("ganes"),NA)
 
-#NULL (The Empty Set)
-#-------------------
-#NULL represents the absence of an object. its The chair was never put in the room.
-#While NA is a hole in your data, NULL is the total vacuum where data never existed in the first place.
-##Length: length(NA) is 1. length(NULL) is 0.
-##Behavior: NULL often simply disappears when combined with other values
+#example
+x <- c(1,2,NA)
+ifelse(x>1,"High",NA_character_)
+ifelse(x>1,"High",NA)
 
-y <- c(1, 2, NULL, 4)
-y
-length(y) #(The NULL was ignored entirely)
+employ <- data.frame(id,name,salary)
+employ
+#NA is a logical constant of length 1 which contains a missing value indicator
+employ <- rbind(employ,c(106,NA,NA))
+#use is.na() to test the missing values
+is.na(employ$name[7])
+is.na(employ$salary[7])
 
-#NaN and Inf
-#-----------
-#this are discussed more in the specail data tpes.
+#null values represent the object empty.
+a<-list(2,3,3,4)
+typeof(a)
+is.list(a)
 
+a <- NULL 
+is.null(a)
 
-#Testing for Missingness
-#-----------------------
-val <- NA
-val1 <- NULL
-# The wrong way
-val == NA
-# The right way
-is.na(val)
-is.null(val1)
+##Detect Missing Values
+-----------------------
+### Check for NA
+is.na(x)
 
 ##Summary of Missing values in other prompinent languages
 ---------------------------------------------------------
@@ -902,7 +671,6 @@ typeof(x)
 a<-as.numeric("10")
 a
 typeof(a)
-
 ##decimal
 a<-as.numeric("10.3")
 a
@@ -912,8 +680,7 @@ a<-as.numeric("A") #NA Warning: NAs introduced by coercion
 a
 typeof(a)
 
-#experimenting(exp) NULL or NA
-#-------------------------
+#exp NULL or NA
 #When you call as.numeric(NULL), you aren't creating a "missing value"—you are creating an empty vector.
 #NULL represents the absence of an object.When forced into a numeric type, it becomes a numeric vector with a length of 0.
 #typeof() looks at the storage mode of that vector. Since you asked for it to be numeric, R stores it as a double (the default numeric type in R)
@@ -1079,6 +846,7 @@ as.logical(42) # TRUE
 ##Logical Operations
 1 & 0
 
+
 #Safe Conversion Techniques
 ##Suppress Warnings
 as.numeric("A")
@@ -1123,7 +891,7 @@ as.logical("Yes")   # NA
 #safe?-->risky-->safer
 #usercase --> quickops --> date cleaning
 
-#conversaion cheats
+#conversaion cheat sheett
 #character-->numeric =as.numeric()
 #numeric-->character= as.character()
 #Numeric--> Integer= as.integer()
