@@ -141,42 +141,23 @@ paste("Myself,",name,'working in',company,' for past ',experience,' years.')
 
 #Using stringf()
 --------------
-# -the sprintf() function offers more advanced formatting options
-# -syntax: sprintf(format, string)
-# -all the formats start with a % sign
-# -and they are put between double quotes
-# -%f is used for decimal numbers
-# -by default, it prints six decimals
-sprintf("%f", 0.725896956)
-
-#to print 3 decimals only
-sprintf("%.3f", 0.725896956)
-
-#round the number (print no decimals)
-sprintf("%.f", 0.725896956)
-
-#print the + sign (for positive numbers)
-sprintf("%+f", 0.725896956)
-
-#print the + sign (but the first 3 decimals only)
-sprintf("%+.3f", 0.725896956)
-
-#%e and %E print the number in exponential format
-sprintf("%e", 82.235691)
+#the sprintf() function offers more advanced formatting options
+#syntax: sprintf(format, string)
+#all the formats start with a % sign
+#and they are put between double quotes
+#-%f is used for decimal numbers
+  
+sprintf("%f", 0.725896956) #by default, it prints six decimals
+sprintf("%.3f", 0.725896956) #to print 3 decimals only
+sprintf("%.f", 0.725896956) #round the number (print no decimals)
+sprintf("%+f", 0.725896956) #print the + sign (for positive numbers)
+sprintf("%+.3f", 0.725896956) #print the + sign (but the first 3 decimals only)
+sprintf("%e", 82.235691) #%e and %E print the number in exponential format
 sprintf("%E", 82.235691)
-
-#%g prints six digits by default
-sprintf("%g", 82.235691)
-
-#print the first 4 digits
-sprintf("%.4g", 82.235691)
-
-#%s prints the desired number of characters in a string
-sprintf("%.4s", "Philadelphia")
-
-#%d is used to print integers
-sprintf("%d", 23755)
-
+sprintf("%g", 82.235691) #%g prints six digits by default
+sprintf("%.4g", 82.235691) #print the first 4 digits
+sprintf("%.4s", "Philadelphia") #%s prints the desired number of characters in a string
+sprintf("%d", 23755) #%d is used to print integers
 #-advanced uses of the sprintf() function
 #-we want to print "This book costs 12.8 dollars" the book price is 12.82)
 sprintf("This book costs %.1f dollars", 12.82)
@@ -213,21 +194,12 @@ substring(..., start, end)
 x <- "Learn R programming"
 substr(x,1,1) #grapping from start 1 to end 1
 substr(x,1,5) #grapping from start 1 to end 4
-substr(x,7,7) #grapping from start 7 to end 7
-substr(x,8,8) #grapping from start 8 to end 8
 
 #-create sequences of letters using the built-in vector letters
 letters
-
-#-the first letter of the alphabet
-letters[1]
-
-#-the first five letters of the alphabet
-letters[1:5]
-
-#-the first, fifth and fourteenth letters of the alphabet
- letters[c(1, 5, 14)]
-
+letters[1] #-the first letter of the alphabet
+letters[1:5] #-the first five letters of the alphabet
+letters[c(1, 5, 14)] #-the first, fifth and fourteenth letters of the alphabet
 
 #Escape characters
 #=================
@@ -253,6 +225,34 @@ print("positive\\negative") #backslash (\)
 print("\'positive\'") #Single quote (')
 print("\"positive\"") #Double quote (")
 
+#Regular Expressions (Regexp) with Strings
+#========================================
+#Regex allows powerful pattern matching.
+#Pattern-->	Meaning	Example
+#[A-Z]-->Uppercase letters-->"ABC"
+#[0-9]-->Digits-->"123"
+#^-->Start of string-->^ID
+#$-->End of string-->txt$
+#.-->Any character-->A.
+#+-->One or more-->a+
+#*-->Zero or more-->a*
+
+#Extract Digits
+stringr::str_extract("ID_2025_A", "[0-9]+")
+#Remove Non-Digits
+gsub("[^A-Z]", "", "ID_2025_A")
+?gsub
+
+#This will be discussed in details in module 3
+
+#Extracting Specific Patterns
+#-----------------------------
+#regexpr() / regmatches() - extract ABC123
+text <- "Subject ID: ABC123"
+m <- regexpr("[A-Z]+[0-9]+", text)
+regmatches(text, m)
+#str_extract()
+stringr::str_extract(text, "[A-Z]+[0-9]+")
 
 #String Functions
 #================
@@ -338,34 +338,6 @@ stringr::str_squish("hello    world   today")
 gregexpr("a", "banana")
 #str_count() (stringr)
 stringr::str_count("banana", "a")
-
-
-#Regular Expressions (Regex) with Strings
-#========================================
-#Regex allows powerful pattern matching.
-#Pattern-->	Meaning	Example
-#[A-Z]-->Uppercase letters-->"ABC"
-#[0-9]-->Digits-->"123"
-#^-->Start of string-->^ID
-#$-->End of string-->txt$
-#.-->Any character-->A.
-#+-->One or more-->a+
-#*-->Zero or more-->a*
-
-#Extract Digits
-stringr::str_extract("ID_2025_A", "[0-9]+")
-#Remove Non-Digits
-gsub("[^A-Z]", "", "ID_2025_A")
-?gsub
-
-#Extracting Specific Patterns
-#-----------------------------
-#regexpr() / regmatches() - extract ABC123
-text <- "Subject ID: ABC123"
-m <- regexpr("[A-Z]+[0-9]+", text)
-regmatches(text, m)
-#str_extract()
-stringr::str_extract(text, "[A-Z]+[0-9]+")
 
 #String Comparison
 #-----------------
@@ -462,64 +434,6 @@ gsub("\\.", "", "A.B")
 # | Regex    | `gsub`, `str_extract`, `regexpr`    |
 # | Format   | `sprintf`, `str_pad`                |
 # | Sort     | `sort`, `order`                     |
-
-#Text Normalization (Standardizing Strings)
-#-----------------------------------------
-#Remove Accents / Diacritics
-x <- c("café", "naïve", "résumé")
-stri_trans_general(x, "Latin-ASCII")
-
-#Unicode Normalization (NFC / NFD)
-stri_trans_nfc("e\u0301")  # "é"
-
-#Collapse Multiple Spaces / Punctuation
-x <- "Hello,,,   world!!"
-x <- gsub("[[:punct:]]+", " ", x)
-x <- str_squish(x)
-x
-
-library(tidyverse)
-#Locale & Case Folding (Language-Aware)
-#--------------------------------------
-stri_trans_tolower("I", locale = "tr")   # Turkish locale
-
-#Advanced Regex: Lookarounds, Groups, Backreferences
-#---------------------------------------------------
-#Lookahead / Lookbehind
-text <- "OrderID=12345; RefID=67890"
-str_extract_all(text, "(?<=ID=)[0-9]+")
-
-#Capture Groups
-##Extracts country code, prefix, and number.
-phone <- "starof war (+91) 98765-43210"
-str_match(phone, "\\(\\+([0-9]+)\\)\\s([0-9]+)-([0-9]+)")
-
-#Backreferences
-gsub("(\\b\\w+)\\s+\\1", "\\1", "hello hello world")
-
-#Tokenization & Text Splitting
-#-----------------------------
-#Split into Words
-text <- "Text mining with R is powerful"
-words <- str_split(text, "\\s+")[[1]]
-#Sentence Tokenization
-sentences <- str_split("Hello world. Welcome to R!", "\\.")
-#Character-Level Tokenization
-str_split("DATA", "")
-
-#Counting, Frequencies & Text Metrics
-#------------------------------------
-#Word Count
-text <- "R is fast and R is flexible"
-length(str_split(text, "\\s+")[[1]])
-#Character Count (Excluding Spaces)
-nchar(gsub("\\s+", "", text))
-#N-gram (Bigrams)
-words <- str_split(text, "\\s+")[[1]]
-bigrams <- paste(words[-length(words)], words[-1])
-bigrams
-
-
 
 ##########################################################################################################
 

@@ -24,6 +24,20 @@ b<-'ga'
 rm(a,b)
 
 
+#Integer Overflow and Limits
+##Integers have finite bounds.
+.Machine$integer.max
+
+#Numeric Attributes
+##Metadata attached to numeric objects.
+attr(x, "units") <- "kg"
+x
+
+#Large Numbers and Scientific Notation
+#Use case : Scientific and financial modeling.
+1e6
+
+
 # Built in functions
 # ==================
 #Basic Mathematical Functions
