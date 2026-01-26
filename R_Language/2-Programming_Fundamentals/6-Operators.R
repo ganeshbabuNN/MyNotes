@@ -1,78 +1,135 @@
-# Intro
-# Type of operators
-# Operator Precedence and assocativatity (Order of Execution)
-# Operator Overloading and Overriding
-# Quiz
-# Assignment
-# Resources
+#Intro
+#Type of operators
+#Operator Precedence and associativity(Order of Execution)
+#Operator Overloading and Overriding
+#Quiz
+#Assignment
+#Resources
 
-# Intro
-# =====
-# -The operator can be defined as a symbol which is responsible for a particular operation between two operands.
-# -An operator is a symbol which tells the compiler to perform specific logical or mathematical manipulations
-# -R programming is very rich in built-in operators
-# Operators are used to perform operations on variables and values.
+#Intro
+#=====
+#-The operator can be defined as a symbol which is responsible for a particular operation between two operands.
+#-An operator is a symbol which tells the compiler to perform specific logical or mathematical manipulations
+#-R programming is very rich in built-in operators
+#Operators are used to perform operations on variables and values.
 
-# Type of operators
-# ==================
-# There are Type of Operators.
-# Arithmetic operators
-# Relational operators
-# Logical Operators
-# Assignment Operators
-# Special Operators
-# Formula Operator
-# Pipe Operator
-# Tidyverse Logical Helpers
-# Bitwise Operators
+#Type of operators
+#==================
+#Arithmetic operators
+#Assignment Operators
+#Relational operators
+#Logical Operators
+#Special Operators
+#Special Infix Operators
+#Subsetting Operators
+#Tidyverse Logical Helpers
+#Bitwise Operators 
 
-# Arithmetic operators -Used for mathematical calculations
-# --------------------
-# Arithmetic operators are used to perform arithmetic operations between two operands.
-# + ( addition) 
-# - (Subractions)
-# * (Multiplication)
-# / (Division)
-# ^ or ** (Power)
-# +/- uniary addition/subraction
-# %% MOdulus(Reminder)
-# %/% Integer Division
 
-# + ( addition) 
+#Arithmetic operators 
+#--------------------
+#Definations :Operators used to perform mathematical calculations.
+#purpose: To manipulate numeric data.
+#Arithmetic operators are used to perform arithmetic operations between two operands.
+#+ ( addition) 
+#- (Subractions)
+#* (Multiplication)
+#/ (Division)
+#^ or ** (Power)
+#+/- uniary addition/subraction
+#%% MOdulus(Reminder)
+#%/% Integer Division
+
+#+ ( addition) 
 5+3
-# - (Subractions)
+#- (Subractions)
 5-3
-# * (Multiplication)
+#* (Multiplication)
 5*3
-# / (Division)
+#/ (Division)
 5/2
-# ^ or ** (Power)
+#^ or ** (Power)
 2^3
-# +/- uniary addition/subraction
+#+/- uniary addition/subraction
 x <- c(1,-2,3)
 -x #unary - The unary minus is used to negate a value
 +x #unary + The unary plus is less commonly used because it does not change the value of its operand. In R, it exists primarily for mathematical symmetry and completeness
 
-# %% MOdulus(Reminder)
+#%% MOdulus(Reminder)
 5%%2
-# %/% Integer Division
+%/% Integer Division
 ##The integer division operator (%/%) %/% is the integer division operator. 
 ##It divides the first number by the second and returns only the whole number (the quotient), discarding any remainder or decimal parts..
 5%/%2
 ##what happend when we Division & Modules ?
- 
-# Relational operators-Used to compare values. Result is TRUE/FALSE.
-# ----------------------
-# -A relational operator is a symbol which defines some kind of relation between two entities
 
-# == (equal to)
+#Real-World Example
+basic <- 40000
+hra <- 0.2 * basic
+gross_salary <- basic + hra
+
+#Common Mistakes
+##Using ^ expecting XOR (it is exponent)
+##Integer division confusion (%/% vs /)
+
+#Best Practices
+##Use %/% for integer division
+##Use parentheses for clarity
+
+#h. When to Use / Not Use
+##Use for numeric computation
+##Do not use on character data
+
+#Assignment Operators
+#--------------------
+##Used to assign values to variables.
+
+#<- = left assignment(preferred)
+#= (Assignment)
+#->(right assignment)
+#<<- global assignment
+
+#<- = left assignment(preferred)
+x<-10
+x
+#= (Assignment)
+x=10
+#->(right assignment)
+10->x
+#<<- global assignment
+x<<-10
+x
+#Note: Use <- in professional R coding
+
+#Real-World Example
+model_accuracy <- 0.89
+
+#Common Mistakes
+#Using = inconsistently
+#Using <<- unintentionally
+
+#Best Practices
+##Prefer <- in scripts
+##Avoid <<- unless scoping is understood
+
+#When to Use / Not Use
+##Use <- in production code
+##Avoid <<- in shared codebases
+ 
+#Relational operators
+#--------------------
+##Compare two values and return TRUE or FALSE.
+##purpose - Decision Making
+#-A relational operator is a symbol which defines some kind of relation between two entities
+
+#== (equal to)
 #!= (not equal)
 #> (Greater than) 
 #< (Less than)
 #>= (Greater or equal)
 #<=(less or equal)
 
-# == (equal to)
+#== (equal to)
 5==5
 #!= (not equal)
 5!=3
@@ -88,14 +145,31 @@ x <- c(1,-2,3)
 #Use case: filtering data, conditions in if, filter().
 age <- 25
 age >= 18
+#Real-World Example
+purchase_amount > 5000
 
-#Logical Operators-Used to combine conditions.
+#Common Mistakes
+##Using = instead of ==
+##Comparing floating point numbers directly
+
+#Best Practices
+##Use all.equal() for numeric comparison
+
+#When to Use / Not Use
+##Use in conditions
+##Do not compare NA directly
+
+#Logical Operators
 #-----------------
-# &(and)			This operator is known as the Element-wise Logical AND operator. This operator takes the first element of both the vector and returns TRUE if both the elements are TRUE.	 
-# |(or)			This operator is called the Element-wiseLogical OR operator. This operator takes the first element of both the vector and returns TRUE if one of them is TRUE.	 
-# !(not)			This operator is known as Element-wise Logical NOT operator. This operator takes the first element of the vector and gives the opposite logical value as a result.	
-# &&			called as Logical AND operator.This operator takes the first element of both the vector and gives TRUE as a result, only if both are TRUE.		
-# || 			called Logical OR operator.This operator takes the first element of both the vector and gives the result TRUE, if one of them is true.
+##Used to combine conditions.
+##Combine or negate logical conditions.
+##Control flow and filtering.
+
+#&(and)			This operator is known as the Element-wise Logical AND operator. This operator takes the first element of both the vector and returns TRUE if both the elements are TRUE.	 
+#|(or)			This operator is called the Element-wiseLogical OR operator. This operator takes the first element of both the vector and returns TRUE if one of them is TRUE.	 
+#!(not)			This operator is known as Element-wise Logical NOT operator. This operator takes the first element of the vector and gives the opposite logical value as a result.	
+#&&			called as Logical AND operator.This operator takes the first element of both the vector and gives TRUE as a result, only if both are TRUE.		
+#|| 			called Logical OR operator.This operator takes the first element of both the vector and gives the result TRUE, if one of them is true.
 
 #& AND(Vector-wise)
 TRUE & TRUE
@@ -123,44 +197,79 @@ TRUE&&FALSE
 x <- c(5, 10, 15)
 x > 6 & x < 14
 
-#Assignment Operators-Used to assign values to variables.
-#--------------------
-#<- = left assignment(preferred)
-#= (Assignment)
-#->(right assignment)
-#<<- global assignment
+#Control flow and filtering.
+age >= 18 & income > 300000
 
-#<- = left assignment(preferred)
-x<-10
-x
-#= (Assignment)
-x=10
-#->(right assignment)
-10->x
-#<<- global assignment
-x<<-10
-x
-#Note: Use <- in professional R coding
+#Common Mistakes
+##Using && for vectors
+##Ignoring NA propagation
 
-#Special Operators-Used for sequences, indexing, formulas, etc.
+#Best Practices
+##Use & for vectors
+##Use && for if conditions
+
+#When to Use / Not Use
+##Use logical operators for filters
+##Avoid mixing scalar and vector logic incorrectly
+
+#Special Operators
 ------------------
-#a)Sequence operator :
+#Sequence operator :
 1:5
-#b)Membership Operator %in%
+
+#formulae Operators(~= tidle)
+#We’ll test if the weight of a car (wt) can predict its fuel efficiency (mpg).
+#In this case, the formula is mpg ~ wt (Miles per gallon is modeled by weight).
+
+#1. Fit the linear model (~ = tidle)
+model <- lm(mpg ~ wt, data = mtcars)
+
+#2. View the results
+summary(model)
+##When you look at the output of summary(model), 
+##the formula operator helps define two key components of the linear equation $y = mx + b$:
+##The Intercept ($b$): The predicted value of mpg if wt was 0.The Slope ($m$): 
+##Found under the name wt. This tells you how much mpg changes for every 1-unit increase in 
+
+#Special Infix Operators
+#-----------------------
+#Pipe Operator %>% 
+##Used to chain functions together, passing the result of the left side as the first argument to the function on the right.
+##It makes code much more readable by following a left-to-right logic rather than nested parentheses.
+##Pass output as input.
+library(dplyr)
+library(magrittr)
+student_data %>% select(student_id,student_name,student_age) %>% filter(student_age > 18 & student_age<40)
+##Use case: clean, readable data pipelines.
+##Real-World
+###Readable data pipelines
+
+#The Value Matching Operator (%in%) or membership operator
+##Checks if elements of the left vector exist anywhere in the right vector. It returns a logical vector (TRUE or FALSE).
 5 %in% c(1, 3, 5, 7)
-#c) Matrix Multiplication %*%
+##Real-World
+dept<-"HR"
+dept %in% c("Finance", "HR")
+
+#Matrix Multiplication %*%
+##Standard arithmetic * performs element-wise multiplication. 
+##To perform actual linear algebra matrix multiplication, you must use %*%.
 A <- matrix(c(1,2,3,4), nrow=2)
 B <- matrix(c(5,6,7,8), nrow=2)
 A %*% B
-#d) Modulus & Integer Division
-10 %% 3   # Remainder
-10 %/% 3  # Quotient
 
+#Integer Division (%/%) and Modulo (%%)
+##Integer Division (%/%): Returns Quotient.
+10 %/% 3  #Returns 3
+##Modulo (%%): Returns only the remainder.
+10 %% 3   #Returns 1
 
-#e) Formula Operator ~
-##----------------------
-lm(y ~ x) #Used in modeling and plotting. #lm(y ~ x)
-#f) Subsetting Operator [], [[]], $
+#Custom Infix Operators
+##Domain-specific readability.
+`%profit%` <- function(cost, price) price - cost
+
+#Subsetting Operators 
+#---------------------
 #[] ==Extact multiple elements
 #[[]]== extract single element
 #$ = Access column 
@@ -172,30 +281,29 @@ a[1]
 
 
 #[[]]== extract single element
-a <- list(1,"Ganesh",TRUE,3.3,5L,0+3i,as.Date("2025-01-01"),NULL,NA,c(3,2,4,3),stu.data)
-a
-a[3]
-a[[3]]
-a[[3]][1]
-a
-a[11]
-a[[11]]
-a[[11]][2]
-a[[11]]$student_name
-
-#$ = Access column
-stu.data <- data.frame(
+student_data <- data.frame(
   student_id = c(14:19),
-  student_name=c("ganesh","vee","vaib","prave","rudresh","sontosh"),
+  student_name=c("ganesh","roopa","hari","swati","rudresh","vani"),
+  student_gender=c("M","F","M","F","M","F"),
   student_age =c(32,44,34,56,34,23),
-  student_class= c("MCA","BCA","BTECH","BE","MTECH",NA),
+  student_class= c("MCA","BCA","BTECH","BE",NA,"MSC"),
   student_join=as.Date(c("2021-01-20","2022-01-22","2000-03-18","2012-01-11","2022-01-14","2000-03-24")),
   stringsAsFactors = FALSE
 )
 
-#Pipe Operator %>% (from dplyr / magrittr)
-#Passes output to next function.
-stu.data %>% filter(student_age > 20) %>% select(student_name) #Use case: clean, readable data pipelines.
+a <- list(1,"Ganesh",TRUE,3.3,5L,0+3i,as.Date("2025-01-01"),NULL,NA,c(3,2,4,3),student_data)
+a
+a[3]
+a[[3]]
+a
+a[11]
+a[[11]]
+a[[11]][2]
+a[[11]][2]
+a[[11]]$student_name
+
+#$ = Access column
+student_data$student_id
 
 #Tidyverse Logical Helpers
 #-------------------------
@@ -214,17 +322,31 @@ stu.data %>% filter(near(student_age,23.0))
 #Bitwise Operators
 #-----------------
 ##Operate at binary level.
-#operator --> meaning
-#&->(AND)
 #xor() -->(XOR)
 #bitwAnd()-->Bitwise AND
 #bitwOr()-->Bitwise OR
 #bitwShiftL()-->Left shift
 
-bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved more binary
+bitwAnd(5, 3)   #101 & 011 -->001--> 1 #i shall skip this as it is involved more binary
+bitwOr(5, 3)   
+bitwShiftL(5, 3)
+bitwXor(5,3)
 
-#Operator Precedence (Order of Execution)
-=========================================
+#Use Case
+##Low-level optimization, flags.
+
+#Real world mapping table
+#------------------------
+#concept --> Real_world use case --> industry example
+#Arithmetic --> finanical calculation --> payrol system
+#logical --> eligibility rules --> banking
+#%in% --> cateogry filtering --> marketting
+#pipe --> data piplines --> data scienc
+#subsetting --> column access --> reporting
+#bitwsie --> flags --> embedeed systems.
+
+#Operator Precedence and associativity(Order of Execution)
+#=========================================
 #Operator precedence decides which operation is evaluated first when multiple operators appear in a single expression.
 #If you do not use parentheses (), R follows a fixed priority order.
 
@@ -283,7 +405,7 @@ bitwAnd(5, 3)   # 101 & 011 -->001--> 1 # i shall skip this as it is involved mo
 #Example 1: Arithmetic
 10 - 5 - 2
 #Evaluation:
-# (10 - 5) - 2
+#(10 - 5) - 2
 #= 5 - 2
 #= 3
 
@@ -348,7 +470,7 @@ a <- b
 a
 b
 c
-# all are 10
+#all are 10
 
 #Mixed Assignment
 10 -> x -> y
@@ -363,7 +485,7 @@ c
 #= TRUE
 #- - 5
 #Evaluation:
-# -(-5)
+#-(-5)
 #= 5
 
 #Sequence Operator : (Left-Associative but Tricky)
@@ -551,7 +673,7 @@ TRUE | (FALSE & FALSE)
 
 #One-Line Summary
 ----------------
-# () -> ^ -> * / -> + -  -> : -> comparisons -> !-> & -> | -> && -> || -> assignment
+#() -> ^ -> * / -> + -  -> : -> comparisons -> !-> & -> | -> && -> || -> assignment
   
 
 5+3+4^2*3
@@ -560,31 +682,30 @@ TRUE | (FALSE & FALSE)
 56
 
 
-# Operator Overloading and Overriding
-# ====================================
-# Genearlly few languages supports operator overloading and overriding.
+#Operator Overloading and Overriding
+#====================================
+#Genearlly few languages supports operator overloading and overriding.
 
-# #using number
-# a <- 3
-# b <- 3
-# a+b #its overides
+##using number
+#a <- 3
+#b <- 3
+#a+b #its overides
 
-# #using string
-# a <-"ganesh"
-# b <- "babu"
-# a|b #it does not allow overloads as it allows only numeric not string where it other languages it overloads
+##using string
+#a <-"ganesh"
+#b <- "babu"
+#a|b #it does not allow overloads as it allows only numeric not string where it other languages it overloads
 
-# #using list
-# l1 <- list(1,2,3,4,5)
-# l2 <- list(6,7,8,9,10)
-# l1+l2 # it does not allow overloads as it allows only numeric not string where it other languages it overloadsprint(s1)
+##using list
+#l1 <- list(1,2,3,4,5)
+#l2 <- list(6,7,8,9,10)
+#l1+l2 #it does not allow overloads as it allows only numeric not string where it other languages it overloadsprint(s1)
 
- 
 #Quiz
 #=====
 
-# Assignment:
-# ===========
+#Assignment:
+#===========
 #ASSIGNMENTS ON OPERATORS IN R
 #ASSIGNMENT 1: Arithmetic Operators
 #Q1
@@ -747,7 +868,7 @@ TRUE | FALSE & FALSE
 ! (TRUE == FALSE)
 #Q20
 TRUE && FALSE | TRUE
-# Assignment 5: Assignment with Precedence
+#Assignment 5: Assignment with Precedence
 #Q21
 x <- 5 + 2 * 3
 x
@@ -796,7 +917,7 @@ TRUE | TRUE & FALSE & FALSE
 #Q4
 a <- b <- 5
 
-# Resources:
-# =========
-# https://www.tutorialspoint.com/r/r_operators.htm
-# https://www.w3adda.com/r-tutorial/r-operator-precedence
+#Resources:
+#=========
+#https://www.tutorialspoint.com/r/r_operators.htm
+#https://www.w3adda.com/r-tutorial/r-operator-precedence
