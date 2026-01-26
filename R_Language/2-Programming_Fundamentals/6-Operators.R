@@ -37,8 +37,7 @@
 #/ (Division)
 #^ or ** (Power)
 #+/- uniary addition/subraction
-#%% MOdulus(Reminder)
-#%/% Integer Division
+
 
 #+ ( addition) 
 5+3
@@ -54,14 +53,6 @@
 x <- c(1,-2,3)
 -x #unary - The unary minus is used to negate a value
 +x #unary + The unary plus is less commonly used because it does not change the value of its operand. In R, it exists primarily for mathematical symmetry and completeness
-
-#%% MOdulus(Reminder)
-5%%2
-%/% Integer Division
-##The integer division operator (%/%) %/% is the integer division operator. 
-##It divides the first number by the second and returns only the whole number (the quotient), discarding any remainder or decimal parts..
-5%/%2
-##what happend when we Division & Modules ?
 
 #Real-World Example
 basic <- 40000
@@ -258,9 +249,11 @@ A <- matrix(c(1,2,3,4), nrow=2)
 B <- matrix(c(5,6,7,8), nrow=2)
 A %*% B
 
-#Integer Division (%/%) and Modulo (%%)
-##Integer Division (%/%): Returns Quotient.
+#Integer Division (%/%) 
+##Integer Division (%/%): Returns only the Quotient.
 10 %/% 3  #Returns 3
+
+#Modulo (%%)
 ##Modulo (%%): Returns only the remainder.
 10 %% 3   #Returns 1
 
@@ -310,14 +303,11 @@ student_data$student_id
 ##Used inside filter():
 #is.na(x) --> check missing
 #between(x,a,b)-->Range
-#near(x,y)--> floating point comparison
 
 #is.na(x) --> check missing
-stu.data %>% filter(is.na(stu.data$student_class))
+student_data %>% filter(is.na(student_data$student_class))
 #between(x,a,b)-->Range
-stu.data %>% filter(between(age, 20, 30))
-#near(x,y)--> floating point comparison
-stu.data %>% filter(near(student_age,23.0))
+student_data %>% filter(between(student_age, 20, 30))
 
 #Bitwise Operators
 #-----------------
@@ -358,19 +348,21 @@ bitwXor(5,3)
 
 #General Precedence Rules (High → Low)
 #-------------------------------------
+#Operator --> Category
+#-----------------------
 #() -- Parentheses
-#^,** --exponentiation 
-#+,-(unary) -sign
+#^,** --exponentiation (Right-to-Left )
+#+,-(unary) -sign (Right-to-Left )
 #*,/,%%,%/%--- multiple,divide,modulus
 #+,- --- additions, subtraction
 #: --- sequence
-#<,<=,>,==,!= ------relational
+#<,<=,>,==,!= ------Relational 
 #! --- logical NOT
 #& --- logical AND (vectorized)
 #| --- logical OR 
 #&& --- logical AND(short-ciruit)
-#<-,->,= --- assignment
-#~ ---- formula
+#<-,->,= --- assignment (Right-to-Left )
+#~ ---- formula (Right-to-Left)
 ##Higher priority operators are evaluated first.
 
 #Operator Associativity in R
@@ -390,11 +382,13 @@ bitwXor(5,3)
 ##Left-to-Right Associativity
 ##Right-to-Left Associativity
 
-#Left-to-Right Associativity (Most Operators)
+#Left-to-Right Associations (Most Operators)
 #---------------------------------------------
 #If operators are left-associative, R evaluates them from left to right.
 #Common Left-Associative Operators
+
 #Operator Type	Operators
+#-----------------------
 #Arithmetic--> + - * / %% %/%
 #Relational-->	< <= > >= == !=
 #Logical--> `&
@@ -443,7 +437,7 @@ TRUE
 -----------------------------
 #If operators are right-associative, R evaluates them from right to left.
 #Common Right-Associative Operators
-#Operator Type	Operators
+#Operator Type -->	Operators
 #Exponentiation--> 	^
 #Assignment-->	<- -> = <<-
 #Unary-->	+ - !
@@ -597,15 +591,27 @@ TRUE
 #5 + 2 = 7
 #7 > 6 = TRUE
 
-#Logical Operators: !, &, |, &&, ||
------------------------------------
-##a) Logical NOT !  
+#Logical Operators:(!, &, |)
+---------------------------
+#! (Logical NOT)
 ##Highest among logical operators.
 !TRUE == FALSE
 ##Interpreted as:
 (!TRUE) == FALSE
 
-##b) & vs | (Vectorized)
+# & -(logical AND)
+TRUE&FALSE
+FALSE&TRUE
+FALSE&FALSE
+TRUE&TRUE
+
+# |-(logical OR)
+TRUE|FALSE
+FALSE|TRUE
+FALSE|FALSE
+TRUE|TRUE
+
+# & vs | (Vectorized)
 TRUE | FALSE & FALSE #Precedence: & before |
 Step-by-step:
 FALSE & FALSE = FALSE
@@ -618,6 +624,27 @@ x
 ##3 * 2 = 6
 ##5 + 6 = 11
 ##x <- 11
+
+#Short cricut operator (&&, ||)
+#it generally works on scalar not on vector
+#&& (Logical AND)
+#If the first condition is FALSE, it returns FALSE immediately without looking at the second condition.
+v1 <- c(TRUE, FALSE, TRUE)
+v2 <- c(TRUE, TRUE, FALSE)
+
+v1 & v2   # Returns: TRUE FALSE FALSE (Checks every pair)
+v1 && v2  # Returns: TRUE (Only checks the first pair: TRUE && TRUE)
+v1[1] && v2[1]
+
+#&& (Logical AND)
+#If the first condition is TRUE, it returns TRUE immediately.
+v1 | v2   # Returns: TRUE FALSE FALSE (Checks every pair)
+v1 || v2  # Returns: TRUE (Only checks the first pair: TRUE && TRUE)
+v1[1] && v2[1]
+
+#difference between Logical and shorcuit operator are 
+##logical operator will Compares every element in two vectors.
+##whereas the short cricut operator compare first pari
 
 #Combined Expression Walkthrough
 -------------------------------
