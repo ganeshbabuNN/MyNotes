@@ -1,5 +1,6 @@
 #Introduction
 #Data Types(Atomic Data Types)
+##Primitive DataTypes
 ##Special Values
 ##Advance Data Types
 #Strings
@@ -8,7 +9,6 @@
 #Type Checking
 #Missingness Semantics
 #Data Type Conversion in R
-#Mutable and immutable Objects # TBD
 #Quiz
 #Assignment
 #Resources
@@ -32,8 +32,8 @@
 #5)Characters
 #6)Raw
 
-#DataTypes
-#=========
+##Primitive DataTypes
+#-------------------
 #we shall understand the different type of data type
 
 #Numeric
@@ -1133,6 +1133,10 @@ as.logical("Yes")   # NA
 #Factor-->Numeric= as.numeric(as.character())
 #Character-->Date= as.Date()
 #Character-->POSIXct= as.POSIXct()
+
+#Mutable and immutable Objects
+#=============================
+
 
 #Quiz:
 #=====

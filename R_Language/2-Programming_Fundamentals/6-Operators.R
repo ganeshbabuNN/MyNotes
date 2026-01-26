@@ -16,18 +16,18 @@
 # Type of operators
 # ==================
 # There are Type of Operators.
-# 1)Arithmetic operators
-# 2)Relational operators
-# 3)Logical Operators
-# 4)Assignment Operators
-# 5)Special Operators
-# 6)Formula Operator
-# 7)Pipe Operator
-# 8)Tidyverse Logical Helpers
-# 9)Bitwise Operators
+# Arithmetic operators
+# Relational operators
+# Logical Operators
+# Assignment Operators
+# Special Operators
+# Formula Operator
+# Pipe Operator
+# Tidyverse Logical Helpers
+# Bitwise Operators
 
-# Arithmetic operators-Used for mathematical calculations.
-# ----------------------
+# Arithmetic operators -Used for mathematical calculations
+# --------------------
 # Arithmetic operators are used to perform arithmetic operations between two operands.
 # + ( addition) 
 # - (Subractions)
@@ -428,7 +428,7 @@ TRUE
 #Parentheses remove ambiguity and improve readability
 
 #Now lets geting into eah operator precedence remember the assocativatity
-#------------------------------------
+#------------------------------------------------------------------------
 #Parentheses () – Highest Priority
 
 #Anything inside parentheses is executed first.
@@ -578,12 +578,8 @@ TRUE | (FALSE & FALSE)
 # l1 <- list(1,2,3,4,5)
 # l2 <- list(6,7,8,9,10)
 # l1+l2 # it does not allow overloads as it allows only numeric not string where it other languages it overloadsprint(s1)
+
  
-
-# Quiz:
-# =====
-
-
 #Quiz
 #=====
 
