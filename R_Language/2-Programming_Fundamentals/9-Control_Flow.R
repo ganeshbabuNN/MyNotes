@@ -976,58 +976,7 @@ mutate(flag = if_else(value > 0, "P", "N"))
 
 #Assignment:
 #===========
-#1. The Office Door Badge You are programming a smart door for a tech office. The door should only open if the
-#user provides the correct "Access Code."
-#Input: User enters a 4-digit code.
-#Scenario: If the code is 1234 , print "Access Granted. Door Unlocked." Otherwise, print "Access Denied.
-#Security Alerted."
-
-#2. The Weekend Grocery Trip A person is deciding whether to go to the supermarket.
-#Input: User enters how many eggs are left in the fridge (integer).
-#Scenario: If the number of eggs is less than 3, print "Time to go to the market!" Else, print "You have
-#enough for breakfast today."
-
-#3. The Smart Home "Leaving for Work" Checklist When you leave your house, a smart assistant checks multiple
-#independent things. These are not mutually exclusive.
-#Input: Three separate inputs (Yes/No) for: "Is the AC on?", "Is the Coffee Maker on?", "Is the Front Door
-#unlocked?"
-#Scenario:
-#If AC is on Print "Turning off AC to save energy."
-#If Coffee Maker is on Print "Warning: Coffee Maker is still hot!"
-#If Door is unlocked Print "Locking the front door now." (Note: All three messages could potentially print.)
-
-#4. The Pizza Topping Calculator A customer is choosing toppings. Each topping adds a specific cost regardless of
-#the other toppings chosen.
-#Input: Three boolean (True/False) inputs for: extra_cheese , pepperoni , and olives .
-#Scenario: Initialize a total_bill = 10 .
-#If extra_cheese  is True add 2 to bill.
-#If pepperoni  is True add 3 to bill.
-#If olives  is True add 1 to bill.
-#Output: Print the final total bill.
-
-#5. The Traffic Light Sensor A self-driving car needs to interpret a single traffic light color.
-#Input: User enters "Red", "Yellow", or "Green".
-#Scenario: * If "Red" "Full Stop."
-#If "Yellow" "Slow down and prepare to stop."
-#If "Green" "Proceed with caution."
-#Anything else "Error: Signal Malfunction!"
-
-#6. Movie Theater Ticket Pricing A theater charges based on the age of the customer.
-#Input: User enters their age.
-#Scenario:
-#Age < 5 "Ticket is Free."
-#Age 5 to 17 "Child Ticket: $10."
-#Age 18 to 60 "Adult Ticket: $18."
-#Age > 60 "Senior Ticket: $12."
-
-#7. The 7-Day Steps Tracker A fitness app wants to show your activity for the week.
-#Data: A list of steps: [4000, 7500, 10000, 2000, 8000, 12000, 5000] .
-#Scenario: Loop through the list and for each day, print: "Day [X]: You walked [Steps] steps."
-
-#8. The Email "Bcc" System A marketing manager has a list of 5 client names.
-#Input: A list containing 5 names.
-#Scenario: Use a loop to "send" an email to each person by printing: "Sending personalized promo code to
-#[Name]..."
+#https://github.com/ganeshbabuNN/MyNotes/blob/master/R_Language/2-Programming_Fundamentals/Assignments/Assignment_controlFlows.pdf
 
 #Resources
 #=========
