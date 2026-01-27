@@ -98,10 +98,10 @@ is.character(x)
 
 cat("hello world") #using cat function
 print("Hello world") #using print
-paste("hello world","welcome to R programming") #using paste functions
+paste("hello world"," welcome to R programming") #using paste functions
+paste0("hello world","welcome to R programming") #using paste0 functions
 
 #Example of valid strings
-#*----------------------*
 a <- "learn the R Programming language"
 print(a)
 
@@ -115,7 +115,6 @@ a <- 'learn the R "Programming language'
 print(a) #observer the output 
 
 #Example of In-valid strings
-#*----------------------*
 #a <- "learn the R "Programming language'
 #a <- 'learn the R 'Programming language'
 #a <- "learn the R"Programming language"

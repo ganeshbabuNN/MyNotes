@@ -22,7 +22,146 @@ y <- 32
 a<-3
 b<-'ga'
 rm(a,b)
+print(a)
+print(b)
 
+# The following would be a good recap
+#------------------------------------
+
+#Numeric Data Types Overview in R ===========
+#Def:Numbers in R are primarily stored as double-precision numeric values by default.
+#purpose : To represent quantities, measurements, and calculations.
+x <- 5.5
+typeof(x)
+#Real-World Example
+##Storing daily temperature readings.
+#Common Mistakes
+##Assuming integers and numerics are the same internally
+#Best Practices
+##Always verify type using typeof() when precision matters
+#When to Use / Not Use
+##Use numeric for calculations
+##Do not use numeric for identifiers like phone numbers
+
+#Integer vs Double (Numeric)  ===========
+#def:integer: whole numbers ,double: decimal numbers (default)
+#purpose : Control precision and memory usage.
+x <- 10L
+typeof(x)
+y <- 10
+typeof(y)
+#Real-World Example
+##Integer: number of employees
+##Double: salary values
+#Common Mistakes
+##Forgetting L for integers
+#Use integers for counts
+#Use doubles for measurements
+#When to Use / Not Use
+##Avoid integers when decimals are expected
+
+#Creating Numeric Values  ===========
+#def: Numeric values can be created directly or through calculations.
+#purpose: Input numeric data into R.
+x <- 100 / 4
+x
+#Real-World Example
+##Calculating average sales.
+#Common Mistakes
+##Using commas in numbers (1,000 is invalid)
+#Best Practices
+##Use clear numeric literals
+#When to Use / Not Use
+##Use when numeric computation is required
+
+#Arithmetic Operators on Numbers  ===========
+#Def: Operators like + - * / ^ %%.
+#Purpose: Perform mathematical calculations.
+a + b
+10 %% 3
+#Real-World Example
+##Calculating tax percentages.
+#Common Mistakes
+##Confusing %/% with /
+#Best Practices
+##Use parentheses for clarity
+#When to Use / Not Use
+##Avoid mixing numeric and character types
+
+#Numeric Coercion and Type Conversion  ===========
+#Definition :Automatic or explicit conversion between types.
+#Purpose:Ensure compatibility in operations.
+as.numeric(x) #syntax
+as.numeric("100")
+#Real-World Example
+##Reading numeric columns from CSV files.
+#Common Mistakes
+##Silent NA creation during coercion
+#Best Practices
+##Check warnings after conversion
+##When to Use / Not Use
+##Do not coerce without validation
+
+
+#Special Numeric Values =========
+#Definition:NA: missing ,NaN: invalid computation,Inf: infinity
+#Purpose:Represent undefined or extreme numeric states
+0 / 0
+1 / 0
+#Real-World Example
+##Division by zero in financial ratios.
+#Common Mistakes
+##Treating NaN as NA
+#Best Practices
+##Use is.na(), is.nan(), is.infinite()
+#When to Use / Not Use
+##Use explicitly for error handling
+
+#Checking Numeric Types
+#Definition:Functions to validate numeric data.
+#Purpose :Data validation and robustness.
+is.numeric(x)
+is.integer(10L)
+#Real-World Example
+##Validating user input in analytics pipelines.
+#Common Mistakes
+##Assuming is.numeric() implies integer
+#Best Practices
+##Combine multiple checks
+
+#Numeric Precision and Floating-Point Representation
+#Definition: R uses floating-point arithmetic.
+#Purpose :Understand rounding errors.
+0.1 + 0.2
+#Real-World Example
+##Financial calculations showing tiny discrepancies.
+#Common Mistakes
+##Direct equality checks
+#Best Practices
+##Use tolerance comparisons
+
+#Vectorized Numeric Operations
+#Definition:Operations applied element-wise.
+#Example
+c(1,2,3) * 2
+#Real-World Example
+#Applying discounts across products.
+#Best Practices
+#Prefer vectorization over loops
+
+#Handling Missing Numeric Values
+#Definition: Managing NA values.
+#Example
+x<-c(1,3,4,5,6,NA)
+mean(x)
+mean(x,na.rm = T)
+#Real-World Example
+##Incomplete survey responses.
+
+#Numeric Comparison and Tolerance
+#Definition -Avoid strict equality for floats.
+#Example
+all.equal(0.1 + 0.2, 0.3)
 
 #Integer Overflow and Limits
 ##Integers have finite bounds.
@@ -37,55 +176,62 @@ x
 #Use case : Scientific and financial modeling.
 1e6
 
-
 # Built in functions
 # ==================
-#Basic Mathematical Functions
+#Basic Mathematical Functions (*IMP*)
 #---------------------------
-#abs() – Absolute Value -Returns the positive value of a number.
-abs(-10)
+abs(-10) #abs() – Absolute Value -Returns the positive value of a number.
+sqrt(25) #sqrt() – Square Root
+2^3 #^ or pow() – Power
 
-#sqrt() – Square Root
-sqrt(25)
+#log(), log10(), log2() – Logarithms
+log(10)        # Natural log
+log10(100)     # Base-10 log → 2
+log2(8)        # Base-2 log → 3
 
-#^ or pow() – Power
-2^3
+exp(1)         # e^1 #exp() – Exponential
+factorial(5) #factorial() – Factorial
+choose(5, 2) #choose(n, k) – Combinations (nCk)
+prod(c(2, 3, 4)) #prod() – Product of Elements
 
-#round() – Round to Nearest
-round(3.456, 2)
+#Rounding & Precision Control (*IMP*)
+--------------------------------------------
+round(3.456, 2) #round() – Round to Nearest
+ceiling(4.1)   # 5 #ceiling()
+ceiling(3.1) #ceiling() – Round Up irespective of decimal limit like 0.5 to 1..etc
+floor(4.9)     # 4 vs floor() - removes rounding 
+floor(3.9) #floor() – Round Down
+trunc(5.9) #trunc() – Truncate Decimal Part
 
-#ceiling() – Round Up
-ceiling(3.1)
+signif(123.456, 4) #signif() – Significant Digits
+rank(c(100, 50, 75)) #Ranking, Ordering & Position Functions
+order(c(100, 50, 75)) #order() – Sorting Index
+which.min(x) #which.min() 
+which.max(x) #which.max() – Position of Min/Max
 
-#floor() – Round Down
-floor(3.9)
-
-#trunc() – Truncate Decimal Part
-trunc(5.9)
+#Handling Missing Values in Numeric Functions(*IMP*)
+#---------------------------------------------
+##Most numeric functions return NA if input has missing values.
+#Using na.rm = TRUE
+x <- c(10, 20, NA, 40)
+sum(x)                 # NA
+sum(x, na.rm = TRUE)  # 70
+mean(x, na.rm = TRUE)
 
 #Summary / Aggregation Functions
 #-------------------------------
-#sum() – Total
-sum(c(10, 20, 30))
+sum(c(10, 20, 30)) #sum() – Total
+mean(c(10, 20, 30)) #mean() – Average
+median(c(10, 20, 30)) #median() – Middle Value
+min(3, 7, 2) #min()  Smallest
+max(3, 7, 2) #max() Largest
 
-#mean() – Average
-mean(c(10, 20, 30))
-
-#median() – Middle Value
-median(c(10, 20, 30))
-
-#min() / max() – Smallest / Largest
-min(3, 7, 2)
-max(3, 7, 2)
-
-#range() – Minimum and Maximum
+#Range() function
 ##Range function in R, returns a vector containing the minimum and maximum of all the given arguments
-range(c(5, 10, 20))
-## R Range function - for a numeric vector
-x <- c(2,7,1,-17,Inf,35,21,7)
-x
+range(c(5, 10, 20,90,50)) #range() – Minimum and Maximum
 ##Range function with NA:
 x <- c(2,7,1,-17,Inf,35,21,7,NA)
+range(x)
 range(x,na.rm=TRUE)
 ##Range function for a character vector:
 x<-c("a","h","x","i","j")
@@ -96,137 +242,195 @@ range(mystu$marks)
 
 #Statistical Functions
 #---------------------
-#sd() – Standard Deviation
-sd(c(10, 20, 30))
-
-#var() – Variance
-var(c(10, 20, 30))
-
-#quantile() – Percentiles
-quantile(c(10, 20, 30, 40), 0.75)
-
-#IQR() – Interquartile Range
-IQR(c(10, 20, 30, 40))
+sd(c(10, 20, 30)) #sd() – Standard Deviation
+var(c(10, 20, 30)) #var() – Variance
+quantile(c(10, 20, 30, 40), 0.75) #quantile() – Percentiles
+IQR(c(10, 20, 30, 40)) #IQR() – Interquartile Range
 
 #Cumulative Functions
 #--------------------
-#cumsum() – Cumulative Sum
-cumsum(c(2, 4, 6))
+cumsum(c(2, 4, 6)) #cumsum() – Cumulative Sum
+cumprod(c(2, 3, 4)) #cumprod() – Cumulative Product
+cummax(c(1, 5, 3, 8)) #cummax() / cummin() – Running Max / Min
 
-#cumprod() – Cumulative Product
-cumprod(c(2, 3, 4))
+#Formatting Numbers
+#-------------------
+#Format()
+#Argument-->Purpose
+#digits-->Controls the number of significant digits shown.
+#nsmall-->Forces a specific number of digits after the decimal point.
+#scientific-->Toggles scientific notation (TRUE, FALSE, or a threshold).
+#trim-->If TRUE, removes leading/trailing padding spaces.
+#big.mark-->Adds a separator (like a comma) for thousands.
+format(c(10, 12.5, 100.456), nsmall = 2) #Controlling Decimals (nsmall)
+format(12.345678, digits = 4) #Significant Digits (digits)
+format(1250000, big.mark = ",", scientific = FALSE) #Big Number Formatting (big.mark)
+#handling Dates
+# %Y-->Year with century (4 digits)-->2026
+# %y-->Year without century (2 digits)-->26
+# %B-->Full month name-->January
+# %b-->Abbreviated month name-->Jan
+# %m-->Month as a number (01-12)-->	01
+# %d-->Day of the month (01-31)-->	27
+# %A-->Full weekday name-->Tuesday
+# %a-->Abbreviated weekday name-->	Tue
+format(Sys.time(), "%B %d, %Y") 
+format(Sys.time(), "%Y-%m-%dT%H:%M:%S")
+#Cleaning Up Space (trim)
+nums <- c(1.1, 100.1)
+format(nums)              # Output: "  1.1" "100.1"
+format(nums, trim = TRUE) # Output: "1.1" "100.1"
 
-#cummax() / cummin() – Running Max / Min
-cummax(c(1, 5, 3, 8))
 
-#Rounding & Formatting Numbers
-#-----------------------------
-#signif() – Significant Digits
-signif(123.456, 4)
+#formatC() 
+#While format() is a general-purpose tool, formatC() is its more powerful, faster cousin.
+# #Type Code-->Description-->Example-->Output (x = 10)
+# "f"-->Fixed floating point (decimal)-->10.000
+# "e"-->Scientific notation-->1.000e+01
+# "g"-->General (picks the shorter of 'f' or 'e')-->10
+# "d"-->Integer (digits)-->10
+# "s"-->String-->"10"
 
-#formatC() – Control Formatting
-formatC(1234.5678, format="f", digits=2)
+formatC(c(1, 15, 120), width = 4, format = "d", flag = "0") #Zero-Padding (Great for File Names or IDs)
+formatC(1.2, digits = 3, format = "f") #Precise Decimal Control
+formatC(1234.5678, format="f", digits=2) #formatC() – Control Formatting
+formatC(c(-1.5, 2.3, 0), format = "f", digits = 1, flag = "+") #Forcing a Positive Sign
+formatC(123456, format = "e", digits = 2) #Scientific Notation with Specific Precision
+
 
 #Modular Arithmetic
 #------------------
-#%% – Remainder
-10 %% 3
-
-#%/% – Integer Division
-10 %/% 3
+10 %% 3 #%% – Remainder
+10 %/% 3 #%/% – Integer Division
 
 #Random Number Generation
 #------------------------
-#runif() – Uniform Random Number
-runif(5, 1, 10)
-##Generate a random number between 5.0 and 7.5
-x1 <- runif(1,5.0,7.5)
+runif(5, 1, 10) #runif() – Uniform Random Number
+x1 <- runif(1,5.0,7.5) ##Generate a random number between 5.0 and 7.5
 x1
-##If you want to generate multiple random value
-x2 <- runif(4, 5.0, 7.5)
+x2 <- runif(4, 5.0, 7.5) ##If you want to generate multiple random value
 x2
-
-#rnorm() – Normal Distribution
-rnorm(5, mean=0, sd=1)
-
+rnorm(5, mean=0, sd=1) #rnorm() – Normal Distribution
 #sample() – Random Sampling
-##Generate a random integer between 1 and 10
-x3 <- sample(1:10, 3)
+x3 <- sample(1:10, 3) ##Generate a random integer between 1 and 10
 x3
-##if we want to generate more than one random number, 
-x4 <- sample(1:10, 5, replace=T)
+x4 <- sample(1:10, 5, replace=T) ##if we want to generate more than one random number, 
 x4
 ##Select 6 random numbers between 1 and 40, without replacement
 x5 <- sample(1:40, 6, replace=F)
 x5
-
-#set.seed() – Reproducibility
-set.seed(123)
-runif(3)
-
-runif
 ?sample
+set.seed(123) #set.seed() – Reproducibility
+runif(3)
+runif
 ?.Random.seed
 
 #Testing / Logical Numeric Functions
 #-----------------------------------
-#is.numeric()
-is.numeric(10)
-
-#is.integer()
-is.integer(10L)
-
+is.numeric(10) #is.numeric()
+is.integer(10L) #is.integer()
 #any() / all()
 #if_any() Keeps a row if the condition is true in at least one of the selected columns.
 any(c(1, 2, 3) > 2)
+any(c(1, 2, 2) > 2)
 #if_all() Keeps a row only if the condition is true in every single one of the selected columns.
-all(c(1, 2, 3) > 0)
+all(c(1, 2, 3) > 2)
+all(c(6, 5, 3) > 2)
 
 #Sequence & Repetition
 #---------------------
-#seq() – Generate Sequences
-seq(1, 10, by = 2)
-
-#rep() – Repeat Values
-rep(5, times = 3)
-
+seq(1, 10, by = 2) #seq() – Generate Sequences
+rep(5, times = 3) #rep() – Repeat Values
 #Real-World Data Example
 marks <- c(45, 60, 75, 80, 90)
-
 mean(marks)        # Average
 sd(marks)          # Spread
 max(marks)         # Highest score
 round(mean(marks), 2)
 
-# zip like functions using mapply
+
+#Window / Rolling Style Numeric Functions
+#-----------------------------------------
+#diff() – Differences Between Consecutive Values
+x <- c(10, 15, 25, 40)
+diff(x)
+#lag() / lead() (dplyr)
+library(dplyr)
+lag(x)
+lead(x)
+#Moving Average (Manual)
+##The "Standard" Way: frollmean() (data.table)
+library(data.table)
+data <- c(10, 20, 30, 40, 50)
+# Calculate a moving average with a window of 3
+frollmean(data, n = 3)
+#The "Tidy" Way: rollmean() (zoo)
+library(zoo)
+# k = window size; fill = NA keeps the output the same length as the input
+rollmean(data, k = 3, fill = NA)
+#The "Base R" Way (No Packages)
+stats::filter(data, filter = rep(1/3, 3), sides = 1)
+
+#Numeric Testing & Classification
+#--------------------------------
+#is.finite(), is.infinite(), is.nan()
+is.finite(10)
+is.infinite(Inf)
+is.nan(NaN)
+
+#all.equal() – Floating Point Comparison
+a <- 0.1 + 0.2
+b <- 0.3
+a == b            # FALSE (precision issue)
+all.equal(a, b)  # TRUE
+
+#Cumulative & Rolling Analysis
+#-----------------------------
+#cummean() (via dplyr)
+library(dplyr)
+cummean(c(10, 20, 30))
+
+#cumsum() / cumprod()
+cumsum(c(1, 2, 3,4,5,6,7,8,9,10))
+cumprod(c(10,10,30))
+
+#Random & Probability Functions
+#------------------------------
+#Distributions: d, p, q, r
+#For Normal Distribution:
+#Function	Purpose
+#dnorm()	Density
+#pnorm()	Cumulative probability
+#qnorm()	Quantile
+#rnorm()	Random values
+
+rnorm(5, mean=0, sd=1)
+pnorm(1.96)
+
+#===============================================
+#ZIP function equivalent in R
 # -------------------------------
-dict <- new.env(hash = TRUE)
-dict
-Add <- function(key, val) dict[[key]]<- val
-Add
- 
-name=c('a','b','c','d','e','f','g')
-marks=c(43,45,67,32,56,23,54)
-mapply(Add, name, marks)
+#zip() when you want to do something with the pairs immediately.
 
-#Advanced Mathematical Functions
---------------------------------
-#log(), log10(), log2() – Logarithms
-log(10)        # Natural log
-log10(100)     # Base-10 log → 2
-log2(8)        # Base-2 log → 3
+#The Direct Equivalent: mapply() or Map()
+names <- c("Alice", "Bob")
+ages <- c(25, 30)
+Map(function(x, y) paste(x, "is", y), names, ages) # Returns a list (similar to Python's zip)
+mapply(function(x, y) paste(x, "is", y), names, ages) # mapply is a "friendly" version that tries to simplify the output to a vector
 
-#exp() – Exponential
-exp(1)         # e^1
+#Zipping into a Data Frame
+# Creating a table where each row is a "zipped" pair
+df <- data.frame(names, ages)
+df
 
-#factorial() – Factorial
-factorial(5)
+#The Modern R Way: purrr::map2()
+library(purrr)
+map2_chr(names, ages, ~paste(.x, "is", .y)) # map2 takes two inputs; pmap takes many
 
-#choose(n, k) – Combinations (nCk)
-choose(5, 2)
-
-#prod() – Product of Elements
-prod(c(2, 3, 4))
+#Unzipping
+zipped <- list(c("Alice", 25), c("Bob", 30))
+unzipped <- do.call(rbind, zipped) # Unzip into a matrix
+unzipped
 
 #Trigonometric Functions
 #-----------------------
@@ -258,90 +462,18 @@ x <- c(10, 20, 30)
 #Log Transformation
 log(x) #Used to reduce skewness.
 
-#Handling Missing Values in Numeric Functions
-##Most numeric functions return NA if input has missing values.
+#Common Pitfalls
+#----------------
+#Ignoring NA
+mean(c(10, NA, 20))   # NA
+##Use
+mean(c(10, NA, 20), na.rm=TRUE)
 
-#Using na.rm = TRUE
-x <- c(10, 20, NA, 40)
-sum(x)                 # NA
-sum(x, na.rm = TRUE)  # 70
-mean(x, na.rm = TRUE)
-
-#Rounding & Precision Control (More Details)
---------------------------------------------
-#round()
-round(3.4567, 2)
-
-#ceiling() vs floor()
-ceiling(4.1)   # 5
-floor(4.9)     # 4
-
-#signif() – Significant Digits
-signif(0.0123456, 3)
-
-#Ranking, Ordering & Position Functions
-x <- c(100, 50, 75)
-rank(x)
-
-#order() – Sorting Index
-order(x)
-
-#which.min() / which.max() – Position of Min/Max
-which.min(x)
-which.max(x)
-
-#Window / Rolling Style Numeric Functions
-#-----------------------------------------
-#diff() – Differences Between Consecutive Values
-x <- c(10, 15, 25, 40)
-diff(x)
-
-#lag() / lead() (dplyr)
-library(dplyr)
-lag(x)
-lead(x)
-
-#Moving Average (Manual)
-x <- c(10, 20, 30, 40, 50)
-filter <- rep(1/3, 3)
-stats::filter(x, filter)
-
-#Numeric Testing & Classification
-#--------------------------------
-#is.finite(), is.infinite(), is.nan()
-is.finite(10)
-is.infinite(Inf)
-is.nan(NaN)
-
-#all.equal() – Floating Point Comparison
-a <- 0.1 + 0.2
-b <- 0.3
-a == b            # FALSE (precision issue)
-all.equal(a, b)  # TRUE
-
-#Cumulative & Rolling Analysis
-#-----------------------------
-#cummean() (via dplyr)
-library(dplyr)
-cummean(c(10, 20, 30))
-
-#cumsum() / cumprod()
-cumsum(c(1, 2, 3))
-cumprod(c(1, 2, 3))
-
-#Random & Probability Functions
-#------------------------------
-#Distributions: d, p, q, r
-#For Normal Distribution:
-#Function	Purpose
-#dnorm()	Density
-#pnorm()	Cumulative probability
-#qnorm()	Quantile
-#rnorm()	Random values
-
-rnorm(5, mean=0, sd=1)
-pnorm(1.96)
-
+#Floating Point Comparisons
+0.1 + 0.2 == 0.3   # FALSE
+#Use
+all.equal(0.1 + 0.2, 0.3)
+#=====================================
 #Real-World Analytical Examples
 #-------------------------------
 #Example 1: Z-Score Calculation (Outlier Detection)
@@ -352,7 +484,6 @@ z
 #Example 2: BMI Calculation
 weight <- c(60, 72, 80)   # kg
 height <- c(1.65, 1.70, 1.75)  # meters
-
 bmi <- weight / (height^2)
 round(bmi, 2)
 
@@ -365,83 +496,70 @@ pct_change
 marks <- c(80, 95, 70, 85)
 rank(-marks)   # Higher marks → better rank
 
-#Common Pitfalls
-#----------------
-#Ignoring NA
-mean(c(10, NA, 20))   # NA
-##Use
-mean(c(10, NA, 20), na.rm=TRUE)
-
-#Floating Point Comparisons
-0.1 + 0.2 == 0.3   # FALSE
-#Use
-all.equal(0.1 + 0.2, 0.3)
-
-# Number systems
-# ==============
- 
-# Binary type
-# -----------
-# # R Program to convert an integer to binary
-# # Loading library
+#Number systems
+#==============
+#Binary type
+#-----------
+## R Program to convert an integer to binary
+## Loading library
 library(binaryLogic)
-# # Calling as.binary() function
+## Calling as.binary() function
 as.binary(1)
 as.binary(10)
 as.binary(-1)
 as.binary(0xAB)
 
-# Hexadecimal Type
-# ----------------
-# # R Program to convert an integer to hexadecimal
+#Hexadecimal Type
+#----------------
+## R Program to convert an integer to hexadecimal
 
-# library(gmp)
+#library(gmp)
 x <- '6917530144339624323'
 x_bigz <- as.bigz(x)
 as.character(x_bigz, b = 16)
 
-# #convert to the hexi to integer
+##convert to the hexi to integer
 strtoi('0x7f8cff8b')
 
-V <- c(0xa373, 0x115c6, 0xa373, 0x115c6, 0x176b3)
+V<- c(0xa373, 0x115c6, 0xa373, 0x115c6, 0x176b3)
 sprintf("%d", V)
 #-WW345RFV 
 
-# Octal  Type
-# -----------
+#Octal  Type
+#-----------
 on <- as.octmode(c(16, 32, 127:129))
 on
 
-# Boolean Type
-# ------------
-# -boolean has two  logical values of values True or False
-# -R comes with Booleans (with predefined True and False displays that are basically just the integers 1 and 0). It also has a placeholder object called None. Let's walk through a few quick examples of Booleans (we will dive deeper into them later in this course).
+#Boolean Type
+#------------
+#boolean has two  logical values of values True or False
+#R comes with Booleans (with predefined True and False displays that are basically just the integers 1 and 0). It also has a placeholder object called None. Let's walk through a few quick examples of Booleans (we will dive deeper into them later in this course).
  
-# Ex:
+#Ex:
 x=FALSE
 y=TRUE
-x = (1 == TRUE) #In R, True represents the value as 1 and False as 0
+x=(1 == TRUE) #In R, True represents the value as 1 and False as 0
 x
-y = (1 == TRUE)
+y= (1 == TRUE)
 y
-a = TRUE + 4
+a= TRUE + 4
 a
-b = FALSE + 10
+b= FALSE + 10
 b
  
-# #We can use None as a placeholder for an object that we don't want to reassign yet:
-# #None placeholder
-b = None
-# #Show
+##We can use None as a placeholder for an object that we don't want to reassign yet:
+##None placeholder
+b= None
+##Show
 print(b)
 #None
  
-# Number System
-# *------------*
-# 1)Base 10(Decimal)- Represent any number using 10 digits [0–9]
-# 2)Base 2 (Binary) — Represent any number using 2 digits [0–1]
-# 3)Base 8 (Octal) — Represent any number using 8 digits [0–7]
-# 4)Base 16(Hexadecimal) — Represent any number using 10 digits and 6 characters [0–9, A, B, C, D, E, F]
+#Number System
+#-------------
+#1)Base 10(Decimal)- Represent any number using 10 digits [0–9]
+#2)Base 2 (Binary) — Represent any number using 2 digits [0–1]
+#3)Base 8 (Octal) — Represent any number using 8 digits [0–7]
+#4)Base 16(Hexadecimal) — Represent any number using 10 digits and 6 characters [0–9, A, B, C, D, E, F]
  
 a=363
 print((a) ,"Decimal system")
@@ -449,40 +567,38 @@ print(bin(a) ,"binary system")
 print(oct(a) ,"octal system")
 print(hex(a) ,"hex system")
   
-# Ref
-# https://www.quora.com/What-is-the-use-of-number-system-in-computer
-# https://www.tutorialspoint.com/computer_logical_organization/number_system_conversion.htm
+#Ref
+#https://www.quora.com/What-is-the-use-of-number-system-in-computer
+#https://www.tutorialspoint.com/computer_logical_organization/number_system_conversion.htm
  
-# Know ASCII , unicode and Numbers systems
-# ----------------------------------------
-# -All computer data is just numbers,Each character of text is stored as a number.When you press a key on the keyboard, the keyboard sends a number, corresponding to the key that was pressed,When text is displayed on your monitor, each character is read from memory as a number.Computer doesn't understand English or Hindi or any language.But computer do understand only 0 and 1.
-# -0 means False ,1 means True
-# -ASCII codes represent text in computers, communications equipment, and other devices that use text
-# -UNicod is the subset of ASCII and extended upto 2^21 characters
+#Know ASCII , unicode and Numbers systems
+#----------------------------------------
+#All computer data is just numbers,Each character of text is stored as a number.When you press a key on the keyboard, the keyboard sends a number, corresponding to the key that was pressed,When text is displayed on your monitor, each character is read from memory as a number.Computer doesn't understand English or Hindi or any language.But computer do understand only 0 and 1.
+#-0 means False ,1 means True
+#-ASCII codes represent text in computers, communications equipment, and other devices that use text
+#-UNicod is the subset of ASCII and extended upto 2^21 characters
 
 test<-utf8ToInt("Apples")
 test
  
 tes1=intToUtf8(test)
-test1
+tes1
+
+#Refer ASCII_Tables.jpg
  
- 
-# Refer ASCII_Tables.jpg
- 
-# ref:
-# http://www.asciitable.com/ - ASCII table
-# http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def
-# https://youtu.be/61Bs7-ycL64
-# https://byjus.com/maths/number-system/
-# https://byjus.com/maths/hexadecimal-number-system/
+#ref:
+#http://www.asciitable.com/ - ASCII table
+#http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def
+#https://youtu.be/61Bs7-ycL64
+#https://byjus.com/maths/number-system/
+#https://byjus.com/maths/hexadecimal-number-system/
  
 # Quiz:
 # =====
  
 # Assignment:
 # ===========
- 
- 
+
 # Resources:
 # =========
 # https://resbaz.github.io/2014-r-materials/lessons/01-intro_r/data-structures.html
