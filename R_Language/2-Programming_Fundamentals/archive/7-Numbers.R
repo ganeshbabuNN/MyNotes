@@ -474,6 +474,7 @@ mean(c(10, NA, 20), na.rm=TRUE)
 #Use
 all.equal(0.1 + 0.2, 0.3)
 #=====================================
+
 #Real-World Analytical Examples
 #-------------------------------
 #Example 1: Z-Score Calculation (Outlier Detection)
@@ -598,11 +599,12 @@ tes1
  
 # Assignment:
 # ===========
+# https://github.com/ganeshbabuNN/MyNotes/blob/master/R_Language/2-Programming_Fundamentals/Assignments/Assignment_DataTypes.pdf
 
-# Resources:
-# =========
-# https://resbaz.github.io/2014-r-materials/lessons/01-intro_r/data-structures.html
-# https://www.statmethods.net/management/typeconversion.html
-# https://rforexcelusers.com/calculate-percent-column-r/
-# https://blog.revolutionanalytics.com/2009/02/how-to-choose-a-random-number-in-r.html
-# https://www.datasciencemadesimple.com/range-function-in-r/
+#Resources:
+#=========
+#https://resbaz.github.io/2014-r-materials/lessons/01-intro_r/data-structures.html
+#https://www.statmethods.net/management/typeconversion.html
+#https://rforexcelusers.com/calculate-percent-column-r/
+#https://blog.revolutionanalytics.com/2009/02/how-to-choose-a-random-number-in-r.html
+#https://www.datasciencemadesimple.com/range-function-in-r/
