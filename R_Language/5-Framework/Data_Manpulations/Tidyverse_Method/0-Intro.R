@@ -27,6 +27,7 @@ tidyverse_packages() #to know what are the packages
 #lubridate, for date/times.      https://github.com/tidyverse/lubridate
 
 #other subj pacakages
+#--------------------
 #Working with specific types of vectors:
 ##hms, for times.           https://hms.tidyverse.org/
 ##bob S3 framework          https://blob.tidyverse.org/
@@ -34,8 +35,8 @@ tidyverse_packages() #to know what are the packages
 ##glue.. fasten strign literals https://glue.tidyverse.org/
 #Tidymodels for modeling and ML learning https://www.tidymodels.org/
 
-
 #Importing other types of data:
+#------------------------------
 ##feather, for sharing with Python and other languages. https://github.com/wesm/feather
 ##haven, for SPSS, SAS and Stata files.                 https://github.com/tidyverse/haven
 ##httr, for web apis.                                   https://github.com/r-lib/httr
