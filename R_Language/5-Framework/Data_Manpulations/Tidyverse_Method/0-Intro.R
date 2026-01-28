@@ -82,6 +82,7 @@ tidyverse_update() #update the packaes
 
 
 #Reshaping Data (tidyr)
+#--------------------
 #Verb-->	One-line summary
 #pivot_longer()-->	Convert wide data to long format
 #pivot_wider()-->	Convert long data to wide format
@@ -91,6 +92,7 @@ tidyverse_update() #update the packaes
 #replace_na()	Replace missing values
 
 #Data Cleaning & Helpers
+#-----------------------
 #Verb-->One-line summary
 #across()-->	Apply functions to multiple columns
 #if_else()-->	Vectorised conditional logic
@@ -99,6 +101,7 @@ tidyverse_update() #update the packaes
 #rowwise()-->Perform row-by-row operations
 
 #Workflow & Readability
+#-----------------------
 #Verb	One-line summary
 #%>%	Pipe output of one step into the next
 #glimpse()	Compact view of data structure
@@ -118,6 +121,7 @@ data %>%
 #Used for deriving periods, filtering timelines, aging, trends, cohorts.
 
 #Function	One-line summary
+#---------------------------
 #ymd() / mdy() / dmy()	Parse character strings into Date objects
 #as.Date()	Convert to Date class
 #year()	Extract year from date
@@ -136,6 +140,7 @@ data %>%
 mutate(year = year(visit_date), month = month(visit_date))
 
 #String Functions (mostly stringr)
+#---------------------------
 #Used for cleaning text, extracting codes, pattern matching, categorisation.
 
 #Function	One-line summary
@@ -157,6 +162,7 @@ mutate(year = year(visit_date), month = month(visit_date))
 #filter(str_detect(subject_id, "^SUBJ"))
 
 #Number / Numeric Functions (base R + dplyr)
+#---------------------------
 #Used for summaries, transformations, thresholds, business rules.
 
 #Function	One-line summary
@@ -181,6 +187,7 @@ mutate(year = year(visit_date), month = month(visit_date))
 summarise(avg_age = mean(age, na.rm = TRUE))
 
 #Functions Used Across ALL Three (Daily Usage)
+#--------------------------------------------
 #Function	Purpose
 #is.na()	Identify missing values
 #if_else()	Conditional logic
