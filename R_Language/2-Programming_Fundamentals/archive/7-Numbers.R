@@ -1,7 +1,7 @@
 # Intro
 # Numeric Data Type
-# Built in functions
 # Number systems
+# Built in functions
 # Quiz
 # Assignment
 # Resources
@@ -176,6 +176,45 @@ x
 #Use case : Scientific and financial modeling.
 1e6
 
+#Number System
+#==============
+#1)Base 10(Decimal)- Represent any number using 10 digits [0–9]
+#2)Base 2 (Binary) — Represent any number using 2 digits [0–1]
+#3)Base 8 (Octal) — Represent any number using 8 digits [0–7]
+#4)Base 16(Hexadecimal) — Represent any number using 10 digits and 6 characters [0–9, A, B, C, D, E, F]
+ 
+a=363
+print((a) ,"Decimal system")
+print(bin(a) ,"binary system")
+print(oct(a) ,"octal system")
+print(hex(a) ,"hex system")
+  
+#Ref
+#https://www.quora.com/What-is-the-use-of-number-system-in-computer
+#https://www.tutorialspoint.com/computer_logical_organization/number_system_conversion.htm
+ 
+#Know ASCII , unicode and Numbers systems
+#----------------------------------------
+#All computer data is just numbers,Each character of text is stored as a number.When you press a key on the keyboard, the keyboard sends a number, corresponding to the key that was pressed,When text is displayed on your monitor, each character is read from memory as a number.Computer doesn't understand English or Hindi or any language.But computer do understand only 0 and 1.
+#-0 means False ,1 means True
+#-ASCII codes represent text in computers, communications equipment, and other devices that use text
+#-UNicod is the subset of ASCII and extended upto 2^21 characters
+
+test<-utf8ToInt("Apples")
+test
+ 
+tes1=intToUtf8(test)
+tes1
+
+#Refer ASCII_Tables.jpg
+ 
+#ref:
+#http://www.asciitable.com/ - ASCII table
+#http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def
+#https://youtu.be/61Bs7-ycL64
+#https://byjus.com/maths/number-system/
+#https://byjus.com/maths/hexadecimal-number-system/
+
 # Built in functions
 # ==================
 #Basic Mathematical Functions (*IMP*)
@@ -196,7 +235,7 @@ prod(c(2, 3, 4)) #prod() – Product of Elements
 
 #Rounding & Precision Control (*IMP*)
 --------------------------------------------
-round(3.456, 2) #round() – Round to Nearest
+  round(3.456, 2) #round() – Round to Nearest
 ceiling(4.1)   # 5 #ceiling()
 ceiling(3.1) #ceiling() – Round Up irespective of decimal limit like 0.5 to 1..etc
 floor(4.9)     # 4 vs floor() - removes rounding 
@@ -252,6 +291,9 @@ IQR(c(10, 20, 30, 40)) #IQR() – Interquartile Range
 cumsum(c(2, 4, 6)) #cumsum() – Cumulative Sum
 cumprod(c(2, 3, 4)) #cumprod() – Cumulative Product
 cummax(c(1, 5, 3, 8)) #cummax() / cummin() – Running Max / Min
+
+library(dplyr)
+cummean(c(10, 20, 30))
 
 #Formatting Numbers
 #-------------------
@@ -384,16 +426,6 @@ b <- 0.3
 a == b            # FALSE (precision issue)
 all.equal(a, b)  # TRUE
 
-#Cumulative & Rolling Analysis
-#-----------------------------
-#cummean() (via dplyr)
-library(dplyr)
-cummean(c(10, 20, 30))
-
-#cumsum() / cumprod()
-cumsum(c(1, 2, 3,4,5,6,7,8,9,10))
-cumprod(c(10,10,30))
-
 #Random & Probability Functions
 #------------------------------
 #Distributions: d, p, q, r
@@ -406,31 +438,6 @@ cumprod(c(10,10,30))
 
 rnorm(5, mean=0, sd=1)
 pnorm(1.96)
-
-#===============================================
-#ZIP function equivalent in R
-# -------------------------------
-#zip() when you want to do something with the pairs immediately.
-
-#The Direct Equivalent: mapply() or Map()
-names <- c("Alice", "Bob")
-ages <- c(25, 30)
-Map(function(x, y) paste(x, "is", y), names, ages) # Returns a list (similar to Python's zip)
-mapply(function(x, y) paste(x, "is", y), names, ages) # mapply is a "friendly" version that tries to simplify the output to a vector
-
-#Zipping into a Data Frame
-# Creating a table where each row is a "zipped" pair
-df <- data.frame(names, ages)
-df
-
-#The Modern R Way: purrr::map2()
-library(purrr)
-map2_chr(names, ages, ~paste(.x, "is", .y)) # map2 takes two inputs; pmap takes many
-
-#Unzipping
-zipped <- list(c("Alice", 25), c("Bob", 30))
-unzipped <- do.call(rbind, zipped) # Unzip into a matrix
-unzipped
 
 #Trigonometric Functions
 #-----------------------
@@ -473,7 +480,6 @@ mean(c(10, NA, 20), na.rm=TRUE)
 0.1 + 0.2 == 0.3   # FALSE
 #Use
 all.equal(0.1 + 0.2, 0.3)
-#=====================================
 
 #Real-World Analytical Examples
 #-------------------------------
@@ -497,103 +503,64 @@ pct_change
 marks <- c(80, 95, 70, 85)
 rank(-marks)   # Higher marks → better rank
 
-#Number systems
-#==============
-#Binary type
-#-----------
-## R Program to convert an integer to binary
-## Loading library
-library(binaryLogic)
-## Calling as.binary() function
-as.binary(1)
-as.binary(10)
-as.binary(-1)
-as.binary(0xAB)
+#ZIP function equivalent in R
+# -------------------------------
+#zip() when you want to do something with the pairs immediately.
 
-#Hexadecimal Type
-#----------------
-## R Program to convert an integer to hexadecimal
+#The Direct Equivalent: mapply() or Map()
+names <- c("Alice", "Bob")
+ages <- c(25, 30)
+Map(function(x, y) paste(x, "is", y), names, ages) # Returns a list (similar to Python's zip)
+mapply(function(x, y) paste(x, "is", y), names, ages) # mapply is a "friendly" version that tries to simplify the output to a vector
 
-#library(gmp)
-x <- '6917530144339624323'
-x_bigz <- as.bigz(x)
-as.character(x_bigz, b = 16)
+#Zipping into a Data Frame
+# Creating a table where each row is a "zipped" pair
+df <- data.frame(names, ages)
+df
 
-##convert to the hexi to integer
-strtoi('0x7f8cff8b')
+#The Modern R Way: purrr::map2()
+library(purrr)
+map2_chr(names, ages, ~paste(.x, "is", .y)) # map2 takes two inputs; pmap takes many
 
-V<- c(0xa373, 0x115c6, 0xa373, 0x115c6, 0x176b3)
-sprintf("%d", V)
-#-WW345RFV 
+#Unzipping
+zipped <- list(c("Alice", 25), c("Bob", 30))
+unzipped <- do.call(rbind, zipped) # Unzip into a matrix
+unzipped
 
-#Octal  Type
-#-----------
-on <- as.octmode(c(16, 32, 127:129))
-on
 
-#Boolean Type
-#------------
-#boolean has two  logical values of values True or False
-#R comes with Booleans (with predefined True and False displays that are basically just the integers 1 and 0). It also has a placeholder object called None. Let's walk through a few quick examples of Booleans (we will dive deeper into them later in this course).
- 
-#Ex:
-x=FALSE
-y=TRUE
-x=(1 == TRUE) #In R, True represents the value as 1 and False as 0
-x
-y= (1 == TRUE)
-y
-a= TRUE + 4
-a
-b= FALSE + 10
-b
- 
-##We can use None as a placeholder for an object that we don't want to reassign yet:
-##None placeholder
-b= None
-##Show
-print(b)
-#None
- 
-#Number System
-#-------------
-#1)Base 10(Decimal)- Represent any number using 10 digits [0–9]
-#2)Base 2 (Binary) — Represent any number using 2 digits [0–1]
-#3)Base 8 (Octal) — Represent any number using 8 digits [0–7]
-#4)Base 16(Hexadecimal) — Represent any number using 10 digits and 6 characters [0–9, A, B, C, D, E, F]
- 
-a=363
-print((a) ,"Decimal system")
-print(bin(a) ,"binary system")
-print(oct(a) ,"octal system")
-print(hex(a) ,"hex system")
-  
-#Ref
-#https://www.quora.com/What-is-the-use-of-number-system-in-computer
-#https://www.tutorialspoint.com/computer_logical_organization/number_system_conversion.htm
- 
-#Know ASCII , unicode and Numbers systems
-#----------------------------------------
-#All computer data is just numbers,Each character of text is stored as a number.When you press a key on the keyboard, the keyboard sends a number, corresponding to the key that was pressed,When text is displayed on your monitor, each character is read from memory as a number.Computer doesn't understand English or Hindi or any language.But computer do understand only 0 and 1.
-#-0 means False ,1 means True
-#-ASCII codes represent text in computers, communications equipment, and other devices that use text
-#-UNicod is the subset of ASCII and extended upto 2^21 characters
+#Summary: Most Frequently Used String Functions
+#----------------------------------------------
+#Basic Mathematical Functions- abs(),sqrt(),log(),exp(),factorial(5),choose(),prod()
+#Rounding & Precision Control- round(),ceiling(),floor(),trunc(),signif(),rank(),order(),which.min(),which.max()
+#Handling Missing Values in Numeric Functions- na.rm()
+#Summary / Aggregation Functions- sum(),mean(),median(),min(),max(),range()
+#Statistical Functions - sd(),var(),quantitl(),IQR()
+#Cumulative Functions- cumsum(),cumprod(),cummax()
+#Formatting Numbers- format(),formatc(),
+#Modular Arithmetic- %%, %/%
+#Random Number Generation - runif(),rnorm(),sample()
+#Testing / Logical Numeric Functions- is.numeric(),any(),all()
+#Sequence & Repetition- seq(),rep()
+#Window / Rolling Style Numeric Functions- diff(),lag(),lead(),moving average,rollmean()
+#Numeric Testing & Classification- is.finite(),is.infi(),is.nan()
+#Random & Probability Functions- dnorm(),pnorm(),qnorm(),rnorm()
+#Trigonometric Functions- sing(),cos(),tan(),asin(),
+#Scaling, Normalization & Transformation- scale(),log()
+#zip() functions
 
-test<-utf8ToInt("Apples")
-test
+#Most widely used in data analysis
+#---------------------------------
+#Aggregation / Summary Statistics - Sum(),mean(),median(),min(),max(),range(),quantile()
+#Variability / Dispersion- sd(),var()
+#Mathematical Operations - abs(),sqrt(),log(),log10().
+#Rounding & Precision- round(),floor(),ceiling(),signif()
+#Data Transformation / Scaling- scale()
+#Missing Value Handling & Validation- is.na(),na.ram=TRUE
  
-tes1=intToUtf8(test)
-tes1
+#Mental Model for Interviews & Projects
+#--------------------------------------
+#Numeric --> Summarize --> Clean --> Transform --> Report
 
-#Refer ASCII_Tables.jpg
- 
-#ref:
-#http://www.asciitable.com/ - ASCII table
-#http://www.differencebetween.net/technology/software-technology/difference-between-unicode-and-ascii/ - Def
-#https://youtu.be/61Bs7-ycL64
-#https://byjus.com/maths/number-system/
-#https://byjus.com/maths/hexadecimal-number-system/
- 
 # Quiz:
 # =====
  

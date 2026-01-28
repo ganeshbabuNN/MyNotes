@@ -1,9 +1,9 @@
 #Intro
 #Creating Strings
 #Printing Strings
+#String Formatting
 #Accessing String elements
 #Escape characters
-#String Formatting(Huge chapters)
 #String Regular expressions
 #String Functions
 #Quiz
@@ -17,38 +17,37 @@
 
 #Creating Strings
 #================
+#In R, a string is a sequence of characters and is stored as a character vector.
+
+#String Creation Methods
+#-----------------------
+##Direct Assignment
+x <- "Data Science"
+class(x)
+##character() function
+x <- character(3)
+x 
+
+#Single Quotes vs Double Quotes
+#------------------------------
 'Hello World' #using Single quotes
 "Hello world" #using double quotes #but we cannot use double quotes or single quotes ,in the same statement more than one time
-
-mychar <- "R is a Super Programming language"
-cat(mychar,"\n")
-class(mychar)
-
-mychar <- 'R is a Super Programming language'
-cat(mychar,"\n")
-class(mychar)
 
 mystr<-" I'm using single quotes, but this will create an error"# Be careful with quotes!
 #for correcting the above , use double quotes
 mystr<-"I'm using single quotes, but this will create an error"
-
-x <- "Hello 'my' friends"
-x
-y <- "Hello 'my' friends" #observe putting single quote on the value.
-y
-# but we cannot use double quotes or single quotes in the same statement more than one time
-#count the number of characters in the string
-nchar(x)
-
+mystr
+nchar(mystr)
 #get class and type
 class(x)
 typeof(x)
 
-#create empty strings and empty character vectors
-#create an empty string
-x <- ""
-x
-nchar(x)
+#Empty String vs NA
+#-----------------------
+x <- c("", NA, "R")
+class(x)
+x == ""
+is.na(x)
 
 # create a vector of two empty strings 
 y <- character(2)
@@ -64,8 +63,19 @@ nchar(z)
 
 # add a component to the vector
 z[1] <- "Tom"
+z
 length(z)
 nchar(z)
+
+#Character Vectors (Core Concept)
+#--------------------------------
+#In R, strings never exist alone.
+#They always exist inside a vector, even if there is only one string.
+x <- "R"
+length(x)
+#Multiple strings:
+languages <- c("R", "Python", "SQL")
+length(languages)
 
 #check whether a variable is of character type
 x <- "The wheather is fine"
@@ -78,7 +88,7 @@ typeof(x)
 x <- as.character(x)
 x
 
- typeof(x)
+typeof(x)
 is.character(x)
 
 #Rules Applied in String Construction
@@ -223,7 +233,6 @@ cat(c("A", "B", "C"))
 ##Do NOT use
 ##When output needs to be saved
 ##When chaining functions
-
 
 #paste() Function in R
 #--------------------
@@ -487,34 +496,178 @@ cat("Loading... 100%\n")
 #if you want to print an actual backslash (like in a file path), you have to escape the escape.
 cat("The file is located at C:\\Users\\Documents\\Data")
 
-#Regular Expressions (Regexp) with Strings
-#========================================
-#Regex allows powerful pattern matching.
-#Pattern-->	Meaning	Example
-#[A-Z]-->Uppercase letters-->"ABC"
-#[0-9]-->Digits-->"123"
-#^-->Start of string-->^ID
-#$-->End of string-->txt$
-#.-->Any character-->A.
-#+-->One or more-->a+
-#*-->Zero or more-->a*
+#String Regular expressions
+#==========================
+#Regular Expressions (Regex) are the "search patterns" used inside string functions like str_detect(), grep(), or str_replace(). 
+#Think of them as a special language that describes a set of strings without naming them individually
+#In R, there is one major "gotcha": Double Backslashes. Because the backslash is an escape character in R,
+#you almost always need to use \\ instead of \ for regex codes.
 
-#Extract Digits
-stringr::str_extract("ID_2025_A", "[0-9]+")
-#Remove Non-Digits
-gsub("[^A-Z]", "", "ID_2025_A")
-?gsub
+#1. The Building Blocks (Special Characters)
+#These define where to look or which specific characters to allow.
+#Character->Meaning
+#.  ->  Wildcard: Any single character
+#^  ->  Start: The beginning of the string
+#$  ->The end of the string
+#[ ] -> Any character inside the brackets
+#[^ ] -> Negative Set: Any character NOT inside
+#`.` -> OR: Match this OR that
 
-#This will be discussed in details in module 3
+#Matching any 3-char word ending in "at"
+str_extract("The cat sat", ".at")
+#Finding ID codes starting with "REF"
+str_detect("REF123", "^REF")
+#Checking for .csv file extensions
+str_detect("data.csv", "\\.csv$")
+#Finding any vowel
+str_extract_all("apple", "[aeiou]")
+#Finding anything that isn't a vowel
+str_extract_all("apple", "[^aeiou]")
 
-#Extracting Specific Patterns
-#-----------------------------
-#regexpr() / regmatches() - extract ABC123
-text <- "Subject ID: ABC123"
-m <- regexpr("[A-Z]+[0-9]+", text)
-regmatches(text, m)
-#str_extract()
-stringr::str_extract(text, "[A-Z]+[0-9]+")
+
+#Quantifiers (How many)
+#These symbols follow a character to tell R how many times it should appear.
+#? : 0 or 1 time (Optional)
+#* : 0 or more times
+#+ : 1 or more times
+#{n} : Exactly n times
+#{n,} : n or more times
+#Example: \\d{3}-\\d{3}-\\d{4} matches a standard US phone number (3 digits, dash, 3 digits, dash, 4 digits).
+#Example
+text <- "The report was filed on 25-12-2023."
+pattern <- "\\d{2}-\\d{2}-\\d{4}"
+str_extract(text, pattern)
+
+# Matching "Model" or "Models"
+str_extract("Models", "Models?")
+#Matching "b" followed by any amount of "a"
+str_extract("baaaa!", "ba*")   #*
+#Pulling the full number out of text
+str_extract("Room 504", "\\d+")  # +
+#Matching exactly 4 digits (a year)
+str_extract("Year 2024", "\\d{4}") #{n}
+#Finding words with at least 5 letters
+str_extract("Hello World", "\\w{5,}") #{n,}
+#Matching 2 to 3 capital letters
+str_extract("ID: USA", "[A-Z]{2,3}")
+
+#Character Classes (The Shortcuts)
+#In R, these are the most common shortcuts for data cleaning:
+#\\d : Digit (0-9)
+#\\D : Non-digit
+#\\w : Word character (letters, numbers, and underscores)
+#\\W : Non-word character (symbols, spaces, etc.)
+#\\s : Whitespace (spaces, tabs, newlines)
+#\\S : Non-whitespace
+
+#Extracting a single digit
+str_extract("Part 9", "\\d")
+#Removing numbers to get the label
+str_remove_all("Code123", "\\D")
+#Finding letters/numbers (ignores !)
+str_extract_all("Hey!", "\\w")
+#Pulling out only the symbols
+str_extract_all("A$100", "\\W")
+#Finding spaces or tabs
+str_detect("John Smith", "\\s")
+#Pulling out the first non-space word
+str_extract(" Hello ", "\\S+")
+
+#Advanced "Grouping" (The Parentheses)
+#One extra building block is (). This is used to "group" parts of a pattern.
+#Extracting the area code from a phone number.
+phone <- "(555)-123-4567"
+str_match(phone, "\\((\\d{3})\\)")[, 2]
+
+#Commonly used regex functions in stringr package
+#Function -> One-Line Description
+#str_detect() -> Returns TRUE/FALSE if the pattern exists (best for filtering rows).
+#str_extract() -> Pulls out the first text match it finds in each string.
+#str_extract_all() -> Pulls out every match in the string (returns a list).
+#str_replace() -> "Swaps the first match with new text (e.g., fixing one typo)."
+#str_replace_all() -> "Swaps every match (e.g., removing all symbols from a column)."
+#str_remove_all() -> "Deletes every instance of a pattern (shortcut for replacing with """")."
+#str_subset() -> Keeps only the entire strings that match the pattern.
+#str_count() -> "Counts how many times a pattern appears (e.g., number of commas)."
+#str_split() -> Breaks a string into pieces wherever the pattern occurs.
+#str_match() -> Extracts the full match and specific capture groups into a matrix.
+
+#Real-World Example
+#=================
+library(stringr)
+library(dplyr)
+
+# Raw Data
+raw_clinical <- data.frame(
+  USUBJID = c("SITE01-001", "SITE01-002", "SITE02-005"),
+  RAW_LAB = c("  GLUCOSE (mg/dL) ", "HEMOGLOBIN (g/dL)", "glucose (MG/DL)"),
+  RAW_MH  = c("DIABETES TYPE II", "hypertension", "Asthma - mild")
+)
+raw_clinical
+
+#1. Standardization (str_to_upper, str_squish)
+#Goal: Create LBTEST and LBUNIT. SDTM requires these to be standardized (usually uppercase) and free of leading/trailing spaces.
+raw_clinical %>%
+  mutate(
+    LBTEST = str_to_upper(str_squish(str_extract(RAW_LAB, "^[A-Za-z]+"))),
+    LBUNIT = str_extract(RAW_LAB, "(?<=\\().+?(?=\\))") # Extract text between ()
+  ) # Clean and standardize the Lab Test name
+str_to_upper()#: Ensures "glucose" becomes "GLUCOSE".
+str_squish()#: Removes that accidental double-space in the first row.
+
+#2. Pattern Detection (str_detect)
+#Goal: Create a flag for "Diabetes" in the Medical History domain.
+raw_clinical %>%
+  mutate(
+    DIAB_FL = ifelse(str_detect(RAW_MH, regex("diabetes", ignore_case = TRUE)), "Y", "N")
+  ) # Identify subjects with Diabetes for a specific analysis flag
+str_detect()#: Scans the medical history for the keyword regardless of case.
+
+#3. Extraction & Capture Groups (str_match)
+#Goal: In the DM (Demographics) domain, you often need to extract a "Site ID" from a "Subject ID" string like SITE01-001.
+raw_clinical %>%
+  mutate(
+    SITEID = str_match(USUBJID, "(^SITE\\d+)-")[, 2]
+  ) # Extract 'SITE01' from 'SITE01-001'
+str_match()#: Uses the capture group (\\d+) to pull just the site number if needed, or the whole prefix.
+
+#4. Replacement & Removal (str_replace, str_remove)
+#Goal: Clean up the MHTERM (Medical History Term) by removing severity notes (like "- mild") to match a coding dictionary like MedDRA.
+raw_clinical %>%
+  mutate(
+    MHTERM = str_remove(RAW_MH, "\\s-\\s.*$") %>% str_to_upper()
+  ) # Remove severity suffixes to get a clean term for coding
+
+#5. String Joining (str_glue)
+#Goal: Creating the USUBJID by combining Study ID, Site ID, and Subject Number.
+study <- "ST101"
+site  <- "01"
+subj  <- "001"
+USUBJID <- str_glue("{study}-{site}-{subj}")
+
+
+#Commonly used regex functions in base R
+#---------------------------------------
+#Function -> One-Line Description
+#grepl() -> "Returns TRUE/FALSE if a pattern is found (the ""l"" stands for logical)."
+#grep() -> Returns the indices (positions) of the strings that match the pattern.
+#regexpr() -> Finds the starting position and length of the first match.
+#gregexpr() -> Finds the starting positions and lengths of all matches in a string.
+#sub() -> Replaces only the first occurrence of a pattern.
+#gsub() -> "Replaces all occurrences of a pattern (the ""g"" stands for global)."
+#regexec() -> "Like regexpr, but also identifies the positions of capture groups."
+#regmatches() -> Used in combination with regexpr or exec to actually extract the text.
+
+#Key Differences to Remember
+#Object Structure: 
+##stringr functions usually return simple vectors or matrices. 
+##Base R functions (like regexpr) return integer vectors with attributes (like match.length), which you often have to extract using attr().
+#Argument Order:
+##stringr: str_detect(string, pattern) → (Data first, then Pattern)
+##Base R: grepl(pattern, string) → (Pattern first, then Data)
+##This is the most common mistake when switching between the two!
+#Global vs Single: 
+##In Base R, you have to choose between different function names for global actions (e.g., sub vs gsub). In stringr, it's usually a suffix (e.g., _all).
 
 #String Functions
 #================
@@ -528,492 +681,259 @@ stringr::str_extract(text, "[A-Z]+[0-9]+")
 install.packages("stringr")
 library(stringr)
 
-#Creating, Combining & Formatting Strings
-#----------------------------------------
-#paste() – Join Strings (with space by default
-paste("Hello", "World")
-#paste0() – Join Without Space
-paste0("ID", 101)
-#sprintf() – Format Like C/SQL (Very Powerful)
-sprintf("Name: %s | Age: %d | Salary: %.2f", "Ravi", 30, 45000.567) #Useful for reports, logging, and file naming.
-#Case Conversion
-##toupper() / tolower()
-toupper("Hello")
-tolower("WORLD")
-#tools::toTitleCase()
-tools::toTitleCase("clinical trial management")
+#Creating & Inspecting Strings
+#-----------------------------
+#character() – create empty character vector
+x <- character(3)
+x
+#is.character() – check type
+x <- "data science"
+is.character(x)
 
 #Length & Basic Inspection
 #-------------------------
-#nchar() – Number of Characters
-nchar("Ganesh")
-#charToRaw() / rawToChar() – Byte-Level Conversion
-charToRaw("A")
-#Substring Extraction
-substr("ClinicalData", 1, 8)
-#substring() – Similar to substr()
-substring("ClinicalData", 9, 12)
-#str_sub() (stringr)
-stringr::str_sub("ClinicalData", 1, 8)
+#length() vs nchar()
+#length()-->Number of elements
+#nchar()-->Number of characters inside string
 
-#Pattern Detection (Search)
----------------------------
-#grepl() #Does Pattern Exist? (TRUE/FALSE)
-grepl("Data", "ClinicalData")
-#grep() – Return Matching Index/Values
-x <- c("AE_TERM", "AE_SEVERITY", "DM_AGE")
-grep("AE", x)
-#str_detect() (stringr)
-stringr::str_detect("ClinicalData", "Data")
+x <- c("R", "Python", "SQL")
+length(x)
+nchar(x)
 
-#Replacement & Substitution
-#--------------------------
-#sub() – Replace First Match
-sub("Data", "File", "ClinicalDataData")
-#gsub() – Replace All Matches
-gsub("Data", "File", "ClinicalDataData")
-#str_replace() / str_replace_all()
-stringr::str_replace("A_B_C", "_", "-")
-stringr::str_replace_all("A_B_C", "_", "-")
+#from stringr
+str_length("sdfsdf")
+str_length(c("R", "Python", "SQL"))
 
-#Splitting & Joining
-#--------------------
-#strsplit() – Split into Parts
-strsplit("A,B,C", ",")
-#str_split() (stringr)
-stringr::str_split("2025-01-16", "-")
-#paste() to Re-Join
-parts <- c("2025", "01", "16")
-paste(parts, collapse = "-")
+#Combining & Formatting Strings
+#-----------------------------
+#this paste(),paste0, springf() are already explained.
 
-#Trimming & Cleaning Whitespace
+#paste() – combine strings
+paste("Ganesh", "Analyst")
+paste("Ganesh", "Analyst", sep = " - ")
+#paste0() – faster
+paste0("ID", 101) #Used heavily while creating IDs, column names
+#sprintf() – formatted strings
+sprintf("Name: %s | Age: %d | Salary: %.2f", "Ravi", 30, 45000.567) #Useful for reports, logging, and file naming.
+
+#from stringr
+name <- "Alice"
+score <- 95
+# Instead of paste("Student", name, "scored", score)
+str_glue("Student {name} scored {score}%") 
+# Output: "Student Alice scored 95%"
+
+#Case Conversion 
+#---------------
+#Common during data standardization
+toupper("Hello") ##toupper() 
+tolower("WORLD") ##tolower()
+
+#from stringr
+library(stringr)
+str_to_lower("GANESH BABU")
+str_to_upper("GANESH BABU")
+str_to_title("GANESH BABU")
+str_to_camel("GANESH BABU")
+str_to_sentence("GANESH BABU")
+str_to_snake("GANESH BABU")
+
+#Trimming & Padding (Data Cleaning)
 #------------------------------
 #trimws() – Remove Leading/Trailing Spaces
 trimws("   hello world   ")
-#str_trim(), str_squish() (stringr)
-stringr::str_trim("   hello   ")
-stringr::str_squish("hello    world   today")
+#strrep() – repeat strings
+strrep("-", 10)
 
-#Counting & Measuring Patterns
-#-----------------------------
-#gregexpr() – Find All Matches
-gregexpr("a", "banana")
-#str_count() (stringr)
-stringr::str_count("banana", "a")
+#from Stringr
+x="   String with trailing,   middle      , and leading white space  "
+str_trim(x)
+str_trim(x,side = c("left")) # like do al lthe string
+str_squish(x) #Trims all whitespace from the start and end. The Ultimate Cleaner
 
-#String Comparison
+#Substring & Extraction (CORE SKILL)
+#----------------------------------
+#substr() – extract part of string
+x <- "DataScience"
+substr(x, 1, 4)
+
+#substring() – similar, but vector-friendly
+substring(x, c(1,5), c(4,11))
+
+#from stringr
+shopping_list <- c("apples 5", "bananas 10", "cherries no-count")
+### Extract the first digit found
+str_extract(shopping_list, "\\d+") #returns the first match it finds. If no match is found, it returns NA
+###Pulls every match (returns a list).
+str_extract_all(shopping_list, "\\d+")
+#Returns the entire string that contains a match.
+str_subset(shopping_list, "\\d+")
+
+#Pattern Matching (VERY IMPORTANT FOR ANALYSIS)
+----------------------------------------------
+#grep() – find positions (returns index)
+x <- c("apple", "banana", "grape")
+grep("ap", x)
+
+#grepl() – logical output (MOST USED in filtering)
+##grep() – Return Matching Index/Values
+grepl("ap", x) #Used inside subset(), dplyr::filter() 
+x <- c("AE_TERM", "AE_SEVERITY", "DM_AGE") 
+grep("AE", x)
+
+#from stringr
+fruits <- c("apple", "banana", "cherry", "date") 
+str_detect(fruits, "an") #It checks if a pattern exists anywhere inside the string
+str_starts(fruits, "a") #only returns TRUE if the string begins with the specified pattern
+str_ends(fruits, "e")#It only returns TRUE if the string finishes with the specified pattern
+
+#Replace & Remove Text (DATA CLEANING CORE)
+#-------------------------------------------
+#sub() – replace first occurrence
+x <- "2025-01-22"
+sub("-", "/", x)
+
+#gsub() – replace all occurrences (VERY IMPORTANT)
+gsub("-", "/", x) #Used in date cleanup, ID cleanup, text normalization
+
+#chartr() – character translation
+##The function maps each character in the first argument (old) to the corresponding character in the second argument (new).
+## like first argu to second arg mapping a=1,e=2,i=3,o=4,u=5 .. and replace the mapped element to 3rd argument
+chartr("aeiou", "12345", "banana")
+
+#from stringr
+text <- "apple apple apple"
+str_replace(text, "apple", "pear") #It only replaces the very first occurrence of a pattern it finds in each string.
+str_replace_all(text, "apple", "pear") #It replaces every single occurrence of the pattern it finds.
+#These are actually just shortcuts for str_replace() where the replacement is an empty string ("").
+prices <- c("$10.00", "$25.50", "$100")
+str_remove(prices, "\\$")
+#it also acts as a name vector
+grades <- c("A", "B", "C")
+str_replace_all(grades, c("A" = "Excellent", "B" = "Good", "C" = "Pass"))
+
+#Splitting Strings
+#----------------
+#strsplit() – split string into pieces
+x <- "R,Python,SQL,Julia" #Used when handling CSV-like text columns
+strsplit(x, ",")
+
+#from stringr
+str_split(x,pattern = ",") #retrun the list  
+
+#Comparing Strings
 #-----------------
 # == – Exact Match
 "abc" == "ABC"
 "ABC" == "ABC"
+
 #identical() – Strict Comparison
 identical("abc", "abc")
 identical("abc", "ABC")
-#str_to_lower() + Compare (Case-Insensitive)
-library(stringr)
-str_to_lower("ABC") == str_to_lower("abc")
-
-#Repeating & Padding
-#-------------------
-#trrep() – Repeat String
-strrep("A", 5)
-#sprintf() for Padding
-sprintf("%05d", 23)
-#str_pad() (stringr)
-str_pad("23", width = 5, side = "left", pad = "0")
 
 #Sorting & Ordering Strings
 #--------------------------
-#sort()
-sort(c("Banana", "Apple", "Mango"))
-#order()
-x <- c("Banana", "Apple", "Mango")
+#sort() – alphabetical order
+x <- c("SQL", "R", "Python","PPyl")
+sort(x)
+#order() – index-based ordering
 x[order(x)]
-#Case-Insensitive Sorting
-x[order(tolower(x))]
 
-#Vectorized String Operations
-#----------------------------
-#Most string functions in R work on entire vectors.
-names <- c("Ganesh", "Ravi", "Anita")
-toupper(names)
+
+#Handling Missing & Empty Strings (IMPORTANT)
+#----------------------------------
+x <- c("R", "", NA)
+is.na(x)
+x == ""
+#Empty string "" ≠ NA
 
 #Common Real-World Examples
 #--------------------------
-#Example 1: Clean Subject IDs
+#Clean Subject IDs
 ids <- c(" SUB_001 ", "SUB-002", "sub_003")
 ids_clean <- toupper(trimws(gsub("-", "_", ids)))
 ids_clean
 
-#Example 2: Extract Visit Number from Label
+#Extract Visit Number from Label
 visit <- c("Visit 1", "Visit 2", "Visit 10")
 as.numeric(str_extract(visit, "[0-9]+"))
 
-#Example 3: Split First and Last Name
+#Split First and Last Name
 name <- "Ganesh Babu"
 parts <- strsplit(name, " ")[[1]]
 first <- parts[1]
 last <- parts[2]
+paste(first,last)
 
-#Example 4: Validate Email
+#Validate Email
 email <- "test@example.com"
 grepl("^A-Za[-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", email)
 
-#Example 5: File Name Generation
+#Filter emails with Gmail
+emails <- c("a@gmail.com", "b@yahoo.com")
+emails[grepl("gmail", emails)]
+
+#File Name Generation
 subject <- "ABC123"
 date <- "20250116"
 paste0("Report_", subject, "_", date, ".csv")
 
+#Clean column names
+names <- c("First Name", "Last Name")
+clean_names <- tolower(gsub(" ", "_", names))
+clean_names
+# "first_name" "last_name"
+
+#Extract year from date string
+date <- "2025-01-22"
+substr(date, 1, 4)
+
+
 #Common Pitfalls
+#--------------
 #Using == for Pattern Matching
 "Data" == "ClinicalData"   # FALSE
-#Use:
-grepl("Data", "ClinicalData")
+#Use:grepl("Data", "ClinicalData")
+
 #Forgetting Vectorization
 for (i in 1:length(x)) {
   x[i] <- toupper(x[i])
 }
 #Better
 toupper(x)
-#Regex Special Characters Not Escaped
-gsub(".", "", "A.B")   # removes everything
-#Correct
-gsub("\\.", "", "A.B")
+
 
 #Summary: Most Frequently Used String Functions
 #----------------------------------------------
-# | Category | Functions                           |
-# | -------- | ----------------------------------- |
-# | Combine  | `paste`, `paste0`, `sprintf`        |
-# | Case     | `toupper`, `tolower`, `toTitleCase` |
-# | Length   | `nchar`                             |
-# | Extract  | `substr`, `substring`, `str_sub`    |
-# | Search   | `grepl`, `grep`, `str_detect`       |
-# | Replace  | `sub`, `gsub`, `str_replace`        |
-# | Split    | `strsplit`, `str_split`             |
-# | Trim     | `trimws`, `str_trim`, `str_squish`  |
-# | Count    | `str_count`, `gregexpr`             |
-# | Regex    | `gsub`, `str_extract`, `regexpr`    |
-# | Format   | `sprintf`, `str_pad`                |
-# | Sort     | `sort`, `order`                     |
+#Creating & Inspecting Strings - character(),is.character()
+#Length & Basic Inspection - length(),nchar()
+#Combining & Formatting Strings -paste(),paste0, springf()
+#Case Conversion- toupper,tolower,stringr
+#Trimming & Padding (Data Cleaning) - trimws(),strrep
+#Substring & Extraction  -substr(),substring()
+#Pattern Matching - grep(),grepl(),
+#Replace & Remove Text - sub(),gsub,str_replace()
+#Splitting Strings -strsplit()
+#Comparing Strings- ==,identical(),chartr()
+#Sorting & Ordering Strings - sort(),order()
+#Handling Missing & Empty Strings - is.na()
 
-##########################################################################################################
 
-#split case
-#----------
-x <- "ganesh babu"
-strsplit(x," ") #split based on delimiter
-strsplit(x," ")[[1]] #extract only that element
-x <- "1589-3558-0156-2079"
-strsplit(x, split="-") # let's split the string above by the dashes
-strsplit("Philadelphia", split="d")  # another splitting examples
-strsplit("New York", split=" ") #the splititng substring is not considered
-strsplit("Detroit", split="") ## split by letters
-
-##using str_split
-#https://stringr.tidyverse.org/reference/str_split.html
-
-#Strips the spaces
-#-----------------
-#generally used to trimt he leading and lagging spaces in the given string.
-a=" ganesh babu ";
-trimws(a, which = c("left")) #Strip Leading Space left
-trimws(a, which = c("right")) #Strip Trailing Space
-trimws(a, which = c("both")) #Strip leading and trailing space
-gsub('\\s+', '', a) #Strip all the Spaces in Column in R:
-
-#find functions
-#--------------
-#Searches the string for a specified value and returns the position of where it was found
-
-text <- "This should be supported on all platforms as it is a feature of C99. The format is not uniquely defined"
-grep("ganesh",text) #return the position of the string of the first index
-
-text1 <- c("gbag","gbag","brga",'rubn','prkh','zktu')
-grep("brga",text1)
-
-x <- c("Philadelphia", "Austin")
-# -finding a pattern in a vector of strings using grep()
-# -this function returns the index of component
-# -where you can find the patterns
-grep(pattern = "del", x)
-grep(pattern = "stin", x)
-grep(pattern =  "w", x)
-grep(pattern =  "a", x)
-
-#-to ignore the case
-grep(pattern =  "a", x, ignore.case = TRUE)
-
-#-to get the value instead of the index we set value = TRUE
-grep(pattern = "del", x, value = TRUE)
-grep(pattern = "stin", x, value = TRUE)
-
-#-the function grepl() returns logical values
-#-TRUE if the pattern is there and FALSE otherwise
-grepl(pattern = "del", x)
-grepl(pattern = "stin", x)
-grepl(pattern = "w", x)
-grepl(pattern = "a", x)
-grepl(pattern = "a", x, ignore.case = TRUE)
-
-#-we can write these two functions in a simpler way
-grep("del", x)
-grepl("del", x)
-
-#-regexpr() returns the first position where the pattern can be found
-regexpr("hil", x)
-regexpr("stin", x)
-regexpr("w", x)
-regexpr("a", x)
-regexpr("a", x, ignore.case = TRUE)
-
-#-gregexpr() does the same thing as regexpr()
-#-only it returns a more complex list
-gregexpr("hil", x)
-gregexpr("stin", x)
-gregexpr("w", x)
-gregexpr("a", x)
-gregexpr("a", x, ignore.case = TRUE)
-
-#-another similar function is regexec()
-regexec("hil", x)
-regexec("stin", x)
-regexec("a", x, ignore.case = TRUE)
-
-#count function get the occurrence of a string.
-#-----------------------------------------------
-text1 <- c("gbag","gbag","brga",'rubn','prkh','zktu')
-length(grep("gbag",text1))
-
-#replace
--------
-text <- "This should be supported on all platforms as it is a feature of C99. The format is not uniquely defined"
-gsub("supported","support",text)
-
-#in file handing scenario
-x <- c("file_a.csv", "file_b.csv", "file_c.csv")
-# gsub() replaces all the occurences of the pattern in each component
-y <- gsub("file_","", x) 
-y
-x <- c("Massachussets", "Russel")
-gsub("ss", "dd", x)
-
-#-t finds pattern in x and replaces it with replacement (new) text.
-x <- c("Massachussets", "Russel")
-#sub() replaces the first occurence of the pattern in each component
-sub("ss", "dd", x)
-sub("abc", "xyz", x)
-
-#- the chartr() function helps us change characters in a string
-x <- "Mary has o cat"
-chartr("o", "a", x) #to change the o into a
-x <- "Mary has o dog" #another example to see how chartr() behaves
-x <- "Mary has o dog" #chartr("o", "a", x)
-#-so chartr() changes ALL the specified characters
-#-in the following string a was replaced with *
-#-and r was replaced with $
-x <- "B*rry h*s * $ed t$uck"
-
-#-to change each of them into the correct character
-chartr("*$", "ar", x)
-
-#Case changes
-#------------
-a<-"hello world"
-a
-toupper(a) #upper case
-tolower(a) #lower case
-casefold(a)# by default, casefold() converts everything to lower case
-casefold(x, upper = TRUE) ## we can change this by setting the upper option to TRUE
-
-library(stringr)
-#https://stringr.tidyverse.org/
-str_to_title(a) #title CASE
-
-#Text alignment 
-#---------------
-install.packages("DescTools")
-library("DesTools")
-x='  Ganesh Babu'
-x.center(20) # The center() method will center align the string, using a specified character (space is default) as the fill character.
-x.ljust(20) #for left 
-x.rjust(20) #for right
-
-#length of the string
-#--------------------
-library(DescTools)
-x="ganesh babu"
-str_length(x)
-
-#using nchar functions
-nchar(x)
-
-#Concatentations
-#---------------
-cat("ganesh","babu")
-# we can concatenate string variables using the c() function
-#however, the result may not be as expected
-x <- "The weather"
-y <- "is fine"
-z <- c(x, y)
-z
-
-#a more useful concatenating function for strings is paste()
-z <- paste(x, y)
-z
-z <- paste(x, y, sep = " ") # the default separator is the space
-z # we can indicate the separator using the sep option
-z <- paste(x, y, sep = "") # to use no separator
-z
-z <- paste(x, y, sep = "-") # to use the dash as a separator
-z
-x <- c("a", "b", "c", "d") 
-y <- c(1, 2, 3, 4)
-w <- paste(x, y) # paste() can be used to concatenate character vectors as well,it will concatenate them element-wise
-w
-w <- paste(x, y, sep = "--") # use a double dash as a separator (instead of the space)
-w
-w <- paste(x, y, sep = "--", collapse = ",") # to put a comma between the pairs of elements we use the collapse option
-w
-w <- paste(x, y, sep = "--", collapse = ", ") # put a comma and a space between the pairs
-w
-x <- c("The weather", "we go to")
-y <- c("is fine", "take a walk")
-z <- paste(x, y, collapse = " and ") # another example of using collapse
-z
-#in conclusion, we use sep to indicate 
-#the separator between the elements in a pair
-#and we use collapse to indicate the separator between pairs
-# paste0() is a version of paste
-# that uses no separator by default
-paste0("Port", "land")
-paste("Port", "land", sep="") # this is the same as writing
-cat("The weather is fine") # another concatenating (and formatting) function is cat()
-# the cat() function does not return a vector
-# the line indicator ([1]) is missing
-# the default separator of cat() is the space
-cat("The weather", "is fine")
-cat("The weather", "is fine", sep = "_")# we can modify the separator with the sep option
-
-#start ,end and contains of string
+#Most widely used functions in data analysis
 #---------------------------------
-#using grepl functions
-x="ganesh babu"
-grepl('^ga',x)
-grepl('bu$',x)
+#String Length & Validation - nchar(),str_length()
+#Combining / Concatenation- paste(),paste0()
+#Case Conversion / Standardization - toupper(),tolower(),str_to_upper(),str_to_lower()
+#Trimming & Whitespace Cleanup-  trimws(),str_trim()
+#Pattern Matching / Detection (Regex)- grep(),grepl(),str_detect(),str_start(),str_ends()
+#Extraction / Substring- substr(),substring(),str_extract()
+#Replacement / Cleaning - sub(),gsub(),chartr(),str_replace(),str_replace_all(),str_remove()
+#Splitting & Parsing- strsplit(),str_split()
+#Filtering & Selection- str_subset()
 
-#using substr funcionts
-substr(x, 1, 2) == 'ga'
-substr(x, nchar(x)-1, nchar(x)) == 'bu'
-substr(x, 5, 9) #extract five characters from x form the fifth to the nineth
-substr(x, 10, 5) #try to extract characters in reverse order form the tenth to the fifth
-x <- c("Philadelphia", "Chicago", "Seattle")
-substr(x, 2, 4) # extract three characters from each component (2, 3 and 4)
-substr(x, 2, 2) <- "$" # in the vector above, replace the second character in each component with a $ sign
-substr(x, 2, 4) <- "$$$" #replace the characters 2, 3 and 4 with "$$$"
-# replace the second character in each component:
-# with a $ in the first component
-# with a * in the second component
-# with a & in the third component
-substr(x, 2, 2) <- c("$", "*", "&")
-# replace the characters 2, 3 and 4 in each component
-# with $*& in the first component
-# with *&$ in the second component
-# with &$* in the third component
-substr(x, 2, 4) <- c("$*&", "*&$", "&$*")
-x
-
-#r3.3 the below functions exists
-startsWith(x,"ga")
-endsWith(x,"bu")
-
-#-for text contain.
-x <- 'ganesh babu'
-#using grepl function
-grepl("ne",x)
-grepl("za",x)
-
-#using str_dection function
-library(stringr)
-str_detect(x,"ne")
-str_detect(x,"za")
-
-#checking numeric or string
-#--------------------------
-x="ganesh"
-y=23
-z=32L
-is.character(x) #check string
-is.numeric(y)  #check numeric
-is.integer(z)  #check integer
-
-#using membership operators
-#---------------------------
-x= c("ganesh","vedha","rect","rocky")
-
-#using in operator
-'ganesh' %in% x
-'rect' %in% x
-'nadi' %in% x
-
-#using not in operator using !
-`%!in%` <- Negate(`%in%`) #this is tricky
-'ganesh' %!in% x
-'rect' %!in% x
-'nadi' %!in% x
-
-#Occurence of character in string
-#--------------------------------
-x <- 'ganesh babu'
-
-#using str_count function
-library(stringr)
-str_count(x,"b")
-str_count(x,"a")
-
-#base R
-lengths(lapply(x, grepRaw, pattern = "b", all = TRUE, fixed = TRUE))
-
-#using gregexpr
-lengths(gregexpr('a', x))
-
-#encoding the string
-#-------------------
-txt = "My name is Ståle"
-txt
-
-#using stringi package
-library(stringi)
-stri_trans_general(txt, "Latin-ASCII")
-
-#Tabing the string
-#------------------
-x <-'ganesh babu'
-
-#using cat function
-cat(x,"\t",3,"\n")
-ot=cat(x,"\t",3,"\n")
-
-#using paste function
-paste(x,3,sep="\t")
-#store in a output
-ot=paste(x,3,sep=":\t")
-ot
-
-#index
-#------
-x<-"ganesh babu"
-
-#using substr function
-i=1
-substr(x,i,i+1)
-
-#using grep and strsplit function
-grep("[gb]", strsplit(x, split="")[[1]])
-
-#dquote and noquote
-#------------------
-#dquote adds the quote in a string and where the noquote removes the extra in the string.
+#Mental Model for Interviews & Projects
+#Numeric → Summarize → Clean → Transform → Report
+#String → Clean → Standardize → Detect → Extract
 
 #Quiz:
 #=====
