@@ -396,7 +396,6 @@ while (account_balance > 0) {
   print(account_balance)
 }
 
-
 #infinite loop
 #If the condition is given in the while loop never becomes false, then the while loop will never terminate, and it turns into the infinite while loop.
 
@@ -472,7 +471,6 @@ repeat {
   user_input <- readline("Enter value: ")
   if (user_input != "") break
 }
-
 
 #Common Mistakes
 ##Forgetting break
