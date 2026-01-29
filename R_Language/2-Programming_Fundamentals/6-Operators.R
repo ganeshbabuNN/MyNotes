@@ -183,7 +183,7 @@ TRUE&&FALSE
 
 #Difference:
 #& and | -->element-wise for vectors
-#&& and || --> only first element (used in if)
+#&& and || --> it works only on scalar not vectorized operations.
 
 x <- c(5, 10, 15)
 x > 6 & x < 14

@@ -72,3 +72,79 @@ https://gist.githubusercontent.com/ganeshbabuNN/a66cb8bbaabf54f08829273298f16250
 
 
 https://www.kaggle.com/rhuebner/human-resources-data-set
+
+===========================================================================
+
+#Inbuilt data sets
+##Built-in datasets in R
+#-----------------------
+##data(iris)
+##Base R datasets
+ https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html
+##All CRAN packages datasets
+https://cran.r-project.org/web/packages/
+
+#Most commonly used built-in R datasets (with one-line description)
+#Dataset	Description
+iris	Measurements of sepal and petal length/width for three iris species
+mtcars	Motor Trend car road test data (fuel consumption & design specs)
+airquality	Daily air quality measurements in New York (1973)
+ToothGrowth	Effect of vitamin C on guinea pig tooth growth
+PlantGrowth	Effect of treatments on plant growth
+faithful	Old Faithful geyser eruption duration and waiting time
+chickwts	Chicken weights under different feed types
+CO2	Carbon dioxide uptake in grass plants
+USArrests	Violent crime rates by US state
+Titanic	Survival counts by class, sex, and age
+
+#Built-in datasets in Python
+#---------------------------
+#Common scikit-learn datasets (with one-line description)
+from sklearn import datasets
+dir(datasets)
+#Dataset	Description
+load_iris()	Iris flower classification dataset
+load_wine()	Chemical analysis of wines grown in Italy
+load_breast_cancer()	Breast cancer tumor classification data
+load_digits()	Handwritten digit images (8×8)
+load_diabetes()	Diabetes progression regression dataset
+fetch_california_housing()	California housing prices data
+fetch_20newsgroups()	Text data for topic classification
+
+from sklearn.datasets import load_iris
+data = load_iris()
+data.keys()
+#Official scikit-learn dataset link
+https://scikit-learn.org/stable/datasets.html
+
+#seaborn datasets (great for EDA)
+import seaborn as sns
+sns.get_dataset_names()
+#Common seaborn datasets
+#Dataset	Description
+tips	Restaurant tips with bill, gender, time, smoker
+titanic	Titanic passenger survival data
+flights	Monthly airline passenger counts
+penguins	Palmer penguins measurements
+diamonds	Diamond prices and attributes
+iris	Iris dataset (same concept as R/sklearn)
+
+df = sns.load_dataset("tips")
+#statsmodels datasets (for statistics)
+import statsmodels.api as sm
+sm.datasets.
+
+
+#Common statsmodels datasets
+Dataset	Description
+longley	Longley macroeconomic dataset
+macrodata	US macroeconomic indicators
+sunspots	Monthly sunspot counts
+fair	Extramarital affairs survey data
+
+
+#Official statsmodels datasets link
+https://www.statsmodels.org/stable/datasets/index.html
+Pro tip (Data Analyst habit)
+#R → Use data() + ?dataset for learning statistics fast
+#Python → Use seaborn for EDA, sklearn for ML examples
