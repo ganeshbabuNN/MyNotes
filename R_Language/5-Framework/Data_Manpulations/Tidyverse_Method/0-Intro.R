@@ -80,7 +80,6 @@ tidyverse_update() #update the packaes
 #bind_rows()-->	Stack datasets row-wise
 #bind_cols()-->	Combine datasets column-wise
 
-
 #Reshaping Data (tidyr)
 #--------------------
 #Verb-->	One-line summary
@@ -194,6 +193,7 @@ summarise(avg_age = mean(age, na.rm = TRUE))
 #case_when()	Multi-condition classification
 #coalesce()	First non-missing value
 #na.rm = TRUE	Ignore missing values
+
 #MOST USED COMBINATION IN REAL PROJECTS
 data %>%
   mutate(
