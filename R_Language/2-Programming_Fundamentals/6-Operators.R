@@ -160,7 +160,9 @@ purchase_amount > 5000
 #|(or)			This operator is called the Element-wiseLogical OR operator. This operator takes the first element of both the vector and returns TRUE if one of them is TRUE.	 
 #!(not)			This operator is known as Element-wise Logical NOT operator. This operator takes the first element of the vector and gives the opposite logical value as a result.	
 #&&			called as Logical AND operator.This operator takes the first element of both the vector and gives TRUE as a result, only if both are TRUE.		
-#|| 			called Logical OR operator.This operator takes the first element of both the vector and gives the result TRUE, if one of them is true.
+#|| 			caled Logical OR operator.This operator takes the first element of both the vector and gives the result TRUE, if one of them is true.
+#EXOR     
+#EXNOR 
 
 #& AND(Vector-wise)
 TRUE & TRUE
@@ -180,6 +182,22 @@ c(TRUE,FALSE)
 !TRUE
 #&&(AND(first value only))
 TRUE&&FALSE
+
+#EXOR(Exclusive OR) returns TRUe only if two inputs are different. if both are same
+#it returns false
+#XOR oper
+xor(TRUE , TRUE )
+xor(TRUE , FALSE )
+xor(FALSE , TRUE )
+xor(FALSE , FALSE )
+
+#EXNOR(Exclusive NOR) returns TRUE only if two inputs are same, if both are different
+#it returns false. NOte there is no operators for EXNOR in R.
+#XAND oper
+!xor(TRUE , TRUE )
+!xor(TRUE , FALSE )
+!xor(FALSE , TRUE )
+!xor(FALSE , FALSE )
 
 #Difference:
 #& and | -->element-wise for vectors
@@ -264,13 +282,15 @@ A %*% B
 #Subsetting Operators 
 #---------------------
 #[] ==Extact multiple elements
-#[[]]== extract single element
+#[[]]== extract single element of vectors
 #$ = Access column 
 
 
 #[] ==Extact multiple elements#
 a <- c("1","4","5","1",3)
-a[1]
+a[1] #single index
+a[c(1,2)] #mutliple index
+a[1:3] # sequence operator
 
 
 #[[]]== extract single element
