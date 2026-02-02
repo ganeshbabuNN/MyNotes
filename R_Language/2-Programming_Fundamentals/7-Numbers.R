@@ -339,7 +339,6 @@ formatC(1234.5678, format="f", digits=2) #formatC() – Control Formatting
 formatC(c(-1.5, 2.3, 0), format = "f", digits = 1, flag = "+") #Forcing a Positive Sign
 formatC(123456, format = "e", digits = 2) #Scientific Notation with Specific Precision
 
-
 #Modular Arithmetic
 #------------------
 10 %% 3 #%% – Remainder
@@ -348,19 +347,20 @@ formatC(123456, format = "e", digits = 2) #Scientific Notation with Specific Pre
 #Random Number Generation
 #------------------------
 runif(5, 1, 10) #runif() – Uniform Random Number
-x1 <- runif(1,5.0,7.5) ##Generate a random number between 5.0 and 7.5
-x1
-x2 <- runif(4, 5.0, 7.5) ##If you want to generate multiple random value
-x2
-rnorm(5, mean=0, sd=1) #rnorm() – Normal Distribution
+runif(20) #its the sequence but min=0 and max=1 as default
+runif(4:20) #sequence range
+runif(10,min = 18,max = 65) #with min and max value
+floor(runif(5,min = 10,max = 20)) #getting integer value
+ceiling(runif(5,min = 10,max = 20))
+trunc(runif(5,min = 10,max = 20))
+
 #sample() – Random Sampling
-x3 <- sample(1:10, 3) ##Generate a random integer between 1 and 10
-x3
-x4 <- sample(1:10, 5, replace=T) ##if we want to generate more than one random number, 
-x4
+sample(1:10, 3) ##Generate a random integer between 1 and 10
+sample(1:10, 5, replace=T) ##if we want to generate more than one random number, 
 ##Select 6 random numbers between 1 and 40, without replacement
-x5 <- sample(1:40, 6, replace=F)
-x5
+sample(1:40, 6, replace=F)
+sample(2:10)
+
 ?sample
 set.seed(123) #set.seed() – Reproducibility
 runif(3)
@@ -383,12 +383,6 @@ all(c(6, 5, 3) > 2)
 #---------------------
 seq(1, 10, by = 2) #seq() – Generate Sequences
 rep(5, times = 3) #rep() – Repeat Values
-#Real-World Data Example
-marks <- c(45, 60, 75, 80, 90)
-mean(marks)        # Average
-sd(marks)          # Spread
-max(marks)         # Highest score
-round(mean(marks), 2)
 
 
 #Window / Rolling Style Numeric Functions
