@@ -304,7 +304,10 @@ cummean(c(10, 20, 30))
 #scientific-->Toggles scientific notation (TRUE, FALSE, or a threshold).
 #trim-->If TRUE, removes leading/trailing padding spaces.
 #big.mark-->Adds a separator (like a comma) for thousands.
-format(c(10, 12.5, 100.456), nsmall = 2) #Controlling Decimals (nsmall)
+getOption("digits")
+options(digits = 7)  # default
+
+format(c(10, 12.5, 100.6), nsmall = 2) #Controlling Decimals (nsmall)
 format(12.345678, digits = 4) #Significant Digits (digits)
 format(1250000, big.mark = ",", scientific = FALSE) #Big Number Formatting (big.mark)
 #handling Dates
