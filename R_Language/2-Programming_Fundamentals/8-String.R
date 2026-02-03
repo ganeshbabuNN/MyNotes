@@ -37,7 +37,10 @@ mystr<-" I'm using single quotes, but this will create an error"# Be careful wit
 #for correcting the above , use double quotes
 mystr<-"I'm using single quotes, but this will create an error"
 mystr
-nchar(mystr)
+nchar(mystr) # counting the character in a given string
+a <- 32423423
+length(a) # it counts the items
+nchar(as.character(a)) #count of digits
 #get class and type
 class(x)
 typeof(x)

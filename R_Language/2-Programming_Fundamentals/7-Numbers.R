@@ -152,9 +152,16 @@ c(1,2,3) * 2
 #Handling Missing Numeric Values
 #Definition: Managing NA values.
 #Example
-x<-c(1,3,4,5,6,NA)
-mean(x)
-mean(x,na.rm = T)
+sum(c(1,2,NA,45),na.rm = TRUE) #to exculde NA
+sum(c(1,2,NA,45,NaN),na.rm = TRUE) #to exculde NA,NaN
+sum(c(1,2,NA,45,NaN,NULL),na.rm = TRUE) #to exculde NA,NaN,NULL but it escape
+sum(c(1,2,NA,45,NaN,NULL,Inf),na.rm = TRUE) #to exculde NA,NaN,NULL but it escape
+a<-c(1,2,NA,45,NaN,NULL,Inf)
+sum(a[is.finite(a)],na.rm = TRUE)# for exuclde the Inf
+is.finite(a)
+is.nan(a)
+is.na(a)
+
 #Real-World Example
 ##Incomplete survey responses.
 
@@ -235,7 +242,7 @@ prod(c(2, 3, 4)) #prod() – Product of Elements
 
 #Rounding & Precision Control (*IMP*)
 --------------------------------------------
-  round(3.456, 2) #round() – Round to Nearest
+round(3.456, 2) #round() – Round to Nearest
 ceiling(4.1)   # 5 #ceiling()
 ceiling(3.1) #ceiling() – Round Up irespective of decimal limit like 0.5 to 1..etc
 floor(4.9)     # 4 vs floor() - removes rounding 
@@ -345,11 +352,11 @@ formatC(123456, format = "e", digits = 2) #Scientific Notation with Specific Pre
 #Modular Arithmetic
 #------------------
 10 %% 3 #%% – Remainder
-10 %/% 3 #%/% – Integer Division
+10 %/% 3 #%/% – Integer Division return the quotient
 
 #Random Number Generation
 #------------------------
-runif(5, 1, 10) #runif() – Uniform Random Number
+runif(5, 1, 10) #runif()-used mainfly for disturbutions.
 runif(20) #its the sequence but min=0 and max=1 as default
 runif(4:20) #sequence range
 runif(10,min = 18,max = 65) #with min and max value
@@ -386,7 +393,6 @@ all(c(6, 5, 3) > 2)
 #---------------------
 seq(1, 10, by = 2) #seq() – Generate Sequences
 rep(5, times = 3) #rep() – Repeat Values
-
 
 #Window / Rolling Style Numeric Functions
 #-----------------------------------------
