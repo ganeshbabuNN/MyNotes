@@ -214,6 +214,21 @@ cat("Hello\nWorld")
 
 #Real-World Example
 cat("Process completed successfully\n")
+##Writing Directly to a File
+cat("Log Entry: Script started successfully", file = "log.txt", append = TRUE)
+##Building Custom "User-Facing" Messages
+check_status <- function(db_name) {
+  cat("Connecting to database:", db_name, "...\n")
+  cat("Status: [CONNECTED]\n")
+  cat("User: Admin")
+}
+check_status("Production_Server")
+##Monitoring Long-Running Loops (Progress Logs)
+for (i in 1:5) {
+  # ... doing heavy data work ...
+  Sys.sleep(1) 
+  cat("Successfully processed iteration", i, "at", as.character(Sys.time()), "\n")
+}
 
 #Vector Behavior
 cat(c("A", "B", "C"))
@@ -261,12 +276,24 @@ names <- c("A", "B", "C")
 paste("Item", names)
 
 #Real-World Example
-first_name <- "Ganesh"
-last_name <- "Babu"
-paste("Full name:", first_name, last_name)
+##using paste for dynamic SQL
+table_name <- "inventory_2023"
+min_stock <- 50
+query <- paste("SELECT * FROM", table_name, "WHERE stock_level <", min_stock)
+query
 
-#collapse (VERY IMPORTANT)
-paste(c("A", "B", "C"), collapse = ", ")
+##Summarizing Rows (Collapsing)
+shopping_list <- c("Apples", "Milk", "Bread")
+shopping_list
+## Turn the vector into a single sentence
+paste(shopping_list, collapse = ", ")
+
+##Custom Plot Titles
+region <- "North America"
+total_sales <- 45000
+plot_title <- paste("Sales Report for", region, "| Total: $", total_sales)
+plot_title
+# Used in ggplot2: labs(title = plot_title)
 
 #Common Mistakes
 ##Forgetting collapse
@@ -285,13 +312,7 @@ paste(c("A", "B", "C"), collapse = ", ")
 ##Do NOT use
 ###Decimal formatting
 ###Alignment needs
-
-#One-Line Decision Rule
-#Debugging / checking value --> print()
-#User messages / logs --> cat()
-#Joining readable text --> paste()
-#IDs / filenames → paste0()
-#Professional formatting → sprintf()
+getwd()
 
 #paste0() Function in R
 #----------------------
@@ -310,10 +331,15 @@ paste0("Hello", "R")
 #Real-World Example (VERY COMMON)
 file_id <- 10
 paste0("report_", file_id, ".csv")
-
-#Vector Example
 ids <- 1:3
 paste0("ID_", ids)
+
+##using paste for batch file importing
+months <- c("Jan", "Feb", "Mar", "Apr")
+folder <- "C:/Users/ganes/Documents/Kriyababa/GitHub/mytrainings/R_Training_Swetha_20260105"
+## Generate full paths
+file_paths <- paste0(folder, "Sales_", months, ".csv")
+file_paths
 
 #Common Mistakes
 #Expecting spaces
@@ -330,6 +356,13 @@ paste0("ID_", ids)
 ###URLs
 ##Do NOT use
 ###Human-readable sentences
+
+#One-Line Decision Rule
+#Debugging / checking value --> print()
+#User messages / logs --> cat()
+#Joining readable text --> paste()
+#IDs / filenames → paste0()
+#Professional formatting → sprintf()
 
 #Using stringf()
 --------------
@@ -392,30 +425,36 @@ sprintf("Revenue for %s: ₹%.2f", month, revenue)
 id <- 7
 sprintf("report_%03d.csv", id)
 
+##Creating Standardized IDs (Padding)
+### if you want EMP-001, EMP-002
+emp_ids <- c(1, 24, 105)
+# %03d means: "Integer, 3 digits wide, pad with zeros"
+formatted_ids <- sprintf("EMP-%03d", emp_ids)
+formatted_ids
+
+# Result: "EMP-001" "EMP-024" "EMP-105"
+
 ##Logging messages
 time <- "10:30 AM"
 users <- 124
 sprintf("[%s] Active users: %d", time, users)
 
 ##we want to print the following:
-"The sum of the numbers 7 and 3 is 10"
-a <- 7
-b <- 3
-x <- sprintf("The sum of the numbers %d and %d is %d", a, b, a+b)
-x
-
-##we want to print the following:
--"The sum of the numbers 4.5 and 10 is 14.5"
+###"The sum of the numbers 4.5 and 10 is 14.5"
 a <- 4.5
 b <- 10
 x <- sprintf("The sum of the numbers %.1f and %d is %.1f", a, b, a+b)
 x
 
-##binary output showing rounding/representation errors
-x <- seq(0, 1.0, 0.1); y <- c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1)
-cbind(x, sprintf("%a", x), sprintf("%a", y))
+##Formatting Currency and Decimals
+price <- 1250.4
+sprintf("$%.2f", price) 
 
-#Vectorized Nature of sprintf()
+##Scientific Notation or Hexadecima
+sprintf("%e", 1500000) # "1.500000e+06" # Scientific notation
+sprintf("#%X%X%X", 255, 0, 255) # "#FF0FF" # Hexadecimal (useful for color codes)
+
+##Vectorized Nature of sprintf()
 ##sprintf() works vector-wise.
 scores <- c(78.123, 82.5, 90.678)
 sprintf("Score: %.1f", scores)
