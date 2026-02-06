@@ -405,7 +405,7 @@ lag(x)
 lead(x)
 #Moving Average (Manual)
 ##The "Standard" Way: frollmean() (data.table)
-library(data.table)
+library(data.table)f
 data <- c(10, 20, 30, 40, 50)
 # Calculate a moving average with a window of 3
 frollmean(data, n = 3)

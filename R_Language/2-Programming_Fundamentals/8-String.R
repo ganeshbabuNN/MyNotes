@@ -215,7 +215,7 @@ cat("Hello\nWorld")
 #Real-World Example
 cat("Process completed successfully\n")
 ##Writing Directly to a File
-cat("Log Entry: Script started successfully", file = "log.txt", append = TRUE)
+cat("Log Entry: Script started successfully1", file = "log1.txt", append = TRUE)
 ##Building Custom "User-Facing" Messages
 check_status <- function(db_name) {
   cat("Connecting to database:", db_name, "...\n")
@@ -285,8 +285,7 @@ query
 ##Summarizing Rows (Collapsing)
 shopping_list <- c("Apples", "Milk", "Bread")
 shopping_list
-## Turn the vector into a single sentence
-paste(shopping_list, collapse = ", ")
+paste(shopping_list, collapse = ", ") ## Turn the vector into a single sentence
 
 ##Custom Plot Titles
 region <- "North America"
@@ -334,7 +333,7 @@ paste0("report_", file_id, ".csv")
 ids <- 1:3
 paste0("ID_", ids)
 
-##using paste for batch file importing
+##using paste0 for batch file importing
 months <- c("Jan", "Feb", "Mar", "Apr")
 folder <- "C:/Users/ganes/Documents/Kriyababa/GitHub/mytrainings/R_Training_Swetha_20260105"
 ## Generate full paths
@@ -387,12 +386,23 @@ sprintf("format_string", value1, value2, ...)
 
 #Most Important Format Specifiers
 #Specifier-->Meaning-->	Example
+##most frequenlty used.
 #%s-->String-->name
-#%d-->Integer-->10
+#%d or %i-->Integer-->10
 #%f-->Decimal (float)-->3.14
-#%.2f-->2 decimal places-->3.14
-#%05d-->Pad with zeros-->00012
+
+##formatting & precssion specifer
+#%.nf(Precision)--> %.2f - 2 decimal places-->3.14
 #%e-->Scientific notation-->1.23e+03
+#%g --> automatically choise either %f or %e.. #six digits by default 
+#%% --> literals
+
+##paddig and alignment
+#%5d(Width)-->pads with spaces
+#%05d(padding)-->Pad with zeros
+#%-10s(left align)
+#%10s(right align)
+
 
 #String formatting
 sprintf("Hello %s", "Ganesh")
@@ -415,6 +425,12 @@ sprintf("%g", 82.235691) #%g prints six digits by default
 sprintf("%.4g", 82.235691) #print the first 4 digits
 sprintf("%.4s", "Philadelphia") #%s prints the desired number of characters in a string
 
+#padding and alignment
+sprintf("%5d",82) #blank padding.. width
+sprintf("%05d",82) #leading Zero padding
+sprintf("%-10s","Gan") #right align
+sprintf("%10s","Gan")  #left align
+
 #Real-World Practical Examples
 ##Report generation
 month <- "January"
@@ -430,9 +446,7 @@ sprintf("report_%03d.csv", id)
 emp_ids <- c(1, 24, 105)
 # %03d means: "Integer, 3 digits wide, pad with zeros"
 formatted_ids <- sprintf("EMP-%03d", emp_ids)
-formatted_ids
-
-# Result: "EMP-001" "EMP-024" "EMP-105"
+formatted_ids 
 
 ##Logging messages
 time <- "10:30 AM"
