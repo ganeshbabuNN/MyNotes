@@ -270,6 +270,11 @@ d <- as.Date(("2026-01-13 10:30:00")) #if want to print the time this will not b
 typeof(d)
 class(d)
 #Stored as number of days since 1970-01-01.
+#for other language is
+#R->1970‑01‑01 00:00:00 UTC
+#Python->1970‑01‑01 00:00:00 UTC
+#Java->1970‑01‑01 00:00:00 UTC
+#SAS->1960‑01‑01 00:00:00 UTC
 
 #POSIXct / POSIXlt (Date-Time)
 ---------------------------
