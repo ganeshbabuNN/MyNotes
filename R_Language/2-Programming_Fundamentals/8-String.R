@@ -700,7 +700,7 @@ study <- "ST101"
 site  <- "01"
 subj  <- "001"
 USUBJID <- str_glue("{study}-{site}-{subj}")
-
+USUBJID
 
 #Commonly used regex functions in base R
 #---------------------------------------
