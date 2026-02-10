@@ -566,7 +566,7 @@ cat("The file is located at C:\\Users\\Documents\\Data")
 #.  ->  Any single character -->Except newline
 #^  ->  Start of string -->“Must begin with”
 #$  ->  End of string --> “Must end with”
-#* -> Zero or more -> Can repeat or be absent
+#* -> Zero or more folloowed or contained-> Can repeat or be absent
 #+ -> One or more --> Must appear at least once
 #? --> Zero or one --> Optional
 #` -> ` -->  Match this OR that
@@ -591,7 +591,7 @@ grep("^c", x, value = TRUE)
 ##Meaning: End of string
 grep("t$", x, value = TRUE)
 #* (Asterisk)
-##Meaning: Zero or more occurrences of the previous character
+##Meaning:*- zero or more occurrence of the previous character which contains else in the string or followed.
 grep("ca*", x, value = TRUE)
 #+ (Plus)
 ##Meaning: One or more occurrences
