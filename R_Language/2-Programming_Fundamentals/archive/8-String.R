@@ -522,6 +522,7 @@ letters[c(1, 5, 14)] #-the first, fifth and fourteenth letters of the alphabet
 #To insert characters that are illegal in a string, use an escape character
 #An escape character is a backslash \ followed by the character you want to insert.
 
+
 #There are difference types:
 #\': single quote. You don’t need to escape single quote inside a double-quoted string, so we can also use "'" in the previous example.
 #\": double quote. Similarly, double quotes can be used inside a single-quoted string, i.e. '"'.
@@ -574,64 +575,19 @@ cat("The file is located at C:\\Users\\Documents\\Data")
 #[] -> Character class --> One from many
 #{} --> Quantifier --> Exact counts
 #\\-> Escape --> Makes special characters literal
-#[^] -> Negative Set: Any character NOT inside 
+#[^] -> Negative Set: Any character NOT inside
 
-#Special Characters
-x <- c("cat", "bat", "rat", "drat", "cat123", "123cat", "c.at")
-#.(Dot)
-##Meaning: Matches any single character (except newline)
-grep("c.t", x, value = TRUE)
-library(tidyverse)
-str_subset(pattern = "c.t", string = x)
+#Matching any 3-char word ending in "at"
+str_extract("The cat sat", ".at")
+#Finding ID codes starting with "REF"
+str_detect("REF123", "^REF")
+#Checking for .csv file extensions
+str_detect("data.csv", "\\.csv$")
+#Finding any vowel
+str_extract_all("apple", "[aeiou]")
+#Finding anything that isn't a vowel
+str_extract_all("apple", "[^aeiou]")
 
-#^ (Caret)
-##Meaning: Start of string
-grep("^c", x, value = TRUE)
-#$ (Dollar)
-##Meaning: End of string
-grep("t$", x, value = TRUE)
-#* (Asterisk)
-##Meaning: Zero or more occurrences of the previous character
-grep("ca*", x, value = TRUE)
-#+ (Plus)
-##Meaning: One or more occurrences
-grep("ca+", x, value = TRUE)
-#? (Question mark)
-##Meaning: Zero or one occurrence (optional)
-grep("ca?t", c("ct", "cat", "caat"), value = TRUE)
-#{}(Curly braces)
-##Meaning: Exact or range repetition
-grep("a{2}", c("a", "aa", "aaa"), value = TRUE)
-#[] (Character class)
-##Meaning: Match one character from a set
-grep("[cr]at", x, value = TRUE)
-#[^ ] (Negated character class)
-##Meaning: Match any character NOT in the set
-grep("[^0-9]", c("123", "12a", "456"), value = TRUE)
-#() (Grouping)
-##Meaning: Group parts of the pattern
-grep("(cat|bat)", x, value = TRUE)
-#| #OR
-##Meaning: Logical OR
-grep("cat|rat", x, value = TRUE)
-#\\ (Escape character)
-##Meaning: Treat special characters literally
-grep("\\.", x, value = TRUE)
-#\\d, \\w, \\s (Perl-style shortcuts)
-#its like “Match one character from this set”
-#\\d : Digit (0-9)
-#\\D : Non-digit
-#\\w : Word character (letters, numbers, and underscores)
-#\\W : Non-word character (symbols, spaces, etc.)
-#\\s : Whitespace (spaces, tabs, newlines)
-#\\S : Non-whitespace
-##These work only with perl = TRUE
-##\\d - digit
-grep("\\d", x, value = TRUE, perl = TRUE)
-##\\w - word character (letter, digit, _)
-grep("\\w+", x, value = TRUE, perl = TRUE)
-#\\s - whitespace
-grep("\\s", c("hello world", "helloworld"), value = TRUE, perl = TRUE)
 
 #Quantifiers (how many times?)
 #Quantifiers control how many times something may repeat.
@@ -642,126 +598,49 @@ grep("\\s", c("hello world", "helloworld"), value = TRUE, perl = TRUE)
 #? : 0 or 1 times
 #{n} : Exactly n times
 #{n,} : At least n times
-#{n,m} :Between n and m times 
+#{n,m} :Between n and m times
 
-##Quantifiers
-x <- c("a", "aa", "aaa", "aaaa", "b", "ab", "abb", "abbb")
-#* -->Zero or more times
-##Meaning: The preceding character/group may appear zero times or many times
-grep("ab*", x, value = TRUE)
-#+ -> One or more times
-##Meaning:  The preceding character/group must appear at least once
-grep("ab+", x, value = TRUE)
-#? → Zero or one time (optional)
-##The preceding character/group is optional but cannot repeat
-#{n} → Exactly n times
-##The preceding character/group must occur exactly n times
-grep("a{3}", x, value = TRUE)
-#{n,} → At least n times
-##The preceding character/group must occur n or more times
-grep("a{2,}", x, value = TRUE)
-#{n,m} → Between n and m times
-##The preceding character/group must occur at least n and at most m times
-grep("a{2,3}", x, value = TRUE)
-#Quantifiers with groups ()
-##Quantifiers can apply to entire patterns, not just single characters.
-grep("(ab){2}", c("ab", "abab", "ababab"), value = TRUE)
-#Quantifiers with character classes
-##grep("[0-9]{3}", c("12", "123", "1234"), value = TRUE)
-#Greedy behavior (default)
-##Quantifiers are greedy by default — they match as much as possible.
-grep("a+", "aaaa", value = TRUE)
-#Lazy (non-greedy) quantifiers (perl = TRUE)
-##Add ? to make quantifiers lazy
-regmatches("aaaa", regexpr("a+?", "aaaa", perl = TRUE))
+# Matching "Model" or "Models"
+str_extract("Models", "Models?")
+#Matching "b" followed by any amount of "a"
+str_extract("baaaa!", "ba*")   #*
+#Pulling the full number out of text
+str_extract("Room 504", "\\d+")  # +
+#Matching exactly 4 digits (a year)
+str_extract("Year 2024", "\\d{4}") #{n}
+#Finding words with at least 5 letters
+str_extract("Hello World", "\\w{5,}") #{n,}
+#Matching 2 to 3 capital letters
+str_extract("ID: USA", "[A-Z]{2,3}")
 
-#Match Indian 10-digit mobile numbers
-grep("^[6-9][0-9]{9}$",
-     c("9876543210", "1234567890", "998877665"),
-     value = TRUE)
-#? --> maybe
-#* --> any amount
-#+ --> must exist
-#{} --> controlled count
+#Character Classes (The Shortcuts)
+#In R, these are the most common shortcuts for data cleaning:
+#its like “Match one character from this set”
+#\\d : Digit (0-9)
+#\\D : Non-digit
+#\\w : Word character (letters, numbers, and underscores)
+#\\W : Non-word character (symbols, spaces, etc.)
+#\\s : Whitespace (spaces, tabs, newlines)
+#\\S : Non-whitespace
 
-#Common predefined character classes
-##Class	Meaning
-##[:digit:]	Digits (0–9)
-##[:alpha:]	Letters
-##[:alnum:]	Letters + digits
-##[:lower:]	Lowercase
-##[:upper:]	Uppercase
-##[:space:]	Whitespace
+#Extracting a single digit
+str_extract("Part 9", "\\d")
+#Removing numbers to get the label
+str_remove_all("Code123", "\\D")
+#Finding letters/numbers (ignores !)
+str_extract_all("Hey!", "\\w")
+#Pulling out only the symbols
+str_extract_all("A$100", "\\W")
+#Finding spaces or tabs
+str_detect("John Smith", "\\s")
+#Pulling out the first non-space word
+str_extract(" Hello ", "\\S+")
 
-#predefined character classes
-##this is the third pillar of regex, and once this lands, regex becomes predictable instead of scary.
-x <- c(
-  "abc",
-  "ABC",
-  "AbC123",
-  "123",
-  "abc_123",
-  "hello world",
-  "\tspace",
-  "email@test.com"
-)
-#[[:digit:]] -> Digits
-##Meaning: Matches 0–9
-grep("[[:digit:]]", x, value = TRUE)
-#[[:alpha:]] -> Letters
-##Meaning: Matches A–Z and a–z
-grep("[[:alpha:]]", x, value = TRUE)
-#[[:alnum:]] -> Letters + digits
-##Meaning: Alphanumeric characters only
-grep("[[:alnum:]]", x, value = TRUE) #Almost everything except pure symbols
-#[[:lower:]] -> Lowercase letters
-grep("[[:lower:]]", x, value = TRUE)
-#[[:upper:]] -> Uppercase letters
-grep("[[:upper:]]", x, value = TRUE)
-#[[:space:]] -> Whitespace
-grep("[[:space:]]", x, value = TRUE)
-#[[:punct:]] -> Punctuation
-##Meaning: Any punctuation character
-grep("[[:punct:]]", x, value = TRUE) # Includes _ . , ! @ # etc.
-#[[:graph:]] ->  Visible characters
-##Meaning: Everything except whitespace
-grep("[[:graph:]]", x, value = TRUE) #All strings except those with only spaces
-#[[:print:]] → Printable characters
-##Meaning: Visible characters plus spaces
-grep("[[:print:]]", x, value = TRUE) #Almost everything except control characters
-#[[:cntrl:]] → Control characters
-##Meaning: Tabs, newlines, non-printable chars
-grep("[[:cntrl:]]", x, value = TRUE)
-#[[:xdigit:]] → Hexadecimal digits
-#Meaning: 0–9, A–F, a–f
-grep("[[:xdigit:]]", c("A3", "F9", "G7"), value = TRUE)
-#[[:blank:]] → Space & tab only
-##Difference from [[:space:]]
-grep("[[:blank:]]", x, value = TRUE)
-
-#Combine predefined classes with quantifiers
-##Example: Match exactly 4 digits
-grep("^[[:digit:]]{4}$", c("123", "2024", "12345"), value = TRUE)
-##Example: Extract words only
-grep("^[[:alpha:]]+$", c("hello", "hello123", "HELLO"), value = TRUE)
-##Perl-style shortcuts (optional but common)
-grep("\\d+", "Order123", value = TRUE, perl = TRUE)
-
-#Mental model (lock this in)
-##Predefined class -> What type of character?
-##Quantifier -> How many?
-##Anchors -> Where?
-
-#Commonly used regex functions in BaseR vs stringr package
-#Base R -->stringr / dplyr Equivalent-->What it does in a dplyr context
-#grepl()-->str_detect()-->Used inside filter() to keep rows matching a pattern.
-#grep()-->str_which() or which(str_detect())-->Returns the numeric indices of matches.
-#regexpr()-->str_locate()-->Returns a matrix of start and end positions for the first match.
-#gregexpr()-->str_locate_all()-->Returns a list of matrices for all matches.
-#sub()-->str_replace()-->Replaces the first match (usually inside mutate()).
-#gsub()-->str_replace_all()-->Replaces every match found in the string.
-#regexec()-->str_match()-->Extracts the match and any capture groups (the () parts).
-#regmatches()-->str_extract() / str_subset()-->Pulls out the actual text that matched.
+#Advanced "Grouping" (The Parentheses)
+#One extra building block is (). This is used to "group" parts of a pattern.
+#Extracting the area code from a phone number.
+phone <- "(555)-123-4567"
+str_match(phone, "\\((\\d{3})\\)")[, 2]
 
 #Commonly used regex functions in stringr package
 #Function -> One-Line Description
