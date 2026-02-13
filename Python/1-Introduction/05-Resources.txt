@@ -7,6 +7,10 @@ https://thispointer.com/learn-python/
 https://codescracker.com/python/program/index.htm  #lot of examples
 https://datatofish.com/
 
+
+Others:
+https://pythontutor.com/visualize.html .. visualize the internals of coding
+
 Videos
 ------
 https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU  -Corey Schafer 

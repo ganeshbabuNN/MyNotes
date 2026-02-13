@@ -566,7 +566,7 @@ cat("The file is located at C:\\Users\\Documents\\Data")
 #.  ->  Any single character -->Except newline
 #^  ->  Start of string -->“Must begin with”
 #$  ->  End of string --> “Must end with”
-#* -> Zero or more folloowed or contained-> Can repeat or be absent
+#* -> Zero or more followed or contained-> Can repeat or be absent
 #+ -> One or more --> Must appear at least once
 #? --> Zero or one --> Optional
 #` -> ` -->  Match this OR that
@@ -775,60 +775,6 @@ grep("\\d+", "Order123", value = TRUE, perl = TRUE)
 #str_count() -> "Counts how many times a pattern appears (e.g., number of commas)."
 #str_split() -> Breaks a string into pieces wherever the pattern occurs.
 #str_match() -> Extracts the full match and specific capture groups into a matrix.
-
-#Real-World Example
-#=================
-library(stringr)
-library(dplyr)
-
-# Raw Data
-raw_clinical <- data.frame(
-  USUBJID = c("SITE01-001", "SITE01-002", "SITE02-005"),
-  RAW_LAB = c("  GLUCOSE (mg/dL) ", "HEMOGLOBIN (g/dL)", "glucose (MG/DL)"),
-  RAW_MH  = c("DIABETES TYPE II", "hypertension", "Asthma - mild")
-)
-raw_clinical
-
-#1. Standardization (str_to_upper, str_squish)
-#Goal: Create LBTEST and LBUNIT. SDTM requires these to be standardized (usually uppercase) and free of leading/trailing spaces.
-raw_clinical %>%
-  mutate(
-    LBTEST = str_to_upper(str_squish(str_extract(RAW_LAB, "^[A-Za-z]+"))),
-    LBUNIT = str_extract(RAW_LAB, "(?<=\\().+?(?=\\))") # Extract text between ()
-  ) # Clean and standardize the Lab Test name
-str_to_upper()#: Ensures "glucose" becomes "GLUCOSE".
-str_squish()#: Removes that accidental double-space in the first row.
-
-#2. Pattern Detection (str_detect)
-#Goal: Create a flag for "Diabetes" in the Medical History domain.
-raw_clinical %>%
-  mutate(
-    DIAB_FL = ifelse(str_detect(RAW_MH, regex("diabetes", ignore_case = TRUE)), "Y", "N")
-  ) # Identify subjects with Diabetes for a specific analysis flag
-str_detect()#: Scans the medical history for the keyword regardless of case.
-
-#3. Extraction & Capture Groups (str_match)
-#Goal: In the DM (Demographics) domain, you often need to extract a "Site ID" from a "Subject ID" string like SITE01-001.
-raw_clinical %>%
-  mutate(
-    SITEID = str_match(USUBJID, "(^SITE\\d+)-")[, 2]
-  ) # Extract 'SITE01' from 'SITE01-001'
-str_match()#: Uses the capture group (\\d+) to pull just the site number if needed, or the whole prefix.
-
-#4. Replacement & Removal (str_replace, str_remove)
-#Goal: Clean up the MHTERM (Medical History Term) by removing severity notes (like "- mild") to match a coding dictionary like MedDRA.
-raw_clinical %>%
-  mutate(
-    MHTERM = str_remove(RAW_MH, "\\s-\\s.*$") %>% str_to_upper()
-  ) # Remove severity suffixes to get a clean term for coding
-
-#5. String Joining (str_glue)
-#Goal: Creating the USUBJID by combining Study ID, Site ID, and Subject Number.
-study <- "ST101"
-site  <- "01"
-subj  <- "001"
-USUBJID <- str_glue("{study}-{site}-{subj}")
-USUBJID
 
 #Commonly used regex functions in base R
 #---------------------------------------
