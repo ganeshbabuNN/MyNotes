@@ -563,18 +563,18 @@ cat("The file is located at C:\\Users\\Documents\\Data")
 #These define where to look or which specific characters to allow.
 #Most common special characters
 #Character->Meaning -> Simple explanation
-#.  ->  Any single character -->Except newline
-#^  ->  Start of string -->“Must begin with”
-#$  ->  End of string --> “Must end with”
-#* -> Zero or more followed or contained-> Can repeat or be absent
-#+ -> One or more --> Must appear at least once
-#? --> Zero or one --> Optional
-#` -> ` -->  Match this OR that
-#() ->  Grouping -->Treat parts as a unit
-#[] -> Character class --> One from many
-#{} --> Quantifier --> Exact counts
-#\\-> Escape --> Makes special characters literal
-#[^] -> Negative Set: Any character NOT inside 
+#. =   Any single character -->Except newline
+#^  =  Start of string -->“Must begin with”
+#$  =  End of string --> “Must end with”
+#* = Zero or more followed or contained-> Can repeat or be absent
+#+ = One or more --> Must appear at least once
+#? = Zero or one --> Optional
+#` =  Match this OR that (TBD)
+#() =  Grouping -->Treat parts as a unit
+#[] = Character class --> One from many
+#{} = Quantifier --> Exact counts
+#\\ = Escape(R Factor) --> Makes special characters literal
+#[^] = Negative Set: Any character NOT inside 
 
 #Special Characters
 x <- c("cat", "bat", "rat", "drat", "cat123", "123cat", "c.at")
@@ -614,7 +614,7 @@ grep("(cat|bat)", x, value = TRUE)
 #| #OR
 ##Meaning: Logical OR
 grep("cat|rat", x, value = TRUE)
-#\\ (Escape character)
+#\\ (Escape character class)
 ##Meaning: Treat special characters literally
 grep("\\.", x, value = TRUE)
 #\\d, \\w, \\s (Perl-style shortcuts)
