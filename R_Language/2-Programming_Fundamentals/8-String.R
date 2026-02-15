@@ -864,9 +864,11 @@ library(stringr)
 str_to_lower("GANESH BABU")
 str_to_upper("GANESH BABU")
 str_to_title("GANESH BABU")
-str_to_camel("GANESH BABU")
+str_to_camel("GANESH BABU") #were the first letter of each word is capitalized, with no separation between words.
 str_to_sentence("GANESH BABU")
-str_to_snake("GANESH BABU")
+str_to_snake("GANESH BABU")  #convert to lower case and put underscore between sentence
+str_to_kebab("GANESH BABU") #convert to lower case and put dash between sentence
+
 
 #Trimming & Padding (Data Cleaning)
 #------------------------------
