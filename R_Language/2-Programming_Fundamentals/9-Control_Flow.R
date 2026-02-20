@@ -607,7 +607,7 @@ calculate_log <- function(x) {
     stop("x must be numeric")
   }
 }
-calculate_log("342")
+calculate_log("12")
 
 #2.The Guard Clause Approach (Clean & Flat)
 #You check the requirements first. If they aren't met, you throw an error or return a value. 
@@ -616,7 +616,6 @@ calculate_log <- function(x) {
   # Guard Clauses
   if (!is.numeric(x)) stop("x must be numeric")
   if (x <= 0) stop("x must be positive")
-  
   # Main Logic
   return(log(x))
 }
