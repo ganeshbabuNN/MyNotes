@@ -624,6 +624,64 @@ microbenchmark(slow_function(10e7), times = 10)
 
 #apply Family
 #============
+#there are differt types apply(),lapply(),sapply(),vapply(),tapply(),mapply()
+dm <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/dm.csv")
+ae <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ae.csv")
+lb <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/lb.csv")
+vs <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/vs.csv")
+
+#apply()
+##Used on matrix or data frame (row-wise or column-wise operations)
+##Perform row-wise or column-wise operations on matrices/data frames
+##ex:Suppose we have lab numeric values in LB:,Calculates column-wise mean lab values
+lb_matrix <- as.matrix(lb[, c("LBSTRESN")])
+apply(lb_matrix, 2, mean, na.rm = TRUE)
+lb_matrix <- as.matrix(lb[, c("LBORNRLO","LBORNRHI","LBSTRESN")])
+apply(lb_matrix, 1, mean, na.rm = TRUE)
+
+#lapply()
+#Returns a list
+##Apply function to each element of a list and return a list.Returns number of records in each domain
+#ex:returns number of records in each domain
+domains <- list(DM = dm, AE = ae, LB = lb)
+lapply(domains, nrow)
+
+#sapply()
+#Simplified version of lapply (returns vector/matrix if possible)
+##lapply()-Applies a function to each element of a list and Always returns a list
+##sapply() tries to simplify the output automatically.If possible, it converts: List -> Vector,List -> Matrix
+##sapply() simplifies only when and Each result has same length,Same data type
+#Apply function to list and simplify result to vector/matrix.
+#ex:Count unique subjects in each domain:Returns a numeric vector
+sapply(domains, function(x) length(unique(x$USUBJID)))
+
+#vapply()
+#Safer version of sapply (you define expected output type)
+#Type-safe version of sapply with predefined output structure.
+#Ensures output is numeric length 1
+vapply(domains, 
+       function(x) length(unique(x$USUBJID)), 
+       numeric(1))
+
+#tapply()
+#Group-wise operations
+#Apply function over subsets defined by a grouping factor.
+#ex:Calculate mean lab value by treatment arm,Mean lab value per treatment group
+combined_data <- merge(lb, dm[, c("USUBJID", "ARM")], by = "USUBJID")
+tapply(combined_data$LBSTRESN, combined_data$ARM, mean, na.rm = TRUE)
+
+#mapply()
+#Apply function to multiple parallel vectors element-wise.
+#Multivariate apply (multiple arguments)
+#Suppose you want to calculate BMI:
+#ex:Computes BMI per subject
+length(vs_HEIGHT)
+length(vs_WEIGHT)
+vs_HEIGHT<-vs[which(vs$VSTESTCD=='HEIGHT'),"VSSTRESN"]
+vs_WEIGHT<-vs[which(vs$VSTESTCD=='WEIGHT'),"VSSTRESN"]
+mapply(function(w, h) w / (h/100)^2, 
+       vs_HEIGHT, 
+       vs_WEIGHT)
 
 # Built in Functions
 # ==================
