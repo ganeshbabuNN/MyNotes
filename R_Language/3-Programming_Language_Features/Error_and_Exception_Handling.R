@@ -13,6 +13,7 @@
 #Handling Messages
 #finally Block (Always Executes)
 #Suppressing Warnings & Messages
+#stopifnot() – Assertion Checks
 
 #Exception handling
 #==================
@@ -199,6 +200,10 @@ logtest_error <- function(x){
   suppressMessages(message("Hidden"))
 }
 logtest_error(-1) 
+
+#stopifnot() – Assertion Checks
+x <- 5
+stopifnot(x > 0)
 
 # Quiz:
 # =====

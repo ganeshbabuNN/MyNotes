@@ -625,6 +625,7 @@ calculate_log <- function(x) {
 ##Fail Fast: If there’s an issue with your data, you want to know immediately before R starts heavy computations.
 ##The "Happy Path": Your main code stays on the left margin, making it the star of the show rather than being buried in nested brackets.
 
+#------------
 #Apply Family
 #------------
 #def:A group of higher-order functions in R used to apply a function over elements of a data structure without explicit loops.
@@ -655,8 +656,9 @@ lapply(1:5, sqrt)
 domains <- list(DM = DM, AE = AE, LB = LB)
 lapply(domains, nrow)
 
-
+#--------
 #apply() =====Row / Column operations
+#--------
 ##Definition : Applies a function over rows or columns of a matrix or array.
 ##Purpose :Row-wise or column-wise operations.
 
@@ -687,8 +689,9 @@ apply(mtcars, 2, mean) #column wise
 #SDTM use: Summary of numeric lab results.
 apply(LB[, c("LBSTRESN")], 2, range, na.rm = TRUE)
 
-
+#--------
 #lapply() =====Column-wise derivations
+#--------
 #Definition : Applies a function to each element and always returns a list.
 #Purpose : Safe, predictable iteration.
 
@@ -719,7 +722,9 @@ DM[] <- lapply(DM, function(x)
 )
 DM[]
 
+#--------
 #sapply() ====Quick summaries
+#--------
 #Definition :Simplifies lapply() output automatically.
 #Purpose: Quick interactive summaries.
 
@@ -746,7 +751,9 @@ sapply(1:5, sqrt)
 sapply(LB, function(x) sum(is.na(x)))
 #SDTM use: Data quality check before submission.
 
+#--------
 #Anonymous Functions ==========
+#--------
 ##Definition:Functions defined inline without names.
 #Purpose:One-off transformations.
 
@@ -772,7 +779,6 @@ lapply(1:3, function(x) x * 10)
 #Scenario: Flag serious adverse events.
 #SDTM use: Derive SAEFL.
 AE$SAEFL <- sapply(AE$AESER, function(x) ifelse(x == "Y", "Y", "N"))
-
 
 #Margin Concept ==========rows vs columns
 #Definition:Controls direction of operation.
@@ -806,8 +812,9 @@ apply(!is.na(LB[, c("LBSTRESN")]), 2, sum)
 lapply(AE[, c("AETERM", "AESEV")], unique)
 sapply(AE[, c("AETERM", "AESEV")], unique)
 
-
+#--------
 #vapply()  =============Type-safe derivations (preferred in production)
+#--------
 ##Definition: Type-safe version of sapply().
 #Purpose :Prevent unexpected output changes.
 
@@ -836,8 +843,9 @@ vapply(split(AE$AETERM, AE$USUBJID),
        length,
        integer(1))
 
-
+#--------
 #tapply() =========Grouped summaries
+#--------
 #Definition: Apply function by group.
 #Purpose : Grouped aggregations.
 
@@ -846,6 +854,7 @@ tapply(X, INDEX, FUN)
 
 #Example
 tapply(mtcars$mpg, mtcars$cyl, mean)
+tapply(dm$AGE, dm$SEX, mean)
 
 #Real-World Example
 ##Average salary per department.
@@ -893,7 +902,6 @@ AE$AEDUR <- mapply(
   function(start, end) as.numeric(end - start),
   AE$AESTDTC, AE$AEENDTC
 )
-
 
 #rapply() =======Nested SDTM structures
 #Definition -Recursive apply on lists.
