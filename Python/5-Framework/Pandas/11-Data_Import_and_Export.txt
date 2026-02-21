@@ -71,10 +71,13 @@ pd.read_csv(StringIO(data), true_values=["Yes"], false_values=["No"])  #replacin
 pd.read_fwf("bar.csv", colspecs=[(0, 6), (8, 20), (21, 33), (34, 43)], header=None, index_col=0)  #Files with fixed width columns
 pd.read_csv("data/mindex_ex.csv", index_col=[0, 1])  #Reading an index with a MultiIndex¶
 
-
 #parse the date
 pd.read_csv("employees.csv",parse_dates=True) 
 pd.read_csv("employees.csv",parse_dates=['Start Date']) #specificy the column
+
+
+#if your not sure of the seperators, lets padas do it automatically
+df = pd.read_csv("data/mindex_ex.csv", sep=None, engine='python')
 
 Writing into a CSV File
 -----------------------

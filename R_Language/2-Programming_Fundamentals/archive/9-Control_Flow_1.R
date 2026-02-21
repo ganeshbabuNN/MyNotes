@@ -635,6 +635,312 @@ calculate_log <- function(x) {
 ##Fail Fast: If there’s an issue with your data, you want to know immediately before R starts heavy computations.
 ##The "Happy Path": Your main code stays on the left margin, making it the star of the show rather than being buried in nested brackets.
 
+#------------
+#Apply Family
+#------------
+#def:A group of higher-order functions in R used to apply a function over elements of a data structure without explicit loops.
+#Purpose : Replace repetitive loops, Write concise, readable, functional code
+
+#syntax
+#apply_family(data, function, ...)
+
+lapply(1:5, sqrt)
+
+#Real-World Example
+##Applying validation rules to multiple datasets automatically.
+
+#Common Mistakes
+##Expecting consistent output types
+##Ignoring simplification behavior
+
+#Best Practices
+##Know input and expected output type
+##Prefer explicit functions (vapply) in production
+
+#When to Use vs Not Use
+##Use for transformations
+##Avoid for heavy side-effects
+
+#Scenario: Apply the same check across multiple SDTM domains.
+#Use case: Count records per SDTM domain.
+domains <- list(DM = DM, AE = AE, LB = LB)
+lapply(domains, nrow)
+
+#--------
+#apply() =====Row / Column operations
+#--------
+##Definition : Applies a function over rows or columns of a matrix or array.
+##Purpose :Row-wise or column-wise operations.
+
+#syntax
+##apply(X, MARGIN, FUN)
+#
+m<-matrix(1:6, nrow = 2)
+apply(m, 2, sum)
+mtcars
+apply(mtcars, 1, mean) #row level
+apply(mtcars, 2, mean) #column wise
+
+#Real-World Example
+##Calculating total sales per store (rows).
+#Common Mistakes
+##Using on data frames unintentionally
+##Losing column types
+
+#Best Practices
+##Convert to matrix intentionally
+##Use rowSums() when possible
+
+#Use vs Not
+##Numeric matrices
+##Heterogeneous data frames
+
+#Scenario: Calculate min/max lab value per subject from LB.
+#SDTM use: Summary of numeric lab results.
+apply(LB[, c("LBSTRESN")], 2, range, na.rm = TRUE)
+
+#--------
+#lapply() =====Column-wise derivations
+#--------
+#Definition : Applies a function to each element and always returns a list.
+#Purpose : Safe, predictable iteration.
+
+#syntax
+lapply(X, FUN)
+
+lapply(1:3, function(x) x^2)
+mtcars
+lapply(mtcars, function(x) mean(x))
+
+#Real-World Example
+##Cleaning multiple columns independently.
+
+#Common Mistakes
+##Expecting vector output
+
+#Best Practices
+##Use as default apply function
+
+#Use vs Not
+##General transformations
+##When strict output type required
+
+#Scenario: Convert all character variables in DM to uppercase.
+#SDTM use: Standardize text variables (SEX, ARM, COUNTRY).
+DM[] <- lapply(DM, function(x)
+  if (is.character(x)) toupper(x) else x
+)
+DM[]
+
+#--------
+#sapply() ====Quick summaries
+#--------
+#Definition :Simplifies lapply() output automatically.
+#Purpose: Quick interactive summaries.
+
+#Syntax
+sapply(X, FUN)
+
+#Basic Example
+sapply(1:5, sqrt)
+
+#Real-World Example
+#Quick statistics for reporting.
+
+#Common Mistakes
+##Relying on simplification in production
+
+#Best Practices
+##Use only for exploratory analysis
+
+#Use vs Not
+##Prototyping
+##Production pipelines
+
+#Scenario: Count missing values per variable in AE.
+sapply(LB, function(x) sum(is.na(x)))
+#SDTM use: Data quality check before submission.
+
+#--------
+#Anonymous Functions ==========
+#--------
+##Definition:Functions defined inline without names.
+#Purpose:One-off transformations.
+
+#Syntax
+lapply(x, function(y) y + 1)
+
+#Basic Example
+lapply(1:3, function(x) x * 10)
+
+#Real-World Example
+##Inline rule-based transformations.
+
+#Common Mistakes
+##Writing complex logic inline
+
+#Best Practices
+##Extract to named functions if reused
+
+#Use vs Not
+##Simple logic
+##Complex workflows
+
+#Scenario: Flag serious adverse events.
+#SDTM use: Derive SAEFL.
+AE$SAEFL <- sapply(AE$AESER, function(x) ifelse(x == "Y", "Y", "N"))
+
+#Margin Concept ==========rows vs columns
+#Definition:Controls direction of operation.
+#Purpose:Specify rows (1) or columns (2).
+
+#Syntax
+apply(X, 1, FUN)
+
+#Example
+apply(mat, 2, mean)
+
+#Real-World Example
+##Column-wise normalization.
+
+#Mistakes
+##Reversing margins
+
+#Best Practices
+##Remember: 1 = rows, 2 = columns
+
+#Use vs Not
+##Matrix operations
+##List processing
+
+#Scenario: Number of non-missing lab results per test.
+#SDTM use: Lab completeness check.
+apply(!is.na(LB[, c("LBSTRESN")]), 2, sum)
+
+##Output behavior
+#SDTM insight: lapply() preserves structure; sapply() may break it.
+lapply(AE[, c("AETERM", "AESEV")], unique)
+sapply(AE[, c("AETERM", "AESEV")], unique)
+
+#--------
+#vapply()  =============Type-safe derivations (preferred in production)
+#--------
+##Definition: Type-safe version of sapply().
+#Purpose :Prevent unexpected output changes.
+
+#Syntax
+vapply(X, FUN, FUN.VALUE)
+
+#Example
+vapply(1:3, sqrt, numeric(1))
+
+#Real-World Example
+##Validated reporting pipelines.
+
+#Mistakes
+##Wrong FUN.VALUE
+
+#Best Practices
+##Prefer in production
+
+#Use vs Not
+##Production code
+##Quick exploration
+
+#Scenario: Calculate AE count per subject.
+#SDTM use: Subject-level AE counts for ADaM linkage.
+vapply(split(AE$AETERM, AE$USUBJID),
+       length,
+       integer(1))
+
+#--------
+#tapply() =========Grouped summaries
+#--------
+#Definition: Apply function by group.
+#Purpose : Grouped aggregations.
+
+#Syntax
+tapply(X, INDEX, FUN)
+
+#Example
+tapply(mtcars$mpg, mtcars$cyl, mean)
+tapply(dm$AGE, dm$SEX, mean)
+
+#Real-World Example
+##Average salary per department.
+
+#Mistakes
+##Misaligned index lengths
+
+#Best Practices
+##Use factors for grouping
+
+#Use vs Not
+##Simple grouped stats
+##Complex joins
+
+#Scenario: Count AEs by severity.
+#SDTM use: AE summary table generation.
+tapply(AE$AETERM, AE$AESEV, length)
+
+#mapply()==========Multi-variable derivation
+#Definition:Multivariate apply.
+#Purpose:Vectorized multi-argument functions.
+
+#Syntax
+mapply(FUN, X1, X2)
+
+#Example
+mapply(sum, 1:3, 4:6)
+
+#Real-World Example
+##Row-wise calculations across datasets.
+
+#Mistakes
+##Unequal input lengths
+
+#Best Practices
+##Keep arguments aligned
+
+#Use vs Not
+##Parallel vector ops
+##Nested logic
+
+#Scenario: Derive AE duration.
+#SDTM use: Derive duration variables.
+AE$AEDUR <- mapply(
+  function(start, end) as.numeric(end - start),
+  AE$AESTDTC, AE$AEENDTC
+)
+
+#rapply() =======Nested SDTM structures
+#Definition -Recursive apply on lists.
+#Purpose --Deep list transformations.
+
+#Example
+rapply(list(a = 1, b = list(2, 3)), sqrt)
+
+#Real-World Example
+##JSON data transformation.
+
+#Scenario: Convert numeric values in nested SDTM metadata.
+#SDTM use: Metadata normalization.
+rapply(LB, function(x)
+  if (is.numeric(x)) round(x, 2) else x,
+  how = "replace"
+)
+
+
+#Apply vs loop (SDTM example)===
+##SDTM use: Faster subject-level aggregation than loops.
+sapply(split(AE$AETERM, AE$USUBJID), length)
+
+#Handling NA values
+#Scenario: Mean lab value ignoring missing.
+#SDTM use: Lab summary statistics.
+sapply(LB$LBSTRESN, mean, na.rm = TRUE)
+
+
 #Functional Control Flow (purrr)
 #=======================
 map_dbl(data, mean) #Cleaner, safer, scalable.

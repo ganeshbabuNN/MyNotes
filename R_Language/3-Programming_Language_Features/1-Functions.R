@@ -19,7 +19,7 @@
 #Function Environment
 #Error Handling
 #Byte Compilation
-#apply Family
+#apply Family Function
 #Built in Functions
 #Quiz
 #Assignment
@@ -622,40 +622,116 @@ system.time(compiled_function(5e7))
 library(microbenchmark)
 microbenchmark(slow_function(10e7), times = 10)
 
-#apply Family
-#============
-#there are differt types apply(),lapply(),sapply(),vapply(),tapply(),mapply()
+#apply Family Function
+#=====================
+#Intro
+#------
+#The R Apply Family is a group of functions used to apply a function to elements of a vector, list, or matrix.
+#It is considered legacy functionality for modern R development.
+#It is not recommended for writing new R code.
+#The purrr package is recommended instead for looping operations in R.
+#purrr provides:
+##Consistent and cleaner syntax
+##Better readability
+#Easier handling of multiple inputs and outputs
+#purrr functions are optimized for modern computing environments.
+#They are generally faster and more efficient than the Apply Family functions.
+#While the Apply Family still works, purrr is preferred for new R projects.
+#The Apply Functions as Alternatives to Loops
+
+#apply() family
+#--------------
+#The apply() family belongs to the base R package.
+#It is used to repeatedly manipulate slices of data from:
+##Matrices
+##Arrays
+##Lists
+##Dataframes
+
+#These functions help avoid writing explicit loops.
+#They apply a specified function to an input object (list, matrix, or array).
+#The function used inside apply-family functions can be:
+##An aggregating function (for example, mean(), sum()) that returns a scalar.
+##A transforming or sub-setting function.
+##A vectorized function that returns more complex structures (vectors, lists, matrices, arrays).
+#Apply-family functions allow powerful operations with very few lines of code.
+#The main functions in this family are:apply(),lapply(),sapply(),vapply(),tapply(),mapply()
+#Choosing which function to use depends on:
+##The structure of the input data
+##The format of the output required
+
+#Data required
 dm <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/dm.csv")
 ae <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ae.csv")
 lb <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/lb.csv")
 vs <- read.csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/vs.csv")
 
 #apply()
+#-------
+#apply() is the core function of the apply family.
+#It operates mainly on arrays (commonly 2D arrays, i.e., matrices).
 ##Used on matrix or data frame (row-wise or column-wise operations)
 ##Perform row-wise or column-wise operations on matrices/data frames
-##ex:Suppose we have lab numeric values in LB:,Calculates column-wise mean lab values
+#Basic syntax:
+##  apply(X, MARGIN, FUN, ...)
+#Arguments:
+##  X -> An array or a matrix
+##  MARGIN -> Defines the direction of application:
+##  MARGIN = 1 -> Apply function across rows
+##  MARGIN = 2 -> Apply function across columns
+##  MARGIN = c(1,2) -> Apply function across both rows and columns
+##  FUN -> The function to apply (can be built-in or user-defined)
+##  FUN can be any valid R function, including a User Defined Function (UDF).
+#Visual examples (pictures and code) help beginners better understand how apply() works internally.
+#Ex:Suppose we have lab numeric values in LB:,Calculates column-wise mean lab values
 lb_matrix <- as.matrix(lb[, c("LBSTRESN")])
 apply(lb_matrix, 2, mean, na.rm = TRUE)
 lb_matrix <- as.matrix(lb[, c("LBORNRLO","LBORNRHI","LBSTRESN")])
 apply(lb_matrix, 1, mean, na.rm = TRUE)
 
 #lapply()
-#Returns a list
-##Apply function to each element of a list and return a list.Returns number of records in each domain
-#ex:returns number of records in each domain
+#-------
+#lapply() applies a given function to each element of a list.
+#The output is always a list.
+#Apply function to each element of a list and return a list.Returns number of records in each domain
+#The syntax of lapply() is similar to apply().
+#Unlike apply(), it can be used on:
+##Lists
+##Dataframes
+##Vectors
+#The result has the same number of elements as the input object.
+#The “l” in lapply() stands for “list”, indicating that it returns a list.
+#Ex:returns number of records in each domain
 domains <- list(DM = dm, AE = ae, LB = lb)
 lapply(domains, nrow)
 
 #sapply()
+#-------
+#sapply() works similarly to lapply().
+#It attempts to simplify the output to the simplest possible data structure.
+#sapply() is essentially a wrapper around lapply().
 #Simplified version of lapply (returns vector/matrix if possible)
+#Apply function to list and simplify result to vector/matrix.
+#If possible, it converts the result into:
+##A vector
+##A matrix
+##Or an array
+#lapply() would return a list in this case.
+#sapply() simplifies the result (for example, into a vector).
+#Setting simplify = FALSE in sapply() forces it to return a list.
+#Functions like unlist() can convert list output into a vector.
+#Best practice:
+##Use each function in its natural format.
+##Avoid unnecessary conversions unless strictly required.
+#Ex:Count unique subjects in each domain:Returns a numeric vector
+sapply(domains, function(x) length(unique(x$USUBJID)))
+#Note:
 ##lapply()-Applies a function to each element of a list and Always returns a list
 ##sapply() tries to simplify the output automatically.If possible, it converts: List -> Vector,List -> Matrix
 ##sapply() simplifies only when and Each result has same length,Same data type
-#Apply function to list and simplify result to vector/matrix.
-#ex:Count unique subjects in each domain:Returns a numeric vector
-sapply(domains, function(x) length(unique(x$USUBJID)))
 
 #vapply()
+#-------
 #Safer version of sapply (you define expected output type)
 #Type-safe version of sapply with predefined output structure.
 #Ensures output is numeric length 1
@@ -664,6 +740,7 @@ vapply(domains,
        numeric(1))
 
 #tapply()
+#-------
 #Group-wise operations
 #Apply function over subsets defined by a grouping factor.
 #ex:Calculate mean lab value by treatment arm,Mean lab value per treatment group
@@ -671,10 +748,16 @@ combined_data <- merge(lb, dm[, c("USUBJID", "ARM")], by = "USUBJID")
 tapply(combined_data$LBSTRESN, combined_data$ARM, mean, na.rm = TRUE)
 
 #mapply()
+#-------
+#mapply() stands for “multivariate apply”.
 #Apply function to multiple parallel vectors element-wise.
-#Multivariate apply (multiple arguments)
-#Suppose you want to calculate BMI:
-#ex:Computes BMI per subject
+#It is used to apply a function to multiple inputs at the same time.
+#It helps vectorize functions that normally do not accept vector arguments.
+#In simple terms:
+##mapply() applies a function to multiple lists or multiple vectors simultaneously.
+#It is useful when a function needs to process corresponding elements from multiple inputs together.
+
+#Ex:Suppose you want to calculate BMI:Computes BMI per subject
 length(vs_HEIGHT)
 length(vs_WEIGHT)
 vs_HEIGHT<-vs[which(vs$VSTESTCD=='HEIGHT'),"VSSTRESN"]
@@ -683,6 +766,9 @@ mapply(function(w, h) w / (h/100)^2,
        vs_HEIGHT, 
        vs_WEIGHT)
 
+#Ref:
+#https://www.datacamp.com/tutorial/r-tutorial-apply-family
+  
 # Built in Functions
 # ==================
 # most of the built-in function are discussion in the numbers and strings chapter.
