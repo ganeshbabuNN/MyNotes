@@ -4,7 +4,6 @@
 #Returning a result
 #Returning a multiple values
 #Function overriding and overloading
-#Nested Statements and Scope
 #assigning function to a variable
 #function inside another function
 #function as parameter to an other 
@@ -18,6 +17,7 @@
 #Lazy Evaluations
 #Function Environment
 #Error Handling
+#Nested Statements and Scope
 #Byte Compilation
 #apply Family Function
 #Built in Functions
@@ -246,63 +246,6 @@ add <- function(a,b,c){  #here the the same function name but different argument
 
 add(4,3) #it always pick the latest function name
 #That’s because methods and functions in R are limited to one function signature per name
-
-# Nested Statements and Scope
-# ===========================
-# Now that we have gone over writing our own functions, 
-# it's important to understand how R deals with the variable names you assign. 
-# When you create a variable name in R the name is stored in a name-space. Variable names also have a scope, 
-##the scope determines the visibility of that variable name to other parts of your code.
-
-#Scope controls where variables are accessible.
-# In simple terms, the idea of scope can be described by 3 general rules:
-#1)Name assignments will create or change local names by default.
-#2)Name references search (at most) four scopes(LEGB), these are:
-# *local
-# *enclosing functions
-# *global
-# *built-in
-#3)Names declared in global and nonlocal statements map assigned names to enclosing module and function scopes.
- 
-#LEGB
-#----
-# GLOBAL SCOPE
-x <- "I am Global"
-pi <- 100  # Overriding the built-in pi in the Global Scope
-
-outer_func <- function() {
-    x <- "I am Enclosing"
-  inner_func <- function() {
-    # LOCAL SCOPE
-    # 1) If we assign here, it stays here
-    local_val <- "I am Local"
-    # 2) Let's see which 'x' it finds
-    print(x) 
-    #want to update the global vaue
-    #x <<- "I am DONE"
-    # 3) Let's see which 'pi' it finds
-    print(pi)
-  }
-  inner_func()
-}
-
-#calling
-outer_func()
-#how to access the global variable
-print(x)
-#how to update the update the global variable in the local?>
-
-#Whats happening inside.
-#For x: inner_func looks locally (nothing), then looks at its parent outer_func. 
-##It finds "I am Enclosing" and stops. It never reaches the Global "I am Global".
-#For pi: It looks locally (nothing), then enclosing (nothing), then Global. 
-##It finds 100 and stops. It never reaches the built-in 3.14.
-
-#Real-World Issue
-##Accidentally modifying global clinical dataset.
-
-#Best Practice
-##Never rely on global variables inside function.
 
 # Assigning function to a variable
 # ================================
@@ -557,6 +500,65 @@ para
 ##Large datasets
 ##Simulations
 ##Clinical trial data
+
+# Nested Statements and Scope
+# ===========================
+# Now that we have gone over writing our own functions, 
+# it's important to understand how R deals with the variable names you assign. 
+# When you create a variable name in R the name is stored in a name-space. Variable names also have a scope, 
+##the scope determines the visibility of that variable name to other parts of your code.
+
+#Scope controls where variables are accessible.
+# In simple terms, the idea of scope can be described by 3 general rules:
+#1)Name assignments will create or change local names by default.
+#2)Name references search (at most) four scopes(LEGB), these are:
+# *local
+# *enclosing functions
+# *global
+# *built-in
+#3)Names declared in global and nonlocal statements map assigned names to enclosing module and function scopes.
+ 
+#LEGB
+#----
+# GLOBAL SCOPE
+x <- "I am Global"
+pi <- 100  # Overriding the built-in pi in the Global Scope
+
+outer_func <- function() {
+    x <- "I am Enclosing"
+  inner_func <- function() {
+    # LOCAL SCOPE
+    # 1) If we assign here, it stays here
+    local_val <- "I am Local"
+    # 2) Let's see which 'x' it finds
+    print(x) 
+    #want to update the global vaue
+    #x <<- "I am DONE"
+    # 3) Let's see which 'pi' it finds
+    print(pi)
+  }
+  inner_func()
+}
+
+#calling
+outer_func()
+#how to access the global variable
+print(x)
+#how to update the update the global variable in the local?>
+
+#Whats happening inside.
+#For x: inner_func looks locally (nothing), then looks at its parent outer_func. 
+##It finds "I am Enclosing" and stops. It never reaches the Global "I am Global".
+#For pi: It looks locally (nothing), then enclosing (nothing), then Global. 
+##It finds 100 and stops. It never reaches the built-in 3.14.
+
+#Real-World Issue
+##Accidentally modifying global clinical dataset.
+
+#Best Practice
+##Never rely on global variables inside function.
+
+
 
 #Byte Compilation
 #================
