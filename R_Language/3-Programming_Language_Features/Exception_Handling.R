@@ -65,10 +65,12 @@ if (inherits(res, "try-error")) {
 try(log("a"), silent = TRUE)
 
 #Real-time Example (Batch Processing)
-files <- c("a.csv", "b.csv", "c.csv")
+files <- c("file3.csv","file.csv", "file1.csv", "file2.csv")
 for (f in files) {
   try(read.csv(f))
-}#If one file fails, loop continues.
+  print("hello")
+}
+#If one file fails, loop continues.
 
 #tryCatch() – Advanced Error Handling
 #=====================================
