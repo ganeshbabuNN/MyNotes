@@ -215,8 +215,7 @@ process_file <- function(file) {
       data <- read.csv(file)
       if (nrow(data) == 0) {
         warning("File is empty")
-      }
-      
+      } 
       mean(data$value)
     },
     warning = function(w) {
