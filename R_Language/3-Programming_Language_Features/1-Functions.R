@@ -20,6 +20,7 @@
 #Nested Statements and Scope
 #Byte Compilation
 #apply Family Function
+#Writing a C++ code in R
 #Built in Functions
 #Quiz
 #Assignment
@@ -445,11 +446,6 @@ mysum(3,4,5) # with three agruments
 mysum(3,4,5,4,5,6,7,8,9,6) #with many arguments
 sum(3,4,5)
 
-#Error may come:change the function to "sum" and call
-find("sum") #If it says ".GlobalEnv", you are using your custom version
-find("sum")#If it says "package:base", you are using the built-in R version.
-rm("sum") #remove from the environment
-
 #Real-World
 ##Flexible summary functions.
 
@@ -479,6 +475,10 @@ df$BMI <- sapply(df$Weight, function(w) w / 1.75^2)
 #assume if you want to check the function is available in your enviornment.
 environment(add_all)
 
+find("sum") #If it says ".GlobalEnv", you are using your custom version
+find("sum")#If it says "package:base", you are using the built-in R version.
+rm("sum") #remove from the environment
+
 #Error Handling
 #==============
 # if you want to handle b==0 to give some message to user.
@@ -501,11 +501,11 @@ para
 ##Simulations
 ##Clinical trial data
 
-# Nested Statements and Scope
-# ===========================
-# Now that we have gone over writing our own functions, 
-# it's important to understand how R deals with the variable names you assign. 
-# When you create a variable name in R the name is stored in a name-space. Variable names also have a scope, 
+#Nested Statements and Scope
+#===========================
+#Now that we have gone over writing our own functions, 
+#it's important to understand how R deals with the variable names you assign. 
+#When you create a variable name in R the name is stored in a name-space. Variable names also have a scope, 
 ##the scope determines the visibility of that variable name to other parts of your code.
 
 #Scope controls where variables are accessible.
@@ -558,7 +558,142 @@ print(x)
 #Best Practice
 ##Never rely on global variables inside function.
 
+#Writing a C++ code in R
+#=======================
+#Rcpp is an R package that allows you to write C++ code inside R and call it like a normal R function.
+#It is mainly used for:
+##Speed improvement
+##Heavy loops
+##Large data processing
+##Complex numerical computations
 
+#How It Actually Works
+#1.C++ code compiled into shared library (.dll / .so)
+#2.R dynamically loads it
+#3.R objects converted to C++ types
+#4.Fast execution
+#5.Results converted back to R objects
+
+#Install and Load Rcpp
+#--------------------
+install.packages("Rcpp")
+library(Rcpp)
+
+#Write Your First Rcpp Function
+#------------------------------
+#The simplest way is using cppFunction().
+#Ex.Square a Number
+library(Rcpp)
+
+cppFunction('
+  int square(int x) {
+    return x * x;
+  }
+')
+#Now call it like normal R function:
+square(5)
+#Ex Loop Example (Performance Benefit)
+##Normal R version
+sum_r <- function(n) {
+  total <- 0
+  for(i in 1:n) {
+    total <- total + i
+  }
+  return(total)
+}
+
+##Rcpp version
+cppFunction('
+  double sum_cpp(int n) {
+    double total = 0;
+    for(int i = 1; i <= n; i++) {
+      total += i;
+    }
+    return total;
+  }
+')
+
+sum_cpp(1000000) #This will be significantly faster for large n.
+
+#Using R Vectors in Rcpp
+#-----------------------
+cppFunction('
+  double vector_sum(NumericVector x) {
+    int n = x.size();
+    double total = 0;
+    for(int i = 0; i < n; i++) {
+      total += x[i];
+    }
+    return total;
+  }
+')
+
+vector_sum(c(1,2,3,4,5))
+
+
+#Multiple Return Values
+#----------------------
+cppFunction('
+  List stats_cpp(NumericVector x) {
+    int n = x.size();
+    double total = 0;
+
+    for(int i = 0; i < n; i++) {
+      total += x[i];
+    }
+
+    double mean = total / n;
+
+    return List::create(
+      Named("sum") = total,
+      Named("mean") = mean
+    );
+  }
+')
+
+stats_cpp(c(10,20,30))
+
+#Full C++ File Method (Advanced)
+#-------------------------------
+#For larger projects:
+#Create file mycode.cpp
+#Add: 
+
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+double multiply_cpp(double x, double y) {
+  return x * y;
+}
+
+#Compile inside R:
+Rcpp::sourceCpp("mycode.cpp")
+#Now you can call:
+multiply_cpp(10, 20)
+
+#Important Data Type Mapping
+#RType --> RcppType
+#numeric --> NumericVector
+#integer --> IntegerVector
+#logical -->LogicalVector
+#character --> characterVector
+#list --> list
+#matrix --> NumericMatrixix   |
+
+#When Should You Use Rcpp
+#------------------------
+#Heavy loops
+#Large datasets
+#Simulations
+#Bootstrapping
+#Monte Carlo
+#Simple vectorized R code (R is already optimized) (do not use)
+
+#Performance Testing Examp
+#--------------------------
+system.time(sum_r(1e7))
+system.time(sum_cpp(1e7))
 
 #Byte Compilation
 #================
