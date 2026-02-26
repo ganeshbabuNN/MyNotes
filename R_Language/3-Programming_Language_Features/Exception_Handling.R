@@ -55,25 +55,21 @@ try(log("a") #this gives an Error
 
 #when you use try - 
 result <- try(log("a"))
-print(result) 
-But script does NOT stop.
+print(result)  #But script does NOT stop.
+#catch the error.
+if (inherits(res, "try-error")) {
+  print("Error occurred")
+}
 
 #Silent mode
 try(log("a"), silent = TRUE)
 
 #Real-time Example (Batch Processing)
 files <- c("a.csv", "b.csv", "c.csv")
-
 for (f in files) {
   try(read.csv(f))
-}
-#If one file fails, loop continues.
+}#If one file fails, loop continues.
 
-#Checking try() Result #optional
-res <- try(log("a"))
-if (inherits(res, "try-error")) {
-  print("Error occurred")
-}
 #tryCatch() – Advanced Error Handling
 #=====================================
 #This is the most important function.
@@ -111,7 +107,7 @@ tryCatch(
 
 #Using finally
 #its like at the end of your code do 
-#finally always runs
+#Note: finally always runs
 tryCatch(
   {
     log("a")
