@@ -253,6 +253,13 @@ student_data %>% select(student_id,student_name,student_age) %>% filter(student_
 ##Real-World
 ###Readable data pipelines
 
+#Nave Pip |> : 
+##offical version of R not part of the magrittr package,Works in Base R (version 4.1+).
+##You want your code to run as fast as possible
+##You want to avoid loading extra packages
+##you like clean, modern R syntax.
+flights |> filter(month == 1) |> head()
+
 #The Value Matching Operator (%in%) or membership operator
 ##Checks if elements of the left vector exist anywhere in the right vector. It returns a logical vector (TRUE or FALSE).
 5 %in% c(1, 3, 5, 7)
@@ -413,7 +420,7 @@ bitwXor(5,3)
 #Relational-->	< <= > >= == !=
 #Logical--> `&
 #Sequence-->	:
-#Pipe--> %>%
+#Pipe--> %>% 
 #Indexing--> [
 
 #Example 1: Arithmetic

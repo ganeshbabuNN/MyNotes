@@ -214,28 +214,40 @@ signalCondition(simpleWarning("Manual warning"))
 process_file <- function(file) {
   tryCatch(
     {
+      if(!file.exists(file)){
+        stop("File does not exist")
+      } #manually trigger an error
       data <- read.csv(file)
       if (nrow(data) == 0) {
-        warning("File is empty")
+        warning("File is empty") #manually trigger an warning
       } 
       mean(data$value)
-    },
-    warning = function(w) {
-      message(paste("Warning in file:", file))
-      return(NA)
     },
     error = function(e) {
       message(paste("Error in file:", file))
       return(NULL)
+    },
+    warning = function(w) {
+      message(paste("Warning in file:", file))
+      return(NA)
     },
     finally = {
       message(paste("Finished processing:", file))
     }
   )
 }
+read.csv("file.csv")
+read.csv("file1.csv")
+read.csv("file2.csv")
+read.csv("file3.csv")
+process_file("file.csv")
+process_file("file1.csv")
+process_file("file2.csv")
+process_file("file3.csv")
+process_file("abcd.csv")
 
-files <- c("file1.csv", "file2.csv")
-lapply(files, process_file)
+file <- c("file3.csv","file.csv","file1.csv","file2.csv")
+lapply(file, process_file)
 #Script never crashes
 #Errors logged
 #Warnings handled

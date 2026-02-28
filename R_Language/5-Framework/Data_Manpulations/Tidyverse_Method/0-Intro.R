@@ -1,9 +1,21 @@
-#https://tidyverse.org/
+#Tidyverse packages
+#Sample Datasets
+#data frame and tibble
+#Need of tidyverse
+#Summary
+#Frequently used verbs
+#Workflow & Readability
+#Frequently Used functions
+#Quiz
+#Assignment
+#Resources
 
 #Tidyverse packages
+#=================
 install.packages("tidyverse")
 library(tidyverse) #to load the core tidyverse and make it available in your current R session.
 pak::pkg_system_requirements("tidyverse") #If you’re compiling from source, you can run
+pak::pkg_sysreqs()
 #https://tidyverse.tidyverse.org/
 
 #The tidyverse is a set of packages that work in harmony because they share common data representations and API design. 
@@ -12,7 +24,125 @@ pak::pkg_system_requirements("tidyverse") #If you’re compiling from source, yo
 #Usage
 library(tidyverse) #will load the core tidyverse packages:
 tidyverse_packages() #to know what are the packages
-  
+
+#Sample Datasets
+#---------------
+#I shall introduce the datasets which is very famous and covers all the sceanarios for data analysis
+install.packages("nycflights13")  #check in the package session for more info.
+library(nycflights13)
+
+##view the data in data grid
+View(airlines)
+View(airports)
+View(flights)
+view(planes)
+view(weather)
+##get object class and type
+class(flights) 
+typeof(flights)
+##get the data frame structure
+##A diagnostic function in Base R used to display the internal structure of any R object (lists, functions, models, arrays, or data frames).
+str(flights)
+##compared to str we can use glimpse()
+##A data-focused function from the pillar package (used by dplyr and tidyverse) specifically optimized for providing a dense,..
+##horizontal preview of data frames
+glimpse(flights)
+##get data frame dimensions
+dim(flights)
+nrow(flights)
+ncol(flights)
+
+#data frame and tibble
+#=====================
+
+#Data Frame (data.frame)
+#-----------------------
+#The standard, built-in structure in Base R for storing tabular data. It has been the backbone of R since its inception.
+#Structure: A list of vectors of equal length.
+#Philosophy: "Do what I say, even if it causes a mess later." It is very flexible but can be "lazy" about checking for errors.
+#key functonality
+##Printing -Dumps the entire dataset into your console (can crash R if the file is huge).
+##Data Types- Older versions used to convert strings to "Factors" automatically.
+##Subsetting- If you select 1 column (df[,1]), it turns into a vector.
+##Column Names - Will "fix" names (e.g., turning "My Column" into "My.Column").
+##Error Checking- If you call a column that doesn't exist, it returns NULL silently.
+
+#Tibble (tbl_df)
+##A modern reimagining of the data frame, introduced by the tidyverse (specifically the tibble package).
+##Structure: It is technically a data frame, but with extra "metadata" and stricter rules.
+##Philosophy: "Fail early and fail clearly." It is designed to stop you from making common data analysis mistakes.
+
+#Practical Example
+##If you look at the flights data, it is already a tibble. 
+##Notice how it tells you the dimensions and the data types (<int>, <chr>) right at the top:
+library(nycflights13)
+flights # This is a tibble
+##If you convert it to a standard data frame and try to look at it, you'll see the difference immediately:
+flights_old <- as.data.frame(flights)
+head(flights_old) # You HAVE to use head(), or it will print 336,776 rows!
+
+#data.frame()- Creating a Data Frame
+##You use the base R function data.frame().
+# Creating a standard data frame
+my_df <- data.frame(
+  name = c("Alice", "Bob", "Charlie"),
+  age = c(25, 30, 35),
+  has_pets = c(TRUE, FALSE, TRUE)
+)
+
+print(my_df)
+
+#tibble()- Creating a Tibble
+##You use the tibble() function from the tibble (or tidyverse) package.
+library(tibble)
+my_tbl <- tibble(
+  name = c("Alice", "Bob", "Charlie"),
+  age = c(25, 30, 35),
+  has_pets = c(TRUE, FALSE, TRUE)
+)
+
+print(my_tbl)
+
+#tribble()- The "Cool" Way to Create Tibbles: 
+##Use when you are manually typing in a small table and want it to look organized in your code.
+my_tribble <- tribble(
+  ~name,     ~age,  ~has_pets,
+  "Alice",   25,    TRUE,
+  "Bob",     30,    FALSE,
+  "Charlie", 35,    TRUE
+)
+my_tribble
+
+#Which is more effective?
+##use Tibbles for Analysis, Data Frames for Base R Compatibility.
+##This is much easier for humans to read when typing manual data.
+
+#Need of tidyverse
+#=================
+#Why we need to tidyverse, see the below base R code
+#Ex: i want filter the month ==1 data in flights dataset along year, month,day col
+flight_month<- flights[,c("year","month","day")]
+glimpse(flight_month)
+flight_first_month=flight_month[which(flight_month$month==1),]
+flight_first_month
+
+##Transfer the above to dplyr and using going forward %% pipe operator
+flight_month<-select(flights,year, month, day)
+filter(flight_month,month == 1)
+#using the pip method VERY VERY USEFUL
+flight_m <- flights %>%
+            select(year, month, day) %>%
+            glimpse() %>%  # Peeks at the 3 columns #but in str() it will crash
+            filter(month == 1) # Continues to filter the data
+#there is nave pipe operators came for official version from R |> Works in Base R (version 4.1+). its faster then standard pipe
+
+#For very large data:
+##Consider data.table
+##Consider duckdb
+##Consider sparklyr
+
+#Summary
+#=======
 #ggplot2,for data visualisation. https://ggplot2.tidyverse.org/
 #dplyr, for data manipulation.   https://dplyr.tidyverse.org/
 ##dbplyr...dplyr backend         https://dbplyr.tidyverse.org/
@@ -26,7 +156,7 @@ tidyverse_packages() #to know what are the packages
 #forcats, for factors.           https://github.com/tidyverse/forcats
 #lubridate, for date/times.      https://github.com/tidyverse/lubridate
 
-#other subj pacakages
+#other subj packages
 #--------------------
 #Working with specific types of vectors:
 ##hms, for times.           https://hms.tidyverse.org/
@@ -49,10 +179,9 @@ tidyverse_packages() #to know what are the packages
 
 #Tidyselect  https://tidyselect.r-lib.org/reference/index.html
 
-detach("package:tidyverse", unload = TRUE) #if you want to deactivate the package
-tidyverse_conflicts() #You can see conflicts created later
-library(MASS) #you get a message that is it linked to dplyr
-tidyverse_update() #update the packaes
+
+#Frequently used verbs
+#=====================
 
 #Core Data Manipulation (dplyr)
 #-----------------------------
@@ -68,7 +197,6 @@ tidyverse_update() #update the packaes
 #count()-->Quickly count rows by group
 #slice()-->	Select rows by position
 #pull()-->	Extract a single column as a vector
-
 
 #Combining & Joining Data
 #------------------------
@@ -100,7 +228,7 @@ tidyverse_update() #update the packaes
 #rowwise()-->Perform row-by-row operations
 
 #Workflow & Readability
-#-----------------------
+#======================
 #Verb	One-line summary
 #%>%	Pipe output of one step into the next
 #glimpse()	Compact view of data structure
@@ -118,6 +246,9 @@ data %>%
 #In real-world data analysis, date, string, and number functions are used constantly—often inside mutate(), filter(), and summarise()
 #Date & Time Functions (mostly lubridate)
 #Used for deriving periods, filtering timelines, aging, trends, cohorts.
+
+#Frequently Used functions
+#=========================
 
 #Function	One-line summary
 #---------------------------

@@ -1,177 +1,252 @@
-#Intro
-####################--Basic Learning --------####################
-#Select All Columns
-#Select Specific Columns
-#Select Using Column Ranges by Name
-#Drop/exclue column
-#Reorder Columns -Changes column order.
-#Select by Position
-#Select with Logical Vectors
-####################--Advance Learning --------####################
-#Rename While Selecting
-#Helper Functions (Very Important)
-#Select with Negation + Helpers
-#Combine Multiple Select Rules
-#Reorder Using everything()
-#select Numeric/character column
-#Select Columns by Multiple Conditions-using numeric and logical col
-#exclude by type-character
-#Select Columns That Satisfy a Function
-#Tidyselect with any_of() and all_of()
-#Remove Duplicated Column Names
-#Select Last / First Columns
-#Real-World Example
+#syntax
+#Select the datasets
+#Select one or more columns by name
+#Select Columns by Position
+#Excluding Columns
+#Selecting All Except Some
+#Renaming Columns While Selecting
+#Helper Functions
+#Selecting by Data Type
+#Selection Using Character Vectors (Dynamic Selection)
+#Combining Selection Rules
+#Reordering Columns
+#Selection Inside a Pipe
+#relocate() (Modern Way to Move Columns)
+#convert to column to vector
+#Tidyselect with External Vector
+#Select inside Other Verbs
+#Select inside Other Verbs
+#Select Distinct Columns
+#Select After Join
+#Selecting Columns Programmatically
+#Real-World Analysis Pattern
+#Quiz
+#Assignment
+#Resources
 
-#Intro
-#=====
-#-Generally in any data manipulations data frame is must frequently used data structure in R.
-#-A data frame is a two-dimensional array-like structure or a table in which a column contains values of one variable, and rows contains one set of values from each column
-#-A data frame is used to store data table and the vectors which are present in the form of a list in a data frame, are of equal length
+#syntax
+#======
+select()
 
-library(tidyverse) #install and load the tidyverse package
+#Select the datasets
+#===================
+flights #by just putting the dataframe
 
-name <- c("vyvan","vedha","venu","nitya","vinay","veera","sandeep","arun",'saraswati','monica','rocky')
-gender <- c("M", "F", "M", "F", "M", "M", "M", "Not disclosed", "M", "F", "M")
-age <- c(73,35,30,23,30,35,40,42,18,75,18)
-weight <- c(52,65,80,57,71,90,67,78,85,50,85)
-height <- c(165,171,183,154,173,167,169,180,190,145,190)
-maristatus <- c(TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE)
-dob <- as.Date(c("1988-01-20","1983-01-22","1983-03-18","1978-01-11","1968-01-14","1999-03-24","1988-03-22","1955-01-19","1986-03-21","1968-04-26","1987-02-23"))
-math <- c(52,55,83,22,50,51,15,30,32,42,48)
-science <- c(23,52,71,58,90,25,66,39,88,76,70)
-history <- c(30,NA,35,NA,33,40,66," ",22,NA,66)
-english <- c(65,26,34,75,72,89,74,58,57,71,52)
-score_survey <- c(3.8,6,1.5,1.4,1.4,8,2.2,9.23,3.2,9.5,10.2)
-fed_survey1 <- c(55,75,13,56,99,62,89,34,25,81,79)
-fed_survey2 <- c(51,60,23,47,85,58,97,39,14,16,38)
-region <- c("north","north","north","south","south","south","east","east","east","west","west")
-#sample(10:99, 11)
-#round(runif(11, 1.1, 10.9),2) #only for decimal use runif
-health <- tibble(name,gender,age, weight, height,maristatus,dob,math,science,history,english,score_survey,fed_survey1,fed_survey2,region) #tibble create the dataframe
+#Select one or more columns by name
+#===================
+#select a single column
+flights %>%  select(year)
 
-##view the data in data grid
-view(health)
-##get object class and type
-class(health) 
-typeof(health)
-##get the data frame structure
-str(health)
-##get data frame dimensions
-dim(health)
-nrow(health)
-ncol(health)
-
-#Select All Columns
-health #by just putting the dataframe
-##using the pipe operator -- going further we shall use this method.
-health %>% select(everything())
+#select a two column
+flights %>%  select(year,carrier)
 
 #Select Specific Columns
-health %>% select(name,gender)
+flights %>% select(year,carrier,origin,dest)
 
+
+#Select Columns by Position
+#==========================
 #Select Using Column Ranges by Name
-health %>% select(age:dob)
+flights %>% select(year:day) 
+#Select by Position index
+flights %>% select(1,10,11,13,14)  #individual index
+#Selecting Column Ranges
+##Using :
+flights %>% select(10:14) #range
+flights %>% select(1,10:14) #combing individual and range
 
-#Drop/exclue column
-health %>% select(-age) #for one variable
-health %>% select(c(-age,-height)) #for 2+ variable
+#Excluding Columns
+#==================
+#Drop/exclude column
+##Using -
+flights %>% select(-year) #for one variable
 
-#Reorder Columns -Changes column order.
-health %>% select(name,age,gender,maristatus,dob,height,weight)
+#Selecting All Except Some
+#==========================
+#Keep all except specific columns
+flights %>% select(-year, -month)  #for 2+ variable
 
-#Select by Position
-health %>% select(1,3) #individual index
-health %>% select(2:4) #range
+#Exclude a range
+flights %>% select(-(year:day))
 
-#Select with Logical Vectors
-health %>% select(which(c(TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE))) #which() converts logical → numeric indices.
-
+#Renaming Columns While Selecting
+#===============================
 #Rename While Selecting
-health %>% select(employee=name,sex=gender)  #new_name=old_name(existing column name)
+flights %>% select(dep_year = year,
+                   dep_month = month,
+                   dep_day = day)  #new_name=old_name(existing column name) 
+##select() drops other columns
+##rename() keeps all columns
 
-#Helper Functions (Very Important)
-##starts_with()
-health %>% select(starts_with("we")) 
-## ends_with()
-health %>% select(ends_with("ht")) 
-##contains()
-health %>% select(contains("ge"))
-##matches() (regex)
-health %>% select(matches("^.*t$")) ###pattern ^-start of the string, .*any characeter,t is a letter $end of the string
-health %>% select(matches("^(w|h).*t$"))
-health %>% select(matches("weight|Height",ignore.case = FALSE)) #case senstive matchinhg
-health %>% select(matches("weight|Height",ignore.case = TRUE)) #case insenstive matchinhg
+#Helper Functions
+#=================
+#Select columns starting with a pattern - starts_with
+flights %>% select(starts_with("dep")) 
+# Select columns ending with a pattern- ends_with()
+flights %>% select(ends_with("delay"))
+#Select columns containing text- contains()
+flights %>% select(contains("time"))
+#Select columns matching a regex- matches()- use regular expression here.
+flights %>%select(matches("^arr"))
+flights %>%select(matches("delay|time"))
+flights %>%select(matches("DELAY|TIME",ignore.case = TRUE))
+flights %>%select(matches("DELAY|TIME",ignore.case = FALSE)) #case senstive matchinhg
+flights %>% select(matches("^.*t$")) ###pattern ^-start of the string, .*any characeter,t is a letter $end of the string
+#last_col()
+##last column of the table.
+flights %>%  select(last_col()) #The very last column.
+flights %>%  select(last_col(offset = 1)) #The second to last column 
 
-#Select with Negation + Helpers
-health %>% select(-starts_with("we"))
-health %>% select(-contains("we"))
-
-#Combine Multiple Select Rules
-health %>% select(name,starts_with("we"),ends_with("ht"))
-
-#Reorder Using everything()
-health %>%  select(dob,everything()) #first name column and then everything
-
-#select Numeric/character column
-health %>% select(where(is.numeric))
-health %>% select(where(is.character))
-health %>% select(where(is.numeric),everything()) #pull all character columns and then other
+#Selecting by Data Type
+#======================
+#Using where()
+#Select numeric columns
+flights %>% select(where(is.numeric))
+flights %>% select(where(is.numeric),everything()) #pull all numeric columns first and then other
+#Select character columns
+flights %>% select(where(is.character))
+#Select factor columns
+flights %>% select(where(is.factor))
+#Select logical columns
+flights %>% select(where(is.logical))
 #Select Columns by Multiple Conditions                 
-health %>% select(where(is.numeric),where(is.logical))
-health %>% select(where(is.character),where(is.logical))
+flights %>% select(where(is.numeric),where(is.character))
 #exclude by type
-health %>% select(-where(is.character))
+flights %>% select(-where(is.numeric)) 
+#Select with Logical Vectors
+flights %>% select(which(c(TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE)))  #which() converts logical → numeric indices. 
+#Custom condition
+flights %>% select(where(~ is.numeric(.) && mean(., na.rm = TRUE) > 100))
 
-#Select Columns That Satisfy a Function 
-health %>% select(where(~ mean(.x, na.rm = TRUE) > 50)) #Keeps columns whose mean is > 50.
-
+#Selection Using Character Vectors (Dynamic Selection)
+#=====================================================
 #Tidyselect with any_of() and all_of()
-##all_of() Select all specified columns — and ERROR if any are missing,Works only if all three columns exist,If even one column is missing, you get an error
-##any_of() Select only the columns that exist — silently ignore missing ones,Output contains only the columns that exist No error is thrown
-cols <- c("name","age","emp_status")
-health %>% select(all_of(cols))   # must exist
-health %>% select(any_of(cols))   # this is called safer version Because it does not break your pipeline when columns are missing.
-##Use all_of() when:
-###Columns are mandatory
-###You want the code to fail fast
-###You are doing QC or validation
-##Use any_of() when:
-###Columns are optional
-###Datasets may differ across studies/vendors
-###You want robust, reusable pipelines
-###You want to avoid runtime errors
+#When column names come from variables
+#all_of() -Every column name in your vector must exist in the dataset
+cols <- c("carrier","year","month","day","loc") #loc col is not there in this datasets
+flights %>% select(all_of(cols))  
+#Optional columns (won't error if missing)
+#any_of() -It selects only the columns that actually exist
+flights %>% select(any_of(cols))   # this is called safer version Because it does not break your pipeline when columns are missing.
 
-#Remove Duplicated Column Names
-health %>% select(!duplicated(names(.))) #no example
+#Combining Selection Rules
+#=========================
+#Mix names + helpers
+select(iris, Species, starts_with("Sep"))
 
-#Select Last / First Columns
-health %>% select(last_col())
-health %>% select(last_col(2))
+#Mix exclusion + helpers
+flights %>% select(-starts_with("time"))
+flights %>% select(-ends_with("time"))
+flights %>% select(-contains("time"))
 
-#Real-World Example
-health %>%
-  select(
-    employee = name,
-    region,
-    starts_with("score"),
-    -age
-  )
+#Combine Multiple Select Rules
+flights %>% select(starts_with("dep"), ends_with("delay"))
 
+#Reordering Columns
+#=================
+#Reorder Columns -Changes column order.
+flights %>% select(year,carrier,flight,origin,dest)  #my own order if you want
+#Move selected columns to the front
+##everything()- Reorder columns
+flights %>%  select(year,carrier,origin,dest,everything()) #first fix the ordered column you want then display everthing.
+#Move selected columns to the end
+flights %>%  select(-year,year)
+
+#Selection Inside a Pipe
+#=======================
+flights %>% select(year, carrier, flight, origin, dest) %>% head()
+
+#relocate() (Modern Way to Move Columns)
+#=======================================
+#In modern dplyr (1.0.0+), relocate() is the preferred tool for changing column order without having to name every column
+flights %>% relocate(carrier)
+### Move all character columns (carrier, tailnum, origin, dest) to the front
+flights %>% relocate(where(is.character))
+#Using .before and .after
+##This is where the power of relocate() really shines. You can place columns relative to other columns rather than using index numbers.
+## Move 'origin' and 'dest' to be right after 'year'
+flights %>% relocate(origin, dest, .after = year)
+# Move 'distance' to be right before 'air_time'
+flights %>% relocate(distance, .before = air_time)
+# Move all columns that contain the word "delay" to the front
+flights %>% relocate(contains("delay"))
+# Move all numeric columns to the end
+flights %>% relocate(where(is.numeric), .after = last_col())
+#Differect from select() and relocat(), 
+#Primary Goal-->Choosing which columns to keep-->Changing the order of columns.
+#Handling others-->Drops columns not mentioned (unless using everything())-->Keeps all columns automatically.
+#Ease of use-->Can be tedious for large datasets-->Very fast for moving "this next to that."
+
+#Convert to column to vector
+#===========================
+#extracts a single column and turns it into a vector.
+pull() 
+# This gives you a numeric vector, not a table
+air_times <- flights %>%pull(air_time)
+air_times
+mean(air_times, na.rm = TRUE)
+#The "Negative" Pull (Positioning)
+# Pulls the last column (time_hour)
+flights %>% pull(last_col())
+# Pulls the first column (year)
+flights %>% pull(1)
+## this can be used for plotting and pass this vector to statistical functions like mean(),quantile(),..
+
+#Tidyselect with External Vector
+#===============================
+delay_cols <- names(flights)[grep("delay", names(flights))]
+delay_cols
+flights %>%
+  select(all_of(delay_cols))
+
+#Select inside Other Verbs
+#=========================
+#Inside mutate(across())
+flights %>%
+  mutate(across(ends_with("delay"), ~ . / 60))
+
+#Inside summarise(across())
+flights %>%
+  summarise(across(where(is.numeric), mean, na.rm = TRUE))
+
+#Select Distinct Columns
+#=======================
+#Using distinct() for column-based uniqueness:
+flights %>%
+  distinct(origin)
+
+#Multiple columns:
+flights %>%
+  distinct(origin, dest)
+
+#Select After Join (Real Analysis Scenario)
+#==========================================
+#get the name of the airlines along with dep_delay and arr_delay
+flights %>%
+  left_join(airlines, by = "carrier") %>%
+  select(carrier, name, dep_delay, arr_delay)
+
+#Selecting Columns Programmatically(Advanced)
+#============================================
+select_delay_columns <- function(data) {
+  data %>%
+    select(contains("delay"))
+}
+
+#Real-World Analysis Pattern
+#===========================
+#Typical Data Science Workflow
+#Select relevant columns
+#Then filter
+#Then sort
+flights %>%
+  select(year, month, day, carrier, origin, dest,
+         dep_delay, arr_delay) %>%
+  filter(dep_delay > 60) %>%
+  arrange(desc(dep_delay))
 
 #Quiz
 #====
-#1.how do you Select by name?
-#2.how do you drop?
-#3.how do you Rename?
-#4.how do you select Pattern?
-#5.how to Start / End with a some character?
-#6.how to do select By type?
-#7.how do select From vector?
-#8.how do you Reorder?
-#9.how do you select Range?
-#10.how do you select Safe?
-#11.how do you select Last cols?
-
 
 #Assignment
 #==========
