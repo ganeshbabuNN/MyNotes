@@ -1,0 +1,439 @@
+1)Square pattern printing programs
+2)Right Angle Triangle Pattern printing programs
+3)Inverted Right Angle Triangle Pattern printing programs
+4)Pyramid Pattern printing Programs
+5)Inverted Pyramid Pattern printing programs
+6)Diamond Pattern printing programs
+7)Inverted Pyramid Pattern printing programs
+8)Diamond Pattern printing programs
+9)Right Half Diamond Pattern printing programs
+10)Left Half Diamond Pattern printing programs
+11)Top Half Hallow Diamond Pattern printing programs
+12)Bottom Half Hallow Diamond Pattern printing programs
+13)Hallow Diamond Pattern printing programs
+14)Alphabet Pattern Printing Programs
+15)Vertical LED PANEL Display with Alphabet Symbols
+16)Horizontal LED PANEL display with alphabet symbols
+
+
+1)Square pattern printing programs
+================================
+1)To print given number of *s in a row
+-------------------------------------
+To print square pattern with provided fixed digit in every row
+--------------------------------------------------------------
+To print square pattern with fixed alphabet symbol
+--------------------------------------------------
+
+To print square pattern with digits
+-----------------------------------
+
+To print square pattern with alphabet symbols in dictionary order
+-----------------------------------------------------------------
+
+
+To print square pattern with digits in descending order
+-------------------------------------------------------
+
+To print square pattern with alphabets in reverse of dictionary order
+---------------------------------------------------------------------
+
+
+To print square pattern with digits in descending order
+-------------------------------------------------------
+
+
+2)Right Angle Triangle Pattern printing programs
+================================================
+
+To Print Right Angle Traiangle pattern with * Symbols
+-----------------------------------------------------
+
+To print Right Angle Triangle pattern with fixed digit in every row
+--------------------------------------------------------------------
+
+
+To print Right Angle Triangle pattern with fixed alphabet symbol in every row
+-----------------------------------------------------------------------------
+
+To print Right Angle Triangle pattern with digits in ascending order
+--------------------------------------------------------------------
+
+
+To print Right Angle Triangle pattern with alphabet symbols in dictionary order
+-------------------------------------------------------------------------------
+
+To print Right Angle Triangle pattern with digits in descending order
+---------------------------------------------------------------------
+
+
+Right Angle Triangle pattern with alphabet symbols in reverse of dictionary
+---------------------------------------------------------------------------
+
+
+3)Inverted Right Angle Triangle Pattern printing programs
+==========================================================
+
+To print Inverted Right Angle Triangle pattern with * symbols
+-------------------------------------------------------------
+
+
+To print Inverted Right Angle Triangle pattern with fixed digit in every row
+---------------------------------------------------------------------------- 
+
+To print Inverted Right Angle Triangle pattern with fixed alphabet symbol in Row
+---------------------------------------------------------------------------------
+
+
+To print Inverted Right Angle Triangle pattern with fixed digit in every row
+---------------------------------------------------------------------------- 
+
+To print Inverted Right Angle Triangle pattern with fixed alphabet symbol
+-------------------------------------------------------------------------
+
+
+To print Inverted Right Angle Triangle pattern with digits in ascending order
+-----------------------------------------------------------------------------
+
+Inverted Right Angle Triangle pattern with alphabet symbols in dictionary
+-------------------------------------------------------------------------
+
+
+Inverted Right Angle Triangle pattern with digits in descending order
+---------------------------------------------------------------------
+
+Inverted Right Angle Triangle pattern with alphabet symbols in reverse
+----------------------------------------------------------------------
+
+
+4)Pyramid Pattern printing Programs
+===================================
+To print Pyramid pattern with * symbols
+----------------------------------------
+
+To print Pyramid pattern with fixed digit in every row
+-------------------------------------------------------
+
+
+To print Pyramid pattern with fixed alphabet symbol in every row
+-----------------------------------------------------------------
+
+
+To print Pyramid pattern with digits in ascending order in every row
+--------------------------------------------------------------------
+
+To print Pyramid pattern with alphabet symbols in dictionary order in every row
+--------------------------------------------------------------------------------
+
+
+To print Pyramid pattern with digits in descending order in every row
+---------------------------------------------------------------------
+
+
+To print Pyramid pattern with alphabet symbols in reverse of dictionary order
+------------------------------------------------------------------------------
+
+5)Inverted Pyramid Pattern printing programs
+=============================================
+To print Inverted Pyramid Pattern with * symbols
+-------------------------------------------------
+
+
+To print Inverted Pyramid Pattern with fixed digit in every row
+----------------------------------------------------------------
+
+
+To print Inverted Pyramid Pattern with fixed alphabet symbol in every row
+-------------------------------------------------------------------------
+
+
+
+To print Inverted Pyramid Pattern with digits in ascending order in every row
+------------------------------------------------------------------------------
+
+
+To print Inverted Pyramid Pattern with alphabet symbols in dictionary order
+---------------------------------------------------------------------------
+
+
+To print Inverted Pyramid Pattern with digits in descending order in every row
+-------------------------------------------------------------------------------
+
+To print Inverted Pyramid Pattern with alphabet symbols in reverse of dictionary
+--------------------------------------------------------------------------------
+
+8)Diamond Pattern printing programs
+===================================
+
+To print Diamond Pattern with * symbols
+---------------------------------------
+
+
+To print Diamond Pattern with fixed digit in every row
+------------------------------------------------------
+
+
+To print Diamond Pattern with fixed alphabet symbol in every row
+----------------------------------------------------------------
+
+
+
+To print Diamond Pattern with digits in ascending order in every row
+--------------------------------------------------------------------
+
+
+To print Diamond Pattern with alphabet symbols in dictionary order in every row
+-------------------------------------------------------------------------------
+
+
+To print Diamond Pattern with digits in descending order in every row
+---------------------------------------------------------------------
+
+
+To print Diamond Pattern with alphabet symbols in reverse of dictionary order
+------------------------------------------------------------------------------
+
+9)Right Half Diamond Pattern printing programs
+==============================================
+To print Right Half Diamond Pattern with * symbols
+--------------------------------------------------
+
+
+To print Right Half Diamond Pattern with fixed digit in every row
+------------------------------------------------------------------
+
+
+To print Right Half Diamond Pattern with fixed alphabet symbol in every row
+----------------------------------------------------------------------------
+
+
+To print Right Half Diamond Pattern with digits in ascending order in every row
+------------------------------------------------------------------------------
+
+
+To print Right Half Diamond Pattern with alphabet symbols in dictionary order
+-----------------------------------------------------------------------------
+
+
+To print Right Half Diamond Pattern with digits in descending order in every row
+--------------------------------------------------------------------------------
+
+
+Right Half Diamond Pattern with alphabet symbols in reverse of dictionary order
+-------------------------------------------------------------------------------
+
+10)Left Half Diamond Pattern printing programs
+===============================================
+To print Left Half Diamond Pattern with * symbols
+-------------------------------------------------
+
+
+To print Left Half Diamond Pattern with fixed digit in every row
+----------------------------------------------------------------
+
+
+To print Left Half Diamond Pattern with fixed alphabet symbol in every row
+--------------------------------------------------------------------------
+
+
+To print Left Half Diamond Pattern with digits in ascending order in every row
+------------------------------------------------------------------------------
+
+
+To print Left Half Diamond Pattern with alphabet symbols in dictionary order
+----------------------------------------------------------------------------
+
+
+To print Left Half Diamond Pattern with digits in descending order in every row
+-------------------------------------------------------------------------------
+
+
+Left Half Diamond Pattern with alphabet symbols in reverse of dictionary order
+------------------------------------------------------------------------------
+
+11)Top Half Hallow Diamond Pattern printing programs
+====================================================
+To print Top Half Hallow Diamond Pattern with * symbols
+--------------------------------------------------------
+
+
+To print Top Half Hallow Diamond Pattern with fixed digit in every row
+----------------------------------------------------------------------
+
+
+To print Top Half Hallow Diamond Pattern with fixed alphabet symbol in every row
+--------------------------------------------------------------------------------
+
+
+To print Top Half Hollw Diamond Pattern with numbers in descending order
+-------------------------------------------------------------------------
+
+
+Top Half Hollw Diamond Pattern with aplhabet symbols in reverse of dictionary
+------------------------------------------------------------------------------
+
+
+12)Bottom Half Hallow Diamond Pattern printing programs
+========================================================
+To print Bottom Half Hallow Diamond Pattern with * symbols
+-----------------------------------------------------------
+
+
+To print Bottom Half Hallow Diamond Pattern with fixed digit in every row
+--------------------------------------------------------------------------
+
+
+Bottom Half Hallow Diamond Pattern with fixed alphabet symbol in every row
+--------------------------------------------------------------------------
+
+
+Bottom Half Hollw Diamond Pattern with numbers in descending order
+------------------------------------------------------------------
+
+
+Bottom Half Hollw Diamond Pattern with aplhabet symbols in reverse of dictionary
+---------------------------------------------------------------------------------
+
+13)Hallow Diamond Pattern printing programs
+===========================================
+To print Hollw Diamond Pattern with * Symbols
+---------------------------------------------
+
+
+To print Hollw Diamond Pattern with digits in Ascending Order
+-------------------------------------------------------------
+
+
+
+To print Hollw Diamond Pattern with digits in Descending Order
+---------------------------------------------------------------
+
+
+To print Hollw Diamond Pattern with alphabet symbols in Dictionary Order
+------------------------------------------------------------------------
+
+
+To print Holl0w Diamond Pattern with alphabet symbols in Reverse of Dictionary Or
+--------------------------------------------------------------------------------
+
+14)Alphabet Pattern Printing Programs
+=====================================
+To print alphabet Symbol 'A'
+----------------------------
+
+To print alphabet Symbol 'B'
+----------------------------
+
+To print alphabet Symbol 'C'
+----------------------------
+
+To print alphabet Symbol 'D'
+----------------------------
+
+To print alphabet Symbol 'E'
+----------------------------
+
+To print alphabet Symbol 'F'
+----------------------------
+
+To print alphabet Symbol 'G'
+----------------------------
+
+
+To print alphabet Symbol 'H'
+----------------------------
+
+
+To print alphabet Symbol 'I'
+----------------------------
+
+
+To print alphabet Symbol 'J'
+----------------------------
+
+
+To print alphabet Symbol 'K'
+----------------------------
+
+
+To print alphabet Symbol 'L'
+----------------------------
+
+
+To print alphabet Symbol 'M'
+----------------------------
+
+
+To print alphabet Symbol 'N'
+----------------------------
+
+To print alphabet Symbol 'N' In Square Style
+---------------------------------------------
+
+
+To print alphabet Symbol 'O'
+----------------------------
+
+To print alphabet Symbol 'P'
+----------------------------
+
+To print alphabet Symbol 'Q'
+----------------------------
+
+
+To print alphabet Symbol 'R'
+----------------------------
+
+To print alphabet Symbol 'S'
+----------------------------
+
+To print alphabet Symbol 'T'
+----------------------------
+
+To print alphabet Symbol 'U'
+----------------------------
+
+To print alphabet Symbol 'V'
+----------------------------
+
+
+To print alphabet Symbol 'W'
+----------------------------
+
+
+To print alphabet Symbol 'X'
+----------------------------
+
+
+To print alphabet Symbol 'Y'
+----------------------------
+
+
+To print alphabet Symbol 'Z'
+----------------------------
+
+
+15)Vertical LED PANEL Display with Alphabet Symbols
+====================================================
+Application Development Part-1
+------------------------------
+
+Application Development Part-2
+------------------------------
+
+
+16)Horizontal LED PANEL display with alphabet symbols
+======================================================
+Application Development Part-1
+------------------------------
+
+
+Application Development Part-2
+------------------------------
+
+Application Development Part-3
+------------------------------
+
+
+Applying Code Re usability for the Application
+-----------------------------------------------

@@ -1,9 +1,32 @@
+#filtering with single condition
+#filtering with multiple condition
+#filtering rows using their positions
+#Filtering with Multiple Complex Conditions
+#Filtering using Comparison Operators
+#Filtering Missing Values
+#Filtering Using Range
+#Filtering with Dynamic Column Names
+#filtering the unique rows
+#Filtering Using Aggregates
+#Filtering Using Windows functions
+#filtering using case_when()
+#Filtering Using near()
+#Filtering with String Conditions
+#Filtering with multi-column
+#Filtering with Grouped data
+#Filtering After Joining
+#Filtering Top N Values
+#Filtering with Date-Time Logic
+#Filtering Rows Based on Another Table 
+#Filtering Using Cumulative Logic
+#Practical Business Scenarios
 
-
-
-
+library(dplyr)
+library(nycflights13)
+#======
 #Syntax
 #======
+#flitering or subsetting
 filter(.data, condition1, condition2, ...)
 
 #filtering with single condition
@@ -23,10 +46,6 @@ flights %>%
 flights %>%
   filter(month == 6 | month == 7 | month == 8) #numeirc matching
 
-#same equivalent
-summer_flights <- flights %>%
-  filter(month %in% c(6, 7, 8))
-
 #Long Delays (> 2 hours)
 flights %>%
   filter(arr_delay > 120)
@@ -38,6 +57,39 @@ flights %>% filter(carrier=="AS")
 #multiple value
 flights %>% filter(carrier %in% c("UA", "AA"))
 
+#Calculated Expressions (Inline Computation)
+##Flights with speed > 500 mph
+flights %>% mutate(speed= (distance / air_time) * 60) |> filter(speed > 500)
+
+#filtering rows using their positions
+#====================================
+#slice(): Selects rows by their specific integer positions
+flights |> slice(1,2) #Extract index by rows and col
+#flights |> slice(:,4) 
+flights |> slice(1:4) #ranging
+
+#slice_head():Grabs the very first $n$ rows or percentage of rows from the dataset
+flights |> slice_head(n=4)
+
+#slice_tail(): Grabs the very last $n$ rows or percentage of rows from the dataset.
+flights |> slice_tail(n=4)
+
+#slice_min(): Picks rows with the lowest values in a specific column (e.g., the flights with the shortest air_time).
+flights |> slice_min(distance, n = 1)
+flights |> slice_min(distance, n = 5) |> select(carrier,flight,distance)  |> distinct(distance) #top 3 minium value
+
+#slice_max():Picks rows with the highest values in a specific column
+flights |> slice_max(distance, n = 7) |> select(carrier,flight,distance) |> distinct(distance)
+
+
+#slice_sample():Randomly selects a specified number or fraction of rows from the dataset for quick inspection
+##This is essential for Bootstrapping(a statistical technique used to estimate the precision of sample statistics)
+flights |> slice_sample( n = 7) #n=Fixed Number prop=Relative Percentage
+flights |> slice_sample( prop = 0.05)
+flights |> slice_sample( n = 7,replace=TRUE) #FALSE = Dealing cards from a deck, TRUE:Rolling a die.
+flights |> filter(!is.na(air_time)) |> slice_sample(n = 5, weight_by = air_time) |> select(carrier,flight,air_time)
+#here weight_by: Pick 10 flights at random, but give the flights that were in the air the longest a much better chance of winning
+
 #Filtering with Multiple Complex Conditions
 #==========================================
 #Flights delayed but not cancelled
@@ -47,6 +99,10 @@ flights %>%
 #Example: Extreme delays in winter
 flights %>%
   filter(month %in% c(12, 1, 2), arr_delay > 180) 
+
+#across() find flights where the "Total Operational Time" exceeded a certain threshold.
+flights %>% 
+  filter(rowSums(across(c(air_time, dep_delay, arr_delay)), na.rm = TRUE) > 500)
 
 #Filtering using Comparison Operators
 #==================================
@@ -75,6 +131,19 @@ flights %>%
 flights %>% 
   filter(carrier %in% c("UA", "AA", "DL"))
 
+#Boolean Operators
+# AND = Both conditions must be true.
+##Only flights that occurred on New Year's Day.
+flights |> filter(month == 1 & day == 1)
+
+#The OR Operator (|)
+##You get all flights from January plus all flights from November
+flights |> filter(month == 1 | month == 11)
+
+#NOT (!): Inverts the logic.
+#Flights that were not delayed by more than 2 hours: 
+flights |> filter(!(arr_delay > 120))
+
 #Filtering Missing Values (Very Important in Real Data)
 #======================================================
 
@@ -88,6 +157,11 @@ flights %>% filter(is.na(dep_time))
 #Keep only the flights that actually have a departure delay recorded
 flights %>%
   filter(!is.na(dep_delay))
+
+#Filtering out canceled flights effectively:
+flights %>% filter(is.na(dep_time) & is.na(arr_time)) |> select(carrier,dep_time,arr_time)
+#remove the NA rows itself, running flights
+flights %>% drop_na(dep_time, arr_time)|> select(carrier,dep_time,arr_time)
 
 #Different technique
 #-------------------
@@ -103,6 +177,8 @@ missing_counts[missing_counts > 0]
 ##Using summarise() and across() gives you a clean tibble output, which is great for reports or further piping.
 flights %>%
   summarise(across(everything(), ~ sum(is.na(.x)))) %>% glimpse()
+##summarize() Collapses the data. You get one row per group.
+##filter() Keeps the data detailed. You get every original flight belonging to that group.
 
 ##3.The data.table Way
 #For large datasets, data.table is significantly faster. It uses .SD (Subset of Data) to apply the check to every column.
@@ -129,6 +205,16 @@ filter(flights,month >= 6 & month <= 8) #equivalent of above
 col_name <- "distance"
 flights %>% filter(.data[[col_name]] > 1000) 
 
+#filtering the unique rows
+#=========================
+flights |> distinct(carrier)
+flights |> distinct(origin,dest) #A list of every unique flight path-To get unique combinations (e.g., every unique route).
+flights |> distinct(carrier,.keep_all = TRUE) #.keep_all=To keep all other columns for the first unique row found:
+flights |> summarize(unique_planes = n_distinct(tailnum))
+
+#Base R way
+unique(flights[,'carrier'])
+
 #Filtering Using Aggregates
 #==========================
 #Filtering by Average (mean)
@@ -152,7 +238,7 @@ flights %>%
 #Filtering by Sum (sum)
 flights %>%
   group_by(year, month, day) %>%
-  filter(sum(distance) > 1000000)
+  filter(sum(distance) > 1000000) |> select(year,month,day,distance) 
 
 #Filtering by Proportion (mean of a logical)
 #Find airports where more than 5% of their flights were cancelled.
@@ -164,7 +250,7 @@ flights %>%
 
 colSums(is.na(flights))
 flights %>%
-  summarise(across(everything(), ~ mean(is.na(.x)))) %>% glimpse()
+  summarise(across(everything(), ~ mean(is.na(.x))))
 
 flights %>%
   group_by(origin) %>%
@@ -193,6 +279,7 @@ flights %>%
 flights %>%
   group_by(origin) %>%
   filter(min_rank(desc(arr_delay)) <= 3)
+##Assgn : Top 5 delays per month using min_rank() ?
 
 #dense_rank() (The "No Gaps" Rank)
 ##Find flights in the top 2 "delay brackets" per day.
@@ -236,7 +323,8 @@ flights %>%
 #Filtering Using near() (Floating Point Comparison)
 #==================================================
 #Useful when comparing decimal numbers.
-filter(weather, near(temp, 32))
+weather |> filter(near(temp, 32))
+weather |> filter(near(humid ,44))
 
 #Filtering with String Conditions
 #================================
@@ -248,8 +336,16 @@ flights %>%
 flights %>%
   filter(origin == "JFK")
 
-#Filtering with Helper Functions
-#===============================
+#Find all flights to airports starting with "S":
+flights %>% 
+  filter(str_detect(dest, "^S"))
+
+#Find flights to Florida (destinations often start with "M" for Miami/Orlando or "T" for Tampa):
+flights %>% 
+  filter(str_detect(dest, "MIA|MCO|TPA"))
+
+#Filtering with multi-column
+#===========================
 #if_any() – Filter if ANY selected columns meet condition
 flights %>%
   filter(if_all(c(dep_delay, arr_delay), ~ . > 60))
@@ -265,11 +361,11 @@ flights %>%
 ##The . (dot) is a placeholder for "the current column value."
 ##It checks if the value is strictly greater than 60
 
-#if_all() – Filter if ALL columns meet condition
+#if_all() – Filter if ALL columns meet condition(AND (All must be true))
 flights %>%
-  filter(if_all(c(dep_delay, arr_delay), ~ . > 60))
+  filter(if_all(c(dep_delay, arr_delay), ~ . > 100)) |> select(carrier,dep_delay,arr_delay)
 
-#if_else() -- similar like ifelse()
+#if_else() -- similar like ifelse() -OR (At least one must be true)
 flights %>%
   mutate(status = if_else(
     condition = arr_delay > 60, 
@@ -278,8 +374,8 @@ flights %>%
     missing   = "Cancelled/Unknown"  # Explicitly handle NAs
   )) %>% select(flight,carrier,year,month,day,dep_time,arr_time,status)
 
-#Grouped Filtering (Very Important in Real Analysis)
-#===================================================
+##Filtering with Grouped data(Very Important in Real Analysis)
+#============================
 #Filtering inside groups is powerful.
 
 #Example: Worst arrival delay per month
@@ -288,9 +384,17 @@ flights %>%
   filter(arr_delay == max(arr_delay, na.rm = TRUE)) #Returns worst delay within each month.
 
 #Example: Above Average Delay per Carrier
-above_avg <- flights %>%
+flights %>%
   group_by(carrier) %>%
   filter(arr_delay > mean(arr_delay, na.rm = TRUE)) #Keeps only flights performing worse than carrier average.
+
+#n_groups()-counts how many piles you have made.
+#you want to know how many different airlines (carrier) are in the flights dataset.
+flights |> group_by(carrier) |> n_groups()
+
+#n()- Counts rows inside each group.
+flights |> group_by(carrier,origin) |> summarise(num_of_flights_per_orgin=n())
+flights |> group_by(dest) |> summarise(num_of_dest = n())
 
 #Filtering After Joining (Real World Scenario)
 #=============================================
@@ -313,20 +417,25 @@ flights %>%
 #Filtering Rows Based on Another Table (Semi Join Concept)
 #=========================================================
 #Flights going to airports in California:
-ca_airports <- airports %>%
+airports %>%
   filter(tzone %in% "America/Chicago")
 
-flights_to_ca <- flights %>%
-  semi_join(ca_airports, by = c("dest" = "faa"))
-flights_to_ca
-
-#Using filter() with Window Functions
-#====================================
-#Example: Top 3 longest flights per carrier
 flights %>%
+  semi_join(ca_airports, by = c("dest" = "faa"))
+
+#Filtering Using Cumulative Logic
+#===============================
+## how many flights it takes to reach a certain amount of delay time in a day.Find flights that contributed to the first 1000 minutes of delay at JFK 
+f_cum <- flights %>% select(origin,month,day,dep_delay) |> 
+  filter(origin == "JFK", !is.na(dep_delay)) %>%
+  group_by(month, day) %>% arrange(month,day,(dep_delay)) |> 
+  mutate(running_delay = cumsum(dep_delay)) %>%
+  filter(running_delay <= 1000)
+  
+  
+flights %>% se
   group_by(carrier) %>%
-  arrange(desc(distance)) %>%
-  slice_head(n = 3)
+  filter(cumsum(arr_delay > 120) >= 1)
 
 #Practical Business Scenarios
 #============================
@@ -339,10 +448,6 @@ flights %>%
 weather_delays <- flights %>%
   filter(is.na(dep_time) & !is.na(weather$precip))
 
-#Comparison: filter() vs summarise()
-#===================================
-#summarize() Collapses the data. You get one row per group.
-#filter() Keeps the data detailed. You get every original flight belonging to that group.
 
 #Quiz
 #====

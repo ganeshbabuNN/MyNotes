@@ -8,8 +8,8 @@
 #Assignment
 #Resources
 
-Packages
-========
+#Packages
+#========
 #A package is a collection of:
 ##Functions
 ##Datasets
@@ -25,7 +25,7 @@ Packages
 #where you can find out what the package does, who the author is, what version the documentation belongs to, the date, the type of license its use, and the package dependencies
 
 #Get all packages currently loaded in the R environment
-When we execute the below code, it produces the following result. It may vary depending on the local settings of your pc.
+#When we execute the below code, it produces the following result. It may vary depending on the local settings of your pc.
 search()
 
 #To check what packages are installed on your computer, you can use:
@@ -67,11 +67,23 @@ install.packages("Package Name")
  install.packages("XML")
 
 
+#install directly to custom path
+#-------------------------------
+#to install the package in custom path
+install.packages("nycflights23",lib="C:\\Users\\ganes\\Documents\\R_lib")
+#to add the cutom path in .libpath()
+.libPaths(c("C:\\Users\\ganes\\Documents\\R_lib",.libPaths())) 
+#to check
+.libPaths() 
+#load the library
+library(nycflights23)
+
+
 #Manual Installation from Source (.tar.gz or .zip)
 #--------------------------------------------------
 #Sometimes you need a specific version of a package, or you're on a machine with no internet access.
 #Go to the link R Packages to download the package needed. 
-https://cran.r-project.org/web/packages/available_packages_by_name.html
+#https://cran.r-project.org/web/packages/available_packages_by_name.html
 
 #Save the package as a .zip file(for windows) or tar (for linux or mac)in a suitable location in the local system.
 #Now you can run the following command to install this package in the R environment.
