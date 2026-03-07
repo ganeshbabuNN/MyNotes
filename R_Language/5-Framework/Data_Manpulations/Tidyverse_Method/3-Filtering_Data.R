@@ -19,6 +19,7 @@
 #Filtering with Date-Time Logic
 #Filtering Rows Based on Another Table 
 #Filtering Using Cumulative Logic
+#Filtering by Frequency
 #Practical Business Scenarios
 
 library(dplyr)
@@ -103,6 +104,10 @@ flights %>%
 #across() find flights where the "Total Operational Time" exceeded a certain threshold.
 flights %>% 
   filter(rowSums(across(c(air_time, dep_delay, arr_delay)), na.rm = TRUE) > 500)
+
+#find flights where either the departure delay OR the arrival delay was greater than 80 minutes,
+flights |> filter(rowSums(across(c(dep_delay,arr_delay),~.x>80),na.rm = TRUE)>=1) |> 
+  select(carrier,dep_delay,arr_delay)
 
 #Filtering using Comparison Operators
 #==================================
@@ -436,6 +441,10 @@ f_cum <- flights %>% select(origin,month,day,dep_delay) |>
 flights %>% se
   group_by(carrier) %>%
   filter(cumsum(arr_delay > 120) >= 1)
+  
+#Filtering by Frequency
+#======================
+flights |> add_count(dest)
 
 #Practical Business Scenarios
 #============================

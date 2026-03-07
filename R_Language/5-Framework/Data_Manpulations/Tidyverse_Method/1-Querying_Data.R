@@ -244,6 +244,7 @@ flights %>%
          dep_delay, arr_delay) %>%
   filter(dep_delay > 60) %>%
   arrange(desc(dep_delay))
+#This is how real production pipelines look.
 
 #Quiz
 #====
