@@ -463,6 +463,66 @@ weather_delays <- flights %>%
   
 #Assignment
 #==========
+#DM (Demographics) – Filtering Assignments
+#-----------------------------------------
+#1.Filter male subjects only. 
+#2.Filter subjects older than 65 years.
+#3.Filter subjects belonging to STUDYID "ABC123".
+#4 Filter subjects randomized to Treatment Arm A.
+#5 Filter subjects from USA and Canada only. Use %in%.
+#AE (Adverse Events)
+#------------------
+#6 Filter serious adverse events.
+#7 Filter severe adverse events.
+#8 Filter treatment related adverse events.
+#9 Filter AEs that started after first dose date.
+#10 Filter AEs ongoing at end of study.
+#11 Filter AEs occurring in first 30 days after treatment.
+#12 Filter subjects having more than 3 adverse events. Use group_by() + filter(n() > 3).
+#VS (Vital Signs)
+#---------------
+#13 Filter high systolic blood pressure (>140).
+#14 Filter low heart rate (<50 bpm).
+#15 Filter vital signs collected during screening visit.
+#16 Filter abnormal vital signs results.
+#17 Filter subjects with increasing blood pressure compared to previous visit. Use lag().
+#18 Filter subjects who received study drug.
+#19Filter missed doses.
+#20 Filter exposures before adverse event start date.
+#21 Filter subjects who received more than 10 doses. Use group_by(USUBJID).
+#22 Filter highest dose per subject. Use max(EXDOSE).
+#LB (Laboratory)
+#---------------
+#23 Filter abnormal lab results.
+#24 Filter ALT values greater than 3× upper normal limit.
+#25 Filter lab tests collected after treatment start.
+#26 Filter highest lab value per subject. Use slice_max().
+#27 Filter lab values missing results.
+#CM (Concomitant Medication)
+#---------------------------
+#28 Filter medications related to hypertension.
+#29 Filter medications started before study drug.
+#30 Filter ongoing medications.
+#31 Filter subjects taking more than 5 medications. Use group_by(USUBJID).
+#SV (Subject Visits)
+#-------------------
+#32 Filter screening visits only.
+#33 Filter unscheduled visits.
+#34 Filter visits occurring after Day 30.
+#35 Filter subjects who missed visits.
+#36 Filter subjects who discontinued study.
+#37 Filter subjects who completed study.
+#38 Filter discontinuation due to adverse event.
+#39 Filter subjects withdrawn due to lack of efficacy.
+#40 Filter subjects discontinued within first 60 days. Use between() or date calculation.
+#Advanced Cross-Domain Assignments
+#-----------------------------------
+#These mimic real clinical analysis queries.
+#41 Find subjects with severe adverse events who received high dose drug.Join AE + EX.
+#42 Find subjects with abnormal lab results after treatment start.Join LB + EX.
+#43 Find subjects with hypertension medication and high blood pressure. Join CM + VS.
+#44 Find subjects discontinued due to adverse events.Join DS + AE.
+#45 Find subjects with more than 2 serious adverse events and discontinued study. Join AE + DS.
 
 #Resources:
 #=========

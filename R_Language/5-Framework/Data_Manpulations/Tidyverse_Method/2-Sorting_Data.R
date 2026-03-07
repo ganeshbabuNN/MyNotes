@@ -85,6 +85,13 @@ flights %>%
 flights %>% 
   group_by(carrier) %>%
   slice_min(arr_delay, n = 3)
+  
+#2nd highest of carrier per arr_delay
+flights |> 
+  group_by(carrier) |> 
+  slice_max(arr_delay,n=2) |> 
+  slice_tail(n=1) |> 
+  select(carrier,arr_delay) 
 
 #Sorting After Summarise
 #=======================
@@ -157,17 +164,16 @@ tibble(
 )
 
 #Real-World Analysis Pattern
-#Which airline had the worst average delay each month?  
+##Which airline had the worst average delay each month?  
 flights %>%
   group_by(month, carrier) %>%
   summarise(avg_delay = mean(arr_delay, na.rm = TRUE)) %>%
   arrange(month, desc(avg_delay)) %>%
   group_by(month) %>%
   slice_max(avg_delay, n = 1)
-  
-#Grouped sorting
-#Ranking
-#Business-ready output
+##Grouped sorting
+##Ranking
+##Business-ready output
 
 #Quiz
 #====
