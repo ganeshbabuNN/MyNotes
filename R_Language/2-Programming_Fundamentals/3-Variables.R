@@ -384,7 +384,6 @@ counter()  # 2
 ##Created during evaluation (e.g., with(), eval()), and destroyed immediately after use.
 with(mtcars, mean(mpg))  # Temporary environment
 
-
 #Environment Type -->	Lifetime Duration
 #Global -->	Until removed or session ends
 #Function Local -->	Until function exits

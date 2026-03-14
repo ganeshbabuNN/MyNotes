@@ -152,7 +152,6 @@ health %>% slice_min(age,n=5) # min 5 record rows- Rows with minimum and maximum
 health %>% slice_max(age,n=5) # max 5 record rows- Rows with minimum and maximum values of a variable
 health %>% slice_sample(n=5) #slice_sample() allows you to random select with or without replacement
 
-
 #Filtering Using Row Numbers
 health %>% filter(row_number() <= 3)     # First 3 rows
 health %>% filter(row_number() %% 2 == 0)  # Even rows : observer the row number compared to health dataset

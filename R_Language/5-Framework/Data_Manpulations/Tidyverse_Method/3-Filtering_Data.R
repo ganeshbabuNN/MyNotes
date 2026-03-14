@@ -2,6 +2,7 @@
 #filtering with multiple condition
 #filtering rows using their positions
 #Filtering with Multiple Complex Conditions
+#Filtering using the ~ formulae operator
 #Filtering using Comparison Operators
 #Filtering Missing Values
 #Filtering Using Range
@@ -11,6 +12,7 @@
 #Filtering Using Windows functions
 #filtering using case_when()
 #Filtering Using near()
+#Filtering all the data in the current group
 #Filtering with String Conditions
 #Filtering with multi-column with conditions.
 #Filtering with Grouped data
@@ -55,6 +57,10 @@ flights %>% filter(carrier=="AS")
 #Example 2: Multiple Conditions (AND logic)
 flights %>%
   filter(month == 1, day == 1) #numeirc matching
+
+#using operator &
+flights |> filter(month==1 & day==10) |> select(carrier,month,day)  
+  
 
 #Example 3: OR Condition
 flights %>%
@@ -109,10 +115,51 @@ flights %>%
 flights %>% 
   filter(rowSums(across(c(air_time, dep_delay, arr_delay)), na.rm = TRUE) > 500)
 
+#Exp on sum,normal addition and rowSum  
+sales <-tibble(
+  item=c("apple","banna","cherry"),
+  jan=c(50,0,0),
+  feb=c(60,80,0),
+  mar=c(20,NA,0),
+  apr=c(20,NA,0),
+)
+#in sum function if there is any col has NA
+#rowsum() will ignore NA.
+
+sales |> 
+  mutate(tot = sum(jan,feb,mar),
+         tot1= jan+feb+mar,
+         tot2=rowSums(across(c(jan,feb,mar)),na.rm=T))
+
+sales |> 
+mutate(tot = sum(jan,feb,mar),
+       tot1= jan+feb+mar,
+       tot2=rowSums(across(feb:mar),na.rm=T)
+      )
+
+sales |> 
+  mutate(tot = sum(jan,feb,mar),
+         tot1= jan+feb+mar,
+         tot2=rowSums(across(ends_with("delay")),na.rm=T)
+  )
+
+sales |> 
+mutate(tot = sum(jan,feb,mar),
+       tot1= jan+feb+mar,
+       tot2=rowSums(across(feb:mar),na.rm=T)
+      ) 
+
+#Filtering using the ~ formulae operator
+#=======================================
 #find flights where either the departure delay OR the arrival delay was greater than 80 minutes,
 flights |> filter(rowSums(across(c(dep_delay,arr_delay),~.x>80),na.rm = TRUE)>=1) |> 
   select(carrier,dep_delay,arr_delay)
 
+#Find any flight that had a significant delay (over 90 minutes) in either its departure or its arrival. 
+#Both of these columns start with "delay" if we rename them, or we can use contains()/ends_with()
+flights |> 
+  filter(if_any(ends_with("delay"), ~ .x >= 90)) |> select(carrier,ends_with("delay"))
+  
 #Filtering using Comparison Operators
 #==================================
 #Equal To (==)
@@ -156,31 +203,6 @@ flights |> filter(!(arr_delay > 120))
 #Filtering Missing Values (Very Important in Real Data)
 #======================================================
 
-#Handling NA values
-#-------------------
-#Find all flights that which are cancelled (dep_time=='NA')
-flights %>% filter(dep_time == NA) #This does NOT work
-#Correct Way
-flights %>% filter(is.na(dep_time))
-
-#Keep only the flights that actually have a departure delay recorded
-flights %>%
-  filter(!is.na(dep_delay))
-
-#Filtering out canceled flights effectively:
-flights %>% filter(is.na(dep_time) & is.na(arr_time)) |> select(carrier,dep_time,arr_time)
-#remove the NA rows itself, running flights
-flights %>% drop_na(dep_time, arr_time)|> select(carrier,dep_time,arr_time)
-
-#Which flights have arrival delay greater than 60 minutes, treating missing delays as 0?
-##coalesce()- coalesce() returns the first non-missing value.
-flights %>%
-  filter(coalesce(arr_delay, 0) > 60)
-  
-#coalesce() can also use multiple columns.
-flights %>%
-  mutate(delay = coalesce(dep_delay, arr_delay))  #If departure delay is missing, it uses arrival delay.
-
 #Different technique
 #-------------------
 ##different way to find missing values
@@ -210,6 +232,31 @@ flights_dt[, lapply(.SD, function(x) sum(is.na(x)))]
 library(naniar)
 ## A quick bar chart of missing values per variable
 gg_miss_var(flights)
+
+#Handling NA values
+#-------------------
+#Find all flights that which are cancelled (dep_time=='NA')
+flights %>% filter(dep_time == NA) #This does NOT work
+#Correct Way
+flights %>% filter(is.na(dep_time))
+
+#Keep only the flights that actually have a departure delay recorded
+flights %>%
+  filter(!is.na(dep_delay))
+
+#Filtering out canceled flights effectively:
+flights %>% filter(is.na(dep_time) & is.na(arr_time)) |> select(carrier,dep_time,arr_time)
+#remove the NA rows itself, running flights
+flights %>% drop_na(dep_time, arr_time)|> select(carrier,dep_time,arr_time)
+
+#Which flights have arrival delay greater than 60 minutes, treating missing delays as 0?
+##coalesce()- coalesce() returns the first non-missing value.
+flights %>%
+  filter(coalesce(arr_delay, 0) > 60)
+  
+#coalesce() can also use multiple columns.
+flights %>%
+  mutate(delay = coalesce(dep_delay, arr_delay))  #If departure delay is missing, it uses arrival delay.
 
 #Filtering Using Range
 #=====================
@@ -349,9 +396,44 @@ flights %>%
 
 #Filtering Using near() (Floating Point Comparison)
 #==================================================
-#Useful when comparing decimal numbers.
-weather |> filter(near(temp, 32))
-weather |> filter(near(humid ,44))
+#get the list of the near() values for exp
+weather |> select(origin,temp,dewp) |> filter(between(temp,30,40)) |> distinct(temp) |> arrange(temp) |> pull(temp)
+#Only catches 39 (plus invisible decimals).
+weather |> select(origin,temp,dewp) |> filter(near(temp,39)) |> distinct(temp)
+#using tol parameter finds the near of the range
+#Catches 39.2 because $0.2 < 0.5$.
+weather |> select(origin,temp,dewp) |> filter(near(temp,39,tol = 0.5)) |> distinct(temp)
+#round(temp)==36 Mathematically rounds everything to the nearest whole 36
+weather |> select(origin,temp,dewp) |> filter(round(temp) == 36) |> distinct(temp)
+#floor(temp) == 30 -Catches  because it "cuts off" the decimal.
+weather |> select(origin,temp,dewp) |> filter(floor(temp) == 30) |> distinct(temp)
+
+#Filtering all the data in the current group
+#===========================================
+#when you wanted to refer to "all the data in the current group" inside a function like filter() or mutate(), 
+#pick() was introduced because it is more flexible and consistent with other new functions.
+#you used cur_data()
+
+#old way
+#cur_data()-Older way to get the data; replaced by pick().
+flights %>%
+  group_by(dest) %>%
+  filter(nrow(cur_data())<=2) |> 
+  select(year, month, day, carrier, flight, dest)
+
+#new way
+#pick() -When you need the actual data/columns of the group.
+flights %>%
+  group_by(dest) %>%
+  filter(nrow(pick(everything()))<=2) |> 
+  select(year, month, day, carrier, flight, dest)
+
+#pro way
+#n() -When you only need the count of rows (the most efficient choice).
+flights %>%
+  group_by(dest) %>%
+  filter(n() <= 2) %>%
+  select(year, month, day, carrier, flight, dest)
 
 #Filtering with String Conditions
 #================================
@@ -375,13 +457,13 @@ flights %>%
 #============================================
 #if_any() – Filter if ANY selected columns meet condition
 flights %>%
-  filter(if_all(c(dep_delay, arr_delay), ~ . > 60))
+  filter(if_any(c(dep_delay, arr_delay), ~ . > 60))
 #Step 1: The Input (flights %>%)
 ##The process starts with the flights tibble. It contains 336,776 rows and 19 columns.
-#Step 2: The Scope (if_all(c(dep_delay, arr_delay), ... ))
-##The if_all() function tells R to look at a specific subset of columns.
+#Step 2: The Scope (if_any(c(dep_delay, arr_delay), ... ))
+##The if_any() function tells R to look at a specific subset of columns.
 ##Instead of checking every column, it focuses only on dep_delay and arr_delay.
-##The "all" part of if_all acts like a logical AND. It means the row only stays if the condition is true for every column listed in the vector.
+##The "all" part of if_any acts like a logical AND. It means the row only stays if the condition is true for every column listed in the vector.
 #Step 3: The Condition (~ . > 60)
 ##This is a lambda (formula) function:
 ##The ~ starts the formula.
@@ -618,9 +700,128 @@ flights %>%
   arrange(time_hour) %>%
   filter(dep_delay != lag(dep_delay))
   
+#Filtering with External Lookup Tables/values
+#============================================
+#By values(hard coded values)
+valid_tailnums <- planes |> filter(year > 2010) |> pull(tailnum)
+length(unique(valid_tailnums))
+# Filtering the main table
+flights |> 
+  filter(tailnum %in% valid_tailnums) |> select(carrier,tailnum) 
+
+#Tables
+cust_tailnums <- tibble(tailnum=c("N101DQ","N101DU","N101NN","N102DN"))
+dim(cust_tailnums)
+flights |> semi_join(cust_tailnums,by="tailnum") |> 
+  select(carrier,tailnum) |> 
+  distinct(tailnum)
+##dyanmic
+new_planes<- planes |> filter(year>2010,str_starts(tailnum,"N101")) |> select(seats,tailnum)
+#Perform the semi_join(Columns from the first table only)
+flights %>% 
+  semi_join(new_planes, by = "tailnum") |> glimpse() |> distinct(carrier,tailnum)  
+
 #Filtering Rows That Are Duplicates
 #==================================
+#find the unique of carrier and destination
+#The "Clean" Way: distinct()
+#---------------------------
+#distinct()-If you just want to get rid of duplicates and keep one unique row for every occurrence, use distinct().
+flights |> distinct(carrier, dest)
+##.keep_all = TRUE: Ensures you keep all other columns in the dataset
+flights |> distinct(carrier, dest,.keep_all = TRUE)
 
+#The "Investigation" Way: get_dupes()
+#------------------------------------
+#If you want to see which rows are duplicates (to see the actual data that is repeating), the janitor package has the best tool for this.
+library(janitor)
+flights |> 
+  get_dupes(year, month, day, hour, carrier) |> glimpse()
+#This will return every row that shares those exact values, 
+#along with a dupe_count column so you can see how many times that specific combination appeared.
+
+#The "Logic" Way: duplicated()
+#-----------------------------
+#If you want to stay within dplyr without extra packages, you can use the base R duplicated() function inside a filter().
+#To see the duplicates:
+flights |> 
+  filter(duplicated(select(flights,year, month, day, carrier)) |
+           duplicated(select(flights, year, month, day, carrier, flight), fromLast = TRUE))
+#Note: Using fromLast = TRUE ensures you see both the original and the copy
+
+#To remove the duplicates (the hard way): Keeps the 1st copy
+flights |>  filter(!duplicated(pick(everything())))
+##best way and faster way using distinct(deletes others.)
+flights |> distinct(year, month, day, carrier) |> nrow()
+flights |> distinct()
+
+#base R way using as vector
+#--------------------------
+u_carr <- flights |> select(carrier) |> pull()
+typeof(u_carr)
+unique(u_carr)
+length(unique(u_carr))
+
+#Simple dataset with one clear duplicate
+mini_flights <- tibble(
+  day = c(1, 2, 1, 3),
+  carrier = c("AA", "DL", "AA", "UA"),
+  flight = c(101, 500, 101, 202)
+)
+mini_flights
+#To FIND the Duplicates
+mini_flights |> 
+  filter(
+    duplicated(pick(day, carrier, flight)) | 
+      duplicated(pick(day, carrier, flight), fromLast = TRUE)
+  )
+#fromlast=TRUE, show the duplicate rows else False returns 1 rows
+#To REMOVE the Duplicates
+mini_flights |> distinct()
+#The Logical Filter Way
+mini_flights |> filter(!duplicated(pick(day, carrier, flight)))
+
+#Filtering with "Row-wise" Logic (rowwise())
+#============================================
+#Usually, filter() works on columns. But what if you need to calculate something across a single row before deciding to keep it?
+
+#Example: Keep a flight if the mean of dep_delay and arr_delay for that specific row is greater than 30.
+flights |> 
+  rowwise() |> 
+  filter(mean(c(dep_delay, arr_delay), na.rm = TRUE) > 30) |> 
+  ungroup() # Don't forget to ungroup!
+  
+#note.ungroup() is your "exit strategy." When you use group_by() or rowwise(), you are changing the fundamental way R "sees" your data. If you forget to ungroup, every single operation you do afterwards will be performed inside those little buckets, which can lead to massive errors or incredibly slow code
+
+##what happens when we miss ungroup. to cal the number flights in that month and in whole year 2 requirements.
+flights |>
+  group_by(month) |>
+  mutate(n_month = n()) |> 
+  # Missing ungroup() here! after ungroup() <--- Now R sees all 336,776 rows again
+  mutate(percent_of_year = n_month / n()) |> 
+  distinct(month, percent_of_year)
+  
+#Filtering with "Predicate(where) Functions" (if_any / if_all with types)
+#====================================
+#Predicate functions are To filter based on data type (Numeric, Factor, Date).
+#You already know if_any(starts_with(...)). A pro move is filtering based on data types rather than column names.
+
+#EX:"Keep rows where ANY numeric column has a value over 1000, but ignore the character columns."
+# Find rows where any number is massive, regardless of the column name
+weather |> 
+  filter(if_any(where(is.numeric), ~ .x > 100))
+  
+#Filtering using the "Invert" of a Join (anti_join)
+#=======================================
+#You mentioned semi_join, but its "evil twin" anti_join is the ultimate data-cleaning tool. 
+#It finds the "orphans" or the "mismatches."
+
+#EX: Find all flights where the plane's tailnum does not exist in the planes table (detecting data gaps)
+flights |> 
+  anti_join(planes, by = "tailnum") |> glimpse() |> select(flight,tailnum)
+
+#check in planes datasets
+planes |> filter(tailnum %in% c("N302DN","N308DN"))  
 
 #Practical Business Scenarios
 #============================
@@ -629,16 +830,22 @@ flights %>%
   filter(origin == "JFK",
          month %in% 6:8,
          arr_delay > 30)
+		 
 #Scenario 2: Flights cancelled due to weather
 weather_delays <- flights %>%
   filter(is.na(dep_time) & !is.na(weather$precip))
-
 
 #Quiz
 #====
   
 #Assignment
 #==========
+AE<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ae.csv")
+DM<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/dm.csv")
+VS<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/vs.csv")
+EX<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/ex.csv")
+LB<-read_csv("https://raw.githubusercontent.com/ganeshbabuNN/datasets/refs/heads/master/clinical_datasets/sdtm/daibetes/csv/lb.csv")
+
 #DM (Demographics) – Filtering Assignments
 #-----------------------------------------
 #1.Filter male subjects only. 
@@ -646,6 +853,7 @@ weather_delays <- flights %>%
 #3.Filter subjects belonging to STUDYID "ABC123".
 #4 Filter subjects randomized to Treatment Arm A.
 #5 Filter subjects from USA and Canada only. Use %in%.
+
 #AE (Adverse Events)
 #------------------
 #6 Filter serious adverse events.
@@ -655,6 +863,7 @@ weather_delays <- flights %>%
 #10 Filter AEs ongoing at end of study.
 #11 Filter AEs occurring in first 30 days after treatment.
 #12 Filter subjects having more than 3 adverse events. Use group_by() + filter(n() > 3).
+
 #VS (Vital Signs)
 #---------------
 #13 Filter high systolic blood pressure (>140).
@@ -667,6 +876,7 @@ weather_delays <- flights %>%
 #20 Filter exposures before adverse event start date.
 #21 Filter subjects who received more than 10 doses. Use group_by(USUBJID).
 #22 Filter highest dose per subject. Use max(EXDOSE).
+
 #LB (Laboratory)
 #---------------
 #23 Filter abnormal lab results.
@@ -674,12 +884,14 @@ weather_delays <- flights %>%
 #25 Filter lab tests collected after treatment start.
 #26 Filter highest lab value per subject. Use slice_max().
 #27 Filter lab values missing results.
+
 #CM (Concomitant Medication)
 #---------------------------
 #28 Filter medications related to hypertension.
 #29 Filter medications started before study drug.
 #30 Filter ongoing medications.
 #31 Filter subjects taking more than 5 medications. Use group_by(USUBJID).
+
 #SV (Subject Visits)
 #-------------------
 #32 Filter screening visits only.
@@ -691,6 +903,7 @@ weather_delays <- flights %>%
 #38 Filter discontinuation due to adverse event.
 #39 Filter subjects withdrawn due to lack of efficacy.
 #40 Filter subjects discontinued within first 60 days. Use between() or date calculation.
+
 #Advanced Cross-Domain Assignments
 #-----------------------------------
 #These mimic real clinical analysis queries.
