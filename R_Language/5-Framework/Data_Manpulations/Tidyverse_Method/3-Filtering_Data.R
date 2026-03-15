@@ -1,6 +1,8 @@
 #filtering with single condition
 #filtering with multiple condition
 #filtering rows using their positions
+#Filtering Using Logical Reduction
+#Filtering with "Row-wise" Logic
 #Filtering with Multiple Complex Conditions
 #Filtering using the ~ formulae operator
 #Filtering using Comparison Operators
@@ -9,12 +11,12 @@
 #Filtering with Dynamic Column Names
 #filtering the unique rows
 #Filtering Using Aggregates
-#Filtering Using Windows functions
+#Filtering Using Window Ranking Functions
 #filtering using case_when()
 #Filtering Using near()
 #Filtering all the data in the current group
 #Filtering with String Conditions
-#Filtering with multi-column with conditions.
+#Filtering Using Regex/Pattern
 #Filtering with Grouped data
 #Filtering After Joining
 #Filtering Top N Values
@@ -26,6 +28,10 @@
 #Filtering by First / Last Within Groups
 #Filtering Using Lead/Lag for Change Detection
 #Filtering Rows That Are Duplicates
+#Filtering with "Predicate(where) Functions"
+#Filtering using the "Invert" of a Join
+#Filtering Using relocate() + conditions (pipeline logic)
+#Filtering Nested Data
 #Practical Business Scenarios
 
 library(dplyr)
@@ -66,7 +72,7 @@ flights |> filter(month==1 & day==10) |> select(carrier,month,day)
 flights %>%
   filter(month == 6 | month == 7 | month == 8) #numeirc matching
 
-#multiple value
+#multiple value using %in%
 flights %>% filter(carrier %in% c("UA", "AA"))
 
 #Calculated Expressions (Inline Computation)
@@ -101,6 +107,96 @@ flights |> slice_sample( n = 7,replace=TRUE) #FALSE = Dealing cards from a deck,
 flights |> filter(!is.na(air_time)) |> slice_sample(n = 5, weight_by = air_time) |> select(carrier,flight,air_time)
 #here weight_by: Pick 10 flights at random, but give the flights that were in the air the longest a much better chance of winning
 
+#Filtering Using Logical Reduction
+#=================================
+#Logical Reduction" refers to the process of taking multiple logical conditions (one for each column) and reducing them into a single TRUE or FALSE value for each row.
+#In R, all() and any() are the fundamental logical reduction functions. While if_all() and if_any() are designed to work inside filter() across columns, the base R functions all() and any() are typically used to reduce a single logical vector into a single TRUE or FALSE.
+#base r Way , let me learnt in base R concept.
+a<- c(50,60,70,80,90)
+b<- c(91,81,91,78,65)
+any(c(a,b) >40)
+all(c(a,b) >40)
+
+#any(x): Returns TRUE if at least one element in x is TRUE
+flights %>%
+  filter(any(c(arr_delay, dep_delay) > 60))
+  
+#all(x): Returns TRUE only if every element in x is TRUE
+flights %>%
+  filter(all(c(arr_delay, dep_delay) > 60))  
+  
+#Filtering with "Row-wise" Logic
+#===============================
+#Usually, filter() works on columns. But what if you need to calculate something across a single row before deciding to keep it?
+
+##Filtering with if_any() and if_all()
+#------------------------------------
+#if_all() and if_any() are designed to work inside filter() across columns
+#if_any() – Filter if ANY selected columns meet condition
+#classical Way
+flights %>%
+  filter(dep_delay > 60 | arr_delay > 60)
+  
+#pro way.
+flights %>%
+  filter(if_any(c(dep_delay, arr_delay), ~ . > 60))
+  
+#Step 1: The Input (flights %>%)
+##The process starts with the flights tibble. It contains 336,776 rows and 19 columns.
+#Step 2: The Scope (if_any(c(dep_delay, arr_delay), ... ))
+##The if_any() function tells R to look at a specific subset of columns.
+##Instead of checking every column, it focuses only on dep_delay and arr_delay.
+##The "all" part of if_any acts like a logical AND. It means the row only stays if the condition is true for every column listed in the vector.
+#Step 3: The Condition (~ . > 60)
+##This is a lambda (formula) function:
+##The ~ starts the formula.
+##The . (dot) is a placeholder for "the current column value."
+##It checks if the value is strictly greater than 60
+
+#if_all() – Filter if ALL columns meet condition(AND (All must be true))
+#classical Way
+flights %>%
+  filter(dep_delay > 100 & arr_delay > 100)
+  
+#Pro Way
+flights %>%
+  filter(if_all(c(dep_delay, arr_delay), ~ . > 100)) |> select(carrier,dep_delay,arr_delay)
+
+#if_else() -- similar like ifelse() -OR (At least one must be true)
+#--------
+flights %>%
+  mutate(status = if_else(
+    condition = arr_delay > 60, 
+    true      = "Very Late", 
+    false     = "Acceptable",
+    missing   = "Cancelled/Unknown"  # Explicitly handle NAs
+  )) %>% select(flight,carrier,year,month,day,dep_time,arr_time,status)
+  
+#Filtering Using rowwise
+#-----------------------
+#When logic depends on row level computation.
+#Example: Keep a flight if the mean of dep_delay and arr_delay for that specific row is greater than 30.
+flights |> 
+  rowwise() |> 
+  filter(mean(c(dep_delay, arr_delay), na.rm = TRUE) > 30) |> 
+  ungroup() # Don't forget to ungroup!
+  
+#note.ungroup() is your "exit strategy." When you use group_by() or rowwise(), you are changing the fundamental way R "sees" your data. If you forget to ungroup, every single operation you do afterwards will be performed inside those little buckets, which can lead to massive errors or incredibly slow code
+
+##what happens when you miss ungroup. to cal the number flights in that month and in whole year 2 requirements.
+flights |>
+  group_by(month) |>
+  mutate(n_month = n()) |> 
+  # Missing ungroup() here! after ungroup() <--- Now R sees all 336,776 rows again
+  mutate(percent_of_year = n_month / n()) |> 
+  distinct(month, percent_of_year)
+  
+#Filtering with across()  
+#-----------------------
+#Dynamic filtering across multiple columns.
+flights %>%
+  filter(across(c(arr_delay, dep_delay), ~ . > 30))
+  
 #Filtering with Multiple Complex Conditions
 #==========================================
 #Flights delayed but not cancelled
@@ -260,9 +356,60 @@ flights %>%
 
 #Filtering Using Range
 #=====================
-#Using the between()
-filter(flights, between(month, 6, 8))
-filter(flights,month >= 6 & month <= 8) #equivalent of above
+#The "Explicit" Method (Logical Operators)
+#using traditional way.
+flights %>%
+  filter(arr_delay >= 30 & arr_delay <= 60)
+
+#Pro way -Using the between() helper-It is equivalent to x >= left & x <= right.
+flights %>%
+  filter(between(arr_delay, 30, 60))
+  
+#The "In-List" Range (%in%)
+#Filters for flights in the second quarter (April, May, June)
+#Warning: This only works for whole numbers. Do not use this for continuous decimals (like arr_delay), as it will only match exact integers
+flights %>%
+  filter(month %in% 4:6)
+
+#using summarize() 
+flights %>%
+  summarize(
+    min_delay = min(arr_delay, na.rm = TRUE),
+    max_delay = max(arr_delay, na.rm = TRUE)
+  )
+  
+#Getting range of Min/Max by Group level
+flights %>%
+  group_by(carrier) %>%
+  summarize(
+    min_arr = min(arr_delay, na.rm = TRUE),
+    max_arr = max(arr_delay, na.rm = TRUE)
+ )
+ 
+#Filtering by Percentile Range
+#quaitile marker : min:0 , 1st quartile:0.25,median=0.50,3rd quartile:0.74,max:1.
+#Sometimes you don't know the exact numbers, but you want to filter for the "top 5%" or the "middle 50%". You can use quantile() inside your filter
+flights %>%
+  filter(between(arr_delay, quantile(arr_delay, 0.25, na.rm = TRUE), 
+                 quantile(arr_delay, 0.75, na.rm = TRUE))) |> 
+  select(carrier,arr_delay) |> distinct(arr_delay) |> arrange(arr_delay) |>  pull(arr_delay)
+#This is great for identifying outliers or focusing on the "interquartile range" (IQR) in clinical data
+
+#using range() approach (Base R way)- 
+range(flights$arr_delay,na.rm = TRUE)
+
+#using summary() approach (Base R way)
+summary(flights$arr_delay)
+
+##f you are working with millions of rows (common in high-frequency data), these operations are optimized in R. However, if you are looking for even faster execution
+#In R: collapse::fmin() and collapse::fmax() are significantly faster for grouped summaries.
+library(collapse)
+flights %>%
+  fgroup_by(carrier) %>%
+  fsummarise(
+    min_arr = fmin(arr_delay),
+    max_arr = fmax(arr_delay)
+  )
 
 #Filtering with Dynamic Column Names (Programming)
 #===================================
@@ -323,9 +470,8 @@ flights %>%
   mutate(m_dep=mean(is.na(round(dep_time,2)))) %>% 
   summarise(across(everything(), ~ mean(is.na(.x)))) %>% select(origin,dep_time)
 
-
-#Filtering Using Windows functions
-#=================================
+#Filtering Using Window Ranking Functions
+#=========================================
 #c(10,20,20,40)
 #row_number() - (1,2,3,4)-No ties allowed. It just counts rows
 #min_rank()  - (1,2,2,4(skip3)) -Ties get the same rank; it skips numbers after.
@@ -338,7 +484,6 @@ flights %>%
   arrange(dep_time) %>%
  # mutate(row_num=row_number()) |> 
   filter(row_number() == 1)
-
 
 #row_number() (The "No Ties" Rank)
 ##Find the single most delayed flight for each carrier
@@ -367,7 +512,18 @@ flights %>%
 ##It ignores the total count of rows and focuses on the relative position.
 flights %>%
   filter(percent_rank(arr_delay) >= 0.99)
+  
+#cume_dist(): Cumulative Distributioncume_dist() calculates the cumulative distribution of a value within a group. 
+#It answers the question: "What proportion of values are less than or equal to the current value?"Result: A number between $0$ and $1$.
+#Formula: $count(x <= current\_x) / total\_rows$
+df <- data.frame(score = c(10, 20, 30, 40))
+df %>% mutate(dist = cume_dist(score))
 
+#ntile(): Bucket Ranking
+#ntile() takes a vector and breaks it into $n$ roughly equal "buckets" or groups. It is the go-to function for creating quartiles, deciles, or percentiles.
+#Result: An integer from $1$ to $n$.
+# Break data into 4 buckets
+df %>% mutate(quartile = ntile(score, 4))
 
 #filtering using case_when()
 #=============================
@@ -437,51 +593,82 @@ flights %>%
 
 #Filtering with String Conditions
 #================================
-#Flights by American Airlines (AA)
-flights %>%
-  filter(carrier == "AA")
+#Exact vs. Partial Matches
+# == Finding an exact match only.
+# Exact Match: Only flights to Seattle
+flights %>% filter(dest == "SEA")
+#str_detect()-Finding a pattern anywhere in the string.
+#Partial Match: Any destination containing "OR" (Orlando, Portland, etc.)
+flights %>% filter(str_detect(dest, "OR"))
 
-#Flights from JFK
-flights %>%
-  filter(origin == "JFK")
+#Positional Filtering
+#Sometimes the location of the characters matters. stringr provides dedicated functions for checking the beginning or end of a string, 
+#str_starts() / str_ends()	Matching based on position.
+#which are faster and more readable than complex regex
+# Find destinations starting with 'A' (Atlanta, Anchorage)
+flights %>% filter(str_starts(dest, "A"))
+# Find destinations ending with 'C'
+flights %>% filter(str_ends(dest, "C"))
 
-#Find all flights to airports starting with "S":
+#Multiple String Conditions
+#use the %in% operator for exact matches, or the "OR" pipe (|) within str_detect()
+#%in%	Checking against a list of exact options.
+flights %>% filter(dest %in% c("SEA", "SFO", "PDX"))
+# The str_detect approach (Pattern-based)
+flights %>% filter(str_detect(dest, "SEA|SFO|PDX"))
+
+#Handling Case Sensitivity
+# Method A: Standardize the column
+flights %>% filter(str_to_lower(dest) == "sea")
+# Method B: Use the ignore_case flag (Best for str_detect)
+flights %>% filter(str_detect(dest, regex("sea", ignore_case = TRUE)))
+
+#Negating String Filters
+#To exclude specific patterns, wrap the entire condition in !.
+# Keep everything EXCEPT flights to New York (JFK and LGA)
+flights %>% filter(!str_detect(dest, "JFK|LGA"))
+
+#Filtering Using Regex/Pattern
+#=============================
+#Basic Pattern Matching
+##Find all flights to airports starting with "S":
 flights %>% 
   filter(str_detect(dest, "^S"))
-
-#Find flights to Florida (destinations often start with "M" for Miami/Orlando or "T" for Tampa):
+##Find all flights flying to airports with "New" in their name (like Newark or New Orleans).
+#Filter for destinations containing "E" followed by "WR" (EWR - Newark)
+flights %>%
+  filter(str_detect(dest, "EWR"))
+##Find flights to Florida (destinations often start with "M" for Miami/Orlando or "T" for Tampa):
 flights %>% 
   filter(str_detect(dest, "MIA|MCO|TPA"))
 
-#Filtering with multi-column with conditions.
-#============================================
-#if_any() – Filter if ANY selected columns meet condition
+#Using Regular Expressions (Regex)
+##Regex allows you to search for complex patterns rather than just static text.
+#Pattern-->Meaning-->Example
+#^-->Starts with-->str_detect(dest, "^A")-->(Starts with A)
+#$-->Ends with-->str_detect(dest, "ST$")-->(Ends with ST)
+#.-->Any character-->str_detect(dest, "A.C")-->(A, then anything, then C)
+#[ ]-->Character set-->str_detect(dest, "^[ABC]")-->(Starts with A, B, or C)
+#Finding destinations that start with 'S' and end with 'C':
 flights %>%
-  filter(if_any(c(dep_delay, arr_delay), ~ . > 60))
-#Step 1: The Input (flights %>%)
-##The process starts with the flights tibble. It contains 336,776 rows and 19 columns.
-#Step 2: The Scope (if_any(c(dep_delay, arr_delay), ... ))
-##The if_any() function tells R to look at a specific subset of columns.
-##Instead of checking every column, it focuses only on dep_delay and arr_delay.
-##The "all" part of if_any acts like a logical AND. It means the row only stays if the condition is true for every column listed in the vector.
-#Step 3: The Condition (~ . > 60)
-##This is a lambda (formula) function:
-##The ~ starts the formula.
-##The . (dot) is a placeholder for "the current column value."
-##It checks if the value is strictly greater than 60
+  filter(str_detect(dest, "^S.*C$")) |> select(carrier,dest) |> distinct()
 
-#if_all() – Filter if ALL columns meet condition(AND (All must be true))
+#Case Insensitivity
+#By default, regex is case-sensitive. To ignore case, wrap your pattern in regex(..., ignore_case = TRUE)
 flights %>%
-  filter(if_all(c(dep_delay, arr_delay), ~ . > 100)) |> select(carrier,dep_delay,arr_delay)
+  filter(str_detect(dest, regex("sea", ignore_case = FALSE))) |> select(carrier,dest)
 
-#if_else() -- similar like ifelse() -OR (At least one must be true)
+#Filtering by "Does NOT Match"
+#To keep rows that do not match a pattern, simply add the exclamation point ! (the "not" operator) before the string function.
+# Keep flights that do NOT go to JFK or LGA
 flights %>%
-  mutate(status = if_else(
-    condition = arr_delay > 60, 
-    true      = "Very Late", 
-    false     = "Acceptable",
-    missing   = "Cancelled/Unknown"  # Explicitly handle NAs
-  )) %>% select(flight,carrier,year,month,day,dep_time,arr_time,status)
+  filter(!str_detect(dest, "JFK|LGA")) |> select(carrier,dest) |> distinct(dest)
+
+#Advanced: Filtering Multiple Columns
+#If you want to search for a pattern across multiple columns at once (e.g., any column that mentions "New"), use if_any() or if_all().
+# Keep row if 'origin' OR 'dest' contains "AH"
+flights %>%
+  filter(if_any(c(origin, dest), ~ str_detect(.x, "AH"))) |> distinct(origin,dest)
 
 ##Filtering with Grouped data(Very Important in Real Analysis)
 #============================
@@ -512,11 +699,15 @@ flights %>%
   left_join(airlines, by = "carrier") %>%
   filter(name == "Delta Air Lines Inc.")
 
-#Filtering Top N Values
+#Filtering Top/lowest N Values
 #======================
 #Instead of filter(), use:
 flights %>%
   slice_max(arr_delay, n = 10)
+  
+#lowest
+flights %>%
+  slice_min(arr_delay, n = 10)
 
 #Filtering with Date-Time Logic
 #==============================
@@ -575,7 +766,30 @@ flights %>%
   
 #Filtering by Frequency
 #======================
+#count()- Only one row per carrier remains.  
+#------------
+#How many flights did each airline operate? 
+flights %>% 
+  count(carrier, sort = TRUE)
+  
+#Internal Implementation
+#count()
+flights %>%
+  group_by(carrier) %>%
+  summarise(n = n())
+  
+#add_count()
+flights %>%
+  group_by(carrier) %>%
+  mutate(n = n()) %>%
+  ungroup()
+  
+  
 #add_count() -Adds a count column to the original dataset 
+#------------
+#add_count() is an "expanding" function. It calculates the totals but adds them as a new column to your existing dataset without removing any rows or other columns. 
+#It works like group_by() %>% mutate(n = n()).
+
 #For each flight, how many flights does that airline operate overall? When you want counts attached to each row
 flights %>% 
   add_count(carrier) %>% glimpse() #observe a n column which gives a count of rows.
@@ -598,22 +812,7 @@ flights %>%
   add_count(origin, dest) %>%
   filter(n >= 100)
   
-#count()- Only one row per carrier remains.  
-#How many flights did each airline operate? 
-flights %>% 
-  count(carrier)
-  
-#Internal Implementation
-#count()
-flights %>%
-  group_by(carrier) %>%
-  summarise(n = n())
-#add_count()
-flights %>%
-  group_by(carrier) %>%
-  mutate(n = n()) %>%
-  ungroup()
-  
+
 #Filtering Based on Computed Conditions
 #======================================
 ##Which flights still have more than 30 minutes delay even after subtracting a 10-minute buffer?
@@ -781,28 +980,9 @@ mini_flights |> distinct()
 #The Logical Filter Way
 mini_flights |> filter(!duplicated(pick(day, carrier, flight)))
 
-#Filtering with "Row-wise" Logic (rowwise())
-#============================================
-#Usually, filter() works on columns. But what if you need to calculate something across a single row before deciding to keep it?
 
-#Example: Keep a flight if the mean of dep_delay and arr_delay for that specific row is greater than 30.
-flights |> 
-  rowwise() |> 
-  filter(mean(c(dep_delay, arr_delay), na.rm = TRUE) > 30) |> 
-  ungroup() # Don't forget to ungroup!
-  
-#note.ungroup() is your "exit strategy." When you use group_by() or rowwise(), you are changing the fundamental way R "sees" your data. If you forget to ungroup, every single operation you do afterwards will be performed inside those little buckets, which can lead to massive errors or incredibly slow code
-
-##what happens when we miss ungroup. to cal the number flights in that month and in whole year 2 requirements.
-flights |>
-  group_by(month) |>
-  mutate(n_month = n()) |> 
-  # Missing ungroup() here! after ungroup() <--- Now R sees all 336,776 rows again
-  mutate(percent_of_year = n_month / n()) |> 
-  distinct(month, percent_of_year)
-  
 #Filtering with "Predicate(where) Functions" (if_any / if_all with types)
-#====================================
+#==========================================
 #Predicate functions are To filter based on data type (Numeric, Factor, Date).
 #You already know if_any(starts_with(...)). A pro move is filtering based on data types rather than column names.
 
@@ -822,6 +1002,78 @@ flights |>
 
 #check in planes datasets
 planes |> filter(tailnum %in% c("N302DN","N308DN"))  
+
+#Filtering Based on Percentiles
+#==============================
+#R calculates one single threshold for the entire dataset .its too advanced.
+#Any flight delayed more than 75 minutes is in the top 10% of all flights
+flights %>%
+  filter(arr_delay > quantile(arr_delay, 0.9, na.rm=TRUE))
+  
+#Filtering Using relocate() + conditions (pipeline logic)
+#======================================================== 
+#Relocate by Logic (Column Type/Name)
+##Instead of typing every column name, you can use tidy-select functions inside relocate() to bring important data forward before you apply your filter.
+#I want to see the airline, origin, and delays first, then filter for the 2-hour delays
+flights %>%
+  # Move all character columns and anything with "delay" to the front
+  relocate(where(is.character), contains("delay")) %>%
+  # Now filter based on the columns you just moved
+  filter(arr_delay > 120)
+
+#The "Verify and Filter" Pipeline
+#A common workflow is to use relocate() to move the column you are about to filter on to the first position. This is a "sanity check" for your code.
+
+flights %>%
+  # 1. Bring the target column to position 1
+  relocate(air_time) %>% 
+  # 2. Filter based on that column
+  filter(air_time < 30) %>%
+  # 3. (Optional) Relocate back or keep for inspection
+  relocate(origin, dest, .after = air_time)
+
+#Conditional Relocation (Advanced)
+#relocate() doesn't have a "condition" argument for rows, but you can use it to organize columns based on column statistics.
+#If you want to move columns to the front only if they have a certain amount of missing data (NAs), you can do this:
+colSums(is.na(flights))
+flights %>%
+  # Move columns with more than 1000 NAs to the front
+  relocate(where(~ sum(is.na(.x)) > 1000)) %>%
+  # Then filter out those NAs
+  filter(!is.na(dep_time))
+
+#Filtering Nested Data
+#=====================
+#In the R tidyverse, "Nested Data" usually refers to a list-column—where a single cell in a tibble contains an entire data frame (or a list of values). 
+#Filtering this kind of data is a bit different because you aren't just filtering rows;you are filtering the data inside the rows
+
+#The Scenario: Nested Flights
+#Imagine you have nested your flights by carrier. You now have a tibble with two columns: carrier and data (the nested tibble)
+# Create nested data
+nested_flights <- flights %>%
+  group_by(carrier) %>%
+  nest()
+
+#Filtering Based on Nested Content
+#If you want to keep only the carriers that have at least one flight with a delay over 500 minutes, you can't use a standard filter. 
+#You have to "reach into" the nested list
+long_delay_carriers <- nested_flights %>%
+  filter(map_lgl(data, ~ any(.x$arr_delay > 500, na.rm = TRUE)))
+#filter(...): Operates on the rows of the top-level tibble (the 16 carriers)
+#map_lgl(data, ...): This "maps" over the data column. The lgl stands for logical, meaning it expects a TRUE or FALSE for every row
+#any(.x$arr_delay > 500): For each carrier's mini-table (.x), it checks if any row meets the criteria.
+
+
+#Filtering the Nested Data Itself
+#Sometimes you don't want to remove the carrier; you just want to filter the rows inside the nested tables (e.g., keep all carriers, but remove all on-time flights from their nested data).
+only_delayed_nested <- nested_flights %>%
+  mutate(data = map(data, ~ filter(.x, arr_delay > 0)))
+#This keeps the carrier "UA," but the tibble inside its data cell now only contains delayed flights
+
+#Filtering by Nested Summary Statistics
+#You can also filter carriers based on an aggregate value of their nested data (like average delay)
+high_avg_carriers <- nested_flights %>%
+  filter(map_dbl(data, ~ mean(.x$arr_delay, na.rm = TRUE)) > 20)  
 
 #Practical Business Scenarios
 #============================
