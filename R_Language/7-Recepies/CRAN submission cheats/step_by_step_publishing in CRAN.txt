@@ -1,0 +1,102 @@
+Here's the complete end-to-end workflow from modifying code to publishing on CRAN:
+________________________________________
+ PHASE 1: Modify Your Code
+1. Make your changes
+•	Edit functions in the R/ folder
+•	Add new .R files if adding new functions
+
+2. Update Roxygen documentation on every function
+#' @title Function Title
+#' @description What the function does
+#' @param x Description of parameter
+#' @return What it returns
+#' @examples
+#' my_function(x = data)
+#' @export
+3. Rebuild documentation
+devtools::document()
+________________________________________
+ PHASE 2: Update DESCRIPTION & NEWS
+4. Bump version in DESCRIPTION
+Version: 0.1.0   # change this manually or use usethis
+Or:
+usethis::use_version("minor")  # for new features
+usethis::use_version("patch")  # for bug fixes
+
+5. Update NEWS.md
+# rDataRecon 0.1.0
+
+## New Features
+- Added `recon_compare()` function for...
+
+## Bug Fixes
+- Fixed column mismatch issue in...
+
+## Changes
+- Updated default parameters for...
+________________________________________
+ PHASE 3: Test Everything
+6. Run unit tests
+devtools::test()
+
+7. Check spelling
+devtools::spell_check()
+
+8. Full local check — must be 0 errors, 0 warnings, 0 notes
+devtools::check()
+________________________________________
+ PHASE 4: Cross-Platform Checks
+9. Check on Windows (CRAN uses this)
+devtools::check_win_devel()
+devtools::check_win_release()
+
+10. Check on multiple platforms
+rhub::check_for_cran()
+Results are emailed to you — wait and review before submitting
+________________________________________
+ PHASE 5: Final Pre-CRAN Checks
+11. Check the built package
+devtools::build()          # builds the .tar.gz file
+devtools::check_built()    # checks the built file
+
+12. Validate with CRAN check manually
+rcmdcheck::rcmdcheck(args = "--as-cran")
+
+13. Check URLs in documentation are valid
+urlchecker::url_check()
+________________________________________
+ PHASE 6: Submit to CRAN
+14. Use devtools::release() — it walks you through everything
+devtools::release()
+It will ask you a checklist like:
+Have you checked spelling? y/n
+Have you run R CMD check? y/n
+Is the NEWS.md up to date? y/n
+...
+Then it automatically uploads to CRAN for you.
+Or submit manually at:
+https://cran.r-project.org/submit.html
+________________________________________
+PHASE 7: After Submission
+Step	What happens
+Auto check	CRAN robots check your package within minutes
+Human review	CRAN team reviews (can take 1–5 days)
+Email response	They approve or send feedback
+If rejected	Fix the issues and resubmit
+If approved	Package goes live on CRAN 🎉
+________________________________________
+Quick Summary Checklist
+☐ Edit R/ code
+☐ Update Roxygen comments
+☐ devtools::document()
+☐ Bump version in DESCRIPTION
+☐ Update NEWS.md
+☐ devtools::test()
+☐ devtools::spell_check()
+☐ devtools::check()        ← 0 errors, 0 warnings, 0 notes
+☐ check_win_devel()
+☐ rhub::check_for_cran()
+☐ devtools::release()
+________________________________________
+Follow this every time you push an update and CRAN reviews will go smoothly
+

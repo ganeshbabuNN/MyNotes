@@ -176,6 +176,17 @@ flights %>%
 #-----------------------
 #When logic depends on row level computation.
 #Example: Keep a flight if the mean of dep_delay and arr_delay for that specific row is greater than 30.
+#classical way 
+flights |> select(carrier,dep_delay,arr_delay) |>
+  mutate(
+    m_dep=mean(dep_delay,na.rm=TRUE), 
+    m_arr=mean(arr_delay,na.rm=TRUE),
+    m_dep_arr=mean(c(dep_delay,arr_delay),na.rm=TRUE), #this taking column level
+    m_dep_arr1=(dep_delay+arr_delay)/2 #i am addition level and mean
+  ) |> 
+  filter(m_dep_arr1 >50)
+  
+#using rowise()
 flights |> 
   rowwise() |> 
   filter(mean(c(dep_delay, arr_delay), na.rm = TRUE) > 30) |> 
