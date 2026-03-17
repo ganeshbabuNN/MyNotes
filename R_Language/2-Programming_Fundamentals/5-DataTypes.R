@@ -51,9 +51,11 @@ b <- 323
 typeof(b)
 class(b)
 
+.Machine$double.xmin
+.Machine$double.xmax
+
 #Real-World Example:
 temperature <- c(36.5, 37.2, 38.1)
-
 
 #Common Mistakes:
 ##Assuming integers are numeric by default
@@ -82,6 +84,8 @@ typeof(a)
 class(a)
 
 a<-as.integer(3)
+
+.Machine$integer.max
 
 #Real-World Example:
 number_of_orders <- 1200L
@@ -161,7 +165,6 @@ customer_id <- "CUST_1023"
 #Do NOT Use When:
 ##Mathematical operations are required
 
-
 #Complex
 #------
 #A complex value in R is defined as the pure imaginary value i.
@@ -210,11 +213,26 @@ readBin("file.pdf", "raw", n = 1e6)
 #--------------
 #NULL
 ##Represents no value / no object.
+##Absence of object.
+#Absence of a value.
+#Length = 0.
+#Not a data type; it removes objects.
 x <- NULL
+length(x)  # 0
+typeof(x)
+class(x)
+x<-c("1","2","3",NULL)#NULL will be removed during output operations 
+x
+
+#Common Mistake:
+#Confusing NA with NULL
 
 #NA (Missing Values)
 ##Represents missing data. In details which see different type of missing value later.
 ##nothing is different missing is different but both are not same.
+x <- NA
+length(x)
+class(x)
 x <- c(10, NA, 30)
 #NA==NULL 
 #NULL==""
@@ -231,29 +249,16 @@ x #observe the "" i,e string is repalced with NA which is missing.
 x <-0/0
 x
 typeof(x)
+length(x) 
 class(x)
 
 #Inf / -Inf
 ##Infinity
 x<-1/0    # Inf
 x<--1/0   # -Inf
+length(x) 
 typeof(x)
 class(x)
-
-#NULL
-##Absence of object.
-#Absence of a value.
-#Length = 0.
-#Not a data type; it removes objects.
-x <- NULL
-length(x)  # 0
-typeof(x)
-class(x)
-x<-c("1","2","3",NULL)#NULL will be removed during output operations 
-x
-
-#Common Mistake:
-#Confusing NA with NULL
 
 ##Advance Data Types
 #-------------------
