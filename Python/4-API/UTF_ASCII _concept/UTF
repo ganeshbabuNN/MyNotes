@@ -1,0 +1,337 @@
+#Intro
+#What is UTF?
+#Why UTF is needed?
+#Types of UTF
+#UTF in Python
+##UTF-8 Example (Python)
+##UTF-16 Example (Python)
+##UTF-32 Example (Python)
+#UTF-8 vs UTF-16 vs UTF-32
+#ASCII Conversion
+#Data Representation & Encoding
+
+#Intro
+#=====
+UTF is a way to encode characters (like English, Kannada, emojis) into bytes so computers can store and process text correctly.
+
+#What is UTF?
+#=====
+UTF = Unicode Transformation Format
+It converts characters into numbers (bytes)
+UTF-8 allows Python to handle any language + symbols universally, which is why it is the default.
+
+#Why UTF is needed?
+#=====
+##Computers understand only:
+0s and 1s (binary)
+##But we write:
+Hello, ನಮಸ್ಕಾರ, 😊
+###UTF acts as a bridge between human text and machine data
+
+#Example
+#Character → Unicode → UTF-8 bytes
+A → U+0041 → 65
+
+#Types of UTF
+#=====
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| UTF-8  | Most common, variable length (1–4 bytes) |
+| UTF-16 | Uses 2 or 4 bytes                        |
+| UTF-32 | Fixed 4 bytes                            |
+##In Python, UTF-8 is default
+
+#UTF in Python
+#=====
+##Encoding (string → bytes)
+##UTF-8 Example (Python)
+text = "Ganesh 😊"
+encoded = text.encode("utf-8")
+print(encoded)
+##Output
+b'Ganesh \xf0\x9f\x98\x8a'
+##Decoding (bytes → string)
+decoded = encoded.decode("utf-8")
+print(decoded)
+##Ganesh 😊
+
+##UTF-16 Example (Python)
+text = "Aನ😊"
+encoded = text.encode("utf-16")
+print(encoded)
+##Output
+#b'\xff\xfeA\x00\xa8\x0c=\xd8\n\xde'
+##Decoding (bytes → string)
+decoded = encoded.decode("utf-16")
+print(decoded)
+##Aನ😊
+UTF-16 uses:
+2 bytes for most characters
+4 bytes for emojis / special chars
+
+##UTF-32 Example (Python)
+text = "Aನ😊"
+encoded = text.encode("utf-32")
+print(encoded)
+##Output
+#b'\xff\xfe\x00\x00A\x00\x00\x00\xa8\x0c\x00\x00\n\xf6\x01\x00'
+##Decoding (bytes → string)
+decoded = encoded.decode("utf-32")
+print(decoded)
+##Aನ😊
+
+UTF-32:
+Always fixed 4 bytes per character
+Simple but uses more memory
+
+#Verify in Python
+#b' is Raw bytes (not normal text)
+data = b'\xff\xfe\x00\x00A\x00\x00\x00\xa8\x0c\x00\x00\n\xf6\x01\x00'
+text = data.decode("utf-32")
+print(text)
+
+#First part: \xff\xfe\x00\x00
+#This is called BOM (Byte Order Mark)
+#Indicates encoding type
+#Remaining bytes (grouped in 4 bytes)
+#UTF-32 uses 4 bytes per character
+
+#UTF-8 vs UTF-16 vs UTF-32
+#=========================
+| Feature        | UTF-8       | UTF-16         | UTF-32 |
+| -------------- | ----------- | -------------- | ------ |
+| Bytes per char | 1–4         | 2–4            | 4      |
+| Memory usage   | Efficient   | Medium         | High   |
+| Emoji support  | ✅           | ✅              | ✅      |
+| Complexity     | Medium      | Medium         | Simple |
+| Usage          | Most common | Windows / Java | Rare   |
+
+#Common Error
+##UnicodeDecodeError
+b"\xff".decode("utf-8")
+##Error because bytes are invalid UTF-8
+
+#UTF in Files
+##Writing file
+with open("file.txt", "w", encoding="utf-8") as f:
+    f.write("ನಮಸ್ಕಾರ")
+	
+##Reading file
+with open("file.txt", "r", encoding="utf-8") as f:
+    data = f.read()
+	
+#Real-world relevance (your case)
+##Since you work with:
+Kannada text
+Fonts (Tunga, Nirmala UI, etc.)
+##UTF is very important because:
+Ensures correct rendering
+Avoids garbled text (like: à²¨à²®à²¸à³à²•à²¾à²°)
+
+#UTF vs ASCII
+#============
+| Feature    | ASCII   | UTF-8         |
+| ---------- | ------- | ------------- |
+| Characters | Limited | All languages |
+| Bytes      | 1       | 1–4           |
+| Kannada    | ❌       | ✅             |
+| Emojis     | ❌       | ✅             |
+
+#ASCII Conversion
+#================
+##Quick Mapping Table
+ord() -> char to deci
+chr() -> dec to char
+bin() -> dec to binary
+oct() -> dec to oct
+hex() -> dec to hex
+int(value,base) -> anybase --> dec
+
+ord('A')# Character → Number (ASCII / Unicode) or Decimal
+chr(65) #Number → Character
+Decimal <-> Binary / Octal / Hex
+bin(65)   # dec to binary
+oct(65)   # dec to octal
+hex(65)   # dec to hexadecimal
+
+#4-Reverse Conversion
+int('41', 16)   # hex → decimal
+int('101', 8)   # oct → decimal
+int('1000001', 2)  # binary → decimal
+#out : 65
+
+#Reverse (Hex → Char)
+chr(int('41', 16))
+#out : 'A'
+
+#Unicode Example
+ord('ನ')
+#out : 3240
+chr(3240)
+#out: 'ನ'
+
+#HTML entity → Character
+html = "&#113;"
+num = int(html.strip("&#;"))
+print(chr(num))
+
+#Realtime HTML example
+#save to text.html and view
+<p>&#65;&#66;&#67;</p>
+
+#Binary --> All Formats
+binary = "01000001"
+dec = int(binary, 2) #Binary is just a base-2 number — convert it to decimal first, then to anything else.
+char = chr(dec)
+hexa = hex(dec)
+octal = oct(dec)
+html = f"&#{dec};"
+print("Binary :", binary)
+print("Decimal:", dec)
+print("Char   :", char)
+print("Hex    :", hexa)
+print("Oct    :", octal)
+print("HTML   :", html)
+
+#Reverse (Other → Binary)
+# syntax : format(n, '08b')
+format(65, '08b') 
+
+#Decimal → All Formats (including HTML)
+#Convert input → decimal first, then use chr(), bin(), oct(), hex(), f"&#...;".
+dec = 65
+char = chr(dec)
+binary = format(dec, '08b')
+hexa = hex(dec)
+octal = oct(dec)
+html = f"&#{dec};"
+print("Decimal:", dec)
+print("Char   :", char)
+print("Binary :", binary)
+print("Hex    :", hexa)
+print("Oct    :", octal)
+print("HTML   :", html)
+
+#Hex → All Formats (including HTML)
+h = "41"
+dec = int(h, 16)
+print("Decimal:", dec)
+print("Char   :", chr(dec))
+print("Binary :", format(dec, '08b'))
+print("Oct    :", oct(dec))
+print("Hex    :", hex(dec))
+print("HTML   :", f"&#{dec};")
+
+#Octal → All Formats (including HTML)
+o = "101"
+dec = int(o, 8)
+print("Decimal:", dec)
+print("Char   :", chr(dec))
+print("Binary :", format(dec, '08b'))
+print("Oct    :", oct(dec))
+print("Hex    :", hex(dec))
+print("HTML   :", f"&#{dec};")
+
+#Character → All Formats (including HTML)
+c = "A"
+dec = ord(c)
+print("Decimal:", dec)
+print("Char   :", c)
+print("Binary :", format(dec, '08b'))
+print("Oct    :", oct(dec))
+print("Hex    :", hex(dec))
+print("HTML   :", f"&#{dec};")
+
+#Unicode → All Formats (including HTML)
+u = "0CA8"   # Kannada "ನ"
+
+dec = int(u, 16)
+print("Decimal:", dec)
+print("Char   :", chr(dec))
+print("Binary :", format(dec, 'b'))
+print("Oct    :", oct(dec))
+print("Hex    :", hex(dec))
+print("HTML   :", f"&#{dec};")
+
+
+#full ASCII table generator in Python
+def ascii_table():
+    print(f"{'Dec':<5} {'Hex':<5} {'Oct':<5} {'Bin':<10} {'HTML':<8} {'Chr'}")
+    print("-" * 60)
+
+    for i in range(128):
+        dec = i
+        hexa = format(i, '02X')
+        octal = format(i, '03o')
+        binary = format(i, '08b')   # 8-bit binary
+        html = f"&#{i};"
+
+        # Handle non-printable characters
+        if i < 32 or i == 127:
+            char = "CTRL"
+        else:
+            char = chr(i)
+
+        print(f"{dec:<5} {hexa:<5} {octal:<5} {binary:<10} {html:<8} {char}")
+
+ascii_table()
+
+
+#Data Representation & Encoding
+#==============================
+##Main Concept (Core Category)
+#Data Representation
+How data (text, numbers) is stored inside a computer
+
+#Sub-concepts
+##Character Encoding
+ASCII
+Unicode
+UTF-8 / UTF-16 / UTF-32
+How characters (A, ನ, 😊) are stored as numbers
+
+##Number Systems
+Binary (base 2)
+Octal (base 8)
+Decimal (base 10)
+Hexadecimal (base 16)
+Different ways to represent numbers
+
+##Base Conversion
+int(), bin(), hex(), oct()
+Converting numbers between different bases
+
+##Text <-> Number Mapping
+ord() (char → number)
+chr() (number → char)
+Mapping characters to numeric codes
+
+##Encoding / Decoding
+.encode()
+.decode()
+Converting text ↔ bytes
+
+##Bytes & Memory
+b'...'
+UTF byte representation
+How data is stored in memory as bytes
+
+#Big Picture
+Human Text
+   ↓
+Character Encoding (ASCII / Unicode)
+   ↓
+Numbers
+   ↓
+Binary (machine level)
+   ↓
+Storage / Memory
+
+#In Different Contexts
+Programming-->Data Representation
+Computer Science-->Encoding Systems
+Low-level systems-->Binary / Memory Representation
+Web-->	Character Encoding (UTF, HTML entities)
+
+#Everything you learned here is about one core idea:
+“How computers understand and store human-readable data.”

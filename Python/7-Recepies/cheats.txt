@@ -1,0 +1,5 @@
+#remove app via powershell
+#remove pythong from the stubb
+Get-AppxPackage *Python* | Remove-AppxPackage
+
+

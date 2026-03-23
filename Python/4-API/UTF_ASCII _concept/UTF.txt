@@ -1,0 +1,134 @@
+#Intro
+#What is UTF?
+#Why UTF is needed?
+#Types of UTF
+#UTF in Python
+##UTF-8 Example (Python)
+##UTF-16 Example (Python)
+##UTF-32 Example (Python)
+#UTF-8 vs UTF-16 vs UTF-32
+#ASCII Conversion
+
+
+#Intro
+UTF is a way to encode characters (like English, Kannada, emojis) into bytes so computers can store and process text correctly.
+
+#What is UTF?
+UTF = Unicode Transformation Format
+It converts characters into numbers (bytes)
+UTF-8 allows Python to handle any language + symbols universally, which is why it is the default.
+
+#Why UTF is needed?
+##Computers understand only:
+0s and 1s (binary)
+##But we write:
+Hello, ನಮಸ್ಕಾರ, 😊
+###UTF acts as a bridge between human text and machine data
+
+#Example
+#Character → Unicode → UTF-8 bytes
+A → U+0041 → 65
+
+#Types of UTF
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| UTF-8  | Most common, variable length (1–4 bytes) |
+| UTF-16 | Uses 2 or 4 bytes                        |
+| UTF-32 | Fixed 4 bytes                            |
+##In Python, UTF-8 is default
+
+#UTF in Python
+##Encoding (string → bytes)
+##UTF-8 Example (Python)
+text = "Ganesh 😊"
+encoded = text.encode("utf-8")
+print(encoded)
+##Output
+b'Ganesh \xf0\x9f\x98\x8a'
+##Decoding (bytes → string)
+decoded = encoded.decode("utf-8")
+print(decoded)
+##Ganesh 😊
+
+##UTF-16 Example (Python)
+text = "Aನ😊"
+encoded = text.encode("utf-16")
+print(encoded)
+##Output
+#b'\xff\xfeA\x00\xa8\x0c=\xd8\n\xde'
+##Decoding (bytes → string)
+decoded = encoded.decode("utf-16")
+print(decoded)
+##Aನ😊
+UTF-16 uses:
+2 bytes for most characters
+4 bytes for emojis / special chars
+
+##UTF-32 Example (Python)
+text = "Aನ😊"
+encoded = text.encode("utf-32")
+print(encoded)
+##Output
+#b'\xff\xfe\x00\x00A\x00\x00\x00\xa8\x0c\x00\x00\n\xf6\x01\x00'
+##Decoding (bytes → string)
+decoded = encoded.decode("utf-32")
+print(decoded)
+##Aನ😊
+
+UTF-32:
+Always fixed 4 bytes per character
+Simple but uses more memory
+
+#Verify in Python
+#b' is Raw bytes (not normal text)
+data = b'\xff\xfe\x00\x00A\x00\x00\x00\xa8\x0c\x00\x00\n\xf6\x01\x00'
+text = data.decode("utf-32")
+print(text)
+
+#First part: \xff\xfe\x00\x00
+#This is called BOM (Byte Order Mark)
+#Indicates encoding type
+#Remaining bytes (grouped in 4 bytes)
+#UTF-32 uses 4 bytes per character
+
+#UTF-8 vs UTF-16 vs UTF-32
+| Feature        | UTF-8       | UTF-16         | UTF-32 |
+| -------------- | ----------- | -------------- | ------ |
+| Bytes per char | 1–4         | 2–4            | 4      |
+| Memory usage   | Efficient   | Medium         | High   |
+| Emoji support  | ✅           | ✅              | ✅      |
+| Complexity     | Medium      | Medium         | Simple |
+| Usage          | Most common | Windows / Java | Rare   |
+
+#Common Error
+##UnicodeDecodeError
+b"\xff".decode("utf-8")
+##Error because bytes are invalid UTF-8
+
+#UTF in Files
+##Writing file
+with open("file.txt", "w", encoding="utf-8") as f:
+    f.write("ನಮಸ್ಕಾರ")
+	
+##Reading file
+with open("file.txt", "r", encoding="utf-8") as f:
+    data = f.read()
+	
+#Real-world relevance (your case)
+##Since you work with:
+Kannada text
+Fonts (Tunga, Nirmala UI, etc.)
+##UTF is very important because:
+Ensures correct rendering
+Avoids garbled text (like: à²¨à²®à²¸à³à²•à²¾à²°)
+
+#UTF vs ASCII
+| Feature    | ASCII   | UTF-8         |
+| ---------- | ------- | ------------- |
+| Characters | Limited | All languages |
+| Bytes      | 1       | 1–4           |
+| Kannada    | ❌       | ✅             |
+| Emojis     | ❌       | ✅             |
+
+#ASCII Conversion
+

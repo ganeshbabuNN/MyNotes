@@ -1,0 +1,35 @@
+**TESTING NOT YET COMPLETED
+
+Provides a set of utilities for dataset comparison and reconciliation, with particular support for SDTM/ADaM data frames used in clinical data programming and others Datasets. Helps users detect discrepancies in variable names, values, and row-level data between two data frames, supporting quality checks and data validation workflows.
+
+
+#Step 1: Fresh clone (mirror mode)
+#go to backup directory
+git clone --mirror https://github.com/ganeshbabuNN/test.git
+cd test
+
+#Step 2: Remove ALL .env everywhere
+python -m git_filter_repo --path-glob '*.env' --invert-paths --force
+
+#Step 3: Push EVERYTHING back (mirror force)
+git push origin --force --mirror
+
+
+
+
+#Method 1: Search in Git history (MOST IMPORTANT)
+git log --all --name-only --pretty=format: | findstr .env
+#Method 2: Search ALL env-like files
+git log --all --name-only --pretty=format: | findstr env
+#Method 3: Check current files
+dir -Recurse -Force | findstr .env
+#If multiple paths found
+python -m git_filter_repo ^
+  --path .env ^
+  --path backend/.env ^
+  --path config/.env ^
+  --invert-paths --force
+#or 
+python -m git_filter_repo --path-glob '*.env*' --invert-paths --force
+#Then FINAL push
+git push origin --force --mirror

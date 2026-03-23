@@ -172,8 +172,8 @@ flights %>%
     missing   = "Cancelled/Unknown"  # Explicitly handle NAs
   )) %>% select(flight,carrier,year,month,day,dep_time,arr_time,status)
   
-#Filtering Using rowwise
-#-----------------------
+#Filtering Using rowwise()
+#-------------------------
 #When logic depends on row level computation.
 #Example: Keep a flight if the mean of dep_delay and arr_delay for that specific row is greater than 30.
 #classical way 
@@ -439,6 +439,7 @@ flights |> distinct(origin,dest)
 flights |> summarize(unique_planes = n_distinct(tailnum),
                      unique_carrier =n_distinct(carrier))
 
+#
 #Filtering Using Aggregates
 #==========================
 #Filtering by Average (mean)
@@ -471,6 +472,10 @@ flights %>%
 flights %>%
   group_by(origin) %>%
   filter(mean(is.na(round(dep_time,2)) > 0.05))
+  
+flights %>%
+  group_by(origin) %>%
+  summarize(p_missing = mean(is.na(dep_time)))   
 
 colSums(is.na(flights))
 flights %>%

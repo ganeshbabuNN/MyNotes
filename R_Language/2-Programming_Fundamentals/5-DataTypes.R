@@ -266,7 +266,7 @@ class(x)
 ----
   #Stores dates only not time.
   d <- as.Date("2026-01-13")
-d
+d#
 typeof(d)
 # "double"
 class(d)
@@ -298,16 +298,63 @@ class(dt4)
 #the main difference apart from POSIXct we can extract data parts like date,hour,second,...etc.
 lt <- as.POSIXlt(Sys.time())
 lt
+#time part
 lt$sec
 lt$min
 lt$hour
+#data part
+lt$year+1900 #year since 1900
+lt$mon+1 #month(0-11) since months start where jan=0
 lt$mday
-lt$wday
-lt$mon
-lt$year
-lt$isdst
+#metadata
 lt$zone
-lt$gmtoff 
+lt$gmtoff
+
+#formatting  the data
+dt <- as.POSIXlt(Sys.time())
+?strptime
+format(dt,"%Y") #4-digit
+format(dt,"%y") # 2-digit year
+format(dt,"%m")# month(1-12)
+format(dt,"%b") #abbreviated month
+format(dt,"%B") #full month name
+format(dt,"%A") #Weekname
+format(dt,"%a") #short week 
+format(dt,"%d") #day
+format(dt,"%M") #minutes
+format(dt,"%S") #Seconds
+format(dt,"%H") #Hour
+
+#Advanced way
+library(lubridate)
+#https://lubridate.tidyverse.org/reference/index.html
+a<- now() #equivalent to Sys.time()
+a
+#date
+year(a)
+month(a)
+mday(a)
+wday(a) 
+#time part
+hour(a) 
+minute(a)
+second(a)
+#impute
+a+months(1) #adding month
+a+months(2) #adding month
+a+years(1) #adding year
+a+days(10) #adding 10 days
+
+#formatting
+mdy("03-01-2026")
+ydm("2026-15-03")
+dmy("31-03/2026")
+dmy_h("31-03/2026 10")
+
+#handling partial dates
+raw_dates <- c("2026-03-21","2026-05","2026")
+#turncated 2 whichmonth and day
+parse_date <- parse_date_time(raw_dates,order="ymd",truncated = 2)
 
 #Ordered Factor – Ranking Systems
 #--------------------------------
