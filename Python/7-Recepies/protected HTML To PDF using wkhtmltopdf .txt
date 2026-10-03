@@ -41,6 +41,19 @@ For most standard websites, the basic command will automatically flow the conten
 	wkhtmltopdf https://stotranidhi.com/en/sri-chandi-navarna-mantra-navakshari-vidhi-in-english/ Sri_Chandi_Navarna_Mantra(Navashkari)_Vidhi_Stotranidhi_English.pdf
 	wkhtmltopdf https://stotranidhi.com/en/durga-saptashati-purva-nyasa-in-english/ DurgaSaptashati_Purva_Nyasa_Stotranidhi_English.pdf 
 	wkhtmltopdf https://devipuram.org/about-us/signature-practices/kalavahana/#elementor-toc__heading-anchor-3 kalavahana.pdf 
+	wkhtmltopdf https://stotranidhi.com/en/sri-lalitha-ashtottara-satanamavali-in-english/ Sri_lalitha_Ashtotara_Shatanamavali_Stotranidhi_English.pdf 
+	wkhtmltopdf https://stotranidhi.com/en/sri-shiva-ashtottara-satanamavali-in-english/  Sri_Shiva_ashtottara_satanamavali_Stotranidhi_English.pdf
+	
+	wkhtmltopdf https://stotranidhi.com/en/sri-shyamala-ashtottara-shatanamavali-in-english/ Sri_Rajashyamala_ashtottara_satanamavali_Stotranidhi_English.pdf
+	wkhtmltopdf https://stotranidhi.com/en/shyamala-stotram-in-english/ Sri_Rajashyamala_Strotram_Stotranidhi_English.pdf
+	wkhtmltopdf https://stotranidhi.com/en/sri-maha-varahi-ashtottara-shatanamavali-in-english/ Sri_Varahi_ashtottara_satanamavali_Stotranidhi_English.pdf
+	wkhtmltopdf https://stotranidhi.com/en/sri-bala-ashtottara-shatanamavali-2-in-english/ Sri_BalaTripuraSundari_ashtottara_satanamavali_Stotranidhi_English.pdf
+	wkhtmltopdf https://stotranidhi.com/en/sri-varahi-dwadasa-namavali-in-english/ Sri_VarahiDwasasa_Namavali_Stotranidhi_english.pdf
+	wkhtmltopdf https://stotranidhi.com/en/sri-varahamukhi-stava-in-english/ Sri_Varahimukhi_Stava_Stotranidhi_english.pdf
+	wkhtmltopdf https://stotranidhi.com/en/sri-varahi-nigraha-ashtakam-in-english/ Sri_VarahiNigraha_ashtakam_Stotranidhi_english.pdf
+	wkhtmltopdf https://stotranidhi.com/en/sri-ganesha-ashtottara-shatanamavali-in-english/ Sri_GaneshaAshtottara_Shatanamavali_Stotranidhi_english.pdf
+	wkhtmltopdf https://stotranidhi.com/en/sri-krishna-ashtottara-shatanamavali-in-english/ Sri_KrishnaAshtottara_Shatanamavali_Stotranidhi_english.pdf
+	
 	
 
 2. Fixing the "Only First Page/Cut Off" Issue
